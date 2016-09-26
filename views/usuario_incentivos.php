@@ -22,7 +22,18 @@
 					foreach ($incentivos as $key => $incentivo) {
 				?>
 						<tr>
-							<td class="text-center"><?=$incentivo["incentivo"]?></td>
+							<td class="text-center">
+							<?php  
+
+							if ($incentivo["imagen"]) {
+							?>
+								<a class="open-incentivo" img="<?=$incentivo["imagen"]?>"><?=$incentivo["incentivo"]?></a>
+							<?php 
+								
+							}else{
+								echo $incentivo["incentivo"]; 
+							}
+							?></td>
 							<td class="text-center"><?=$incentivo["inicio"]?></td>
 							<td class="text-center"><?=$incentivo["fin"]?></td>
 							<td class="text-center">$<?=number_format($incentivo["meta"])?></td>

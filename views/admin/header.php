@@ -37,7 +37,7 @@
                     <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Catálogo</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                        	<a href="<?=URL_ADMIN."/".URL_ADMIN_PRODUCTOS?>" class="active">Productos</a>
+                        	<a href="<?=URL_ADMIN."/".URL_ADMIN_PRODUCTOS?>">Productos</a>
                         </li>
                         <li>
                         	<a href="<?=URL_ADMIN."/".URL_ADMIN_CATEGORIAS?>">Categorías</a>
@@ -45,17 +45,38 @@
                         <!--<li><a href="dashboard_5.html">Dashboard v.5 <span class="label label-primary pull-right">NEW</span></a></li>-->
                     </ul>
                 </li>								
-				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_PAGINAS?>"><i class="fa fa-th-large"></i> <span class="nav-label">Páginas</span></a></li>
-				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_BANNERS?>"><i class="fa fa-th-large"></i> <span class="nav-label">Banners</span></a></li>				
+                <li>
+                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Contenidos</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PAGINAS?>">Páginas</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_BANNERS?>">Banners</a></li>   
+                    </ul>
+                </li>               							
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_CAMPANAS?>"><i class="fa fa-th-large"></i> <span class="nav-label">Campañas</span></a></li>
-				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_PLANTILLAS?>"><i class="fa fa-th-large"></i> <span class="nav-label">Plantillas Email</span></a></li>
+				
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_ORDENES?>"><i class="fa fa-th-large"></i> <span class="nav-label">Ordenes</span></a></li>
-				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_INGREDIENTES?>"><i class="fa fa-th-large"></i> <span class="nav-label">Ingredientes</span></a></li>
-				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_PROTOCOLOS?>"><i class="fa fa-th-large"></i> <span class="nav-label">Protocolos</span></a></li>
-				<li><a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Personal</span></a></li>
+                <li>
+                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Capacitación</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INGREDIENTES?>">Ingredientes</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PROTOCOLOS?>">Protocolos</a></li>
+                    </ul>
+                </li>                
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_INCENTIVOS?>"><i class="fa fa-th-large"></i> <span class="nav-label">Incentivos</span></a></li>
-				<li><a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Newsletter</span></a></li>
-				<li><a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Informes</span></a></li>				
+				<li>
+                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Informes</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">P y G</a></li>
+                    </ul>
+                </li>                   
+                <li>
+                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Administración</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="#">Personal</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PLANTILLAS?>">Plantillas Email</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>

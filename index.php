@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 session_start();
 require "controller.php";
 
@@ -282,13 +283,7 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						$controller->usuarioCupones();
 						break;
 					case URL_USUARIO_CAPACITACION:
-						if (isset($var4) && $var4!='') {
-							$seccion = $var4;							
-						}else{
-							$seccion = "";
-						}
-
-						$controller->usuarioCapacitacion($seccion);
+						$controller->usuarioCapacitacion();
 						
 						break;
 					case URL_USUARIO_PUNTOS:

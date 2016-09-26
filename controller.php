@@ -763,7 +763,7 @@ class Controller
 		}
 	}
 
-	public function usuarioCapacitacion($seccion=""){
+	public function usuarioCapacitacion(){
 
 		$moduloActual = URL_USUARIO_CAPACITACION;
 
@@ -776,31 +776,37 @@ class Controller
 		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
 		$categorias_menu = $this->categoriasMenu();
 		$categorias = $this->productos->listarCategorias();
-		
 
 
 		if (!empty($_SESSION["idusuario"])) {
-		
-			switch ($seccion) {
-				case URL_USUARIO_CAPACITACION_INGREDIENTES:
-					$ingredientes = $this->usuarios->listarIngredientes();
-					break;
 
-				case 'Fichas':
-					
-					break;
-				case 'Protocolos':
-					# code...
-					break;
-				case 'Tutoriales':
-					# code...
-					break;
+			if (isset($_GET["opcion"]) && !empty($_GET["opcion"])) {
 				
-				default:
-					# code...
-					break;
-			}			
-			
+				switch ($_GET["opcion"]) {
+					case URL_USUARIO_CAPACITACION_INGREDIENTES:
+						$ingredientes = $this->usuarios->listarIngredientes();
+						break;
+
+					case URL_USUARIO_CAPACITACION_NEGOCIO:
+						
+						break;
+					case URL_USUARIO_CAPACITACION_PROTOCOLOS:
+						$protocolos = $this->usuarios->listarProtocolos();
+						break;
+					case 'Tutoriales':
+						# code...
+						break;
+					
+					default:
+						# code...
+						break;
+				}			
+
+			}else{
+
+				$ingredientes = $this->usuarios->listarIngredientes();
+			}
+		
 			include "views/usuario_capacitacion.php";
 
 		}else{
@@ -1601,7 +1607,21 @@ class Controller
 		extract($_POST);
 
 		if (isset($_POST["actualizarIncentivo"])) {
-			$this->usuarios->actualizarIncentivo($idincentivo, $incentivo, $imagen, $inicio, $fin, $meta, $descripcion, $usuario);
+
+			//Upload banner
+			if($_FILES["imagen"]["error"]==UPLOAD_ERR_OK){
+
+				$rutaimg=$_FILES["imagen"]["tmp_name"];
+				$nombreimg=$_FILES["imagen"]["name"];
+				$destino = DIR_IMG_INCENTIVOS.$nombreimg;
+				move_uploaded_file($rutaimg, $destino);
+
+			}else{
+
+				$destino = "";
+			}
+
+			$this->usuarios->actualizarIncentivo($idincentivo, $incentivo, $destino, $inicio, $fin, $meta, $descripcion, $usuario);
 		}
 
 		if (isset($_POST["crearIncentivo"])) {

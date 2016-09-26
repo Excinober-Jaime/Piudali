@@ -27,6 +27,8 @@ define("URL_USUARIO_INCENTIVOS", "Incentivos");
 define("URL_USUARIO_CUPONES", "Cupones");
 define("URL_USUARIO_CAPACITACION", "Capacitacion");
 define("URL_USUARIO_CAPACITACION_INGREDIENTES", "Ingredientes");
+define("URL_USUARIO_CAPACITACION_NEGOCIO", "Negocio");
+define("URL_USUARIO_CAPACITACION_PROTOCOLOS", "Protocolos");
 define("URL_USUARIO_POLITICAS", "Politicas");
 define("URL_USUARIO_PUNTOS", "Puntos");
 define("URL_USUARIO_CLIENTES", "Clientes");
@@ -45,6 +47,7 @@ define("DIR_IMG_PAGINAS", "assets/img/paginas/");
 define("DIR_IMG_BANNERS", "assets/img/banners/");
 define("DIR_IMG_CATEGORIAS", "assets/img/categorias/");
 define("DIR_IMG_USUARIOS", "assets/img/usuarios/");
+define("DIR_IMG_INCENTIVOS", "assets/img/incentivos/");
 
 
 /***ADMIN**/
