@@ -1,0 +1,87 @@
+body{
+	border-top: 5px solid #006837;
+}
+
+.texto-destacado{
+	font-size: 60px;	
+	color: #742126;
+	margin: 40px 0px; 
+} 
+
+.social{
+	padding-top: 30px;
+}
+
+.social .fa-facebook-official{
+	color: #3A5A98;
+	font-size: 3rem;
+}
+
+.social .fa-instagram{
+	color: #3C4F56;
+	font-size: 3rem;
+}
+
+.social .fa-youtube-square{
+	color: #CA2128;
+	font-size: 3rem;
+}
+
+.whatsapp{
+	color: #189D0E;
+	font-size: 15px;	
+}
+
+.navbar-default{
+	
+	/*border-top: 5px;*/
+/*	border-top: 40px solid transparent;	
+	border-bottom: 0px solid transparent;
+	border-left: 0px solid transparent;
+	border-right: 0px solid transparent;
+
+	border-image: url('../img/franja.png') 30 round;*/
+
+}
+
+.franja{
+	background-image: url('../img/franja.png');
+	background-repeat: repeat-x;
+	height: 30px;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+footer{
+	background-color: #006837;
+	border-top: 5px solid #742126;
+	color: #fff;
+	padding: 20px 0px;
+}
+
+.texto-vinotinto{
+	color: #742126;
+}
+
+.fondo-vinotinto{
+	background-color: #742126;
+	color: #fff;
+}
+
+.fondo-verde{
+	background-color: #006837;
+	color: #fff;
+}
+
+.box-session{
+	background-color: #006837;
+	padding: 10px;
+	color: #fff;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.box-session a{
+	color: #fff;
+}

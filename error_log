@@ -1,0 +1,97 @@
+[11-Jul-2016 07:25:10] PHP Warning:  in_array() [<a href='function.in-array'>function.in-array</a>]: Wrong datatype for second argument in /home3/linkgm/public_html/piudali.com.co/controller.php on line 923
+[12-Jul-2016 11:50:40] PHP Warning:  Invalid argument supplied for foreach() in /home3/linkgm/public_html/piudali.com.co/views/admin/usuarios_lista.php on line 27
+[12-Jul-2016 11:50:52] PHP Parse error:  syntax error, unexpected $end in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1033
+[12-Jul-2016 11:50:55] PHP Warning:  Invalid argument supplied for foreach() in /home3/linkgm/public_html/piudali.com.co/views/admin/usuarios_lista.php on line 27
+[12-Jul-2016 11:50:59] PHP Warning:  Invalid argument supplied for foreach() in /home3/linkgm/public_html/piudali.com.co/views/admin/usuarios_lista.php on line 27
+[12-Jul-2016 11:52:13] PHP Warning:  Invalid argument supplied for foreach() in /home3/linkgm/public_html/piudali.com.co/views/admin/usuarios_lista.php on line 27
+[12-Jul-2016 11:52:15] PHP Warning:  Invalid argument supplied for foreach() in /home3/linkgm/public_html/piudali.com.co/views/admin/usuarios_lista.php on line 27
+[12-Jul-2016 12:38:13] PHP Fatal error:  Call to undefined method Controller::adminClientesLista() in /home3/linkgm/public_html/piudali.com.co/index.php on line 118
+[12-Jul-2016 12:38:16] PHP Fatal error:  Call to undefined method Controller::adminClientesLista() in /home3/linkgm/public_html/piudali.com.co/index.php on line 118
+[24-Jul-2016 19:40:06] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1193
+[24-Jul-2016 19:40:06] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1193
+[24-Jul-2016 19:40:06] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1193
+[24-Jul-2016 19:40:06] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'views/admin/banner_detalle.php' for inclusion (include_path='.:/opt/php52/lib/php') in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1193
+[24-Jul-2016 19:40:32] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1193
+[24-Jul-2016 19:40:32] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1193
+[24-Jul-2016 19:40:32] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1193
+[24-Jul-2016 19:40:32] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'views/admin/banner_detalle.php' for inclusion (include_path='.:/opt/php52/lib/php') in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1193
+[24-Jul-2016 19:40:33] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1193
+[24-Jul-2016 19:40:33] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1193
+[24-Jul-2016 19:40:33] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1193
+[24-Jul-2016 19:40:33] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'views/admin/banner_detalle.php' for inclusion (include_path='.:/opt/php52/lib/php') in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1193
+[26-Jul-2016 05:58:04] PHP Parse error:  syntax error, unexpected $end in /home3/linkgm/public_html/piudali.com.co/views/usuario_capacitacion.php on line 805
+[26-Jul-2016 05:59:20] PHP Parse error:  syntax error, unexpected $end in /home3/linkgm/public_html/piudali.com.co/views/usuario_capacitacion.php on line 1200
+[26-Jul-2016 06:01:36] PHP Parse error:  syntax error, unexpected $end in /home3/linkgm/public_html/piudali.com.co/views/usuario_capacitacion.php on line 1196
+[26-Jul-2016 06:51:16] PHP Fatal error:  Class 'Controller' not found in /home3/linkgm/public_html/piudali.com.co/index.php on line 5
+[26-Jul-2016 07:28:20] PHP Parse error:  syntax error, unexpected $end in /home3/linkgm/public_html/piudali.com.co/views/usuario_capacitacion.php on line 1196
+[26-Jul-2016 07:36:11] PHP Parse error:  syntax error, unexpected $end in /home3/linkgm/public_html/piudali.com.co/views/usuario_capacitacion.php on line 1195
+[28-Jul-2016 15:20:44] PHP Parse error:  syntax error, unexpected $end in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1025
+[28-Jul-2016 15:20:44] PHP Parse error:  syntax error, unexpected $end in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1025
+[29-Jul-2016 12:34:30] PHP Warning:  in_array() [<a href='function.in-array'>function.in-array</a>]: Wrong datatype for second argument in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1058
+[29-Jul-2016 13:10:28] PHP Warning:  in_array() [<a href='function.in-array'>function.in-array</a>]: Wrong datatype for second argument in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1058
+[29-Jul-2016 13:59:27] PHP Fatal error:  Unsupported operand types in /home3/linkgm/public_html/piudali.com.co/controller.php on line 703
+[29-Jul-2016 13:59:30] PHP Fatal error:  Unsupported operand types in /home3/linkgm/public_html/piudali.com.co/controller.php on line 703
+[29-Jul-2016 13:59:32] PHP Fatal error:  Unsupported operand types in /home3/linkgm/public_html/piudali.com.co/controller.php on line 703
+[29-Jul-2016 14:01:11] PHP Fatal error:  Unsupported operand types in /home3/linkgm/public_html/piudali.com.co/controller.php on line 703
+[29-Jul-2016 14:01:55] PHP Fatal error:  Unsupported operand types in /home3/linkgm/public_html/piudali.com.co/controller.php on line 703
+[29-Jul-2016 14:04:06] PHP Fatal error:  Unsupported operand types in /home3/linkgm/public_html/piudali.com.co/controller.php on line 705
+[29-Jul-2016 14:05:14] PHP Fatal error:  Unsupported operand types in /home3/linkgm/public_html/piudali.com.co/controller.php on line 705
+[29-Jul-2016 14:05:16] PHP Fatal error:  Unsupported operand types in /home3/linkgm/public_html/piudali.com.co/controller.php on line 705
+[29-Jul-2016 17:34:05] PHP Warning:  in_array() [<a href='function.in-array'>function.in-array</a>]: Wrong datatype for second argument in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1123
+[29-Jul-2016 18:59:18] PHP Fatal error:  Call to undefined method Controller::adminOrdenDetalle() in /home3/linkgm/public_html/piudali.com.co/index.php on line 138
+[30-Jul-2016 13:21:19] PHP Warning:  in_array() [<a href='function.in-array'>function.in-array</a>]: Wrong datatype for second argument in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1123
+[30-Jul-2016 13:40:47] PHP Fatal error:  Call to undefined method Controller::adminOrdenDetalle() in /home3/linkgm/public_html/piudali.com.co/index.php on line 138
+[30-Jul-2016 14:15:49] PHP Warning:  include(views/admin/incentivos_lista.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1594
+[30-Jul-2016 14:15:49] PHP Warning:  include(views/admin/incentivos_lista.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1594
+[30-Jul-2016 14:15:49] PHP Warning:  include(views/admin/incentivos_lista.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1594
+[30-Jul-2016 14:15:49] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'views/admin/incentivos_lista.php' for inclusion (include_path='.:/opt/php52/lib/php') in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1594
+[30-Jul-2016 14:18:55] PHP Fatal error:  Call to undefined method Controller::adminIncentivoDetalle() in /home3/linkgm/public_html/piudali.com.co/index.php on line 151
+[30-Jul-2016 14:58:24] PHP Parse error:  syntax error, unexpected $end in /home3/linkgm/public_html/piudali.com.co/views/usuario_capacitacion.php on line 792
+[01-Aug-2016 13:20:33] PHP Warning:  in_array() [<a href='function.in-array'>function.in-array</a>]: Wrong datatype for second argument in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1123
+[03-Aug-2016 10:49:50] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:49:50] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:49:50] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:49:50] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'views/admin/banner_detalle.php' for inclusion (include_path='.:/opt/php52/lib/php') in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:50:07] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:50:07] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:50:07] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:50:07] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'views/admin/banner_detalle.php' for inclusion (include_path='.:/opt/php52/lib/php') in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:50:14] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:50:14] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:50:14] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:50:14] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'views/admin/banner_detalle.php' for inclusion (include_path='.:/opt/php52/lib/php') in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:50:41] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:50:41] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:50:41] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 10:50:41] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'views/admin/banner_detalle.php' for inclusion (include_path='.:/opt/php52/lib/php') in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 13:37:52] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 13:37:52] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 13:37:52] PHP Warning:  include(views/admin/banner_detalle.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[03-Aug-2016 13:37:52] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'views/admin/banner_detalle.php' for inclusion (include_path='.:/opt/php52/lib/php') in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1419
+[31-Aug-2016 21:16:04] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1040] Too many connections' in /home3/linkgm/public_html/piudali.com.co/model/dbclass.php:22
+Stack trace:
+#0 /home3/linkgm/public_html/piudali.com.co/model/dbclass.php(22): PDO->__construct('mysql:host=loca...', 'linkgm_piudali', 'Graciasdios1', Array)
+#1 /home3/linkgm/public_html/piudali.com.co/model/paginasclass.php(9): Database->conectar()
+#2 /home3/linkgm/public_html/piudali.com.co/controller.php(38): Paginas->listarPaginas('QUIENES SOMOS')
+#3 /home3/linkgm/public_html/piudali.com.co/index.php(328): Controller->paginaContenido('robots.txt')
+#4 {main}
+  thrown in /home3/linkgm/public_html/piudali.com.co/model/dbclass.php on line 22
+[01-Sep-2016 08:21:54] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[08004] [1040] Too many connections' in /home3/linkgm/public_html/piudali.com.co/model/dbclass.php:22
+Stack trace:
+#0 /home3/linkgm/public_html/piudali.com.co/model/dbclass.php(22): PDO->__construct('mysql:host=loca...', 'linkgm_piudali', 'Graciasdios1', Array)
+#1 /home3/linkgm/public_html/piudali.com.co/model/bannersclass.php(36): Database->conectar()
+#2 /home3/linkgm/public_html/piudali.com.co/controller.php(76): Banners->listarBanners('HOME', Array)
+#3 /home3/linkgm/public_html/piudali.com.co/index.php(334): Controller->pageInicio()
+#4 {main}
+  thrown in /home3/linkgm/public_html/piudali.com.co/model/dbclass.php on line 22
+[12-Sep-2016 11:10:05] PHP Fatal error:  Call to undefined method Controller::paginaCategorias() in /home3/linkgm/public_html/piudali.com.co/index.php on line 195
+[19-Sep-2016 13:00:44] PHP Fatal error:  Call to undefined method Banners::conectar() in /home3/linkgm/public_html/piudali.com.co/model/bannersclass.php on line 36
+[19-Sep-2016 13:04:40] PHP Fatal error:  Call to undefined method Banners::conectar() in /home3/linkgm/public_html/piudali.com.co/model/bannersclass.php on line 36
+[19-Sep-2016 13:04:51] PHP Fatal error:  Call to undefined method Banners::conectar() in /home3/linkgm/public_html/piudali.com.co/model/bannersclass.php on line 36
+[19-Sep-2016 13:05:38] PHP Fatal error:  Call to undefined method Campanas::conectar() in /home3/linkgm/public_html/piudali.com.co/model/campanasclass.php on line 10
+[19-Sep-2016 13:05:39] PHP Fatal error:  Call to undefined method Campanas::conectar() in /home3/linkgm/public_html/piudali.com.co/model/campanasclass.php on line 10
+[19-Sep-2016 13:07:35] PHP Warning:  in_array() [<a href='function.in-array'>function.in-array</a>]: Wrong datatype for second argument in /home3/linkgm/public_html/piudali.com.co/controller.php on line 1125
+[19-Sep-2016 16:18:31] PHP Warning:  include(navbar.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/views/admin/ingresar.php on line 1
+[19-Sep-2016 16:18:31] PHP Warning:  include(navbar.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/views/admin/ingresar.php on line 1
+[19-Sep-2016 16:18:31] PHP Warning:  include(navbar.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home3/linkgm/public_html/piudali.com.co/views/admin/ingresar.php on line 1
+[19-Sep-2016 16:18:31] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'navbar.php' for inclusion (include_path='.:/opt/php52/lib/php') in /home3/linkgm/public_html/piudali.com.co/views/admin/ingresar.php on line 1

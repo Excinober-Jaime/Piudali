@@ -1,0 +1,11 @@
+[01-Aug-2016 13:12:13] PHP Fatal error:  Class 'Database' not found in /home3/linkgm/public_html/piudali.com.co/model/usuariosclass.php on line 6
+[01-Aug-2016 13:12:13] PHP Fatal error:  Class 'Database' not found in /home3/linkgm/public_html/piudali.com.co/model/productosclass.php on line 6
+[01-Aug-2016 13:12:13] PHP Fatal error:  Class 'Database' not found in /home3/linkgm/public_html/piudali.com.co/model/campanasclass.php on line 5
+[01-Aug-2016 13:12:13] PHP Fatal error:  Class 'Productos' not found in /home3/linkgm/public_html/piudali.com.co/model/carritoclass.php on line 5
+[01-Aug-2016 13:12:13] PHP Fatal error:  Class 'Database' not found in /home3/linkgm/public_html/piudali.com.co/model/paginasclass.php on line 5
+[01-Aug-2016 13:12:13] PHP Fatal error:  Class 'Database' not found in /home3/linkgm/public_html/piudali.com.co/model/bannersclass.php on line 5
+[01-Aug-2016 13:12:15] PHP Fatal error:  Class 'Database' not found in /home3/linkgm/public_html/piudali.com.co/model/usuariosclass.php on line 6
+[01-Aug-2016 13:12:15] PHP Fatal error:  Class 'Database' not found in /home3/linkgm/public_html/piudali.com.co/model/productosclass.php on line 6
+[01-Aug-2016 13:12:15] PHP Fatal error:  Class 'Database' not found in /home3/linkgm/public_html/piudali.com.co/model/campanasclass.php on line 5
+[01-Aug-2016 13:12:15] PHP Fatal error:  Class 'Productos' not found in /home3/linkgm/public_html/piudali.com.co/model/carritoclass.php on line 5
+[01-Aug-2016 13:12:15] PHP Fatal error:  Class 'Database' not found in /home3/linkgm/public_html/piudali.com.co/model/paginasclass.php on line 5
