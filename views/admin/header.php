@@ -22,8 +22,8 @@
                 <li class="nav-header">
                     <div class="dropdown profile-element">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?=$_SESSION["admin_nombre"]?></strong>
+                             </span> <span class="text-muted text-xs block"><?=$_SESSION["admin_cargo"]?> <b class="caret"></b></span> </span> </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a href="<?=URL_SITIO.URL_USUARIO."/".URL_SALIR?>">Logout</a></li>
                             </ul>
@@ -32,9 +32,9 @@
                         IN+
                     </div>
                 </li>
-				<li class="active"><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS?>"><i class="fa fa-th-large"></i> <span class="nav-label">Usuarios</span></a></li>
+				<li class="active"><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS?>"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Usuarios</span></a></li>
 				<li>
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Catálogo</span> <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-suitcase" aria-hidden="true"></i> <span class="nav-label">Catálogo</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                         	<a href="<?=URL_ADMIN."/".URL_ADMIN_PRODUCTOS?>">Productos</a>
@@ -46,32 +46,32 @@
                     </ul>
                 </li>								
                 <li>
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Contenidos</span> <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-align-center" aria-hidden="true"></i> <span class="nav-label">Contenidos</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PAGINAS?>">Páginas</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_BANNERS?>">Banners</a></li>   
                     </ul>
                 </li>               							
-				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_CAMPANAS?>"><i class="fa fa-th-large"></i> <span class="nav-label">Campañas</span></a></li>
+				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_CAMPANAS?>"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span class="nav-label">Campañas</span></a></li>
 				
-				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_ORDENES?>"><i class="fa fa-th-large"></i> <span class="nav-label">Ordenes</span></a></li>
+				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_ORDENES?>"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="nav-label">Ordenes</span></a></li>
                 <li>
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Capacitación</span> <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Capacitación</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INGREDIENTES?>">Ingredientes</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PROTOCOLOS?>">Protocolos</a></li>
                     </ul>
                 </li>                
-				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_INCENTIVOS?>"><i class="fa fa-th-large"></i> <span class="nav-label">Incentivos</span></a></li>
+				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_INCENTIVOS?>"><i class="fa fa-dollar" aria-hidden="true"></i> <span class="nav-label">Incentivos</span></a></li>
 				<li>
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Informes</span> <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-area-chart" aria-hidden="true"></i> <span class="nav-label">Informes</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="#">Newsletter</a></li>
                         <li><a href="#">P y G</a></li>
                     </ul>
                 </li>                   
                 <li>
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Administración</span> <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-wrench" aria-hidden="true"></i> <span class="nav-label">Administración</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="#">Personal</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PLANTILLAS?>">Plantillas Email</a></li>

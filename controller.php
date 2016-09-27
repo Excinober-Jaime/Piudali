@@ -1159,7 +1159,11 @@ class Controller
 			$admin = $this->usuarios->loguearPersonal($email, $password);			
 
 			if (count($admin)>0) {
+				
 				$_SESSION["admin"] = true;
+				$_SESSION["admin_nombre"] = $admin["nombre"];
+				$_SESSION["admin_cargo"] = $admin["cargo"];
+				$_SESSION["admin_email"] = $admin["usuario"];
 				header("Location: ".URL_ADMIN."/".URL_ADMIN_INICIO);
 			}else{
 				
@@ -1587,6 +1591,17 @@ class Controller
 	}
 
 	public function adminOrdenDetalle($idorden){
+		
+		$estados = array('APROBADO', 'DECLINADO', 'PENDIENTE', 'FACTURADO');
+
+		if (isset($_POST["actualizar_orden"])) {
+		
+			extract($_POST);
+
+			$fecha_facturacion = date("Y-m-d H:i:s");
+
+			$this->usuarios->actualizarOrden($idorden, $estado, $fecha_facturacion, $num_factura);
+		}
 
 		$orden = $this->usuarios->detalleOrden($idorden);
 

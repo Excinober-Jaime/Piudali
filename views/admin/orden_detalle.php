@@ -15,7 +15,23 @@
 			<div class="col-xs-12 col-md-6">
 				<div class="well well-sm"><b>Número de Orden:</b> <?=$orden["detalle"]["num_orden"]?></div>
 				<div class="well well-sm"><b>Fecha:</b> <?=$orden["detalle"]["fecha_pedido"]?></div>
-				<div class="well well-sm"><b>Estado:</b> <?=$orden["detalle"]["estado"]?></div>
+				<form method="post">
+				<div class="well well-sm"><b>Estado:</b> 
+					<select name="estado" class="input-sm">
+					<?php 
+						foreach ($estados as $key => $estado) {
+							?>
+							<option value="<?=$estado?>" <?php if($estado == $orden["detalle"]["estado"]) echo "selected"; ?>><?=$estado?></option>
+							<?php
+						}
+					?>	
+					</select>
+				</div>
+				<div class="well well-sm"><b>Número de Factura:</b>
+					<input type="text" name="num_factura" class="form-control input-sm" value="<?=$orden["detalle"]["num_factura"]?>">
+				</div>
+				<button type="submit" name="actualizar_orden" class="btn btn-primary center-block">ACTUALIZAR</button>
+				</form>
 			</div>
 			<div class="col-xs-12">
 				<h2>Productos</h2>

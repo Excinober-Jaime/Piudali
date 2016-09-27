@@ -119,7 +119,7 @@ class Usuarios extends Database
 
 	public function loguearPersonal($email,$password){
 		
-		$query = $this->consulta("SELECT `idpersona`, `usuario`, `password`, `rol`, `estado`, `companias_idcompania` FROM `personal`
+		$query = $this->consulta("SELECT `idpersona`, `nombre`, `cargo`, `usuario`, `password`, `rol`, `estado`, `companias_idcompania` FROM `personal`
 									WHERE `usuario`='$email' AND `password`='$password'");
 		
 		return $query[0];
@@ -172,6 +172,16 @@ class Usuarios extends Database
 		$return = array('detalle' => $query[0], 'productos' => $productos);
 
 		return $return;
+	}
+
+	public function actualizarOrden($idorden, $estado, $fecha_facturacion, $num_factura){
+		
+		$query = $this->actualizar("UPDATE `ordenes_pedidos` SET 
+									`estado`= '$estado',
+									`fecha_facturacion`= '$fecha_facturacion',
+									`num_factura`= '$num_factura'
+									WHERE `idorden`='$idorden'");
+		return $query;
 	}
 
 	public function listarOrdenesUsuario($idusuario,$inicio,$fin){
