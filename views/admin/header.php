@@ -66,8 +66,8 @@
 				<li>
                     <a href="#"><i class="fa fa-area-chart" aria-hidden="true"></i> <span class="nav-label">Informes</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="#">Newsletter</a></li>
-                        <li><a href="#">P y G</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_SUSCRIPTORES?>">Newsletter</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PYG?>">P y G</a></li>
                     </ul>
                 </li>                   
                 <li>

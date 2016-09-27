@@ -438,9 +438,57 @@ class Usuarios extends Database
 	/*****LIDER***********/
 	public function zonaUsuario($idusuario){
 		
-		$query = $this->consulta("SELECT `idzona`, `zona`, `estado`, `lider` FROM `zonas` WHERE `lider`='$idusuario'");
-		
+		$query = $this->consulta("SELECT `idzona`, `zona`, `estado`, `lider` FROM `zonas` WHERE `lider`='$idusuario'");		
 		return $query[0];
+	}
+
+	/****NEWSLETTER****/
+	public function suscribirNewsletter($nombre, $email, $fecha){
+		
+		$idsuscriptor = $this->insertar("INSERT INTO `boletines`(
+										`nombre`, 
+										`email`, 
+										`fecha`) 
+										VALUES (
+										'$nombre',
+										'$email',
+										'$fecha')");		
+		return $idsuscriptor;
+	}
+
+	public function listarSuscriptores(){
+
+		$query = $this->consulta("SELECT `id`, `nombre`, `email`, `fecha` FROM `boletines`");
+		return $query;
+	}
+
+	public function suscriptorDetalle($idsuscriptor){
+
+		$query = $this->consulta("SELECT `id`, `nombre`, `email`, `fecha` FROM `boletines` WHERE `id`='$idsuscriptor'");
+		return $query[0];
+	}
+
+	public function crearSuscriptor($nombre,$email,$fecha){
+		
+		$idsuscriptor = $this->insertar("INSERT INTO `boletines`(
+											`nombre`,
+											`email`,
+											`fecha`) 
+											VALUES (
+											'$nombre',
+											'$email',
+											'$fecha')");
+		
+		return $idsuscriptor;
+	}
+
+	public function actualizarSuscriptor($idsuscriptor,$nombre,$email){
+		
+		$query = $this->actualizar("UPDATE `boletines` SET 
+										`nombre`='$nombre',
+										`email`='$email'
+										WHERE `id`='$idsuscriptor'");
+		return $query;
 	}
 
 }

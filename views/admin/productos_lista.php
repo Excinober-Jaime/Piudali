@@ -24,7 +24,7 @@
 		  		<tr>
 		  			<td><?=$producto["nombre"]?></td>
 		  			<td><?=$producto["codigo"]?></td>
-		  			<td><?=$producto["precio"]?></td>
+		  			<td><?=convertir_pesos($producto["precio"])?></td>
 		  			<td><?=$producto["estado"]?></td>
 		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_PRODUCTOS."/".$producto['idproducto']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
 		  		</tr>

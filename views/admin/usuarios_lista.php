@@ -18,6 +18,7 @@
 			  		<th>Móvil</th>
 			  		<th>Ciudad</th>
 			  		<th>Tipo</th>
+			  		<th>Fecha Registro</th>
 			  	</tr>
 			  </thead>
 			  <tbody>
@@ -33,6 +34,7 @@
 		  			<td><?=$usuario["telefono_m"]?></td>
 		  			<td><?=$usuario["ciudad"]?></td>
 		  			<td><?=$usuario["tipo"]?></td>
+		  			<td><?=$usuario["fecha_registro"]?></td>
 		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/".$usuario['idusuario']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
 		  		</tr>
 		  		<?php

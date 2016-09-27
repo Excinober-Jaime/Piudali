@@ -16,12 +16,18 @@
         <script src="assets/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
         <script src="assets/admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
+        <!-- Nestable List -->
+        <script src="assets/admin/js/plugins/nestable/jquery.nestable.js"></script>
+
         <!-- Custom and plugin javascript -->
         <script src="assets/admin/js/inspinia.js"></script>
         <script src="assets/admin/js/plugins/pace/pace.min.js"></script>
 
+        <script src="assets/admin/js/js.js"></script>
+
         <script src="include/ckeditor/ckeditor.js"></script>
         <script src="include/ckeditor/config.js"></script>
+
         <script type="text/javascript">
         $(document).ready(function(){
 

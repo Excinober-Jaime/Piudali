@@ -283,6 +283,23 @@ class Controller
 		}
 	}
 
+	public function suscribirNewsletter(){
+		extract($_POST);
+
+		if (isset($nombre) && isset($email)) {
+			$idsuscriptor = $this->usuarios->suscribirNewsletter($nombre,$email,fecha_actual('datetime'));
+		}
+
+		if ($idsuscriptor) {
+			$return = "Tu suscripción se realizó con éxito";
+
+		}else{
+			$return = "Tu suscripción no se logro realizar, intenta más tarde";
+		}
+
+		return $return;
+	}
+
 	public function pageRestaurarContrasena(){
 		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
 		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
@@ -1702,6 +1719,38 @@ class Controller
 		}
 
 		include "views/admin/protocolo_detalle.php";	
+	}
+
+	public function adminSuscriptoresLista(){
+
+		$suscriptores = $this->usuarios->listarSuscriptores();
+		include "views/admin/suscriptores_lista.php";
+	}
+
+	public function adminSuscriptorDetalle($idsuscriptor){
+
+		extract($_POST);
+
+		if (isset($_POST["actualizarSuscriptor"])) {
+
+			$this->usuarios->actualizarSuscriptor($idsuscriptor,$nombre,$email);
+		}
+
+		if (isset($_POST["crearSuscriptor"])) {
+			$idsuscriptor = $this->usuarios->crearSuscriptor($nombre,$email,fecha_actual('datetime'));
+		}
+
+		if (isset($idsuscriptor) && !empty($idsuscriptor)) {
+			$suscriptor = $this->usuarios->suscriptorDetalle($idsuscriptor);
+		}
+
+		include "views/admin/suscriptor_detalle.php";
+
+	}
+
+	public function adminPyG(){
+	
+		include "views/admin/informe_pyg.php";
 	}
 
 }

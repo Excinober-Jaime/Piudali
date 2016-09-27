@@ -8,15 +8,15 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-3">
 				<ul class="list-group">
-				  <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_INGREDIENTES?>">A-Z INGREDIENTES NATURALES</a></li>
-				  <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_NEGOCIO?>">NEGOCIO</a></li>
+          <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion="?>">PRESENTACIÓN</a></li>
+				  <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_INGREDIENTES?>">A-Z INGREDIENTES NATURALES</a></li>				  
 				  <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_PROTOCOLOS?>">PROTOCOLOS</a></li>
+          <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_VIDEOS?>">VIDEOS</a></li>
 				</ul>				
 			</div>      
 			<div class="col-xs-12 col-md-9">
-			
       <?php
-      if ($ingredientes) {     
+      if ($ingredientes) {
 
         foreach ($ingredientes as $key => $ingrediente) {
       ?>

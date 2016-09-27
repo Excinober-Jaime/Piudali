@@ -90,6 +90,7 @@
 				</form>
 			</div>
 			<div class="col-xs-12 col-md-6">
+			<?php if (isset($idusuario) && $idusuario!='') { ?>
 				<h2>ACCIONES</h2>
 				<hr>
 				<form method="post" action="<?=URL_INGRESO_REMOTO?>">
@@ -98,6 +99,7 @@
 
 					<button type="submit" name="ingresoRemoto" class="btn btn-default" title="Ingresa como <?=$usuario["nombre"]." ".$usuario["apellido"]?>">Ingresar a Cuenta <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
 				</form>
+			<?php } ?>
 			</div>
 		</div>
 	</div>

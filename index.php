@@ -1,6 +1,7 @@
 <?php 
 error_reporting(0);
 session_start();
+
 require "controller.php";
 
 $controller = new Controller();
@@ -62,12 +63,12 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						$controller->adminInicio();
 						break;
 					case URL_ADMIN_PRODUCTOS:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
+
 							if ($var4=="Nuevo") {
-								$controller->adminProductoDetalle('');
-							}else{
-								$controller->adminProductoDetalle($var4);
+								$var4 = "";
 							}
+							$controller->adminProductoDetalle($var4);							
 							
 						}else{
 							$controller->adminProductosLista();
@@ -75,12 +76,12 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 					break;
 
 					case URL_ADMIN_PAGINAS:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
+							
 							if ($var4=="Nuevo") {
-								$controller->adminPaginaDetalle('');
-							}else{
-								$controller->adminPaginaDetalle($var4);
+								$var4 = "";
 							}
+							$controller->adminPaginaDetalle($var4);							
 							
 						}else{
 							$controller->adminPaginasLista();
@@ -88,12 +89,12 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						break;
 
 					case URL_ADMIN_BANNERS:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
+
 							if ($var4=="Nuevo") {
-								$controller->adminBannerDetalle('');
-							}else{
-								$controller->adminBannerDetalle($var4);
+								$var4 = "";								
 							}
+							$controller->adminBannerDetalle($var4);
 							
 						}else{
 							$controller->adminBannersLista();
@@ -101,12 +102,12 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						break;
 
 					case URL_ADMIN_CATEGORIAS:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
+
 							if ($var4=="Nuevo") {
-								$controller->adminCategoriaDetalle('');
-							}else{
-								$controller->adminCategoriaDetalle($var4);
+								$var4 = "";							
 							}
+							$controller->adminCategoriaDetalle($var4);
 							
 						}else{
 							$controller->adminCategoriasLista();
@@ -114,24 +115,24 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						break;
 
 					case URL_ADMIN_CAMPANAS:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
+
 							if ($var4=="Nuevo") {
-								$controller->adminCampanaDetalle('');
-							}else{
-								$controller->adminCampanaDetalle($var4);
+								$var4 = "";								
 							}
+							$controller->adminCampanaDetalle($var4);							
 							
 						}else{
 							$controller->adminCampanasLista();
 						}
 						break;
 					case URL_ADMIN_PLANTILLAS:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
+							
 							if ($var4=="Nuevo") {
-								$controller->adminPlantillaDetalle('');
-							}else{
-								$controller->adminPlantillaDetalle($var4);
+								$var4 = "";
 							}
+							$controller->adminPlantillaDetalle($var4);
 							
 						}else{
 							$controller->adminPlantillasLista();
@@ -139,12 +140,12 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						break;
 
 					case URL_ADMIN_USUARIOS:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
+
 							if ($var4=="Nuevo") {
-								$controller->adminUsuarioDetalle('');
-							}else{
-								$controller->adminUsuarioDetalle($var4);
+								$var4 = "";
 							}
+							$controller->adminUsuarioDetalle($var4);							
 							
 						}else{
 							$controller->adminUsuariosLista();
@@ -152,12 +153,12 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						break;
 
 					case URL_ADMIN_ORDENES:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
+
 							if ($var4=="Nuevo") {
-								$controller->adminOrdenDetalle('');
-							}else{
-								$controller->adminOrdenDetalle($var4);
+								$var4 = "";
 							}
+							$controller->adminOrdenDetalle($var4);							
 							
 						}else{
 							$controller->adminOrdenesLista();
@@ -165,12 +166,12 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						break;
 
 					case URL_ADMIN_INCENTIVOS:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
+
 							if ($var4=="Nuevo") {
-								$controller->adminIncentivoDetalle('');
-							}else{
-								$controller->adminIncentivoDetalle($var4);
+								$var4 = "";								
 							}
+							$controller->adminIncentivoDetalle($var4);							
 							
 						}else{
 							$controller->adminIncentivosLista();
@@ -178,12 +179,12 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						break;
 
 					case URL_ADMIN_INGREDIENTES:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
+
 							if ($var4=="Nuevo") {
-								$controller->adminIngredienteDetalle('');
-							}else{
-								$controller->adminIngredienteDetalle($var4);
+								$var4 = "";
 							}
+							$controller->adminIngredienteDetalle($var4);
 							
 						}else{
 							$controller->adminIngredientesLista();
@@ -191,18 +192,35 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						break;
 
 					case URL_ADMIN_PROTOCOLOS:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
+
 							if ($var4=="Nuevo") {
-								$controller->adminProtocoloDetalle('');
-							}else{
-								$controller->adminProtocoloDetalle($var4);
+								$var4 = "";
 							}
+							$controller->adminProtocoloDetalle($var4);							
 							
 						}else{
 							$controller->adminProtocolosLista();
 						}
 						break;
 					
+					case URL_ADMIN_SUSCRIPTORES:
+						if (isset($var4) && !empty($var4)) {
+
+							if ($var4=="Nuevo") {
+								$var4 = "";
+							}
+							$controller->adminSuscriptorDetalle($var4);
+							
+						}else{
+							$controller->adminSuscriptoresLista();
+						}
+						break;
+					
+					case URL_ADMIN_PYG:
+						$controller->adminPyG();
+						break;
+
 					default:
 					# code...
 					break;
@@ -215,7 +233,7 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 			break;
 
 		case URL_PRODUCTOS:
-			if (isset($var3) && $var3!='') {
+			if (isset($var3) && !empty($var3)) {
 				$controller->paginaProductoDetalle($var3);
 			}else{
 				$controller->paginaProductos();
@@ -223,7 +241,7 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 			break;
 
 		case URL_CATEGORIA:
-			if (isset($var3) && $var3!='') {
+			if (isset($var3) && !empty($var3)) {
 				$controller->paginaCategoria($var3);
 			}else{
 				$controller->paginaCategorias();
@@ -246,14 +264,14 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 			break;
 
 		case URL_USUARIO:
-			if (isset($var3) && $var3!='') {
+			if (isset($var3) && !empty($var3)) {
 
 				switch ($var3) {
 					case URL_USUARIO_PERFIL:
 						$controller->usuarioPerfil();
 						break;
 					case URL_USUARIO_CAMBIAR_DATOS:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
 							$return = $var4;
 						}else{
 							$return = "";
@@ -264,7 +282,7 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						$controller->usuarioNegocio();
 						break;
 					case URL_USUARIO_DETALLE_ORDEN:
-						if (isset($var4) && $var4!='') {
+						if (isset($var4) && !empty($var4)) {
 							$controller->usuarioDetalleOrden($var4);
 						}else{
 							$controller->usuarioNegocio();
@@ -312,7 +330,7 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 			break;
 
 		case URL_CARRITO:
-			if (isset($var3) && $var3!='') {
+			if (isset($var3) && !empty($var3)) {
 				switch ($var3) {
 					case URL_CARRITO_AGREGAR:
 						$controller->agregarPdtCarrito();
@@ -340,12 +358,15 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 			break;
 
 		case URL_PAGINA_CONTENIDO:
-			if (isset($var3) && $var3!='') {
+			if (isset($var3) && !empty($var3)) {
 				echo $controller->contenidoPagina($var3);
 			}else{
 				return false;
 			}
+			break;
 
+		case URL_SUSCRIBIR_NEWSLETTER:
+			echo $controller->suscribirNewsletter();
 			break;
 
 		case URL_INGRESO_REMOTO:
@@ -361,6 +382,5 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 	/* Página de Inicio */
 	$controller->pageInicio();
 }
-
 
 ?>

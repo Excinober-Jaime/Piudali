@@ -28,28 +28,48 @@ function convierte_url($url){
 
 function shorcodes_orden_compra($nombre,$orden,$mensaje,$productos,$estado){
 		
-		$mensaje = str_replace("[nombre_completo]",$nombre,$mensaje);		
-		$mensaje = str_replace("[orden]",$orden,$mensaje);		
-		$mensaje = str_replace("[productos]",$productos,$mensaje);		
-		$mensaje = str_replace("[estado_pago]",$estado,$mensaje);		
-		return $mensaje;
+	$mensaje = str_replace("[nombre_completo]",$nombre,$mensaje);		
+	$mensaje = str_replace("[orden]",$orden,$mensaje);		
+	$mensaje = str_replace("[productos]",$productos,$mensaje);		
+	$mensaje = str_replace("[estado_pago]",$estado,$mensaje);		
+	return $mensaje;
 }
 
 function shorcodes_registro_usuario($nombre,$email,$password,$mensaje){
 		
-		$mensaje = str_replace("[email]",$email,$mensaje);		
-		$mensaje = str_replace("[nombre_completo]",$nombre,$mensaje);
-		$mensaje = str_replace("[password]",$password,$mensaje);		
-		
-		return $mensaje;	
+	$mensaje = str_replace("[email]",$email,$mensaje);		
+	$mensaje = str_replace("[nombre_completo]",$nombre,$mensaje);
+	$mensaje = str_replace("[password]",$password,$mensaje);		
+	
+	return $mensaje;	
 }
 
 function shorcodes_restaurar_contrasena($nombre,$email,$password,$mensaje){
 		
-		$mensaje = str_replace("[email]",$email,$mensaje);		
-		$mensaje = str_replace("[nombre_completo]",$nombre,$mensaje);
-		$mensaje = str_replace("[nueva_contrasena]",$password,$mensaje);		
-		
-		return $mensaje;	
+	$mensaje = str_replace("[email]",$email,$mensaje);		
+	$mensaje = str_replace("[nombre_completo]",$nombre,$mensaje);
+	$mensaje = str_replace("[nueva_contrasena]",$password,$mensaje);		
+	
+	return $mensaje;
+}
+
+function convertir_pesos($valor_entero){
+
+	$valor_pesos = number_format($valor_entero,0,".",",");
+
+	return "$".$valor_pesos;
+}
+
+function fecha_actual($tipo="date"){
+
+	if ($tipo == "date") {		
+		$fecha = date("Y-m-d");	
+
+	}elseif ($tipo == "datetime") {
+		$fecha = date("Y-m-d H:i:s");
+
+	}
+	
+	return $fecha;
 }
 ?>

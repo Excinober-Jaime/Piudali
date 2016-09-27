@@ -12,12 +12,12 @@ function producto_bloque($imagen="",$nombre="",$codigo="",$precio=0,$oferta=0,$l
                   <?php 
                   if ($oferta>0) {
                   ?>
-                    <h5>$<?=number_format($precio)?></h5>
-                    <h4>$<?=number_format($oferta)?></h4>
+                    <h5><?=convertir_pesos($precio)?></h5>
+                    <h4><?=convertir_pesos($oferta)?></h4>
                   <?php                  
                   }else{
                   ?>
-                    <h4>$<?=number_format($precio)?></h4>
+                    <h4><?=convertir_pesos($precio)?></h4>
                   <?php
                   }
                   ?>

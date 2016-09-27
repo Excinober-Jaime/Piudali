@@ -14,4 +14,25 @@ $(document).ready(function(){
 		$(".modal-body").html(data);
 		$('.modal').modal();
 	})
+
+	$("#enviar_newsletter").click(function(){
+
+		var email = $("#nombre_newsletter").val();
+		var nombre = $("#email_newsletter").val();
+
+		if (email !='' && nombre !='') {
+
+			$.ajax({
+			  type: "POST",
+			  url: "SuscribirNewsletter/",
+			  data: $("#form-newsletter").serialize(),
+			  success: function(data){
+			  	alert(data);
+			  },
+			  dataType: 'html'
+			});
+		}else{
+			alert("Debes diligenciar el nombre y el email");
+		}
+	})
 })

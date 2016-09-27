@@ -1,5 +1,23 @@
 	<div class="container">
-		<div class="col-xs-12" style="background-color:#f2f2f2;color:#000;padding:20px;">			
+		<div class="col-xs-12" style="background-color:#ef7a00;color:#fff;padding:20px;">
+			<div class="col-xs-12 col-md-4">
+				<h3 style="padding:0;margin:0;" class="text-center">Suscríbete y recibe ofertas</h3>
+			</div>
+			<div class="col-xs-12 col-md-8">
+				<form class="form-inline" method="post" id="form-newsletter">
+				  <div class="form-group">
+				    <label for="exampleInputName2">Nombre</label>
+				    <input type="text" class="form-control" name="nombre" id="nombre_newsletter" placeholder="">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail2">Email</label>
+				    <input type="email" class="form-control" name="email" id="email_newsletter" placeholder="">
+				  </div>
+				  <button type="button" class="btn btn-primary" id="enviar_newsletter">Registrarme</button>
+				</form>
+			</div>
+		</div>			
+		<div class="col-xs-12" style="background-color:#f2f2f2;color:#000;padding:20px;margin-top: 10px;">
 		<div class="col-xs-12 col-md-4">			
 			<ul>
 				<li><a href="http://piudali.com.co/Ingresar" style="color:#006837;">Acceso Distribuidores</a></li>
