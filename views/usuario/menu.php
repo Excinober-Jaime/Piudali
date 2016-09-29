@@ -76,6 +76,7 @@
 				<li role="presentation" <?php if ($moduloActual == URL_USUARIO_INCENTIVOS) { echo 'class="active"';  } ?>><a href="<?=URL_USUARIO."/".URL_USUARIO_INCENTIVOS?>">Incentivos</a></li>
 				<li role="presentation" <?php if ($moduloPerfil == URL_USUARIO_CUENTA) { echo "class='active'";  } ?>><a href="<?=URL_USUARIO."/".URL_USUARIO_CUENTA?>">Cuenta virtual</a></li>
 				<li role="presentation" <?php if ($moduloActual == URL_USUARIO_CAPACITACION) { echo 'class="active"';  } ?>><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION?>">Capacitación</a></li>
+				<li role="presentation" <?php if ($moduloActual == URL_USUARIO_DOCUMENTOS) { echo 'class="active"';  } ?>><a href="<?=URL_USUARIO."/".URL_USUARIO_DOCUMENTOS?>">Documentos</a></li>
 				<li role="presentation" <?php if ($moduloActual == URL_USUARIO_POLITICAS) { echo 'class="active"';  } ?>><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 			      Políticas <span class="caret"></span>
 			    </a>

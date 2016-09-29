@@ -91,13 +91,16 @@
 			</div>
 			<div class="col-xs-12 col-md-6">
 			<?php if (isset($idusuario) && $idusuario!='') { ?>
+				<h2>DOCUMENTOS</h2>
+				<p>El usuario no tiene documentos relacionados</p>
+				<hr>
 				<h2>ACCIONES</h2>
 				<hr>
 				<form method="post" action="<?=URL_INGRESO_REMOTO?>">
 					<input type="hidden" value="<?=$usuario["email"]?>" name="email">
 					<input type="hidden" value="<?=$usuario["password"]?>" name="password">
 
-					<button type="submit" name="ingresoRemoto" class="btn btn-default" title="Ingresa como <?=$usuario["nombre"]." ".$usuario["apellido"]?>">Ingresar a Cuenta <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
+					<button type="submit" name="ingresoRemoto" class="btn btn-primary" title="Ingresa como <?=$usuario["nombre"]." ".$usuario["apellido"]?>">Ingresar a Cuenta <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
 				</form>
 			<?php } ?>
 			</div>

@@ -19,14 +19,16 @@
         <!-- Nestable List -->
         <script src="assets/admin/js/plugins/nestable/jquery.nestable.js"></script>
 
+        <script src="assets/admin/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
         <!-- Custom and plugin javascript -->
         <script src="assets/admin/js/inspinia.js"></script>
-        <script src="assets/admin/js/plugins/pace/pace.min.js"></script>
-
-        <script src="assets/admin/js/js.js"></script>
+        <script src="assets/admin/js/plugins/pace/pace.min.js"></script>        
 
         <script src="include/ckeditor/ckeditor.js"></script>
         <script src="include/ckeditor/config.js"></script>
+
+        <script src="assets/admin/js/js.js"></script>
 
         <script type="text/javascript">
         $(document).ready(function(){
@@ -40,10 +42,7 @@
                 $("#escalas_l").append('<tr><td><input type="text" name="minimo_l[]" class="form-control"></td><td><input type="text" name="maximo_l[]" class="form-control"></td><td><input type="text" name="porcentaje_l[]" class="form-control"></td></tr>');
             })
             
-            CKEDITOR.replace('contenido');
-            CKEDITOR.replace('uso');        
-            CKEDITOR.replace('presentacion');
-            CKEDITOR.replace('descripcion');        
+                  
         });
         </script>
 

@@ -11,6 +11,8 @@
     <link href="assets/admin/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/admin/font-awesome/css/font-awesome.css" rel="stylesheet">
 
+    <link href="assets/admin/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
     <link href="assets/admin/css/animate.css" rel="stylesheet">
     <link href="assets/admin/css/style.css" rel="stylesheet">
 </head>
@@ -67,7 +69,7 @@
                     <a href="#"><i class="fa fa-area-chart" aria-hidden="true"></i> <span class="nav-label">Informes</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_SUSCRIPTORES?>">Newsletter</a></li>
-                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PYG?>">P y G</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PYG?>/">P y G</a></li>
                     </ul>
                 </li>                   
                 <li>

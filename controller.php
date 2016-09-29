@@ -7,6 +7,7 @@
 require "model/dbclass.php";
 require "model/usuariosclass.php";
 require "model/productosclass.php";
+require "model/ordenesclass.php";
 require "model/campanasclass.php";
 require "model/carritoclass.php";
 require "model/paginasclass.php";
@@ -24,6 +25,7 @@ class Controller
 	{
 		$this->usuarios = new Usuarios();	
 		$this->productos = new Productos();
+		$this->ordenes = new Ordenes();
 		$this->campanas = new Campanas();
 		$this->carrito = new Carrito();
 		$this->paginas = new Paginas();		
@@ -208,7 +210,9 @@ class Controller
 			$fecha_registro = date("Y-m-d H:i:s");			
 			$passwordmd5 = md5($password);
 
-			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $foto, $estado, $fecha_registro, $ciudad);	
+			$idorganizacion = $this->usuarios->crearOrganizacion($nit, $razon_social, $direccion_organizacion, $telefono_organizacion);
+
+			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $foto, $estado, $fecha_registro, $ciudad, $idorganizacion);
 		
 			//Enviar email Bienvenida
 			$idplantilla=2;
@@ -828,7 +832,45 @@ class Controller
 
 		}else{
 			header("Location: ".URL_SITIO);
-		}	
+		}
+	}
+
+	public function usuarioDocumentos(){
+
+		$moduloActual = URL_USUARIO_DOCUMENTOS;
+
+		$posicion_banners="PANEL INTERNO";
+		$estados = array(1);
+
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);
+		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
+		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
+		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
+		$categorias_menu = $this->categoriasMenu();
+		$categorias = $this->productos->listarCategorias();
+
+		if (isset($_POST["crearDocumento"])) {
+
+			$nombre = $_POST["nombre"];
+			
+			//Upload foto
+			if($_FILES["documento"]["error"]==UPLOAD_ERR_OK){
+
+				$rutadoc=$_FILES["documento"]["tmp_name"];
+				$nombredoc=$_FILES["documento"]["name"];
+				$destinodoc = DIR_IMG_DOCUMENTOS.$_SESSION["idusuario"].$nombredoc;
+				move_uploaded_file($rutadoc, $destinodoc);
+
+			}else{
+				$destinodoc = "";
+			}
+
+			$iddocumento = $this->usuarios->crearDocumento($_SESSION["idusuario"], $nombre, $destinodoc);
+		}
+
+		$documentos = $this->usuarios->listarDocumentos($_SESSION["idusuario"]);
+
+		include "views/usuario_documentos.php";
 	}
 
 	public function usuarioPuntos(){
@@ -1232,6 +1274,7 @@ class Controller
 			$img_principal = $destino;
 			$registro = $_POST["registro"];
 			$cantidad = $_POST["cantidad"];
+			$costo = $_POST["costo"];
 			$precio = $_POST["precio"];
 			$precio_oferta = $_POST["precio_oferta"];
 			$iva = $_POST["iva"];			
@@ -1244,7 +1287,7 @@ class Controller
 
 			$url = convierte_url($_POST["nombre"]);
 
-			$this->productos->actualizarProducto($idproducto,$nombre,$cantidad,$precio,$iva,$aplica_cupon,$precio_oferta,$presentacion,$registro,$codigo,$tipo,$descripcion,$img_principal,$url,$estado,$uso,$mas_info,$metas,$categoria,$compania,$relevancia);
+			$this->productos->actualizarProducto($idproducto,$nombre,$cantidad,$costo,$precio,$iva,$aplica_cupon,$precio_oferta,$presentacion,$registro,$codigo,$tipo,$descripcion,$img_principal,$url,$estado,$uso,$mas_info,$metas,$categoria,$compania,$relevancia);
 		}
 
 		if (isset($_POST["crearProducto"])) {
@@ -1277,6 +1320,7 @@ class Controller
 			$img_principal = $destino;
 			$registro = $_POST["registro"];
 			$cantidad = $_POST["cantidad"];
+			$costo = $_POST["costo"];
 			$precio = $_POST["precio"];
 			$precio_oferta = $_POST["precio_oferta"];
 			$iva = $_POST["iva"];			
@@ -1289,7 +1333,7 @@ class Controller
 
 			$url = convierte_url($_POST["nombre"]);
 
-			$idproducto = $this->productos->crearProducto($nombre,$cantidad,$precio,$iva,$aplica_cupon,$precio_oferta,$presentacion,$registro,$codigo,$tipo,$descripcion,$img_principal,$url,$estado,$uso,$mas_info,$metas,$categoria,$compania,$relevancia);
+			$idproducto = $this->productos->crearProducto($nombre,$cantidad,$costo,$precio,$iva,$aplica_cupon,$precio_oferta,$presentacion,$registro,$codigo,$tipo,$descripcion,$img_principal,$url,$estado,$uso,$mas_info,$metas,$categoria,$compania,$relevancia);
 		}
 
 		if (isset($idproducto) && $idproducto!='') {
@@ -1749,7 +1793,21 @@ class Controller
 	}
 
 	public function adminPyG(){
-	
+
+		
+		if (isset($_GET["fecha_inicio"]) && isset($_GET["fecha_fin"])) {
+
+			$fecha_inicio = $_GET["fecha_inicio"];
+			$fecha_fin = $_GET["fecha_fin"];
+			
+		}else{
+			$fecha_inicio = fecha_actual("date");
+			$fecha_fin = fecha_actual("date");
+		}
+
+		$estado_ordenes = "PENDIENTE";
+		
+		$unidades_vendidas = $this->ordenes->unidadesVendidas($fecha_inicio, $fecha_fin, $estado_ordenes);
 		include "views/admin/informe_pyg.php";
 	}
 

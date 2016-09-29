@@ -301,8 +301,10 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						$controller->usuarioCupones();
 						break;
 					case URL_USUARIO_CAPACITACION:
-						$controller->usuarioCapacitacion();
-						
+						$controller->usuarioCapacitacion();						
+						break;
+					case URL_USUARIO_DOCUMENTOS:
+						$controller->usuarioDocumentos();
 						break;
 					case URL_USUARIO_PUNTOS:
 						$controller->usuarioPuntos();

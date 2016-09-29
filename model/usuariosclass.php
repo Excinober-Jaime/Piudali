@@ -14,7 +14,7 @@ class Usuarios extends Database
 		return $query;
 	}
 	
-	public function crearUsuario($nombre="", $apellido="", $sexo="", $fecha_nacimiento="", $email="", $password="", $num_identificacion="", $boletines=0, $condiciones=0, $direccion="", $telefono="", $telefono_m="", $tipo="", $foto="", $estado=0, $fecha_registro="", $ciudad=0){	
+	public function crearUsuario($nombre="", $apellido="", $sexo="", $fecha_nacimiento="", $email="", $password="", $num_identificacion="", $boletines=0, $condiciones=0, $direccion="", $telefono="", $telefono_m="", $tipo="", $foto="", $estado=0, $fecha_registro="", $ciudad=0, $idorganizacion=0){	
 		
 		$idusuario = $this->insertar("INSERT INTO usuarios(										
 										nombre,
@@ -32,7 +32,8 @@ class Usuarios extends Database
 										tipo, 										
 										estado, 
 										fecha_registro, 
-										ciudades_idciudad) VALUES (
+										ciudades_idciudad,
+										organizaciones_idorganizacion) VALUES (
 										'$nombre',
 										'$apellido', 
 										'$sexo', 
@@ -48,7 +49,8 @@ class Usuarios extends Database
 										'$tipo',										
 										'$estado', 
 										'$fecha_registro', 
-										'$ciudad')");
+										'$ciudad',
+										'$idorganizacion')");
 
 		if (!empty($foto)) {
 			$foto = $this->insertar("INSERT INTO usuarios(foto) VALUES ('$foto')");
@@ -488,6 +490,50 @@ class Usuarios extends Database
 										`nombre`='$nombre',
 										`email`='$email'
 										WHERE `id`='$idsuscriptor'");
+		return $query;
+	}
+
+	/******ORGANIZACIONES******/
+	public function crearOrganizacion($nit, $razon_social, $direccion, $telefono){
+
+		$idorganizacion = $this->insertar("INSERT INTO `organizaciones`(
+										`nit`, 
+										`razon_social`, 
+										`direccion`, 
+										`telefono`) VALUES (
+										'$nit',
+										'$razon_social',
+										'$direccion',
+										'$telefono')");		
+		return $idorganizacion;
+	}
+
+
+	/*****DOCUMENTOS*****/
+	public function crearDocumento($idusuario,$nombre,$url){
+		
+		$iddocumento = $this->insertar("INSERT INTO `documentos`(										
+										`nombre`, 
+										`url`, 
+										`usuarios_idusuario`) VALUES (										
+										'$nombre',
+										'$url',
+										'$idusuario')");		
+		return $iddocumento;
+	}
+
+	public function actualizarDocumento($iddocumento,$nombre,$url){
+		
+		$query = $this->actualizar("UPDATE `documentos` SET 
+									`nombre`='$nombre',
+									`url`='$url'
+									WHERE `iddocumento`='$iddocumento'");
+		return $query;
+	}
+
+	public function listarDocumentos($idusuario){
+
+		$query = $this->consulta("SELECT `iddocumento`, `nombre`, `url`, `usuarios_idusuario` FROM `documentos` WHERE `usuarios_idusuario`='$idusuario'");
 		return $query;
 	}
 

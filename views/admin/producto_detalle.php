@@ -68,6 +68,14 @@
 					<input type="number" class="form-control" name="cantidad" id="cantidad" value="<?=$producto[0]['cantidad']?>" required>
 				</div>
 				<div class="form-group">
+					<label for="exampleInputEmail1">Costo</label>
+					<div class="input-group">
+				      <div class="input-group-addon">$</div>
+				      <input type="text" class="form-control" name="costo" id="costo" value="<?=$producto[0]['costo']?>" required>
+				      <div class="input-group-addon">.00</div>
+				    </div>			
+				</div>
+				<div class="form-group">
 					<label for="exampleInputEmail1">Precio Público</label>
 					<div class="input-group">
 				      <div class="input-group-addon">$</div>

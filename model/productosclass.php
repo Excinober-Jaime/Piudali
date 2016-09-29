@@ -5,11 +5,12 @@
 */
 class Productos extends Database
 {
-	public function crearProducto($nombre,$cantidad,$precio,$iva,$aplica_cupon,$precio_oferta,$presentacion,$registro,$codigo,$tipo,$descripcion,$img_principal,$url,$estado,$uso,$mas_info,$metas,$categoria,$compania,$relevancia){
+	public function crearProducto($nombre,$cantidad,$costo,$precio,$iva,$aplica_cupon,$precio_oferta,$presentacion,$registro,$codigo,$tipo,$descripcion,$img_principal,$url,$estado,$uso,$mas_info,$metas,$categoria,$compania,$relevancia){
 		
 		$idproducto = $this->insertar("INSERT INTO `productos`(
 										`nombre`, 
 										`cantidad`, 
+										`costo`, 
 										`precio`, 
 										`iva`, 
 										`aplica_cupon`, 
@@ -30,8 +31,9 @@ class Productos extends Database
 										`relevancias_idrelevancia`) VALUES (
 										'$nombre', 
 										'$cantidad', 
-										'$precio', 
-										'$iva', 
+										'$costo',
+										'$precio',
+										'$iva',
 										'$aplica_cupon', 
 										'$precio_oferta', 
 										'$presentacion', 
@@ -99,7 +101,7 @@ class Productos extends Database
 		}
 
 		
-		$query = $this->consulta("SELECT `idproducto`, `nombre`, `cantidad`, `precio`, `iva`, `aplica_cupon`, `precio_oferta`, `presentacion`, `registro`, `codigo`, `descripcion`, `img_principal`, `url`, `estado`, `uso`, `mas_info`, `metas`, `categorias_idcategoria`, `companias_idcompania`, `relevancias_idrelevancia` 
+		$query = $this->consulta("SELECT `idproducto`, `nombre`, `cantidad`, `costo`, `precio`, `iva`, `aplica_cupon`, `precio_oferta`, `presentacion`, `registro`, `codigo`, `descripcion`, `img_principal`, `url`, `estado`, `uso`, `mas_info`, `metas`, `categorias_idcategoria`, `companias_idcompania`, `relevancias_idrelevancia` 
 								FROM `productos`
 								WHERE $estados_select $tipos_select $categoria_where");
 		
@@ -116,7 +118,7 @@ class Productos extends Database
 			$where = "WHERE `idproducto`='$idproducto'";
 		}
 
-		$query = $this->consulta("SELECT `productos`.`idproducto`, `productos`.`nombre`, `productos`.`cantidad`, `productos`.`precio`, `productos`.`iva`, `productos`.`aplica_cupon`, `productos`.`precio_oferta`, `productos`.`presentacion`, `productos`.`registro`, `productos`.`codigo`, `productos`.`tipo`, `productos`.`descripcion`, `productos`.`img_principal`, `productos`.`url`, `productos`.`estado`, `productos`.`uso`, `productos`.`mas_info`, `productos`.`metas`, `productos`.`categorias_idcategoria`, `productos`.`companias_idcompania`, `productos`.`relevancias_idrelevancia`, `companias`.`nombre` AS 'compania' 
+		$query = $this->consulta("SELECT `productos`.`idproducto`, `productos`.`nombre`, `productos`.`cantidad`, `productos`.`costo`, `productos`.`precio`, `productos`.`iva`, `productos`.`aplica_cupon`, `productos`.`precio_oferta`, `productos`.`presentacion`, `productos`.`registro`, `productos`.`codigo`, `productos`.`tipo`, `productos`.`descripcion`, `productos`.`img_principal`, `productos`.`url`, `productos`.`estado`, `productos`.`uso`, `productos`.`mas_info`, `productos`.`metas`, `productos`.`categorias_idcategoria`, `productos`.`companias_idcompania`, `productos`.`relevancias_idrelevancia`, `companias`.`nombre` AS 'compania' 
 								FROM `productos`
 								INNER JOIN `companias` ON (`productos`.`companias_idcompania`=`companias`.`idcompania`)
 								$where");
@@ -124,11 +126,12 @@ class Productos extends Database
 		return $query;
 	}
 
-	public function actualizarProducto($idproducto,$nombre,$cantidad,$precio,$iva,$aplica_cupon,$precio_oferta,$presentacion,$registro,$codigo,$tipo,$descripcion,$img_principal,$url,$estado,$uso,$mas_info,$metas,$categoria,$compania,$relevancia){
+	public function actualizarProducto($idproducto,$nombre,$cantidad,$costo,$precio,$iva,$aplica_cupon,$precio_oferta,$presentacion,$registro,$codigo,$tipo,$descripcion,$img_principal,$url,$estado,$uso,$mas_info,$metas,$categoria,$compania,$relevancia){
 		
 		$query = $this->actualizar("UPDATE `productos` SET 
 										`nombre`='$nombre',
 										`cantidad`='$cantidad',
+										`costo`='$costo',
 										`precio`='$precio',
 										`iva`='$iva',
 										`aplica_cupon`='$aplica_cupon',
