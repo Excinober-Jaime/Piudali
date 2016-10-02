@@ -409,7 +409,8 @@ class Controller
 		if (!empty($_SESSION["idusuario"])) {
 
 			$usuario = $this->usuarios->detalleUsuario($_SESSION["idusuario"]);
-
+			//$organizacion = $this->detalleOrganizacionUsuario($_SESSION["idusuario"]);
+			
 			switch ($_SESSION["tipo"]) {
 				case 'DISTRIBUIDOR':
 					if (!empty($usuario["lider"])) {
@@ -1636,8 +1637,9 @@ class Controller
 
 		$ciudades = $this->listarCiudades();
 
-		if (isset($idusuario) && $idusuario!='') {
+		if (isset($idusuario) && !empty($idusuario)) {
 			$usuario = $this->usuarios->detalleUsuario($idusuario);
+			$documentos = $this->usuarios->listarDocumentos($idusuario);
 		}
 		
 		include "views/admin/usuario_detalle.php";	

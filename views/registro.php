@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
 			
-				<h3>DATOS DE LA CUENTA</h3>
+				<h3>DATOS DE USUARIO</h3>
 				<hr>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Nombre</label>

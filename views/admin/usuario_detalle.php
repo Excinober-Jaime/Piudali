@@ -7,6 +7,7 @@
 			  <li class="active">Detalle</li>
 			</ol>
 			<div class="col-xs-12 col-md-6">
+				<h2>INFORMACIÓN</h2>
 				<form method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Nombre</label>
@@ -92,7 +93,16 @@
 			<div class="col-xs-12 col-md-6">
 			<?php if (isset($idusuario) && $idusuario!='') { ?>
 				<h2>DOCUMENTOS</h2>
-				<p>El usuario no tiene documentos relacionados</p>
+				<?php if ($documentos) { ?>
+				<ul class="list-group">								
+					<?php foreach ($documentos as $key => $documento) {
+					?>
+						<li class="list-group-item"><a href="<?="include/descargar.php?url=".$documento["url"]?>"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> <?=$documento["nombre"]?></a></li>
+					<?php } ?>	  
+				</ul>
+				<?php }else{ ?>	
+				<p>El usuario no tiene documentos relacionados.</p>
+				<?php }	?>				
 				<hr>
 				<h2>ACCIONES</h2>
 				<hr>
