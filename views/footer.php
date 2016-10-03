@@ -1,44 +1,48 @@
-	<div class="container">
-		<div class="col-xs-12" style="background-color:#ef7a00;color:#fff;padding:20px;">
-			<div class="col-xs-12 col-md-4">
-				<h3 style="padding:0;margin:0;" class="text-center">Suscríbete y recibe ofertas</h3>
+	<div class="container">				
+		<?php if (!isset($_SESSION["idusuario"])) { ?>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="col-xs-12" style="background-color:#ef7a00;color:#fff;padding:20px;">
+					<div class="col-xs-12 col-md-6">
+						<h3 style="padding:0;margin:0;" class="text-center">Recibe nuestras noticias y ofertas*</h3>
+					</div>
+					<form method="post" id="form-newsletter" class="form-inline col-xs-12 col-md-6">
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInputEmail3">Nombre</label>
+					    <input type="text" class="form-control" name="nombre" id="nombre_newsletter" placeholder="Nombre">
+					  </div>
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInputPassword3">Email</label>
+					    <input type="email" class="form-control" name="email" id="email_newsletter" placeholder="Email">
+					  </div>				  
+					  <button type="button" class="btn btn-success" id="enviar_newsletter">Suscribirme!</button>
+					</form>	
+				</div>
 			</div>
-			<div class="col-xs-12 col-md-8">
-				<form class="form-inline" method="post" id="form-newsletter">
-				  <div class="form-group">
-				    <label for="exampleInputName2">Nombre</label>
-				    <input type="text" class="form-control" name="nombre" id="nombre_newsletter" placeholder="">
-				  </div>
-				  <div class="form-group">
-				    <label for="exampleInputEmail2">Email</label>
-				    <input type="email" class="form-control" name="email" id="email_newsletter" placeholder="">
-				  </div>
-				  <button type="button" class="btn btn-primary" id="enviar_newsletter">Registrarme</button>
-				</form>
-			</div>
-		</div>			
+		</div>
+		<?php } ?>	
 		<div class="col-xs-12" style="background-color:#f2f2f2;color:#000;padding:20px;margin-top: 10px;">
-		<div class="col-xs-12 col-md-4">			
-			<ul>
-				<li><a href="http://piudali.com.co/Ingresar" style="color:#006837;">Acceso Distribuidores</a></li>
-				<li><a href="http://piudali.com.co/Ingresar" style="color:#006837;">Acceso Corporativo</a></li>
-				<li><a href="http://piudali.com.co/tiendas" style="color:#006837;">Dónde Comprar</a></li>
-			</ul>
-		</div>
-		<div class="col-xs-12 col-md-4">
-			<ul>
-				<li><a href="http://piudali.com.co/sobre-waliwa" style="color:#006837;">Quienes Somos</a></li>
-				<li><a href="http://piudali.com.co/quienes-somos" style="color:#006837;">Sobre Piudali</a></li>
-				<li><a href="http://piudali.com.co/compromiso-social" style="color:#006837;">Compromiso Social</a></li>
-			</ul>
-		</div>
-		<div class="col-xs-12 col-md-4">
-			<ul>
-				<li><a href="http://piudali.com.co/politica-datos" style="color:#006837;">Políticas del Sitio Web</a></li>
-				<li><a href="http://piudali.com.co/servicio-al-cliente" style="color:#006837;">Servicio al Cliente</a></li>
-				<li><a href="http://piudali.com.co/Contacto" style="color:#006837;">Contáctenos</a></li>
-			</ul>
-		</div>
+			<div class="col-xs-12 col-md-4">			
+				<ul>
+					<li><a href="<?=URL_SITIO?>Ingresar" style="color:#006837;">Acceso Distribuidores</a></li>
+					<li><a href="<?=URL_SITIO?>Ingresar" style="color:#006837;">Acceso Corporativo</a></li>
+					<li><a href="<?=URL_SITIO?>tiendas" style="color:#006837;">Dónde Comprar</a></li>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-md-4">
+				<ul>
+					<li><a href="<?=URL_SITIO?>sobre-waliwa" style="color:#006837;">Quienes Somos</a></li>
+					<li><a href="<?=URL_SITIO?>quienes-somos" style="color:#006837;">Sobre Piudali</a></li>
+					<li><a href="<?=URL_SITIO?>compromiso-social" style="color:#006837;">Compromiso Social</a></li>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-md-4">
+				<ul>
+					<li><a href="<?=URL_SITIO?>politica-datos" style="color:#006837;">Políticas del Sitio Web</a></li>
+					<li><a href="<?=URL_SITIO?>servicio-al-cliente" style="color:#006837;">Servicio al Cliente</a></li>
+					<li><a href="<?=URL_SITIO?>Contacto" style="color:#006837;">Contáctenos</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<br>

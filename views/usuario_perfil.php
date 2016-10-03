@@ -20,16 +20,19 @@
 			<div class="col-xs-6">Teléfono Móvil</div><div class="col-xs-6"><?=$usuario["telefono_m"]?></div>
 			<div class="col-xs-6">Ciudad</div><div class="col-xs-6"><?=$usuario["ciudad"]?></div>		
 		</div>
-		<h2>Información de la Organización</h2>
-		<div class="row">
-			<div class="col-xs-6">Razón Social</div><div class="col-xs-6"><?=$organizacion["razon_social"]?></div>
-			<div class="col-xs-6">Nit</div><div class="col-xs-6"><?=$organizacion["nit"]?></div>
-			<div class="col-xs-6">Dirección</div><div class="col-xs-6"><?=$organizacion["direccion"]?></div>
-			<div class="col-xs-6">Teléfono</div><div class="col-xs-6"><?=$organizacion["telefono"]?></div>
-		</div>
+		<?php if ($organizacion) { ?>
+			<h2>Información de la Organización</h2>
+			<div class="row">
+				<div class="col-xs-6">Razón Social</div><div class="col-xs-6"><?=$organizacion["razon_social"]?></div>
+				<div class="col-xs-6">Nit</div><div class="col-xs-6"><?=$organizacion["nit"]?></div>				
+				<div class="col-xs-6">Teléfono</div><div class="col-xs-6"><?=$organizacion["telefono"]?></div>
+				<div class="col-xs-6">Dirección</div><div class="col-xs-6"><?=$organizacion["direccion"]?></div>
+				<div class="col-xs-6">Ciudad</div><div class="col-xs-6"><?=$organizacion["ciudad"]?></div>
+			</div>
+		<?php }	?>		
 		<div class="row">
 			<div class="col-xs-12">
-				<a href="<?=URL_USUARIO."/".URL_USUARIO_CAMBIAR_DATOS?>" class="btn btn-default">Cambiar Datos</a>
+				<a href="<?=URL_USUARIO."/".URL_USUARIO_CAMBIAR_DATOS?>" class="btn btn-primary">Cambiar Datos</a>
 			</div>
 		</div>
 	</div>

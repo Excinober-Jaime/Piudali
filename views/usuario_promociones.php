@@ -18,7 +18,7 @@
 				}
 			}else{
 				?>
-				<div class="col-xs-12"><p>Actualmente no existen promociones.</p></div>
+				<div class="col-xs-12"><p class="text-center">Actualmente no existen promociones.</p></div>
 				<?php
 			}
 			?>

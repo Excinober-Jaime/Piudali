@@ -200,17 +200,46 @@ class Controller
 		$categorias_menu = $this->categoriasMenu();
 		$ciudades = $this->listarCiudades();
 
-		if (isset($_POST["crearUsuario"])) {			
+		if (isset($_POST["crearUsuarioOrganizacion"])) {
 
 			extract($_POST);
 
 			$tipo = "DISTRIBUIDOR";
 			$foto = "";
 			$estado = 1;
-			$fecha_registro = date("Y-m-d H:i:s");			
+			$fecha_registro = fecha_actual("datetime");
 			$passwordmd5 = md5($password);
 
-			$idorganizacion = $this->usuarios->crearOrganizacion($nit, $razon_social, $direccion_organizacion, $telefono_organizacion);
+			$idorganizacion = $this->usuarios->crearOrganizacion($nit, $razon_social, $direccion_organizacion, $telefono_organizacion, $ciudad_organizacion);
+
+			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $foto, $estado, $fecha_registro, $ciudad, $idorganizacion);
+		
+			//Enviar email Bienvenida
+			$idplantilla=2;
+			$plantilla = $this->usuarios->detallePlantilla($idplantilla);
+			$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
+
+			// Always set content-type when sending HTML email
+			$headers = "MIME-Version: 1.0"."\r\n";
+			$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
+
+			// More headers
+			$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
+
+			$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
+
+			echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_INGRESAR."';</script>";		
+
+		}elseif (isset($_POST["crearUsuario"])) {
+
+			extract($_POST);
+
+			$tipo = "DISTRIBUIDOR";
+			$foto = "";
+			$estado = 1;
+			$fecha_registro = fecha_actual("datetime");			
+			$passwordmd5 = md5($password);
+			$idorganizacion = 0;
 
 			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $foto, $estado, $fecha_registro, $ciudad, $idorganizacion);
 		
@@ -255,7 +284,7 @@ class Controller
 				$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"]);
 				header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);
 			}else{
-
+				echo "<script> alert('Los datos de acceso son incorrectos. Por favor intenta de nuevo'); </script>";
 			}
 			
 		}
@@ -409,10 +438,17 @@ class Controller
 		if (!empty($_SESSION["idusuario"])) {
 
 			$usuario = $this->usuarios->detalleUsuario($_SESSION["idusuario"]);
-			//$organizacion = $this->detalleOrganizacionUsuario($_SESSION["idusuario"]);
+
+			if (!empty($usuario["organizaciones_idorganizacion"])) {
+				$organizacion = $this->usuarios->detalleOrganizacionUsuario($usuario["organizaciones_idorganizacion"]);
+			}else{
+				$organizacion = false;
+			}			
 			
 			switch ($_SESSION["tipo"]) {
+
 				case 'DISTRIBUIDOR':
+
 					if (!empty($usuario["lider"])) {
 						$lider = $this->usuarios->detalleUsuario($usuario["lider"]);
 					}else{
@@ -478,8 +514,11 @@ class Controller
 					$boletines = 0;
 				}
 
-				$actualizar_usuario = $this->usuarios->actualizarUsuario($_SESSION["idusuario"],$nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $telefono, $telefono_m, $foto, $ciudad);
-			
+				$actualizar_usuario = $this->usuarios->actualizarUsuario($_SESSION["idusuario"],$nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $telefono, $telefono_m, $foto, $ciudad);				
+
+				if (isset($idorganizacion) && !empty($idorganizacion)) {
+					$actualizar_organizacion = $this->usuarios->actualizarOrganizacion($idorganizacion, $razon_social, $telefono_organizacion, $direccion_organizacion, $ciudad_organizacion);
+				}
 
 				if (!empty($nueva_contrasena)) {
 					
@@ -500,13 +539,17 @@ class Controller
 						header("Location: ".URL_SITIO.$return);
 					}				
 				}
-
-
 			}
 			
 			$ciudades = $this->listarCiudades();
 			$usuario = $this->usuarios->detalleUsuario($_SESSION["idusuario"]);
-			$usuario["ciudades_idciudad"];
+
+			if (!empty($usuario["organizaciones_idorganizacion"])) {
+				$organizacion = $this->usuarios->detalleOrganizacionUsuario($usuario["organizaciones_idorganizacion"]);
+			}else{
+				$organizacion = false;
+			}
+			
 			include "views/usuario_cambiar_datos.php";
 
 		}else{
@@ -887,7 +930,11 @@ class Controller
 		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
 		$categorias_menu = $this->categoriasMenu();
 
-		if (!empty($_SESSION["idusuario"])) {	
+		if (!empty($_SESSION["idusuario"])) {
+
+			$total_puntos = 0;
+			$total_redimidos = 0;
+			$total_disponibles = 0;
 			
 			$puntos = $this->usuarios->listarPuntosUsuario($_SESSION["idusuario"]);		
 

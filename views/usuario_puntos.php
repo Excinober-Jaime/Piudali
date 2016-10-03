@@ -6,7 +6,7 @@
 		<h1>Puntos <small><small>Gana puntos por tus compras y redímelos en productos o premios</small></small></h1>
 		<hr>		
 		<div class="col-xs-12 col-md-8">
-			<h3>Movimientos</h3>
+			<h3 class="text-center">Movimientos</h3>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -20,7 +20,7 @@
 				</thead>
 				<tbody>
 					<?php 
-					if (count($punto)>0) {
+					if (count($puntos)>0) {
 						foreach ($puntos as $key => $punto) {
 					?>
 							<tr>
@@ -45,7 +45,7 @@
 			</table>
 		</div>
 		<div class="col-xs-12 col-md-4">
-			<h3>Resumen</h3>
+			<h3 class="text-center">Resumen</h3>
 			<ul class="list-group">
 			  <li class="list-group-item">
 			    <span class="badge"><?=$total_puntos?></span>

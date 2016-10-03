@@ -5,9 +5,8 @@
 	<div class="col-xs-12">
 		<h1>Mis Compras <small><small>Aquí podrás ver el estado de tu negocio como comercializador, monitorear el estado de tus pedidos y rentabilidad.</small></small></h1>		
 		<hr>
-		<div class="row">
-			<div class="hidden-xs hidden-sm col-md-7"></div>
-			<div class="col-xs-12 col-md-5">
+		<div class="row">			
+			<div class="col-xs-12 col-md-5 col-md-offset-7">
 				<form class="form-horizontal" method="post" id="campana">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">Campaña</label>
@@ -47,7 +46,7 @@
 							</select>
 						</div>
 					</div>
-				<form>
+				</form>
 			</div>
 		</div>
 		<table class="table table-striped">
@@ -87,16 +86,9 @@
 					<tr>
 						<td class="text-center"><?=$orden["fecha_pedido"]?></td>
 						<td class="text-center"><?=$orden["estado"]?></td>
-						<td class="text-center"><a href="<?=URL_USUARIO."/".URL_USUARIO_DETALLE_ORDEN."/".$orden['idorden']?>"><?=$orden["num_orden"]?></a></td>
-						<!--<td class="text-center">$<?=number_format($orden["subtotal"])?></td>
-						<td class="text-center">$<?=number_format($orden["descuentos"])?></td>						
-						<td class="text-center"><?=$orden["porc_escala"]?>%</td>
-						<td class="text-center">$<?=number_format($orden["desc_escala"])?></td>
-						<td class="text-center">$<?=number_format($orden["neto_sin_iva"])?></td>
-						<td class="text-center">$<?=number_format($orden["impuestos"])?></td>
-						<td class="text-center">$<?=number_format($orden["costo_envio"])?></td>-->
-						<td class="text-center">$<?=number_format($orden["total"])?></td>
-						<td class="text-center">$<?=number_format($rentabilidad)?></td>
+						<td class="text-center"><a href="<?=URL_USUARIO."/".URL_USUARIO_DETALLE_ORDEN."/".$orden['idorden']?>"><?=$orden["num_orden"]?></a></td>						
+						<td class="text-center"><?=convertir_pesos($orden["total"])?></td>
+						<td class="text-center"><?=convertir_pesos($rentabilidad)?></td>
 					</tr>
 					<?php
 						$total_subtotal += $orden["subtotal"];
@@ -110,16 +102,9 @@
 					}
 					?>
 					<tr>
-						<th class="text-center" colspan="3">TOTAL</th>
-						<!--<th class="text-center">$<?=number_format($total_subtotal)?></th>
-						<th class="text-center">$<?=number_format($total_descuento)?></th>
-						<th class="text-center"></th>
-						<th class="text-center">$<?=number_format($total_descuento_escala)?></th>
-						<th class="text-center">$<?=number_format($total_neto)?></th>
-						<th class="text-center">$<?=number_format($total_iva)?></th>
-						<th class="text-center">$<?=number_format($total_flete)?></th>-->
-						<th class="text-center">$<?=number_format($total_total)?></th>
-						<th class="text-center">$<?=number_format($total_rentabilidad)?></th>
+						<th class="text-right" colspan="3">TOTAL</th>						
+						<th class="text-center"><?=convertir_pesos($total_total)?></th>
+						<th class="text-center"><?=convertir_pesos($total_rentabilidad)?></th>
 					</tr>
 					<?php
 				}else{
