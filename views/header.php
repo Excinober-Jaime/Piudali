@@ -12,10 +12,19 @@
     <title>Piudalí Colombia</title>
 
     <base href="<?=URL_SITIO?>">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
+
+    <style type="text/css">
+      body{
+        font-family: 'Open Sans', sans-serif;
+      }
+
+    </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

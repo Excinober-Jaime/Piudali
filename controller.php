@@ -1615,13 +1615,14 @@ class Controller
 	public function adminCampanaDetalle($idcampana){
 
 		extract($_POST);
-		$fecha = date("Y-m-d");
+		$fecha = fecha_actual("date");
 
 		if (isset($_POST["actualizarCampana"])) {
 			$this->campanas->actualizarCampana($idcampana, $nombre, $fecha_ini, $fecha_fin, $monto_minimo, $estado);
 		}
 
 		if (isset($_POST["crearCampana"])) {
+
 			$idcampana = $this->campanas->crearCampana($nombre, $fecha_ini, $fecha_fin, $monto_minimo, $estado);
 		}
 
@@ -1635,6 +1636,7 @@ class Controller
 		}
 
 		if (isset($minimo_l) && count($minimo_l)>0) {
+
 			foreach ($minimo_l as $key => $value) {
 				if (!empty($minimo_l[$key]) && !empty($maximo_l[$key]) && !empty($porcentaje_l[$key])) {
 					$idescala =	$this->campanas->crearEscalaLider($minimo_l[$key], $maximo_l[$key], $porcentaje_l[$key], $fecha, $idcampana);
@@ -1690,7 +1692,7 @@ class Controller
 			$documentos = $this->usuarios->listarDocumentos($idusuario);
 		}
 		
-		include "views/admin/usuario_detalle.php";	
+		include "views/admin/usuario_detalle.php";
 	}
 
 

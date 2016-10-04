@@ -76,6 +76,19 @@
 								</tr>
 							</thead>
 							<tbody id="escalas_l">
+								<?php 
+									if (isset($escalas_lider) && count($escalas_lider)>0) {
+										foreach ($escalas_lider as $key => $escala) {
+											?>
+											<tr>
+												<td><?=$escala["minimo"]?></td>
+												<td><?=$escala["maximo"]?></td>
+												<td><?=$escala["porcentaje"]?>%</td>
+											</tr>
+											<?php
+										}
+									}
+								?>
 								<tr>
 									<td><input type="text" name="minimo_l[]" class="form-control"></td>
 									<td><input type="text" name="maximo_l[]" class="form-control"></td>
