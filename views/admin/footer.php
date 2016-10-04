@@ -29,23 +29,6 @@
         <script src="include/ckeditor/config.js"></script>
 
         <script src="assets/admin/js/js.js"></script>
-
-        <script type="text/javascript">
-        $(document).ready(function(){
-
-            $("#agregarEscalaDis").click(function(){
-                $("#escalas_d").append('<tr><td><input type="text" name="minimo_d[]" class="form-control"></td><td><input type="text" name="maximo_d[]" class="form-control"></td><td><input type="text" name="porcentaje_d[]" class="form-control"></td></tr>');
-            })
-
-
-            $("#agregarEscalaLider").click(function(){
-                $("#escalas_l").append('<tr><td><input type="text" name="minimo_l[]" class="form-control"></td><td><input type="text" name="maximo_l[]" class="form-control"></td><td><input type="text" name="porcentaje_l[]" class="form-control"></td></tr>');
-            })
-            
-                  
-        });
-        </script>
-
     </body>
 
 </html>

@@ -284,11 +284,16 @@ class Carrito extends Productos
 		$subtotalAntesIva = $this->getSubtotalAntesIva();
 
 		if ($subtotalAntesIva>0) {
-			if (isset($_SESSION["ciudad"]) && $_SESSION["ciudad"] == "Cali") {
-				$flete = 6000;
-			}else{
-				$flete = 11000;
-			}	
+
+			if ($subtotalAntesIva>=100000) {
+				$flete = 0;
+			}else{				
+				if (isset($_SESSION["ciudad"]) && $_SESSION["ciudad"] == "Cali") {
+					$flete = 6000;
+				}else{
+					$flete = 11000;
+				}	
+			}				
 		}else{
 			$flete = 0;
 		}

@@ -1622,10 +1622,11 @@ class Controller
 		}
 
 		if (isset($_POST["crearCampana"])) {
-			$idcampana = $this->campanas->crearCampana($nombre, $fecha_ini, $fecha_fin, $monto_minimo, $estado);			
+			$idcampana = $this->campanas->crearCampana($nombre, $fecha_ini, $fecha_fin, $monto_minimo, $estado);
 		}
 
 		if (isset($minimo_d) && count($minimo_d)>0) {
+
 			foreach ($minimo_d as $key => $value) {
 				if (!empty($minimo_d[$key]) && !empty($maximo_d[$key]) && !empty($porcentaje_d[$key])) {
 					$idescala = $this->campanas->crearEscalaDis($minimo_d[$key], $maximo_d[$key], $porcentaje_d[$key], $fecha, $idcampana);
