@@ -388,8 +388,12 @@ class Controller
 		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
 		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
 		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-
 		$categorias_menu = $this->categoriasMenu();
+
+		$posicion_banners="CONTACTO";
+		$estados = array(1);
+
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);
 
 		if (isset($_POST["enviarMensaje"])) {
 
@@ -858,14 +862,19 @@ class Controller
 					case URL_USUARIO_CAPACITACION_PROTOCOLOS:
 						$protocolos = $this->usuarios->listarProtocolos();
 						break;
-					case 'Tutoriales':
-						# code...
+					case URL_USUARIO_CAPACITACION_VIDEOS:
+						$videos = array(
+									"https://www.youtube.com/embed/vbNEz-TchQE", 
+									"https://www.youtube.com/embed/ULHqCSwlWQQ",
+									"https://www.youtube.com/embed/mOE8Y5EHRCg",
+									"https://www.youtube.com/embed/-mJnu6UGJk4"
+									);
 						break;
 					
 					default:
 						# code...
 						break;
-				}			
+				}
 
 			}else{
 

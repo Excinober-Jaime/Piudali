@@ -11,8 +11,8 @@ class Database {
  {
   if(!isset($this->conexion))
   {   
-    
-    /*$this->conexion = new PDO(
+    /*
+    $this->conexion = new PDO(
     'mysql:host=localhost;dbname=linkgm_piudaliBlog',
     'linkgm_piudali',
     'Graciasdios1',

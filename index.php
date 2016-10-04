@@ -11,7 +11,9 @@ $url = $_SERVER['REQUEST_URI'];
 $url = explode("/", $url);
 
 $dominio = $url[0];
-/*$var1 = $url[1];
+
+/*
+$var1 = $url[1];
 
 if (isset($url[1])) {
 	$var2 = $url[1];
@@ -29,8 +31,8 @@ if (isset($url[3])) {
 	$var4 = $url[3];
 }else{
 	$var4 = '';
-}*/
-
+}
+*/
 $var1 = $url[2];
 
 if (isset($url[3])) {

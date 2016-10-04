@@ -2,7 +2,9 @@
 
 <div class="container">
 	<div class="col-xs-12">
-		<img src="http://piudali.com.co/assets/img/contacto.jpg" class="img-responsive">
+		<a href="<?=$banners[0]['link']?>">
+			<img src="<?=$banners[0]['imagen']?>" class="img-responsive">
+		</a>
 		<hr>
 		<form method="post">
 			<div class="form-group">

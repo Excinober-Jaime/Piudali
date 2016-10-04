@@ -86,6 +86,7 @@
         <br>
         <a href="<?=URL_CARRITO?>" class="btn btn-small btn-block btn-primary"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Productos Agregados <span class="badge" id="cantidad-carrito"><?=Carrito::productosAgregados()?></span></a>
         <a href="<?=URL_CARRITO?>" class="btn btn-small btn-block btn-primary" id="total-carrito">Total a pagar $<?=number_format(Carrito::totalCarrito())?></a>
+        <br>
       </div>
     </div>
     <div class="franja"></div>

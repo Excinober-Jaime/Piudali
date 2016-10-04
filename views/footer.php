@@ -49,10 +49,10 @@
 	<div class="franja"></div>
 	<footer class="container-fluid footer">
 		<div class="container">
-			<div class="col-xs-4 col-md-2">
+			<div class="col-xs-12 col-md-2">
 				<img src="assets/img/link-grupo-marketing.png" class="img-responsive center-block">
 			</div>
-			<div class="col-xs-8 col-md-6">
+			<div class="col-xs-12 col-md-6">
 				<p>Contáctanos<br>
 Distribuidor Autorizado Link Grupo Marketing SAS<br>
 Teléfono: (+57)(2) 524 1887 - (+57) 311 627 9068 | Email: contacto@piudali.com.co<br><br>

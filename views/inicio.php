@@ -51,7 +51,7 @@
 			<h2 class="texto-destacado text-center">PRODUCTOS PIUDALÍ DEL MES</h2>
 		</div>	-->
 	</div>
-	<div class="row">
+	<div class="row hidden-xs">
 		<div class="col-xs-12 text-right">
 			<a href="#carousel-productos" role="button" data-slide="prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></a> 
 			<a href="#carousel-productos" role="button" data-slide="next"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
@@ -59,8 +59,8 @@
 		<br><br>
 		<div id="carousel-productos" class="carousel slide" data-ride="carousel">		  
 
-		  <!-- Wrapper for slides -->
-		  <div class="carousel-inner" role="listbox">
+		  	<!-- Wrapper for slides -->
+		  	<div class="carousel-inner" role="listbox">
 		    
 		      <?php
 
@@ -77,19 +77,25 @@
 					
 					$count++;
 
-					if (($count % 4)==0) {
+					if (count($productosLista)==$count || ($count % 4)==0) {					
 						?>
 						</div>
 						<?php
-					}
-
-					
+					}					
 				}
 				?>
 		    </div>		    
-		  </div>		 
-		</div>		
-	</div>	
+		</div>		 
+	</div>
+	<div class="row hidden-sm hidden-md hidden-lg">
+		<?php
+
+			foreach ($productosLista as $producto) {
+
+				producto_bloque($producto["img_principal"],$producto["nombre"],$producto["codigo"],$producto["precio"],$producto["precio_oferta"],$producto["url"],"col-sm-3");
+			}
+		?>
+	</div>		
 	<div class="col-xs-12" style="background-color:#FFF8EB;padding:20px;">
 		<img src="assets/img/piudali-section.png" class="img-responsive center-block">
 		<h2 class="text-center">SOBRE NOSOTROS</h2>
