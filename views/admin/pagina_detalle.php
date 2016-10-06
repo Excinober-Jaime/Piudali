@@ -39,6 +39,16 @@
 					<textarea name="contenido" id="contenido" class="form-control"><?=$pagina[0]['contenido']?></textarea>
 				</div>
 				<div class="form-group">
+					<label for="exampleInputEmail1">Posición</label>
+					<select name="posicion" id="posicion" class="form-control">
+						<option value="">-Seleccione-</option>
+						<option value="QUIENES SOMOS" <?php if ($pagina[0]['posicion']=='QUIENES SOMOS') echo 'selected'; ?>>QUIENES SOMOS</option>
+						<option value="DONDE COMPRAR" <?php if ($pagina[0]['posicion']=='DONDE COMPRAR') echo 'selected'; ?>>DONDE COMPRAR</option>
+						<option value="INTERNAS DISTRIBUIDORES" <?php if ($pagina[0]['posicion']=='INTERNAS DISTRIBUIDORES') echo 'selected'; ?>>INTERNAS DISTRIBUIDORES</option>
+						<option value="SIN CATEGORIA" <?php if ($pagina[0]['posicion']=='SIN CATEGORIA') echo 'selected'; ?>>SIN CATEGORIA</option>
+					</select>
+				</div>
+				<div class="form-group">
 					<label for="exampleInputEmail1">Menú</label>
 					<select name="menu" id="menu" class="form-control" required>
 						<option value="1" <?php if ($pagina[0]['menu']) echo 'selected'; ?>>En el menú</option>

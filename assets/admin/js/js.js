@@ -41,6 +41,6 @@ $(document).ready(function(){
 
     CKEDITOR.replace('contenido');
     CKEDITOR.replace('uso');        
-    CKEDITOR.replace('presentacion');
+    //CKEDITOR.replace('presentacion');
     CKEDITOR.replace('descripcion');  
 })

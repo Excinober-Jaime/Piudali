@@ -54,7 +54,7 @@
 					if (!empty($producto[0]['img_principal'])) {				
 					
 					?>
-						<img src="<?=$producto[0]['img_principal']?>" class="img-responsive">
+						<img src="<?=$producto[0]['img_principal']?>" class="img-responsive" style="max-width: 300px;">
 					<?php
 					}	
 					?>				
@@ -104,7 +104,7 @@
 				</div>		
 				<div class="form-group">
 					<label for="exampleInputEmail1">Presentación</label>
-					<input type="text" name="presentacion" id="presentacion" class="form-control" value="<?=$producto[0]['presentacion']?>">				
+					<input type="text" name="presentacion" class="form-control" value="<?=$producto[0]['presentacion']?>">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Descripción</label>

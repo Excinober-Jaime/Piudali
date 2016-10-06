@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="PIUDALÍ Amazonian Skincare ofrece una línea de bienestar y cuidado para la piel con ingredientes de alta calidad de origen 100% natural">
     <meta name="author" content="EXCINOBER BENITES G">
-    <link rel="shortcut icon" href="">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">    
 
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Piudalí Colombia</title>
@@ -111,7 +111,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PRODUCTOS <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <?php 
-                foreach ($categorias_menu as $key => $categoria) {
+                foreach ($paginas_menu["CATEGORIAS MENU"] as $key => $categoria) {
                 ?>
                   <li><a href="<?=URL_CATEGORIA.'/'.$categoria['url']?>"><?=$categoria['nombre']?></a></li>
                 <?php  
@@ -124,10 +124,12 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">QUIÉNES SOMOS <span class="caret"></span></a>
               <ul class="dropdown-menu">
             <?php 
-            foreach ($paginas_quienes_somos as $pagina) {
+            foreach ($paginas_menu as $pagina) {
+              if ($pagina["posicion"]=="QUIENES SOMOS") {
               ?>
                 <li><a href="<?=$pagina['url']?>"><?=$pagina["titulo"]?></a></li>
               <?php
+              }
             }
             ?>
               </ul>
@@ -136,19 +138,23 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DÓNDE COMPRAR <span class="caret"></span></a>
               <ul class="dropdown-menu">
             <?php 
-            foreach ($paginas_donde_comprar as $pagina) {
+            foreach ($paginas_menu as $pagina) {
+              if ($pagina["posicion"]=="DONDE COMPRAR") {
               ?>
                 <li><a href="<?=$pagina['url']?>"><?=$pagina["titulo"]?></a></li>
               <?php
+              }
             }
             ?>
               </ul>
             </li>            
             <?php 
-            foreach ($paginas_sin_categoria as $pagina) {
+            foreach ($paginas_menu as $pagina) {
+              if ($pagina["posicion"]=="SIN CATEGORIA") {
               ?>
                 <li><a href="<?=$pagina['url']?>"><?=$pagina["titulo"]?></a></li>
               <?php
+              }
             }
             ?>
             <li><a href="/blog">BLOG</a></li>

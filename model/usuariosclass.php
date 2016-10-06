@@ -9,7 +9,8 @@ class Usuarios extends Database
 		
 		$query = $this->consulta("SELECT `idusuario`, `nombre`, `apellido`, `sexo`, `fecha_nacimiento`, `email`, `password`, `num_identificacion`, `boletines`, `condiciones`, `direccion`, `telefono`, `telefono_m`, `tipo`, `foto`, `estado`, `fecha_registro`, `lider`, `ciudades_idciudad`, `ciudades`.`ciudad` AS 'ciudad'
 									FROM `usuarios`
-									INNER JOIN `ciudades` ON (`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`)");
+									INNER JOIN `ciudades` ON (`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`)
+									ORDER BY `fecha_registro` DESC");
 		
 		return $query;
 	}
@@ -400,7 +401,7 @@ class Usuarios extends Database
 
 	public function listarProtocolos(){
 		
-		$query = $this->consulta("SELECT `idprotocolo`, `nombre`, `descripcion`, `estado` FROM `protocolos` ORDER BY `nombre` ASC");
+		$query = $this->consulta("SELECT `idprotocolo`, `nombre`, `descripcion`, `estado` FROM `protocolos` ORDER BY `idprotocolo` ASC");
 		
 		return $query;
 	}

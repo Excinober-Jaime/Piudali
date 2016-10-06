@@ -23,7 +23,7 @@ class Controller
 
 	public function __construct()
 	{
-		$this->usuarios = new Usuarios();	
+		$this->usuarios = new Usuarios();
 		$this->productos = new Productos();
 		$this->ordenes = new Ordenes();
 		$this->campanas = new Campanas();
@@ -34,17 +34,11 @@ class Controller
 
 
 /**********************FRONT************************************************/
-
 	public function paginaContenido($url){
 
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		
-		$categorias_menu = $this->categoriasMenu();
-
+		$paginas_menu = $this->paginasMenu();
 		$pagina_detalle = $this->paginas->contenidoPagina($url);
-		
+
 		include "views/pagina.php";
 	}
 
@@ -55,7 +49,10 @@ class Controller
 
 
 	public function paginasMenu(){
+		
 		$paginas_menu = $this->paginas->listarPaginas();
+		$paginas_menu["CATEGORIAS MENU"] = $this->categoriasMenu();
+
 		return $paginas_menu;
 	}
 
@@ -77,35 +74,28 @@ class Controller
 		$estados_banners = array(1);
 		$banners = $this->banners->listarBanners($posicion_banners,$estados_banners);
 
+		$paginas_menu = $this->paginasMenu();
+
 		$tipos = array('NORMAL');
 		$estados = array(1);
 		$productosLista = $this->productos->listarProductos($tipos, $estados);
-
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-
-		$categorias_menu = $this->categoriasMenu();
+		
 
 		require "views/producto/productos.php";
 		include "views/inicio.php";
 	}
 
-	public function paginaProductos(){		
-		
-		$tipos = array('NORMAL');
-		$estados = array(1);
+	public function paginaProductos(){			
 
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
+		$paginas_menu = $this->paginasMenu();
 
 		$posicion_banners="SIDEBAR";
 		$estados_banners = array(1);
-
 		$banners = $this->banners->listarBanners($posicion_banners, $estados_banners);
+
+		$tipos = array('NORMAL');
+		$estados = array(1);
 		$productosLista = $this->productos->listarProductos($tipos,$estados);		
-		$categorias_menu = $this->categoriasMenu();
 
 		require "views/producto/productos.php";
 		include "views/productos_lista.php";
@@ -114,23 +104,19 @@ class Controller
 
 	public function paginaCategoria($urlcategoria){
 		
+		$paginas_menu = $this->paginasMenu();
+
 		$tipos = array('NORMAL');
 		$estados = array(1);
 
 		$detalle_categoria = $this->productos->detalleCategoriaUrl($urlcategoria);
-		$idcategoria = $detalle_categoria["idcategoria"];
-
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
+		$idcategoria = $detalle_categoria["idcategoria"];		
 
 		$posicion_banners="SIDEBAR";
 		$estados_banners = array(1);
-
 		$banners = $this->banners->listarBanners($posicion_banners,$estados_banners);
 
-		$productosLista = $this->productos->listarProductos($tipos,$estados,$idcategoria);
-		$categorias_menu = $this->categoriasMenu();
+		$productosLista = $this->productos->listarProductos($tipos,$estados,$idcategoria);		
 
 		require "views/producto/productos.php";
 		include "views/productos_categoria.php";
@@ -138,15 +124,11 @@ class Controller
 
 	public function paginaProductoDetalle($urlproducto){
 		
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
+		$paginas_menu = $this->paginasMenu();
 
 		$posicion_banners="SIDEBAR";
 		$estados = array(1);
-
-		$banners = $this->banners->listarBanners($posicion_banners,$estados);
-		$categorias_menu = $this->categoriasMenu();
+		$banners = $this->banners->listarBanners($posicion_banners,$estados);		
 
 		$producto = $this->productos->detalleProductos(0,$urlproducto);
 
@@ -188,16 +170,12 @@ class Controller
 
 	public function pageRegistro(){
 
+		$paginas_menu = $this->paginasMenu();
+
 		$posicion_banners="SIDEBAR";
 		$estados = array(1);
-
 		$banners = $this->banners->listarBanners($posicion_banners,$estados);
-
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
 		
-		$categorias_menu = $this->categoriasMenu();
 		$ciudades = $this->listarCiudades();
 
 		if (isset($_POST["crearUsuarioOrganizacion"])) {
@@ -265,11 +243,7 @@ class Controller
 
 	public function pageIngresar(){
 
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-
-		$categorias_menu = $this->categoriasMenu();
+		$paginas_menu = $this->paginasMenu();		
 
 		if (isset($_POST["ingresar"])) {
 			extract($_POST);
@@ -334,11 +308,8 @@ class Controller
 	}
 
 	public function pageRestaurarContrasena(){
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-
-		$categorias_menu = $this->categoriasMenu();
+		
+		$paginas_menu = $this->paginasMenu();
 
 		if (isset($_POST["restaurar"])) {
 
@@ -385,14 +356,11 @@ class Controller
 	}
 
 	public function pageContacto(){
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
+
+		$paginas_menu = $this->paginasMenu();
 
 		$posicion_banners="CONTACTO";
 		$estados = array(1);
-
 		$banners = $this->banners->listarBanners($posicion_banners, $estados);
 
 		if (isset($_POST["enviarMensaje"])) {
@@ -428,16 +396,14 @@ class Controller
 
 	public function usuarioPerfil(){
 
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_PERFIL;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
-		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
 		
 		if (!empty($_SESSION["idusuario"])) {
 
@@ -482,16 +448,14 @@ class Controller
 
 	public function usuarioCambiarDatos($return=""){
 
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_PERFIL;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
-		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
 		
 		if (!empty($_SESSION["idusuario"])) {
 
@@ -563,16 +527,14 @@ class Controller
 
 	public function usuarioNegocio(){
 
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_NEGOCIO;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
-
 		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
+
 		$campanas = $this->campanas->listarCampanas();
 
 		if (isset($_POST["idcampana"]) && !empty($_POST["idcampana"])) {
@@ -632,16 +594,15 @@ class Controller
 	}
 
 	public function usuarioDetalleOrden($idorden){
+		
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_NEGOCIO;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
 		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
 
 		$orden = $this->usuarios->detalleOrden($idorden);
 
@@ -649,16 +610,14 @@ class Controller
 	}
 
 	public function usuarioClientes(){
+
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_CLIENTES;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
-
-		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
 
 		$clientes = $this->usuarios->listarDistribuidoresLider($_SESSION["idusuario"]);
 
@@ -666,32 +625,29 @@ class Controller
 	}
 
 	public function usuarioCuentaVirtual(){
+
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_CUENTA;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
-		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();		
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
 
 		include "views/usuario_cuenta_virtual.php";
 	}
 
 	public function usuarioPremios(){
 
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_PREMIOS;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
-		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
 		
 		if (!empty($_SESSION["idusuario"])) {
 
@@ -709,16 +665,14 @@ class Controller
 
 	public function usuarioPromociones(){
 
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_PROMOCIONES;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
-		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
 		
 		if (!empty($_SESSION["idusuario"])) {
 
@@ -736,16 +690,14 @@ class Controller
 
 	public function usuarioIncentivos(){
 
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_INCENTIVOS;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
-		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
 		
 		if (!empty($_SESSION["idusuario"])) {
 
@@ -810,16 +762,14 @@ class Controller
 
 	public function usuarioCupones(){
 
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_CUPONES;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
-		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
 		
 		if (!empty($_SESSION["idusuario"])) {			
 			
@@ -834,16 +784,15 @@ class Controller
 
 	public function usuarioCapacitacion(){
 
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_CAPACITACION;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
 		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
+		
 		$categorias = $this->productos->listarCategorias();
 
 
@@ -864,9 +813,9 @@ class Controller
 						break;
 					case URL_USUARIO_CAPACITACION_VIDEOS:
 						$videos = array(
-									"https://www.youtube.com/embed/vbNEz-TchQE", 
-									"https://www.youtube.com/embed/ULHqCSwlWQQ",
 									"https://www.youtube.com/embed/mOE8Y5EHRCg",
+									"https://www.youtube.com/embed/ULHqCSwlWQQ",
+									"https://www.youtube.com/embed/vbNEz-TchQE",									
 									"https://www.youtube.com/embed/-mJnu6UGJk4"
 									);
 						break;
@@ -890,17 +839,14 @@ class Controller
 
 	public function usuarioDocumentos(){
 
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_DOCUMENTOS;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
 		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
-		$categorias = $this->productos->listarCategorias();
 
 		if (isset($_POST["crearDocumento"])) {
 
@@ -928,16 +874,14 @@ class Controller
 
 	public function usuarioPuntos(){
 		
+		$paginas_menu = $this->paginasMenu();
+
 		$moduloActual = URL_USUARIO_PUNTOS;
 
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
-		$banners = $this->banners->listarBanners($posicion_banners, $estados);
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
 
 		if (!empty($_SESSION["idusuario"])) {
 
@@ -989,10 +933,7 @@ class Controller
 	
 	public function verCarrito(){
 
-		$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-		$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-		$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-		$categorias_menu = $this->categoriasMenu();
+		$paginas_menu = $this->paginasMenu();
 
 		if (isset($_POST["redimirCupon"])) {
 
@@ -1049,10 +990,7 @@ class Controller
 
 		if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"])) {
 			
-			$paginas_quienes_somos = $this->paginas->listarPaginas("QUIENES SOMOS");
-			$paginas_donde_comprar = $this->paginas->listarPaginas("DONDE COMPRAR");
-			$paginas_sin_categoria = $this->paginas->listarPaginas("SIN CATEGORIA");
-			$categorias_menu = $this->categoriasMenu();
+			$paginas_menu = $this->paginasMenu();
 
 			$itemsCarrito = $this->carrito->listarItems();
 			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
@@ -1430,11 +1368,14 @@ class Controller
 
 			$titulo = $_POST["titulo"];			
 			$contenido = $_POST["contenido"];
+			$posicion = $_POST["posicion"];
 			$banner = $destino;
 			$menu = $_POST["menu"];
-			$estado = $_POST["estado"];			
+			$estado = $_POST["estado"];	
 
-			$this->paginas->actualizarPagina($idpagina,$titulo,$contenido,$banner,$menu,$estado);
+			$url = convierte_url($_POST["url"]);		
+
+			$this->paginas->actualizarPagina($idpagina,$titulo,$url,$contenido,$posicion,$banner,$menu,$estado);
 
 		}
 
@@ -1454,13 +1395,14 @@ class Controller
 
 			$titulo = $_POST["titulo"];			
 			$contenido = $_POST["contenido"];
+			$posicion = $_POST["posicion"];
 			$banner = $destino;
 			$menu = $_POST["menu"];
 			$estado = $_POST["estado"];
 
 			$url = convierte_url($_POST["url"]);
 
-			$idpagina = $this->paginas->crearPagina($titulo,$url,$contenido,$banner,$menu,$estado);
+			$idpagina = $this->paginas->crearPagina($titulo,$url,$contenido,$posicion,$banner,$menu,$estado);
 		}
 
 
