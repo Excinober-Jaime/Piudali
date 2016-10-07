@@ -12,6 +12,7 @@ define("URL_PAGINA_CONTENIDO", "ContenidoPagina");
 define("URL_CARRITO", "Carrito");
 define("URL_RESUMEN_COMPRA", "ResumenCompra");
 define("URL_CARRITO_AGREGAR", "AgregarPdt");
+define("URL_CARRITO_ACTUALIZAR_CANTIDAD", "ActualizarCantidadPdt");
 define("URL_GENERAR_ORDEN", "GenerarOrden");
 define("URL_ACTUALIZAR_TOTAL_CARRITO", "ActualizarTotalCarrito");
 

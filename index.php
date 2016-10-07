@@ -340,6 +340,10 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 						$controller->agregarPdtCarrito();
 						break;
 
+					case URL_CARRITO_ACTUALIZAR_CANTIDAD:
+						$controller->actualizarCantidadPdt();
+						break;						
+
 					case URL_ACTUALIZAR_TOTAL_CARRITO:
 						$controller->actualizarTotalCarrito();
 						break;

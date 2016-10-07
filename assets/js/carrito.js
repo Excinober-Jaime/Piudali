@@ -20,7 +20,28 @@ $(document).ready(function(){
 				alert('El producto no se agrego');
 			}
 		});
-	})
+	});
+
+	$(".cambiarCantidad").change(function(){
+		idpdt = $(this).attr("idpdt");
+		cantidad = $(this).val();	
+
+		$.ajax({
+			type: 'POST',
+			url: "Carrito/ActualizarCantidadPdt",
+			data: {	idpdt:idpdt, cantidad:cantidad },
+			dataType: 'html',
+			async: false,
+			success: function(response) {
+				if (response=="OK") {
+					window.location="Carrito/";
+				}
+			},
+			error: function() {
+				alert('No fue posible cambiar la cantidad');
+			}
+		});
+	});
 	
 })
 

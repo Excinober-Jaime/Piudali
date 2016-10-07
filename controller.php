@@ -1201,6 +1201,28 @@ class Controller
 		}
 	}
 
+	public function actualizarCantidadPdt(){
+
+		if (isset($_POST["idpdt"]) && isset($_POST["cantidad"])) {
+		
+			$idpdt = $_POST["idpdt"];
+			$cantidad = $_POST["cantidad"];
+
+			if (in_array($idpdt, $_SESSION["idpdts"])) {
+				
+				$clave = array_search($idpdt, $_SESSION["idpdts"]);
+				$_SESSION["cantidadpdts"][$clave] = $cantidad;
+			}
+
+			/*$total = $this->carrito->getTotal();
+			$cantidad = $this->carrito->productosAgregados();
+
+			$return = array('total' => number_format($total), 'cantidad' => $cantidad);
+			echo json_encode($return);*/
+			echo "OK";
+		}
+	}
+
 
 /**************************** ADMIN ***********************************/
 

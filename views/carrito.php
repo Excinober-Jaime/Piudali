@@ -21,7 +21,18 @@
 							<td width="12%"><img src="<?=$itemsCarrito["img_principal"][$key]?>" class="img-responsive" style="max-width:100px;"></td>
 							<td class="text-left"><?=$itemsCarrito["nombre"][$key]?><br>Código: <?=$itemsCarrito["codigo"][$key]?><br>Iva: <?=$itemsCarrito["iva"][$key]?>%</td>
 							<td class="text-center">$<?=number_format($itemsCarrito["precio"][$key])?></td>
-							<td class="text-center"><?=$itemsCarrito["cantidad"][$key]?></td>
+							<!--<td class="text-center"><?=$itemsCarrito["cantidad"][$key]?></td>-->
+							<td class="text-center">
+								<select name="cantidad" id="cantidad" class="form-control input-sm cambiarCantidad" idpdt="<?=$iditem?>">
+									<?php 
+									for ($i=1; $i < 10; $i++) { 
+										?>
+										<option value="<?=$i?>" <?php if ($itemsCarrito["cantidad"][$key]==$i) { echo "selected"; } ?>><?=$i?></option>
+										<?php
+									}
+									?>
+								</select>
+							</td>
 							<td class="text-center">$<?=number_format($itemsCarrito["subtotal"][$key])?></td>
 						</tr>
 						<?php
