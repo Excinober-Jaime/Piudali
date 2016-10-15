@@ -380,6 +380,10 @@ if ($var2 !='' && $var2 != URL_INICIO) {
 		case URL_INGRESO_REMOTO:
 			$controller->ingresoUsuarioRemoto();
 			break;
+
+		case URL_SALIR_REMOTO:
+			$controller->salirUsuarioRemoto();
+			break;
 		
 		default:
 			$controller->paginaContenido($var2);

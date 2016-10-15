@@ -42,6 +42,7 @@ define("URL_INGRESAR", "Ingresar");
 define("URL_SALIR", "Salir");
 define("URL_RESTAURAR_CONTRASENA", "RestaurarContrasena");
 define("URL_INGRESO_REMOTO", "IngresoRemoto");
+define("URL_SALIR_REMOTO", "SalirRemoto");
 define("URL_SUSCRIBIR_NEWSLETTER", "SuscribirNewsletter");
 
 

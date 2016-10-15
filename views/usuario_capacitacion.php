@@ -70,6 +70,12 @@
           </div>
         <?php
         }
+      }else{
+        ?>
+        <div class="col-xs-12" style="margin-top: 20px;">
+          <iframe src="//www.slideshare.net/slideshow/embed_code/key/s3d1Jm5VT1nww8" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; width: 100%; height: 500px; max-width: 100%;" allowfullscreen> </iframe>
+        </div>
+        <?php
       }
 		  ?>			
 			</div>

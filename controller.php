@@ -150,7 +150,17 @@ class Controller
 
 /************USUARIOS**************/
 
-	public function actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudades_idciudad, $ciudad, $tipo=""){
+	public function actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudades_idciudad, $ciudad, $tipo="", $usuarioremoto=array()){
+
+		if (!empty($usuarioremoto)) {
+
+			$_SESSION["idusuario_remoto"] = $usuarioremoto["idusuario"];
+			$_SESSION["email_remoto"] = $usuarioremoto["email"];
+			$_SESSION["nombre_remoto"] = $usuarioremoto["nombre"];
+			$_SESSION["apellido_remoto"] = $usuarioremoto["apellido"];
+			$_SESSION["tipo_remoto"] = $usuarioremoto["tipo"];
+			
+		}
 		
 		$_SESSION["idusuario"] = $idusuario;
 		$_SESSION["nombre"] = $nombre;
@@ -164,8 +174,7 @@ class Controller
 
 		if (!empty($tipo)) {
 			$_SESSION["tipo"] = $tipo;
-		}
-		
+		}		
 	}
 
 	public function pageRegistro(){
@@ -269,6 +278,7 @@ class Controller
 	public function ingresoUsuarioRemoto(){
 
 		if (isset($_POST["ingresoRemoto"])) {
+
 			$email = $_POST["email"];
 			$password = $_POST["password"];
 
@@ -278,8 +288,18 @@ class Controller
 				$usuario = $usuario[0];
 
 				if (count($usuario)>0) {
+
+					$usuarioremoto = array(
+											'idusuario' => $_SESSION["idusuario"], 
+											'tipo' => $_SESSION["tipo"],
+											'email' => $_SESSION["email"],
+											'nombre' => $_SESSION["nombre"],
+											'apellido' => $_SESSION["apellido"],
+											'tipo' => $_SESSION["tipo"]
+											);
 					
-					$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"]);
+					$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"], $usuarioremoto);
+
 					header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);
 				}else{
 					header("Location: ".URL_SITIO);
@@ -287,6 +307,28 @@ class Controller
 			}else{
 				header("Location: ".URL_SITIO);
 			}
+		}
+	}
+
+	public function salirUsuarioRemoto(){
+		
+		if (isset($_SESSION["idusuario_remoto"]) && !empty($_SESSION["idusuario_remoto"])) {
+			
+			$usuario = $this->usuarios->detalleUsuario($_SESSION["idusuario_remoto"]);
+
+			$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"]);
+
+			unset($_SESSION["idusuario_remoto"]);
+			unset($_SESSION["email_remoto"]);
+			unset($_SESSION["nombre_remoto"]);
+			unset($_SESSION["apellido_remoto"]);
+			unset($_SESSION["tipo_remoto"]);
+
+			header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);
+
+		}else{
+
+			header("Location:".URL_SITIO);
 		}
 	}
 
@@ -825,9 +867,6 @@ class Controller
 						break;
 				}
 
-			}else{
-
-				$ingredientes = $this->usuarios->listarIngredientes();
 			}
 		
 			include "views/usuario_capacitacion.php";

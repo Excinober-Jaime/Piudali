@@ -43,7 +43,20 @@
 <hr>
 <div class="row">
 	<div class="col-xs-12">
-		<div class="alert alert-info text-center" role="alert">TU PERFIL ES DE <?=$_SESSION['tipo']?></div>	
+		<?php 
+		if (isset($_SESSION["idusuario_remoto"]) && !empty($_SESSION["idusuario_remoto"])) {
+		?>
+			<div class="alert alert-danger text-center" role="alert">
+				¡ATENCIÓN! HAZ ACCEDIDO A LA CUENTA DE <?=$_SESSION["nombre"]?><br><br>
+				<a href="<?=URL_SALIR_REMOTO?>" class="btn btn-danger btn-sm">REGRESA A TU CUENTA COMO <?=$_SESSION["nombre_remoto"]?></a></div>
+		<?php	
+		}else{
+		?>
+			<div class="alert alert-info text-center" role="alert">TU PERFIL ES DE <?=$_SESSION['tipo']?></div>	
+		<?php
+		}
+		?>
+		
 	</div>
 </div>
 <div class="row">
