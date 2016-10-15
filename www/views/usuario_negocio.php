@@ -1,11 +1,13 @@
 <?php include "header.php"; ?>
 
 <div class="container">		
-	<?php include "usuario/menu.php"; ?>		
-	<div class="col-xs-12">
-		<h1>Mis Compras <small><small>Aquí podrás ver el estado de tu negocio como comercializador, monitorear el estado de tus pedidos y rentabilidad.</small></small></h1>		
+	<?php include "usuario/menu.php"; ?>
+    <div class="contenPanel">		
+	<div class="col-xs-12 titulo">
+		<h1>Mis Compras</h1>
+        <small>Aquí podrás ver el estado de tu negocio como comercializador, monitorear el estado de tus pedidos y rentabilidad.</small>		
 		<hr>
-		<div class="row">			
+        	<div class="informacion">	
 			<div class="col-xs-12 col-md-5 col-md-offset-7">
 				<form class="form-horizontal" method="post" id="campana">
 					<div class="form-group">
@@ -48,7 +50,9 @@
 					</div>
 				</form>
 			</div>
-		</div>
+            
+            
+		
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -117,8 +121,11 @@
 				?>				
 			</tbody>
 		</table>
-	</div>	
-</div>
+        </div>
+        <div class="clearfix"></div>
+	</div>
+    </div>
+    </div>		
 <br>
 <br>
 <?php include "footer.php"; ?>
