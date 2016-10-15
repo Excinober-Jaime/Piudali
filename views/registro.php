@@ -95,7 +95,7 @@
 							</div>
 							<div class="checkbox">
 							    <label>
-							      <input type="checkbox" name="condiciones" value="1" required> Acepto los <a class="open-modal" idpage="14">términos y condiciones</a>
+							      <input type="checkbox" name="condiciones" value="1" required><a class="open-modal" idpage="22">Autorización datos personales</a>
 							    </label>
 							</div>
 							<button type="submit" name="crearUsuario" class="btn btn-default btn-lg center-block">CREAR CUENTA</button>		
@@ -207,7 +207,7 @@
 							</div>
 							<div class="checkbox">
 							    <label>
-							      <input type="checkbox" name="condiciones" value="1" required> Acepto los <a class="open-modal" idpage="14">términos y condiciones</a>
+							      <input type="checkbox" name="condiciones" value="1" required> Acepto los <a class="open-modal" idpage="22">Autorización de datos personales</a>
 							    </label>
 							</div>		
 						</div>

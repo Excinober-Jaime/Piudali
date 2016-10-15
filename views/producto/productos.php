@@ -1,11 +1,17 @@
 <?php 
 function producto_bloque($imagen="",$nombre="",$codigo="",$precio=0,$oferta=0,$link="",$col_sm="col-sm-3"){
+
+  if ($col_sm == "col-sm-2") {
+    $font_style = "height: 4em; font-size:14px;";
+  }else{
+    $font_style = "height: 4em";
+  }
 ?>
 <div class="col-xs-12 <?=$col_sm?>">
     <div class="thumbnail">                
-        <img data-src="holder.js/300x300" alt="producto"  src="<?=$imagen?>"> 
+        <img data-src="<?=$imagen?>" alt="producto"  src="<?=$imagen?>"> 
         <div class="caption">
-            <h4 style="height:4em;"><?=$nombre?></h4>
+            <h4 style="<?=$font_style?>"><?=$nombre?></h4>
             <p>Código: <?=$codigo?></p>
             <div style="margin:0px; padding:0px; height: 37px;">                     
                 <div style="float:left;width:80%;margin:0px; padding:0px;">

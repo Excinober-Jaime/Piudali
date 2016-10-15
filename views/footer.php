@@ -2,7 +2,7 @@
 		<?php if (!isset($_SESSION["idusuario"])) { ?>
 		<div class="row">
 			<div class="col-xs-12">
-				<div class="col-xs-12" style="background-color:#ef7a00;color:#fff;padding:20px;">
+				<div class="col-xs-12" style="background-color:#ef7a00;color:#fff;padding:20px 10px;">
 					<div class="col-xs-12 col-md-6">
 						<h3 style="padding:0;margin:0;" class="text-center">Recibe nuestras noticias y ofertas*</h3>
 					</div>
