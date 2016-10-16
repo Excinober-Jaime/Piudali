@@ -1,11 +1,12 @@
 <?php include "header.php"; ?>
 
 <div class="container">		
-	<?php include "usuario/menu.php"; ?>			
-	<div class="col-xs-12">
-	<h1>Promociones <small><small>Aquí encontrarás las promociones exclusivas para ti.</small></small></h1>
-	<hr>	
-	<div class="row">
+	<?php include "usuario/menu.php"; ?>
+    <div class="contenPanel">			
+	<div class="col-xs-12 titulo">
+	<h1>Promociones</h1>
+    <small>Aquí encontrarás las promociones exclusivas para ti.</small>	
+	<div class="informacion">
 		<!--<div class="col-xs-12">
 			<img src="assets/img/promocion-julio.jpg" class="img-responsive">
 		</div>-->
@@ -23,7 +24,8 @@
 			}
 			?>
 		</div>
-	</div>	
+	</div>
+    </div>			
 </div>
 <br>
 <br>

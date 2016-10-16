@@ -1,10 +1,12 @@
 <?php include "header.php"; ?>
 
 <div class="container">		
-	<?php include "usuario/menu.php"; ?>			
-	<div class="col-xs-12">
-		<h1>Puntos <small><small>Gana puntos por tus compras y redímelos en productos o premios</small></small></h1>
-		<hr>		
+	<?php include "usuario/menu.php"; ?>
+    <div class="contenPanel">		
+	<div class="col-xs-12 titulo">
+		<h1>Puntos</h1>
+        <small>Gana puntos por tus compras y redímelos en productos o premios</small>
+        <div class="informacion">		
 		<div class="col-xs-12 col-md-8">
 			<h3 class="text-center">Movimientos</h3>
 			<table class="table table-striped">
@@ -61,7 +63,10 @@
 			  </li>
 			</ul>
 		</div>
-	</div>	
+        <div class="clearfix"></div>
+        </div>
+	</div>
+    </div>		
 </div>
 <br>
 <br>

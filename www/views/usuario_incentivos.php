@@ -1,10 +1,13 @@
 <?php include "header.php"; ?>
 
 <div class="container">		
-	<?php include "usuario/menu.php"; ?>			
-	<div class="col-xs-12">
-	<h1>Incentivos <small><small>Aquí encontrarás los incentivos que puedes ganar y cuanto te falta para alcanzarlos.</small></small></h1>
+	<?php include "usuario/menu.php"; ?>	
+    <div class="contenPanel">		
+	<div class="col-xs-12 titulo">
+	<h1>Incentivos</h1>
+    <small>Aquí encontrarás los incentivos que puedes ganar y cuanto te falta para alcanzarlos.</small>
 	<hr>	
+    <div class="informacion">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -52,7 +55,9 @@
 				?>				
 			</tbody>
 		</table>
-	</div>	
+        </div>
+	</div>
+    </div>	
 </div>
 <br>
 <br>

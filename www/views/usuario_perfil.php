@@ -14,43 +14,43 @@
             <table class="table table-striped">
                 <tbody>
                 	<tr>
-                    	<th scope="row">Nombre</th>
+                    	<td scope="row">Nombre</td>
                         <td><?=$usuario["nombre"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">Apellido</th>
+                    	<td scope="row">Apellido</td>
                         <td><?=$usuario["apellido"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">Número de Identificación</th>
+                    	<td scope="row">Número de Identificación</td>
                         <td><?=$usuario["num_identificacion"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">Sexo</th>
+                    	<td scope="row">Sexo</td>
                         <td><?=$usuario["sexo"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">Fecha de Nacimiento</th>
+                    	<td scope="row">Fecha de Nacimiento</td>
                         <td><?=$usuario["Fecha de Nacimiento"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">Email</th>
+                    	<td scope="row">Email</td>
                         <td><?=$usuario["email"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">Dirección</th>
+                    	<td scope="row">Dirección</td>
                         <td><?=$usuario["direccion"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">Teléfono</th>
+                    	<td scope="row">Teléfono</td>
                         <td><?=$usuario["telefono"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">Teléfono Móvil</th>
+                    	<td scope="row">Teléfono Móvil</td>
                         <td><?=$usuario["telefono_m"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">Ciudad</th>
+                    	<td scope="row">Ciudad</td>
                         <td><?=$usuario["ciudad"]?></td>
                     </tr>
                 </tbody>

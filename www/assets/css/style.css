@@ -117,9 +117,19 @@ footer{
 		color:#660000;
 	}
 
-.contenPanel i{
+.contenPanel i, .contenPanel a, .contenPanel label{
 		color:#660000;
 	}
+
+.contenPanel .btn-primary{color:#fff;}
+	
+	.contenPanel .panel-default > .panel-heading {
+    
+    background-color: #660000;
+    border-color: #fff;
+}
+
+.contenPanel .panel-title a{color:#fff !important;}
 
 
 	

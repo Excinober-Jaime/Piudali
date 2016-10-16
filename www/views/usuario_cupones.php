@@ -1,10 +1,13 @@
 <?php include "header.php"; ?>
 
 <div class="container">		
-	<?php include "usuario/menu.php"; ?>			
-	<div class="col-xs-12">
-	<h1>Cupones <small><small>Aquí encontrarás los cupones de descuento disponibles para ti. Aprovechalos!.</small></small></h1>
-	<hr>	
+	<?php include "usuario/menu.php"; ?>
+    <div class="contenPanel">		
+	<div class="col-xs-12 titulo">
+	<h1>Cupones</h1>
+    <small>Aquí encontrarás los cupones de descuento disponibles para ti. Aprovechalos!.</small>
+		
+    <div class="informacion">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -39,7 +42,9 @@
 				?>				
 			</tbody>
 		</table>
-	</div>	
+        </div>
+	</div>
+    </div>	
 </div>
 <br>
 <br>

@@ -1,11 +1,12 @@
 <?php include "header.php"; ?>
 
 <div class="container">		
-	<?php include "usuario/menu.php"; ?>		
-	<div class="col-xs-12">		
+	<?php include "usuario/menu.php"; ?>
+    <div class="contenPanel">	
+	<div class="col-xs-12 titulo">		
 		<h1>Cambiar Datos</h1>
 		<hr>
-		<div class="row">
+		<div class="informacion">
 			<form method="post" enctype="multipart/form-data">
 				<div class="col-xs-12 col-md-6">									
 					<div class="form-group">
@@ -67,7 +68,9 @@
 					    </label>
 					</div>
 					<hr>
-					<h3>Cambiar Contraseña <small>Si no deseas cambiar tu contraseña deja los campos en blanco</small></h3>
+					<h3>Cambiar Contraseña</h3>
+                    <small>Si no deseas cambiar tu contraseña deja los campos en blanco</small>
+                    <br/>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Contraseña Actual</label>
 						<input type="password" name="contrasena_actual" class="form-control" id="password">
@@ -131,8 +134,10 @@
 					</div>
 				</div>
 			</form>
+            <div class="clearfix"></div>
 		</div>
-	</div>	
+	</div>
+    </div>		
 </div>
 <br>
 <br>

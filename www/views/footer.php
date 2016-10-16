@@ -2,7 +2,7 @@
 		<?php if (!isset($_SESSION["idusuario"])) { ?>
 		<div class="row">
 			<div class="col-xs-12">
-				<div class="col-xs-12" style="background-color:#ef7a00;color:#fff;padding:20px 10px;">
+				<div class="col-xs-12" style="color:#3c763d; background-color:#dff0d8; border-color:#d6e9c6; padding:20px 10px;">
 					<div class="col-xs-12 col-md-6">
 						<h3 style="padding:0;margin:0;" class="text-center">Recibe nuestras noticias y ofertas*</h3>
 					</div>
@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<?php } ?>	
-		<div class="col-xs-12" style="background-color:#f2f2f2;color:#000;padding:20px;margin-top: 10px;">
+		<div class="col-xs-12" style="color:#3c763d; background-color:#dff0d8; border-color:#d6e9c6; padding:20px 10px;">
 			
 			<?php 
 			$col_md = 4;
