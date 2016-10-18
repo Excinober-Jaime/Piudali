@@ -52,7 +52,7 @@
 						<label for="exampleInputEmail1">Ciudad</label>
 						<select name="ciudad" class="form-control" required>
 							<option value="">-Seleccione-</option>
-							<?php 
+							<?php
 							foreach ($ciudades as $key => $ciudad) {
 								?>
 								<option value="<?=$ciudad["idciudad"]?>" <?php if ($usuario["ciudades_idciudad"] == $ciudad["idciudad"]) echo "selected"; ?>><?=$ciudad["ciudad"]?></option>

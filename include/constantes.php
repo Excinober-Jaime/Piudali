@@ -69,6 +69,16 @@ define("URL_ADMIN_ORDENES", "Ordenes");
 define("URL_ADMIN_INCENTIVOS", "Incentivos");
 define("URL_ADMIN_INGREDIENTES", "Ingredientes");
 define("URL_ADMIN_PROTOCOLOS", "Protocolos");
+define("URL_ADMIN_PERSONAL", "Personal");
 define("URL_ADMIN_SUSCRIPTORES", "Suscriptores");
-define("URL_ADMIN_PYG", "PyG");
+
+/**INFORMES**/
+define("URL_ADMIN_INFORMES", "Informes");
+define("URL_ADMIN_INFORME_PYG", "InformePyG");
+define("URL_ADMIN_INFORME_USUARIOS", "InformeUsuarios");
+
+/**GEOLOCALIZACION**/
+define("URL_ADMIN_GEOLOCALIZACION", "Geolocalizacion");
+define("URL_ADMIN_GEOLOCALIZACION_ZONAS", "Zonas");
+define("URL_ADMIN_GEOLOCALIZACION_REGIONES", "Regiones");
 ?>

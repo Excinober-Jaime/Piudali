@@ -21,45 +21,22 @@
 			</div>
 		</div>
 		<?php } ?>	
-		<div class="col-xs-12" style="color:#3c763d; background-color:#dff0d8; border-color:#d6e9c6; padding:20px 10px;">
-			
-			<?php 
-			$col_md = 4;
-
-			if (isset($_SESSION["idusuario"])) {
-				$col_md = 3;
-			?>
-			<div class="col-xs-12 col-md-<?=$col_md?>">
-				<ul>
-				<?php
-				foreach ($paginas_menu as $pagina) {
-	              if ($pagina["posicion"]=="INTERNAS DISTRIBUIDORES") {
-	              ?>
-	            	<li><a href="<?=URL_SITIO.$pagina["url"]?>" style="color:#006837;"><?=$pagina["titulo"]?></a></li> 
-	              <?php
-	              }
-	            }
-	            ?>
-				</ul>
-			</div>			
-			<?php
-			}
-			?>
-			<div class="col-xs-12 col-md-<?=$col_md?>">
+		<div class="col-xs-12" style="color:#3c763d; background-color:#dff0d8; border-color:#d6e9c6; padding:20px 10px;">		
+			<div class="col-xs-12 col-md-4">
 				<ul>
 					<li><a href="<?=URL_SITIO?>Ingresar" style="color:#006837;">Acceso Distribuidores</a></li>
 					<li><a href="<?=URL_SITIO?>Ingresar" style="color:#006837;">Acceso Corporativo</a></li>
 					<li><a href="<?=URL_SITIO?>tiendas" style="color:#006837;">Dónde Comprar</a></li>
 				</ul>
 			</div>
-			<div class="col-xs-12 col-md-<?=$col_md?>">
+			<div class="col-xs-12 col-md-4">
 				<ul>
 					<li><a href="<?=URL_SITIO?>sobre-waliwa" style="color:#006837;">Quienes Somos</a></li>
 					<li><a href="<?=URL_SITIO?>quienes-somos" style="color:#006837;">Sobre Piudali</a></li>
 					<li><a href="<?=URL_SITIO?>compromiso-social" style="color:#006837;">Compromiso Social</a></li>
 				</ul>
 			</div>
-			<div class="col-xs-12 col-md-<?=$col_md?>">
+			<div class="col-xs-12 col-md-4">
 				<ul>
 					<li><a href="<?=URL_SITIO?>politica-datos" style="color:#006837;">Políticas del Sitio Web</a></li>
 					<li><a href="<?=URL_SITIO?>servicio-al-cliente" style="color:#006837;">Servicio al Cliente</a></li>

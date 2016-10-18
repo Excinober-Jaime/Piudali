@@ -45,6 +45,8 @@
 						<option value="QUIENES SOMOS" <?php if ($pagina[0]['posicion']=='QUIENES SOMOS') echo 'selected'; ?>>QUIENES SOMOS</option>
 						<option value="DONDE COMPRAR" <?php if ($pagina[0]['posicion']=='DONDE COMPRAR') echo 'selected'; ?>>DONDE COMPRAR</option>
 						<option value="INTERNAS DISTRIBUIDORES" <?php if ($pagina[0]['posicion']=='INTERNAS DISTRIBUIDORES') echo 'selected'; ?>>INTERNAS DISTRIBUIDORES</option>
+						<option value="INTERNAS LIDERES" <?php if ($pagina[0]['posicion']=='INTERNAS LIDERES') echo 'selected'; ?>>INTERNAS LIDERES</option>
+						<option value="INTERNAS DISTRIBUIDORES Y LIDERES" <?php if ($pagina[0]['posicion']=='INTERNAS DISTRIBUIDORES Y LIDERES') echo 'selected'; ?>>INTERNAS DISTRIBUIDORES Y LIDERES</option>
 						<option value="SIN CATEGORIA" <?php if ($pagina[0]['posicion']=='SIN CATEGORIA') echo 'selected'; ?>>SIN CATEGORIA</option>
 					</select>
 				</div>

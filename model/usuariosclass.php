@@ -5,11 +5,27 @@
 */
 class Usuarios extends Database
 {
-	public function listarUsuarios(){
+	public function listarUsuarios($tipos = array()){
+
+		if (count($tipos)>0) {
+
+			$where = "WHERE ";
+
+			foreach ($tipos as $key => $tipo) {
+				$where .= "`usuarios`.`tipo`='$tipo'";
+
+				if (($key+1) <  count($tipos)) {
+					$where .= " OR ";
+				}
+			}
+		}else{
+			$where = "";
+		}
 		
 		$query = $this->consulta("SELECT `idusuario`, `nombre`, `apellido`, `sexo`, `fecha_nacimiento`, `email`, `password`, `num_identificacion`, `boletines`, `condiciones`, `direccion`, `telefono`, `telefono_m`, `tipo`, `foto`, `estado`, `fecha_registro`, `lider`, `ciudades_idciudad`, `ciudades`.`ciudad` AS 'ciudad'
 									FROM `usuarios`
-									INNER JOIN `ciudades` ON (`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`)
+									INNER JOIN `ciudades` ON (`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`) 
+									$where 
 									ORDER BY `fecha_registro` DESC");
 		
 		return $query;
@@ -61,7 +77,7 @@ class Usuarios extends Database
 		return $idusuario;	
 	}
 
-	public function actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $telefono, $telefono_m, $foto, $ciudad){
+	public function actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $telefono, $telefono_m, $tipo, $foto, $ciudad){
 		
 		$query = $this->actualizar("UPDATE `usuarios` SET 									
 									`nombre`='$nombre',
@@ -72,10 +88,14 @@ class Usuarios extends Database
 									`boletines`='$boletines',									
 									`direccion`='$direccion',
 									`telefono`='$telefono',
-									`telefono_m`='$telefono_m',									
-									`foto`='$foto',
+									`telefono_m`='$telefono_m',
+									`tipo`='$tipo',
 									`ciudades_idciudad`= '$ciudad'
 									WHERE `idusuario`='$idusuario'");
+
+		if (!empty($foto)) {
+			$this->actualizar("UPDATE `usuarios` SET `foto`='$foto' WHERE `idusuario`='$idusuario'");
+		}
 		
 		return $query;
 	}

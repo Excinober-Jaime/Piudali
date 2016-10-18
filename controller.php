@@ -12,6 +12,7 @@ require "model/campanasclass.php";
 require "model/carritoclass.php";
 require "model/paginasclass.php";
 require "model/bannersclass.php";
+require "model/geolocalizacionclass.php";
 
 /** Require Includes **/
 require "include/constantes.php";
@@ -30,6 +31,7 @@ class Controller
 		$this->carrito = new Carrito();
 		$this->paginas = new Paginas();		
 		$this->banners = new Banners();
+		$this->geolocalizacion = new Geolocalizacion();
 	}
 
 
@@ -524,7 +526,7 @@ class Controller
 					$boletines = 0;
 				}
 
-				$actualizar_usuario = $this->usuarios->actualizarUsuario($_SESSION["idusuario"],$nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $telefono, $telefono_m, $foto, $ciudad);				
+				$actualizar_usuario = $this->usuarios->actualizarUsuario($_SESSION["idusuario"],$nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $telefono, $telefono_m, $_SESSION["tipo"], $foto, $ciudad);				
 
 				if (isset($idorganizacion) && !empty($idorganizacion)) {
 					$actualizar_organizacion = $this->usuarios->actualizarOrganizacion($idorganizacion, $razon_social, $telefono_organizacion, $direccion_organizacion, $ciudad_organizacion);
@@ -1279,6 +1281,7 @@ class Controller
 				$_SESSION["admin_nombre"] = $admin["nombre"];
 				$_SESSION["admin_cargo"] = $admin["cargo"];
 				$_SESSION["admin_email"] = $admin["usuario"];
+				$_SESSION["admin_rol"] = $admin["rol"];
 				header("Location: ".URL_ADMIN."/".URL_ADMIN_INICIO);
 			}else{
 				
@@ -1697,13 +1700,23 @@ class Controller
 
 	public function adminUsuarioDetalle($idusuario){
 
-		$ciudades = $this->listarCiudades();
+		extract($_POST);
+
+		if (isset($_POST["crearUsuario"])) {			
+			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $telefono, $telefono_m, $tipo, "", $estado, fecha_actual('datetime'), $ciudad, 0);
+		}
+
+		if (isset($_POST["actualizarUsuario"])) {
+			$this->usuarios->actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, 0, $direccion, $telefono, $telefono_m, $tipo,'', $ciudad);
+		}
 
 		if (isset($idusuario) && !empty($idusuario)) {
 			$usuario = $this->usuarios->detalleUsuario($idusuario);
 			$documentos = $this->usuarios->listarDocumentos($idusuario);
 		}
 		
+		$ciudades = $this->listarCiudades();
+
 		include "views/admin/usuario_detalle.php";
 	}
 
@@ -1856,7 +1869,7 @@ class Controller
 
 	}
 
-	public function adminPyG(){
+	public function adminInformePyG(){
 
 		
 		if (isset($_GET["fecha_inicio"]) && isset($_GET["fecha_fin"])) {
@@ -1875,5 +1888,105 @@ class Controller
 		include "views/admin/informe_pyg.php";
 	}
 
+	public function adminInformeUsuarios(){
+		$usuarios = $this->usuarios->listarUsuarios(['DISTRIBUIDOR']);
+
+		foreach ($usuarios as $key => $usuario) {
+			$compras_netas = $this->usuarios->comprasNetasPeriodo("2016-01-01", "2016-12-31", "FACTURADO", $usuario["idusuario"]);	
+			$usuarios[$key]["compras_netas"] = $compras_netas["compras_netas"];
+			
+			$lider = $this->usuarios->detalleUsuario($usuario["lider"]);
+			$usuarios[$key]["lider"] = $lider;
+			$region = $this->geolocalizacion->detalleRegionCiudad($usuario["ciudades_idciudad"]);
+			$director =	$this->usuarios->detalleUsuario($region[0]["director"]);
+
+			$usuarios[$key]["director"] = $director;
+		}
+
+		include "views/admin/informe_usuarios.php";
+	}
+
+	public function adminZonas(){
+		
+		$zonas = $this->geolocalizacion->listarZonas();
+		include "views/admin/zonas_lista.php";
+	}
+
+	public function adminZonaDetalle($idzona){
+
+		extract($_POST);
+
+		if (isset($_POST["actualizarZona"])) {
+
+			$this->geolocalizacion->actualizarZona($idzona, $zona, $estado, $lider, $ciudad);
+		}
+
+		if (isset($_POST["crearZona"])) {
+			$idzona = $this->geolocalizacion->crearZona($zona, $estado, $lider, $ciudad);
+		}
+
+		if (isset($idzona) && !empty($idzona)) {
+			$zona = $this->geolocalizacion->listarZonas([$idzona]);	
+			$zona = $zona[0];
+		}
+		
+		$lideres = $this->usuarios->listarUsuarios(["LIDER"]);
+		$ciudades = $this->usuarios->listarCiudades();
+
+		include "views/admin/zona_detalle.php";
+	}
+
+	public function adminRegiones(){
+
+		$regiones = $this->geolocalizacion->listarRegiones();		
+		include "views/admin/regiones_lista.php";
+	}
+
+	public function adminRegionDetalle($idregion){
+
+		extract($_POST);
+
+		if (isset($_POST["actualizarRegion"])) {
+
+			$this->geolocalizacion->eliminarCiudadesRegion($idregion);
+
+			if (isset($ciudades) && count($ciudades)>0) {				
+
+				foreach ($ciudades as $key => $ciudad) {
+					$idciudadregion = $this->geolocalizacion->agregarCiudadRegion($idregion,$ciudad);
+				}
+			}
+			
+			$this->geolocalizacion->actualizarRegion($idregion, $region, $estado, $director);
+		}
+
+		if (isset($_POST["crearRegion"])) {
+
+			$idregion = $this->geolocalizacion->crearRegion($region, $estado, $director);
+
+			if (isset($ciudades) && count($ciudades)>0) {
+				
+				foreach ($ciudades as $key => $ciudad) {
+					$idciudadregion = $this->geolocalizacion->agregarCiudadRegion($idregion,$ciudad);
+				}
+			}
+		}
+
+		if (isset($idregion) && !empty($idregion)) {
+			$region = $this->geolocalizacion->listarRegiones([$idregion]);	
+			$region = $region[0];
+
+			$ciudades = $this->geolocalizacion->listarCiudadesRegion($region["idregion"]);
+			
+			foreach ($ciudades as $key => $ciudad) {
+				$ciudades_region[]= $ciudad["idciudad"];
+			}
+		}
+
+		$directores = $this->usuarios->listarUsuarios(["DIRECTOR"]);
+		$ciudades = $this->usuarios->listarCiudades();
+
+		include "views/admin/region_detalle.php";	
+	}
 }
 ?>

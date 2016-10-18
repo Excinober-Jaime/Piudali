@@ -9,7 +9,7 @@
 		  	<li data-target="#carousel-example-generic" data-slide-to="<?=$key?>" <?php if ($key==0) echo 'class="active"'; ?>></li>
 		  	<?php
 		  	}
-		  	?>	    
+		  	?>
 		  </ol>
 
 		  <!-- Wrapper for slides -->
@@ -48,7 +48,7 @@
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu-interno" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -58,7 +58,7 @@
             </div>
         
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="navbar-menu-interno">
             
             <?php
 				switch ($_SESSION["tipo"]) {
@@ -77,9 +77,15 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Políticas <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    	  <li><a class="open-modal" idpage="15">Condiciones Comerciales</a></li>
-					      <li><a class="open-modal" idpage="14">Políticas de Datos</a></li>
-					      <li><a class="open-modal" idpage="16">Como Realizar Pedidos</a></li>
+					      <?php
+					      foreach ($paginas_menu as $pagina) {
+				              if ($pagina["posicion"]=="INTERNAS DISTRIBUIDORES" || $pagina["posicion"]=="INTERNAS DISTRIBUIDORES Y LIDERES") {
+				          ?>
+				          <li><a class="open-modal" idpage="<?=$pagina["idpagina"]?>"><?=$pagina["titulo"]?></a></li>
+				          <?php
+				              }
+				          }
+					      ?>
                   </ul>
                 </li>
               </ul>
@@ -98,10 +104,16 @@
                 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Políticas <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    	  <li><a class="open-modal" idpage="15">Condiciones Comerciales</a></li>
-					      <li><a class="open-modal" idpage="14">Políticas de Datos</a></li>
-					      <li><a class="open-modal" idpage="16">Como Realizar Pedidos</a></li>
+                  <ul class="dropdown-menu">					      
+					      <?php
+					      foreach ($paginas_menu as $pagina) {
+				              if ($pagina["posicion"]=="INTERNAS LIDERES" || $pagina["posicion"]=="INTERNAS DISTRIBUIDORES Y LIDERES") {
+				          ?>
+				          <li><a class="open-modal" idpage="<?=$pagina["idpagina"]?>"><?=$pagina["titulo"]?></a></li>
+				          <?php
+				              }
+				          }
+					      ?>
                   </ul>
                 </li>
               </ul>

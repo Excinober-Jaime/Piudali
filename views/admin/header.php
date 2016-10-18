@@ -13,11 +13,12 @@
 
     <link href="assets/admin/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
 
+    <link href="assets/admin/css/plugins/chosen/chosen.css" rel="stylesheet">
+
     <link href="assets/admin/css/animate.css" rel="stylesheet">
     <link href="assets/admin/css/style.css" rel="stylesheet">
 </head>
 <div id="wrapper">
-
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
@@ -34,6 +35,11 @@
                         IN+
                     </div>
                 </li>
+                <?php 
+                if (isset($_SESSION["admin_rol"])) {                    
+                 switch ($_SESSION["admin_rol"]) {
+                    case 'ADMIN':
+                ?>
 				<li class="active"><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS?>"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Usuarios</span></a></li>
 				<li>
                     <a href="#"><i class="fa fa-suitcase" aria-hidden="true"></i> <span class="nav-label">Catálogo</span> <span class="fa arrow"></span></a>
@@ -66,12 +72,21 @@
                 </li>                
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_INCENTIVOS?>"><i class="fa fa-dollar" aria-hidden="true"></i> <span class="nav-label">Incentivos</span></a></li>
 				<li>
+                <li><a href="<?=URL_ADMIN."/".URL_ADMIN_SUSCRIPTORES?>"><i class="fa fa-newspaper-o" aria-hidden="true"></i> <span class="nav-label">Newsletter</span></a></li>
+                <li>                
                     <a href="#"><i class="fa fa-area-chart" aria-hidden="true"></i> <span class="nav-label">Informes</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_SUSCRIPTORES?>">Newsletter</a></li>
-                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PYG?>/">P y G</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_USUARIOS?>">Informe Usuarios</a></li>                        
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_PYG?>">P y G</a></li>
                     </ul>
-                </li>                   
+                </li>
+                <li>                
+                    <a href="#"><i class="fa fa-globe" aria-hidden="true"></i> <span class="nav-label">Geolocalización</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_GEOLOCALIZACION."/".URL_ADMIN_GEOLOCALIZACION_ZONAS?>">Zonas</a></li>                        
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_GEOLOCALIZACION."/".URL_ADMIN_GEOLOCALIZACION_REGIONES?>">Regiones</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="#"><i class="fa fa-wrench" aria-hidden="true"></i> <span class="nav-label">Administración</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -79,6 +94,22 @@
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PLANTILLAS?>">Plantillas Email</a></li>
                     </ul>
                 </li>
+                <?php
+                    break;
+                    case 'PROVEEDOR':
+                ?>
+                <li>
+                    <a href="#"><i class="fa fa-area-chart" aria-hidden="true"></i> <span class="nav-label">Informes</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_SUSCRIPTORES?>">Newsletter</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PYG?>/">P y G</a></li>
+                    </ul>
+                </li>                
+                <?php
+                        break;
+                    }
+                }
+                ?>
             </ul>
         </div>
     </nav>
