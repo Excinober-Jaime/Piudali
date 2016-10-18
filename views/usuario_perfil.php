@@ -104,7 +104,7 @@
             <?php }	?>		
             <div class="row">
                 <div class="col-xs-12">
-                    <a href="<?=URL_USUARIO."/".URL_USUARIO_CAMBIAR_DATOS?>" class="btn btn-primary">Cambiar Datos</a>
+                    <a href="<?=URL_USUARIO."/".URL_USUARIO_CAMBIAR_DATOS?>" class="btn btn-default center-block">Cambiar Datos</a>
                 </div>
             </div>
         </div>

@@ -2,10 +2,13 @@
 
 <div class="container">		
 	<?php include "usuario/menu.php"; ?>		
-	
-	<div class="col-xs-12">
-		<h1>Mis Clientes <small><small></small></small></h1><hr>
+	<div class="contenPanel">
+	<div class="col-xs-12 titulo">
+		<h1>Mis Clientes</h1>
+        <small></small>
 	</div>
+    <div class="clearfix"></div>
+    <div class="informacion">
 	<div class="col-xs-12">
 		<table class="table table-striped">
 			<thead>
@@ -48,6 +51,9 @@
 			</tbody>
 		</table>
 	</div>
+    <div class="clearfix"></div>
+    </div>
+    </div>
 </div>
 <br>
 <br>

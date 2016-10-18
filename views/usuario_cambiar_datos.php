@@ -79,7 +79,7 @@
 						<label for="exampleInputEmail1">Nueva Contraseña</label>
 						<input type="password" name="nueva_contrasena" class="form-control" id="password2">
 					</div>
-					<button type="submit" name="cambiarDatos" class="btn btn-primary btn-lg center-block">GUARDAR CAMBIOS</button>				
+					<button type="submit" name="cambiarDatos" class="btn btn-default btn-lg center-block">GUARDAR CAMBIOS</button>				
 				</div>
 				<div class="col-xs-12 col-md-6">
 				<?php if ($organizacion) { ?>					

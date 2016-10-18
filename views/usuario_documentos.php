@@ -1,10 +1,15 @@
 <?php include "header.php"; ?>
 
 <div class="container">		
-	<?php include "usuario/menu.php"; ?>			
-	<div class="col-xs-12">
-	<h1>Documentos <small><small></small></small></h1>
-	<hr>
+	<?php include "usuario/menu.php"; ?>
+    <div class="contenPanel">		
+	<div class="col-xs-12 titulo">
+	<h1>Documentos</h1>
+    <small></small>
+	</div>
+    <div class="clearfix"></div>
+    <div class="informacion">
+    <div class="col-xs-12">
 	<?php 
 	if ($documentos) {
 	?>
@@ -37,6 +42,9 @@
 	  </div>
 	</form>
 	</div>	
+    <div class="clearfix"></div>
+    </div>
+    </div>	
 </div>
 <br>
 <br>

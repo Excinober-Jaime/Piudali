@@ -1,11 +1,14 @@
 <?php include "header.php"; ?>
 
 <div class="container">		
-	<?php include "usuario/menu.php"; ?>		
-	<div class="col-xs-12">
-		<h1>Mi Negocio <small><small>Aquí podrás monitorear las compras netas de tus distribuidores.</small></small></h1>
-		<hr>
-		<div class="row">
+	<?php include "usuario/menu.php"; ?>	
+    <div class="contenPanel">
+	<div class="col-xs-12 titulo">
+		<h1>Mi Negocio</h1>
+        <small>Aquí podrás monitorear las compras netas de tus distribuidores.</small>
+    </div>
+    <div class="clearfix"></div>
+		<div class="informacion">
 			<div class="hidden-xs hidden-sm col-md-7"></div>
 			<div class="col-xs-12 col-md-5">
 				<form class="form-horizontal" method="post" id="campana">
@@ -48,7 +51,7 @@
 					</div>
 				<form>
 			</div>			
-		</div>
+		
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -78,16 +81,16 @@
 					}
 					?>
 					<tr>
-						<th class="text-right" colspan="2">TOTAL COMPRAS NETAS</th>
-						<th class="text-center">$<?=number_format($total_compras_netas)?></th>						
+						<td class="text-right" colspan="2"><strong>TOTAL COMPRAS NETAS</strong></td>
+						<td class="text-center"><strong>$<?=number_format($total_compras_netas)?></strong></td>						
+			  </tr>
+					<tr>
+						<td class="text-right" colspan="2"><strong>PORCENTAJE COMISIÓN</strong></td>
+						<td class="text-center"><strong><?=$porcentaje_comision?>%</strong></td>						
 					</tr>
 					<tr>
-						<th class="text-right" colspan="2">PORCENTAJE COMISIÓN</th>
-						<th class="text-center"><?=$porcentaje_comision?>%</th>						
-					</tr>
-					<tr>
-						<th class="text-right" colspan="2">TOTAL COMISIÓN</th>
-						<th class="text-center">$<?=number_format($total_compras_netas*($porcentaje_comision/100))?></th>
+						<td class="text-right" colspan="2"><strong>TOTAL COMISIÓN</strong></td>
+						<td class="text-center"><strong>$<?=number_format($total_compras_netas*($porcentaje_comision/100))?></strong></td>
 					</tr>
 					<?php
 				}else{
@@ -100,7 +103,9 @@
 				?>				
 			</tbody>
 		</table>
-	</div>	
+		</div>
+    </div>		
+ </div>
 </div>
 <br>
 <br>

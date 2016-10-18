@@ -105,7 +105,7 @@ footer{
 	
 	.contenPanel h2{
 		font-family: 'Lato', sans-serif;
-		background-color:#660000;
+		background-color:/*#660000*/#a94442;
 		color:#fff;
 		font-size:16px;
 		margin:0;
@@ -121,15 +121,29 @@ footer{
 		color:#660000;
 	}
 
-.contenPanel .btn-primary{color:#fff;}
+.contenPanel .btn-default{color:#fff;}
 	
 	.contenPanel .panel-default > .panel-heading {
     
-    background-color: #660000;
-    border-color: #fff;
+    background-color: #fff;
+    border-color: #660000;
 }
 
-.contenPanel .panel-title a{color:#fff !important;}
+
+.contenPanel .panel-title{
+	font-weight:400;
+	}
+.contenPanel .list-group-item{
+	background-color:/*#660000*/#a94442;
+	}
+
+
+
+.contenPanel .list-group-item a{
+	color:#fff;
+	}
+
+.contenPanel .panel-title a{color:#660000 !important;}
 
 
 	
@@ -143,10 +157,12 @@ footer{
 	.informacion table{
 		border: 1px solid #ddd;
 		background-color:#fff;
+		font-family: 'Lato', sans-serif;
+		font-weight:400 !important;
 		}
 	
 	.informacion table th{
-		background-color:#660000;
+		background-color:/*#660000*/#a94442;
 		color:#fff;
 		}
 	
