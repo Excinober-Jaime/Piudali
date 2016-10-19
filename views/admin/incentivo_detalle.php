@@ -49,8 +49,8 @@
 				<div class="form-group">
 					<label for="exampleInputEmail1">Usuario</label>
 					<select name="usuario" id="usuario" class="form-control" required>
-						<option value="DISTRIBUIDOR" <?php if ($incentivo['usuario']=='DISTRIBUIDOR') echo 'selected'; ?>>DISTRIBUIDOR</option>
-						<option value="LIDER" <?php if ($incentivo['usuario']=='LIDER') echo 'selected'; ?>>LIDER</option>
+						<option value="DISTRIBUIDOR DIRECTO" <?php if ($incentivo['usuario']=='DISTRIBUIDOR DIRECTO') echo 'selected'; ?>>DISTRIBUIDOR DIRECTO</option>
+						<option value="REPRESENTANTE COMERCIAL" <?php if ($incentivo['usuario']=='REPRESENTANTE COMERCIAL') echo 'selected'; ?>>REPRESENTANTE COMERCIAL</option>
 					</select>
 				</div>
 				<?php

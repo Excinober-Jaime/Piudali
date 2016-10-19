@@ -22,7 +22,7 @@
 			  	</tr>
 			  </thead>
 			  <tbody>
-			  	<?php 
+			  	<?php
 			  	foreach ($usuarios as $usuario) {
 		  		?>
 		  		<tr>

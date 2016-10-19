@@ -1,5 +1,5 @@
 <?php 
-error_reporting(0);
+//error_reporting(0);
 session_start();
 
 require "controller.php";
@@ -193,10 +193,18 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 										$controller->adminInformePyG();
 										break;
 
-									case URL_ADMIN_INFORME_USUARIOS:										
+									case URL_ADMIN_INFORME_USUARIOS:
 										$controller->adminInformeUsuarios();
 										break;
 									
+									case URL_ADMIN_INFORME_ORDENES:
+										$controller->adminInformeOrdenes();
+										break;
+
+									case URL_ADMIN_INFORME_PRODUCTOS:
+										$controller->adminInformeProductos();
+										break;
+
 									default:
 										echo "El informe no existe";
 										break;

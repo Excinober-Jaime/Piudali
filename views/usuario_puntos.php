@@ -26,12 +26,12 @@
 						foreach ($puntos as $key => $punto) {
 					?>
 							<tr>
-								<td class="text-center"><?=$punto["puntos"]?></td>
+								<td class="text-center"><?=round($punto["puntos"])?></td>
 								<td class="text-center"><?=$punto["concepto"]?></td>
 								<td class="text-center"><?=$punto["fecha_adquirido"]?></td>
 								<td class="text-center"><?=$punto["fecha_redimido"]?></td>
 								<td class="text-center"><?=$punto["redimido"]?></td>
-								<td class="text-center"><?=$punto["disponibles"]?></td>
+								<td class="text-center"><?=round($punto["disponibles"])?></td>
 							</tr>
 					<?php
 						}
@@ -49,16 +49,16 @@
 		<div class="col-xs-12 col-md-4">
 			<h3 class="text-center">Resumen</h3>
 			<ul class="list-group">
-			  <li class="list-group-item">
-			    <span class="badge"><?=$total_puntos?></span>
+			  <li class="list-group-item" style="color:#fff;">
+			    <span class="badge"><?=round($total_puntos)?></span>
 			    TOTAL PUNTOS:
 			  </li>
-			  <li class="list-group-item">
-			    <span class="badge"><?=$total_redimidos?></span>
+			  <li class="list-group-item" style="color:#fff;">
+			    <span class="badge"><?=round($total_redimidos)?></span>
 			    TOTAL REDIMIDOS:
 			  </li>
-			  <li class="list-group-item">
-			    <span class="badge" style="background-color:#ef7a00;"><?=$total_disponibles?></span>
+			  <li class="list-group-item" style="color:#fff;">
+			    <span class="badge" style="background-color:#ef7a00;"><?=round($total_disponibles)?></span>
 			    TOTAL DISPONIBLES:
 			  </li>
 			</ul>

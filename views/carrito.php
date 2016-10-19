@@ -103,7 +103,7 @@
 		 		<div class="col-xs-12"><br></div>
 			 	<div class="col-xs-8 text-right">Puntos a Redimir:</div>
 			 	<div class="col-xs-4 text-right">
-			 		<?=$puntos_disponibles["disponibles"]?>		 		<br>
+			 		<?=round($puntos_disponibles["disponibles"])?>		 		<br>
 			 		<a onclick="javascript: document.getElementById('usarpuntos').submit()">Usar puntos en esta compra</a>
 			 	</div>	 	
 			 	<div class="col-xs-12"><br></div>		

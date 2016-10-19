@@ -132,12 +132,14 @@
                 <?php
                 if ($lider) {
                 ?>
-                    <h2>Información de Líder</h2>
+                    <h2>Información de Representante Comercial</h2>
                     <h3><?=$lider["nombre"]." ".$lider["apellido"]?></h3>
                     <p><strong>Teléfono(s):</strong></p>
        		  		<p><?=$lider["telefono"]." ".$lider["telefono_m"]?></p>
                     <p><strong>Email:</strong></p>
               		<p><?=$lider["email"]?></p>
+                    <p><strong>Zona:</strong></p>
+                    <p><?=$zona[0]["zona"]?></p>
                 <?php
                 }elseif ($zona) {
                 ?>

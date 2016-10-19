@@ -67,7 +67,7 @@ class Productos extends Database
 					$tipos_select .= " OR ";
 				}
 
-				$tipos_select .= "`tipo` = '$tipo'";
+				$tipos_select .= "`productos`.`tipo` = '$tipo'";
 				$count++;
 			}
 			$tipos_select .= ")";
@@ -86,7 +86,7 @@ class Productos extends Database
 					$estados_select .= " OR ";
 				}
 
-				$estados_select .= "`estado` = '$estado'";
+				$estados_select .= "`productos`.`estado` = '$estado'";
 				$count++;
 			}
 			$estados_select .= ")";
@@ -95,14 +95,16 @@ class Productos extends Database
 		}
 
 		if (!empty($idcategoria)) {
-			$categoria_where = " AND `categorias_idcategoria`='$idcategoria'";
+			$categoria_where = " AND `productos`.`categorias_idcategoria`='$idcategoria'";
 		}else{
 			$categoria_where = "";
 		}
 
 		
-		$query = $this->consulta("SELECT `idproducto`, `nombre`, `cantidad`, `costo`, `precio`, `iva`, `aplica_cupon`, `precio_oferta`, `presentacion`, `registro`, `codigo`, `descripcion`, `img_principal`, `url`, `estado`, `uso`, `mas_info`, `metas`, `categorias_idcategoria`, `companias_idcompania`, `relevancias_idrelevancia` 
+		$query = $this->consulta("SELECT `productos`.`idproducto`, `productos`.`nombre`, `productos`.`cantidad`, `productos`.`costo`, `productos`.`precio`, `productos`.`iva`, `productos`.`aplica_cupon`, `productos`.`precio_oferta`, `productos`.`presentacion`, `productos`.`registro`, `productos`.`codigo`, `productos`.`descripcion`, `productos`.`img_principal`, `productos`.`url`, `productos`.`estado`, `productos`.`uso`, `productos`.`mas_info`, `productos`.`metas`, `productos`.`categorias_idcategoria`, `productos`.`companias_idcompania`, `productos`.`relevancias_idrelevancia`, `companias`.`nombre` AS 'compania', `categorias`.`nombre` AS 'categoria'
 								FROM `productos`
+								INNER JOIN `companias` ON (`productos`.`companias_idcompania`=`companias`.`idcompania`)
+								INNER JOIN `categorias` ON (`productos`.`categorias_idcategoria`=`categorias`.`idcategoria`)
 								WHERE $estados_select $tipos_select $categoria_where");
 		
 		return $query;

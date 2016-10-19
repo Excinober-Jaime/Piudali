@@ -193,7 +193,7 @@ class Controller
 
 			extract($_POST);
 
-			$tipo = "DISTRIBUIDOR";
+			$tipo = "DISTRIBUIDOR DIRECTO";
 			$foto = "";
 			$estado = 1;
 			$fecha_registro = fecha_actual("datetime");
@@ -223,7 +223,7 @@ class Controller
 
 			extract($_POST);
 
-			$tipo = "DISTRIBUIDOR";
+			$tipo = "DISTRIBUIDOR DIRECTO";
 			$foto = "";
 			$estado = 1;
 			$fecha_registro = fecha_actual("datetime");			
@@ -457,20 +457,26 @@ class Controller
 				$organizacion = $this->usuarios->detalleOrganizacionUsuario($usuario["organizaciones_idorganizacion"]);
 			}else{
 				$organizacion = false;
-			}			
+			}
 			
 			switch ($_SESSION["tipo"]) {
 
-				case 'DISTRIBUIDOR':
+				case 'DISTRIBUIDOR DIRECTO':
 
 					if (!empty($usuario["lider"])) {
+
+						$ids = array();
+						$lideres = array($usuario["lider"]);
+						$ciudades = array();
+
 						$lider = $this->usuarios->detalleUsuario($usuario["lider"]);
+						$zona = $this->geolocalizacion->listarZonas($ids,$lideres,$ciudades);						
 					}else{
 						$lider = false;
 					}
 					break;
 
-				case 'LIDER':
+				case 'REPRESENTANTE COMERCIAL':
 					$zona = $this->usuarios->zonaUsuario($_SESSION["idusuario"]);
 					break;
 				
@@ -595,18 +601,27 @@ class Controller
 			$campana_seleccionada = $this->campanas->getCamapanaActual();
 		}
 
+
 		
 		
 		if (!empty($_SESSION["idusuario"])) {
 
 			switch ($_SESSION["tipo"]) {
-				case 'DISTRIBUIDOR':
-					$ordenes = $this->usuarios->listarOrdenesUsuario($_SESSION["idusuario"],$campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"]);
+				case 'DISTRIBUIDOR DIRECTO':
+
+					if (isset($_POST["estado"]) && !empty($_POST["estado"])) {
+						$estado = array($_POST["estado"]);
+					}else{
+						$estado = array();
+					}
+
+					$ordenes = $this->usuarios->listarOrdenesUsuario($_SESSION["idusuario"],$campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"],$estado);
+
 					include "views/usuario_negocio.php";
 
 					break;
 
-				case 'LIDER':
+				case 'REPRESENTANTE COMERCIAL':
 
 					$distribuidores = $this->usuarios->listarDistribuidoresLider($_SESSION["idusuario"]);
 					
@@ -747,8 +762,8 @@ class Controller
 
 			switch ($_SESSION["tipo"]) {
 
-				case 'DISTRIBUIDOR':
-					$usuario = array("DISTRIBUIDOR");
+				case 'DISTRIBUIDOR DIRECTO':
+					$usuario = array("DISTRIBUIDOR DIRECTO");
 					$incentivos = $this->usuarios->listarIncentivos($usuario);
 					$estado_compras = "APROBADO";
 
@@ -765,9 +780,9 @@ class Controller
 
 					break;
 
-				case 'LIDER':
+				case 'REPRESENTANTE COMERCIAL':
 					
-					$usuario = array("LIDER");
+					$usuario = array("REPRESENTANTE COMERCIAL");
 					$incentivos = $this->usuarios->listarIncentivos($usuario);
 
 					$distribuidores = $this->usuarios->listarDistribuidoresLider($_SESSION["idusuario"]);
@@ -1748,7 +1763,7 @@ class Controller
 
 	public function adminIncentivosLista(){
 
-		$usuarios = array('DISTRIBUIDOR','LIDER');
+		$usuarios = array('DISTRIBUIDOR DIRECTO','REPRESENTANTE COMERCIAL');
 
 		$incentivos = $this->usuarios->listarIncentivos($usuarios);
 
@@ -1778,12 +1793,26 @@ class Controller
 		}
 
 		if (isset($_POST["crearIncentivo"])) {
-			//$idincentivo = $this->usuarios->crearIncentivo();			
+
+			//Upload banner
+			if($_FILES["imagen"]["error"]==UPLOAD_ERR_OK){
+
+				$rutaimg=$_FILES["imagen"]["tmp_name"];
+				$nombreimg=$_FILES["imagen"]["name"];
+				$destino = DIR_IMG_INCENTIVOS.$nombreimg;
+				move_uploaded_file($rutaimg, $destino);
+
+			}else{
+
+				$destino = "";
+			}
+
+			$idincentivo = $this->usuarios->crearIncentivo($incentivo, $destino, $inicio, $fin, $meta, $descripcion, $usuario);			
 		}
 
 		if (isset($idincentivo) && $idincentivo!='') {
 			$incentivo = $this->usuarios->incentivoDetalle($idincentivo);
-		}			
+		}		
 
 		include "views/admin/incentivo_detalle.php";
 	}
@@ -1889,7 +1918,9 @@ class Controller
 	}
 
 	public function adminInformeUsuarios(){
-		$usuarios = $this->usuarios->listarUsuarios(['DISTRIBUIDOR']);
+
+		$tipos = array('DISTRIBUIDOR DIRECTO');
+		$usuarios = $this->usuarios->listarUsuarios($tipos);
 
 		foreach ($usuarios as $key => $usuario) {
 			$compras_netas = $this->usuarios->comprasNetasPeriodo("2016-01-01", "2016-12-31", "FACTURADO", $usuario["idusuario"]);	
@@ -1899,11 +1930,45 @@ class Controller
 			$usuarios[$key]["lider"] = $lider;
 			$region = $this->geolocalizacion->detalleRegionCiudad($usuario["ciudades_idciudad"]);
 			$director =	$this->usuarios->detalleUsuario($region[0]["director"]);
-
 			$usuarios[$key]["director"] = $director;
 		}
 
 		include "views/admin/informe_usuarios.php";
+	}
+
+	public function adminInformeOrdenes(){
+
+		$ordenes = $this->usuarios->listarOrdenes();
+
+		foreach ($ordenes as $key => $orden) {
+			$comprador = $this->usuarios->detalleUsuario($orden["usuarios_idusuario"]);
+			$ordenes[$key]["comprador"] = $comprador;
+			
+			$lider_comprador = $this->usuarios->detalleUsuario($comprador["lider"]);
+			$ordenes[$key]["lider"] = $lider_comprador;
+
+			$region = $this->geolocalizacion->detalleRegionCiudad($comprador["ciudades_idciudad"]);
+			$director =	$this->usuarios->detalleUsuario($region[0]["director"]);
+			$ordenes[$key]["director"] = $director;
+		}
+		
+		include "views/admin/informe_ordenes.php";
+	}
+
+	public function adminInformeProductos(){
+
+		$tipos_productos = array('NORMAL');
+		$estados_productos = array(0,1);
+
+		$productos = $this->productos->listarProductos($tipos_productos, $estados_productos);
+
+		foreach ($productos as $key => $producto) {
+
+			$unidades_vendidas = $this->ordenes->unidadesVendidas("2016-01-01", "2016-12-31", "PENDIENTE", $producto["codigo"]);	
+			$productos[$key]["unidades_vendidas"] = $unidades_vendidas;
+		}
+		
+		include "views/admin/informe_productos.php";
 	}
 
 	public function adminZonas(){
@@ -1926,11 +1991,15 @@ class Controller
 		}
 
 		if (isset($idzona) && !empty($idzona)) {
-			$zona = $this->geolocalizacion->listarZonas([$idzona]);	
+
+			$ids = array($idzona);
+			$zona = $this->geolocalizacion->listarZonas($ids);	
 			$zona = $zona[0];
 		}
+
+		$tipos = array("REPRESENTANTE COMERCIAL");
 		
-		$lideres = $this->usuarios->listarUsuarios(["LIDER"]);
+		$lideres = $this->usuarios->listarUsuarios($tipos);
 		$ciudades = $this->usuarios->listarCiudades();
 
 		include "views/admin/zona_detalle.php";
@@ -1973,7 +2042,9 @@ class Controller
 		}
 
 		if (isset($idregion) && !empty($idregion)) {
-			$region = $this->geolocalizacion->listarRegiones([$idregion]);	
+
+			$ids = array($idregion);
+			$region = $this->geolocalizacion->listarRegiones($ids);	
 			$region = $region[0];
 
 			$ciudades = $this->geolocalizacion->listarCiudadesRegion($region["idregion"]);
@@ -1983,7 +2054,9 @@ class Controller
 			}
 		}
 
-		$directores = $this->usuarios->listarUsuarios(["DIRECTOR"]);
+		$tipos = array("DIRECTOR");
+
+		$directores = $this->usuarios->listarUsuarios($tipos);
 		$ciudades = $this->usuarios->listarCiudades();
 
 		include "views/admin/region_detalle.php";	

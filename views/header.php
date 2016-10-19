@@ -11,8 +11,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Piudalí Colombia</title>
 
-    <?php /*?><base href="<?=URL_SITIO?>"><?php */?>
-    <base href="http://localhost/piudali/">
+    <base href="<?=URL_SITIO?>">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
     <!-- Bootstrap -->

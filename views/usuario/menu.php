@@ -62,7 +62,7 @@
             
             <?php
 				switch ($_SESSION["tipo"]) {
-				case 'DISTRIBUIDOR':
+				case 'DISTRIBUIDOR DIRECTO':
 			?>
               <ul class="nav navbar-nav">
                 	<li><a href="<?=URL_USUARIO?>">Perfil</a></li>
@@ -91,7 +91,7 @@
               </ul>
               <?php
 					break;
-				case 'LIDER':
+				case 'REPRESENTANTE COMERCIAL':
 				?>
                 <ul class="nav navbar-nav">           	
                     <li><a href="<?=URL_USUARIO?>">Perfil</a>
@@ -214,7 +214,7 @@
 		<?php	
 		}else{
 		?>
-			<div class="alert alert-success text-center" role="alert">TU PERFIL ES DE <?=$_SESSION['tipo']?></div>	
+			<div class="alert alert-success text-center" role="alert"><h4>TU PERFIL ES DE <?=$_SESSION['tipo']?></h4></div>	
 		<?php
 		}
 		?>
