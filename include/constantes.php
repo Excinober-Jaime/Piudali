@@ -1,6 +1,6 @@
 <?php 
-//define("URL_SITIO", "http://localhost/piudali/www/");
-define("URL_SITIO", "http://piudali.com.co/");
+define("URL_SITIO", "http://localhost/piudali/www/");
+//define("URL_SITIO", "http://piudali.com.co/");
 define("URL_INICIO", "Inicio");
 define("URL_PRODUCTOS", "Productos");
 define("URL_CATEGORIA", "Categoria");

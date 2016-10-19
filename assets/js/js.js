@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 	$(".open-incentivo").click(function(){
 		var img = $(this).attr("img");
-		var data = '<img src="'+img+'" class="img-repponsive">';
+		var data = '<img src="'+img+'" class="img-responsive">';
 		$(".modal-body").html(data);
 		$('.modal').modal();
 	})

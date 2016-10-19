@@ -94,18 +94,18 @@ footer{
 	}
 
 
-.contenPanel h1{
-	color:#660000;
+.contenPanel h1{	
+	color:#000;
 	font-family: 'Lato', sans-serif;
 	font-weight:300;
-	border-bottom:1px solid #660000;
+	border-bottom:1px solid #000;
 	text-transform: uppercase;
 	margin-top:0;
 	}
 	
 	.contenPanel h2{
 		font-family: 'Lato', sans-serif;
-		background-color:/*#660000*/#a94442;
+		background-color:/*#660000*/#218a22;
 		color:#fff;
 		font-size:16px;
 		margin:0;
@@ -114,11 +114,13 @@ footer{
 	
 	.contenPanel h3{
 		font-family: 'Lato', sans-serif;
-		color:#660000;
+		/*color:#660000;*/
+		color: #000;
 	}
 
 .contenPanel i, .contenPanel a, .contenPanel label{
-		color:#660000;
+		/*color:#660000;*/
+		color: #000;
 	}
 
 .contenPanel .btn-default{color:#fff;}
@@ -126,7 +128,7 @@ footer{
 	.contenPanel .panel-default > .panel-heading {
     
     background-color: #fff;
-    border-color: #660000;
+    border-color: #000;
 }
 
 
@@ -134,7 +136,8 @@ footer{
 	font-weight:400;
 	}
 .contenPanel .list-group-item{
-	background-color:/*#660000*/#a94442;
+	background-color:/*#660000*/#218a22;
+	color:#fff;
 	}
 
 
@@ -143,7 +146,7 @@ footer{
 	color:#fff;
 	}
 
-.contenPanel .panel-title a{color:#660000 !important;}
+.contenPanel .panel-title a{color:#000 !important;}
 
 
 	
@@ -162,7 +165,7 @@ footer{
 		}
 	
 	.informacion table th{
-		background-color:/*#660000*/#a94442;
+		background-color:/*#660000*/#218a22;
 		color:#fff;
 		}
 	
