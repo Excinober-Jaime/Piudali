@@ -285,9 +285,9 @@ class Carrito extends Productos
 
 		if ($subtotalAntesIva>0) {
 
-			if ($subtotalAntesIva>=100000) {
+			if ($subtotalAntesIva>=400000) {
 				$flete = 0;
-			}else{				
+			}else{
 				if (isset($_SESSION["ciudad"]) && $_SESSION["ciudad"] == "Cali") {
 					$flete = 6000;
 				}else{
