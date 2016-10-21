@@ -40,7 +40,7 @@
 				    <div class="col-sm-6">
 				      <select class="form-control" id="cantidad" name="cantidad">
 				      	<?php
-				      	for ($i=1; $i <= 60; $i++) { 
+				      	for ($i=1; $i <= $producto[0]["cantidad"]; $i++) { 
 				      		?>
 				      		<option value="<?=$i?>"><?=$i?></option>
 				      		<?php

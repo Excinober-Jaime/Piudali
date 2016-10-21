@@ -12,20 +12,28 @@
 				</thead>
 				<tbody>
 					<?php
-					if (isset($itemsCarrito) && count($itemsCarrito)>0) {						
+					if (isset($itemsCarrito) && count($itemsCarrito)>0) {				
 					
 						foreach ($itemsCarrito["id"] as $key => $iditem) {
 
 						?>
 						<tr>
-							<td width="12%"><img src="<?=$itemsCarrito["img_principal"][$key]?>" class="img-responsive" style="max-width:100px;"></td>
+							<td width="15%">
+								<div class="row">
+									<div class="col-xs-12 col-md-2"><br>
+										<a class="eliminarPdtCarrito" idpdt="<?=$iditem?>"><i class="fa fa-times" aria-hidden="true"></i></a>
+									</div>
+									<div class="col-xs-12 col-md-10">
+										<img src="<?=$itemsCarrito["img_principal"][$key]?>" class="img-responsive" style="max-width:100px;">
+									</div>
+								</div>
+							</td>
 							<td class="text-left"><?=$itemsCarrito["nombre"][$key]?><br>Código: <?=$itemsCarrito["codigo"][$key]?><br>Iva: <?=$itemsCarrito["iva"][$key]?>%</td>
-							<td class="text-center">$<?=number_format($itemsCarrito["precio"][$key])?></td>
-							<!--<td class="text-center"><?=$itemsCarrito["cantidad"][$key]?></td>-->
+							<td class="text-center">$<?=number_format($itemsCarrito["precio"][$key])?></td>							
 							<td class="text-center">
 								<select name="cantidad" id="cantidad" class="form-control input-sm cambiarCantidad" idpdt="<?=$iditem?>">
 									<?php 
-									for ($i=1; $i < 10; $i++) { 
+									for ($i=1; $i <= $itemsCarrito["cantidadstock"][$key]; $i++) {
 										?>
 										<option value="<?=$i?>" <?php if ($itemsCarrito["cantidad"][$key]==$i) { echo "selected"; } ?>><?=$i?></option>
 										<?php

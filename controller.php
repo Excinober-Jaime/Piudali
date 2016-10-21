@@ -1268,14 +1268,26 @@ class Controller
 				
 				$clave = array_search($idpdt, $_SESSION["idpdts"]);
 				$_SESSION["cantidadpdts"][$clave] = $cantidad;
+
+				echo "OK";
+			}			
+		}
+	}
+
+	public function eliminarPdtCarrito(){
+
+		if (isset($_POST["idpdt"]) && !empty($_POST["idpdt"])) {
+
+			$idpdt = $_POST["idpdt"];
+
+			if (in_array($idpdt, $_SESSION["idpdts"])) {
+
+				$clave = array_search($idpdt, $_SESSION["idpdts"]);
+				unset($_SESSION["cantidadpdts"][$clave]);
+				unset($_SESSION["idpdts"][$clave]);
+
+				echo "OK";
 			}
-
-			/*$total = $this->carrito->getTotal();
-			$cantidad = $this->carrito->productosAgregados();
-
-			$return = array('total' => number_format($total), 'cantidad' => $cantidad);
-			echo json_encode($return);*/
-			echo "OK";
 		}
 	}
 

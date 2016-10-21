@@ -42,6 +42,26 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	$(".eliminarPdtCarrito").click(function(){
+		var idpdt = $(this).attr("idpdt");
+		
+		$.ajax({
+			type: 'POST',
+			url: "Carrito/EliminarPdtCarrito",
+			data: {	idpdt:idpdt },
+			dataType: 'html',
+			async: false,
+			success: function(response) {
+				if (response=="OK") {
+					window.location="Carrito/";
+				}
+			},
+			error: function() {
+				alert('No fue posible eliminar el producto');
+			}
+		});
+	});
 	
 })
 

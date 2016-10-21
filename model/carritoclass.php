@@ -94,9 +94,10 @@ class Carrito extends Productos
 				$this->itemscarrito['precio'][] = $precio;
 				$this->itemscarrito['valor_iva'][] = $iva;
 				$this->itemscarrito['cantidad'][] = $_SESSION["cantidadpdts"][$key];
+				$this->itemscarrito['cantidadstock'][] = $producto["cantidad"];
 				$this->itemscarrito['nombre'][] = $producto["nombre"];
 				$this->itemscarrito['codigo'][] = $producto["codigo"];
-				$this->itemscarrito['iva'][] = $producto["iva"];			
+				$this->itemscarrito['iva'][] = $producto["iva"];
 				$this->itemscarrito['img_principal'][] = $producto["img_principal"];
 				$this->itemscarrito['compania'][] = $producto["compania"];
 				$this->itemscarrito['subtotal'][] = $subtotal;

@@ -371,7 +371,11 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
 						case URL_CARRITO_ACTUALIZAR_CANTIDAD:
 							$controller->actualizarCantidadPdt();
-							break;						
+							break;
+
+						case URL_CARRITO_ELIMINAR_PRODUCTO:
+							$controller->eliminarPdtCarrito();
+							break;					
 
 						case URL_ACTUALIZAR_TOTAL_CARRITO:
 							$controller->actualizarTotalCarrito();
