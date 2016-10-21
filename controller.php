@@ -944,8 +944,10 @@ class Controller
 			$total_puntos = 0;
 			$total_redimidos = 0;
 			$total_disponibles = 0;
+
+			$estado_puntos = 1;
 			
-			$puntos = $this->usuarios->listarPuntosUsuario($_SESSION["idusuario"]);		
+			$puntos = $this->usuarios->listarPuntosUsuario($_SESSION["idusuario"],$estado_puntos);
 
 			if (count($puntos)>0) {
 
@@ -1076,7 +1078,7 @@ class Controller
 		if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"]) && count($_SESSION["idpdts"])>0 && count($_SESSION["cantidadpdts"])>0) {
 
 			$codigo_orden = $this->carrito->generarCodOrden();
-			$fecha_pedido = date("Y-m-d");
+			$fecha_pedido = fecha_actual("date");
 			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
 			$descuentoCupon = $this->carrito->getDescuentoCupon();
 			$descuentoEscala = $this->carrito->getDescuentoEscala();
@@ -1118,25 +1120,32 @@ class Controller
 						break;
 					}
 				}
-			}
-
-			//Cargar Nuevos Puntos
-			$valor_punto = 1;
-			$fecha_adquirido = date("Y-m-d H:i:s");
-			$redimido = 0;
-
-			$nuevos_puntos = $totalNetoAntesIva*($valor_punto/100);
-			$idnuevospuntos = $this->usuarios->asignarNuevosPuntos($nuevos_puntos, "COMPRAS", $fecha_adquirido, $redimido, $_SESSION["idusuario"]);
-		
+			}		
 			
 			//Crear Orden
 			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
+
+			if ($idorden) {
+				
+				//Cargar Nuevos Puntos
+				$valor_punto = 1;
+				$fecha_adquirido = fecha_actual('datetime');
+				$redimido = 0;
+				$estado_puntos = 0;
+
+				$nuevos_puntos = $totalNetoAntesIva*($valor_punto/100);
+				$idnuevospuntos = $this->usuarios->asignarNuevosPuntos($nuevos_puntos, "COMPRAS", $fecha_adquirido, $redimido, $estado_puntos, $_SESSION["idusuario"], $idorden);
+			}
 			
+
+			//Registrar detalle de orden
 			if (count($detalleOrden)>0) {
 				foreach ($detalleOrden as $key => $producto) {
 					$id_detalle_orden = $this->carrito->agregarDetalleOrden($producto["nombre"], $producto["codigo"], $producto["cantidad"], $producto["precio"], $producto["precio_base"], $producto["descuento_cupon"], $producto["iva"], $producto["descuento_puntos"], $idorden);
 				}
 			}
+
+			
 
 
 			//Enviar Email Orden
@@ -1217,6 +1226,7 @@ class Controller
 			$lng = "ES";
 			$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];
 			$extra1 = $_SESSION["idusuario"];
+			$extra3 = "PIUDALI";
 			$responseUrl = "http://naturalvitalis.com/respagos.php";
 			$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
 
@@ -1762,10 +1772,26 @@ class Controller
 		if (isset($_POST["actualizar_orden"])) {
 		
 			extract($_POST);
-
-			$fecha_facturacion = date("Y-m-d H:i:s");
-
+			$fecha_facturacion = fecha_actual('datetime');
 			$this->usuarios->actualizarOrden($idorden, $estado, $fecha_facturacion, $num_factura);
+
+			if ($estado == "FACTURADO") {
+
+				$detalle_orden = $this->usuarios->detalleOrden($idorden);
+				
+				$puntos_pendientes = $this->usuarios->listarPuntosUsuario($detalle_orden["detalle"]["usuarios_idusuario"], 0, $idorden);				
+
+				if (count($puntos_pendientes)>0) {
+					//Activar puntos pendientes					
+
+					$estado_puntos = 1;
+
+					foreach ($puntos_pendientes as $key => $puntos) {
+						
+						$this->usuarios->actualizarPuntosEstado($puntos["idpuntos"] ,$estado_puntos);
+					}
+				}
+			}
 		}
 
 		$orden = $this->usuarios->detalleOrden($idorden);

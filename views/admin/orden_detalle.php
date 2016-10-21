@@ -17,7 +17,7 @@
 				<div class="well well-sm"><b>Fecha:</b> <?=$orden["detalle"]["fecha_pedido"]?></div>
 				<form method="post">
 				<div class="well well-sm"><b>Estado:</b> 
-					<select name="estado" class="input-sm">
+					<select name="estado" class="input-sm" <?php if($orden["detalle"]["estado"] == "FACTURADO"){ echo "disabled"; } ?>>
 					<?php 
 						foreach ($estados as $key => $estado) {
 							?>

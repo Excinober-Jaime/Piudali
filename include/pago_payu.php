@@ -20,6 +20,7 @@
 	    <input type="hidden" name="payerFullName" id="payerFullName" value="<?=$payerFullName?>">	    
 	    <input type="hidden" name="test" id="test" value="0">
 	    <input type="hidden" name="extra1" id="extra1" value="<?=$extra1?>">
+	    <input type="hidden" name="extra3" id="extra3" value="<?=$extra3?>">
 	    <input type="hidden" name="responseUrl" id="responseUrl" value="<?=$responseUrl?>">
 	    
 	    <!--<input type="hidden" name="confirmationUrl" id="confirmationUrl" value="">-->

@@ -335,11 +335,17 @@ class Usuarios extends Database
 
 	/**************PUNTOS******************/
 
-	public function listarPuntosUsuario($idusuario){
+	public function listarPuntosUsuario($idusuario, $estado=1, $idorden=0){
+
+		if (!empty($idorden)) {
+			$where_orden = "AND `ordenes_pedidos_idorden`='$idorden'";
+		}else{
+			$where_orden = "";
+		}
 		
 		$query = $this->consulta("SELECT `idpuntos`, `puntos`, `concepto`, `fecha_adquirido`, `fecha_redimido`, `redimido`
 					FROM `puntos` 
-					WHERE `usuarios_idusuario` = '$idusuario'");
+					WHERE `usuarios_idusuario` = '$idusuario' AND `estado`='$estado' $where_orden");
 		
 		return $query;
 	}
@@ -348,7 +354,7 @@ class Usuarios extends Database
 		
 		$query = $this->consulta("SELECT SUM(`puntos`-`redimido`) AS 'disponibles'
 					FROM `puntos`
-					WHERE `usuarios_idusuario` = '$idusuario' AND NOW()<= DATE_ADD(`fecha_adquirido`, INTERVAL 365 DAY)");
+					WHERE `usuarios_idusuario` = '$idusuario' AND `estado`='1' AND NOW()<= DATE_ADD(`fecha_adquirido`, INTERVAL 365 DAY)");
 		
 		return $query[0];
 	}
@@ -357,7 +363,7 @@ class Usuarios extends Database
 		
 		$query = $this->consulta("SELECT (`puntos`-`redimido`) AS 'disponibles', idpuntos, puntos, redimido
 					FROM `puntos`
-					WHERE `usuarios_idusuario` = '$idusuario' AND NOW()<= DATE_ADD(`fecha_adquirido`, INTERVAL 365 DAY)
+					WHERE `usuarios_idusuario` = '$idusuario' AND `estado`='1' AND NOW()<= DATE_ADD(`fecha_adquirido`, INTERVAL 365 DAY)
 					ORDER BY fecha_adquirido ASC");
 		
 		return $query;
@@ -365,26 +371,35 @@ class Usuarios extends Database
 
 	public function actualizarPuntosRedimidos($idpuntos, $puntos_redimidos){
 		
-		$query = $this->actualizar("UPDATE `puntos` SET `redimido` = $puntos_redimidos WHERE `idpuntos` = '$idpuntos'");
-		
+		$query = $this->actualizar("UPDATE `puntos` SET `redimido` = $puntos_redimidos WHERE `idpuntos` = '$idpuntos'");		
 		return $query;
 	}
 
-	public function asignarNuevosPuntos($nuevos_puntos, $concepto, $fecha_adquirido, $redimido, $idusuario){	
+	public function actualizarPuntosEstado($idpuntos, $estado=0){
+		
+		$query = $this->actualizar("UPDATE `puntos` SET `estado` = '$estado' WHERE `idpuntos` = '$idpuntos'");
+		return $query;
+	}
+
+	public function asignarNuevosPuntos($nuevos_puntos, $concepto, $fecha_adquirido, $redimido, $estado=0, $idusuario, $idorden=0){
 		
 		$idpuntos = $this->insertar("INSERT INTO `puntos`(
 									`puntos`, 
 									`concepto`, 
 									`fecha_adquirido`, 									
 									`redimido`, 
-									`usuarios_idusuario`) VALUES (									
+									`estado`, 									
+									`usuarios_idusuario`,
+									`ordenes_pedidos_idorden`) VALUES (									
 									'$nuevos_puntos',
 									'$concepto',
 									'$fecha_adquirido',
 									'$redimido',
-									'$idusuario')");
+									'$estado',
+									'$idusuario',
+									'$idorden')");
 		
-		return $idpuntos;	
+		return $idpuntos;
 	}
 
 	public function detallePlantilla($idplantilla){
