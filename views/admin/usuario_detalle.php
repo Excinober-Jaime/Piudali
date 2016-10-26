@@ -64,8 +64,8 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Tipo</label>
 						<select name="tipo" id="tipo" class="form-control" required>
-							<option value="DISTRIBUIDOR" <?php if ($usuario['tipo']=='DISTRIBUIDOR') echo 'selected'; ?>>DISTRIBUIDOR</option>
-							<option value="LIDER" <?php if ($usuario['tipo']=='LIDER') echo 'selected'; ?>>LIDER</option>
+							<option value="DISTRIBUIDOR DIRECTO" <?php if ($usuario['tipo']=='DISTRIBUIDOR DIRECTO') echo 'selected'; ?>>DISTRIBUIDOR DIRECTO</option>
+							<option value="REPRESENTANTE COMERCIAL" <?php if ($usuario['tipo']=='REPRESENTANTE COMERCIAL') echo 'selected'; ?>>REPRESENTANTE COMERCIAL</option>
 							<option value="DIRECTOR" <?php if ($usuario['tipo']=='DIRECTOR') echo 'selected'; ?>>DIRECTOR</option>
 						</select>
 					</div>

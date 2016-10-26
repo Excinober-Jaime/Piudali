@@ -31,7 +31,7 @@ class Usuarios extends Database
 		return $query;
 	}
 	
-	public function crearUsuario($nombre="", $apellido="", $sexo="", $fecha_nacimiento="", $email="", $password="", $num_identificacion="", $boletines=0, $condiciones=0, $direccion="", $telefono="", $telefono_m="", $tipo="", $foto="", $estado=0, $fecha_registro="", $ciudad=0, $idorganizacion=0){	
+	public function crearUsuario($nombre="", $apellido="", $sexo="", $fecha_nacimiento="", $email="", $password="", $num_identificacion="", $boletines=0, $condiciones=0, $direccion="", $telefono="", $telefono_m="", $tipo="", $foto="", $estado=0, $fecha_registro="", $lider=0, $ciudad=0, $idorganizacion=0){	
 		
 		$idusuario = $this->insertar("INSERT INTO usuarios(										
 										nombre,
@@ -49,6 +49,7 @@ class Usuarios extends Database
 										tipo, 										
 										estado, 
 										fecha_registro, 
+										lider, 
 										ciudades_idciudad,
 										organizaciones_idorganizacion) VALUES (
 										'$nombre',
@@ -66,6 +67,7 @@ class Usuarios extends Database
 										'$tipo',										
 										'$estado', 
 										'$fecha_registro', 
+										'$lider', 
 										'$ciudad',
 										'$idorganizacion')");
 
@@ -180,7 +182,7 @@ class Usuarios extends Database
 
 	public function detalleOrden($idorden){
 		
-		$query = $this->consulta("SELECT `ordenes_pedidos`.`idorden`, `ordenes_pedidos`.`num_orden`, `ordenes_pedidos`.`fecha_pedido`, `ordenes_pedidos`.`subtotal`, `ordenes_pedidos`.`descuentos`, `ordenes_pedidos`.`porc_escala`, `ordenes_pedidos`.`desc_escala`, `ordenes_pedidos`.`neto_sin_iva`, `ordenes_pedidos`.`impuestos`, `ordenes_pedidos`.`pago_puntos`, `ordenes_pedidos`.`valor_punto`, `ordenes_pedidos`.`costo_envio`, `ordenes_pedidos`.`total`, `ordenes_pedidos`.`estado`, `ordenes_pedidos`.`fecha_facturacion`, `ordenes_pedidos`.`num_factura`, `ordenes_pedidos`.`usuarios_idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido` 
+		$query = $this->consulta("SELECT `ordenes_pedidos`.`idorden`, `ordenes_pedidos`.`num_orden`, `ordenes_pedidos`.`fecha_pedido`, `ordenes_pedidos`.`subtotal`, `ordenes_pedidos`.`descuentos`, `ordenes_pedidos`.`porc_escala`, `ordenes_pedidos`.`desc_escala`, `ordenes_pedidos`.`neto_sin_iva`, `ordenes_pedidos`.`impuestos`, `ordenes_pedidos`.`pago_puntos`, `ordenes_pedidos`.`valor_punto`, `ordenes_pedidos`.`costo_envio`, `ordenes_pedidos`.`total`, `ordenes_pedidos`.`estado`, `ordenes_pedidos`.`fecha_facturacion`, `ordenes_pedidos`.`num_factura`, `ordenes_pedidos`.`guia_flete`, `ordenes_pedidos`.`usuarios_idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido` 
 									FROM `ordenes_pedidos` 
 									INNER JOIN `usuarios` ON (`ordenes_pedidos`.`usuarios_idusuario`=`usuarios`.`idusuario`)
 									WHERE `ordenes_pedidos`.`idorden`='$idorden'");
@@ -197,12 +199,13 @@ class Usuarios extends Database
 		return $return;
 	}
 
-	public function actualizarOrden($idorden, $estado, $fecha_facturacion, $num_factura){
+	public function actualizarOrden($idorden, $estado, $fecha_facturacion, $num_factura, $guia_flete){
 		
 		$query = $this->actualizar("UPDATE `ordenes_pedidos` SET 
 									`estado`= '$estado',
 									`fecha_facturacion`= '$fecha_facturacion',
-									`num_factura`= '$num_factura'
+									`num_factura`= '$num_factura',
+									`guia_flete`= '$guia_flete'
 									WHERE `idorden`='$idorden'");
 		return $query;
 	}
@@ -323,12 +326,22 @@ class Usuarios extends Database
 		return $query;
 	}
 
-	public function listarDistribuidoresLider($idlider){
+	public function listarDistribuidoresLider($idlider,$estado="",$filtro_nombre=""){
+
+		if ($estado!="") {
+			$where_estado = "AND `usuarios`.`estado`='$estado'";
+		}		
+
+		if (!empty($filtro_nombre)) {
+			$where_nombre = "AND `usuarios`.`nombre` LIKE '%".$filtro_nombre."%'";
+		}else{
+			$where_nombre = "";
+		}
 		
 		$query = $this->consulta("SELECT  `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`password`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`ciudades_idciudad`, `ciudades`.`ciudad` 
 									FROM `usuarios`
 									INNER JOIN `ciudades` ON(`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`) 
-									WHERE `lider`='$idlider'");
+									WHERE `lider`='$idlider' $where_estado $where_nombre");
 		
 		return $query;
 	}

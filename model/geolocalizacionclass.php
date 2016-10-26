@@ -191,7 +191,7 @@ class Geolocalizacion extends Database
 
 	public function detalleRegionCiudad($idciudad){
 		$query = $this->consulta("SELECT `regiones`.`idregion`, `regiones`.`region`, `regiones`.`estado`, `regiones`.`director` 
-									FROM `regiones` 
+									FROM `regiones`
 									INNER JOIN `regiones_has_ciudades` ON (`regiones`.`idregion`=`regiones_has_ciudades`.`regiones_idregion`)
 									WHERE `regiones_has_ciudades`.`ciudades_idciudad`='$idciudad'");
 		return $query;

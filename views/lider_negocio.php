@@ -8,48 +8,57 @@
         <small>Aquí podrás monitorear las compras netas de tus distribuidores.</small>
     </div>
     <div class="clearfix"></div>
-		<div class="informacion">
-			<div class="hidden-xs hidden-sm col-md-7"></div>
-			<div class="col-xs-12 col-md-5">
-				<form class="form-horizontal" method="post" id="campana">
+		<div class="informacion">			
+			<div class="col-xs-12 col-md-5 col-md-offset-7">
+				<form class="form-inline" method="post" id="filtros">
 					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Campaña</label>
-						<div class="col-sm-10">
-							<select name="idcampana" class="form-control" onChange="javascript: document.getElementById('campana').submit();">
-								<option value="">-Seleccione-</option>
-									<?php 
-									if (count($campanas)>0) {
+						<label for="inputEmail3">Campaña</label>
+						
+						<select name="idcampana" class="form-control" onChange="javascript: document.getElementById('filtros').submit();">
+							<option value="">-Seleccione-</option>
+								<?php 
+								if (count($campanas)>0) {
 
-										$anos_filtro = array();
+									$anos_filtro = array();
 
-										foreach ($campanas as $key => $campana) {											
+									foreach ($campanas as $key => $campana) {
 
-											$ano = explode("-", $campana["fecha_ini"]);
-											$ano = $ano[0];
+										$ano = explode("-", $campana["fecha_ini"]);
+										$ano = $ano[0];
 
-											if (!in_array($ano, $anos_filtro)) {
-												$anos_filtro[] = $ano;	
-											}
+										if (!in_array($ano, $anos_filtro)) {
+											$anos_filtro[] = $ano;	
+										}
+								?>
+										<option value="<?=$campana["idcampana"]?>" <?php if ($campana["idcampana"] == $campana_seleccionada["idcampana"]) { echo "selected"; }?>><?=$campana["nombre"]?></option>
+								<?php
+									}									
+								}else{
 									?>
-											<option value="<?=$campana["idcampana"]?>" <?php if ($campana["idcampana"] == $campana_seleccionada["idcampana"]) { echo "selected"; }?>><?=$campana["nombre"]?></option>
-									<?php
-										}									
-									}else{
-										?>
-										<option value="">No hay campañas disponibles</option>
-									<?php
-									}
+									<option value="">No hay campañas disponibles</option>
+								<?php
+								}
 
-									foreach ($anos_filtro as $key => $ano) {
-										?>
-											<option value="ano<?=$ano?>" <?php if ($_POST["idcampana"]=="ano".$ano) { echo "selected"; } ?>>Año <?=$ano?></option>
-										<?php
-									}
-									?>								
-							</select>
-						</div>
+								foreach ($anos_filtro as $key => $ano) {
+									?>
+										<option value="ano<?=$ano?>" <?php if ($_POST["idcampana"]=="ano".$ano) { echo "selected"; } ?>>Año <?=$ano?></option>
+									<?php
+								}
+								?>								
+						</select>						
 					</div>
-				<form>
+					<div class="form-group">
+						<label for="inputEmail3" class="control-label">Estados</label>
+						<select name="estado" class="form-control" onChange="javascript: document.getElementById('filtros').submit();">
+							<option value="">--Seleccione--</option>
+							<option value="PENDIENTE">PENDIENTE</option>
+							<option value="APROBADO">APROBADO</option>
+							<option value="FACTURADO">FACTURADO</option>
+							<option value="DECLINADO">DECLINADO</option>
+						</select>
+					</div>
+				</form>
+				<br>
 			</div>			
 		
 		<table class="table table-striped">
@@ -57,7 +66,7 @@
 				<tr>
 					<th class="text-center">DISTRIBUIDOR</th>
 					<th class="text-center">CIUDAD</th>										
-					<th class="text-center">NETO FACTURADO</th>					
+					<th class="text-center">NETO</th>					
 				</tr>
 			</thead>
 			<tbody>
@@ -70,7 +79,36 @@
 					foreach ($distribuidores as $key => $distribuidor) {
 				?>
 					<tr>
-						<td class="text-center"><?=$distribuidor["nombre"]?></td>
+						<td class="text-center"><a class="mostrar-ordenes-distribuidor" iddistribuidor="<?=$distribuidor["idusuario"]?>"><?=$distribuidor["nombre"]?></a><br>
+						<?php
+							if (count($distribuidor["ordenes"])>0) {
+							?>
+							<table class="table ordenes-distribuidor-<?=$distribuidor["idusuario"]?>" style="display: none;">
+								<thead>
+									<tr>										
+										<th class="text-center">Número de Orden</th>
+										<th class="text-center">Neto</th>
+										<th class="text-center">Estado</th>
+									</tr>	
+								</thead>
+								<tbody>
+								<?php
+									foreach ($distribuidor["ordenes"] as $key => $orden) {
+										?>
+										<tr>
+											<td class="text-center"><a href="<?=URL_USUARIO."/".URL_USUARIO_DETALLE_ORDEN."/".$orden["idorden"]?>"><?=$orden["num_orden"]?></a></td>
+											<td class="text-center"><?=convertir_pesos($orden["neto_sin_iva"])?></td>
+											<td class="text-center"><?=$orden["estado"]?></td>
+										</tr>
+										<?php
+									}
+								?>
+								</tbody>
+							</table>
+							<?php
+							}
+						?>
+						</td>
 						<td class="text-center"><?=$distribuidor["ciudad"]?></td>
 						<td class="text-center">$<?=number_format($distribuidor["compras_netas"])?></td>						
 					</tr>

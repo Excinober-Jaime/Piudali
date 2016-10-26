@@ -30,6 +30,9 @@
 				<div class="well well-sm"><b>Número de Factura:</b>
 					<input type="text" name="num_factura" class="form-control input-sm" value="<?=$orden["detalle"]["num_factura"]?>">
 				</div>
+				<div class="well well-sm"><b>Número de Guía:</b>
+					<input type="text" name="guia_flete" class="form-control input-sm" value="<?=$orden["detalle"]["guia_flete"]?>">
+				</div>
 				<button type="submit" name="actualizar_orden" class="btn btn-primary center-block">ACTUALIZAR</button>
 				</form>
 			</div>

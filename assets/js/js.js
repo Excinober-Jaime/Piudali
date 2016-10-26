@@ -35,4 +35,10 @@ $(document).ready(function(){
 			alert("Debes diligenciar el nombre y el email");
 		}
 	})
+
+	$(".mostrar-ordenes-distribuidor").click(function(){
+
+		var iddistribuidor = $(this).attr("iddistribuidor");
+		$(".ordenes-distribuidor-"+iddistribuidor).toggle();
+	})
 })

@@ -12,9 +12,11 @@
 			  		<th>Número de Orden</th>
 			  		<th>Fecha de Pedido</th>
 			  		<th>Comprador</th>
-			  		<th>Total</th>			  		
-			  		<th>Lider</th>
+			  		<th>Total Pagado</th>			  		
+			  		<th>Representante</th>
 			  		<th>Director</th>
+			  		<th>Zona</th>
+			  		<th>Región</th>
 			  		<th>Estado</th>
 			  		<th>Número de Factura</th>
 			  	</tr>
@@ -26,10 +28,12 @@
 		  		<tr>
 		  			<td><?=$ordenes["num_orden"]?></td>
 		  			<td><?=$ordenes["fecha_pedido"]?></td>
-		  			<td><?=$ordenes["nombre"]." ".$ordenes["apellido"]?></td>
+		  			<td><a href="<?=URL_SITIO.URL_ADMIN."/".URL_ADMIN_USUARIOS."/".$ordenes["comprador"]["idusuario"]?>"><?=$ordenes["nombre"]." ".$ordenes["apellido"]?></a></td>
 		  			<td><?=convertir_pesos($ordenes["total"])?></td>	  			
 		  			<td><?=$ordenes["lider"]["nombre"]." ".$ordenes["lider"]["apellido"]?></td>
 		  			<td><?=$ordenes["director"]["nombre"]." ".$ordenes["director"]["apellido"]?></td>
+		  			<td></td>
+		  			<td></td>
 		  			<td><?=$ordenes["estado"]?></td>
 		  			<td><?=$ordenes["num_factura"]?></td>		  			
 		  		</tr>

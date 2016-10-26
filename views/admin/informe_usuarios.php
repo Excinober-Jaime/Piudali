@@ -12,13 +12,17 @@
 			  		<th>Identificación</th>
 			  		<th>Nombre</th>
 			  		<th>Apellido</th>		  		
-			  		<th>Email</th>
+			  		<th>Email</th>			  		
 			  		<th>Teléfono</th>
 			  		<th>Móvil</th>
-			  		<th>Ciudad</th>
-			  		<th>Compras</th>			  		
-			  		<th>Lider</th>
-			  		<th>Director</th>			  		
+			  		<th>Segmento</th>
+			  		<th>Compras</th>
+			  		<th>Ciudad</th>			  		
+			  		<th>Zona</th>			  		
+			  		<th>Región</th>			  		
+			  		<th>Representante</th>
+			  		<th>Director</th>
+
 			  	</tr>
 			  </thead>
 			  <tbody>
@@ -32,8 +36,11 @@
 		  			<td><?=$usuario["email"]?></td>
 		  			<td><?=$usuario["telefono"]?></td>
 		  			<td><?=$usuario["telefono_m"]?></td>
-		  			<td><?=$usuario["ciudad"]?></td>
+		  			<td></td>		  			
 		  			<td><?=convertir_pesos($usuario["compras_netas"])?></td>
+		  			<td><?=$usuario["ciudad"]?></td>
+		  			<td><?=var_dump($usuario["zona"])?></td>
+		  			<td><?=$usuario["region"]["region"]?></td>
 		  			<td><?=$usuario["lider"]["nombre"]." ".$usuario["lider"]["apellido"]?></td>
 		  			<td><?=$usuario["director"]["nombre"]." ".$usuario["director"]["apellido"]?></td>
 		  		</tr>

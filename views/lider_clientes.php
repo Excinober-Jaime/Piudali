@@ -4,11 +4,34 @@
 	<?php include "usuario/menu.php"; ?>		
 	<div class="contenPanel">
 	<div class="col-xs-12 titulo">
-		<h1>Mis Clientes</h1>
-        <small></small>
+		<h1>Mis Distribuidores</h1>
+        <small>Aquí encontrarás el listado de tus distribuidores directos</small>
 	</div>
     <div class="clearfix"></div>
     <div class="informacion">
+    <div class="col-xs-12 col-md-6">    	
+		<a class="btn btn-default" href="<?=URL_SITIO.URL_REGISTRO."/?r=".$_SESSION["idusuario"]?>" title="Agregar distribuidor directo">
+			<i class="fa fa-user-plus" aria-hidden="true"></i>			
+		</a>
+    </div>   
+    <div class="col-xs-12 col-md-6">
+		<form class="form-inline" method="post" id="filtros">			
+			<div class="form-group">
+				<label for="inputEmail3" class=" control-label">Filtro</label>
+				<input type="text" name="texto-filtro" id="texto-filtro" class="form-control" onChange="javascript: document.getElementById('filtros').submit();">
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="control-label">Estado</label>
+				<select name="estado" class="form-control" onChange="javascript: document.getElementById('filtros').submit();">
+					<option value="">--Seleccione--</option>
+					<option value="1">ACTIVOS</option>
+					<option value="0">INACTIVO</option>					
+				</select>						
+			</div>				
+		</form>
+		<br>
+	</div>
+
 	<div class="col-xs-12">
 		<table class="table table-striped">
 			<thead>
@@ -17,6 +40,7 @@
 					<th class="text-center">Teléfono</th>
 					<th class="text-center">Email</th>
 					<th class="text-center">Ciudad</th>
+					<th class="text-center">Estado</th>
 					<th class="text-center">Acciones</th>
 				</tr>
 			</thead>
@@ -30,6 +54,7 @@
 							<td class="text-center"><?=$cliente["telefono"]?></td>
 							<td class="text-center"><?=$cliente["email"]?></td>							
 							<td class="text-center"><?=$cliente["ciudad"]?></td>
+							<td class="text-center"><?php if($cliente["estado"]==1){ echo "Activo"; }else{ echo "Inactivo"; } ?></td>
 							<td class="text-center">
 								<form method="post" action="<?=URL_INGRESO_REMOTO?>">
 									<input type="hidden" value="<?=$cliente["email"]?>" name="email">

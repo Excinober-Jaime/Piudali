@@ -13,7 +13,7 @@
 					<input type="text" class="form-control" name="zona" id="zona" value="<?=$zona['zona']?>" required>
 				</div>
 				<div class="form-group">
-					<label for="exampleInputEmail1">Lider</label>
+					<label for="exampleInputEmail1">Representante Comerial</label>
 					<select class="form-control" name="lider">
 						<?php
 						foreach ($lideres as $key => $lider) {

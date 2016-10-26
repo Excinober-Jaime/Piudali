@@ -5,7 +5,7 @@
 	<div class="col-xs-12">
 		<h1>Detalle Orden <small><small></small></small></h1>
 	<hr>
-	</div>		
+	</div>
 	<div class="col-xs-12 col-md-6">
 		<div class="well well-sm"><b>Subtotal Antes de Iva:</b> $<?=number_format($orden["detalle"]["subtotal"])?></div>
 		<div class="well well-sm"><b>Descuentos Cupón:</b> $<?=number_format($orden["detalle"]["descuentos"])?></div>
@@ -20,6 +20,7 @@
 		<div class="well well-sm"><b>Número de Orden:</b> <?=$orden["detalle"]["num_orden"]?></div>
 		<div class="well well-sm"><b>Fecha:</b> <?=$orden["detalle"]["fecha_pedido"]?></div>
 		<div class="well well-sm"><b>Estado:</b> <?=$orden["detalle"]["estado"]?></div>
+		<div class="well well-sm"><b>Guia Flete:</b> <?=$orden["detalle"]["guia_flete"]?></div>
 	</div>
 	<div class="col-xs-12">
 		<h2>Productos</h2>
