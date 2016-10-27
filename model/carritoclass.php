@@ -60,16 +60,17 @@ class Carrito extends Productos
 		if (!empty($porc_iva) && $porc_iva>0) {
 			$iva = $precio*($porc_iva/100);
 		}else{
-			$iva = 0;			
+			$iva = 0;
 		}
 
 		return $iva;
 	}
 
-	public function calcularSubtotal($precio,$iva,$cantidad){
+	public function calcularSubtotal($precio,$porc_iva,$cantidad){
 
-		if (!empty($iva) && $iva>0) {
-			$subtotal = (($precio - $iva) * $cantidad);
+		if (!empty($porc_iva) && $porc_iva>0) {
+			//$subtotal = (($precio - $iva) * $cantidad);
+			$subtotal = ($precio/("1.".$porc_iva) * $cantidad);
 		}else{
 			$subtotal = $precio * $cantidad;
 		}
@@ -86,13 +87,13 @@ class Carrito extends Productos
 
 				$producto = $this->infoProducto($idpdt);
 				$precio = $this->ajustarPrecio($producto["precio"],$producto["precio_oferta"]);
-				$iva = $this->calcularIva($precio,$producto["iva"]);
-				$subtotal = $this->calcularSubtotal($precio,$iva,$_SESSION["cantidadpdts"][$key]);			
+				//$iva = $this->calcularIva($precio,$producto["iva"]);
+				$subtotal = $this->calcularSubtotal($precio,$producto["iva"],$_SESSION["cantidadpdts"][$key]);			
 				
 
 				$this->itemscarrito['id'][] = $idpdt;
 				$this->itemscarrito['precio'][] = $precio;
-				$this->itemscarrito['valor_iva'][] = $iva;
+				//$this->itemscarrito['valor_iva'][] = $iva;
 				$this->itemscarrito['cantidad'][] = $_SESSION["cantidadpdts"][$key];
 				$this->itemscarrito['cantidadstock'][] = $producto["cantidad"];
 				$this->itemscarrito['nombre'][] = $producto["nombre"];
@@ -118,8 +119,8 @@ class Carrito extends Productos
 			foreach ($_SESSION["idpdts"] as $key => $idpdt) {
 				$producto = $this->infoProducto($idpdt);
 				$precio = $this->ajustarPrecio($producto["precio"],$producto["precio_oferta"]);
-				$iva = $this->calcularIva($precio,$producto["iva"]);
-				$subtotal = $this->calcularSubtotal($precio,$iva,$_SESSION["cantidadpdts"][$key]);
+				//$iva = $this->calcularIva($precio,$producto["iva"]);
+				$subtotal = $this->calcularSubtotal($precio,$producto["iva"],$_SESSION["cantidadpdts"][$key]);
 				
 				$subtotalAntesIva += $subtotal;
 			}
@@ -216,8 +217,8 @@ class Carrito extends Productos
 
 				$porc_iva = $producto["iva"];			
 				$precio = $this->ajustarPrecio($producto["precio"],$producto["precio_oferta"]);
-				$iva = $this->calcularIva($precio,$porc_iva);
-				$subtotal = $this->calcularSubtotal($precio,$iva,$_SESSION["cantidadpdts"][$key]);
+				//$iva = $this->calcularIva($precio,$porc_iva);
+				$subtotal = $this->calcularSubtotal($precio,$porc_iva,$_SESSION["cantidadpdts"][$key]);
 
 				$subtotal_dto_cupon = $subtotal - ($subtotal*($porc_descuento_cupon/100));
 				$subtotal_dto_escala = $subtotal_dto_cupon - ($subtotal_dto_cupon*($porc_escala/100));
@@ -392,8 +393,8 @@ class Carrito extends Productos
 
 				$producto = $this->infoProducto($idpdt);
 				$precio = $this->ajustarPrecio($producto["precio"],$producto["precio_oferta"]);
-				$iva = $this->calcularIva($precio,$producto["iva"]);
-				$subtotal = $this->calcularSubtotal($precio,$iva,$_SESSION["cantidadpdts"][$key]);
+				//$iva = $this->calcularIva($precio,$producto["iva"]);
+				$subtotal = $this->calcularSubtotal($precio,$producto["iva"],$_SESSION["cantidadpdts"][$key]);
 
 				$codigo_pdt = $producto["codigo"];
 				$cantidad_pdt = $_SESSION["cantidadpdts"][$key];
