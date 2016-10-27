@@ -27,8 +27,8 @@
 		  		?>
 		  		<tr>
 		  			<td><?=$usuario["num_identificacion"]?></td>
-		  			<td><?=$usuario["nombre"]?></td>
-		  			<td><?=$usuario["apellido"]?></td>	  			
+		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/".$usuario['idusuario']?>"><?=$usuario["nombre"]?></a></td>
+		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/".$usuario['idusuario']?>"><?=$usuario["apellido"]?></a></td>	  			
 		  			<td><?=$usuario["email"]?></td>
 		  			<td><?=$usuario["telefono"]?></td>
 		  			<td><?=$usuario["telefono_m"]?></td>

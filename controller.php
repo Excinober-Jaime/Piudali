@@ -1995,7 +1995,7 @@ class Controller
 			$lider = $this->usuarios->detalleUsuario($usuario["lider"]);
 			$region = $this->geolocalizacion->detalleRegionCiudad($usuario["ciudades_idciudad"]);
 			$director =	$this->usuarios->detalleUsuario($region[0]["director"]);
-			$zona = $this->geolocalizacion->listarZonas([],$usuario["lider"]);
+			$zona = $this->geolocalizacion->listarZonas(array(),$usuario["lider"]);
 			
 			$usuarios[$key]["zona"] = $zona;
 			$usuarios[$key]["region"] = $region[0];

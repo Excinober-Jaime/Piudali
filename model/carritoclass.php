@@ -170,9 +170,11 @@ class Carrito extends Productos
 
 		$porcentaje = $campanas2->getPorcEscalaDistribuidor($subtotalNetoAntesIva, $id_campana_actual);
 
-		//Ajuste provisional para Nelly Suarez
-		if (isset($_SESSION["idusuario"]) && $_SESSION["idusuario"] == 29) {
-			$porcentaje["porcentaje"] = 30;
+		//Ajuste provisional para Nelly Suarez y James Arturo Ortiz
+		if (isset($_SESSION["idusuario"])) {
+			if ($_SESSION["idusuario"] == 29 || $_SESSION["idusuario"] == 28) {
+				$porcentaje["porcentaje"] = 30;
+			}
 		}
 
 		return $porcentaje["porcentaje"];
