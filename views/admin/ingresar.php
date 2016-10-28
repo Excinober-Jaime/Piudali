@@ -26,7 +26,7 @@
                 <h1 class="logo-name">PIUDALI</h1>
 
             </div>-->
-            <h2>Piudalí Administrastor</h2>
+            <h2>Piudalí Administrador</h2>
             <!--<p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.</p>-->
             <p>Login in</p>
             <form class="m-t" role="form" method="post">

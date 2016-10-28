@@ -1,11 +1,7 @@
 <?php include "header.php"; ?>
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
-        <div class="col-lg-12">
-			<ol class="breadcrumb">
-			  <li><a href="#">Zonas</a></li>		  
-			  <li class="active">Lista</li>
-			</ol>
+        <div class="col-lg-12">			
 			<a class="pull-right" href="<?=URL_ADMIN."/".URL_ADMIN_GEOLOCALIZACION."/".URL_ADMIN_GEOLOCALIZACION_ZONAS."/Nuevo"?>">Nueva Zona</a>
 			<table class="table table-striped">
 			  <thead>

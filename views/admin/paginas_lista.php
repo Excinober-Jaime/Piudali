@@ -2,10 +2,6 @@
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
         <div class="col-lg-12">
-			<ol class="breadcrumb">
-			  <li><a href="#">Páginas</a></li>		  
-			  <li class="active">Lista</li>
-			</ol>
 			<a class="pull-right" href="<?=URL_ADMIN."/".URL_ADMIN_PAGINAS."/Nuevo"?>">Nueva Página</a>
 			<table class="table table-striped">
 			  <thead>

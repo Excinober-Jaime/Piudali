@@ -1,12 +1,7 @@
 <?php include "header.php"; ?>
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
-        <div class="col-lg-12">
-			<ol class="breadcrumb">
-			  <li><a href="#">Plantilla</a></li>		  
-			  <li class="active">Detalle</li>
-			</ol>
-
+        <div class="col-lg-12">			
 			<form method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Titulo</label>

@@ -1,11 +1,7 @@
 <?php include "header.php"; ?>
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
-        <div class="col-lg-12">
-			<ol class="breadcrumb">
-			  <li><a href="#">Usuario</a></li>		  
-			  <li class="active">Detalle</li>
-			</ol>
+        <div class="col-lg-12">			
 			<div class="col-xs-12 col-md-6">
 				<h2>INFORMACIÓN</h2>
 				<form method="post" enctype="multipart/form-data">
@@ -60,13 +56,39 @@
 							}
 							?>
 						</select>
-					</div>								
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Segmento</label>
+						<select name="segmento" class="form-control" required>
+							<option value="">Seleccione</option>
+							<option value="Profesional de Belleza" <?php if ($usuario['segmento']=='Profesional de Belleza') echo 'selected'; ?>>Profesional de Belleza</option>
+							<option value="SPA" <?php if ($usuario['segmento']=='SPA') echo 'selected'; ?>>SPA</option>
+							<option value="Médico" <?php if ($usuario['segmento']=='Médico') echo 'selected'; ?>>Médico</option>
+							<option value="Dermatólogo" <?php if ($usuario['segmento']=='Dermatólogo') echo 'selected'; ?>>Dermatólogo</option>
+							<option value="Terapéuta" <?php if ($usuario['segmento']=='Terapéuta') echo 'selected'; ?>>Terapéuta</option>
+							<option value="Comercializador" <?php if ($usuario['segmento']=='Comercializador') echo 'selected'; ?>>Comercializador</option>
+							<option value="Otro" <?php if ($usuario['segmento']=='Otro') echo 'selected'; ?>>Otro</option>
+						</select>
+					</div>							
 					<div class="form-group">
 						<label for="exampleInputEmail1">Tipo</label>
 						<select name="tipo" id="tipo" class="form-control" required>
 							<option value="DISTRIBUIDOR DIRECTO" <?php if ($usuario['tipo']=='DISTRIBUIDOR DIRECTO') echo 'selected'; ?>>DISTRIBUIDOR DIRECTO</option>
 							<option value="REPRESENTANTE COMERCIAL" <?php if ($usuario['tipo']=='REPRESENTANTE COMERCIAL') echo 'selected'; ?>>REPRESENTANTE COMERCIAL</option>
 							<option value="DIRECTOR" <?php if ($usuario['tipo']=='DIRECTOR') echo 'selected'; ?>>DIRECTOR</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Representante Comercial</label>
+						<select name="lider" id="lider" class="form-control" required>
+							<option value="">Seleccione</option>
+							<?php
+							foreach ($lideres as $key => $lider) {
+							?>
+								<option value="<?=$lider["idusuario"]?>" <?php if ($usuario['lider']==$lider["idusuario"]) { echo "selected"; } ?>><?=$lider["nombre"]." ".$lider["apellido"]?></option>
+							<?php
+							}
+							?>
 						</select>
 					</div>
 					<div class="form-group">

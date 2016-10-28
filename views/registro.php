@@ -81,6 +81,19 @@
 								</select>
 							</div>
 							<div class="form-group">
+								<label for="exampleInputEmail1">Tipo de Usuario</label>
+								<select name="segmento" class="form-control" required>
+									<option value="">Seleccione</option>
+									<option value="Profesional de Belleza">Profesional de Belleza</option>
+									<option value="SPA">SPA</option>
+									<option value="Médico">Médico</option>
+									<option value="Dermatólogo">Dermatólogo</option>
+									<option value="Terapéuta">Terapéuta</option>
+									<option value="Comercializador">Comercializador</option>
+									<option value="Otro">Otro</option>
+								</select>
+							</div>
+							<div class="form-group">
 								<label for="exampleInputEmail1">Contraseña</label>
 								<input type="password" name="password" class="form-control" id="password" required>
 							</div>
@@ -157,6 +170,19 @@
 										<?php
 									}
 									?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Segmento</label>
+								<select name="segmento" class="form-control" required>
+									<option value="">Seleccione</option>
+									<option value="Profesional de Belleza">Profesional de Belleza</option>
+									<option value="SPA">SPA</option>
+									<option value="Médico">Médico</option>
+									<option value="Dermatólogo">Dermatólogo</option>
+									<option value="Terapéuta">Terapéuta</option>
+									<option value="Comercializador">Comercializador</option>
+									<option value="Otro">Otro</option>
 								</select>
 							</div>								
 						</div>

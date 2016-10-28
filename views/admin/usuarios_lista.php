@@ -2,11 +2,7 @@
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
         <div class="col-lg-12">
-			<ol class="breadcrumb">
-			  <li><a href="#">Usuarios</a></li>		  
-			  <li class="active">Lista</li>
-			</ol>
-			<a class="pull-right" href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/Nuevo"?>">Nuevo usuario</a>
+			<a class="pull-right" href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/Nuevo"?>"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
 			<table class="table table-striped">
 			  <thead>
 			  	<tr>
@@ -28,7 +24,7 @@
 		  		<tr>
 		  			<td><?=$usuario["num_identificacion"]?></td>
 		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/".$usuario['idusuario']?>"><?=$usuario["nombre"]?></a></td>
-		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/".$usuario['idusuario']?>"><?=$usuario["apellido"]?></a></td>	  			
+		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/".$usuario['idusuario']?>"><?=$usuario["apellido"]?></a></td>
 		  			<td><?=$usuario["email"]?></td>
 		  			<td><?=$usuario["telefono"]?></td>
 		  			<td><?=$usuario["telefono_m"]?></td>

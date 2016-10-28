@@ -1,3 +1,6 @@
+<?php
+$breadcrumb = explode("/", $_GET["url"]);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +31,7 @@
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?=$_SESSION["admin_nombre"]?></strong>
                              </span> <span class="text-muted text-xs block"><?=$_SESSION["admin_cargo"]?> <b class="caret"></b></span> </span> </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="<?=URL_SITIO.URL_USUARIO."/".URL_SALIR?>">Logout</a></li>
+                                <li><a href="<?=URL_SITIO.URL_USUARIO."/".URL_SALIR?>">Salir</a></li>
                             </ul>
                     </div>
                     <div class="logo-element">
@@ -36,7 +39,7 @@
                     </div>
                 </li>
                 <?php 
-                if (isset($_SESSION["admin_rol"])) {                    
+                if (isset($_SESSION["admin_rol"])) {
                  switch ($_SESSION["admin_rol"]) {
                     case 'ADMIN':
                 ?>
@@ -76,8 +79,8 @@
                 <li>                
                     <a href="#"><i class="fa fa-area-chart" aria-hidden="true"></i> <span class="nav-label">Informes</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_USUARIOS?>">Informe Usuarios</a></li>
-                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_ORDENES?>">Informe Ordenes</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_USUARIOS?>">Informe Clientes</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_ORDENES?>">Informe Ventas</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_PRODUCTOS?>">Informe Productos</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_PYG?>">P y G</a></li>
                     </ul>
@@ -100,13 +103,13 @@
                     break;
                     case 'PROVEEDOR':
                 ?>
-                <li>
+                <li>                
                     <a href="#"><i class="fa fa-area-chart" aria-hidden="true"></i> <span class="nav-label">Informes</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_SUSCRIPTORES?>">Newsletter</a></li>
-                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PYG?>/">P y G</a></li>
+                    <ul class="nav nav-second-level">                        
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_ORDENES?>">Informe Ventas</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_PRODUCTOS?>">Informe Productos</a></li>
                     </ul>
-                </li>                
+                </li>             
                 <?php
                         break;
                     }
@@ -122,17 +125,26 @@
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                     <form role="search" class="navbar-form-custom" method="post" action="#">
                         <div class="form-group">
-                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                            <input type="text" placeholder="Buscar..." class="form-control" name="top-search" id="top-search">
                         </div>
                     </form>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
                         <a href="<?=URL_SITIO.URL_USUARIO."/".URL_SALIR?>">
-                            <i class="fa fa-sign-out"></i> Log out
+                            <i class="fa fa-sign-out"></i> Salir
                         </a>
                     </li>
                 </ul>
 
             </nav>
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-xs-12">
+                <h2><?=$breadcrumb[1]?></h2>
+                <ol class="breadcrumb">
+                  <li><a href="#"><?=$breadcrumb[1]?></a></li>
+                  <li class="active"><?php if (!empty($breadcrumb[2])) { echo $breadcrumb[2]; }else{ echo "Lista"; }?></li>
+                </ol>
+            </div>
         </div>

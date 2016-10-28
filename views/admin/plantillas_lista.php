@@ -1,11 +1,7 @@
 <?php include "header.php"; ?>
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
-        <div class="col-lg-12">
-			<ol class="breadcrumb">
-			  <li><a href="#">Plantillas</a></li>		  
-			  <li class="active">Lista</li>
-			</ol>		
+        <div class="col-lg-12">			
 			<table class="table table-striped">
 			  <thead>
 			  	<tr>

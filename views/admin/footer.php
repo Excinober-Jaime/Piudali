@@ -1,10 +1,10 @@
         
                 <div class="footer">
                     <div class="pull-right">
-                        10GB of <strong>250GB</strong> Free.
+                        <strong>Copyright</strong> Piudalí &copy; 2016
                     </div>
                     <div>
-                        <strong>Copyright</strong> Piudalí &copy; 2016
+                        
                     </div>
                 </div>
 

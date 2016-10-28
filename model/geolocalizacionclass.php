@@ -46,7 +46,7 @@ class Geolocalizacion extends Database
 			$where .= ")";
 		}
 
-		if (count($ciudades)>0 && count($ciudades)>0) {
+		if (count($lideres)>0 && count($ciudades)>0) {
 			$where .= " OR ";
 		}
 

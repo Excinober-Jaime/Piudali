@@ -2,11 +2,7 @@
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
         <div class="col-lg-12">
-			<ol class="breadcrumb">
-			  <li><a href="#">Ordenes</a></li>		  
-			  <li class="active">Lista</li>
-			</ol>
-			<a class="pull-right" href="<?=URL_ADMIN."/".URL_ADMIN_ORDENES."/Nuevo"?>">Nueva Orden</a>
+			<!--<a class="pull-right" href="<?=URL_ADMIN."/".URL_ADMIN_ORDENES."/Nuevo"?>">Nueva Orden</a>-->
 			<table class="table table-striped">
 			  <thead>
 			  	<tr>

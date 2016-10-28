@@ -152,7 +152,7 @@ class Controller
 
 /************USUARIOS**************/
 
-	public function actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudades_idciudad, $ciudad, $tipo="", $usuarioremoto=array()){
+	public function actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudades_idciudad, $ciudad, $tipo="", $lider=0, $usuarioremoto=array()){
 
 		if (!empty($usuarioremoto)) {
 
@@ -173,6 +173,7 @@ class Controller
 		$_SESSION["direccion"] = $direccion;
 		$_SESSION["ciudades_idciudad"] = $ciudades_idciudad;
 		$_SESSION["ciudad"] = $ciudad;
+		$_SESSION["lider"] = $lider;
 
 		if (!empty($tipo)) {
 			$_SESSION["tipo"] = $tipo;
@@ -209,7 +210,7 @@ class Controller
 
 			$idorganizacion = $this->usuarios->crearOrganizacion($nit, $razon_social, $direccion_organizacion, $telefono_organizacion, $ciudad_organizacion);
 
-			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $foto, $estado, $fecha_registro, $lider, $ciudad, $idorganizacion);
+			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $lider, $ciudad, $idorganizacion);
 		
 			//Enviar email Bienvenida
 			$idplantilla=2;
@@ -234,11 +235,11 @@ class Controller
 			$tipo = "DISTRIBUIDOR DIRECTO";
 			$foto = "";
 			$estado = 1;
-			$fecha_registro = fecha_actual("datetime");			
+			$fecha_registro = fecha_actual("datetime");
 			$passwordmd5 = md5($password);
 			$idorganizacion = 0;
 
-			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $foto, $estado, $fecha_registro, $lider, $ciudad, $idorganizacion);
+			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $lider, $ciudad, $idorganizacion);
 		
 			//Enviar email Bienvenida
 			$idplantilla=2;
@@ -274,7 +275,7 @@ class Controller
 
 			if (count($usuario)>0) {
 				
-				$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"]);
+				$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"],$usuario["lider"]);
 				header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);
 			}else{
 				echo "<script> alert('Los datos de acceso son incorrectos. Por favor intenta de nuevo'); </script>";
@@ -308,7 +309,7 @@ class Controller
 											'tipo' => $_SESSION["tipo"]
 											);
 					
-					$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"], $usuarioremoto);
+					$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"], $usuario["lider"],$usuarioremoto);
 
 					header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);
 				}else{
@@ -326,7 +327,7 @@ class Controller
 			
 			$usuario = $this->usuarios->detalleUsuario($_SESSION["idusuario_remoto"]);
 
-			$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"]);
+			$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"],$usuario["lider"]);
 
 			unset($_SESSION["idusuario_remoto"]);
 			unset($_SESSION["email_remoto"]);
@@ -540,7 +541,7 @@ class Controller
 					$boletines = 0;
 				}
 
-				$actualizar_usuario = $this->usuarios->actualizarUsuario($_SESSION["idusuario"],$nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $telefono, $telefono_m, $_SESSION["tipo"], $foto, $ciudad);				
+				$actualizar_usuario = $this->usuarios->actualizarUsuario($_SESSION["idusuario"],$nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $telefono, $telefono_m, $_SESSION["tipo"], $segmento, $foto, $_SESSION["lider"], $ciudad);
 
 				if (isset($idorganizacion) && !empty($idorganizacion)) {
 					$actualizar_organizacion = $this->usuarios->actualizarOrganizacion($idorganizacion, $razon_social, $telefono_organizacion, $direccion_organizacion, $ciudad_organizacion);
@@ -1768,18 +1769,19 @@ class Controller
 		extract($_POST);
 
 		if (isset($_POST["crearUsuario"])) {			
-			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $telefono, $telefono_m, $tipo, "", $estado, fecha_actual('datetime'), 0, $ciudad, 0);
+			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), $lider, $ciudad, 0);
 		}
 
 		if (isset($_POST["actualizarUsuario"])) {
-			$this->usuarios->actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, 0, $direccion, $telefono, $telefono_m, $tipo,'', $ciudad);
+			$this->usuarios->actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, 0, $direccion, $telefono, $telefono_m, $tipo, $segmento,'', $lider, $ciudad);
 		}
 
 		if (isset($idusuario) && !empty($idusuario)) {
 			$usuario = $this->usuarios->detalleUsuario($idusuario);
 			$documentos = $this->usuarios->listarDocumentos($idusuario);
 		}
-		
+
+		$lideres = 	$this->usuarios->listarUsuarios(array("REPRESENTANTE COMERCIAL"));
 		$ciudades = $this->listarCiudades();
 
 		include "views/admin/usuario_detalle.php";
@@ -1987,21 +1989,47 @@ class Controller
 
 		$tipos = array('DISTRIBUIDOR DIRECTO');
 		$usuarios = $this->usuarios->listarUsuarios($tipos);
+		$zonas = $this->geolocalizacion->listarZonas();
+		$regiones = $this->geolocalizacion->listarRegiones();
 
-		foreach ($usuarios as $key => $usuario) {
-			$compras_netas = $this->usuarios->comprasNetasPeriodo("2016-01-01", "2016-12-31", "FACTURADO", $usuario["idusuario"]);	
-			$usuarios[$key]["compras_netas"] = $compras_netas["compras_netas"];
+		if (isset($_POST["filtro_fecha_inicio"]) && !empty($_POST["filtro_fecha_inicio"])) {				
+			$fecha_inicio = $_POST["filtro_fecha_inicio"];
+		}else{
+			$fecha_inicio = date("Y")."-01-01";
+		}
+
+		if (isset($_POST["filtro_fecha_fin"]) && !empty($_POST["filtro_fecha_fin"])) {
+			$fecha_fin = $_POST["filtro_fecha_fin"];	
+		}else{
+			$fecha_fin = date("Y")."-12-31";
+		}
+
+		foreach ($usuarios as $key => $usuario) {			
 			
+
+			$compras_netas = $this->usuarios->comprasNetasPeriodo($fecha_inicio, $fecha_fin, "FACTURADO", $usuario["idusuario"]);
 			$lider = $this->usuarios->detalleUsuario($usuario["lider"]);
 			$region = $this->geolocalizacion->detalleRegionCiudad($usuario["ciudades_idciudad"]);
 			$director =	$this->usuarios->detalleUsuario($region[0]["director"]);
-			$zona = $this->geolocalizacion->listarZonas(array(),$usuario["lider"]);
+			$zona = $this->geolocalizacion->listarZonas(array(),array($usuario["lider"]),array());
 			
-			$usuarios[$key]["zona"] = $zona;
+			$usuarios[$key]["compras_netas"] = $compras_netas["compras_netas"];
+			$usuarios[$key]["zona"] = $zona[0];
 			$usuarios[$key]["region"] = $region[0];
-			$usuarios[$key]["lider"] = $lider;			
+			$usuarios[$key]["lider"] = $lider;
 			$usuarios[$key]["director"] = $director;
 
+			if (isset($_POST["filtro_zona"]) && !empty($_POST["filtro_zona"])) {
+				if ($zona[0]["idzona"]!=$_POST["filtro_zona"]) {
+					unset($usuarios[$key]);
+				}
+			}
+
+			if (isset($_POST["filtro_region"]) && !empty($_POST["filtro_region"])) {
+				if ($region[0]["idregion"]!=$_POST["filtro_region"]) {
+					unset($usuarios[$key]);
+				}
+			}
 		}
 
 		include "views/admin/informe_usuarios.php";
@@ -2009,18 +2037,48 @@ class Controller
 
 	public function adminInformeOrdenes(){
 
-		$ordenes = $this->usuarios->listarOrdenes();
+		if (isset($_POST["filtro_fecha_inicio"]) && !empty($_POST["filtro_fecha_inicio"])) {
+			$fecha_inicio = $_POST["filtro_fecha_inicio"];
+		}else{
+			$fecha_inicio = date("Y")."-01-01";
+		}
+
+		if (isset($_POST["filtro_fecha_fin"]) && !empty($_POST["filtro_fecha_fin"])) {
+			$fecha_fin = $_POST["filtro_fecha_fin"];	
+		}else{
+			$fecha_fin = date("Y")."-12-31";
+		}
+
+		$ordenes = $this->usuarios->listarOrdenes($fecha_inicio, $fecha_fin);
+		$zonas = $this->geolocalizacion->listarZonas();
+		$regiones = $this->geolocalizacion->listarRegiones();
 
 		foreach ($ordenes as $key => $orden) {
+
 			$comprador = $this->usuarios->detalleUsuario($orden["usuarios_idusuario"]);
 			$ordenes[$key]["comprador"] = $comprador;
 			
-			$lider_comprador = $this->usuarios->detalleUsuario($comprador["lider"]);
-			$ordenes[$key]["lider"] = $lider_comprador;
-
+			$lider_comprador = $this->usuarios->detalleUsuario($comprador["lider"]);	
 			$region = $this->geolocalizacion->detalleRegionCiudad($comprador["ciudades_idciudad"]);
 			$director =	$this->usuarios->detalleUsuario($region[0]["director"]);
+			$zona = $this->geolocalizacion->listarZonas(array(),array($comprador["lider"]),array());
+
+			$ordenes[$key]["lider"] = $lider_comprador;
 			$ordenes[$key]["director"] = $director;
+			$ordenes[$key]["zona"] = $zona[0];
+			$ordenes[$key]["region"] = $region[0];
+
+			if (isset($_POST["filtro_zona"]) && !empty($_POST["filtro_zona"])) {
+				if ($zona[0]["idzona"]!=$_POST["filtro_zona"]) {
+					unset($ordenes[$key]);
+				}
+			}
+
+			if (isset($_POST["filtro_region"]) && !empty($_POST["filtro_region"])) {
+				if ($region[0]["idregion"]!=$_POST["filtro_region"]) {
+					unset($ordenes[$key]);
+				}
+			}
 		}
 		
 		include "views/admin/informe_ordenes.php";
@@ -2030,13 +2088,30 @@ class Controller
 
 		$tipos_productos = array('NORMAL');
 		$estados_productos = array(0,1);
+		$estado_orden = "FACTURADO";
 
 		$productos = $this->productos->listarProductos($tipos_productos, $estados_productos);
 
+		if (isset($_POST["filtro_fecha_inicio"]) && !empty($_POST["filtro_fecha_inicio"])) {
+			$fecha_inicio = $_POST["filtro_fecha_inicio"];
+		}else{
+			$fecha_inicio = date("Y")."-01-01";
+		}
+
+		if (isset($_POST["filtro_fecha_fin"]) && !empty($_POST["filtro_fecha_fin"])) {
+			$fecha_fin = $_POST["filtro_fecha_fin"];	
+		}else{
+			$fecha_fin = date("Y")."-12-31";
+		}
+
 		foreach ($productos as $key => $producto) {
 
-			$unidades_vendidas = $this->ordenes->unidadesVendidas("2016-01-01", "2016-12-31", "PENDIENTE", $producto["codigo"]);	
-			$productos[$key]["unidades_vendidas"] = $unidades_vendidas;
+			$ordenes = $this->usuarios->listarOrdenes();
+			$detalle_orden = $this->ordenes->listarDetalleOrden(array($producto["codigo"]), $estado_orden);
+			//var_dump($detalle_orden);
+			$unidades_vendidas = $this->ordenes->unidadesVendidas($fecha_inicio, $fecha_fin, $estado_orden, $producto["codigo"]);
+			
+			$productos[$key]["unidades_vendidas"] = intval($unidades_vendidas["cantidad"]);
 		}
 		
 		include "views/admin/informe_productos.php";
