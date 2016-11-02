@@ -123,11 +123,14 @@
 	 </div>
 	 <div class="col-xs-12 text-right">
 	 	<a href="<?=URL_PRODUCTOS?>" class="btn btn-lg btn-default">SEGUIR COMPRANDO</a>
-	 	<?php 
+	 	<?php
 	 	if ($total>0) {
+
+	 		if (isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"]<=$subtotalAntesIva) {
 	 	?>
 	 		<a href="<?=URL_RESUMEN_COMPRA?>" class="btn btn-lg btn-primary">ORDENAR YA!</a>	 	
 	 	<?php
+	 		}
 	 	}
 	 	?>	 	
 	 </div>

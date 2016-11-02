@@ -71,9 +71,11 @@
 	 <div class="col-xs-12 text-right">
 	 	<?php 
 	 	if ($total>0) {
+	 		if (isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"]<=$subtotalAntesIva) {
 	 	?>
 	 		<a href="<?=URL_GENERAR_ORDEN?>" class="btn btn-lg btn-default">FINALIZAR COMPRA</a>
 	 	<?php
+	 		}	
 	 	}
 	 	?>
 	 	

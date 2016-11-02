@@ -51,8 +51,8 @@
 					<td class="text-center">2016-10-01</td>
 					<td class="text-center">2016-10-31</td>
 					<td class="text-center">Escala Bono Mensual</td>
-					<td class="text-center">$12.000.000</td>
-					<td class="text-center">$500.000</td>					
+					<td class="text-center">$10.000.000</td>
+					<td class="text-center">$400.000</td>					
 				</tr>
 				<tr>
 					<td class="text-center">BONO TRIMESTRAL</td>
@@ -61,6 +61,22 @@
 					<td class="text-center">$90.000.000</td>
 					<td class="text-center">$12.000.000</td>
 					<td class="text-center">13%</td>
+				</tr>
+				<tr>
+					<td class="text-center">BONO SEMESTRAL</td>
+					<td class="text-center">2017-01-01</td>
+					<td class="text-center">2017-06-30</td>
+					<td class="text-center">$180.000.000</td>
+					<td class="text-center">$0</td>
+					<td class="text-center">0%</td>
+				</tr>
+				<tr>
+					<td class="text-center">BONO ANUAL</td>
+					<td class="text-center">2017-01-01</td>
+					<td class="text-center">2017-12-31</td>
+					<td class="text-center">$360.000.000</td>
+					<td class="text-center">$0</td>
+					<td class="text-center">0%</td>
 				</tr>				
 			</tbody>
 		</table>
@@ -73,15 +89,15 @@
 			    $0 - $10.000.000
 			  </li>
 			  <li class="list-group-item active" style="background-color:#006837;">
-			    <span class="badge">$500.000</span>
+			    <span class="badge">$400.000</span>
 			    $10.000.001 - $30.000.000
 			  </li>
 			  <li class="list-group-item">
-			    <span class="badge">$800.000</span>
+			    <span class="badge">$700.000</span>
 			    $30.000.001 - $60.000.000
 			  </li>
 			  <li class="list-group-item">
-			    <span class="badge">$1.200.000</span>
+			    <span class="badge">$1.000.000</span>
 			    Mayor a $60.0000.000
 			  </li>
 			</ul>

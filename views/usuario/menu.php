@@ -72,7 +72,7 @@
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_INCENTIVOS?>">Incentivos</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_PROMOCIONES?>">Promociones</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CUPONES?>">Cupones de Descuento</a></li>
-					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION?>">Capacitación</a></li>
+					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_NEGOCIO?>">Capacitación</a></li>
                 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Políticas <span class="caret"></span></a>
@@ -99,7 +99,7 @@
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_NEGOCIO?>">Mi negocio</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_INCENTIVOS?>">Incentivos</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CUENTA?>">Cuenta virtual</a></li>
-					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION?>">Capacitación</a></li>
+					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_NEGOCIO?>">Capacitación</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_DOCUMENTOS?>">Documentos</a></li>
                 
                 <li class="dropdown">
@@ -214,7 +214,7 @@
 		<?php	
 		}else{
 		?>
-			<div class="alert alert-success text-center" role="alert"><h4>TU PERFIL ES DE <?=$_SESSION['tipo']?></h4></div>	
+			<div class="alert alert-success text-center" role="alert"><h4><span style="text-transform: uppercase;"><?=$_SESSION["nombre"]?></span>, TU PERFIL ES DE <?=$_SESSION['tipo']?></h4></div>	
 		<?php
 		}
 		?>

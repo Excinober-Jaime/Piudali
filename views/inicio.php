@@ -99,16 +99,15 @@
 	<div class="col-xs-12" style="background-color:#FFF8EB;padding:20px;">
 		<img src="assets/img/piudali-section.png" class="img-responsive center-block">
 		<h2 class="text-center">SOBRE NOSOTROS</h2>
-		<p class="text-center"> PIUDALÍ® Amazonian Skincare ofrece una línea de bienestar y cuidado para la piel con ingredientes de alta calidad de origen 100% natural, obtenidos de especies nativas del Amazonas y los Andes Colombianos. Producida bajo un esquema sustentable a nivel económico, tecnológico, ecológico y socialmente responsable.</p>
+		<p class="text-center">PIUDALÍ® Amazonian Skincare ofrece una línea de bienestar y cuidado para la piel con ingredientes de alta calidad de origen 100% natural, obtenidos de especies nativas del Amazonas y los Andes Colombianos. Producida bajo un esquema sustentable a nivel económico, tecnológico, ecológico y socialmente responsable.
 
-		<p class="text-center">PIUDALÍ® ofrece una línea completa de cosmética facial y corporal para uso doméstico o en rituales de belleza y relajación a través de profesionales de las diferentes líneas terapéuticas y spa.</p>
+		<p class="text-center">PIUDALÍ® ofrece una línea completa de cosmética facial y corporal para uso doméstico o en rituales de belleza y bienestar a través de profesionales de las diferentes líneas terapéuticas y spa.</p>
 
+		<p class="text-center">PIUDALÍ® es una marca de Waliwa Amazonian Natural Products Ltda. una empresa Colombiana que cree en la riqueza biológica existente en nuestro País y por esto decide investigar y unir sabiduría ancestral, naturaleza, tecnología, responsabilidad social. En definitiva CIENCIA Y CONCIENCIA.</p>
 
-		<p class="text-center">PIUDALÍ® es una marca de Waliwa Natural Products Ltda. una empresa Colombiana que cree en la riqueza biológica existente en nuestro País y por esto decide investigar y sabiduría ancestral, naturaleza, tecnología, responsabilidad social. En definitiva CIENCIA Y CONCIENCIA.</p>
+		<p class="text-center">Waliwa Amazonian Natural Products Ltda es una empresa pionera en Colombia en el desarrollo de cosméticos verdes o ecológicos y en ofrecer una línea de productos altamente diferenciada, usando los recursos naturales sin afectar la sustentabilidad de las generaciones futuras.</p>
 
-		<p class="text-center">Somos pioneros en Colombia en el desarrollo de cosméticos verdes o ecológicos y en ofrecer una línea de productos altamente diferenciada, usando los recursos naturales sin afectar la sustentabilidad de la generaciones futuras.</p>
-
-		<p class="text-center">Esta iniciativa nace de dos mujeres empresarias, químicas farmacéuticas, amantes de la Naturaleza, quienes a través de una alianza entre los Laboratorios de especialidades cosméticas ESKO y laboratorios MYN de Bogotá, dan vida en el año 2009 a la empresa <a href="http://www.waliwa.com/index.php?lang=es-es" target="_new"> Waliwa Natural Products Ltda.</a></p>
+		<p class="text-center">Esta iniciativa nace de dos mujeres empresarias, químicas farmacéuticas, amantes de la Naturaleza, quienes a través de una alianza entre los Laboratorios de especialidades cosméticas ESKO y laboratorios MYN de Bogotá, dan vida en el año 2009 a la empresa <a href="http://piudali.com.co/sobre-waliwa"> Waliwa Natural Products Ltda.</a></p>
 
 
 	</div>

@@ -178,6 +178,10 @@ class Carrito extends Productos
 			}
 		}
 
+		if (empty($porcentaje["porcentaje"])) {
+			$porcentaje["porcentaje"] = 0;
+		}
+
 		return $porcentaje["porcentaje"];
 
 	}
@@ -185,7 +189,7 @@ class Carrito extends Productos
 	public function getDescuentoEscala(){
 
 		$porc_escala = $this->porcDescuentoEscala();
-		$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();		
+		$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
 
 		$descuento_escala = $porc_escala/100;
 		$descuentoEscala = $subtotalNetoAntesIva * $descuento_escala;

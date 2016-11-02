@@ -70,7 +70,7 @@
 		  		<tr>
 		  			<td><a href="<?=URL_SITIO.URL_ADMIN."/".URL_ADMIN_ORDENES."/".$ordenes["idorden"]?>"><?=$ordenes["num_orden"]?></a></td>
 		  			<td><?=$ordenes["fecha_pedido"]?></td>
-		  			<td><a href="<?=URL_SITIO.URL_ADMIN."/".URL_ADMIN_USUARIOS."/".$ordenes["comprador"]["idusuario"]?>"><?=$ordenes["nombre"]." ".$ordenes["apellido"]?></a></td>
+		  			<td><?=$ordenes["nombre"]." ".$ordenes["apellido"]?></td>
 		  			<td><?=convertir_pesos($ordenes["total"])?></td>	  			
 		  			<td><?=$ordenes["lider"]["nombre"]." ".$ordenes["lider"]["apellido"]?></td>
 		  			<td><?=$ordenes["director"]["nombre"]." ".$ordenes["director"]["apellido"]?></td>

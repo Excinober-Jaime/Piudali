@@ -31,6 +31,7 @@ define("URL_USUARIO_CAPACITACION", "Capacitacion");
 define("URL_USUARIO_CAPACITACION_INGREDIENTES", "Ingredientes");
 define("URL_USUARIO_CAPACITACION_VIDEOS", "Videos");
 define("URL_USUARIO_CAPACITACION_PROTOCOLOS", "Protocolos");
+define("URL_USUARIO_CAPACITACION_NEGOCIO", "Negocio");
 define("URL_USUARIO_POLITICAS", "Politicas");
 define("URL_USUARIO_PUNTOS", "Puntos");
 define("URL_USUARIO_CLIENTES", "Clientes");

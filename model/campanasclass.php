@@ -45,7 +45,7 @@ class Campanas extends Database
 
 	public function crearCampana($nombre="", $fecha_ini="", $fecha_fin="", $monto_minimo=0, $estado=0){
 		
-		$idcampana = $this->insertar("INSERT INTO `campanas`(										
+		$idcampana = $this->insertar("INSERT INTO `campanas`(
 										`nombre`, 
 										`fecha_ini`, 
 										`fecha_fin`, 

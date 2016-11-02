@@ -894,7 +894,11 @@ class Controller
 						break;
 
 					case URL_USUARIO_CAPACITACION_NEGOCIO:
-						
+						if ($_SESSION["tipo"]=="REPRESENTANTE COMERCIAL") {
+							$url_presentacion = "//www.slideshare.net/slideshow/embed_code/key/Fe8s03P1TXhtay";
+						}else{
+							$url_presentacion = "//www.slideshare.net/slideshow/embed_code/key/pTde05ewgmyRoK";	
+						}						
 						break;
 					case URL_USUARIO_CAPACITACION_PROTOCOLOS:
 						$protocolos = $this->usuarios->listarProtocolos();
@@ -909,7 +913,6 @@ class Controller
 						break;
 					
 					default:
-						# code...
 						break;
 				}
 
@@ -1070,6 +1073,8 @@ class Controller
 		$total = $this->carrito->getTotal();
 		$rentabilidad = $this->carrito->getRentabilidad();
 
+		$campana_actual = $this->campanas->getCamapanaActual();
+
 		include "views/carrito.php";
 	}
 
@@ -1093,6 +1098,8 @@ class Controller
 			$flete = $this->carrito->calcularFlete();
 			$total = $this->carrito->getTotal();
 			$rentabilidad = $this->carrito->getRentabilidad();
+
+			$campana_actual = $this->campanas->getCamapanaActual();
 
 			include "views/resumen_compra.php";
 
