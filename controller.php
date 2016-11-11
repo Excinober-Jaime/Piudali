@@ -838,17 +838,38 @@ class Controller
 					if (count($incentivos)>0) {
 						
 						foreach ($incentivos as $key => $incentivo) {
+
+							$escalas = $this->usuarios->listarEscalasIncentivo($incentivo["idincentivo"]);
+							$incentivos[$key]["escalas"] = $escalas;
 							
 							if (count($distribuidores)>0) {
 
-								$estado_compras = "APROBADO";
+								$estado_compras = "FACTURADO";
 
 								foreach ($distribuidores as $distribuidor) {
 
-									$compras_netas = $this->usuarios->comprasNetasPeriodo($incentivo["inicio"], $incentivo["fin"],$estado_compras,$distribuidor["idusuario"]);									
-									$incentivos[$key]["compras_netas"] = $compras_netas["compras_netas"];
-									$incentivos[$key]["cumplimiento"] = ($incentivos[$key]["compras_netas"]/$incentivo["meta"])*100;
+									$compras_netas = $this->usuarios->comprasNetasPeriodo($incentivo["inicio"], $incentivo["fin"],$estado_compras,$distribuidor["idusuario"]);
+									
+									$incentivos[$key]["compras_netas"] += $compras_netas["compras_netas"];								
 								}
+							}
+
+							if (count($escalas)>0) {
+								
+								$incentivos[$key]["meta"] = 0;
+
+								foreach ($escalas as $escala) {
+									if ($escala["minimo"]<=$incentivos[$key]["compras_netas"] && $escala["maximo"]>=$incentivos[$key]["compras_netas"]) {
+
+										$incentivos[$key]["meta"] = "ESCALA ".$incentivo["incentivo"];
+										$incentivos[$key]["cumplimiento"] = convertir_pesos($escala["bono"]);
+										break;
+									}
+								}
+							}else{
+								$incentivos[$key]["meta"] = convertir_pesos($incentivo["meta"]);
+								$incentivos[$key]["cumplimiento"] = ($incentivos[$key]["compras_netas"]/$incentivo["meta"])*100;
+								$incentivos[$key]["cumplimiento"] = $incentivos[$key]["cumplimiento"]."%";
 							}
 						}
 					}
@@ -1913,6 +1934,15 @@ class Controller
 			}
 
 			$this->usuarios->actualizarIncentivo($idincentivo, $incentivo, $destino, $inicio, $fin, $meta, $descripcion, $usuario);
+		
+			if (isset($minimo) && count($minimo)>0) {				
+
+				foreach ($minimo as $key => $value) {
+					if (isset($minimo[$key]) && isset($maximo[$key]) && isset($bono[$key])) {
+						$idescala = $this->usuarios->crearEscalaIncentivo($idincentivo, $minimo[$key], $maximo[$key], $bono[$key]);		
+					}
+				}
+			}
 		}
 
 		if (isset($_POST["crearIncentivo"])) {
@@ -1931,11 +1961,21 @@ class Controller
 			}
 
 			$idincentivo = $this->usuarios->crearIncentivo($incentivo, $destino, $inicio, $fin, $meta, $descripcion, $usuario);			
+			
+			if (isset($minimo) && count($minimo)>0) {				
+
+				foreach ($minimo as $key => $value) {
+					if (isset($minimo[$key]) && isset($maximo[$key]) && isset($bono[$key])) {
+						$idescala = $this->usuarios->crearEscalaIncentivo($idincentivo, $minimo[$key], $maximo[$key], $bono[$key]);		
+					}
+				}
+			}
 		}
 
 		if (isset($idincentivo) && $idincentivo!='') {
 			$incentivo = $this->usuarios->incentivoDetalle($idincentivo);
-		}		
+			$escalas = $this->usuarios->listarEscalasIncentivo($idincentivo);
+		}
 
 		include "views/admin/incentivo_detalle.php";
 	}

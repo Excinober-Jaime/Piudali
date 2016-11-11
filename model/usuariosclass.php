@@ -277,6 +277,28 @@ class Usuarios extends Database
 		return $query;
 	}
 
+	public function listarEscalasIncentivo($idincentivo=0){
+
+		$query = $this->consulta("SELECT `idescala_incentivo`, `minimo`, `maximo`, `bono`, `incentivos_idincentivo` 
+									FROM `escalas_incentivos` 
+									WHERE `incentivos_idincentivo`='$idincentivo'");
+		return $query;
+	}
+
+	public function crearEscalaIncentivo($idincentivo, $minimo, $maximo, $bono){
+
+		$idescala = $this->insertar("INSERT INTO `escalas_incentivos`(										
+										`minimo`, 
+										`maximo`, 
+										`bono`,
+										`incentivos_idincentivo`) VALUES (										
+										'$minimo',
+										'$maximo',
+										'$bono',
+										'$idincentivo')");
+		return $idescala;
+	}
+
 	public function incentivoDetalle($idincentivo=0){
 		
 		$query = $this->consulta("SELECT `idincentivo`, `incentivo`, `imagen`, `inicio`, `fin`, `meta`, `descripcion`, `usuario` 

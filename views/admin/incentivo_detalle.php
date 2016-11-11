@@ -32,11 +32,7 @@
 						}	
 						?>				
 					</div>			
-				</div>					
-				<div class="form-group">
-					<label for="exampleInputEmail1">Meta</label>
-					<input type="text" class="form-control" name="meta" id="meta" value="<?=$incentivo['meta']?>" required>
-				</div>
+				</div>									
 				<div class="form-group">
 					<label for="exampleInputEmail1">Descripción</label>
 					<textarea name="descripcion" class="form-control"><?=$incentivo['descripcion']?></textarea>
@@ -47,6 +43,37 @@
 						<option value="DISTRIBUIDOR DIRECTO" <?php if ($incentivo['usuario']=='DISTRIBUIDOR DIRECTO') echo 'selected'; ?>>DISTRIBUIDOR DIRECTO</option>
 						<option value="REPRESENTANTE COMERCIAL" <?php if ($incentivo['usuario']=='REPRESENTANTE COMERCIAL') echo 'selected'; ?>>REPRESENTANTE COMERCIAL</option>
 					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Meta</label>
+					<input type="text" class="form-control" name="meta" id="meta" value="<?=$incentivo['meta']?>" required>
+				</div>
+				<div class="col-xs-12">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Mínimo</th>
+								<th>Máximo</th>
+								<th>Bono</th>
+							</tr>
+						</thead>
+						<tbody id="escalas_incentivo">
+							<?php 
+							if (isset($escalas) && count($escalas)>0) {
+								foreach ($escalas as $key => $escala) {
+									?>
+									<tr>
+										<td><?=convertir_pesos($escala["minimo"])?></td>
+										<td><?=convertir_pesos($escala["maximo"])?></td>
+										<td><?=convertir_pesos($escala["bono"])?></td>
+									</tr>
+									<?php
+								}
+							}
+							?>							
+						</tbody>			  
+					</table>
+					<a class="pull-right" id="agregarEscalaIncentivo">Agregar Escala</a>
 				</div>
 				<?php
 				if (isset($idincentivo) && $idincentivo!='') {
