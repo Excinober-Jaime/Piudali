@@ -2,11 +2,83 @@
 
 <div class="container">		
 	<?php include "usuario/menu.php"; ?>			
-	<div class="col-xs-12">
-		<h1>Detalle Orden <small><small></small></small></h1>
-	<hr>
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Detalle Orden <small><small></small></small></h1>
+		<hr>
+		</div>
 	</div>
-	<div class="col-xs-12 col-md-6">
+	<div class="row">
+		<div class="col-xs-12 col-md-6">
+			<p class="text-left"><b>ORDEN No. </b><br><?=$orden["detalle"]["num_orden"]?></p>
+			<p class="text-left"><?=$orden["detalle"]["nombre"]." ".$orden["detalle"]["apellido"]?><br><?=$orden["detalle"]["num_identificacion"]?></p>
+			<p class="text-left"><?=$orden["detalle"]["direccion"]?><br><?=$orden["detalle"]["ciudad"]?></p>
+			<p class="text-left"><?=$orden["detalle"]["telefono"]?><br><?=$orden["detalle"]["telefono_m"]?></p>
+			<p class="text-left">FECHA PEDIDO: <?=$orden["detalle"]["fecha_pedido"]?></p>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<p class="text-right"><b>ESTADO:</b><br><?=$orden["detalle"]["estado"]?></p>
+			<p class="text-right"><b>NÚMERO DE GUÍA:</b><br><?=$orden["detalle"]["guia_flete"]?></p>
+		</div>		
+		<div class="col-xs-12">
+		<hr>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>DESCRIPCIÓN</th>
+						<th class="text-center">CANTIDAD</th>
+						<th class="text-center">PRECIO</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					foreach ($orden["productos"] as $key => $producto) {
+					?>
+						<tr>
+							<td><?=$producto["cod_producto"]." - ".$producto["nombre_producto"]?></td>
+							<td class="text-center"><?=$producto["cantidad"]?></td>
+							<td class="text-center"><?=$producto["precio"]?></td>						
+						</tr>
+					<?php
+					}
+					?>					
+					<tr>
+						<td colspan="2" class="text-right">Subtotal Antes de Iva:</td>
+						<td class="text-center"><?=convertir_pesos($orden["detalle"]["subtotal"])?></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="text-right">Descuentos Cupón:</td>
+						<td class="text-center"><?=convertir_pesos($orden["detalle"]["descuentos"])?></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="text-right">Descuento Escala %:</td>
+						<td class="text-center"><?=$orden["detalle"]["porc_escala"]?>%</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="text-right">Descuento Escala $:</td>
+						<td class="text-center"><?=convertir_pesos($orden["detalle"]["desc_escala"])?></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="text-right">Total Neto Antes de Iva:</td>
+						<td class="text-center"><?=convertir_pesos($orden["detalle"]["neto_sin_iva"])?></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="text-right">Iva:</td>
+						<td class="text-center"><?=convertir_pesos($orden["detalle"]["impuestos"])?></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="text-right">Flete:</td>
+						<td class="text-center"><?=convertir_pesos($orden["detalle"]["costo_envio"])?></td>
+					</tr>
+					<tr>
+						<th colspan="2" class="text-right">Total:</th>
+						<td class="text-center"><?=convertir_pesos($orden["detalle"]["total"])?></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!--<div class="col-xs-12 col-md-6">
 		<div class="well well-sm"><b>Subtotal Antes de Iva:</b> $<?=number_format($orden["detalle"]["subtotal"])?></div>
 		<div class="well well-sm"><b>Descuentos Cupón:</b> $<?=number_format($orden["detalle"]["descuentos"])?></div>
 		<div class="well well-sm"><b>Descuento Escala %:</b> <?=$orden["detalle"]["porc_escala"]?>%</div>
@@ -46,7 +118,8 @@
 				?>
 			</tbody>
 		</table>
-	</div>	
+	</div>-->
+
 </div>
 <br>
 <br>

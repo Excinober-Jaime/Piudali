@@ -54,7 +54,7 @@ class Productos extends Database
 		return $idproducto;
 	}
 
-	public function listarProductos($tipos=array(), $estados=array(1), $idcategoria=0){
+	public function listarProductos($tipos=array(), $estados=array(1), $idcategoria=0, $buscar=""){
 
 		if (count($tipos)>0) {
 
@@ -100,15 +100,19 @@ class Productos extends Database
 			$categoria_where = "";
 		}
 
+		if (!empty($buscar)) {
+			$buscar_where = " AND (`productos`.`nombre` LIKE '%$buscar%' OR `productos`.`descripcion` LIKE '%$buscar%')";
+		}else{
+			$buscar_where = "";
+		}
+
 		
 		$query = $this->consulta("SELECT `productos`.`idproducto`, `productos`.`nombre`, `productos`.`cantidad`, `productos`.`costo`, `productos`.`precio`, `productos`.`iva`, `productos`.`aplica_cupon`, `productos`.`precio_oferta`, `productos`.`presentacion`, `productos`.`registro`, `productos`.`codigo`, `productos`.`descripcion`, `productos`.`img_principal`, `productos`.`url`, `productos`.`estado`, `productos`.`uso`, `productos`.`mas_info`, `productos`.`metas`, `productos`.`categorias_idcategoria`, `productos`.`companias_idcompania`, `productos`.`relevancias_idrelevancia`, `companias`.`nombre` AS 'compania', `categorias`.`nombre` AS 'categoria'
 								FROM `productos`
 								INNER JOIN `companias` ON (`productos`.`companias_idcompania`=`companias`.`idcompania`)
 								INNER JOIN `categorias` ON (`productos`.`categorias_idcategoria`=`categorias`.`idcategoria`)
-								WHERE $estados_select $tipos_select $categoria_where");
-		
+								WHERE $estados_select $tipos_select $categoria_where $buscar_where");
 		return $query;
-
 	}
 
 	public function detalleProductos($idproducto=0,$url=""){
@@ -161,6 +165,14 @@ class Productos extends Database
 		
 		return $query;
 	}
+
+	public function actualizarCantidadProducto($idproducto,$cantidad){
+		
+		$query = $this->actualizar("UPDATE `productos` SET 										
+										`cantidad`='$cantidad'									
+										WHERE `idproducto`='$idproducto'");			
+		return $query;
+	}	
 
 
 	/****categorias***/

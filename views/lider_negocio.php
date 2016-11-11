@@ -51,10 +51,10 @@
 						<label for="inputEmail3" class="control-label">Estados</label>
 						<select name="estado" class="form-control" onChange="javascript: document.getElementById('filtros').submit();">
 							<option value="">--Seleccione--</option>
-							<option value="PENDIENTE">PENDIENTE</option>
-							<option value="APROBADO">APROBADO</option>
-							<option value="FACTURADO">FACTURADO</option>
-							<option value="DECLINADO">DECLINADO</option>
+							<option value="PENDIENTE" <?php if ($estado_compras == "PENDIENTE") echo "selected"; ?>>PENDIENTE</option>
+							<option value="APROBADO" <?php if ($estado_compras == "APROBADO") echo "selected"; ?>>APROBADO</option>
+							<option value="FACTURADO" <?php if ($estado_compras == "FACTURADO") echo "selected"; ?>>FACTURADO</option>
+							<option value="DECLINADO" <?php if ($estado_compras == "DECLINADO") echo "selected"; ?>>DECLINADO</option>
 						</select>
 					</div>
 				</form>

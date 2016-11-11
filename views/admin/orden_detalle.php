@@ -16,7 +16,15 @@
                                     <form method="post">
 										<div class="form-group">
 											<label>Estado:</label>
-											<select name="estado" class="input-sm" <?php if($orden["detalle"]["estado"] == "FACTURADO"){ echo "disabled"; } ?>>
+											<?php 
+												if($orden["detalle"]["estado"] == "FACTURADO") { 
+													$disabled = "disabled"; 
+													echo '<input type="hidden" name="estado" value="'.$orden["detalle"]["estado"].'">';
+												}else{
+													$disabled = "";
+												} 
+												?>
+											<select name="estado" class="input-sm" <?=$disabled?>>
 											<?php 
 												foreach ($estados as $key => $estado) {
 													?>

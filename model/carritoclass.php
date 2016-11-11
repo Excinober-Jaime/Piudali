@@ -407,6 +407,7 @@ class Carrito extends Productos
 				$neto_sin_iva_pdt = $subtotal - $descuento_cupon_pdt - $descuento_escala_pdt;
 				$iva_pdt = $neto_sin_iva_pdt*($producto["iva"]/100);
 				
+				$detalle_orden[$key]["idpdt"] = $idpdt;
 				$detalle_orden[$key]["nombre"] = $producto["nombre"];
 				$detalle_orden[$key]["iva_porc"] = $producto["iva"];
 				$detalle_orden[$key]["subtotal"] = $subtotal;

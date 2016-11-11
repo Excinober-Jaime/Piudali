@@ -148,6 +148,25 @@ class Controller
 		include "views/producto_detalle.php";
 	}
 
+	public function pageBuscar(){
+
+		$paginas_menu = $this->paginasMenu();
+
+		$posicion_banners="SIDEBAR";
+		$estados = array(1);
+		$banners = $this->banners->listarBanners($posicion_banners,$estados);
+
+		$tipos = array('NORMAL');
+		$estados_productos = array(1);
+
+		if (isset($_GET["buscar"]) && !empty($_GET["buscar"])) {
+			$productosLista = $this->productos->listarProductos($tipos, $estados_productos, 0, $_GET["buscar"]);
+		}
+
+		require "views/producto/productos.php";
+		include "views/productos_buscar.php";	
+	}
+
 
 
 /************USUARIOS**************/
@@ -911,6 +930,9 @@ class Controller
 									"https://www.youtube.com/embed/-mJnu6UGJk4"
 									);
 						break;
+					case URL_USUARIO_CAPACITACION_VIDEOS_NEGOCIO:
+						$url_tutorial_compra = "//www.slideshare.net/slideshow/embed_code/key/3TEAIZJ0zD3BQG";
+						break;
 					
 					default:
 						break;
@@ -1001,6 +1023,20 @@ class Controller
 		}else{
 			header("Location: ".URL_SITIO);
 		}
+	}
+
+	public function usuarioComprar(){
+
+		$paginas_menu = $this->paginasMenu();
+
+		$moduloActual = URL_USUARIO_COMPRAR;
+
+		$posicion_banners="PANEL INTERNO";
+		$estados = array(1);
+
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
+
+		include "views/usuario_comprar.php";
 	}
 
 	public function usuarioCerrarSesion(){
@@ -1156,7 +1192,7 @@ class Controller
 						break;
 					}
 				}
-			}		
+			}
 			
 			//Crear Orden
 			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
@@ -1177,15 +1213,17 @@ class Controller
 			//Registrar detalle de orden
 			if (count($detalleOrden)>0) {
 				foreach ($detalleOrden as $key => $producto) {
+
+					//Descontar stock
+					$filas = $this->descontarStock($producto["idpdt"],$producto["cantidad"]);
+
+					//Agregar detalle orden
 					$id_detalle_orden = $this->carrito->agregarDetalleOrden($producto["nombre"], $producto["codigo"], $producto["cantidad"], $producto["precio"], $producto["precio_base"], $producto["descuento_cupon"], $producto["iva"], $producto["descuento_puntos"], $idorden);
 				}
-			}
-
-			
+			}		
 
 
 			//Enviar Email Orden
-			
 
 			$tabla_orden = '<table cellspacing="10" border="0" width="650px" align="center">
 					<thead>
@@ -1274,6 +1312,16 @@ class Controller
 		}else{
 			header("Location: ".URL_INGRESAR);
 		}
+	}
+
+	public function descontarStock($idpdt, $cantidad){
+
+		$producto = $this->productos->detalleProductos($idpdt);
+		$cantidad_actual = $producto[0]["cantidad"];
+		$cantidad_nueva = $cantidad_actual - $cantidad;
+		$filas = $this->productos->actualizarCantidadProducto($idpdt,$cantidad_nueva);
+
+		return $filas;
 	}
 
 

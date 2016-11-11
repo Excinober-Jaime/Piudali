@@ -14,6 +14,7 @@
 				  <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_INGREDIENTES?>">A-Z INGREDIENTES NATURALES</a></li>				  
 				  <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_PROTOCOLOS?>">PROTOCOLOS DE USO</a></li>
           <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_VIDEOS?>">VIDEOS DE PROTOCOLOS</a></li>
+          <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_VIDEOS_NEGOCIO?>">VIDEOS TUTORIALES</a></li>
 				</ul>				
 			</div>      
 			<div class="col-xs-12 col-md-9">
@@ -72,6 +73,12 @@
           </div>
         <?php
         }
+      }elseif (!empty($url_tutorial_compra)){
+        ?>
+        <div class="col-xs-12" style="margin-top: 0px;">        
+          <iframe src="<?=$url_tutorial_compra?>" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; width: 100%; height: 500px; max-width: 100%;" allowfullscreen> </iframe>
+        </div>
+        <?php
       }else{
         ?>
         <div class="col-xs-12" style="margin-top: 0px;">        

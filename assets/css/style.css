@@ -9,7 +9,7 @@ body{
 } 
 
 .social{
-	padding-top: 30px;
+	padding-top: 25px;
 }
 
 .social .fa-facebook-official{
@@ -175,3 +175,14 @@ footer{
 	padding:15px 5px;
 	border: 1px solid #ddd;
 	}
+
+.form-search{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.form-search .input-group-addon{
+	background-color: #006837;
+	color: #fff;
+	border-color: #006837;
+}

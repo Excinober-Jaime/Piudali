@@ -6,6 +6,7 @@ define("URL_PRODUCTOS", "Productos");
 define("URL_CATEGORIA", "Categoria");
 define("URL_CONTACTO", "Contacto");
 define("URL_PAGINA_CONTENIDO", "ContenidoPagina");
+define("URL_BUSCAR", "Resultados");
 
 
 /***CARRITO****/
@@ -30,6 +31,7 @@ define("URL_USUARIO_CUPONES", "Cupones");
 define("URL_USUARIO_CAPACITACION", "Capacitacion");
 define("URL_USUARIO_CAPACITACION_INGREDIENTES", "Ingredientes");
 define("URL_USUARIO_CAPACITACION_VIDEOS", "Videos");
+define("URL_USUARIO_CAPACITACION_VIDEOS_NEGOCIO", "VideosNegocio");
 define("URL_USUARIO_CAPACITACION_PROTOCOLOS", "Protocolos");
 define("URL_USUARIO_CAPACITACION_NEGOCIO", "Negocio");
 define("URL_USUARIO_POLITICAS", "Politicas");
@@ -37,7 +39,7 @@ define("URL_USUARIO_PUNTOS", "Puntos");
 define("URL_USUARIO_CLIENTES", "Clientes");
 define("URL_USUARIO_CUENTA", "Cuenta");
 define("URL_USUARIO_DOCUMENTOS", "Documentos");
-
+define("URL_USUARIO_COMPRAR", "Comprar");
 
 define("URL_REGISTRO", "Registro");
 define("URL_INGRESAR", "Ingresar");

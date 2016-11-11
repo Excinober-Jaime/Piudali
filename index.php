@@ -294,6 +294,10 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				$controller->pageRestaurarContrasena();
 				break;
 
+			case URL_BUSCAR:
+				$controller->pageBuscar();
+				break;
+
 			case URL_USUARIO:
 				if (isset($var2) && !empty($var2)) {
 
@@ -347,6 +351,10 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
 						case URL_USUARIO_CUENTA:
 							$controller->usuarioCuentaVirtual();
+							break;
+
+						case URL_USUARIO_COMPRAR:
+							$controller->usuarioComprar();
 							break;
 
 						case URL_SALIR:						

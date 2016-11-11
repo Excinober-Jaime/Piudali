@@ -48,13 +48,19 @@
       <div class="col-xs-12 col-md-3 text-center social">
         <a href="https://www.facebook.com/Piudali-Colombia-1698229213799755/" target="_new">
           <i class="fa fa-facebook-official" aria-hidden="true"></i>
-        </a>
-        <!--<a href="">
-          <i class="fa fa-instagram" aria-hidden="true"></i>
-        </a>-->
+        </a>        
         <a href="http://piudali.com.co/quienes-somos">
           <i class="fa fa-youtube-square" aria-hidden="true"></i>
-        </a><br><br>
+        </a>
+        <form class="form-inline form-search" id="form-buscar" method="get" action="<?=URL_BUSCAR."/"?>">
+          <div class="form-group">
+            <label class="sr-only">Buscar</label>
+            <div class="input-group">              
+              <input type="text" name="buscar" class="form-control" placeholder="Buscar">
+              <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true" onClick="javascript: document-getElementById('form-buscar').submit();"></i></div>
+            </div>
+          </div>          
+        </form>
         <span class="whatsapp">
           <i class="fa fa-whatsapp" aria-hidden="true"></i> 57 311 627 9068 
           <i class="fa fa-phone" aria-hidden="true"></i>  57 2 5241887
@@ -72,7 +78,7 @@
           <?php 
             if (!empty($_SESSION["idusuario"])):
           ?>
-              <a href="<?=URL_USUARIO."/".URL_USUARIO_PERFIL?>" style="color:#fff;"><i class="fa fa-user" aria-hidden="true"></i> Panel de Distribuidor</a> |
+              <a href="<?=URL_USUARIO."/".URL_USUARIO_PERFIL?>" style="color:#fff;"><i class="fa fa-user" aria-hidden="true"></i> <?=$_SESSION["nombre"]?></a> |
               <a href="<?=URL_USUARIO."/".URL_SALIR?>" style="color:#fff;"> Salir <i class="fa fa-sign-out" aria-hidden="true"></i></a>
           <?php 
             else:
