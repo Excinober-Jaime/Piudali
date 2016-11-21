@@ -2,7 +2,7 @@
 function producto_bloque($imagen="",$nombre="",$codigo="",$precio=0,$oferta=0,$link="",$col_sm="col-sm-3"){
 
   if ($col_sm == "col-sm-2") {
-    $font_style = "height: 4em; font-size:14px;";
+    $font_style = "height: 4em; font-size:12px;";
   }else{
     $font_style = "height: 4em";
   }

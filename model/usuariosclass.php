@@ -182,7 +182,7 @@ class Usuarios extends Database
 			$where = "";
 		}
 		
-		$query = $this->consulta("SELECT `ordenes_pedidos`.`idorden`, `ordenes_pedidos`.`num_orden`, `ordenes_pedidos`.`fecha_pedido`, `ordenes_pedidos`.`subtotal`, `ordenes_pedidos`.`descuentos`, `ordenes_pedidos`.`porc_escala`, `ordenes_pedidos`.`desc_escala`, `ordenes_pedidos`.`neto_sin_iva`, `ordenes_pedidos`.`impuestos`, `ordenes_pedidos`.`pago_puntos`, `ordenes_pedidos`.`valor_punto`, `ordenes_pedidos`.`costo_envio`, `ordenes_pedidos`.`total`, `ordenes_pedidos`.`estado`, `ordenes_pedidos`.`fecha_facturacion`, `ordenes_pedidos`.`num_factura`, `ordenes_pedidos`.`usuarios_idusuario`, `usuarios`.`nombre`,`usuarios`.`apellido`
+		$query = $this->consulta("SELECT `ordenes_pedidos`.`idorden`, `ordenes_pedidos`.`num_orden`, `ordenes_pedidos`.`fecha_pedido`, `ordenes_pedidos`.`subtotal`, `ordenes_pedidos`.`subtotal_premios`, `ordenes_pedidos`.`descuentos`, `ordenes_pedidos`.`porc_escala`, `ordenes_pedidos`.`desc_escala`, `ordenes_pedidos`.`neto_sin_iva`, `ordenes_pedidos`.`impuestos`, `ordenes_pedidos`.`pago_puntos`, `ordenes_pedidos`.`valor_punto`, `ordenes_pedidos`.`costo_envio`, `ordenes_pedidos`.`total`, `ordenes_pedidos`.`estado`, `ordenes_pedidos`.`fecha_facturacion`, `ordenes_pedidos`.`num_factura`, `ordenes_pedidos`.`usuarios_idusuario`, `usuarios`.`nombre`,`usuarios`.`apellido`
 									FROM `ordenes_pedidos`
 									INNER JOIN `usuarios` ON (`ordenes_pedidos`.`usuarios_idusuario`=`usuarios`.`idusuario`)
 									$where
@@ -193,7 +193,7 @@ class Usuarios extends Database
 
 	public function detalleOrden($idorden){
 		
-		$query = $this->consulta("SELECT `ordenes_pedidos`.`idorden`, `ordenes_pedidos`.`num_orden`, `ordenes_pedidos`.`fecha_pedido`, `ordenes_pedidos`.`subtotal`, `ordenes_pedidos`.`descuentos`, `ordenes_pedidos`.`porc_escala`, `ordenes_pedidos`.`desc_escala`, `ordenes_pedidos`.`neto_sin_iva`, `ordenes_pedidos`.`impuestos`, `ordenes_pedidos`.`pago_puntos`, `ordenes_pedidos`.`valor_punto`, `ordenes_pedidos`.`costo_envio`, `ordenes_pedidos`.`total`, `ordenes_pedidos`.`estado`, `ordenes_pedidos`.`fecha_facturacion`, `ordenes_pedidos`.`num_factura`, `ordenes_pedidos`.`guia_flete`, `ordenes_pedidos`.`usuarios_idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`email`, `usuarios`.`num_identificacion`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`direccion`, `ciudades`.`ciudad`
+		$query = $this->consulta("SELECT `ordenes_pedidos`.`idorden`, `ordenes_pedidos`.`num_orden`, `ordenes_pedidos`.`fecha_pedido`, `ordenes_pedidos`.`subtotal`, `ordenes_pedidos`.`subtotal_premios`,`ordenes_pedidos`.`descuentos`, `ordenes_pedidos`.`porc_escala`, `ordenes_pedidos`.`desc_escala`, `ordenes_pedidos`.`neto_sin_iva`, `ordenes_pedidos`.`impuestos`, `ordenes_pedidos`.`pago_puntos`, `ordenes_pedidos`.`valor_punto`, `ordenes_pedidos`.`costo_envio`, `ordenes_pedidos`.`total`, `ordenes_pedidos`.`estado`, `ordenes_pedidos`.`fecha_facturacion`, `ordenes_pedidos`.`num_factura`, `ordenes_pedidos`.`guia_flete`, `ordenes_pedidos`.`usuarios_idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`email`, `usuarios`.`num_identificacion`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`direccion`, `ciudades`.`ciudad`
 									FROM `ordenes_pedidos` 
 									INNER JOIN `usuarios` ON (`ordenes_pedidos`.`usuarios_idusuario`=`usuarios`.`idusuario`)
 									INNER JOIN `ciudades` ON(`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`)
@@ -241,7 +241,7 @@ class Usuarios extends Database
 			$where_estados = "";
 		}
 		
-		$query = $this->consulta("SELECT `idorden`, `num_orden`, `fecha_pedido`, `subtotal`, `descuentos`, `porc_escala`, `desc_escala`, `neto_sin_iva`, `impuestos`, `pago_puntos`, `valor_punto`, `costo_envio`, `total`, `estado`, `fecha_facturacion`, `num_factura`
+		$query = $this->consulta("SELECT `idorden`, `num_orden`, `fecha_pedido`, `subtotal`, `subtotal_premios`, `descuentos`, `porc_escala`, `desc_escala`, `neto_sin_iva`, `impuestos`, `pago_puntos`, `valor_punto`, `costo_envio`, `total`, `estado`, `fecha_facturacion`, `num_factura`
 									FROM `ordenes_pedidos` 
 									WHERE `usuarios_idusuario`='$idusuario' $where_estados AND `fecha_pedido` BETWEEN '$inicio' AND '$fin'
 									ORDER BY `fecha_pedido` DESC");

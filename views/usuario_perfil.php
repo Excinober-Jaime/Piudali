@@ -72,23 +72,23 @@
                 <table class="table table-striped">
                 <tbody>
                 	<tr>
-                    	<th scope="row">Razón Social</th>
+                    	<td scope="row">Razón Social</td>
                         <td><?=$organizacion["razon_social"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">Nit</th>
+                    	<td scope="row">Nit</td>
                         <td><?=$organizacion["nit"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">Teléfono</th>
+                    	<td scope="row">Teléfono</td>
                         <td><?=$organizacion["telefono"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">Dirección</th>
+                    	<td scope="row">Dirección</td>
                         <td><?=$organizacion["direccion"]?></td>
                     </tr>
                     <tr>
-                    	<th scope="row">>Ciudad</th>
+                    	<td scope="row">Ciudad</td>
                         <td><?=$organizacion["ciudad"]?></td>
                     </tr>
                 </tbody>

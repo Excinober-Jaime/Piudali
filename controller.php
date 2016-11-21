@@ -1118,6 +1118,7 @@ class Controller
 		
 		$itemsCarrito = $this->carrito->listarItems();
 		$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
+		$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
 		$descuentoCupon = $this->carrito->getDescuentoCupon();
 		$subtotalNetoAntesIva = $this->carrito->getSubtotalNetoAntesIva();
 		$descuentoEscala = $this->carrito->getDescuentoEscala();
@@ -1143,6 +1144,7 @@ class Controller
 
 			$itemsCarrito = $this->carrito->listarItems();
 			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
+			$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
 			$descuentoCupon = $this->carrito->getDescuentoCupon();
 			$subtotalNetoAntesIva = $this->carrito->getSubtotalNetoAntesIva();
 
@@ -1173,13 +1175,14 @@ class Controller
 			$codigo_orden = $this->carrito->generarCodOrden();
 			$fecha_pedido = fecha_actual("date");
 			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
+			$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
 			$descuentoCupon = $this->carrito->getDescuentoCupon();
 			$descuentoEscala = $this->carrito->getDescuentoEscala();
 			$porcDescuentoEscala = $this->carrito->porcDescuentoEscala();
 			$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
 			$detalleOrden = $this->carrito->getDetalleOrden();
 			
-			$pagoPuntos = $this->carrito->getPagoPuntos();			
+			$pagoPuntos = $this->carrito->getPagoPuntos();		
 			
 			$iva = $this->carrito->getIva();
 			$flete = $this->carrito->calcularFlete();
@@ -1216,7 +1219,7 @@ class Controller
 			}
 			
 			//Crear Orden
-			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
+			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
 
 			if ($idorden) {
 				

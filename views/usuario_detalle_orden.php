@@ -8,18 +8,22 @@
 		<hr>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row">		
 		<div class="col-xs-12 col-md-6">
-			<p class="text-left"><b>ORDEN No. </b><br><?=$orden["detalle"]["num_orden"]?></p>
-			<p class="text-left"><?=$orden["detalle"]["nombre"]." ".$orden["detalle"]["apellido"]?><br><?=$orden["detalle"]["num_identificacion"]?></p>
-			<p class="text-left"><?=$orden["detalle"]["direccion"]?><br><?=$orden["detalle"]["ciudad"]?></p>
-			<p class="text-left"><?=$orden["detalle"]["telefono"]?><br><?=$orden["detalle"]["telefono_m"]?></p>
-			<p class="text-left">FECHA PEDIDO: <?=$orden["detalle"]["fecha_pedido"]?></p>
-		</div>
-		<div class="col-xs-12 col-md-6">
-			<p class="text-right"><b>ESTADO:</b><br><?=$orden["detalle"]["estado"]?></p>
-			<p class="text-right"><b>NÚMERO DE GUÍA:</b><br><?=$orden["detalle"]["guia_flete"]?></p>
+			<p><b>LINK GRUPO MARKETING SAS</b><br>
+			Cali, Colombia<br>
+			(+57)(2) 524 1887 - (+57) 311 627 9068<br>
+			contacto@piudali.com.co</p>
+			<p class="text-left"><b>ESTADO:</b><br><?=$orden["detalle"]["estado"]?></p>
+			<p class="text-left"><b>NÚMERO DE GUÍA:</b><br><?=$orden["detalle"]["guia_flete"]?></p>
 		</div>		
+		<div class="col-xs-12 col-md-6">
+			<p class="text-right"><b>ORDEN No. </b><br><?=$orden["detalle"]["num_orden"]?></p>
+			<p class="text-right"><?=$orden["detalle"]["nombre"]." ".$orden["detalle"]["apellido"]?><br>Documento: <?=$orden["detalle"]["num_identificacion"]?></p>
+			<p class="text-right">Dirección: <?=$orden["detalle"]["direccion"]?><br>Ciudad: <?=$orden["detalle"]["ciudad"]?></p>
+			<p class="text-right">Teléfonos: <?=$orden["detalle"]["telefono"]?><br><?=$orden["detalle"]["telefono_m"]?></p>
+			<p class="text-right">FECHA PEDIDO: <?=$orden["detalle"]["fecha_pedido"]?></p>
+		</div>
 		<div class="col-xs-12">
 		<hr>
 			<table class="table table-striped">
@@ -37,7 +41,7 @@
 						<tr>
 							<td><?=$producto["cod_producto"]." - ".$producto["nombre_producto"]?></td>
 							<td class="text-center"><?=$producto["cantidad"]?></td>
-							<td class="text-center"><?=$producto["precio"]?></td>						
+							<td class="text-center"><?=convertir_pesos($producto["precio"])?></td>
 						</tr>
 					<?php
 					}
@@ -61,6 +65,10 @@
 					<tr>
 						<td colspan="2" class="text-right">Total Neto Antes de Iva:</td>
 						<td class="text-center"><?=convertir_pesos($orden["detalle"]["neto_sin_iva"])?></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="text-right">Subtotal Premios:</td>
+						<td class="text-center"><?=convertir_pesos($orden["detalle"]["subtotal_premios"])?></td>
 					</tr>
 					<tr>
 						<td colspan="2" class="text-right">Iva:</td>

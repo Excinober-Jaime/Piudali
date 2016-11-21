@@ -9,7 +9,7 @@
     </div>
 	<div class="clearfix"></div>
     <div class="informacion">
-    <div class="col-xs-12 col-md-8">
+    <div class="col-xs-12 col-md-9">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -26,10 +26,21 @@
 			<tbody>
 				<?php 
 				if (count($incentivos)>0) {
-					foreach ($incentivos as $key => $incentivo) {
+					foreach ($incentivos as $key => $incentivo) {						
 				?>
 						<tr>
-							<td class="text-center"><?=$incentivo["incentivo"]?></td>
+							<td class="text-center">
+								<?php  
+								if (!empty($incentivo["imagen"])) {
+								?>
+									<a class="open-incentivo" img="<?=$incentivo["imagen"]?>"><?=$incentivo["incentivo"]?></a>
+								<?php 
+									
+								}else{
+									echo $incentivo["incentivo"]; 
+								}
+								?>
+							</td>
 							<td class="text-center"><?=$incentivo["inicio"]?></td>
 							<td class="text-center"><?=$incentivo["fin"]?></td>
 							<td class="text-center"><?=$incentivo["meta"]?></td>
@@ -49,7 +60,7 @@
 			</tbody>
 		</table>
         </div>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-md-3">
         	<?php 
 				if (count($incentivos)>0) {
 					foreach ($incentivos as $key => $incentivo) {

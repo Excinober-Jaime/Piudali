@@ -115,6 +115,10 @@
                                     <td><?=convertir_pesos($orden["detalle"]["neto_sin_iva"])?></td>
                                 </tr>
                                 <tr>
+                                    <td><strong>Subtotal Premios:</strong></td>
+                                    <td><?=convertir_pesos($orden["detalle"]["subtotal_premios"])?></td>
+                                </tr>
+                                <tr>
                                     <td><strong>Iva:</strong></td>
                                     <td><?=convertir_pesos($orden["detalle"]["impuestos"])?></td>
                                 </tr>

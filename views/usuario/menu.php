@@ -206,6 +206,15 @@
 	</div>
     <div class="">
 	<div class="col-xs-12">
+		<!--<div class="row">
+			<div class="col-xs-12">
+				<img src="http://linkgrupomarketing.com/images/logo.png" class="img-responsive pull-right" style="max-width: 100px;">
+				<span class="pull-right text-right">
+				<br>
+					Plataforma <br>propiedad de:
+				</span>
+			</div>
+		</div>-->
 		<?php 
 		if (isset($_SESSION["idusuario_remoto"]) && !empty($_SESSION["idusuario_remoto"])) {
 		?>
