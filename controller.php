@@ -935,9 +935,9 @@ class Controller
 
 					case URL_USUARIO_CAPACITACION_NEGOCIO:
 						if ($_SESSION["tipo"]=="REPRESENTANTE COMERCIAL") {
-							$url_presentacion = "//www.slideshare.net/slideshow/embed_code/key/Fe8s03P1TXhtay";
+							$url_presentacion = "//www.slideshare.net/slideshow/embed_code/key/BEhgOKiy9qdeJG";
 						}else{
-							$url_presentacion = "//www.slideshare.net/slideshow/embed_code/key/pTde05ewgmyRoK";	
+							$url_presentacion = "//www.slideshare.net/slideshow/embed_code/key/6vFK37aoFdfDcm";
 						}						
 						break;
 					case URL_USUARIO_CAPACITACION_PROTOCOLOS:
@@ -952,7 +952,7 @@ class Controller
 									);
 						break;
 					case URL_USUARIO_CAPACITACION_VIDEOS_NEGOCIO:
-						$url_tutorial_compra = "//www.slideshare.net/slideshow/embed_code/key/3TEAIZJ0zD3BQG";
+						$url_tutorial_compra = "//www.slideshare.net/slideshow/embed_code/key/oZaYlOeUC72KC8";
 						break;
 					
 					default:
