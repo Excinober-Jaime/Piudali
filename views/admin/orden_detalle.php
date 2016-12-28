@@ -8,6 +8,7 @@
                                     <!--<h5></h5>-->
                                     <address>
                                         <strong>LINK GRUPO MARKETING SAS</strong><br>
+                                        900218947-1<br><br>
                                         Cali, Colombia<br>
                                         (+57)(2) 524 1887 - (+57) 311 627 9068<br>
                                         contacto@piudali.com.co<br>
@@ -51,7 +52,7 @@
                                     <!--<span>A:</span>-->
                                     <address>
                                         <strong><?=$orden["detalle"]["nombre"]." ".$orden["detalle"]["apellido"]?><br>
-                                        <?=$orden["detalle"]["num_identificacion"]?></strong><br>                                       
+                                        CC. <?=$orden["detalle"]["num_identificacion"]?></strong><br>                                       
                                         <?=$orden["detalle"]["direccion"]?><br>
                                         <?=$orden["detalle"]["ciudad"]?><br>
                                         <?=$orden["detalle"]["telefono"]?><br>
@@ -79,8 +80,8 @@
 									?>										
 										<tr>
 	                                        <td>
-	                                        	<div><strong><?=$producto["nombre_producto"]?></strong></div>
-	                                            <small><?=$producto["cod_producto"]?></small>
+	                                        	<div><small><?=$producto["cod_producto"]?></small> 
+	                                        	<strong><?=$producto["nombre_producto"]?></strong></div>
 	                                        </td>
 	                                        <td><?=$producto["cantidad"]?></td>
 	                                        <td><?=$producto["precio"]?></td>                                        

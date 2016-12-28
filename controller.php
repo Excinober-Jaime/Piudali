@@ -13,6 +13,9 @@ require "model/carritoclass.php";
 require "model/paginasclass.php";
 require "model/bannersclass.php";
 require "model/geolocalizacionclass.php";
+require "model/ticketsclass.php";
+require "model/capacitacionclass.php";
+require "model/personalclass.php";
 
 /** Require Includes **/
 require "include/constantes.php";
@@ -32,6 +35,9 @@ class Controller
 		$this->paginas = new Paginas();		
 		$this->banners = new Banners();
 		$this->geolocalizacion = new Geolocalizacion();
+		$this->tickets = new Tickets();
+		$this->capacitacion = new Capacitacion();
+		$this->personal = new Personal();
 	}
 
 
@@ -203,9 +209,13 @@ class Controller
 
 		$paginas_menu = $this->paginasMenu();
 
-		$posicion_banners="SIDEBAR";
+		//$posicion_banners="SIDEBAR";
+		//$estados = array(1);
+		//$banners = $this->banners->listarBanners($posicion_banners,$estados);
+
+		$posicion_banners="REGISTRO";
 		$estados = array(1);
-		$banners = $this->banners->listarBanners($posicion_banners,$estados);
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);
 		
 		$ciudades = $this->listarCiudades();
 
@@ -294,7 +304,7 @@ class Controller
 
 			if (count($usuario)>0) {
 				
-				$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"],$usuario["lider"]);
+				$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"], $usuario["lider"]);
 				header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);
 			}else{
 				echo "<script> alert('Los datos de acceso son incorrectos. Por favor intenta de nuevo'); </script>";
@@ -486,6 +496,8 @@ class Controller
 			}else{
 				$organizacion = false;
 			}
+
+			$region = $this->geolocalizacion->detalleRegionCiudad($usuario["ciudades_idciudad"]);
 			
 			switch ($_SESSION["tipo"]) {
 
@@ -498,14 +510,15 @@ class Controller
 						$ciudades = array();
 
 						$lider = $this->usuarios->detalleUsuario($usuario["lider"]);
-						$zona = $this->geolocalizacion->listarZonas($ids,$lideres,$ciudades);				
+						//$zona = $this->geolocalizacion->listarZonas($ids,$lideres,$ciudades);
+
 					}else{
 						$lider = false;
 					}
 					break;
 
 				case 'REPRESENTANTE COMERCIAL':
-					$zona = $this->usuarios->zonaUsuario($_SESSION["idusuario"]);
+					//$zona = $this->usuarios->zonaUsuario($_SESSION["idusuario"]);
 					break;
 				
 				case 'DIRECTOR':
@@ -578,7 +591,7 @@ class Controller
 				}
 
 				$info_ciudad = $this->usuarios->nombreCiudad($ciudad);
-				$this->actualizarSesion($_SESSION["idusuario"], $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudad, $info_ciudad["ciudad"]);
+				$this->actualizarSesion($_SESSION["idusuario"], $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudad, $info_ciudad["ciudad"], $_SESSION["tipo"], $_SESSION["lider"]);
 
 				if ($actualizar_usuario===1) {
 					if (!empty($return)) {
@@ -921,12 +934,42 @@ class Controller
 
 		$banners = $this->banners->listarBanners($posicion_banners, $estados);
 		
-		$categorias = $this->productos->listarCategorias();
+		//$categorias = $this->productos->listarCategorias();
 
 
 		if (!empty($_SESSION["idusuario"])) {
 
-			if (isset($_GET["opcion"]) && !empty($_GET["opcion"])) {
+			$categorias = $this->capacitacion->listarCategorias();
+
+			if (isset($_GET["opcion"])) {
+
+				switch ($_GET["opcion"]) {
+
+					case URL_USUARIO_CAPACITACION_INGREDIENTES:
+						$ingredientes = $this->usuarios->listarIngredientes();
+						break;
+
+					case URL_USUARIO_CAPACITACION_PROTOCOLOS:
+						$protocolos = $this->usuarios->listarProtocolos();
+						break;
+
+					default:
+						$categoria_actual = $this->capacitacion->detalleCategoria($_GET["opcion"]);
+						$elementos = $this->capacitacion->listarElementosCat($_GET["opcion"]);	
+						break;
+				}							
+			}
+
+
+			
+
+			/*if (count($categorias)>0) {
+				foreach ($categorias as $key => $categoria) {
+					$categorias[$key]["elementos"] = $this->capacitacion->listarElementosCat($categoria["idcategoria"]);
+				}
+			}*/
+
+			/*if (isset($_GET["opcion"]) && !empty($_GET["opcion"])) {
 				
 				switch ($_GET["opcion"]) {
 					case URL_USUARIO_CAPACITACION_INGREDIENTES:
@@ -959,7 +1002,7 @@ class Controller
 						break;
 				}
 
-			}
+			}*/
 		
 			include "views/usuario_capacitacion.php";
 
@@ -996,6 +1039,11 @@ class Controller
 			}
 
 			$iddocumento = $this->usuarios->crearDocumento($_SESSION["idusuario"], $nombre, $destinodoc);
+		}
+
+		if (isset($_GET["eliminarDocumento"]) && !empty($_GET["eliminarDocumento"])) {
+			
+			$this->usuarios->eliminarDocumento($_GET["eliminarDocumento"]);
 		}
 
 		$documentos = $this->usuarios->listarDocumentos($_SESSION["idusuario"]);
@@ -1060,6 +1108,57 @@ class Controller
 		include "views/usuario_comprar.php";
 	}
 
+	public function usuarioTickets(){
+		
+		$paginas_menu = $this->paginasMenu();
+		$moduloActual = URL_USUARIO_TICKETS;
+		$posicion_banners="PANEL INTERNO";
+		$estados = array(1);
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);
+
+		$tickets = $this->tickets->listarTickets($_SESSION["idusuario"]);			
+
+		include "views/usuario_tickets.php";
+	}
+
+	public function usuarioNuevoTicket(){		
+		
+		$paginas_menu = $this->paginasMenu();
+		$moduloActual = URL_USUARIO_TICKETS;
+		$posicion_banners="PANEL INTERNO";
+		$estados = array(1);
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);
+
+		if (isset($_POST["crearTicket"])) {
+			extract($_POST);
+
+			$codigo_ticket = $this->tickets->generarCodTicket();
+
+			$idticket = $this->tickets->crearTicket($codigo_ticket, $tipo, $descripcion, "ABIERTO", fecha_actual('datetime'), $_SESSION["idusuario"]);
+
+			$this->usuarioTickets();
+		}else{
+			include "views/usuario_nuevo_ticket.php";		
+		}		
+	}
+
+	public function usuarioDetalleTicket($idticket){
+		$paginas_menu = $this->paginasMenu();
+		$moduloActual = URL_USUARIO_TICKETS;
+		$posicion_banners="PANEL INTERNO";
+		$estados = array(1);
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
+
+		if (isset($_POST["agregarMensaje"])) {
+			$this->tickets->crearMensajeTicket($_POST['mensaje'], $emisor="CLIENTE", fecha_actual('datetime'), $idticket);
+		}
+
+		$ticket = $this->tickets->detalleTicket($idticket);
+		$mensajes_ticket = $this->tickets->listarMensajesTickets($idticket);
+
+		include "views/usuario_detalle_ticket.php";
+	}
+
 	public function usuarioCerrarSesion(){
 		session_destroy();
 		unset($_SESSION["idusuario"]);
@@ -1074,6 +1173,17 @@ class Controller
 		unset($_SESSION["tipo"]);
 
 		header("Location: ".URL_SITIO);
+	}
+
+	public function personalCerrarSesion(){
+
+		unset($_SESSION["admin"]);
+		unset($_SESSION["admin_nombre"]);
+		unset($_SESSION["admin_cargo"]);
+		unset($_SESSION["admin_email"]);
+		unset($_SESSION["admin_rol"]);	
+
+		header("Location: ".URL_SITIO.URL_ADMIN);
 	}
 
 /*************CARRITO******************************/
@@ -1991,6 +2101,64 @@ class Controller
 		include "views/admin/ingredientes_lista.php";	
 	}
 
+	public function adminCategoriasCapacitacionLista(){
+		$categorias = $this->capacitacion->listarCategorias();
+		include "views/admin/categorias_capacitacion_lista.php";		
+	}
+
+	public function adminCategoriaCapacitacionDetalle($idcategoria){
+
+		extract($_POST);
+
+		if (isset($_POST["actualizarCategoria"])) {
+			$this->capacitacion->actualizarCategoria($idcategoria, $titulo, $contenido, $perfil, $estado);
+		}
+
+		if (isset($_POST["crearCategoria"])) {
+			$idcategoria = $this->capacitacion->crearCategoria($titulo, $contenido, $perfil, $estado);
+		}
+
+		if (isset($idcategoria) && $idcategoria!='') {
+			$categoria = $this->capacitacion->detalleCategoria($idcategoria);
+		}
+		
+		include "views/admin/categoria_capacitacion_detalle.php";
+	}
+
+	public function adminElementosCapacitacionLista(){
+		
+		$elementos = $this->capacitacion->listarElementos();
+
+		if (count($elementos)>0) {			
+		
+			foreach ($elementos as $key => $elemento) {
+				$elementos[$key]["categoria"] = $this->capacitacion->detalleCategoria($elemento["categorias_capacitacion_idcategoria"]);
+			}
+		}
+		include "views/admin/elementos_capacitacion_lista.php";		
+	}
+
+	public function adminElementoCapacitacionDetalle($idelemento){
+
+		$categorias = $this->capacitacion->listarCategorias();
+
+		extract($_POST);
+
+		if (isset($_POST["actualizarElemento"])) {
+			$this->capacitacion->actualizarElemento($idelemento, $titulo, $tipo, $contenido2, $perfil, $estado, $categoria);
+		}
+
+		if (isset($_POST["crearElemento"])) {
+			$idelemento = $this->capacitacion->crearElemento($titulo, $tipo, $contenido2, $perfil, $estado, $categoria);
+		}
+
+		if (isset($idelemento) && $idelemento!='') {
+			$elemento = $this->capacitacion->detalleElemento($idelemento);
+		}
+		
+		include "views/admin/elemento_capacitacion_detalle.php";
+	}
+
 	public function adminIngredienteDetalle($idingrediente){
 
 		extract($_POST);
@@ -2062,6 +2230,64 @@ class Controller
 
 		include "views/admin/suscriptor_detalle.php";
 
+	}
+
+	public function adminPersonalLista(){
+
+		$personal = $this->personal->listarPersonal();
+		include "views/admin/personal_lista.php";
+	}
+
+	public function adminPersonalDetalle($idpersona){
+
+		$companias = $this->personal->listarCompanias();
+
+		extract($_POST);
+
+		if (isset($_POST["actualizarPersonal"])) {
+
+			$this->personal->actualizarPersonal($idpersona, $nombre, $cargo, $usuario, $password, $rol, $estado, $compania);
+		}
+
+		if (isset($_POST["crearPersonal"])) {
+			$idpersona = $this->personal->crearPersonal($nombre, $cargo, $usuario, $password, $rol, $estado, $compania);
+		}
+
+		if (isset($idpersona) && !empty($idpersona)) {
+			$persona = $this->personal->detallePersona($idpersona);
+		}
+
+		include "views/admin/personal_detalle.php";
+
+	}
+
+	public function adminTicketsLista(){
+
+		$tickets = $this->tickets->listarTickets();
+		if (count($tickets)>0) {
+			foreach ($tickets as $key => $ticket) {				
+				$tickets[$key]["usuario"] = $this->usuarios->detalleUsuario($ticket["usuarios_idusuario"]);
+			}
+		}
+		include "views/admin/tickets_lista.php";
+	}
+
+	public function adminTicketsDetalle($idticket){
+
+		if (isset($_POST["agregarMensaje"])) {
+			$this->tickets->crearMensajeTicket($_POST['mensaje'], $emisor="EMPRESA", fecha_actual('datetime'), $idticket);
+		}
+
+		if (isset($_POST["actualizarEstado"])) {
+			$this->tickets->actualizarTicket($idticket, $_POST["estado"]);
+		}
+
+		$ticket = $this->tickets->detalleTicket($idticket);
+		$mensajes_ticket = $this->tickets->listarMensajesTickets($idticket);
+		$ticket["usuario"] = $this->usuarios->detalleUsuario($ticket["usuarios_idusuario"]);
+
+
+		include "views/admin/ticket_detalle.php";	
 	}
 
 	public function adminInformePyG(){

@@ -137,12 +137,38 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							if (isset($var3) && !empty($var3)) {
 
 								if ($var3=="Nuevo") {
-									$var3 = "";								
+									$var3 = "";
 								}
 								$controller->adminIncentivoDetalle($var3);							
 								
 							}else{
 								$controller->adminIncentivosLista();
+							}
+							break;
+
+						case URL_ADMIN_CAPACITACION_CATEGORIAS:
+							if (isset($var3) && !empty($var3)) {
+
+								if ($var3=="Nuevo") {
+									$var3 = "";
+								}
+								$controller->adminCategoriaCapacitacionDetalle($var3);
+								
+							}else{
+								$controller->adminCategoriasCapacitacionLista();
+							}
+							break;
+
+						case URL_ADMIN_CAPACITACION_ELEMENTOS:
+							if (isset($var3) && !empty($var3)) {
+
+								if ($var3=="Nuevo") {
+									$var3 = "";
+								}
+								$controller->adminElementoCapacitacionDetalle($var3);
+								
+							}else{
+								$controller->adminElementosCapacitacionLista();
 							}
 							break;
 
@@ -183,6 +209,14 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}else{
 								$controller->adminSuscriptoresLista();
 							}
+							break;
+
+						case URL_ADMIN_TICKETS:
+							if (isset($var3) && !empty($var3)) {								
+								$controller->adminTicketsDetalle($var3);
+							}else{
+								$controller->adminTicketsLista();
+							}							
 							break;
 						
 						case URL_ADMIN_INFORMES:
@@ -250,6 +284,21 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}else{
 								echo "Url no válida";
 							}
+							break;
+
+						case URL_ADMIN_PERSONAL:
+							if (isset($var3) && !empty($var3)) {
+
+								if ($var3=="Nuevo") {
+									$var3 = "";
+								}
+								$controller->adminPersonalDetalle($var3);
+							}else{
+								$controller->adminPersonalLista();
+							}							
+							break;
+						case URL_ADMIN_SALIR:
+							$controller->personalCerrarSesion();
 							break;
 
 						default:
@@ -355,6 +404,18 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
 						case URL_USUARIO_COMPRAR:
 							$controller->usuarioComprar();
+							break;
+
+						case URL_USUARIO_TICKETS:
+							if (isset($var3) && !empty($var3)) {
+								if ($var3=="Nuevo") {
+									$controller->usuarioNuevoTicket();
+								}else{
+									$controller->usuarioDetalleTicket($var3);
+								}
+							}else{
+								$controller->usuarioTickets();
+							}							
 							break;
 
 						case URL_SALIR:						

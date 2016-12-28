@@ -138,13 +138,21 @@
        		  		<p><?=$lider["telefono"]." ".$lider["telefono_m"]?></p>
                     <p><strong>Email:</strong></p>
               		<p><?=$lider["email"]?></p>
-                    <p><strong>Zona:</strong></p>
-                    <p><?=$zona[0]["zona"]?></p>
+                    <!--<p><strong>Zona:</strong></p>
+                    <p><?=$zona[0]["zona"]?></p>-->
                 <?php
-                }elseif ($zona) {
+                }/*elseif ($zona) {
                 ?>
                 <h2>ZONA</h2>
                 <p><?=$zona["zona"]?></p>
+                <?php
+                }*/
+
+                if ($region) {
+                ?>
+                <hr>
+                <p><strong>Región:</strong></p>
+                <p><?=$region[0]["region"]?></p>
                 <?php
                 }
                 ?>			

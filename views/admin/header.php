@@ -31,7 +31,7 @@ $breadcrumb = explode("/", $_GET["url"]);
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?=$_SESSION["admin_nombre"]?></strong>
                              </span> <span class="text-muted text-xs block"><?=$_SESSION["admin_cargo"]?> <b class="caret"></b></span> </span> </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="<?=URL_SITIO.URL_USUARIO."/".URL_SALIR?>">Salir</a></li>
+                                <li><a href="<?=URL_SITIO.URL_ADMIN."/".URL_ADMIN_SALIR?>">Salir</a></li>
                             </ul>
                     </div>
                     <div class="logo-element">
@@ -63,12 +63,15 @@ $breadcrumb = explode("/", $_GET["url"]);
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_BANNERS?>">Banners</a></li>   
                     </ul>
                 </li>               							
+                <li><a href="<?=URL_ADMIN."/".URL_ADMIN_TICKETS?>"><i class="fa fa-ticket" aria-hidden="true"></i> <span class="nav-label">Tickets</span></a></li>
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_CAMPANAS?>"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span class="nav-label">Campañas</span></a></li>
 				
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_ORDENES?>"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="nav-label">Ordenes</span></a></li>
                 <li>
                     <a href="#"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Capacitación</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_CAPACITACION_CATEGORIAS?>">Categorías</a></li>                        
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_CAPACITACION_ELEMENTOS?>">Elementos</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INGREDIENTES?>">Ingredientes</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PROTOCOLOS?>">Protocolos</a></li>
                     </ul>
@@ -95,7 +98,7 @@ $breadcrumb = explode("/", $_GET["url"]);
                 <li>
                     <a href="#"><i class="fa fa-wrench" aria-hidden="true"></i> <span class="nav-label">Administración</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="#">Personal</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PERSONAL?>">Personal</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PLANTILLAS?>">Plantillas Email</a></li>
                     </ul>
                 </li>
@@ -131,7 +134,7 @@ $breadcrumb = explode("/", $_GET["url"]);
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <a href="<?=URL_SITIO.URL_USUARIO."/".URL_SALIR?>">
+                        <a href="<?=URL_SITIO.URL_ADMIN."/".URL_ADMIN_SALIR?>">
                             <i class="fa fa-sign-out"></i> Salir
                         </a>
                     </li>

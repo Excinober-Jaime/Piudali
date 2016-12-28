@@ -1,7 +1,11 @@
 <?php include "header.php"; ?>
 
 <div class="container">	
-	<div class="col-xs-12 col-md-9">
+	<div class="col-xs-12 col-md-12">
+	<a href="<?=$banners[0]['link']?>">
+		<img src="<?=$banners[0]['imagen']?>" class="img-responsive">
+	</a>
+	<hr>
 	<h1 class="text-center">REGISTRO</h1>		
 		<div class="row">
 			<center>
@@ -9,7 +13,7 @@
 					<a href="#home" aria-controls="home" role="tab" data-toggle="tab" type="button" class="btn btn-success btn-lg">
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Persona Natural
 					</a>
-					<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" type="button" class="btn btn-danger btn-lg ">
+					<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" type="button" class="btn btn-lg " style="background-color: #ef7a00; color: #fff;">
 						<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Persona Jurídica
 					</a>
 				</div>
@@ -247,7 +251,7 @@
 		<br>
 	</div>
 
-	<div class="col-xs-12 col-md-3">
+	<!--<div class="col-xs-12 col-md-3">
 		<?php
 		foreach ($banners as $banner) {
 		?>
@@ -255,7 +259,7 @@
 		<?php
 		}
 		?>
-	</div>
+	</div>-->
 </div>
 <br><br>
 <?php include "footer.php"; ?>

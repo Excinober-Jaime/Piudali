@@ -9,7 +9,7 @@ function producto_bloque($imagen="",$nombre="",$codigo="",$precio=0,$oferta=0,$l
 ?>
 <div class="col-xs-12 <?=$col_sm?>">
     <div class="thumbnail">                
-        <img data-src="<?=$imagen?>" alt="producto"  src="<?=$imagen?>"> 
+        <a href="<?=URL_PRODUCTOS.'/'.$link?>"><img data-src="<?=$imagen?>" alt="producto"  src="<?=$imagen?>"></a>
         <div class="caption">
             <h4 style="<?=$font_style?>"><?=$nombre?></h4>
             <p>Código: <?=$codigo?></p>

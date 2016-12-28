@@ -138,7 +138,7 @@ class Usuarios extends Database
 
 	public function loguearUsuario($email,$password){
 		
-		$query = $this->consulta("SELECT `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`ciudades_idciudad`, `ciudades`.`ciudad` 
+		$query = $this->consulta("SELECT `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`lider`, `usuarios`.`ciudades_idciudad`, `ciudades`.`ciudad` 
 									FROM `usuarios` 
 									INNER JOIN `ciudades` ON(`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`)
 									WHERE `email`='$email' AND `password`='$password'");
@@ -673,6 +673,11 @@ class Usuarios extends Database
 	public function listarDocumentos($idusuario){
 
 		$query = $this->consulta("SELECT `iddocumento`, `nombre`, `url`, `usuarios_idusuario` FROM `documentos` WHERE `usuarios_idusuario`='$idusuario'");
+		return $query;
+	}
+
+	public function eliminarDocumento($iddocumento){
+		$query = $this->actualizar("DELETE FROM `documentos` WHERE `iddocumento`='$iddocumento'");
 		return $query;
 	}
 

@@ -17,7 +17,14 @@
 			<li class="list-group-item"><a href="documentos/FORMATO-AFILIACION-LIDER-COMERCIAL-PIUDALI.pdf" target="_new"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> ACUERDO DE REPRESENTACIÓN COMERCIAL</a></li>
 		<?php foreach ($documentos as $key => $documento) {
 		?>
-			<li class="list-group-item"><a href="<?="include/descargar.php?url=".$documento["url"]?>"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> <?=$documento["nombre"]?></a></li>
+			<li class="list-group-item">
+				<a href="<?="include/descargar.php?url=".$documento["url"]?>">
+					<span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> 
+					<?=$documento["nombre"]?>					
+				</a>
+				<a href="<?=URL_USUARIO."/".URL_USUARIO_DOCUMENTOS?>/?eliminarDocumento=<?=$documento["iddocumento"]?>">
+					<span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
+				</a></li>
 		<?php } ?>	  
 		</ul>
 	<?php }else{ ?>	

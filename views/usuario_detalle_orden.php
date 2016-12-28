@@ -11,6 +11,7 @@
 	<div class="row">		
 		<div class="col-xs-12 col-md-6">
 			<p><b>LINK GRUPO MARKETING SAS</b><br>
+			900218947-1<br><br>
 			Cali, Colombia<br>
 			(+57)(2) 524 1887 - (+57) 311 627 9068<br>
 			contacto@piudali.com.co</p>

@@ -58,7 +58,7 @@
             </div>
         
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbar-menu-interno">
+            <div class="collapse navbar-collapse" id="navbar-menu-interno" style="padding-left: 3px !important;padding-right: 3px !important;">
             
             <?php
 				switch ($_SESSION["tipo"]) {
@@ -68,11 +68,13 @@
                 	<li><a href="<?=URL_USUARIO?>">Perfil</a></li>
                 	<li><a href="<?=URL_USUARIO."/".URL_USUARIO_COMPRAR?>">Comprar <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_NEGOCIO?>">Mis Compras</a></li>					
+					<li><a href="#">Referir</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_PUNTOS?>">Puntos</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_PREMIOS?>">Premios</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_INCENTIVOS?>">Incentivos</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_PROMOCIONES?>">Promociones</a></li>
-					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CUPONES?>">Cupones de Descuento</a></li>
+					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CUPONES?>">Cupones</a></li>
+					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_TICKETS?>">PQRS</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_NEGOCIO?>">Capacitación</a></li>
                 
                 <li class="dropdown">
@@ -101,6 +103,7 @@
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_INCENTIVOS?>">Incentivos</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CUENTA?>">Cuenta virtual</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_NEGOCIO?>">Capacitación</a></li>
+					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_TICKETS?>">PQRS</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_DOCUMENTOS?>">Documentos</a></li>
                 
                 <li class="dropdown">
@@ -205,26 +208,54 @@
 		</ul><?php */?>
 	</div>
     <div class="">
-	<div class="col-xs-12">
-		<!--<div class="row">
-			<div class="col-xs-12">
-				<img src="http://linkgrupomarketing.com/images/logo.png" class="img-responsive pull-right" style="max-width: 100px;">
-				<span class="pull-right text-right">
-				<br>
-					Plataforma <br>propiedad de:
-				</span>
-			</div>
-		</div>-->
+	<div class="col-xs-12">		
 		<?php 
 		if (isset($_SESSION["idusuario_remoto"]) && !empty($_SESSION["idusuario_remoto"])) {
 		?>
-			<div class="alert alert-danger text-center" role="alert">
-				¡ATENCIÓN! HAZ ACCEDIDO A LA CUENTA DE <?=$_SESSION["nombre"]?><br><br>
+		<div class="row">
+			<div class="col-xs-12 col-md-9">
+				<div class="alert alert-danger text-center" role="alert">
+				¡ATENCIÓN! HAZ ACCEDIDO A LA CUENTA DE <?=$_SESSION["nombre"]?> 
 				<a href="<?=URL_SALIR_REMOTO?>" class="btn btn-danger btn-sm">REGRESA A TU CUENTA COMO <?=$_SESSION["nombre_remoto"]?></a></div>
+			</div>
+			<div class="col-xs-12 col-md-3">
+				<div class="col-xs-5 text-center" style="padding-left: 0px !important;padding-right: 0px !important;">
+				<br>
+				<p class="text-center" style="font-size: 11px;line-height: 15px;">Propiedad intelectual y tecnológica:</p>
+				</div>
+				<div class="col-xs-7">
+					<img src="http://linkgrupomarketing.com/images/logo.png" class="img-responsive" style="max-width: 110px;">
+				</div>
+			</div>
+		</div>
 		<?php	
 		}else{
 		?>
-			<div class="alert alert-success text-center" role="alert"><h4><span style="text-transform: uppercase;"><?=$_SESSION["nombre"]?></span>, TU PERFIL ES DE <?=$_SESSION['tipo']?></h4></div>	
+			<div class="row">
+				<div class="col-xs-12 col-md-9">
+					<div class="alert alert-success text-center" role="alert">
+					<h4>
+						<span style="text-transform: uppercase;"><?=$_SESSION["nombre"]?></span>, TU PERFIL ES DE <?=$_SESSION['tipo']?>
+					</h4>	
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-3">
+					<div class="col-xs-5 text-center" style="padding-left: 0px !important;padding-right: 0px !important;">
+					<br>
+						<p class="text-center" style="font-size: 11px;line-height: 15px;">Propiedad intelectual y tecnológica:</p>
+					</div>
+					<div class="col-xs-7">
+						<img src="http://linkgrupomarketing.com/images/logo.png" class="img-responsive" style="max-width: 110px;">
+					</div>
+				</div>
+			</div>
+			<!--<div class="alert alert-success text-center" role="alert">
+				<span class="pull-left"><span style="text-transform: uppercase;"><?=$_SESSION["nombre"]?></span>, TU PERFIL ES DE <?=$_SESSION['tipo']?></span>
+				<img src="http://linkgrupomarketing.com/images/logo.png" class="img-responsive pull-right" style="max-width: 100px;">
+				</div>	-->
+			<!--<div class="col-xs-6" class="alert-success">				
+				<span class="pull-left"><span style="text-transform: uppercase;"><?=$_SESSION["nombre"]?></span>, TU PERFIL ES DE <?=$_SESSION['tipo']?></span>
+			</div>-->
 		<?php
 		}
 		?>

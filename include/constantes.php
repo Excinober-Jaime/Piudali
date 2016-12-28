@@ -40,6 +40,8 @@ define("URL_USUARIO_CLIENTES", "Clientes");
 define("URL_USUARIO_CUENTA", "Cuenta");
 define("URL_USUARIO_DOCUMENTOS", "Documentos");
 define("URL_USUARIO_COMPRAR", "Comprar");
+define("URL_USUARIO_TICKETS", "Tickets");
+
 
 define("URL_REGISTRO", "Registro");
 define("URL_INGRESAR", "Ingresar");
@@ -75,6 +77,11 @@ define("URL_ADMIN_INGREDIENTES", "Ingredientes");
 define("URL_ADMIN_PROTOCOLOS", "Protocolos");
 define("URL_ADMIN_PERSONAL", "Personal");
 define("URL_ADMIN_SUSCRIPTORES", "Suscriptores");
+define("URL_ADMIN_TICKETS", "Tickets");
+define("URL_ADMIN_CAPACITACION_CATEGORIAS", "CategoriasCapacitacion");
+define("URL_ADMIN_CAPACITACION_ELEMENTOS", "ElementosCapacitacion");
+
+define("URL_ADMIN_SALIR", "Salir");
 
 /**INFORMES**/
 define("URL_ADMIN_INFORMES", "Informes");

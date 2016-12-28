@@ -38,6 +38,9 @@
 				    	<h4>Cantidad</h4>
 				    </div>
 				    <div class="col-sm-6">
+				    <?php
+				    if ($producto[0]["cantidad"]>0) {			    
+				    ?>
 				      <select class="form-control" id="cantidad" name="cantidad">
 				      	<?php
 				      	for ($i=1; $i <= $producto[0]["cantidad"]; $i++) { 
@@ -47,6 +50,13 @@
 				      	}
 				      	?>
 				      </select>
+				    <?php
+					}else{
+					?>
+					<p>El producto está agotado</p>
+					<?php
+					}
+				    ?>
 				    </div>
 				</div>							
 			</div>
