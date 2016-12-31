@@ -418,6 +418,10 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}							
 							break;
 
+						case URL_USUARIO_REFERIR:
+							$controller->usuarioReferir();
+							break;
+
 						case URL_SALIR:						
 							$controller->usuarioCerrarSesion();
 							break;

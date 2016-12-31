@@ -95,7 +95,7 @@
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Aplica cupón</label>
-					<input type="checkbox" name="aplica_cupon" value="1" class="form-control" <?php if ($producto[0]['aplica_cupon']) echo "checked"; ?> required>
+					<input type="checkbox" name="aplica_cupon" value="1" class="form-control" <?php if ($producto[0]['aplica_cupon']) echo "checked"; ?>>
 				</div>		
 				<div class="form-group">
 					<label for="exampleInputEmail1">Presentación</label>

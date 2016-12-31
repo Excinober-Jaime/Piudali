@@ -10,7 +10,8 @@ $(document).ready(function(){
 
 	$(".open-incentivo").click(function(){
 		var img = $(this).attr("img");
-		var data = '<img src="'+img+'" class="img-responsive">';
+		var descripcion = $(this).attr("descripcion");
+		var data = '<img src="'+img+'" class="img-responsive"><br><p>'+descripcion+'</p>';
 		$(".modal-body").html(data);
 		$('.modal').modal();
 	})
@@ -40,5 +41,11 @@ $(document).ready(function(){
 
 		var iddistribuidor = $(this).attr("iddistribuidor");
 		$(".ordenes-distribuidor-"+iddistribuidor).toggle();
+	})
+
+	$(".mostrar-nivel").click(function(){
+
+		var nivel = $(this).attr("nivel");		
+		$(".distribuidores-nivel"+nivel).toggle();
 	})
 })

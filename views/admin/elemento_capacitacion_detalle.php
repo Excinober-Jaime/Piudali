@@ -42,7 +42,7 @@
 						<?php
 						foreach ($categorias as $key => $categoria) {
 							?>
-							<option value="<?=$categoria['idcategoria']?>"><?=$categoria["titulo"]?></option>
+							<option value="<?=$categoria['idcategoria']?>" <?php if ($categoria['idcategoria']==$elemento['categorias_capacitacion_idcategoria']) { echo "selected"; } ?>><?=$categoria["titulo"]?></option>
 							<?php
 						}
 						?>

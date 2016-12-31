@@ -55,7 +55,10 @@
   <body>
     <div class="container">      
       <div class="col-xs-12 col-md-3 text-center social">
-        <a href="https://www.facebook.com/Piudali-Colombia-1698229213799755/" target="_new">
+        <a href="https://www.instagram.com/piudalicolombia/" title="Instagram" target="_new">
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.facebook.com/Piudali-Colombia-1698229213799755/" title="Facebook" target="_new">
           <i class="fa fa-facebook-official" aria-hidden="true"></i>
         </a>        
         <a href="http://piudali.com.co/quienes-somos">

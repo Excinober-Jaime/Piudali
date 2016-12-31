@@ -6,7 +6,14 @@
 		<img src="<?=$banners[0]['imagen']?>" class="img-responsive">
 	</a>
 	<hr>
-	<h1 class="text-center">REGISTRO</h1>		
+	<?php
+	if (isset($alerta) && !empty($alerta)) {
+	?>
+	<div class="alert alert-danger" role="alert"><?=$alerta?></div>
+	<?php
+	}
+	?>	
+	<h1 class="text-center">REGISTRO</h1>
 		<div class="row">
 			<center>
 				<div class="btn-group" role="group">

@@ -33,7 +33,7 @@
 								<?php  
 								if (!empty($incentivo["imagen"])) {
 								?>
-									<a class="open-incentivo" img="<?=$incentivo["imagen"]?>"><?=$incentivo["incentivo"]?></a>
+									<a class="open-incentivo" img="<?=$incentivo["imagen"]?>" descripcion="<?=$incentivo["descripcion"]?>"><?=$incentivo["incentivo"]?></a>
 								<?php 
 									
 								}else{

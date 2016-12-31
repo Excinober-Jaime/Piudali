@@ -60,87 +60,129 @@
 				</form>
 				<br>
 			</div>			
-		
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th class="text-center">DISTRIBUIDOR</th>
-					<th class="text-center">CIUDAD</th>										
-					<th class="text-center">NETO</th>					
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				if(count($distribuidores)>0){					
-
-					$porcentaje_comision = 5;
-					$total_compras_netas = 0;
-
-					foreach ($distribuidores as $key => $distribuidor) {
-				?>
+			<table class="table table-striped">
+				<thead>
 					<tr>
-						<td class="text-center"><a class="mostrar-ordenes-distribuidor" iddistribuidor="<?=$distribuidor["idusuario"]?>"><?=$distribuidor["nombre"]?></a><br>
-						<?php
-							if (count($distribuidor["ordenes"])>0) {
-							?>
-							<table class="table ordenes-distribuidor-<?=$distribuidor["idusuario"]?>" style="display: none;">
-								<thead>
-									<tr>										
-										<th class="text-center">Número de Orden</th>
-										<th class="text-center">Neto</th>
-										<th class="text-center">Estado</th>
-									</tr>	
-								</thead>
-								<tbody>
-								<?php
-									foreach ($distribuidor["ordenes"] as $key => $orden) {
-										?>
-										<tr>
-											<td class="text-center"><a href="<?=URL_USUARIO."/".URL_USUARIO_DETALLE_ORDEN."/".$orden["idorden"]?>"><?=$orden["num_orden"]?></a></td>
-											<td class="text-center"><?=convertir_pesos($orden["neto_sin_iva"])?></td>
-											<td class="text-center"><?=$orden["estado"]?></td>
-										</tr>
-										<?php
-									}
-								?>
-								</tbody>
-							</table>
-							<?php
-							}
-						?>
-						</td>
-						<td class="text-center"><?=$distribuidor["ciudad"]?></td>
-						<td class="text-center">$<?=number_format($distribuidor["compras_netas"])?></td>						
+						<th>NIVEL</th>
+						<th class="text-center">NETO</th>
+						<th class="text-center">COMISIÓN %</th>
+						<th class="text-center">COMISIÓN $</th>
 					</tr>
+				</thead>
+				<tbody>
 					<?php
 
-						$total_compras_netas += $distribuidor["compras_netas"];
+					$neto_total = 0;
+					$comision_total = 0;
 
-					}
+					foreach ($niveles as $key => $nivel) {						
+
+						$comision_nivel = $nivel["neto"] * ($porc_niveles[$key]/100);
+						$neto_total += $nivel["neto"];
+						$comision_total += $comision_nivel;
 					?>
 					<tr>
-						<td class="text-right" colspan="2"><strong>TOTAL COMPRAS NETAS</strong></td>
-						<td class="text-center"><strong>$<?=number_format($total_compras_netas)?></strong></td>						
-			  </tr>
-					<tr>
-						<td class="text-right" colspan="2"><strong>PORCENTAJE COMISIÓN</strong></td>
-						<td class="text-center"><strong><?=$porcentaje_comision?>%</strong></td>						
+						<td><a class="mostrar-nivel" nivel="<?=$key?>">NIVEL <?=$key+1?></a></td>
+						<td class="text-center"><?=convertir_pesos($nivel["neto"])?></td>
+						<td class="text-center"><?=$porc_niveles[$key]?>%</td>
+						<td class="text-center"><?=convertir_pesos($comision_nivel)?></td>
 					</tr>
 					<tr>
-						<td class="text-right" colspan="2"><strong>TOTAL COMISIÓN</strong></td>
-						<td class="text-center"><strong>$<?=number_format($total_compras_netas*($porcentaje_comision/100))?></strong></td>
+						<td colspan="4">
+							<table class="table table-striped distribuidores-nivel<?=$key?>" style="display: none;">
+								<thead>
+									<tr>
+										<th class="text-center">DISTRIBUIDOR</th>
+										<th class="text-center">CIUDAD</th>										
+										<th class="text-center">NETO</th>					
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									if(count($nivel["distribuidores"])>0){
+										
+										$total_neto_nivel = 0;
+
+										foreach ($nivel["distribuidores"] as $distribuidor) {
+
+									?>
+										<tr>
+											<td class="text-center"><a class="mostrar-ordenes-distribuidor" iddistribuidor="<?=$distribuidor["idusuario"]?>"><?=$distribuidor["nombre"]?></a><br>
+											
+												<table class="table ordenes-distribuidor-<?=$distribuidor["idusuario"]?>" style="display: none;">
+													<thead>
+														<tr>										
+															<th class="text-center">Número de Orden</th>
+															<th class="text-center">Neto</th>
+															<th class="text-center">Estado</th>
+														</tr>	
+													</thead>
+													<tbody>
+													<?php
+													if (count($distribuidor["ordenes"])>0) {
+														foreach ($distribuidor["ordenes"] as $orden) {
+															?>
+															<tr>
+																<td class="text-center"><a href="<?=URL_USUARIO."/".URL_USUARIO_DETALLE_ORDEN."/".$orden["idorden"]?>"><?=$orden["num_orden"]?></a></td>
+																<td class="text-center"><?=convertir_pesos($orden["neto_sin_iva"])?></td>
+																<td class="text-center"><?=$orden["estado"]?></td>
+															</tr>
+															<?php
+														}
+													}else{
+													?>
+														<tr>
+															<td>Aún no se registran ordenes.</td>
+														</tr>
+													<?php
+													}
+													?>
+													</tbody>
+												</table>												
+											</td>
+											<td class="text-center"><?=$distribuidor["ciudad"]?></td>
+											<td class="text-center">$<?=number_format($distribuidor["compras_netas"])?></td>						
+										</tr>
+										<?php
+
+											$total_neto_nivel += $distribuidor["compras_netas"];
+
+										}
+										?>
+										<tr>
+											<td class="text-right" colspan="2"><strong>COMPRAS NETAS NIVEL <?=$key+1?></strong></td>
+											<td class="text-center"><strong>$<?=number_format($total_neto_nivel)?></strong></td>						
+								  </tr>
+										<tr>
+											<td class="text-right" colspan="2"><strong>PORCENTAJE COMISIÓN</strong></td>
+											<td class="text-center"><strong><?=$porc_niveles[$key]?>%</strong></td>						
+										</tr>
+										<tr>
+											<td class="text-right" colspan="2"><strong>TOTAL COMISIÓN NIVEL <?=$key+1?></strong></td>
+											<td class="text-center"><strong>$<?=number_format($total_neto_nivel*($porc_niveles[$key]/100))?></strong></td>
+										</tr>
+										<?php
+									}else{
+									?>
+									<tr>
+										<td colspan="3" class="text-center">Aún no se registran movimientos.</td>
+									</tr>
+									<?php
+									}
+									?>				
+								</tbody>
+							</table>
+						</td>
 					</tr>
-					<?php
-				}else{
-				?>
-				<tr>
-					<td colspan="3" class="text-center">Aún no se registran movimientos.</td>
-				</tr>
-				<?php
-				}
-				?>				
-			</tbody>
-		</table>
+					<?php } ?>
+					<tr>
+						<td>TOTAL</td>
+						<td class="text-center"><?=convertir_pesos($neto_total)?></td>
+						<td></td>
+						<td class="text-center"><?=convertir_pesos($comision_total)?></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
     </div>		
  </div>

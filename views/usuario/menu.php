@@ -68,7 +68,7 @@
                 	<li><a href="<?=URL_USUARIO?>">Perfil</a></li>
                 	<li><a href="<?=URL_USUARIO."/".URL_USUARIO_COMPRAR?>">Comprar <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_NEGOCIO?>">Mis Compras</a></li>					
-					<li><a href="#">Referir</a></li>
+					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_REFERIR?>">Referir</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_PUNTOS?>">Puntos</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_PREMIOS?>">Premios</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_INCENTIVOS?>">Incentivos</a></li>

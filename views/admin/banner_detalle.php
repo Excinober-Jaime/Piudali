@@ -36,6 +36,7 @@
 						<option value="SIDEBAR" <?php if ($banner[0]['posicion']=='SIDEBAR') echo 'selected'; ?>>SIDEBAR</option>
 						<option value="PANEL INTERNO" <?php if ($banner[0]['posicion']=='PANEL INTERNO') echo 'selected'; ?>>PANEL INTERNO</option>
 						<option value="CONTACTO" <?php if ($banner[0]['posicion']=='CONTACTO') echo 'selected'; ?>>CONTÁCTO</option>
+						<option value="REGISTRO" <?php if ($banner[0]['posicion']=='REGISTRO') echo 'selected'; ?>>REGISTRO</option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -55,8 +56,7 @@
 					<button type="submit" name="crearBanner" class="btn btn-lg btn-primary center-block">GUARDAR</button>
 				<?php
 				}
-				?>
-				
+				?>				
 			</form>
 		</div>
 	</div>

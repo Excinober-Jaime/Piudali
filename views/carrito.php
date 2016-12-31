@@ -3,6 +3,13 @@
 <div class="container">		
 	<div class="row">
 	<div class="col-xs-12">
+		<?php
+		if (isset($alerta) && !empty($alerta)) {
+		?>
+		<div class="alert alert-danger" role="alert"><?=$alerta?></div>
+		<?php
+		}
+		?>		
 		<table class="table table-striped">
 				<thead>
 					<th colspan="2" class="text-center">DESCRIPCIÓN</th>
@@ -12,7 +19,7 @@
 				</thead>
 				<tbody>
 					<?php
-					if (isset($itemsCarrito) && count($itemsCarrito)>0) {				
+					if (isset($itemsCarrito) && count($itemsCarrito)>0) {
 					
 						foreach ($itemsCarrito["id"] as $key => $iditem) {
 
@@ -134,6 +141,9 @@
 	 		}
 	 	}
 	 	?>	 	
+	 </div>
+	 <div class="col-xs-12">
+	 	<img src="assets/img/medios-de-pago.png" class="img-responsive">
 	 </div>
 	</div>
 </div>

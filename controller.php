@@ -221,8 +221,30 @@ class Controller
 
 		if (isset($_GET["r"]) && !empty($_GET["r"])) {
 			$lider = $_GET["r"];
+			$alerta = "Diligencia el formulario con los datos de tu distribuidor";
 		}else{
 			$lider = 0;
+		}
+
+		if (isset($_GET["d"]) && !empty($_GET["d"])) {
+			
+			$referente = $_GET["d"];
+
+			$info_referente = $this->usuarios->detalleUsuario($referente);
+			$lider = $info_referente["lider"]; //El nuevo distribuidor hereda el lider del referente
+
+			$nivel_referente = $info_referente["nivel"];
+
+			if ($nivel_referente<=4) {
+				$nivel = $nivel_referente+1;
+			}else{
+				$nivel = 0;
+			}
+
+			$alerta = "Diligencia el formulario con los datos de tu referido";
+		}else{
+			$referente = 0;
+			$nivel = 0;
 		}
 
 		if (isset($_POST["crearUsuarioOrganizacion"])) {
@@ -233,13 +255,11 @@ class Controller
 			$foto = "";
 			$estado = 1;
 			$fecha_registro = fecha_actual("datetime");
-			$passwordmd5 = md5($password);
-
-			
+			$passwordmd5 = md5($password);			
 
 			$idorganizacion = $this->usuarios->crearOrganizacion($nit, $razon_social, $direccion_organizacion, $telefono_organizacion, $ciudad_organizacion);
 
-			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $lider, $ciudad, $idorganizacion);
+			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, $nivel, $ciudad, $idorganizacion);
 		
 			//Enviar email Bienvenida
 			$idplantilla=2;
@@ -255,7 +275,7 @@ class Controller
 
 			$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
 
-			echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_INGRESAR."';</script>";		
+			echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";		
 
 		}elseif (isset($_POST["crearUsuario"])) {
 
@@ -268,7 +288,7 @@ class Controller
 			$passwordmd5 = md5($password);
 			$idorganizacion = 0;
 
-			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $lider, $ciudad, $idorganizacion);
+			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, $nivel, $ciudad, $idorganizacion);
 		
 			//Enviar email Bienvenida
 			$idplantilla=2;
@@ -284,7 +304,7 @@ class Controller
 
 			$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
 
-			echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_INGRESAR."';</script>";			
+			echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";			
 		}
 
 		include "views/registro.php";
@@ -682,6 +702,29 @@ class Controller
 							
 							$distribuidores[$key]["ordenes"] = $ordenes;
 						}
+
+
+
+						//Niveles
+						
+						$niveles = array();
+						$porc_niveles = array(5,4,3,2,1);
+
+						for ($i=0; $i <=4 ; $i++) {
+
+							$niveles[$i]["neto"] = 0;
+
+							foreach ($distribuidores as $key => $distribuidor) {
+
+								if ($distribuidor["nivel"]==$i) {
+									$niveles[$i]["distribuidores"][$key] = $distribuidor;
+									$niveles[$i]["neto"]+=$distribuidor["compras_netas"];
+								}								
+							}							
+						}	
+
+						/*var_dump($niveles[0]["distribuidores"]);
+						exit();*/
 					}
 
 					include "views/lider_negocio.php";
@@ -1159,6 +1202,17 @@ class Controller
 		include "views/usuario_detalle_ticket.php";
 	}
 
+	public function usuarioReferir(){
+
+		$paginas_menu = $this->paginasMenu();
+		$moduloActual = URL_USUARIO_REFERIR;
+		$posicion_banners="PANEL INTERNO";
+		$estados = array(1);
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);	
+
+		include "views/usuario_referir.php";
+	}
+
 	public function usuarioCerrarSesion(){
 		session_destroy();
 		unset($_SESSION["idusuario"]);
@@ -1243,6 +1297,10 @@ class Controller
 
 		$campana_actual = $this->campanas->getCamapanaActual();
 
+		if ($campana_actual["monto_minimo"]>$subtotalAntesIva) {
+			$alerta = 'El pedido no cumple con el monto mínimo, por favor agrega más productos. Si no eres un distribuidor por favor da clic <a href="'.URL_SITIO.'tiendas">aquí.</a>';
+		}
+
 		include "views/carrito.php";
 	}
 
@@ -1269,6 +1327,8 @@ class Controller
 			$rentabilidad = $this->carrito->getRentabilidad();
 
 			$campana_actual = $this->campanas->getCamapanaActual();
+
+			$alerta = "Valida tu pedido, si esta correcto da clic en FINALIZAR COMPRA para ir a pagar. Luego podras escoger el medio de pago que mas te convenga";
 
 			include "views/resumen_compra.php";
 
@@ -1341,107 +1401,115 @@ class Controller
 
 				$nuevos_puntos = $totalNetoAntesIva*($valor_punto/100);
 				$idnuevospuntos = $this->usuarios->asignarNuevosPuntos($nuevos_puntos, "COMPRAS", $fecha_adquirido, $redimido, $estado_puntos, $_SESSION["idusuario"], $idorden);
-			}
-			
 
-			//Registrar detalle de orden
-			if (count($detalleOrden)>0) {
-				foreach ($detalleOrden as $key => $producto) {
 
-					//Descontar stock
-					$filas = $this->descontarStock($producto["idpdt"],$producto["cantidad"]);
+				$usuario = $this->usuarios->detalleUsuario($_SESSION["idusuario"]);				
+				$referente = $usuario["referente"];
 
-					//Agregar detalle orden
-					$id_detalle_orden = $this->carrito->agregarDetalleOrden($producto["nombre"], $producto["codigo"], $producto["cantidad"], $producto["precio"], $producto["precio_base"], $producto["descuento_cupon"], $producto["iva"], $producto["descuento_puntos"], $idorden);
+				if ($referente) {
+					//Abonar puntos a referente
+					$idnuevospuntos_referente = $this->usuarios->asignarNuevosPuntos($nuevos_puntos, "COMPRA DE REFERIDO ".$usuario["nombre"], $fecha_adquirido, $redimido, $estado_puntos, $referente, $idorden);
 				}
+
+				//Registrar detalle de orden
+				if (count($detalleOrden)>0) {
+					foreach ($detalleOrden as $key => $producto) {
+
+						//Descontar stock
+						$filas = $this->descontarStock($producto["idpdt"],$producto["cantidad"]);
+
+						//Agregar detalle orden
+						$id_detalle_orden = $this->carrito->agregarDetalleOrden($producto["nombre"], $producto["codigo"], $producto["cantidad"], $producto["precio"], $producto["precio_base"], $producto["descuento_cupon"], $producto["iva"], $producto["descuento_puntos"], $idorden);
+					}
+				}
+
+
+				//Enviar Email Orden
+				$tabla_orden = '<table cellspacing="10" border="0" width="650px" align="center">
+						<thead>
+							<tr>
+								<th align="center">DESCRIPCIÓN</th>
+								<th align="center">PRECIO</th>
+								<th align="center">CANTIDAD</th>
+								<th align="right">SUBTOTAL</th>
+							</tr>
+						</thead>
+						<tbody>';
+
+				if (count($detalleOrden)>0) {
+					foreach ($detalleOrden as $key => $producto) {
+						$tabla_orden .= '<tr><td>'.$producto["nombre"].'<br>'.$producto["codigo"].'<br>'.$producto["iva_porc"].'%</td>
+								<td>$'.number_format($producto["precio"]).'</td>
+								<td align="center">'.$producto["cantidad"].'</td>
+								<td align="right">$'.number_format($producto["subtotal"]).'</td></tr>';
+					}
+				}
+				
+				$tabla_orden .='<tr><td colspan="3" align="right">Subtotal antes de IVA</td>
+								<td align="right">$'.number_format($subtotalAntesIva).'</td></tr>
+							<tr><td colspan="3" align="right">Descuento Cupón</td>
+								<td align="right">$'.number_format($descuentoCupon).'</td></tr>
+							<tr><td colspan="3" align="right">Subtotal Neto Antes de Iva</td>
+								<td align="right">$'.number_format(($subtotalAntesIva-$descuentoCupon)).'</td></tr>
+							<tr><td colspan="3" align="right">Descuento por Escala %</td>
+								<td align="right">'.$porcDescuentoEscala.'%</td></tr>
+							<tr><td colspan="3" align="right">Descuento por Escala $</td>
+								<td align="right">$'.number_format($descuentoEscala).'</td></tr>
+							<tr><td colspan="3" align="right">Total Neto antes de IVA</td>
+								<td align="right">$'.number_format($totalNetoAntesIva).'</td></tr>
+							<tr><td colspan="3" align="right">IVA</td>
+								<td align="right">$'.number_format($iva).'</td></tr>
+							<tr><td colspan="3" align="right">Pago con puntos</td>
+								<td align="right">$'.number_format($pagoPuntos["valor_pago"]).'</td></tr>
+							<tr><td colspan="3" align="right">Costo de Envío</td>
+								<td align="right">$'.number_format($flete).'</td></tr>
+							<tr><td colspan="3" align="right"><b>TOTAL A PAGAR</b></td>
+								<td align="right"><b>$'.number_format($total).'</b></td></tr>
+						</tbody>
+					</table>';
+
+				
+				
+				$idplantilla=1;
+				$plantilla = $this->usuarios->detallePlantilla($idplantilla);
+				$mensaje = shorcodes_orden_compra($_SESSION["nombre"]." ".$_SESSION["apellido"],$codigo_orden,$plantilla["mensaje"],$tabla_orden,$estado);
+				
+				// Always set content-type when sending HTML email
+				$headers = "MIME-Version: 1.0"."\r\n";
+				$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
+
+				// More headers
+				$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
+
+				$mail = mail($_SESSION["email"], $plantilla["asunto"], $mensaje, $headers);
+
+				//Variables Pago Payu
+				$merchantId = 502548;
+				$ApiKey = "28tuaar72n6g65ervovdl1sst";
+				$referenceCode = $codigo_orden;
+				//$accountId = ;
+				$description = "COMPRA PRODUCTOS PIUDALI";
+				$currency = "COP";
+				$buyerEmail = $_SESSION["email"];
+				$amount = round($total);
+				$tax = round($iva);
+				if ($iva == 0) {
+					$taxReturnBase = 0;
+				}else{
+					$taxReturnBase = round($totalNetoAntesIva-$pagoPuntos["valor_pago"]);
+				}
+				$lng = "ES";
+				$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];
+				$extra1 = $_SESSION["idusuario"];
+				$extra3 = "PIUDALI";
+				$responseUrl = "http://naturalvitalis.com/respagos.php";
+				$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
+
+				require "include/pago_payu.php";
+
+				unset($_SESSION["idpdts"]);
+				unset($_SESSION["cantidadpdts"]);
 			}		
-
-
-			//Enviar Email Orden
-
-			$tabla_orden = '<table cellspacing="10" border="0" width="650px" align="center">
-					<thead>
-						<tr>
-							<th align="center">DESCRIPCIÓN</th>
-							<th align="center">PRECIO</th>
-							<th align="center">CANTIDAD</th>
-							<th align="right">SUBTOTAL</th>
-						</tr>
-					</thead>
-					<tbody>';
-			if (count($detalleOrden)>0) {
-				foreach ($detalleOrden as $key => $producto) {
-					$tabla_orden .= '<tr><td>'.$producto["nombre"].'<br>'.$producto["codigo"].'<br>'.$producto["iva_porc"].'%</td>
-							<td>$'.number_format($producto["precio"]).'</td>
-							<td align="center">'.$producto["cantidad"].'</td>
-							<td align="right">$'.number_format($producto["subtotal"]).'</td></tr>';
-				}
-			}
-			
-			$tabla_orden .='<tr><td colspan="3" align="right">Subtotal antes de IVA</td>
-							<td align="right">$'.number_format($subtotalAntesIva).'</td></tr>
-						<tr><td colspan="3" align="right">Descuento Cupón</td>
-							<td align="right">$'.number_format($descuentoCupon).'</td></tr>
-						<tr><td colspan="3" align="right">Subtotal Neto Antes de Iva</td>
-							<td align="right">$'.number_format(($subtotalAntesIva-$descuentoCupon)).'</td></tr>
-						<tr><td colspan="3" align="right">Descuento por Escala %</td>
-							<td align="right">'.$porcDescuentoEscala.'%</td></tr>
-						<tr><td colspan="3" align="right">Descuento por Escala $</td>
-							<td align="right">$'.number_format($descuentoEscala).'</td></tr>
-						<tr><td colspan="3" align="right">Total Neto antes de IVA</td>
-							<td align="right">$'.number_format($totalNetoAntesIva).'</td></tr>
-						<tr><td colspan="3" align="right">IVA</td>
-							<td align="right">$'.number_format($iva).'</td></tr>
-						<tr><td colspan="3" align="right">Pago con puntos</td>
-							<td align="right">$'.number_format($pagoPuntos["valor_pago"]).'</td></tr>
-						<tr><td colspan="3" align="right">Costo de Envío</td>
-							<td align="right">$'.number_format($flete).'</td></tr>
-						<tr><td colspan="3" align="right"><b>TOTAL A PAGAR</b></td>
-							<td align="right"><b>$'.number_format($total).'</b></td></tr>
-					</tbody>
-				</table>';
-
-			
-			
-			$idplantilla=1;
-			$plantilla = $this->usuarios->detallePlantilla($idplantilla);
-			$mensaje = shorcodes_orden_compra($_SESSION["nombre"]." ".$_SESSION["apellido"],$codigo_orden,$plantilla["mensaje"],$tabla_orden,$estado);
-			
-			// Always set content-type when sending HTML email
-			$headers = "MIME-Version: 1.0"."\r\n";
-			$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
-
-			// More headers
-			$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
-
-			$mail = mail($_SESSION["email"], $plantilla["asunto"], $mensaje, $headers);
-
-			//Variables Pago Payu
-			$merchantId = 502548;
-			$ApiKey = "28tuaar72n6g65ervovdl1sst";
-			$referenceCode = $codigo_orden;
-			//$accountId = ;
-			$description = "COMPRA PRODUCTOS PIUDALI";
-			$currency = "COP";
-			$buyerEmail = $_SESSION["email"];
-			$amount = round($total);
-			$tax = round($iva);
-			if ($iva == 0) {
-				$taxReturnBase = 0;
-			}else{
-				$taxReturnBase = round($totalNetoAntesIva-$pagoPuntos["valor_pago"]);
-			}
-			$lng = "ES";
-			$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];
-			$extra1 = $_SESSION["idusuario"];
-			$extra3 = "PIUDALI";
-			$responseUrl = "http://naturalvitalis.com/respagos.php";
-			$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
-
-			require "include/pago_payu.php";
-
-			unset($_SESSION["idpdts"]);
-			unset($_SESSION["cantidadpdts"]);
 			
 		}else{
 			header("Location: ".URL_INGRESAR);
@@ -1958,7 +2026,7 @@ class Controller
 		extract($_POST);
 
 		if (isset($_POST["crearUsuario"])) {			
-			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), $lider, $ciudad, 0);
+			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, 0, $ciudad, 0);
 		}
 
 		if (isset($_POST["actualizarUsuario"])) {
@@ -2001,13 +2069,32 @@ class Controller
 				$puntos_pendientes = $this->usuarios->listarPuntosUsuario($detalle_orden["detalle"]["usuarios_idusuario"], 0, $idorden);				
 
 				if (count($puntos_pendientes)>0) {
-					//Activar puntos pendientes					
+					//Activar puntos pendientes
 
 					$estado_puntos = 1;
 
 					foreach ($puntos_pendientes as $key => $puntos) {
 						
 						$this->usuarios->actualizarPuntosEstado($puntos["idpuntos"] ,$estado_puntos);
+					}
+				}
+
+				$usuario = $this->usuarios->detalleUsuario($detalle_orden["detalle"]["usuarios_idusuario"]);
+				$referente = $usuario["referente"];
+
+				if ($referente) {
+
+					$puntos_pendientes = $this->usuarios->listarPuntosUsuario($referente, 0, $idorden);
+
+					if (count($puntos_pendientes)>0) {
+					//Activar puntos pendientes del referente
+
+						$estado_puntos = 1;
+
+						foreach ($puntos_pendientes as $key => $puntos) {
+							
+							$this->usuarios->actualizarPuntosEstado($puntos["idpuntos"] ,$estado_puntos);
+						}
 					}
 				}
 			}
