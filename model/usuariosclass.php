@@ -364,6 +364,55 @@ class Usuarios extends Database
 		return $query;
 	}
 
+	public function detalleCupon($idcupon){
+		$query = $this->consulta("SELECT `idcodigo`, `titulo`, `aplicacion`, `val_descuento`, `fecha_expiracion`, `num_codigo_desc`, `estado`, `tipo`, `privado`, `monto_minimo` 
+									FROM `codigos_descuento`
+									WHERE `idcodigo`='$idcupon'");
+		
+		return $query[0];	
+	}
+
+	public function crearCupon($titulo="", $aplicacion=0, $val_descuento=0, $fecha_expiracion="", $num_codigo_desc="", $estado=0, $tipo=0, $privado=0, $monto_minimo=0){
+		
+		$idcupon = $this->insertar("INSERT INTO `codigos_descuento`(									
+									`titulo`, 
+									`aplicacion`, 
+									`val_descuento`, 
+									`fecha_expiracion`, 
+									`num_codigo_desc`, 
+									`estado`, 
+									`tipo`, 
+									`privado`, 
+									`monto_minimo`) VALUES (									
+									'$titulo',
+									'$aplicacion',
+									'$val_descuento',
+									'$fecha_expiracion',
+									'$num_codigo_desc',
+									'$estado',
+									'$tipo',
+									'$privado',
+									'$monto_minimo')");
+		return $idcupon;
+	}
+
+	public function actualizarCupon($idcupon=0, $titulo="", $aplicacion=0, $val_descuento=0, $fecha_expiracion="", $num_codigo_desc="", $estado=0, $tipo=0, $privado=0, $monto_minimo=0){
+		
+		$query = $this->actualizar("UPDATE `codigos_descuento` SET 									
+									`titulo`='$titulo',
+									`aplicacion`='$aplicacion',
+									`val_descuento`='$val_descuento',
+									`fecha_expiracion`='$fecha_expiracion',
+									`num_codigo_desc`='$num_codigo_desc',
+									`estado`='$estado',
+									`tipo`='$tipo',
+									`privado`='$privado',
+									`monto_minimo`='$monto_minimo'
+									WHERE `idcodigo`='$idcupon'");
+		
+		return $query;
+	}
+
 	public function listarDistribuidoresLider($idlider,$estado="",$filtro_nombre=""){
 
 		if ($estado!="") {

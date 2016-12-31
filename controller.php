@@ -998,7 +998,33 @@ class Controller
 
 					default:
 						$categoria_actual = $this->capacitacion->detalleCategoria($_GET["opcion"]);
-						$elementos = $this->capacitacion->listarElementosCat($_GET["opcion"]);	
+						$elementos = $this->capacitacion->listarElementosCat($_GET["opcion"]);
+
+						if (count($elementos)>0) {
+							foreach ($elementos as $key => $elemento) {
+								if ($elemento["perfil"]=="DISTRIBUIDOR DIRECTO") {
+									$elementos_distribuidores[] = $elemento;
+								}
+
+								if ($elemento["perfil"]=="REPRESENTANTE COMERCIAL") {
+									$elementos_representantes[] = $elemento;
+								}
+
+								if ($elemento["perfil"]=="TODOS") {
+									$elementos_distribuidores[] = $elemento;
+									$elementos_representantes[] = $elemento;
+								}
+							}		
+						}
+
+						if ($_SESSION["tipo"]=="DISTRIBUIDOR DIRECTO") {
+
+							$elementos = $elementos_distribuidores;
+
+						}elseif ($_SESSION["tipo"]=="REPRESENTANTE COMERCIAL") {
+							
+							$elementos = $elementos_representantes;					
+						}
 						break;
 				}							
 			}
@@ -2346,6 +2372,39 @@ class Controller
 
 		include "views/admin/personal_detalle.php";
 
+	}
+
+	public function adminCuponesLista(){
+
+		$cupones = $this->usuarios->listarCupones();
+		include "views/admin/cupones_lista.php";
+	}
+
+	public function adminCuponDetalle($idcupon){		
+
+		extract($_POST);
+
+		if (isset($_POST["actualizarCupon"])) {
+
+			$privado = 0;			
+			$tipo = 0;
+
+			$this->usuarios->actualizarCupon($idcupon, $titulo, $aplicacion, $val_descuento, $fecha_expiracion, $num_codigo_desc, $estado, $tipo, $privado, $monto_minimo);
+		}
+
+		if (isset($_POST["crearCupon"])) {
+
+			$privado = 0;			
+			$tipo = 0;
+			
+			$idcupon = $this->usuarios->crearCupon($titulo, $aplicacion, $val_descuento, $fecha_expiracion, $num_codigo_desc, $estado, $tipo, $privado, $monto_minimo);
+		}
+
+		if (isset($idcupon) && !empty($idcupon)) {
+			$cupon =$this->usuarios->detalleCupon($idcupon);
+		}
+		
+		include "views/admin/cupon_detalle.php";
 	}
 
 	public function adminTicketsLista(){

@@ -297,6 +297,17 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 								$controller->adminPersonalLista();
 							}							
 							break;
+						case URL_ADMIN_CUPONES:
+							if (isset($var3) && !empty($var3)) {
+
+								if ($var3=="Nuevo") {
+									$var3 = "";
+								}
+								$controller->adminCuponDetalle($var3);
+							}else{
+								$controller->adminCuponesLista();
+							}
+							break;
 						case URL_ADMIN_SALIR:
 							$controller->personalCerrarSesion();
 							break;
