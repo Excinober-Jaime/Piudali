@@ -43,6 +43,30 @@ $(document).ready(function(){
         $("#escalas_incentivo").append('<tr><td><input type="text" name="minimo[]" class="form-control"></td><td><input type="text" name="maximo[]" class="form-control"></td><td><input type="text" name="bono[]" class="form-control"></td></tr>');
     });
 
+    $(".eliminarOrden").click(function(){
+        var idorden = $(this).attr("idorden");
+
+        var r = confirm("¿Seguro que desea eliminar la orden? Se eliminará la orden, sus productos y puntos asociados");
+
+        if (r) {
+
+            $.ajax({
+                type: 'POST',
+                url: "Admin/Ordenes/EliminarOrden",
+                data: { idorden:idorden },
+                dataType: 'json',
+                async: false,
+                success: function(response) {
+                    alert('Se elimino '+response.filas+' orden(s)');
+                    location.reload();
+                },
+                error: function() {
+                    alert('No se pudo eliminar la orden');
+                }
+            });
+        }
+    });
+
     var config = {
                 '.chosen-select'           : {},
                 '.chosen-select-deselect'  : {allow_single_deselect:true},

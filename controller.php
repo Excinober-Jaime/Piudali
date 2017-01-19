@@ -706,7 +706,7 @@ class Controller
 
 
 						//Niveles
-						
+						$nombre_niveles = array('FRONTAL','REFERIDOS','REFERIDOS','REFERIDOS','REFERIDOS');
 						$niveles = array();
 						$porc_niveles = array(5,4,3,2,1);
 
@@ -2072,6 +2072,22 @@ class Controller
 
 
 	/*****Ordenes*****/
+
+	public function eliminarOrden(){
+
+		if (isset($_POST["idorden"]) && !empty($_POST["idorden"])) {
+			
+			$filas = $this->ordenes->eliminarOrden($_POST["idorden"]);
+
+		}else{
+			$filas = 0;
+		}
+
+		$return = array('filas' => $filas);
+
+		echo json_encode($return);
+	}
+
 	public function adminOrdenesLista(){
 
 		$ordenesLista = $this->usuarios->listarOrdenes();

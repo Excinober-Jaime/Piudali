@@ -120,13 +120,18 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}												
 							break;
 
-						case URL_ADMIN_ORDENES:
+						case URL_ADMIN_ORDENES:						
 							if (isset($var3) && !empty($var3)) {
 
-								if ($var3=="Nuevo") {
-									$var3 = "";
+								if ($var3==URL_ADMIN_ELIMINAR_ORDEN) {
+									$controller->eliminarOrden();
+								}else{
+
+									if ($var3=="Nuevo") {
+										$var3 = "";
+									}
+									$controller->adminOrdenDetalle($var3);							
 								}
-								$controller->adminOrdenDetalle($var3);							
 								
 							}else{
 								$controller->adminOrdenesLista();

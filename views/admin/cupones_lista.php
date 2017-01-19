@@ -9,6 +9,7 @@
 			  		<th>Título</th>
 			  		<th>Código</th>			  		
 			  		<th>Descuento</th>
+			  		<th>Monto Mínimo</th>
 			  		<th>Estado</th>
 			  	</tr>
 			  </thead>
@@ -20,6 +21,7 @@
 		  			<td><?=$cupon["titulo"]?></td>
 		  			<td><?=$cupon["num_codigo_desc"]?></td>
 		  			<td><?=$cupon["val_descuento"]?></td>
+		  			<td><?=convertir_pesos($cupon["monto_minimo"])?></td>
 		  			<td><?=$cupon["estado"]?></td>
 		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_CUPONES."/".$cupon['idcodigo']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
 		  		</tr>

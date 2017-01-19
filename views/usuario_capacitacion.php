@@ -20,8 +20,8 @@
           }
           ?>
           <!--<li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_NEGOCIO?>">PRESENTACIÓN</a></li>-->
-				  <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_INGREDIENTES?>">A-Z INGREDIENTES NATURALES</a></li>				  
 				  <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_PROTOCOLOS?>">PROTOCOLOS DE USO</a></li>
+          <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_INGREDIENTES?>">A-Z INGREDIENTES NATURALES</a></li>				  				  
           <!--<li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_VIDEOS?>">VIDEOS DE PROTOCOLOS</a></li>
           <li class="list-group-item"><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_VIDEOS_NEGOCIO?>">VIDEOS TUTORIALES</a></li>-->
 				</ul>				
@@ -43,7 +43,7 @@
             break;
 
           default:
-            $col = "col-xs-12 col-md-4";
+            $col = "col-xs-12 col-md-6";
             break;
         }
 
@@ -68,6 +68,17 @@
               break;
             case 'HTML':
               echo $elemento['contenido'];
+              break;
+
+            case 'VIDEO':
+              ?>
+              <div class="embed-responsive embed-responsive-16by9">
+                <video width="320" height="240" controls>
+                  <source src="<?=$elemento['contenido']?>" type="video/mp4">                
+                Your browser does not support the video tag.
+                </video>
+              </div>
+              <?php
               break;
               
               default:

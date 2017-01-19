@@ -335,14 +335,21 @@ class Usuarios extends Database
 	public function actualizarIncentivo($idincentivo, $incentivo, $imagen, $inicio, $fin, $meta, $descripcion, $usuario){
 		
 		$query = $this->actualizar("UPDATE `incentivos` SET 									
-									`incentivo`='$incentivo',
-									`imagen`='$imagen',
+									`incentivo`='$incentivo',									
 									`inicio`='$inicio',
 									`fin`='$fin',
 									`meta`='$meta',
 									`descripcion`='$descripcion',
 									`usuario`='$usuario'
 									WHERE `idincentivo`='$idincentivo'");
+
+
+		if (!empty($imagen)) {
+			
+			$this->actualizar("UPDATE `incentivos` SET									
+									`imagen`='$imagen'									
+									WHERE `idincentivo`='$idincentivo'");	
+		}
 		
 		return $query;
 	}

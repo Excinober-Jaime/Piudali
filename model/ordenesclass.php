@@ -52,5 +52,14 @@ class Ordenes extends Database
 
 		return $query;
 	}
+
+	public function eliminarOrden($idorden){
+
+		$filas_puntos = $this->actualizar("DELETE FROM `puntos` WHERE `ordenes_pedidos_idorden`='$idorden'");
+		$filas_productos = $this->actualizar("DELETE FROM `detalle_orden` WHERE `ordenes_pedidos_idorden`='$idorden'");
+		$filas_ordenes = $this->actualizar("DELETE FROM `ordenes_pedidos` WHERE `idorden`='$idorden'");
+
+		return $filas_ordenes;
+	}
 }
 ?>

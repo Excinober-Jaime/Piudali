@@ -75,14 +75,14 @@
 					$neto_total = 0;
 					$comision_total = 0;
 
-					foreach ($niveles as $key => $nivel) {						
+					foreach ($niveles as $key => $nivel) {
 
 						$comision_nivel = $nivel["neto"] * ($porc_niveles[$key]/100);
 						$neto_total += $nivel["neto"];
 						$comision_total += $comision_nivel;
 					?>
 					<tr>
-						<td><a class="mostrar-nivel" nivel="<?=$key?>">NIVEL <?=$key+1?></a></td>
+						<td><a class="mostrar-nivel" nivel="<?=$key?>">NIVEL <?=($key+1)." ".$nombre_niveles[$key]?></a></td>
 						<td class="text-center"><?=convertir_pesos($nivel["neto"])?></td>
 						<td class="text-center"><?=$porc_niveles[$key]?>%</td>
 						<td class="text-center"><?=convertir_pesos($comision_nivel)?></td>
