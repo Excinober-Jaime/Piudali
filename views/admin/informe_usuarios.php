@@ -55,8 +55,7 @@
 			  		<th>Móvil</th>
 			  		<th>Segmento</th>
 			  		<th>Compras</th>
-			  		<th>Ciudad</th>			  		
-			  		<th>Zona</th>			  		
+			  		<th>Ciudad</th>			  					  		
 			  		<th>Región</th>			  		
 			  		<th>Representante</th>
 			  		<th>Director</th>
@@ -80,8 +79,7 @@
 		  			<td><?=$usuario["telefono_m"]?></td>
 		  			<td><?=$usuario["segmento"]?></td>
 		  			<td><?=convertir_pesos($usuario["compras_netas"])?></td>
-		  			<td><?=$usuario["ciudad"]?></td>
-		  			<td><?=$usuario["zona"]["zona"]?></td>
+		  			<td><?=$usuario["ciudad"]?></td>		  			
 		  			<td><?=$usuario["region"]["region"]?></td>
 		  			<td><?=$usuario["lider"]["nombre"]." ".$usuario["lider"]["apellido"]?></td>
 		  			<td><?=$usuario["director"]["nombre"]." ".$usuario["director"]["apellido"]?></td>

@@ -2523,6 +2523,8 @@ class Controller
 
 	public function adminInformeOrdenes(){
 
+		$estados = array('APROBADO', 'DECLINADO', 'PENDIENTE', 'FACTURADO');
+
 		if (isset($_POST["filtro_fecha_inicio"]) && !empty($_POST["filtro_fecha_inicio"])) {
 			$fecha_inicio = $_POST["filtro_fecha_inicio"];
 		}else{
@@ -2535,7 +2537,13 @@ class Controller
 			$fecha_fin = date("Y")."-12-31";
 		}
 
-		$ordenes = $this->usuarios->listarOrdenes($fecha_inicio, $fecha_fin);
+		if (isset($_POST["filtro_estado"]) && !empty($_POST["filtro_estado"])) {
+			$estado = $_POST["filtro_estado"];	
+		}else{
+			$estado = "";
+		}
+
+		$ordenes = $this->usuarios->listarOrdenes($fecha_inicio, $fecha_fin, $estado);
 		$zonas = $this->geolocalizacion->listarZonas();
 		$regiones = $this->geolocalizacion->listarRegiones();
 
@@ -2554,11 +2562,11 @@ class Controller
 			$ordenes[$key]["zona"] = $zona[0];
 			$ordenes[$key]["region"] = $region[0];
 
-			if (isset($_POST["filtro_zona"]) && !empty($_POST["filtro_zona"])) {
+			/*if (isset($_POST["filtro_zona"]) && !empty($_POST["filtro_zona"])) {
 				if ($zona[0]["idzona"]!=$_POST["filtro_zona"]) {
 					unset($ordenes[$key]);
 				}
-			}
+			}*/
 
 			if (isset($_POST["filtro_region"]) && !empty($_POST["filtro_region"])) {
 				if ($region[0]["idregion"]!=$_POST["filtro_region"]) {

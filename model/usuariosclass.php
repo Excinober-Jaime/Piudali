@@ -178,13 +178,21 @@ class Usuarios extends Database
 		return $query[0];
 	}
 
-	public function listarOrdenes($inicio="", $fin=""){
+	public function listarOrdenes($inicio="", $fin="", $estado=""){
 
 		if (!empty($inicio) && !empty($fin)) {
 			$where = "WHERE `ordenes_pedidos`.`fecha_pedido` BETWEEN '$inicio' AND '$fin'";
+		
+			if (!empty($estado)) {
+				$where .= " AND `ordenes_pedidos`.`estado`='$estado'";
+			}
 		}else{
 			$where = "";
-		}
+
+			if (!empty($estado)) {
+				$where .= "WHERE `ordenes_pedidos`.`estado`='$estado'";
+			}
+		}		
 		
 		$query = $this->consulta("SELECT `ordenes_pedidos`.`idorden`, `ordenes_pedidos`.`num_orden`, `ordenes_pedidos`.`fecha_pedido`, `ordenes_pedidos`.`subtotal`, `ordenes_pedidos`.`subtotal_premios`, `ordenes_pedidos`.`descuentos`, `ordenes_pedidos`.`porc_escala`, `ordenes_pedidos`.`desc_escala`, `ordenes_pedidos`.`neto_sin_iva`, `ordenes_pedidos`.`impuestos`, `ordenes_pedidos`.`pago_puntos`, `ordenes_pedidos`.`valor_punto`, `ordenes_pedidos`.`costo_envio`, `ordenes_pedidos`.`total`, `ordenes_pedidos`.`estado`, `ordenes_pedidos`.`fecha_facturacion`, `ordenes_pedidos`.`num_factura`, `ordenes_pedidos`.`usuarios_idusuario`, `usuarios`.`nombre`,`usuarios`.`apellido`
 									FROM `ordenes_pedidos`

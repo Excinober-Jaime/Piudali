@@ -15,8 +15,22 @@
                     	}
                     	?>
                     </select>
-                </div>    
+                </div>
                 <div class="form-group m-l">
+                    <label for="exampleInputEmail2">ESTADOS</label>
+                    <select class="form-control" name="filtro_estado" onChange="javascript: document.getElementById('filtros').submit();">
+                    	<option value="">--SELECCIONE--</option>
+                    	<option value="">TODAS</option>
+                    	<?php 
+							foreach ($estados as $key => $estado) {
+								?>
+								<option value="<?=$estado?>" <?php //if($estado == $orden["detalle"]["estado"]) echo "selected"; ?>><?=$estado?></option>
+								<?php
+							}
+						?>
+                    </select>
+                </div> 
+                <!--<div class="form-group m-l">
                     <label for="exampleInputEmail2">ZONA</label>
                     <select class="form-control" name="filtro_zona" onChange="javascript: document.getElementById('filtros').submit();">
                     	<option value="">TODAS</option>
@@ -28,7 +42,7 @@
                     	}
                     	?>
                     </select>
-                </div>
+                </div>-->
                 <div class="form-group m-l">
                     <label for="exampleInputEmail2">DESDE</label>
                     <input type="date" name="filtro_fecha_inicio" class="form-control" value="<?=$fecha_inicio?>" onChange="javascript: document.getElementById('filtros').submit();">
