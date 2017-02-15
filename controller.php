@@ -82,6 +82,9 @@ class Controller
 		$estados_banners = array(1);
 		$banners = $this->banners->listarBanners($posicion_banners,$estados_banners);
 
+		$posicion_banners="POPUP";		
+		$banner_popup = $this->banners->listarBanners($posicion_banners,$estados_banners);
+
 		$paginas_menu = $this->paginasMenu();
 
 		$tipos = array('NORMAL');
@@ -93,7 +96,7 @@ class Controller
 		include "views/inicio.php";
 	}
 
-	public function paginaProductos(){			
+	public function paginaProductos(){
 
 		$paginas_menu = $this->paginasMenu();
 
@@ -177,7 +180,7 @@ class Controller
 
 /************USUARIOS**************/
 
-	public function actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudades_idciudad, $ciudad, $tipo="", $lider=0, $usuarioremoto=array()){
+	public function actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudades_idciudad, $ciudad, $tipo="", $lider=0, $idorganizacion=0, $usuarioremoto=array()){
 
 		if (!empty($usuarioremoto)) {
 
@@ -199,6 +202,7 @@ class Controller
 		$_SESSION["ciudades_idciudad"] = $ciudades_idciudad;
 		$_SESSION["ciudad"] = $ciudad;
 		$_SESSION["lider"] = $lider;
+		$_SESSION["idorganizacion"] = $idorganizacion;
 
 		if (!empty($tipo)) {
 			$_SESSION["tipo"] = $tipo;
@@ -324,7 +328,7 @@ class Controller
 
 			if (count($usuario)>0) {
 				
-				$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"], $usuario["lider"]);
+				$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"], $usuario["lider"], $usuario["organizaciones_idorganizacion"]);
 				header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);
 			}else{
 				echo "<script> alert('Los datos de acceso son incorrectos. Por favor intenta de nuevo'); </script>";
@@ -332,7 +336,7 @@ class Controller
 			
 		}
 
-		include "views/ingresar.php";	
+		include "views/ingresar.php";
 	}
 
 	public function ingresoUsuarioRemoto(){
@@ -358,7 +362,7 @@ class Controller
 											'tipo' => $_SESSION["tipo"]
 											);
 					
-					$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"], $usuario["lider"],$usuarioremoto);
+					$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"], $usuario["lider"], $usuario["organizaciones_idorganizacion"], $usuarioremoto);
 
 					header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);
 				}else{
@@ -376,7 +380,7 @@ class Controller
 			
 			$usuario = $this->usuarios->detalleUsuario($_SESSION["idusuario_remoto"]);
 
-			$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"],$usuario["lider"]);
+			$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"],$usuario["lider"], $usuario["organizaciones_idorganizacion"]);
 
 			unset($_SESSION["idusuario_remoto"]);
 			unset($_SESSION["email_remoto"]);
@@ -611,7 +615,7 @@ class Controller
 				}
 
 				$info_ciudad = $this->usuarios->nombreCiudad($ciudad);
-				$this->actualizarSesion($_SESSION["idusuario"], $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudad, $info_ciudad["ciudad"], $_SESSION["tipo"], $_SESSION["lider"]);
+				$this->actualizarSesion($_SESSION["idusuario"], $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudad, $info_ciudad["ciudad"], $_SESSION["tipo"], $_SESSION["lider"], $idorganizacion);
 
 				if ($actualizar_usuario===1) {
 					if (!empty($return)) {
@@ -1314,6 +1318,9 @@ class Controller
 		$descuentoEscala = $this->carrito->getDescuentoEscala();
 		$porcDescuentoEscala = $this->carrito->porcDescuentoEscala();
 		$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
+
+		$retencion = $this->carrito->getRTF();
+
 		$pagoPuntos = $this->carrito->getPagoPuntos();		
 
 		$iva = $this->carrito->getIva();
@@ -1345,6 +1352,8 @@ class Controller
 			$descuentoEscala = $this->carrito->getDescuentoEscala();
 			$porcDescuentoEscala = $this->carrito->porcDescuentoEscala();
 			$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
+
+			$retencion = $this->carrito->getRTF();
 			$pagoPuntos = $this->carrito->getPagoPuntos();
 
 			$iva = $this->carrito->getIva();
@@ -1376,6 +1385,7 @@ class Controller
 			$descuentoEscala = $this->carrito->getDescuentoEscala();
 			$porcDescuentoEscala = $this->carrito->porcDescuentoEscala();
 			$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
+			$retencion = $this->carrito->getRTF();
 			$detalleOrden = $this->carrito->getDetalleOrden();
 			
 			$pagoPuntos = $this->carrito->getPagoPuntos();		
@@ -1415,7 +1425,7 @@ class Controller
 			}
 			
 			//Crear Orden
-			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
+			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
 
 			if ($idorden) {
 				
@@ -1483,6 +1493,8 @@ class Controller
 								<td align="right">$'.number_format($descuentoEscala).'</td></tr>
 							<tr><td colspan="3" align="right">Total Neto antes de IVA</td>
 								<td align="right">$'.number_format($totalNetoAntesIva).'</td></tr>
+							<tr><td colspan="3" align="right">Retención</td>
+								<td align="right">$'.number_format($retencion).'</td></tr>
 							<tr><td colspan="3" align="right">IVA</td>
 								<td align="right">$'.number_format($iva).'</td></tr>
 							<tr><td colspan="3" align="right">Pago con puntos</td>
@@ -1531,7 +1543,8 @@ class Controller
 				$responseUrl = "http://naturalvitalis.com/respagos.php";
 				$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
 
-				require "include/pago_payu.php";
+				exit();
+				//require "include/pago_payu.php";
 
 				unset($_SESSION["idpdts"]);
 				unset($_SESSION["cantidadpdts"]);
@@ -1695,6 +1708,18 @@ class Controller
 
 			$url = convierte_url($_POST["nombre"]);
 
+			$producto_url_homonimia = $this->productos->detalleProductos(0,$url);
+
+			if (count($producto_url_homonimia)>0) {				
+				$count = 2;			
+
+				while (count($producto_url_homonimia)!=0) {
+					$url = convierte_url($_POST["nombre"])."-".$count;
+					$producto_url_homonimia = $this->productos->detalleProductos(0,$url);					
+					$count++;
+				}
+			}
+
 			$this->productos->actualizarProducto($idproducto,$nombre,$cantidad,$costo,$precio,$iva,$aplica_cupon,$precio_oferta,$presentacion,$registro,$codigo,$tipo,$descripcion,$img_principal,$url,$estado,$uso,$mas_info,$metas,$categoria,$compania,$relevancia);
 		}
 
@@ -1740,6 +1765,18 @@ class Controller
 			$estado = $_POST["estado"];
 
 			$url = convierte_url($_POST["nombre"]);
+
+			$producto_url_homonimia = $this->productos->detalleProductos(0,$url);
+
+			if (count($producto_url_homonimia)>0) {				
+				$count = 2;			
+
+				while (count($producto_url_homonimia)!=0) {
+					$url = convierte_url($_POST["nombre"])."-".$count;
+					$producto_url_homonimia = $this->productos->detalleProductos(0,$url);					
+					$count++;
+				}
+			}
 
 			$idproducto = $this->productos->crearProducto($nombre,$cantidad,$costo,$precio,$iva,$aplica_cupon,$precio_oferta,$presentacion,$registro,$codigo,$tipo,$descripcion,$img_principal,$url,$estado,$uso,$mas_info,$metas,$categoria,$compania,$relevancia);
 		}
@@ -1865,9 +1902,7 @@ class Controller
 			$link = $_POST["link"];
 			$imagen = $destino;
 			$posicion = $_POST["posicion"];
-			$estado = $_POST["estado"];			
-
-			//var_dump($imagen);
+			$estado = $_POST["estado"];						
 
 			$this->banners->actualizarBanner($idbanner,$nombre,$imagen,$link,$posicion,$estado);
 

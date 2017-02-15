@@ -233,6 +233,37 @@ class Carrito extends Productos
 		return $totalNetoAntesIva;
 	}
 
+	public function getBaseRTF(){
+		$subtotalAntesIvaPremios = $this->getSubtotalAntesIvaPremios();
+		$totalNetoAntesIva = $this->getTotalNetoAntesIva();
+		$baseRTF = $totalNetoAntesIva + $subtotalAntesIvaPremios;
+
+		return $baseRTF;
+	}
+
+	public function porcRTF(){
+
+		$baseRTF = $this->getBaseRTF();
+
+		if (isset($_SESSION["idorganizacion"]) && !empty($_SESSION["idorganizacion"])) {
+			if ($baseRTF>=803000) {
+				$porc_rft = 0.025;	
+			}else{
+				$porc_rft = 0;
+			}
+		}else{
+			
+		}
+		return $porc_rft;
+	}
+
+	public function getRTF(){
+		$baseRTF = $this->getBaseRTF();
+		$porcRTF = $this->porcRTF();
+		$rtf = $baseRTF * $porcRTF;
+		return $rtf;
+	}
+
 	public function getIva(){
 
 		$totalIva = 0;
@@ -286,7 +317,8 @@ class Carrito extends Productos
 				$valorPunto = $this->getValorPunto();
 				$totalNetoAntesIva = $this->getTotalNetoAntesIva();
 				$totalIva = $this->getIva();
-				$totalNetoConIva = $totalNetoAntesIva+$totalIva;
+				$totalRTF = $this->getRTF();
+				$totalNetoConIva = $totalNetoAntesIva+$totalIva-$totalRTF;
 
 				$usuarios2 = new Usuarios();
 
@@ -351,10 +383,11 @@ class Carrito extends Productos
 		$subtotalAntesIvaPremios = $this->getSubtotalAntesIvaPremios();
 		$totalNetoAntesIva = $this->getTotalNetoAntesIva();
 		$totalIva = $this->getIva();
+		$totalRTF = $this->getRTF();
 		$pagoPuntos = $this->getPagoPuntos();
 		$flete = $this->calcularFlete();
 
-		$total = ($totalNetoAntesIva + $totalIva + $subtotalAntesIvaPremios - $pagoPuntos["valor_pago"]) + $flete;
+		$total = ($totalNetoAntesIva + $subtotalAntesIvaPremios + $totalIva - $totalRTF - $pagoPuntos["valor_pago"]) + $flete;
 
 		return $total;
 	}
@@ -377,7 +410,7 @@ class Carrito extends Productos
 		return $codigo;
 	}
 
-	public function generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios,$descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $pagoPuntos, $valorPunto, $flete, $total, $estado, $fecha_facturacion, $num_factura, $idusuario){
+	public function generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios,$descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos, $valorPunto, $flete, $total, $estado, $fecha_facturacion, $num_factura, $idusuario){
 		
 		$idorden = $this->insertar("INSERT INTO `ordenes_pedidos`(									
 									`num_orden`, 
@@ -389,6 +422,7 @@ class Carrito extends Productos
 									`desc_escala`, 
 									`neto_sin_iva`, 
 									`impuestos`, 
+									`retencion`,
 									`pago_puntos`, 
 									`valor_punto`, 
 									`costo_envio`, 
@@ -406,6 +440,7 @@ class Carrito extends Productos
 									'$descuentoEscala',
 									'$totalNetoAntesIva',
 									'$iva',
+									'$retencion',
 									'$pagoPuntos',
 									'$valorPunto',
 									'$flete',

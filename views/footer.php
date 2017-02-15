@@ -88,5 +88,24 @@ Diseñado por iMarketing21 | Desarrollado por <a href="http://excinober.com" tar
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/js.js"></script>
     <script src="assets/js/carrito.js"></script>
+    <?php
+    if (isset($banner_popup) && count($banner_popup)>0) {
+    	$banner_popup = $banner_popup[0];
+    ?>
+    	<script type="text/javascript">
+
+	    	$(document).ready(function(){
+	    		var img = "<?=$banner_popup['imagen']?>";
+				var descripcion = "<?=$banner_popup['nombre']?>";
+				var href = "<?=$banner_popup['link']?>";
+				var data = '<a href="'+href+'"><img src="'+img+'" class="img-responsive" title="'+descripcion+'"></a>';
+				$(".modal-body").html(data);
+				$('.modal').modal();	    		
+	    	})
+
+    	</script>
+    <?php
+    }
+    ?>    
   </body>
 </html>

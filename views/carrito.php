@@ -97,6 +97,7 @@
 	 	<div class="col-xs-8 text-right">Descuento por Escala $</div><div class="col-xs-4 text-right">$<?=number_format($descuentoEscala)?></div>
 	 	<div class="col-xs-8 text-right">Total Neto antes de IVA</div><div class="col-xs-4 text-right">$<?=number_format($totalNetoAntesIva)?></div>
 	 	<div class="col-xs-8 text-right">Subtotal Premios</div><div class="col-xs-4 text-right">$<?=number_format($subtotalAntesIvaPremios)?></div>
+	 	<div class="col-xs-8 text-right">Retención</div><div class="col-xs-4 text-right">$<?=number_format($retencion)?></div>
 	 	<div class="col-xs-8 text-right">IVA</div><div class="col-xs-4 text-right">$<?=number_format($iva)?></div>
 	 	<?php if (isset($_SESSION["usar_puntos"]) && $_SESSION["usar_puntos"]==true) { ?>
 

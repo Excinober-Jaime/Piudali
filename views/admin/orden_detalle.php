@@ -120,6 +120,10 @@
                                     <td><?=convertir_pesos($orden["detalle"]["subtotal_premios"])?></td>
                                 </tr>
                                 <tr>
+                                    <td><strong>Retención:</strong></td>
+                                    <td><?=convertir_pesos($orden["detalle"]["retencion"])?></td>
+                                </tr>
+                                <tr>
                                     <td><strong>Iva:</strong></td>
                                     <td><?=convertir_pesos($orden["detalle"]["impuestos"])?></td>
                                 </tr>

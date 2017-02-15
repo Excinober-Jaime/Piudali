@@ -37,6 +37,7 @@
 						<option value="PANEL INTERNO" <?php if ($banner[0]['posicion']=='PANEL INTERNO') echo 'selected'; ?>>PANEL INTERNO</option>
 						<option value="CONTACTO" <?php if ($banner[0]['posicion']=='CONTACTO') echo 'selected'; ?>>CONTÁCTO</option>
 						<option value="REGISTRO" <?php if ($banner[0]['posicion']=='REGISTRO') echo 'selected'; ?>>REGISTRO</option>
+						<option value="POPUP" <?php if ($banner[0]['posicion']=='POPUP') echo 'selected'; ?>>POP UP</option>
 					</select>
 				</div>
 				<div class="form-group">
