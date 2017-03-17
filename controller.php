@@ -1283,9 +1283,23 @@ class Controller
 				$cupon = $this->carrito->infoCupon($cupon);
 
 				if (!empty($cupon)) {
-					$_SESSION["idcupon"] = $cupon["idcodigo"];
-					$_SESSION["valor_cupon"] = $cupon["val_descuento"];
-					$_SESSION["aplicacion_cupon"] = $cupon["aplicacion"];
+
+					if ($cupon["monto_minimo"] <= $this->carrito->getSubtotalAntesIva()) {
+
+						$_SESSION["idcupon"] = $cupon["idcodigo"];
+						$_SESSION["valor_cupon"] = $cupon["val_descuento"];
+						$_SESSION["aplicacion_cupon"] = $cupon["aplicacion"];
+						$_SESSION["monto_minimo_cupon"] = $cupon["monto_minimo"];
+
+					}else{
+
+						unset($_SESSION["idcupon"]);
+						unset($_SESSION["valor_cupon"]);
+						unset($_SESSION["aplicacion_cupon"]);
+						unset($_SESSION["monto_minimo_cupon"]);
+						
+						echo "<script>alert('La compra no cumple con el monto minimo para aplicar el cupon');</script>";
+					}
 				}else{
 
 				}
@@ -1543,8 +1557,7 @@ class Controller
 				$responseUrl = "http://naturalvitalis.com/respagos.php";
 				$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
 
-				exit();
-				//require "include/pago_payu.php";
+				require "include/pago_payu.php";
 
 				unset($_SESSION["idpdts"]);
 				unset($_SESSION["cantidadpdts"]);
@@ -2429,6 +2442,21 @@ class Controller
 
 		$cupones = $this->usuarios->listarCupones();
 		include "views/admin/cupones_lista.php";
+	}
+
+	public function eliminarCupon(){
+		if (isset($_POST["idcupon"]) && !empty($_POST["idcupon"])) {			
+			
+			$filas = $this->usuarios->eliminarCupon($_POST["idcupon"]);
+
+		}else{
+			$filas = 0;
+		}
+
+		$return = array('filas' => $filas);
+
+		echo json_encode($return);
+		
 	}
 
 	public function adminCuponDetalle($idcupon){		

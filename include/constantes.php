@@ -75,6 +75,7 @@ define("URL_ADMIN_USUARIOS", "Clientes");
 define("URL_ADMIN_ORDENES", "Ordenes");
 define("URL_ADMIN_ELIMINAR_ORDEN", "EliminarOrden");
 define("URL_ADMIN_CUPONES", "Cupones");
+define("URL_ADMIN_ELIMINAR_CUPON", "EliminarCupon");
 define("URL_ADMIN_INCENTIVOS", "Incentivos");
 define("URL_ADMIN_INGREDIENTES", "Ingredientes");
 define("URL_ADMIN_PROTOCOLOS", "Protocolos");

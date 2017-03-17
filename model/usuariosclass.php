@@ -379,6 +379,13 @@ class Usuarios extends Database
 		return $query;
 	}
 
+	public function eliminarCupon($idcupon){		
+		$filas_cupones = $this->actualizar("DELETE FROM `codigos_descuento` WHERE `idcodigo`='$idcupon'");
+
+		return $filas_cupones;
+
+	}
+
 	public function detalleCupon($idcupon){
 		$query = $this->consulta("SELECT `idcodigo`, `titulo`, `aplicacion`, `val_descuento`, `fecha_expiracion`, `num_codigo_desc`, `estado`, `tipo`, `privado`, `monto_minimo` 
 									FROM `codigos_descuento`

@@ -67,6 +67,30 @@ $(document).ready(function(){
         }
     });
 
+    $(".eliminarCupon").click(function(){
+        var idcupon = $(this).attr("idcupon");
+
+        var r = confirm("¿Seguro que desea eliminar el cupón?");
+
+        if (r) {
+
+            $.ajax({
+                type: 'POST',
+                url: "Admin/Cupones/EliminarCupon",
+                data: { idcupon:idcupon },
+                dataType: 'json',
+                async: false,
+                success: function(response) {
+                    alert('Se elimino '+response.filas+' cupón(es)');
+                    location.reload();
+                },
+                error: function() {
+                    alert('No se pudo eliminar el cupón');
+                }
+            });
+        }
+    });
+
     var config = {
                 '.chosen-select'           : {},
                 '.chosen-select-deselect'  : {allow_single_deselect:true},
