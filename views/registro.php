@@ -112,6 +112,32 @@
 								<label for="exampleInputEmail1">Repita Contraseña</label>
 								<input type="password" name="password2" class="form-control" id="password2" required>
 							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<label class="mr-sm-2" for="inlineFormCustomSelect">¿Tienes un código de representante?</label>
+								</div>
+								<div class="col-xs-6">
+									<div class="form-check">
+								      <label class="form-check-label">
+								      	<input type="radio" name="codigo_representante" value="1" class="form-check-input">							        
+								        SI
+								      </label>
+								    </div>
+								    <div class="form-check">
+								      <label class="form-check-label">
+								      	<input type="radio" name="codigo_representante" value="0" class="form-check-input" checked>							        
+								        NO
+								      </label>
+								    </div>								  
+								</div>
+								<div class="col-xs-12">
+									<div class="panel panel-default box-cod-rep" style="display:none;">
+	  									<div class="panel-body">
+											<input name="cod_representante" class="form-control form-control-lg" type="text" placeholder="CÓDIGO DE REPRESENTANTE">
+										</div>
+									</div>
+								</div>
+							</div>
 							<div class="checkbox">
 							    <label>
 							      <input type="checkbox" name="boletines" value="1"> Deseo recibir boletines informativos
@@ -236,6 +262,32 @@
 							<div class="form-group">
 								<label for="exampleInputEmail1">Repita Contraseña</label>
 								<input type="password" name="password2" class="form-control" id="password2" required>
+							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<label class="mr-sm-2" for="inlineFormCustomSelect">¿Tienes un código de representante?</label>
+								</div>
+								<div class="col-xs-6">
+									<div class="form-check">
+								      <label class="form-check-label">
+								      	<input type="radio" name="codigo_representante" value="1" class="form-check-input">							        
+								        SI
+								      </label>
+								    </div>
+								    <div class="form-check">
+								      <label class="form-check-label">
+								      	<input type="radio" name="codigo_representante" value="0" class="form-check-input" checked>							        
+								        NO
+								      </label>
+								    </div>								  
+								</div>
+								<div class="col-xs-12">
+									<div class="panel panel-default box-cod-rep" style="display:none;">
+	  									<div class="panel-body">
+											<input class="form-control form-control-lg" type="text" placeholder="CÓDIGO DE REPRESENTANTE">
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="checkbox">
 							    <label>

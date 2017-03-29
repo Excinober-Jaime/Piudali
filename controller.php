@@ -223,11 +223,11 @@ class Controller
 		
 		$ciudades = $this->listarCiudades();
 
+		$lider = 0;
+
 		if (isset($_GET["r"]) && !empty($_GET["r"])) {
 			$lider = $_GET["r"];
 			$alerta = "Diligencia el formulario con los datos de tu distribuidor";
-		}else{
-			$lider = 0;
 		}
 
 		if (isset($_GET["d"]) && !empty($_GET["d"])) {
@@ -251,6 +251,13 @@ class Controller
 			$nivel = 0;
 		}
 
+		if (isset($_POST["cod_representante"]) && !empty($_POST["cod_representante"])) {
+			$representante = $this->usuarios->detalleUsuarioCodLider($_POST["cod_representante"]);
+			if (count($representante)>0) {
+				$lider = $representante["idusuario"];
+			}
+		}
+
 		if (isset($_POST["crearUsuarioOrganizacion"])) {
 
 			extract($_POST);
@@ -263,23 +270,27 @@ class Controller
 
 			$idorganizacion = $this->usuarios->crearOrganizacion($nit, $razon_social, $direccion_organizacion, $telefono_organizacion, $ciudad_organizacion);
 
-			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, $nivel, $ciudad, $idorganizacion);
+			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 		
-			//Enviar email Bienvenida
-			$idplantilla=2;
-			$plantilla = $this->usuarios->detallePlantilla($idplantilla);
-			$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
+			if (!empty($idusuario)) {
+				//Enviar email Bienvenida
+				$idplantilla=2;
+				$plantilla = $this->usuarios->detallePlantilla($idplantilla);
+				$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
 
-			// Always set content-type when sending HTML email
-			$headers = "MIME-Version: 1.0"."\r\n";
-			$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
+				// Always set content-type when sending HTML email
+				$headers = "MIME-Version: 1.0"."\r\n";
+				$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
 
-			// More headers
-			$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
+				// More headers
+				$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
 
-			$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
+				$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
 
-			echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";		
+				echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";		
+			}else{
+				echo "<script> alert('No fue posible realizar el registro. Por favor intente de nuevo');</script>";			
+			}
 
 		}elseif (isset($_POST["crearUsuario"])) {
 
@@ -292,23 +303,28 @@ class Controller
 			$passwordmd5 = md5($password);
 			$idorganizacion = 0;
 
-			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, $nivel, $ciudad, $idorganizacion);
-		
-			//Enviar email Bienvenida
-			$idplantilla=2;
-			$plantilla = $this->usuarios->detallePlantilla($idplantilla);
-			$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
+			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 
-			// Always set content-type when sending HTML email
-			$headers = "MIME-Version: 1.0"."\r\n";
-			$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
+			if (!empty($idusuario)) {
+				
+				//Enviar email Bienvenida
+				$idplantilla=2;
+				$plantilla = $this->usuarios->detallePlantilla($idplantilla);
+				$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
 
-			// More headers
-			$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
+				// Always set content-type when sending HTML email
+				$headers = "MIME-Version: 1.0"."\r\n";
+				$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
 
-			$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
+				// More headers
+				$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
 
-			echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";			
+				$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
+
+				echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";			
+			}else{
+				echo "<script> alert('No fue posible realizar el registro. Por favor intente de nuevo');</script>";			
+			}
 		}
 
 		include "views/registro.php";
@@ -2100,11 +2116,11 @@ class Controller
 		extract($_POST);
 
 		if (isset($_POST["crearUsuario"])) {			
-			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, 0, $ciudad, 0);
+			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, 0);
 		}
 
 		if (isset($_POST["actualizarUsuario"])) {
-			$this->usuarios->actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, 0, $direccion, $telefono, $telefono_m, $tipo, $segmento,'', $lider, $ciudad);
+			$this->usuarios->actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, 0, $direccion, $telefono, $telefono_m, $tipo, $segmento,'', $lider, $cod_lider, $ciudad);
 		}
 
 		if (isset($idusuario) && !empty($idusuario)) {

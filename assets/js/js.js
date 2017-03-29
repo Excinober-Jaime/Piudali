@@ -48,4 +48,22 @@ $(document).ready(function(){
 		var nivel = $(this).attr("nivel");		
 		$(".distribuidores-nivel"+nivel).toggle();
 	})
+
+	$( "[name|='codigo_representante']" ).click(function(){
+		var enable_cod_rep = $(this).val();
+		if (enable_cod_rep==1) {
+			$(".box-cod-rep").show('slow');
+		}else{
+			$(".box-cod-rep").hide('slow');
+		}
+	})
+
+	/*$( "[name|='codigo_representante2']" ).click(function(){
+		var enable_cod_rep = $(this).val();
+		if (enable_cod_rep==1) {
+			$("#box-cod-rep2").show('slow');
+		}else{
+			$("#box-cod-rep2").hide('slow');
+		}
+	})*/
 })

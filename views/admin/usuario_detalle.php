@@ -79,8 +79,12 @@
 						</select>
 					</div>
 					<div class="form-group">
+						<label for="exampleInputEmail1">Código de Representante</label>
+						<input type="text" class="form-control" name="cod_lider" id="cod_lider" value="<?=$usuario['cod_lider']?>">
+					</div>
+					<div class="form-group">
 						<label for="exampleInputEmail1">Representante Comercial</label>
-						<select name="lider" id="lider" class="form-control" required>
+						<select name="lider" id="lider" class="form-control">
 							<option value="">Seleccione</option>
 							<?php
 							foreach ($lideres as $key => $lider) {
