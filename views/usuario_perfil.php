@@ -4,7 +4,7 @@
 	<?php include "usuario/menu.php"; ?>		
 	<div class="contenPanel">
 	<div class="col-xs-12 titulo">
-		<h1>Mi Perfil</h1>
+		<h1>Mi Perfil <?php if (!empty($usuario["cod_lider"])) { ?><small class="pull-right">Código de representante: <?=$usuario["cod_lider"]?><?php } ?></small></h1>
         <small>Aquí encontrarás tu información personal y podrás editarla, además de cambiar tu contraseña.</small>
 	</div>
     <div class="clearfix"></div>
@@ -55,18 +55,6 @@
                     </tr>
                 </tbody>
             </table>
-            <?php /*?><div class="row">
-                <div class="col-xs-6">Nombre</div><div class="col-xs-6"><?=$usuario["nombre"]?></div>
-                <div class="col-xs-6">Apellido</div><div class="col-xs-6"><?=$usuario["apellido"]?></div>
-                <div class="col-xs-6">Número de Identificacion</div><div class="col-xs-6"><?=$usuario["num_identificacion"]?></div>
-                <div class="col-xs-6">Sexo</div><div class="col-xs-6"><?=$usuario["sexo"]?></div>
-                <div class="col-xs-6">Fecha de Nacimiento</div><div class="col-xs-6"><?=$usuario["fecha_nacimiento"]?></div>
-                <div class="col-xs-6">Email</div><div class="col-xs-6"><?=$usuario["email"]?></div>
-                <div class="col-xs-6">Dirección</div><div class="col-xs-6"><?=$usuario["direccion"]?></div>
-                <div class="col-xs-6">Teléfono</div><div class="col-xs-6"><?=$usuario["telefono"]?></div>
-                <div class="col-xs-6">Teléfono Móvil</div><div class="col-xs-6"><?=$usuario["telefono_m"]?></div>
-                <div class="col-xs-6">Ciudad</div><div class="col-xs-6"><?=$usuario["ciudad"]?></div>		
-            </div><?php */?>
             <?php if ($organizacion) { ?>
                 <h2>Información de la Organización</h2>
                 <table class="table table-striped">
@@ -150,9 +138,14 @@
 
                 if ($region) {
                 ?>
-                <hr>
-                <p><strong>Región:</strong></p>
-                <p><?=$region[0]["region"]?></p>
+                 <h2>Información de Director Regional</h2>                    
+                    <h3><?=$region[0]["nombre"]." ".$region[0]["apellido"]?></h3>
+                    <p><strong>Región:</strong></p>
+                    <p><?=$region[0]["region"]?></p>
+                    <p><strong>Teléfono(s):</strong></p>
+                    <p><?=$region[0]["telefono"]." ".$region[0]["telefono_m"]?></p>
+                    <p><strong>Email:</strong></p>
+                    <p><?=$region[0]["email"]?></p>                
                 <?php
                 }
                 ?>			

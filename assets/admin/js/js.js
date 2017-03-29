@@ -91,6 +91,23 @@ $(document).ready(function(){
         }
     });
 
+    $("#tipo").change(function(){
+        var tipo = $(this).val();
+        if (tipo=="REPRESENTANTE COMERCIAL" || tipo=="DIRECTOR") {
+            $("#lider").val("");
+            $("#lider").css("display","none");
+        }else if (tipo=="DISTRIBUIDOR DIRECTO"){
+            $("#lider").css("display","block");
+        }
+
+        if (tipo=="REPRESENTANTE COMERCIAL"){
+            $("#cod_lider").css("display","block");
+        }else{
+            $("#cod_lider").val(0);
+            $("#cod_lider").css("display","none");
+        }
+    });
+
     var config = {
                 '.chosen-select'           : {},
                 '.chosen-select-deselect'  : {allow_single_deselect:true},
