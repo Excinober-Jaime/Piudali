@@ -200,7 +200,7 @@ class Carrito extends Productos
 
 		//Ajuste provisional para Nelly Suarez y James Arturo Ortiz
 		if (isset($_SESSION["idusuario"])) {
-			if ($_SESSION["idusuario"] == 29 || $_SESSION["idusuario"] == 28 || $_SESSION["idusuario"] == 32) {
+			if ($_SESSION["idusuario"] == 78 || $_SESSION["idusuario"] == 29 || $_SESSION["idusuario"] == 28 || $_SESSION["idusuario"] == 32 || $_SESSION["idusuario"] == 31 || $_SESSION["idusuario"] == 13) {
 				$porcentaje["porcentaje"] = 30;
 			}
 		}

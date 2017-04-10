@@ -16,6 +16,7 @@ require "model/geolocalizacionclass.php";
 require "model/ticketsclass.php";
 require "model/capacitacionclass.php";
 require "model/personalclass.php";
+require "model/cuentasclass.php";
 
 /** Require Includes **/
 require "include/constantes.php";
@@ -38,6 +39,7 @@ class Controller
 		$this->tickets = new Tickets();
 		$this->capacitacion = new Capacitacion();
 		$this->personal = new Personal();
+		$this->cuentas_virtuales = new CuentasVirtuales();
 	}
 
 
@@ -46,7 +48,7 @@ class Controller
 
 		$paginas_menu = $this->paginasMenu();
 		$pagina_detalle = $this->paginas->contenidoPagina($url);
-
+		
 		include "views/pagina.php";
 	}
 
@@ -817,6 +819,9 @@ class Controller
 		$estados = array(1);
 
 		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
+
+		$cuenta = $this->cuentas_virtuales->consultarCuenta($_SESSION["idusuario"]);
+		$movimientos = 	$this->cuentas_virtuales->consultarMovimientos($cuenta["idcuenta"]);
 
 		include "views/usuario_cuenta_virtual.php";
 	}
@@ -2114,6 +2119,35 @@ class Controller
 	public function adminUsuarioDetalle($idusuario){
 
 		extract($_POST);
+
+		$cuenta = $this->cuentas_virtuales->consultarCuenta($idusuario);
+
+		if (isset($_POST["crearMovimiento"])) {
+
+			//Upload banner
+			if($_FILES["adjunto"]["error"]==UPLOAD_ERR_OK){
+
+				$rutaadj=$_FILES["adjunto"]["tmp_name"];
+				$nombreadj=$_FILES["adjunto"]["name"];
+				$destino = DIR_ADJUNTOS.$nombreadj;
+				move_uploaded_file($rutaadj, $destino);
+
+			}else{
+				$destino = "";
+			}
+
+			if (empty($cuenta)) {
+				//Crear cuenta
+				$idcuenta = $this->cuentas_virtuales->crearCuenta(0, fecha_actual('datetime') ,$idusuario);
+				$cuenta = $this->cuentas_virtuales->consultarCuenta($idusuario);
+			}
+
+			if ($tipo_movimiento == "NEGATIVO") {
+				$monto = "-".$monto;	
+			}
+
+			$idmovimiento = $this->cuentas_virtuales->crearMovimiento($monto, $descripcion, $destino, $cuenta["idcuenta"], $idusuario);
+		}
 
 		if (isset($_POST["crearUsuario"])) {			
 			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, 0);

@@ -106,7 +106,7 @@
 					<textarea name="descripcion" id="descripcion" class="form-control"><?=$producto[0]['descripcion']?></textarea>
 				</div>
 				<div class="form-group">
-					<label for="exampleInputEmail1">Uso</label>
+					<label for="exampleInputEmail1">Uso (Video)</label>
 					<textarea name="uso" id="uso" class="form-control"><?=$producto[0]['uso']?></textarea>
 				</div>
 				<div class="form-group">

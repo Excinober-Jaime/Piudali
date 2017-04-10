@@ -1,10 +1,9 @@
 <?php include "header.php"; ?>
-
 <div class="container">		
 	<?php include "usuario/menu.php"; ?>
     <div class="contenPanel">		
 	<div class="col-xs-12 titulo">
-	<h1>Cuenta Virtual</h1>
+	<h1>Cuenta Virtual <span class="pull-right"><?=convertir_pesos($cuenta["valor"])?></span></h1>
     <small>Aquí encontrarás tus movimientos financieros en tiempo real.</small>	
     </div>
     <div class="clearfix"></div>
@@ -16,6 +15,7 @@
 					<th class="text-center">FECHA</th>
 					<th class="text-center">DESCRIPCIÓN</th>
 					<th class="text-center">VALOR</th>
+					<th class="text-center">ADJUNTO</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,7 +23,12 @@
 				if (count($movimientos)>0) {
 					foreach ($movimientos as $key => $movimiento) {
 				?>
-						
+				<tr>
+					<td class="text-center"><?=$movimiento["fecha"]?></td>
+					<td class="text-center"><?=$movimiento["descripcion"]?></td>
+					<td class="text-center"><?=$movimiento["valor"]?></td>
+					<td class="text-center"><?php if (!empty($movimiento["adjunto"])) { echo '<a href="'.$movimiento["adjunto"].'" target="_new">Adjunto</a>'; } ?></td>
+				</tr>		
 				<?php
 					}
 				}else{

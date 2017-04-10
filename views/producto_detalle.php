@@ -96,14 +96,22 @@
 		  <!-- Nav tabs -->
 		  <ul class="nav nav-tabs" role="tablist">
 		    <li role="presentation" class="active"><a href="#descripcion" aria-controls="descripcion" role="tab" data-toggle="tab" class="texto-vinotinto">Descripción</a></li>
-		    <!--<li role="presentation"><a href="#uso" aria-controls="uso" role="tab" data-toggle="tab" class="texto-vinotinto">Uso y Recomendaciones</a></li>-->
+		    <?php if (!empty($producto[0]["uso"])) {
+		    ?>
+		    <li role="presentation"><a href="#uso" aria-controls="uso" role="tab" data-toggle="tab" class="texto-vinotinto">Ver Video</a></li>
+		    <?php
+		    } ?> 
 		    <li role="presentation"><a href="#mas_info" aria-controls="mas_info" role="tab" data-toggle="tab" class="texto-vinotinto">Más Información</a></li>
 		  </ul>
 
 		  <!-- Tab panes -->
 		  <div class="tab-content">
 		    <div role="tabpanel" class="tab-pane active" id="descripcion"><br><?=$producto[0]["descripcion"]?></div>
-		    <!--<div role="tabpanel" class="tab-pane" id="uso"><br><?php $producto[0]["uso"]; ?></div>-->
+		    <?php if (!empty($producto[0]["uso"])) {
+		    ?>
+		    <div role="tabpanel" class="tab-pane" id="uso"><br><?=$producto[0]["uso"]?></div>
+		    <?php
+		    } ?>
 		    <div role="tabpanel" class="tab-pane" id="mas_info"><br><?=$producto[0]["mas_info"]?></div>
 		  </div>
 		</div>

@@ -9,12 +9,12 @@ class Paginas extends Database
 		
 
 		if (!empty($posicion)) {
-			$posicion_where = " WHERE `posicion`='$posicion'";
+			$posicion_where = " AND `posicion`='$posicion'";
 		}else{
 			$posicion_where = "";
 		}
 
-		$query = $this->consulta("SELECT `idpagina`, `titulo`, `url`, `contenido`, `banner`, `menu`, `posicion`, `estado` FROM `paginas` $posicion_where");
+		$query = $this->consulta("SELECT `idpagina`, `titulo`, `url`, `contenido`, `banner`, `menu`, `posicion`, `estado` FROM `paginas` WHERE `estado`=1 $posicion_where");
 		
 		return $query;
 	}

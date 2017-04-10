@@ -15,7 +15,7 @@
 			<li>Repetir el paso anterior con cada producto que desees agregar al carrito de compra.</li>			
 			<li>Compras entre $100.000 y $250.000 Rentabilidad del 20%</li>
 			<li>Compras entre $250.001 y $500.000 Rentabilidad del 25%</li>
-			<li>Compras mayores a $500.000 Rentabilidad del 35%</li>
+			<li>Compras mayores a $500.000 Rentabilidad del 30%</li>
 			<li>Agrega un cupón de descuento, si lo tienes. (puedes encontrarlos en tu panel de usuario).</li>
 			<li>Confirma tus datos de envío y actualizalos si es necesario.</li>
 			<li>Si tienes puntos disponibles, da click en "Usar puntos en ésta compra".</li>

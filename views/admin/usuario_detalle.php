@@ -130,14 +130,46 @@
 				<p>El usuario no tiene documentos relacionados.</p>
 				<?php }	?>				
 				<hr>
-				<h2>ACCIONES</h2>
-				<hr>
-				<form method="post" action="<?=URL_INGRESO_REMOTO?>">
+				<h2>ACCIONES</h2>				
+				<form method="post" target="_new" action="<?=URL_INGRESO_REMOTO?>">
 					<input type="hidden" value="<?=$usuario["email"]?>" name="email">
 					<input type="hidden" value="<?=$usuario["password"]?>" name="password">
 
 					<button type="submit" name="ingresoRemoto" class="btn btn-primary" title="Ingresa como <?=$usuario["nombre"]." ".$usuario["apellido"]?>">Ingresar a Cuenta <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
 				</form>
+				<?php if ($usuario["tipo"]=="REPRESENTANTE COMERCIAL") {
+				?>
+				<hr>
+				<h2>CUENTA VIRTUAL</h2>
+				<form method="post" enctype="multipart/form-data">
+					<div class="form-group">
+						<label for="exampleInputEmail1">Monto</label>
+						<div class="input-group">
+						  <div class="input-group-btn">
+						  	<button type="button" class="btn btn-primary">$</button>
+						  </div>
+					      <input type="text" class="form-control" name="monto" required>			      
+					    </div><!-- /input-group -->
+					</div>
+				    <div class="form-group">
+						<label for="exampleInputEmail1">Tipo de movimiento</label>
+						<select name="tipo_movimiento" class="form-control" required>
+							<option value="POSITIVO">POSITIVO</option>
+							<option value="NEGATIVO">NEGATIVO</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Descripción</label>
+						<textarea name="descripcion" class="form-control" required></textarea>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Adjunto</label>
+						<input type="file" name="adjunto" class="form-control">
+					</div>
+					<button type="submit" name="crearMovimiento" class="btn btn-primary">Generar Movimiento</button>
+				<?php
+				} ?>
+
 			<?php } ?>
 			</div>
 		</div>

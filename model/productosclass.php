@@ -172,7 +172,7 @@ class Productos extends Database
 										`cantidad`='$cantidad'									
 										WHERE `idproducto`='$idproducto'");			
 		return $query;
-	}	
+	}
 
 
 	/****categorias***/
