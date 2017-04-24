@@ -140,7 +140,7 @@
 				<?php if ($usuario["tipo"]=="REPRESENTANTE COMERCIAL") {
 				?>
 				<hr>
-				<h2>CUENTA VIRTUAL</h2>
+				<h2>CUENTA VIRTUAL <span class="pull-right">Disponible actual: <?=convertir_pesos($cuenta["valor"])?></span></h2>
 				<form method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Monto</label>

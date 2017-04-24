@@ -9,12 +9,31 @@
 				</div>				
 				<div class="form-group">
 					<label for="exampleInputEmail1">Tipo</label>
-					<select name="tipo" id="tipo" class="form-control" required>
+					<select name="tipo" id="tipo-elemento" class="form-control" required>
+						<option value="ENTRADA" <?php if ($elemento['tipo']=='ENTRADA') echo 'selected'; ?>>ENTRADA</option>
 						<option value="SLIDESHARE" <?php if ($elemento['tipo']=='SLIDESHARE') echo 'selected'; ?>>SLIDESHARE</option>
 						<option value="YOUTUBE" <?php if ($elemento['tipo']=='YOUTUBE') echo 'selected'; ?>>YOUTUBE</option>
 						<option value="HTML" <?php if ($elemento['tipo']=='HTML') echo 'selected'; ?>>HTML</option>
 						<option value="VIDEO" <?php if ($elemento['tipo']=='VIDEO') echo 'selected'; ?>>VIDEO</option>
 					</select>
+				</div>
+					
+				<div class="row">
+					<div class="col-xs-6">								
+						<div class="form-group" id="img-field">
+							<label for="exampleInputEmail1">Imágen</label>
+							<input type="file" name="imagen" class="form-control">
+						</div>
+						</div>
+					<div class="col-xs-6">								
+						<?php
+						if (!empty($elemento["imagen"])) {
+						?>
+							<img src="<?=$elemento['imagen']?>" class="img-responsive">
+						<?php
+						}
+						 ?>
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Url o Contenido</label>

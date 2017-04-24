@@ -108,6 +108,16 @@ $(document).ready(function(){
         }
     });
 
+    $("#tipo-elemento").change(function(){
+        var tipo = $(this).val();
+
+        if (tipo=="ENTRADA") {
+            $("#img-field").show();            
+        }else{
+            $("#img-field").hide();            
+        }
+    });
+
     var config = {
                 '.chosen-select'           : {},
                 '.chosen-select-deselect'  : {allow_single_deselect:true},

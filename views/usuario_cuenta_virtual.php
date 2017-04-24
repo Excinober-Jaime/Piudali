@@ -4,7 +4,7 @@
     <div class="contenPanel">		
 	<div class="col-xs-12 titulo">
 	<h1>Cuenta Virtual <span class="pull-right"><?=convertir_pesos($cuenta["valor"])?></span></h1>
-    <small>Aquí encontrarás tus movimientos financieros en tiempo real.</small>	
+    <small>Aquí encontrarás tus movimientos financieros de cada campaña. (COMISIONES E INCENTIVOS).</small>	
     </div>
     <div class="clearfix"></div>
     <div class="informacion">
@@ -26,7 +26,7 @@
 				<tr>
 					<td class="text-center"><?=$movimiento["fecha"]?></td>
 					<td class="text-center"><?=$movimiento["descripcion"]?></td>
-					<td class="text-center"><?=$movimiento["valor"]?></td>
+					<td class="text-center"><?=convertir_pesos($movimiento["valor"])?></td>
 					<td class="text-center"><?php if (!empty($movimiento["adjunto"])) { echo '<a href="'.$movimiento["adjunto"].'" target="_new">Adjunto</a>'; } ?></td>
 				</tr>		
 				<?php

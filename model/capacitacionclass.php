@@ -56,7 +56,7 @@ class Capacitacion extends Database
 	/***ELEMENTOS****/
 	public function listarElementosCat($categoria=0){		
 		
-		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` WHERE `categorias_capacitacion_idcategoria`='$categoria'");
+		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `imagen`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` WHERE `categorias_capacitacion_idcategoria`='$categoria'");
 		
 		return $query;
 	}
@@ -69,12 +69,16 @@ class Capacitacion extends Database
 			$where = "";
 		}
 		
-		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` $where");
+		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `imagen`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` $where");
 		
 		return $query;
 	}
 
-	public function crearElemento($titulo="", $tipo="", $contenido="", $perfil="TODOS", $estado=0, $idcategoria=0){
+	public function crearElemento($titulo="", $tipo="", $imagen="", $contenido="", $perfil="TODOS", $estado=0, $idcategoria=0){
+
+		if ($tipo=="ENTRADA") {
+			$contenido = nl2br($contenido);
+		}
 		
 		$idelemento = $this->insertar("INSERT INTO `elementos_capacitacion`(										
 										`titulo`, 
@@ -89,12 +93,22 @@ class Capacitacion extends Database
 										'$perfil',
 										'$estado',
 										'$idcategoria')");
+
+		if (!empty($imagen)) {
+			$this->actualizar("UPDATE `elementos_capacitacion` SET 
+									`imagen`='$imagen'
+									WHERE `idelemento`='$idelemento'");
+		}
 		
 		return $idelemento;
 	}
 
-	public function actualizarElemento($idelemento=0, $titulo="", $tipo="", $contenido="", $perfil="TODOS", $estado=0, $idcategoria=0){
+	public function actualizarElemento($idelemento=0, $titulo="", $tipo="", $imagen="", $contenido="", $perfil="TODOS", $estado=0, $idcategoria=0){
 		
+		if ($tipo=="ENTRADA") {
+			$contenido = nl2br($contenido);
+		}
+
 		$query = $this->actualizar("UPDATE `elementos_capacitacion` SET 
 									`titulo`='$titulo',
 									`tipo`='$tipo',
@@ -103,6 +117,13 @@ class Capacitacion extends Database
 									`estado`='$estado',
 									`categorias_capacitacion_idcategoria`='$idcategoria'
 									WHERE `idelemento`='$idelemento'");
+
+		if (!empty($imagen)) {
+			$this->actualizar("UPDATE `elementos_capacitacion` SET 
+									`imagen`='$imagen'
+									WHERE `idelemento`='$idelemento'");			
+		}
+
 		return $query;
 	}
 
@@ -110,7 +131,7 @@ class Capacitacion extends Database
 
 	public function detalleElemento($idelemento){
 		
-		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` WHERE `idelemento`='$idelemento'");
+		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `imagen`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` WHERE `idelemento`='$idelemento'");
 		
 		return $query[0];
 	}

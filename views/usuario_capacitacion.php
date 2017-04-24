@@ -80,6 +80,22 @@
               </div>
               <?php
               break;
+
+            case 'ENTRADA':
+              ?>
+              <div class="thumbnail">
+                <?php if (!empty($elemento["imagen"])) {
+                ?>
+                  <img src="<?=$elemento["imagen"]?>">
+                <?php
+                } ?>                
+                <div class="caption">
+                  <h3><?=$elemento["titulo"]?></h3>
+                  <p><?=$elemento["contenido"]?></p>                  
+                </div>
+              </div>
+              <?php
+              break;
               
               default:
                 # code...

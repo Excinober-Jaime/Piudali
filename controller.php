@@ -950,7 +950,7 @@ class Controller
 							}else{
 								$incentivos[$key]["meta"] = convertir_pesos($incentivo["meta"]);
 								$incentivos[$key]["cumplimiento"] = ($incentivos[$key]["compras_netas"]/$incentivo["meta"])*100;
-								$incentivos[$key]["cumplimiento"] = $incentivos[$key]["cumplimiento"]."%";
+								$incentivos[$key]["cumplimiento"] = round($incentivos[$key]["cumplimiento"])."%";
 							}
 						}
 					}
@@ -2160,6 +2160,7 @@ class Controller
 		if (isset($idusuario) && !empty($idusuario)) {
 			$usuario = $this->usuarios->detalleUsuario($idusuario);
 			$documentos = $this->usuarios->listarDocumentos($idusuario);
+			$cuenta = $this->cuentas_virtuales->consultarCuenta($idusuario);
 		}
 
 		$lideres = 	$this->usuarios->listarUsuarios(array("REPRESENTANTE COMERCIAL"));
@@ -2371,12 +2372,27 @@ class Controller
 
 		extract($_POST);
 
+		//Upload banner
+		if($_FILES["imagen"]["error"]==UPLOAD_ERR_OK){
+
+			$rutaimg=$_FILES["imagen"]["tmp_name"];
+			$nombreimg=$_FILES["imagen"]["name"];
+			$destino = DIR_IMG_ENTRADAS.$nombreimg;
+			move_uploaded_file($rutaimg, $destino);
+
+		}else{
+
+			$destino = "";
+		}
+
+		$imagen = $destino;
+
 		if (isset($_POST["actualizarElemento"])) {
-			$this->capacitacion->actualizarElemento($idelemento, $titulo, $tipo, $contenido2, $perfil, $estado, $categoria);
+			$this->capacitacion->actualizarElemento($idelemento, $titulo, $tipo, $imagen, $contenido2, $perfil, $estado, $categoria);
 		}
 
 		if (isset($_POST["crearElemento"])) {
-			$idelemento = $this->capacitacion->crearElemento($titulo, $tipo, $contenido2, $perfil, $estado, $categoria);
+			$idelemento = $this->capacitacion->crearElemento($titulo, $tipo, $imagen, $contenido2, $perfil, $estado, $categoria);
 		}
 
 		if (isset($idelemento) && $idelemento!='') {
