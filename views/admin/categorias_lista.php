@@ -18,7 +18,9 @@
 		  		<tr>
 		  			<td><?=$categoria["nombre"]?></td>	  			
 		  			<td><?=$categoria["estado"]?></td>
-		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_CATEGORIAS."/".$categoria['idcategoria']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_CATEGORIAS."/".$categoria['idcategoria']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+		  			<a class="eliminarEntidad" entidad="categorias" identidad="<?=$categoria['idcategoria']?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+		  			</td>
 		  		</tr>
 		  		<?php
 			  	}

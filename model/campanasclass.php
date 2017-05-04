@@ -60,7 +60,7 @@ class Campanas extends Database
 		return $idcampana;
 	}
 
-		public function actualizarCampana($idcampana=0, $nombre="", $fecha_ini="", $fecha_fin="", $monto_minimo=0, $estado=0){
+	public function actualizarCampana($idcampana=0, $nombre="", $fecha_ini="", $fecha_fin="", $monto_minimo=0, $estado=0){
 		
 		$query = $this->actualizar("UPDATE `campanas` SET 									
 									`nombre`='$nombre',
@@ -71,6 +71,16 @@ class Campanas extends Database
 									WHERE `idcampana`='$idcampana'");
 		
 		return $query;
+	}
+
+	public function eliminarCampana($idcampana){
+		
+		$filas_esc_dist = $this->actualizar("DELETE FROM `escalas_distribuidores` WHERE `campanas_idcampana`='$idcampana'");
+		$filas_esc_lid = $this->actualizar("DELETE FROM `escalas_lideres` WHERE `campanas_idcampana`='$idcampana'");
+		$filas_esc_dir = $this->actualizar("DELETE FROM `escalas_directores` WHERE `campanas_idcampana`='$idcampana'");
+		$filas = $this->actualizar("DELETE FROM `campanas` WHERE `idcampana`='$idcampana'");
+		
+		return $filas;
 	}
 
 

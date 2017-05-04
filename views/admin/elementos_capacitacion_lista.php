@@ -27,7 +27,9 @@
 			  			<td><?=$elemento["perfil"]?></td>
 			  			<td><?=$elemento["estado"]?></td>
 			  			<td><?=$elemento["categoria"]["titulo"]?></td>
-			  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_CAPACITACION_ELEMENTOS."/".$elemento['idelemento']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+			  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_CAPACITACION_ELEMENTOS."/".$elemento['idelemento']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+			  			<a class="eliminarEntidad" entidad="elementoscapacitacion" identidad="<?=$elemento['idelemento']?>?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+			  		</td>
 			  		</tr>
 			  		<?php
 				  	}

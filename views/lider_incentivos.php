@@ -9,6 +9,48 @@
     </div>
 	<div class="clearfix"></div>
     <div class="informacion">
+    	<div class="col-xs-12 col-md-5 col-md-offset-7">
+			<form class="form-inline" method="post" id="filtros">
+				<div class="form-group">
+					<label for="inputEmail3" class=" control-label">Campaña</label>						
+					<select name="idcampana" class="form-control" onChange="javascript: document.getElementById('filtros').submit();">
+						<option value="">-Seleccione-</option>
+							<?php 
+							if (count($campanas)>0) {
+
+								$anos_filtro = array();
+
+								foreach ($campanas as $key => $campana) {
+
+									$ano = explode("-", $campana["fecha_ini"]);
+									$ano = $ano[0];
+
+									if (!in_array($ano, $anos_filtro)) {
+										$anos_filtro[] = $ano;	
+									}
+							?>
+									<option value="<?=$campana["idcampana"]?>" <?php if ($campana["idcampana"] == $campana_seleccionada["idcampana"]) { echo "selected"; }  ?>><?=$campana["nombre"]?></option>
+							<?php
+								}									
+							}else{
+								?>
+								<option value="">No hay campañas disponibles</option>
+							<?php
+
+							}
+
+							foreach ($anos_filtro as $key => $ano) {
+								?>
+									<option value="ano<?=$ano?>" <?php if ($_POST["idcampana"]=="ano".$ano) { echo "selected"; } ?>>Año <?=$ano?></option>
+								<?php
+							}
+							?>								
+					</select>
+					
+				</div>
+			</form>
+			<br>
+		</div>
     <div class="col-xs-12 col-md-9">
 		<table class="table table-striped">
 			<thead>
@@ -27,7 +69,8 @@
 				<?php 
 				if (count($incentivos)>0) {
 					foreach ($incentivos as $key => $incentivo) {						
-				?>
+						
+					?>
 						<tr>
 							<td class="text-center">
 								<?php  
@@ -47,7 +90,8 @@
 							<td class="text-center">$<?=number_format($incentivo["compras_netas"])?></td>
 							<td class="text-center"><?=$incentivo["cumplimiento"]?></td>
 						</tr>
-				<?php
+					<?php
+						
 					}				
 				}else{
 				?>

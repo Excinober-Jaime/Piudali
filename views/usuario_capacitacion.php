@@ -8,6 +8,7 @@
         <small>Aquí encontrarás todo el material necesario para capacitarte en productos y desarrollo de tu negocio.</small>
 		<hr>
 		<div class="informacion">
+      <!--<h3 class="text-center">ESCUELA DE NEGOCIO</h3>-->
 			<div class="col-xs-12 col-md-3">
 				<ul class="list-group">
           <?php 
@@ -27,6 +28,12 @@
 				</ul>				
 			</div>      
 			<div class="col-xs-12 col-md-9">
+        <div class="row">
+          <div class="col-xs-12">
+            <img src="assets/img/escuela-de-negocio.png" class="img-responsive">
+          </div>
+        </div>
+        <hr>
       <?php    
       echo '<div clas="col-xs-12">'.$categoria_actual['contenido'].'</div>';
 
@@ -48,50 +55,60 @@
         }
 
         foreach ($elementos as $key => $elemento) {
-          ?>
-          <div class="<?=$col?>">
-            <?php
+  
             switch ($elemento["tipo"]) {
               case 'YOUTUBE':
-            ?>
+          ?>
+              <div class="<?=$col?>">
                 <div class="embed-responsive embed-responsive-16by9">
                   <iframe class="embed-responsive-item" src="<?=$elemento['contenido']?>" frameborder="0" allowfullscreen></iframe>
                 </div>            
+              </div>
             <?php
                 break;
             case 'SLIDESHARE':
             ?>
-              <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="<?=$elemento['contenido']?>" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen> </iframe>
+              <div class="<?=$col?>">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="<?=$elemento['contenido']?>" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen> </iframe>
+                </div>
               </div>
             <?php
               break;
             case 'HTML':
-              echo $elemento['contenido'];
+            ?>
+              <div class="<?=$col?>">
+            <?php echo $elemento['contenido']; ?>
+              </div>
+            <?php
               break;
 
             case 'VIDEO':
               ?>
-              <div class="embed-responsive embed-responsive-16by9">
-                <video width="320" height="240" controls>
-                  <source src="<?=$elemento['contenido']?>" type="video/mp4">                
-                Your browser does not support the video tag.
-                </video>
+              <div class="<?=$col?>">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <video width="320" height="240" controls>
+                    <source src="<?=$elemento['contenido']?>" type="video/mp4">                
+                  Your browser does not support the video tag.
+                  </video>
+                </div>
               </div>
               <?php
               break;
 
             case 'ENTRADA':
               ?>
-              <div class="thumbnail">
-                <?php if (!empty($elemento["imagen"])) {
-                ?>
-                  <img src="<?=$elemento["imagen"]?>">
-                <?php
-                } ?>                
-                <div class="caption">
-                  <h3><?=$elemento["titulo"]?></h3>
-                  <p><?=$elemento["contenido"]?></p>                  
+              <div class="col-xs-12">
+                <div class="thumbnail">
+                  <?php if (!empty($elemento["imagen"])) {
+                  ?>
+                    <img src="<?=$elemento["imagen"]?>">
+                  <?php
+                  } ?>                
+                  <div class="caption">
+                    <h3><?=$elemento["titulo"]?></h3>
+                    <p><?=$elemento["contenido"]?></p>                  
+                  </div>
                 </div>
               </div>
               <?php
@@ -101,9 +118,6 @@
                 # code...
                 break;
             }
-            ?>
-          </div>
-          <?php
         }
 
       }

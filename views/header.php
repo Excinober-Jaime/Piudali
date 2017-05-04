@@ -61,7 +61,7 @@
         <a href="https://www.facebook.com/Piudali-Colombia-1698229213799755/" title="Facebook" target="_new">
           <i class="fa fa-facebook-official" aria-hidden="true"></i>
         </a>        
-        <a href="http://piudali.com.co/quienes-somos">
+        <a href="https://www.youtube.com/channel/UCUu4Moh5uFyEyt1Dx0qxuMg" target="_new">
           <i class="fa fa-youtube-square" aria-hidden="true"></i>
         </a>
         <form class="form-inline form-search" id="form-buscar" method="get" action="<?=URL_BUSCAR."/"?>">

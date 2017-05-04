@@ -275,11 +275,11 @@ class Usuarios extends Database
 		return $query;
 	}
 
-	public function listarIncentivos($usuarios=array()){
+	public function listarIncentivos($usuarios=array(), $inicio="", $fin=""){
 
 		if (count($usuarios)>0) {
 
-			$usuarios_select = "WHERE ";
+			$usuarios_select = "AND (";
 
 			$count = 0;
 
@@ -290,15 +290,19 @@ class Usuarios extends Database
 
 				$usuarios_select .= "`usuario` = '$usuario'";
 				$count++;
-			}			
+			}
+
+			$usuarios_select .= ")";						
 		}else{
+
 			$usuarios_select = "";
 		}
 
 		
 		$query = $this->consulta("SELECT `idincentivo`, `incentivo`, `imagen`, `inicio`, `fin`, `meta`, `descripcion`, `usuario` 
-									FROM `incentivos`
-									$usuarios_select");
+									FROM `incentivos`									 
+									WHERE `fin` BETWEEN '$inicio' AND '$fin'
+									ORDER BY `fin` DESC");
 		
 		return $query;
 	}
@@ -374,6 +378,13 @@ class Usuarios extends Database
 		}
 		
 		return $query;
+	}
+
+	public function eliminarIncentivo($idincentivo){
+		$filas_escalas = $this->actualizar("DELETE FROM `escalas_incentivos` WHERE `incentivos_idincentivo`='$idincentivo'");
+		
+		$filas = $this->actualizar("DELETE FROM `incentivos` WHERE `idincentivo`='$idincentivo'");
+		return $filas;
 	}
 
 	public function comprasNetasPeriodo($inicio, $fin, $estado, $idusuario){
@@ -605,6 +616,11 @@ class Usuarios extends Database
 		return $query;
 	}
 
+	public function eliminarIngrediente($idingrediente){
+		$filas = $this->actualizar("DELETE FROM `ingredientes` WHERE `idingrediente`='$idingrediente'");
+		return $filas;
+	}
+
 	/****PROTOCOLOS*****/
 
 	public function listarProtocolos(){
@@ -644,6 +660,11 @@ class Usuarios extends Database
 									`idprotocolo`	=	'$idprotocolo'");
 		
 		return $query;
+	}
+
+	public function eliminarProtocolo($idprotocolo){
+		$filas = $this->actualizar("DELETE FROM `protocolos` WHERE `idprotocolo`='$idprotocolo'");
+		return $filas;
 	}
 
 	/*****LIDER***********/

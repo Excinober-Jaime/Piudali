@@ -5,8 +5,26 @@
 class Paginas extends Database
 {
 	
-	public function listarPaginas($posicion=""){
+	public function listarPaginas($estados = array(1), $posicion=""){
 		
+		if (count($estados)>0) {
+
+			$estados_select = "(";
+
+			$count = 0;
+
+			foreach ($estados as $estado) {
+				if ($count>0) {
+					$estados_select .= " OR ";
+				}
+
+				$estados_select .= "`estado` = '$estado'";
+				$count++;
+			}
+			$estados_select .= ")";
+		}else{
+			$estados_select = "";
+		}
 
 		if (!empty($posicion)) {
 			$posicion_where = " AND `posicion`='$posicion'";
@@ -14,7 +32,7 @@ class Paginas extends Database
 			$posicion_where = "";
 		}
 
-		$query = $this->consulta("SELECT `idpagina`, `titulo`, `url`, `contenido`, `banner`, `menu`, `posicion`, `estado` FROM `paginas` WHERE `estado`=1 $posicion_where");
+		$query = $this->consulta("SELECT `idpagina`, `titulo`, `url`, `contenido`, `banner`, `menu`, `posicion`, `estado` FROM `paginas` WHERE $estados_select $posicion_where");
 		
 		return $query;
 	}
@@ -75,6 +93,12 @@ class Paginas extends Database
 		$query = $this->consulta("SELECT `idpagina`, `titulo`, `contenido`, `banner`, `menu`, `posicion`, `estado` FROM `paginas` WHERE `url`='$url'");
 		
 		return $query[0];
+	}
+
+	public function eliminarPagina($idpagina){
+
+		$filas = $this->actualizar("DELETE FROM `paginas` WHERE `idpagina`='$idpagina'");
+		return $filas;
 	}
 }
 ?>

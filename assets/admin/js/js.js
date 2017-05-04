@@ -43,7 +43,7 @@ $(document).ready(function(){
         $("#escalas_incentivo").append('<tr><td><input type="text" name="minimo[]" class="form-control"></td><td><input type="text" name="maximo[]" class="form-control"></td><td><input type="text" name="bono[]" class="form-control"></td></tr>');
     });
 
-    $(".eliminarOrden").click(function(){
+    /*$(".eliminarOrden").click(function(){
         var idorden = $(this).attr("idorden");
 
         var r = confirm("¿Seguro que desea eliminar la orden? Se eliminará la orden, sus productos y puntos asociados");
@@ -89,6 +89,37 @@ $(document).ready(function(){
                 }
             });
         }
+    });*/
+
+    $(".eliminarEntidad").click(function(){
+
+        var entidad = $(this).attr("entidad");
+        var identidad = $(this).attr("identidad");
+
+        var r = confirm("¿Seguro que desea eliminar "+entidad+"?");
+
+        if (r) {
+
+            $.ajax({
+                type: 'POST',
+                url: "Admin/EliminarEntidad",
+                data: { identidad:identidad, entidad:entidad },
+                dataType: 'json',
+                async: false,
+                success: function(response) {
+
+                        if (response.filas==false) {
+                            alert("No se pudo eliminar la entidad. Es posible que otros elementos dependan de ella.");                            
+                        }else{
+                            alert('Se elimino '+response.filas+' '+response.entidad);
+                            location.reload();
+                        }
+                },
+                error: function() {
+                    alert('No se pudo eliminar el registro');
+                }
+            });
+        }
     });
 
     $("#tipo").change(function(){
@@ -112,9 +143,11 @@ $(document).ready(function(){
         var tipo = $(this).val();
 
         if (tipo=="ENTRADA") {
-            $("#img-field").show();            
+            $("#img-field").show();
+            
         }else{
-            $("#img-field").hide();            
+            $("#img-field").hide();
+            
         }
     });
 

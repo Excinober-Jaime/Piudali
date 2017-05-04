@@ -75,9 +75,9 @@ define("URL_ADMIN_CAMPANAS", "Campanas");
 define("URL_ADMIN_PLANTILLAS", "Plantillas");
 define("URL_ADMIN_USUARIOS", "Clientes");
 define("URL_ADMIN_ORDENES", "Ordenes");
-define("URL_ADMIN_ELIMINAR_ORDEN", "EliminarOrden");
+//define("URL_ADMIN_ELIMINAR_ORDEN", "EliminarOrden");
 define("URL_ADMIN_CUPONES", "Cupones");
-define("URL_ADMIN_ELIMINAR_CUPON", "EliminarCupon");
+//define("URL_ADMIN_ELIMINAR_CUPON", "EliminarCupon");
 define("URL_ADMIN_INCENTIVOS", "Incentivos");
 define("URL_ADMIN_INGREDIENTES", "Ingredientes");
 define("URL_ADMIN_PROTOCOLOS", "Protocolos");
@@ -86,6 +86,8 @@ define("URL_ADMIN_SUSCRIPTORES", "Suscriptores");
 define("URL_ADMIN_TICKETS", "Tickets");
 define("URL_ADMIN_CAPACITACION_CATEGORIAS", "CategoriasCapacitacion");
 define("URL_ADMIN_CAPACITACION_ELEMENTOS", "ElementosCapacitacion");
+
+define("URL_ADMIN_ELIMINAR_ENTIDAD", "EliminarEntidad");
 
 define("URL_ADMIN_SALIR", "Salir");
 

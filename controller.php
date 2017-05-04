@@ -886,14 +886,31 @@ class Controller
 		$estados = array(1);
 
 		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
+
+		$campanas = $this->campanas->listarCampanas();
+
+		if (isset($_POST["idcampana"]) && !empty($_POST["idcampana"])) {
+
+			$es_ano = substr($_POST["idcampana"], 0, 3);			
+			if ($es_ano=="ano") {
+				$ano = substr($_POST["idcampana"], 3, 7);
+				$campana_seleccionada = array('fecha_ini' => $ano.'-01-01', 'fecha_fin' => $ano.'-12-31');
+			}else{
+				$campana_seleccionada = $this->campanas->detalleCampana($_POST["idcampana"]);
+			}			
+			
+		}else{
+			$campana_seleccionada = $this->campanas->getCamapanaActual();
+		}
 		
 		if (!empty($_SESSION["idusuario"])) {
 
 			switch ($_SESSION["tipo"]) {
 
 				case 'DISTRIBUIDOR DIRECTO':
+
 					$usuario = array("DISTRIBUIDOR DIRECTO");
-					$incentivos = $this->usuarios->listarIncentivos($usuario);
+					$incentivos = $this->usuarios->listarIncentivos($usuario, $campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"]);
 					$estado_compras = "FACTURADO";
 
 
@@ -912,7 +929,7 @@ class Controller
 				case 'REPRESENTANTE COMERCIAL':
 					
 					$usuario = array("REPRESENTANTE COMERCIAL");
-					$incentivos = $this->usuarios->listarIncentivos($usuario);
+					$incentivos = $this->usuarios->listarIncentivos($usuario, $campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"]);
 
 					$distribuidores = $this->usuarios->listarDistribuidoresLider($_SESSION["idusuario"]);
 
@@ -920,37 +937,43 @@ class Controller
 						
 						foreach ($incentivos as $key => $incentivo) {
 
-							$escalas = $this->usuarios->listarEscalasIncentivo($incentivo["idincentivo"]);
-							$incentivos[$key]["escalas"] = $escalas;
-							
-							if (count($distribuidores)>0) {
+							if ($incentivo["fin"] >= date("Y-m-d")) {							
 
-								$estado_compras = "FACTURADO";
-
-								foreach ($distribuidores as $distribuidor) {
-
-									$compras_netas = $this->usuarios->comprasNetasPeriodo($incentivo["inicio"], $incentivo["fin"],$estado_compras,$distribuidor["idusuario"]);
-									
-									$incentivos[$key]["compras_netas"] += $compras_netas["compras_netas"];								
-								}
-							}
-
-							if (count($escalas)>0) {
+								$escalas = $this->usuarios->listarEscalasIncentivo($incentivo["idincentivo"]);
+								$incentivos[$key]["escalas"] = $escalas;
 								
-								$incentivos[$key]["meta"] = 0;
+								if (count($distribuidores)>0) {
 
-								foreach ($escalas as $escala) {
-									if ($escala["minimo"]<=$incentivos[$key]["compras_netas"] && $escala["maximo"]>=$incentivos[$key]["compras_netas"]) {
+									$estado_compras = "FACTURADO";
 
-										$incentivos[$key]["meta"] = "ESCALA ".$incentivo["incentivo"];
-										$incentivos[$key]["cumplimiento"] = convertir_pesos($escala["bono"]);
-										break;
+									foreach ($distribuidores as $distribuidor) {
+
+										$compras_netas = $this->usuarios->comprasNetasPeriodo($incentivo["inicio"], $incentivo["fin"],$estado_compras,$distribuidor["idusuario"]);
+										
+										$incentivos[$key]["compras_netas"] += $compras_netas["compras_netas"];								
 									}
 								}
+
+								if (count($escalas)>0) {
+									
+									$incentivos[$key]["meta"] = 0;
+
+									foreach ($escalas as $escala) {
+										if ($escala["minimo"]<=$incentivos[$key]["compras_netas"] && $escala["maximo"]>=$incentivos[$key]["compras_netas"]) {
+
+											$incentivos[$key]["meta"] = "ESCALA ".$incentivo["incentivo"];
+											$incentivos[$key]["cumplimiento"] = convertir_pesos($escala["bono"]);
+											break;
+										}
+									}
+								}else{
+									$incentivos[$key]["meta"] = convertir_pesos($incentivo["meta"]);
+									$incentivos[$key]["cumplimiento"] = ($incentivos[$key]["compras_netas"]/$incentivo["meta"])*100;
+									$incentivos[$key]["cumplimiento"] = round($incentivos[$key]["cumplimiento"])."%";
+								}
 							}else{
-								$incentivos[$key]["meta"] = convertir_pesos($incentivo["meta"]);
-								$incentivos[$key]["cumplimiento"] = ($incentivos[$key]["compras_netas"]/$incentivo["meta"])*100;
-								$incentivos[$key]["cumplimiento"] = round($incentivos[$key]["cumplimiento"])."%";
+								//Eliminar incentivos vencidos
+								unset($incentivos[$key]);
 							}
 						}
 					}
@@ -1023,7 +1046,7 @@ class Controller
 
 					default:
 						$categoria_actual = $this->capacitacion->detalleCategoria($_GET["opcion"]);
-						$elementos = $this->capacitacion->listarElementosCat($_GET["opcion"]);
+						$elementos = $this->capacitacion->listarElementosCat($_GET["opcion"],array(1));
 
 						if (count($elementos)>0) {
 							foreach ($elementos as $key => $elemento) {
@@ -1900,7 +1923,7 @@ class Controller
 
 	public function adminPaginasLista(){
 		
-		$paginasLista = $this->paginas->listarPaginas();
+		$paginasLista = $this->paginas->listarPaginas(array(0,1));
 
 		include "views/admin/paginas_lista.php";	
 	}	
@@ -2172,7 +2195,7 @@ class Controller
 
 	/*****Ordenes*****/
 
-	public function eliminarOrden(){
+	/*public function eliminarOrden(){
 
 		if (isset($_POST["idorden"]) && !empty($_POST["idorden"])) {
 			
@@ -2186,7 +2209,7 @@ class Controller
 
 		echo json_encode($return);
 	}
-
+*/
 	public function adminOrdenesLista(){
 
 		$ordenesLista = $this->usuarios->listarOrdenes();
@@ -2510,7 +2533,7 @@ class Controller
 		include "views/admin/cupones_lista.php";
 	}
 
-	public function eliminarCupon(){
+	/*public function eliminarCupon(){
 		if (isset($_POST["idcupon"]) && !empty($_POST["idcupon"])) {			
 			
 			$filas = $this->usuarios->eliminarCupon($_POST["idcupon"]);
@@ -2523,6 +2546,72 @@ class Controller
 
 		echo json_encode($return);
 		
+	}*/
+
+	public function eliminarEntidad(){
+
+		if (isset($_POST["entidad"]) && !empty($_POST["entidad"]) && isset($_POST["identidad"]) && !empty($_POST["identidad"])) {
+			
+			switch ($_POST["entidad"]) {
+				case 'cupones':
+					$filas = $this->usuarios->eliminarCupon($_POST["identidad"]);					
+					break;
+
+				case 'ordenes':
+					$filas = $this->ordenes->eliminarOrden($_POST["identidad"]);
+					break;
+
+				case 'productos':
+					$filas = $this->productos->eliminarProducto($_POST["identidad"]);
+					break;
+
+				case 'categorias':
+					$filas = $this->productos->eliminarCategoria($_POST["identidad"]);
+					break;
+
+				case 'paginas':
+					$filas = $this->paginas->eliminarPagina($_POST["identidad"]);
+					break;
+
+				case 'campanas':
+					$filas = $this->campanas->eliminarCampana($_POST["identidad"]);
+					break;
+
+				case 'categoriascapacitacion':
+					$filas = $this->capacitacion->eliminarCategoria($_POST["identidad"]);
+					break;
+
+				case 'elementoscapacitacion':
+					$filas = $this->capacitacion->eliminarElemento($_POST["identidad"]);
+					break;
+
+				case 'ingredientes':
+					$filas = $this->usuarios->eliminarIngrediente($_POST["identidad"]);
+					break;
+				
+				case 'protocolos':
+					$filas = $this->usuarios->eliminarProtocolo($_POST["identidad"]);
+					break;
+
+				case 'incentivos':
+					$filas = $this->usuarios->eliminarIncentivo($_POST["identidad"]);
+					break;
+
+				case 'regiones':
+					$filas = $this->geolocalizacion->eliminarRegion($_POST["identidad"]);
+					break;
+
+				default:
+					# code...
+					break;
+			}
+		}else{
+			$filas = 0;
+		}
+
+		$return = array('filas' => $filas, 'entidad' => $_POST["entidad"]);
+
+		echo json_encode($return);
 	}
 
 	public function adminCuponDetalle($idcupon){		

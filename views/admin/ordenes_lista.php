@@ -28,7 +28,7 @@
 			  			<td><?=$orden["estado"]?></td>
 			  			<td>
 			  				<a href="<?=URL_ADMIN."/".URL_ADMIN_ORDENES."/".$orden['idorden']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-			  				<a class="eliminarOrden" idorden="<?=$orden['idorden']?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+			  				<a class="eliminarEntidad" entidad="ordenes" identidad="<?=$orden['idorden']?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 			  			</td>
 			  		</tr>
 			  		<?php

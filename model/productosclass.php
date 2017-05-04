@@ -174,6 +174,19 @@ class Productos extends Database
 		return $query;
 	}
 
+	public function eliminarProducto($idproducto){
+		
+		$filas_imagenes = $this->actualizar("DELETE FROM `img_productos` WHERE `productos_idproducto`='$idproducto'");
+
+		$filas_codigos = $this->actualizar("DELETE FROM `productos_has_codigos_descuento` WHERE `productos_idproducto`='$idproducto'");
+
+		$filas_relacionados = $this->actualizar("DELETE FROM `productos_relacionados` WHERE `productos_idproducto`='$idproducto' OR `productos_idproducto_relacionado`='$idproducto'");
+
+		$filas = $this->actualizar("DELETE FROM `productos` WHERE `idproducto`='$idproducto'");
+
+		return $filas;
+	}
+
 
 	/****categorias***/
 
@@ -236,7 +249,12 @@ class Productos extends Database
 		return $query;
 	}
 
-
+	public function eliminarCategoria($idcategoria){
+		
+		$filas = $this->actualizar("DELETE FROM `categorias` WHERE `idcategoria`='$idcategoria'");
+		
+		return $filas;
+	}
 	
 }
 ?>

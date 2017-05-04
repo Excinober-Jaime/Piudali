@@ -45,6 +45,11 @@ class Capacitacion extends Database
 	}
 
 
+	public function eliminarCategoria($idcategoria){
+		
+		$filas = $this->actualizar("DELETE FROM `categorias_capacitacion` WHERE `idcategoria`='$idcategoria'");
+		return $filas;
+	}
 
 	public function detalleCategoria($idcategoria){
 		
@@ -54,9 +59,28 @@ class Capacitacion extends Database
 	}
 
 	/***ELEMENTOS****/
-	public function listarElementosCat($categoria=0){		
+	public function listarElementosCat($categoria=0,$estados=array()){	
+
+		if (count($estados)>0) {
+
+			$estados_select = "AND (";
+
+			$count = 0;
+
+			foreach ($estados as $estado) {
+				if ($count>0) {
+					$estados_select .= " OR ";
+				}
+
+				$estados_select .= "`estado` = '$estado'";
+				$count++;
+			}
+			$estados_select .= ")";
+		}else{
+			$estados_select = "";
+		}	
 		
-		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `imagen`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` WHERE `categorias_capacitacion_idcategoria`='$categoria'");
+		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `imagen`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` WHERE `categorias_capacitacion_idcategoria`='$categoria' $estados_select");
 		
 		return $query;
 	}
@@ -75,10 +99,6 @@ class Capacitacion extends Database
 	}
 
 	public function crearElemento($titulo="", $tipo="", $imagen="", $contenido="", $perfil="TODOS", $estado=0, $idcategoria=0){
-
-		if ($tipo=="ENTRADA") {
-			$contenido = nl2br($contenido);
-		}
 		
 		$idelemento = $this->insertar("INSERT INTO `elementos_capacitacion`(										
 										`titulo`, 
@@ -104,10 +124,6 @@ class Capacitacion extends Database
 	}
 
 	public function actualizarElemento($idelemento=0, $titulo="", $tipo="", $imagen="", $contenido="", $perfil="TODOS", $estado=0, $idcategoria=0){
-		
-		if ($tipo=="ENTRADA") {
-			$contenido = nl2br($contenido);
-		}
 
 		$query = $this->actualizar("UPDATE `elementos_capacitacion` SET 
 									`titulo`='$titulo',
@@ -134,6 +150,12 @@ class Capacitacion extends Database
 		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `imagen`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` WHERE `idelemento`='$idelemento'");
 		
 		return $query[0];
+	}
+
+	public function eliminarElemento($idelemento){
+		
+		$filas = $this->actualizar("DELETE FROM `elementos_capacitacion` WHERE `idelemento`='$idelemento'");
+		return $filas;
 	}
 }
 ?>

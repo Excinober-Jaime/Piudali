@@ -19,7 +19,9 @@
 		  		<tr>
 		  			<td><?=$protocolo["nombre"]?></td>
 		  			<td><?=substr(strip_tags($protocolo["descripcion"]),0,200)?>...</td>
-		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_PROTOCOLOS."/".$protocolo['idprotocolo']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_PROTOCOLOS."/".$protocolo['idprotocolo']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+		  			<a class="eliminarEntidad" entidad="protocolos" identidad="<?=$protocolo['idprotocolo']?>?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+		  			</td>
 		  		</tr>
 		  		<?php
 			  	}

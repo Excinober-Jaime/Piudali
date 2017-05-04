@@ -197,5 +197,13 @@ class Geolocalizacion extends Database
 									WHERE `regiones_has_ciudades`.`ciudades_idciudad`='$idciudad'");
 		return $query;
 	}
+
+	public function eliminarRegion($idregion){
+		
+		$filas_ciudades = $this->actualizar("DELETE FROM `regiones_has_ciudades` WHERE `regiones_idregion`='$idregion'");
+
+		$filas = $this->actualizar("DELETE FROM `regiones` WHERE `idregion`='$idregion'");
+		return $filas;
+	}
 }
 ?>

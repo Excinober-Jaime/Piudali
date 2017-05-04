@@ -37,7 +37,7 @@
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Url o Contenido</label>
-					<textarea name="contenido2" class="form-control"><?=$elemento['contenido']?></textarea>
+					<textarea name="contenido2" id="contenido" class="form-control"><?=$elemento['contenido']?></textarea>
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Perfil</label>

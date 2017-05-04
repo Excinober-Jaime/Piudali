@@ -20,7 +20,9 @@
 		  			<td><?=$pagina["titulo"]?></td>
 		  			<td><?=$pagina["menu"]?></td>
 		  			<td><?=$pagina["estado"]?></td>
-		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_PAGINAS."/".$pagina['idpagina']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_PAGINAS."/".$pagina['idpagina']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+		  			<a class="eliminarEntidad" entidad="paginas" identidad="<?=$pagina['idpagina']?>?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+		  			</td>
 		  		</tr>
 		  		<?php
 			  	}

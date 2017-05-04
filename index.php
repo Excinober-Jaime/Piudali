@@ -303,23 +303,23 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}							
 							break;
 						case URL_ADMIN_CUPONES:
-							if (isset($var3) && !empty($var3)) {
+							if (isset($var3) && !empty($var3)) {								
 
-								if ($var3==URL_ADMIN_ELIMINAR_CUPON) {
-									$controller->eliminarCupon();
-								}else{
-
-									if ($var3=="Nuevo") {
-										$var3 = "";
-									}
-									$controller->adminCuponDetalle($var3);
-								}								
+								if ($var3=="Nuevo") {
+									$var3 = "";
+								}
+								$controller->adminCuponDetalle($var3);
+																
 							}else{
 								$controller->adminCuponesLista();
 							}
 							break;
 						case URL_ADMIN_SALIR:
 							$controller->personalCerrarSesion();
+							break;
+
+						case URL_ADMIN_ELIMINAR_ENTIDAD:
+							$controller->eliminarEntidad();
 							break;
 
 						default:

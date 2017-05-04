@@ -7,7 +7,7 @@
 		<h1>Mis Compras</h1>
         <small>Aquí podrás ver el estado de tu negocio como comercializador, monitorear el estado de tus pedidos y rentabilidad.</small>		
 		<hr>
-        	<div class="informacion">	
+        <div class="informacion">	
 			<div class="col-xs-12 col-md-5 col-md-offset-7">
 				<form class="form-inline" method="post" id="filtros">
 					<div class="form-group">

@@ -18,7 +18,9 @@
 		  		<tr>
 		  			<td><?=$ingrediente["nombre"]?></td>
 		  			<td><?=substr(strip_tags($ingrediente["descripcion"]),0,200)?>...</td>
-		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_INGREDIENTES."/".$ingrediente['idingrediente']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_INGREDIENTES."/".$ingrediente['idingrediente']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+		  			<a class="eliminarEntidad" entidad="ingredientes" identidad="<?=$ingrediente['idingrediente']?>?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+		  		</td>
 		  		</tr>
 		  		<?php
 			  	}
