@@ -94,6 +94,23 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}
 							break;
 
+						case URL_ADMIN_DESCUENTOS_ESPECIALES:
+							if (isset($var3) && !empty($var3)) {
+
+								if ($var3 == URL_ADMIN_DESCUENTOS_ESPECIALES_VINCULAR) {
+									$controller->adminDescuentoEspecialVincular();
+								}else{
+
+									if ($var3=="Nuevo") {
+										$var3 = "";								
+									}
+									$controller->adminDescuentoEspecialDetalle($var3);
+								}
+							}else{
+								$controller->adminDescuentosEspeciales();
+							}
+							break;
+
 						case URL_ADMIN_PLANTILLAS:
 							if (isset($var3) && !empty($var3)) {
 								

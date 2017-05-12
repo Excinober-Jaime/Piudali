@@ -17,6 +17,7 @@ require "model/ticketsclass.php";
 require "model/capacitacionclass.php";
 require "model/personalclass.php";
 require "model/cuentasclass.php";
+require "model/descuentosespecialesclass.php";
 
 /** Require Includes **/
 require "include/constantes.php";
@@ -40,6 +41,7 @@ class Controller
 		$this->capacitacion = new Capacitacion();
 		$this->personal = new Personal();
 		$this->cuentas_virtuales = new CuentasVirtuales();
+		$this->descuentos_especiales = new Descuentosespeciales();
 	}
 
 
@@ -891,7 +893,7 @@ class Controller
 
 		if (isset($_POST["idcampana"]) && !empty($_POST["idcampana"])) {
 
-			$es_ano = substr($_POST["idcampana"], 0, 3);			
+			$es_ano = substr($_POST["idcampana"], 0, 3);
 			if ($es_ano=="ano") {
 				$ano = substr($_POST["idcampana"], 3, 7);
 				$campana_seleccionada = array('fecha_ini' => $ano.'-01-01', 'fecha_fin' => $ano.'-12-31');
@@ -1356,7 +1358,7 @@ class Controller
 
 		if (isset($_POST["usar_puntos"]) && $_POST["usar_puntos"]==0) {
 			$_SESSION["usar_puntos"] = false;
-		}		
+		}
 
 
 		if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"])) {
@@ -2107,6 +2109,56 @@ class Controller
 		}
 
 		include "views/admin/campana_detalle.php";		
+	}
+
+	/*****Descuentos Especiales****/
+	public function adminDescuentosEspeciales(){
+
+		$descuentos = $this->descuentos_especiales->listarDescuentos();
+
+		include "views/admin/descuentos_especiales_lista.php";		
+	}
+
+	public function adminDescuentoEspecialDetalle($iddescuento){
+
+		extract($_POST);
+
+		if (isset($_POST["actualizarDescuento"])) {
+			$this->descuentos_especiales->actualizarDescuento($iddescuento, $nombre, $monto_minimo, $estado);
+		}
+
+		if (isset($_POST["crearDescuento"])) {
+
+			$iddescuento = $this->descuentos_especiales->crearDescuento($nombre, $monto_minimo, $estado);
+		}
+
+		if (isset($minimo) && count($minimo)>0) {
+
+			foreach ($minimo as $key => $value) {
+				if (!empty($maximo[$key]) && !empty($porcentaje[$key])) {
+					$idescala = $this->descuentos_especiales->crearEscala($iddescuento, $minimo_[$key], $maximo[$key], $porcentaje[$key]);
+				}
+			}
+		}
+
+		if (isset($iddescuento) && !empty($iddescuento)) {
+
+			$descuento = $this->descuentos_especiales->detalleDescuento($iddescuento);
+			$escalas = $this->descuentos_especiales->listarEscalas($iddescuento);
+			$usuarios = $this->descuentos_especiales->listarUsuarios($iddescuento);
+			$distribuidores = $this->usuarios->listarUsuarios(array("DISTRIBUIDOR DIRECTO"));
+		}
+
+		include "views/admin/descuento_especial_detalle.php";		
+	}
+
+	public function adminDescuentoEspecialVincular(){
+
+		if (isset($_POST["idusuario"]) && !empty($_POST["idusuario"]) && isset($_POST["iddescuento"]) && !empty($_POST["iddescuento"])) {
+			
+			$this->descuentos_especiales->vincularUsuario($_POST["idusuario"], $_POST["iddescuento"]);
+			echo true;
+		}
 	}
 
 	/*****Plantillas*****/

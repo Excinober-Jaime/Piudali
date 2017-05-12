@@ -65,6 +65,7 @@ $breadcrumb = explode("/", $_GET["url"]);
                 </li>               							
                 <li><a href="<?=URL_ADMIN."/".URL_ADMIN_TICKETS?>"><i class="fa fa-ticket" aria-hidden="true"></i> <span class="nav-label">Tickets</span></a></li>
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_CAMPANAS?>"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span class="nav-label">Campañas</span></a></li>
+                <li><a href="<?=URL_ADMIN."/".URL_ADMIN_DESCUENTOS_ESPECIALES?>"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span class="nav-label">Escalas Especiales</span></a></li>
                 <li><a href="<?=URL_ADMIN."/".URL_ADMIN_CUPONES?>"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span class="nav-label">Cupones</span></a></li>      
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_ORDENES?>"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="nav-label">Ordenes</span></a></li>
                 <li>

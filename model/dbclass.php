@@ -10,7 +10,7 @@ class Database {
  public function connect()
  {
   if(!isset($this->conexion))
-  {   
+  {
   /*  
     $this->conexion = new PDO(
     'mysql:host=localhost;dbname=linkgm_piudaliBlog',

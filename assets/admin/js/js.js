@@ -43,6 +43,10 @@ $(document).ready(function(){
         $("#escalas_incentivo").append('<tr><td><input type="text" name="minimo[]" class="form-control"></td><td><input type="text" name="maximo[]" class="form-control"></td><td><input type="text" name="bono[]" class="form-control"></td></tr>');
     });
 
+    $("#agregarEscalaEspecial").click(function(){
+        $("#escalas_e").append('<tr><td><input type="text" name="minimo[]" class="form-control"></td><td><input type="text" name="maximo[]" class="form-control"></td><td><input type="text" name="porcentaje[]" class="form-control"></td></tr>');
+    });
+
     /*$(".eliminarOrden").click(function(){
         var idorden = $(this).attr("idorden");
 
@@ -148,6 +152,34 @@ $(document).ready(function(){
         }else{
             $("#img-field").hide();
             
+        }
+    });
+
+    $(".vincular-usuario-escala-especial").click(function(){
+        var idusuario = $(this).attr("idusuario");
+        var iddescuento = $(this).attr("iddescuento");
+
+        if (idusuario!='') {
+            $.ajax({
+                type: 'POST',
+                url: "Admin/DescuentosEspeciales/VincularUsuario",
+                data: { idusuario:idusuario, iddescuento:iddescuento },
+                dataType: 'text',
+                async: false,
+                success: function(response) {
+
+                        if (response==true) {
+                            alert("El usuario se vinculó con éxito");
+                        }else{
+                            alert("Error al vincular el usuario");                            
+                        }
+
+                        location.reload();
+                },
+                error: function() {
+                    alert('No se pudo vincular el usuario');
+                }
+            });
         }
     });
 

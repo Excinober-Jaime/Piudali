@@ -279,7 +279,7 @@ class Usuarios extends Database
 
 		if (count($usuarios)>0) {
 
-			$usuarios_select = "AND (";
+			$usuarios_select = "(";
 
 			$count = 0;
 
@@ -298,10 +298,14 @@ class Usuarios extends Database
 			$usuarios_select = "";
 		}
 
+		if (!empty($inicio) && !empty($fin)) {
+			$between = "AND ((`inicio` BETWEEN '$inicio' AND '$fin') OR (`inicio` <= '$inicio' AND `fin` >= '$inicio')) ";
+		}
+
 		
 		$query = $this->consulta("SELECT `idincentivo`, `incentivo`, `imagen`, `inicio`, `fin`, `meta`, `descripcion`, `usuario` 
 									FROM `incentivos`									 
-									WHERE `fin` BETWEEN '$inicio' AND '$fin'
+									WHERE $usuarios_select $between
 									ORDER BY `fin` DESC");
 		
 		return $query;

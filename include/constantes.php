@@ -1,6 +1,6 @@
 <?php 
-define("URL_SITIO", "http://localhost/piudali/www/");
-//define("URL_SITIO", "http://piudali.com.co/");
+//define("URL_SITIO", "http://localhost/piudali/www/");
+define("URL_SITIO", "http://piudali.com.co/");
 define("URL_INICIO", "Inicio");
 define("URL_PRODUCTOS", "Productos");
 define("URL_CATEGORIA", "Categoria");
@@ -72,6 +72,8 @@ define("URL_ADMIN_PAGINAS", "Paginas");
 define("URL_ADMIN_BANNERS", "Banners");
 define("URL_ADMIN_CATEGORIAS", "Categorias");
 define("URL_ADMIN_CAMPANAS", "Campanas");
+define("URL_ADMIN_DESCUENTOS_ESPECIALES", "DescuentosEspeciales");
+define("URL_ADMIN_DESCUENTOS_ESPECIALES_VINCULAR", "VincularUsuario");
 define("URL_ADMIN_PLANTILLAS", "Plantillas");
 define("URL_ADMIN_USUARIOS", "Clientes");
 define("URL_ADMIN_ORDENES", "Ordenes");
