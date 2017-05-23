@@ -183,6 +183,41 @@ $(document).ready(function(){
         }
     });
 
+    $("#search").click(function(){
+        
+        var search = $("#top-search").val();
+        var trs = $(".datos > tr").toArray();
+        var tds = Array();
+        var coincidencia = 0;
+
+        if (search !='') {
+
+            for (var i = 0; i < trs.length; i++) {
+
+                coincidencia = 0;
+                
+                tds = $(trs[i]).find("td").toArray();   
+
+                for (var j = 0; j < tds.length; j++) {
+                    
+                    if ($(tds[j]).text() == search) {
+                        coincidencia++;
+                        break;
+                    }
+                }
+
+                if (coincidencia == 0) {
+                    $(trs[i]).hide();
+                }
+            }
+
+        }else{
+            $("tr").show();
+        }
+
+
+    })
+
     var config = {
                 '.chosen-select'           : {},
                 '.chosen-select-deselect'  : {allow_single_deselect:true},

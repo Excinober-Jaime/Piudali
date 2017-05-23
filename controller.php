@@ -684,10 +684,7 @@ class Controller
 			
 		}else{
 			$campana_seleccionada = $this->campanas->getCamapanaActual();
-		}
-
-
-		
+		}		
 		
 		if (!empty($_SESSION["idusuario"])) {
 
@@ -1026,13 +1023,17 @@ class Controller
 		$estados = array(1);
 
 		$banners = $this->banners->listarBanners($posicion_banners, $estados);
+
+		$posicion_banners="CAPACITACION";
+		$estados = array(1);
+		$banner_capacitacion = $this->banners->listarBanners($posicion_banners, $estados);
 		
 		//$categorias = $this->productos->listarCategorias();
 
 
 		if (!empty($_SESSION["idusuario"])) {
 
-			$categorias = $this->capacitacion->listarCategorias();
+			$categorias = $this->capacitacion->listarCategorias($_SESSION["tipo"], 1);
 
 			if (isset($_GET["opcion"])) {
 
@@ -2414,11 +2415,11 @@ class Controller
 		extract($_POST);
 
 		if (isset($_POST["actualizarCategoria"])) {
-			$this->capacitacion->actualizarCategoria($idcategoria, $titulo, $contenido, $perfil, $estado);
+			$this->capacitacion->actualizarCategoria($idcategoria, $titulo, $contenido, $perfil, $orden, $estado);
 		}
 
 		if (isset($_POST["crearCategoria"])) {
-			$idcategoria = $this->capacitacion->crearCategoria($titulo, $contenido, $perfil, $estado);
+			$idcategoria = $this->capacitacion->crearCategoria($titulo, $contenido, $perfil, $orden, $estado);
 		}
 
 		if (isset($idcategoria) && $idcategoria!='') {
@@ -2720,6 +2721,132 @@ class Controller
 
 
 		include "views/admin/ticket_detalle.php";	
+	}
+
+	public function adminPagosLista(){
+		
+		$representantes = $this->usuarios->listarUsuarios(array('REPRESENTANTE COMERCIAL'));
+		$campanas = $this->campanas->listarCampanas();
+
+		if (isset($_POST["idcampana"]) && !empty($_POST["idcampana"])) {
+
+			$es_ano = substr($_POST["idcampana"], 0, 3);			
+			if ($es_ano=="ano") {
+				$ano = substr($_POST["idcampana"], 3, 7);
+				$campana_seleccionada = array('fecha_ini' => $ano.'-01-01', 'fecha_fin' => $ano.'-12-31');
+			}else{
+				$campana_seleccionada = $this->campanas->detalleCampana($_POST["idcampana"]);
+			}
+			
+		}else{
+			$campana_seleccionada = $this->campanas->getCamapanaActual();
+		}
+
+		foreach ($representantes as $key => $representante) {
+
+			//COMISIONES
+		
+			$distribuidores = $this->usuarios->listarDistribuidoresLider($representante["idusuario"]);
+					
+			if (count($distribuidores)>0) {
+				
+				$estado_compras = "FACTURADO";				
+
+				foreach ($distribuidores as $key2 => $distribuidor) {
+					$compras_netas = $this->usuarios->comprasNetasPeriodo($campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"],$estado_compras,$distribuidor["idusuario"]);
+
+					$distribuidores[$key2]["compras_netas"] = $compras_netas["compras_netas"];
+				}
+
+				
+				//Niveles
+				$comision_nivel = 0;
+				$comision_total = 0;
+				$niveles = array();
+				$porc_niveles = array(5,4,3,2,1);
+
+				for ($i=0; $i < count($porc_niveles); $i++) {
+
+					$niveles[$i]["neto"] = 0;
+
+					foreach ($distribuidores as $key3 => $distribuidor) {
+
+						if ($distribuidor["nivel"]==$i) {
+							$niveles[$i]["neto"]+=$distribuidor["compras_netas"];						
+						}
+					}
+					
+					$comision_nivel = $niveles[$i]["neto"] * ($porc_niveles[$i]/100);
+					$comision_total += $comision_nivel;
+				}
+
+				$representantes[$key]["comision_total"] = $comision_total;				
+			}
+			
+		}
+
+		include "views/admin/pagos_lista.php";
+	}
+
+	public function adminPagoComision(){
+
+		if (isset($_POST["pagarComision"])) {
+			extract($_POST);
+
+			//Upload banner
+			if($_FILES["adjunto"]["error"]==UPLOAD_ERR_OK){
+
+				$rutaadj=$_FILES["adjunto"]["tmp_name"];
+				$nombreadj=$_FILES["adjunto"]["name"];
+				$destino = DIR_ADJUNTOS.$nombreadj;
+				move_uploaded_file($rutaadj, $destino);
+
+			}else{
+				$destino = "";
+			}
+
+			$cuenta = $this->cuentas_virtuales->consultarCuenta($idusuario);
+
+			if (count($cuenta)==0) {
+				//Crear cuenta
+				$idcuenta = $this->cuentas_virtuales->crearCuenta(0, fecha_actual('datetime') ,$idusuario);
+				$cuenta = $this->cuentas_virtuales->consultarCuenta($idusuario);
+			}
+
+			
+			//Movimiento positivo
+			$idmovimientopositivo = $this->cuentas_virtuales->crearMovimiento($monto, $descripcion, "", $cuenta["idcuenta"], $idusuario);
+
+
+			//Movimiento negativo						
+			$monto = "-".$monto;
+
+			$idmovimientonegativo = $this->cuentas_virtuales->crearMovimiento($monto, $descripcion, $destino, $cuenta["idcuenta"], $idusuario);
+
+			//Crear pago comision
+			$idpago = $this->cuentas_virtuales->crearPagoComision($idmovimientonegativo, $idcampana, $idusuario);
+
+			if (!empty($idpago)) {
+				header("Location: ".URL_ADMIN_PAGOS);
+			}
+
+		}
+
+		if (isset($_POST["detallePago"])) {
+			extract($_POST);
+
+			if (isset($monto) && !empty($monto) && isset($idusuario) && !empty($idusuario) && isset($idcampana) && !empty($idcampana)) {
+				
+				include "views/admin/pago_comision.php";
+			}else{
+				echo "Algo está mal. Por favor intenta de nuevo";
+			}
+		}
+	}
+
+	public function adminPagoIncentivo(){
+		
+		include "views/admin/pago_incentivo.php";
 	}
 
 	public function adminInformePyG(){

@@ -20,6 +20,10 @@
 					</select>
 				</div>
 				<div class="form-group">
+					<label for="exampleInputEmail1">Orden</label>
+					<input type="text" class="form-control" name="orden" id="orden" value="<?=$categoria['orden']?>" required>
+				</div>
+				<div class="form-group">
 					<label for="exampleInputEmail1">Estado</label>
 					<select name="estado" id="estado" class="form-control" required>
 						<option value="1" <?php if ($categoria['estado']) echo 'selected'; ?>>Activo</option>

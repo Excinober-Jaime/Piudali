@@ -65,5 +65,17 @@ class CuentasVirtuales extends Database
 		
 		return $idmovimiento;
 	}
+
+	public function crearPagoComision($idmovimiento, $idcampana, $idusuario){
+
+		$idpago = $this->insertar("INSERT INTO `pagos_comisiones`(
+									`movimientos_cuentas_idmovimiento`,
+									`campanas_idcampana`,
+									`usuarios_idusuario`) VALUES (									
+									'$idmovimiento',
+									'$idcampana',
+									'$idusuario')");
+		return $idpago;
+	}
 }
 ?>

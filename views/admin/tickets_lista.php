@@ -15,7 +15,7 @@
 			  		<th>Acciones</th>
 			  	</tr>
 			  </thead>
-			  <tbody>
+			  <tbody class="datos">
 			  	<?php 
 			  	foreach ($tickets as $ticket) {
 		  		?>

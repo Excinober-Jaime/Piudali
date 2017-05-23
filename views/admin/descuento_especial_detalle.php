@@ -19,7 +19,7 @@
 					</select>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-md-6">
+					<div class="col-xs-12 col-md-12">
 						<h3>Escalas Especiales</h3>
 						<table class="table table-striped">
 							<thead>
@@ -52,7 +52,9 @@
 							</tbody>			  
 						</table>
 						<a class="pull-right" id="agregarEscalaEspecial">Agregar Escala</a>
-					</div>					
+					</div>	
+				</div>
+				<div class="row">
 					<div class="col-xs-12 col-md-6">
 						<h3>Usuarios Vinculados</h3>
 						<table class="table table-striped">
@@ -87,7 +89,8 @@
 								?>
 							</tbody>
 						</table>
-						<hr>
+					</div>
+					<div class="col-xs-12 col-md-6">
 						<h3>Vincular Usuarios</h3>
 						<div class="w-100" style="max-height:400px;overflow-y:auto;">
 							<table class="table table-striped">

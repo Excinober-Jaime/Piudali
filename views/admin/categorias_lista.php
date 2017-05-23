@@ -11,7 +11,7 @@
 			  		<th>Acciones</th>
 			  	</tr>
 			  </thead>
-			  <tbody>
+			  <tbody class="datos">
 			  	<?php 
 			  	foreach ($categoriasLista as $categoria) {
 		  		?>

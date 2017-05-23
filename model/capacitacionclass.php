@@ -5,40 +5,51 @@
 class Capacitacion extends Database
 {
 
-	public function listarCategorias($perfil="TODOS"){
+	public function listarCategorias($perfil="TODOS", $estado){
 
-		if ($perfil!="TODOS") {
-			 $where = "WHERE `perfil`='$perfil'";
-		}else{
-			$where = "";
+		
+		if (!empty($perfil) && $perfil != "TODOS") {
+			$where = "WHERE `perfil`='TODOS' OR `perfil`='$perfil'";
+		}
+
+		if ($estado === 0 || $estado === 1) {
+			if ($where) {
+				$where .= " AND `estado`='$estado'";
+			}else{
+				$where = "WHERE `estado`='$estado'";
+			}
 		}
 		
-		$query = $this->consulta("SELECT `idcategoria`, `titulo`, `contenido`, `perfil`, `estado` FROM `categorias_capacitacion` $where");
+		$query = $this->consulta("SELECT `idcategoria`, `titulo`, `contenido`, `perfil`, `orden`, `estado` FROM `categorias_capacitacion` $where
+			  ORDER BY `orden` ASC");
 		
 		return $query;
 	}
 
-	public function crearCategoria($titulo="", $contenido="", $perfil="TODOS", $estado=0){
+	public function crearCategoria($titulo="", $contenido="", $perfil="TODOS", $orden=0, $estado=0){
 		
 		$idcategoria = $this->insertar("INSERT INTO `categorias_capacitacion`(										
 										`titulo`, 
 										`contenido`, 
 										`perfil`, 
+										`orden`,
 										`estado`) VALUES (										
 										'$titulo',
 										'$contenido',
 										'$perfil',
+										'$orden',
 										'$estado')");
 		
 		return $idcategoria;
 	}
 
-	public function actualizarCategoria($idcategoria=0, $titulo="", $contenido="", $perfil="TODOS", $estado=0){
+	public function actualizarCategoria($idcategoria=0, $titulo="", $contenido="", $perfil="TODOS", $orden=0, $estado=0){
 		
 		$query = $this->actualizar("UPDATE `categorias_capacitacion` SET 
 									`titulo`='$titulo',
 									`contenido`='$contenido',
 									`perfil`='$perfil',
+									`orden`='$orden',
 									`estado`='$estado' 
 									WHERE `idcategoria`='$idcategoria'");
 		return $query;
@@ -53,7 +64,7 @@ class Capacitacion extends Database
 
 	public function detalleCategoria($idcategoria){
 		
-		$query = $this->consulta("SELECT `idcategoria`, `titulo`, `contenido`, `perfil`, `estado` FROM `categorias_capacitacion` WHERE `idcategoria`='$idcategoria'");
+		$query = $this->consulta("SELECT `idcategoria`, `titulo`, `contenido`, `perfil`, `orden`, `estado` FROM `categorias_capacitacion` WHERE `idcategoria`='$idcategoria'");
 		
 		return $query[0];
 	}

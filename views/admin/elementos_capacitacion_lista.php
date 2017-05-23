@@ -14,7 +14,7 @@
 			  		<th>Acciones</th>
 			  	</tr>
 			  </thead>
-			  <tbody>
+			  <tbody class="datos">
 			  	<?php 
 			  	if (count($elementos)>0) {
 			  		

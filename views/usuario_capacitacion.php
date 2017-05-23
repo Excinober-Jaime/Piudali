@@ -30,7 +30,10 @@
 			<div class="col-xs-12 col-md-9">
         <div class="row">
           <div class="col-xs-12">
-            <img src="assets/img/escuela-de-negocio.png" class="img-responsive">
+            <!--<img src="assets/img/escuela-de-negocio.png" class="img-responsive">-->
+            <a href="<?=$banner_capacitacion[0]['link']?>">
+              <img src="<?=$banner_capacitacion[0]['imagen']?>" class="img-responsive">
+            </a>
           </div>
         </div>
         <hr>

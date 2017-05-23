@@ -79,6 +79,8 @@ $breadcrumb = explode("/", $_GET["url"]);
                 </li>                
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_INCENTIVOS?>"><i class="fa fa-dollar" aria-hidden="true"></i> <span class="nav-label">Incentivos</span></a></li>
 				<li>
+                <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PAGOS?>"><i class="fa fa-dollar" aria-hidden="true"></i> <span class="nav-label">Pagos</span></a></li>
+                <li>
                 <li><a href="<?=URL_ADMIN."/".URL_ADMIN_SUSCRIPTORES?>"><i class="fa fa-newspaper-o" aria-hidden="true"></i> <span class="nav-label">Newsletter</span></a></li>
                 <li>                
                     <a href="#"><i class="fa fa-area-chart" aria-hidden="true"></i> <span class="nav-label">Informes</span> <span class="fa arrow"></span></a>
@@ -86,7 +88,7 @@ $breadcrumb = explode("/", $_GET["url"]);
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_USUARIOS?>">Informe Clientes</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_ORDENES?>">Informe Ventas</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_PRODUCTOS?>">Informe Productos</a></li>
-                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_PYG?>">P y G</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_PYG?>">P y G</a></li>                    
                     </ul>
                 </li>
                 <li>                
@@ -126,12 +128,17 @@ $breadcrumb = explode("/", $_GET["url"]);
     	<div class="row border-bottom">
             <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-                    <form role="search" class="navbar-form-custom" method="post" action="#">
-                        <div class="form-group">
-                            <input type="text" placeholder="Buscar..." class="form-control" name="top-search" id="top-search">
-                        </div>
-                    </form>
+                    <div class="col-xs-2">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary"><i class="fa fa-bars"></i> </a>
+                    </div>
+                    <div class="col-xs-10">
+                        <form role="search" class="navbar-form-custom" method="post" action="#">
+                            <div class="form-group">
+                                <input type="text" placeholder="Buscar..." class="form-control" name="top-search" id="top-search">
+                            </div>                            
+                        </form>                    
+                        <i class="fa fa-search m-t" id="search" aria-hidden="true" style="cursor:pointer;"></i>
+                    </div>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>

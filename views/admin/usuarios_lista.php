@@ -17,7 +17,7 @@
 			  		<th>Fecha Registro</th>
 			  	</tr>
 			  </thead>
-			  <tbody>
+			  <tbody class="datos">
 			  	<?php 
 			  	foreach ($usuariosLista as $usuario) {
 		  		?>

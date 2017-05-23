@@ -331,6 +331,23 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 								$controller->adminCuponesLista();
 							}
 							break;
+
+						case URL_ADMIN_PAGOS:
+							if (isset($var3) && !empty($var3)) {								
+
+								if ($var3==URL_ADMIN_PAGO_COMISION) {
+
+									$controller->adminPagoComision();
+									
+								}elseif ($var3==URL_ADMIN_PAGO_INCENTIVO) {
+									$controller->adminPagoIncentivo();
+								}		
+																
+							}else{
+								$controller->adminPagosLista();
+							}						
+							break;
+
 						case URL_ADMIN_SALIR:
 							$controller->personalCerrarSesion();
 							break;

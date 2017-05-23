@@ -13,7 +13,7 @@
 			  		<th>Acciones</th>
 			  	</tr>
 			  </thead>
-			  <tbody>
+			  <tbody class="datos">
 			  	<?php 
 			  	foreach ($zonas as $zona) {
 		  		?>

@@ -13,7 +13,7 @@
 			  		<th>Estado</th>
 			  	</tr>
 			  </thead>
-			  <tbody>
+			  <tbody class="datos">
 			  	<?php 
 			  	foreach ($cupones as $cupon) {
 		  		?>
