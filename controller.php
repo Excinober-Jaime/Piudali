@@ -2723,7 +2723,11 @@ class Controller
 		include "views/admin/ticket_detalle.php";	
 	}
 
-	public function adminPagosLista(){
+	public function adminPagosComisiones(){
+
+		$comision_nivel = 0;
+		$niveles = array();
+		$porc_niveles = array(5,4,3,2,1);
 		
 		$representantes = $this->usuarios->listarUsuarios(array('REPRESENTANTE COMERCIAL'));
 		$campanas = $this->campanas->listarCampanas();
@@ -2742,9 +2746,25 @@ class Controller
 			$campana_seleccionada = $this->campanas->getCamapanaActual();
 		}
 
+		//Validar si la campaña está en curso
+		if ($campana_seleccionada["fecha_fin"]>=fecha_actual("datetime")) {
+			$campana_en_curso = true;
+		}else{
+			$campana_en_curso = false;
+		}
+
 		foreach ($representantes as $key => $representante) {
 
-			//COMISIONES
+			$comision_total = 0;
+
+			//Consultar si ya se realizó el pago para la campaña y el representante correspondiente
+			$pago_comision_campana = $this->cuentas_virtuales->detallePagoComision($campana_seleccionada["idcampana"], $representante["idusuario"]);
+
+			if (count($pago_comision_campana)>0) {
+				$representantes[$key]["campana_comision_pagada"] = true;
+			}else{
+				$representantes[$key]["campana_comision_pagada"]	= false;
+			}
 		
 			$distribuidores = $this->usuarios->listarDistribuidoresLider($representante["idusuario"]);
 					
@@ -2758,12 +2778,7 @@ class Controller
 					$distribuidores[$key2]["compras_netas"] = $compras_netas["compras_netas"];
 				}
 
-				
 				//Niveles
-				$comision_nivel = 0;
-				$comision_total = 0;
-				$niveles = array();
-				$porc_niveles = array(5,4,3,2,1);
 
 				for ($i=0; $i < count($porc_niveles); $i++) {
 
@@ -2785,7 +2800,7 @@ class Controller
 			
 		}
 
-		include "views/admin/pagos_lista.php";
+		include "views/admin/pagos_comisiones_lista.php";
 	}
 
 	public function adminPagoComision(){
@@ -2827,26 +2842,108 @@ class Controller
 			$idpago = $this->cuentas_virtuales->crearPagoComision($idmovimientonegativo, $idcampana, $idusuario);
 
 			if (!empty($idpago)) {
-				header("Location: ".URL_ADMIN_PAGOS);
+				header("Location: ../".URL_ADMIN_PAGOS_COMISIONES);
 			}
 
 		}
 
 		if (isset($_POST["detallePago"])) {
+
 			extract($_POST);
 
 			if (isset($monto) && !empty($monto) && isset($idusuario) && !empty($idusuario) && isset($idcampana) && !empty($idcampana)) {
-				
-				include "views/admin/pago_comision.php";
+			
+				//Consultar si ya se realizó el pago para la campaña y el representante correspondiente
+				$pago_comision_campana = $this->cuentas_virtuales->detallePagoComision($idcampana, $idusuario);
+
+				if (count($pago_comision_campana)>0) { //Si ya re realizó el pago
+
+					include "views/admin/detalle_pago_comision.php";
+
+				}else{ //Si no se ha realizado el pago
+
+					include "views/admin/pago_comision.php";
+				}
+
 			}else{
+
 				echo "Algo está mal. Por favor intenta de nuevo";
 			}
 		}
 	}
 
-	public function adminPagoIncentivo(){
+	public function adminPagosIncentivos(){
 		
-		include "views/admin/pago_incentivo.php";
+		$representantes = $this->usuarios->listarUsuarios(array('REPRESENTANTE COMERCIAL'));
+		$incentivos = $this->usuarios->listarIncentivos(array('REPRESENTANTE COMERCIAL'));
+
+		if (isset($_POST["idincentivo"]) && !empty($_POST["idincentivo"])) {
+
+			$incentivo_seleccionado = $this->usuarios->incentivoDetalle($_POST["idincentivo"]);	
+			$escalas = $this->usuarios->listarEscalasIncentivo($incentivo_seleccionado["idincentivo"]);
+		}
+
+		//Validar si la campaña está en curso
+		if ($incentivo_seleccionado["fin"]>=fecha_actual("datetime")) {
+			$incentivo_en_curso = true;
+		}else{
+			$incentivo_en_curso = false;
+		}
+
+		foreach ($representantes as $key => $representante) {
+
+			$neto_total = 0;
+
+			//Consultar si ya se realizó el pago para el incentivo y el representante correspondiente
+			$pago_incentivo = $this->cuentas_virtuales->detallePagoIncentivo($incentivo_seleccionado["idincentivo"], $representante["idusuario"]);
+
+			if (count($pago_incentivo)>0) {
+				$representantes[$key]["incentivo_pagado"] = true;
+			}else{
+				$representantes[$key]["incentivo_pagado"] = false;
+			}
+		
+			$distribuidores = $this->usuarios->listarDistribuidoresLider($representante["idusuario"]);
+					
+			if (count($distribuidores)>0) {
+				
+				$estado_compras = "FACTURADO";
+
+				foreach ($distribuidores as $key2 => $distribuidor) {
+					$compras_netas = $this->usuarios->comprasNetasPeriodo($incentivo_seleccionado["inicio"], $incentivo_seleccionado["fin"],$estado_compras,$distribuidor["idusuario"]);
+
+					$neto_total += $compras_netas["compras_netas"];
+				}
+
+				$representantes[$key]["neto_total"] = $neto_total;
+
+
+				if (count($escalas)>0) { //Si el incentivo tiene escalas
+
+					$representantes[$key]["cumplimiento"] = 0;
+
+					foreach ($escalas as $escala) {
+
+						if ($escala["minimo"]<=$neto_total && $escala["maximo"]>=$neto_total) {
+
+							$representantes[$key]["meta"] = "ESCALA ".$incentivo_seleccionado["incentivo"];
+							$representantes[$key]["cumplimiento"] = convertir_pesos($escala["bono"]);
+							break;
+						}
+					}
+
+					if (!isset($representantes[$key]["meta"]) || empty($representantes[$key]["meta"])) 
+					{
+						$representantes[$key]["meta"] = "No ha alcanzado ninguna meta";				
+					}
+				}else{ //Si el incentivo no tiene escalas
+					$representantes[$key]["meta"] = convertir_pesos($incentivo_seleccionado["meta"]);
+					$representantes[$key]["cumplimiento"] = ($neto_total/$incentivo_seleccionado["meta"])*100;					
+				}
+			}
+		}
+
+		include "views/admin/pagos_incentivos_lista.php";
 	}
 
 	public function adminInformePyG(){

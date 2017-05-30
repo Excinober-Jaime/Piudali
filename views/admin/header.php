@@ -79,8 +79,15 @@ $breadcrumb = explode("/", $_GET["url"]);
                 </li>                
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_INCENTIVOS?>"><i class="fa fa-dollar" aria-hidden="true"></i> <span class="nav-label">Incentivos</span></a></li>
 				<li>
-                <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PAGOS?>"><i class="fa fa-dollar" aria-hidden="true"></i> <span class="nav-label">Pagos</span></a></li>
+
                 <li>
+                    <a href="#"><i class="fa fa-dollar" aria-hidden="true"></i> <span class="nav-label">Pagos</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PAGOS_COMISIONES?>">Pagos Comisiones</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PAGOS_INCENTIVOS?>">Pagos Incentivos</a></li>
+                    </ul>
+                </li>   
+                
                 <li><a href="<?=URL_ADMIN."/".URL_ADMIN_SUSCRIPTORES?>"><i class="fa fa-newspaper-o" aria-hidden="true"></i> <span class="nav-label">Newsletter</span></a></li>
                 <li>                
                     <a href="#"><i class="fa fa-area-chart" aria-hidden="true"></i> <span class="nav-label">Informes</span> <span class="fa arrow"></span></a>

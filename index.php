@@ -332,20 +332,30 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}
 							break;
 
-						case URL_ADMIN_PAGOS:
-							if (isset($var3) && !empty($var3)) {								
+						case URL_ADMIN_PAGOS_COMISIONES:
+							if (isset($var3) && !empty($var3)) {
 
 								if ($var3==URL_ADMIN_PAGO_COMISION) {
 
-									$controller->adminPagoComision();
-									
-								}elseif ($var3==URL_ADMIN_PAGO_INCENTIVO) {
-									$controller->adminPagoIncentivo();
-								}		
+									$controller->adminPagoComision();								
+								}	
 																
 							}else{
-								$controller->adminPagosLista();
+								$controller->adminPagosComisiones();
 							}						
+							break;
+
+						case URL_ADMIN_PAGOS_INCENTIVOS:
+							if (isset($var3) && !empty($var3)) {
+
+								if ($var3==URL_ADMIN_PAGO_INCENTIVO) {
+
+									$controller->adminPagoIncentivo();
+								}	
+																
+							}else{
+								$controller->adminPagosIncentivos();
+							}
 							break;
 
 						case URL_ADMIN_SALIR:

@@ -77,5 +77,23 @@ class CuentasVirtuales extends Database
 									'$idusuario')");
 		return $idpago;
 	}
+
+	public function detallePagoComision($idcampana, $idusuario){
+		$query = $this->consulta("SELECT `pagos_comisiones`.`idpago`, `pagos_comisiones`.`movimientos_cuentas_idmovimiento`, `pagos_comisiones`.`campanas_idcampana`, `pagos_comisiones`.`usuarios_idusuario`, `movimientos_cuentas`.`valor`, `movimientos_cuentas`.`descripcion`, `movimientos_cuentas`.`fecha`, `movimientos_cuentas`.`adjunto` 
+									FROM `pagos_comisiones` 
+									INNER JOIN `movimientos_cuentas` ON (`pagos_comisiones`.`movimientos_cuentas_idmovimiento`=`movimientos_cuentas`.`idmovimiento`)
+									WHERE `pagos_comisiones`.`campanas_idcampana`='$idcampana' AND `pagos_comisiones`.`usuarios_idusuario`='$idusuario'");
+		
+		return $query[0];
+	}
+
+	public function detallePagoIncentivo($idincentivo, $idusuario){
+		$query = $this->consulta("SELECT `pagos_incentivos`.`idpago`, `pagos_incentivos`.`movimientos_cuentas_idmovimiento`, `pagos_incentivos`.`incentivos_idincentivo`, `pagos_incentivos`.`usuarios_idusuario`, `movimientos_cuentas`.`valor`, `movimientos_cuentas`.`descripcion`, `movimientos_cuentas`.`fecha`, `movimientos_cuentas`.`adjunto` 
+									FROM `pagos_incentivos` 
+									INNER JOIN `movimientos_cuentas` ON (`pagos_incentivos`.`movimientos_cuentas_idmovimiento`=`movimientos_cuentas`.`idmovimiento`)
+									WHERE `pagos_incentivos`.`incentivos_idincentivo`='$idincentivo' AND `pagos_incentivos`.`usuarios_idusuario`='$idusuario'");
+		
+		return $query[0];
+	}
 }
 ?>
