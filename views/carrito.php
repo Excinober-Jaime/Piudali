@@ -106,8 +106,9 @@
 		 		</form>
 		 		<div class="col-xs-12"><br></div>
 			 	<div class="col-xs-8 text-right">Pago con puntos:</div>
-			 	<div class="col-xs-4 text-right">$<?=number_format($pagoPuntos["valor_pago"])?><br>
-			 		<a onclick="javascript: document.getElementById('nousarpuntos').submit()">No usar puntos en esta compra</a>
+			 	<div class="col-xs-4 text-right">$<?=number_format($pagoPuntos["valor_pago"])?></div>
+			 	<div class="col-xs-12 text-right">
+			 		<a class="btn btn-primary btn-sm" onclick="javascript: document.getElementById('nousarpuntos').submit()">No Redimir Puntos</a>
 			 	</div>	 	
 			 	<div class="col-xs-12"><br></div>
 
@@ -118,10 +119,12 @@
 		 			<input type="hidden" name="usar_puntos" value="1">
 		 		</form>
 		 		<div class="col-xs-12"><br></div>
-			 	<div class="col-xs-8 text-right">Puntos a Redimir:</div>
+			 	<div class="col-xs-8 text-right">Puntos Disponibles:</div>
 			 	<div class="col-xs-4 text-right">
-			 		<?=round($puntos_disponibles["disponibles"])?>		 		<br>
-			 		<a onclick="javascript: document.getElementById('usarpuntos').submit()">Usar puntos en esta compra</a>
+			 		<?=round($puntos_disponibles["disponibles"])?>
+			 	</div>
+			 	<div class="col-xs-12 text-right">
+			 		<a class="btn btn-primary" onclick="javascript: document.getElementById('usarpuntos').submit()">Redimir Puntos</a>
 			 	</div>	 	
 			 	<div class="col-xs-12"><br></div>		
 		 	<?php } ?>

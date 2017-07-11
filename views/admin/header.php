@@ -95,6 +95,7 @@ $breadcrumb = explode("/", $_GET["url"]);
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_USUARIOS?>">Informe Clientes</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_ORDENES?>">Informe Ventas</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_PRODUCTOS?>">Informe Productos</a></li>
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_PAGOS?>">Informe Pagos Pendientes</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_INFORMES."/".URL_ADMIN_INFORME_PYG?>">P y G</a></li>                    
                     </ul>
                 </li>
@@ -139,7 +140,7 @@ $breadcrumb = explode("/", $_GET["url"]);
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary"><i class="fa fa-bars"></i> </a>
                     </div>
                     <div class="col-xs-10">
-                        <form role="search" class="navbar-form-custom" method="post" action="#">
+                        <form role="search" class="navbar-form-custom" method="post">
                             <div class="form-group">
                                 <input type="text" placeholder="Buscar..." class="form-control" name="top-search" id="top-search">
                             </div>                            

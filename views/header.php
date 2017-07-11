@@ -18,6 +18,7 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/return-to-top.css" rel="stylesheet">
 
     <style type="text/css">
       body{
@@ -53,6 +54,10 @@
   <!--End of Zendesk Chat Script-->
   </head>
   <body>
+    <!-- Return to Top -->
+    <a href="javascript:" id="return-to-top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
     <div class="container">      
       <div class="col-xs-12 col-md-3 text-center social">
         <a href="https://www.instagram.com/piudalicolombia/" title="Instagram" target="_new">
@@ -79,8 +84,8 @@
         </span>
         <p>¡Ó Escríbenos Por Whatsapp!</p>
       </div>
-      <div class="col-xs-12 col-md-6">
-        <a href="">
+      <div class="col-xs-12 col-md-6" style="padding-top:15px;">
+        <a href="<?=URL_SITIO?>">
           <img src="assets/img/logo-piudali.png" class="img-responsive center-block">
         </a>        
       </div>
@@ -175,7 +180,7 @@
               }
             }
             ?>
-            <li><a href="/blog">BLOG</a></li>
+            <!--<li><a href="/blog">BLOG</a></li>-->
             <li><a href="<?=URL_CONTACTO?>">CONTÁCTO</a></li>
           </ul>          
         </div><!-- /.navbar-collapse -->

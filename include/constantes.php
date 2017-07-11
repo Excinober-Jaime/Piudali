@@ -1,12 +1,13 @@
 <?php 
-//define("URL_SITIO", "http://localhost/piudali/www/");
-define("URL_SITIO", "http://piudali.com.co/");
+define("URL_SITIO", "http://localhost/piudali/www/");
+//define("URL_SITIO", "http://piudali.com.co/");
 define("URL_INICIO", "Inicio");
 define("URL_PRODUCTOS", "Productos");
 define("URL_CATEGORIA", "Categoria");
 define("URL_CONTACTO", "Contacto");
 define("URL_PAGINA_CONTENIDO", "ContenidoPagina");
 define("URL_BUSCAR", "Resultados");
+define("URL_TIENDAS", "Tiendas");
 
 
 /***CARRITO****/
@@ -66,6 +67,7 @@ define("DIR_ADJUNTOS", "adjuntos/");
 
 /***ADMIN**/
 define("URL_ADMIN", "Admin");
+define("URL_ADMIN_EXPORT", "Export");
 define("URL_ADMIN_INICIO", "Inicio");
 define("URL_ADMIN_PRODUCTOS", "Productos");
 define("URL_ADMIN_PAGINAS", "Paginas");
@@ -103,6 +105,7 @@ define("URL_ADMIN_INFORME_PYG", "InformePyG");
 define("URL_ADMIN_INFORME_USUARIOS", "InformeUsuarios");
 define("URL_ADMIN_INFORME_ORDENES", "InformeOrdenes");
 define("URL_ADMIN_INFORME_PRODUCTOS", "InformeProductos");
+define("URL_ADMIN_INFORME_PAGOS", "InformePagos");
 
 /**GEOLOCALIZACION**/
 define("URL_ADMIN_GEOLOCALIZACION", "Geolocalizacion");

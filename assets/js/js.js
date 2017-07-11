@@ -1,3 +1,6 @@
+var image = 'assets/img/marker.png';
+var center = {lat: 4.0645004, lng: -81.9883374};
+
 $(document).ready(function(){
 	$(".open-modal").click(function(){
 		var idpage = $(this).attr("idpage");
@@ -57,6 +60,7 @@ $(document).ready(function(){
 			$(".box-cod-rep").hide('slow');
 		}
 	})
+	
 
 	/*$( "[name|='codigo_representante2']" ).click(function(){
 		var enable_cod_rep = $(this).val();
@@ -66,4 +70,54 @@ $(document).ready(function(){
 			$("#box-cod-rep2").hide('slow');
 		}
 	})*/
+
+	$(".tienda").click(function(){
+
+		var dir = $(this).attr("dir");
+		var ciudad = $(this).attr("ciudad");
+		var pais = $(this).attr("pais");
+
+		var address = dir+", "+ciudad+", "+pais;
+
+		initMap(address);
+	})
 })
+
+function initMap(address) {
+
+    var myLatLng = center;
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: myLatLng
+    });
+
+    
+    /*var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Hello World!',
+      icon: image
+    });*/
+
+    var geocoder = new google.maps.Geocoder();
+
+    geocodeAddress(address, geocoder, map);
+}
+
+function geocodeAddress(address, geocoder, resultsMap) {
+        //var address = document.getElementById('address').value;
+        //var address = "Calle 48A # 29c - 11, Cali, Colombia";
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location,
+              icon: 'assets/img/marker.png'
+            });
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }

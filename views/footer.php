@@ -88,6 +88,10 @@ Diseñado por iMarketing21 | Desarrollado por <a href="http://excinober.com" tar
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/js.js"></script>
     <script src="assets/js/carrito.js"></script>
+    <script src="assets/js/return-to-top.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFBMLpxKg2tqIa4wVB4xA5rPsPl_-IfEQ">
+    </script>
     <?php
     if (isset($banner_popup) && count($banner_popup)>0) {
     	$banner_popup = $banner_popup[0];

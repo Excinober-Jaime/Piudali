@@ -101,7 +101,7 @@
 		    <li role="presentation"><a href="#uso" aria-controls="uso" role="tab" data-toggle="tab" class="texto-vinotinto">Ver Video</a></li>
 		    <?php
 		    } ?> 
-		    <li role="presentation"><a href="#mas_info" aria-controls="mas_info" role="tab" data-toggle="tab" class="texto-vinotinto">Más Información</a></li>
+		    <li role="presentation"><a href="#mas_info" aria-controls="mas_info" role="tab" data-toggle="tab" class="texto-vinotinto">Ingredientes</a></li>
 		  </ul>
 
 		  <!-- Tab panes -->

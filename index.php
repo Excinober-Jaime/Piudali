@@ -29,6 +29,21 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							$controller->adminInicio();
 							break;
 
+						case URL_ADMIN_EXPORT:
+							if (isset($var3) && !empty($var3)) {
+
+								switch ($var3) {
+									case URL_ADMIN_USUARIOS:
+										$controller->adminExportData($var3);	
+									break;
+									
+									default:
+										# code...
+										break;
+								}
+							}
+							break;
+
 						case URL_ADMIN_PRODUCTOS:
 							if (isset($var3) && !empty($var3)) {
 
@@ -261,6 +276,10 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 										$controller->adminInformeProductos();
 										break;
 
+									case URL_ADMIN_INFORME_PAGOS:
+										$controller->adminInformePagos();
+										break;
+
 									default:
 										echo "El informe no existe";
 										break;
@@ -410,6 +429,10 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
 			case URL_BUSCAR:
 				$controller->pageBuscar();
+				break;
+
+			case URL_TIENDAS:
+				$controller->pageTiendas();
 				break;
 
 			case URL_USUARIO:

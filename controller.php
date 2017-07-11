@@ -91,6 +91,8 @@ class Controller
 
 		$paginas_menu = $this->paginasMenu();
 
+		$sobre_nosotros = $this->paginas->detallePagina(31);
+
 		$tipos = array('NORMAL');
 		$estados = array(1);
 		$productosLista = $this->productos->listarProductos($tipos, $estados);
@@ -180,6 +182,13 @@ class Controller
 		include "views/productos_buscar.php";	
 	}
 
+	public function pageTiendas(){
+		$paginas_menu = $this->paginasMenu();
+
+		$pagina_detalle = $this->paginas->contenidoPagina('tiendas');
+		include "views/tiendas.php";
+	}
+
 
 
 /************USUARIOS**************/
@@ -266,68 +275,81 @@ class Controller
 
 			extract($_POST);
 
-			$tipo = "DISTRIBUIDOR DIRECTO";
-			$foto = "";
-			$estado = 1;
-			$fecha_registro = fecha_actual("datetime");
-			$passwordmd5 = md5($password);			
+			if (count($this->usuarios->validarUsuario($num_identificacion, $email))>0) {
 
-			$idorganizacion = $this->usuarios->crearOrganizacion($nit, $razon_social, $direccion_organizacion, $telefono_organizacion, $ciudad_organizacion);
+				$alerta = "Usted ya posee una cuenta";
 
-			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
-		
-			if (!empty($idusuario)) {
-				//Enviar email Bienvenida
-				$idplantilla=2;
-				$plantilla = $this->usuarios->detallePlantilla($idplantilla);
-				$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
-
-				// Always set content-type when sending HTML email
-				$headers = "MIME-Version: 1.0"."\r\n";
-				$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
-
-				// More headers
-				$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
-
-				$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
-
-				echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";		
 			}else{
-				echo "<script> alert('No fue posible realizar el registro. Por favor intente de nuevo');</script>";			
-			}
 
+				$tipo = "DISTRIBUIDOR DIRECTO";
+				$foto = "";
+				$estado = 1;
+				$fecha_registro = fecha_actual("datetime");
+				$passwordmd5 = md5($password);
+
+				$idorganizacion = $this->usuarios->crearOrganizacion($nit, $razon_social, $direccion_organizacion, $telefono_organizacion, $ciudad_organizacion);
+
+				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
+			
+				if (!empty($idusuario)) {
+					//Enviar email Bienvenida
+					$idplantilla=2;
+					$plantilla = $this->usuarios->detallePlantilla($idplantilla);
+					$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
+
+					// Always set content-type when sending HTML email
+					$headers = "MIME-Version: 1.0"."\r\n";
+					$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
+
+					// More headers
+					$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
+
+					$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
+
+					echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";		
+				}else{
+					echo "<script> alert('No fue posible realizar el registro. Por favor intente de nuevo');</script>";			
+				}
+			}
 		}elseif (isset($_POST["crearUsuario"])) {
 
 			extract($_POST);
 
-			$tipo = "DISTRIBUIDOR DIRECTO";
-			$foto = "";
-			$estado = 1;
-			$fecha_registro = fecha_actual("datetime");
-			$passwordmd5 = md5($password);
-			$idorganizacion = 0;
+			if (count($this->usuarios->validarUsuario($num_identificacion, $email))>0) {
 
-			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
+				$alerta = "Usted ya posee una cuenta";
 
-			if (!empty($idusuario)) {
-				
-				//Enviar email Bienvenida
-				$idplantilla=2;
-				$plantilla = $this->usuarios->detallePlantilla($idplantilla);
-				$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
-
-				// Always set content-type when sending HTML email
-				$headers = "MIME-Version: 1.0"."\r\n";
-				$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
-
-				// More headers
-				$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
-
-				$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
-
-				echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";			
 			}else{
-				echo "<script> alert('No fue posible realizar el registro. Por favor intente de nuevo');</script>";			
+
+				$tipo = "DISTRIBUIDOR DIRECTO";
+				$foto = "";
+				$estado = 1;
+				$fecha_registro = fecha_actual("datetime");
+				$passwordmd5 = md5($password);
+				$idorganizacion = 0;
+
+				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
+
+				if (!empty($idusuario)) {
+					
+					//Enviar email Bienvenida
+					$idplantilla=2;
+					$plantilla = $this->usuarios->detallePlantilla($idplantilla);
+					$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
+
+					// Always set content-type when sending HTML email
+					$headers = "MIME-Version: 1.0"."\r\n";
+					$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
+
+					// More headers
+					$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
+
+					$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
+
+					echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";			
+				}else{
+					echo "<script> alert('No fue posible realizar el registro. Por favor intente de nuevo');</script>";			
+				}
 			}
 		}
 
@@ -1004,7 +1026,7 @@ class Controller
 		
 		if (!empty($_SESSION["idusuario"])) {			
 			
-			$cupones = $this->usuarios->listarCupones();			
+			$cupones = $this->usuarios->listarCupones(array(1),false);
 			
 			include "views/usuario_cupones.php";
 
@@ -1049,7 +1071,13 @@ class Controller
 
 					default:
 						$categoria_actual = $this->capacitacion->detalleCategoria($_GET["opcion"]);
-						$elementos = $this->capacitacion->listarElementosCat($_GET["opcion"],array(1));
+
+						if ($_GET["opcion"] == 4) {
+							$elementos = $this->capacitacion->listarElementosCat($_GET["opcion"],array(1), "ASC");
+						}else{
+							$elementos = $this->capacitacion->listarElementosCat($_GET["opcion"],array(1));
+						}
+						
 
 						if (count($elementos)>0) {
 							foreach ($elementos as $key => $elemento) {
@@ -1223,7 +1251,9 @@ class Controller
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
-		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);
+
+		$comprar = $this->paginas->detallePagina(32);
 
 		include "views/usuario_comprar.php";
 	}
@@ -1688,6 +1718,80 @@ class Controller
 
 
 /**************************** ADMIN ***********************************/
+
+	public function adminExportData($modulo){
+		switch ($modulo) {
+			case URL_ADMIN_USUARIOS:
+				$usuarios = $this->usuarios->listarUsuarios();
+				/** Include PHPExcel */
+				require_once 'include/PHPExcel/Classes/PHPExcel.php';
+
+				// Create new PHPExcel object
+				$objPHPExcel = new PHPExcel();
+
+				// Set document properties
+				$objPHPExcel->getProperties()->setCreator("Piudali")
+											 ->setLastModifiedBy("Piudali")
+											 ->setTitle("Usuarios Piudali")
+											 ->setSubject("Usuarios Piudali")
+											 ->setDescription("Usuarios Piudali")
+											 ->setKeywords("")
+											 ->setCategory("");
+
+
+				$columnas = array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+
+				$columnasdata = count($usuarios[0]);
+				$nombrecolumnas = array_keys($usuarios[0]);
+
+				foreach ($usuarios as $key => $usuario) {
+					
+					$fila = $key+1;
+
+					for ($i=0; $i < $columnasdata ; $i++) { 
+						$objPHPExcel->setActiveSheetIndex(0)
+				            ->setCellValue($columnas[$i].$fila, $usuario[$nombrecolumnas[$i]]);
+				            
+					}
+				}
+
+				// Miscellaneous glyphs, UTF-8
+				/*$objPHPExcel->setActiveSheetIndex(0)
+				            ->setCellValue('A4', 'Miscellaneous glyphs')
+				            ->setCellValue('A5', 'éàèùâêîôûëïüÿäöüç');*/
+
+				// Rename worksheet
+				//$objPHPExcel->getActiveSheet()->setTitle('Simple');
+
+
+				// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+				$objPHPExcel->setActiveSheetIndex(0);
+
+
+				// Redirect output to a client’s web browser (Excel5)
+				header('Content-Type: application/vnd.ms-excel');
+				header('Content-Disposition: attachment;filename="Usuarios.xls"');
+				header('Cache-Control: max-age=0');
+				// If you're serving to IE 9, then the following may be needed
+				header('Cache-Control: max-age=1');
+
+				// If you're serving to IE over SSL, then the following may be needed
+				header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+				header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+				header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+				header ('Pragma: public'); // HTTP/1.0
+
+				$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+				$objWriter->save('php://output');
+				exit;
+
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+	}
 
 	public function adminLoguin(){
 
@@ -2582,7 +2686,7 @@ class Controller
 
 	public function adminCuponesLista(){
 
-		$cupones = $this->usuarios->listarCupones();
+		$cupones = $this->usuarios->listarCupones(array(0,1));
 		include "views/admin/cupones_lista.php";
 	}
 
@@ -2747,7 +2851,7 @@ class Controller
 		}
 
 		//Validar si la campaña está en curso
-		if ($campana_seleccionada["fecha_fin"]>=fecha_actual("datetime")) {
+		if ($campana_seleccionada["fecha_fin"]>=fecha_actual("date")) {
 			$campana_en_curso = true;
 		}else{
 			$campana_en_curso = false;
@@ -2884,7 +2988,7 @@ class Controller
 		}
 
 		//Validar si la campaña está en curso
-		if ($incentivo_seleccionado["fin"]>=fecha_actual("datetime")) {
+		if ($incentivo_seleccionado["fin"]>=fecha_actual("date")) {
 			$incentivo_en_curso = true;
 		}else{
 			$incentivo_en_curso = false;
@@ -2893,6 +2997,7 @@ class Controller
 		foreach ($representantes as $key => $representante) {
 
 			$neto_total = 0;
+
 
 			//Consultar si ya se realizó el pago para el incentivo y el representante correspondiente
 			$pago_incentivo = $this->cuentas_virtuales->detallePagoIncentivo($incentivo_seleccionado["idincentivo"], $representante["idusuario"]);
@@ -2945,6 +3050,8 @@ class Controller
 
 		include "views/admin/pagos_incentivos_lista.php";
 	}
+
+	/****INFORMES***/
 
 	public function adminInformePyG(){
 
@@ -3103,6 +3210,137 @@ class Controller
 		}
 		
 		include "views/admin/informe_productos.php";
+	}
+
+	public function adminInformePagos(){
+
+		$comision_nivel = 0;
+		$niveles = array();
+		$porc_niveles = array(5,4,3,2,1);
+		
+		$representantes = $this->usuarios->listarUsuarios(array('REPRESENTANTE COMERCIAL'));
+		$campanas = $this->campanas->listarCampanas();
+		$incentivos = $this->usuarios->listarIncentivos(array('REPRESENTANTE COMERCIAL'));
+
+		//Eliminar campaña que está en curso o que aún no finaliza
+		foreach ($campanas as $key => $campana) {
+			
+			if ($campana["fecha_fin"]>=fecha_actual("date")) {
+				unset($campanas[$key]);
+			}
+		}
+
+		//Eliminar incentivos que están en curso o que aún no finalizan
+		foreach ($incentivos as $key => $incentivo) {
+			
+			if ($incentivo["fin"]>=fecha_actual("date")) {
+				unset($incentivos[$key]);
+			}
+		}
+		
+
+		foreach ($representantes as $keyR => $representante) {
+
+			$representantes[$keyR]["comisiones_total"] = 0;
+			$representantes[$keyR]["incentivos_total"] = 0;
+
+			//CÁLCULO DE COMISIONES
+			foreach ($campanas as $keyC => $campana) {
+
+				$comision_total = 0;
+				$comision_pendiente_campana = 0;
+				
+				//Consultar si ya se realizó el pago para la campaña y el representante correspondiente
+				$pago_comision_campana = $this->cuentas_virtuales->detallePagoComision($campana["idcampana"], $representante["idusuario"]);
+
+				if (count($pago_comision_campana)==0) { //Si no se ha pagado la comisión de la campaña
+
+					//Calcular comisión pendiente campaña
+					$distribuidores = $this->usuarios->listarDistribuidoresLider($representante["idusuario"]);
+							
+					if (count($distribuidores)>0) {
+						
+						$estado_compras = "FACTURADO";				
+
+						foreach ($distribuidores as $keyD => $distribuidor) {
+							$compras_netas = $this->usuarios->comprasNetasPeriodo($campana["fecha_ini"], $campana["fecha_fin"],$estado_compras,$distribuidor["idusuario"]);
+
+							$distribuidores[$keyD]["compras_netas"] = $compras_netas["compras_netas"];
+						}
+
+						//Niveles
+						for ($i=0; $i < count($porc_niveles); $i++) {
+
+							$niveles[$i]["neto"] = 0;
+
+							foreach ($distribuidores as $keyD2 => $distribuidor) {
+
+								if ($distribuidor["nivel"]==$i) {
+									$niveles[$i]["neto"]+=$distribuidor["compras_netas"];
+								}
+							}
+							
+							$comision_nivel = $niveles[$i]["neto"] * ($porc_niveles[$i]/100);
+							$comision_total += $comision_nivel;
+						}
+
+						$comision_pendiente_campana = $comision_total;
+					}
+				}
+
+				$representantes[$keyR]["comisiones_total"] += $comision_pendiente_campana;
+			}
+
+			//CÁLCULO DE INCENTIVOS
+
+			foreach ($incentivos as $key => $incentivo) {			
+
+				$neto_total = 0;
+				$incentivo_pendiente = 0;
+				$escalas = $this->usuarios->listarEscalasIncentivo($incentivo["idincentivo"]);
+
+				//Consultar si ya se realizó el pago para el incentivo y el representante correspondiente
+				$pago_incentivo = $this->cuentas_virtuales->detallePagoIncentivo($incentivo["idincentivo"], $representante["idusuario"]);
+
+				if (count($pago_incentivo)==0) {					
+			
+					$distribuidores = $this->usuarios->listarDistribuidoresLider($representante["idusuario"]);
+							
+					if (count($distribuidores)>0) {
+						
+						$estado_compras = "FACTURADO";
+						foreach ($distribuidores as $keyD => $distribuidor) {
+							$compras_netas = $this->usuarios->comprasNetasPeriodo($incentivo["inicio"], $incentivo["fin"],$estado_compras,$distribuidor["idusuario"]);
+
+							$neto_total += $compras_netas["compras_netas"];
+						}
+
+						if (count($escalas)>0) { //Si el incentivo tiene escalas
+
+							foreach ($escalas as $escala) {
+
+								if ($escala["minimo"]<=$neto_total && $escala["maximo"]>=$neto_total) {
+
+									$incentivo_pendiente = $escala["bono"];
+									break;
+								}
+							}
+
+						}else{ //Si el incentivo no tiene escalas							
+							$cumplimiento = ($neto_total/$incentivo["meta"])*100;
+							if ($cumplimiento>=100) {
+								$incentivo_pendiente = $incentivo["valorazion"];
+							}
+						}
+					}
+				}
+
+				$representantes[$keyR]["incentivos_total"] += $incentivo_pendiente;
+			}
+
+		}
+
+		include "views/admin/informe_pagos.php";
 	}
 
 	public function adminZonas(){

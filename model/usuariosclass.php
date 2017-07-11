@@ -5,6 +5,16 @@
 */
 class Usuarios extends Database
 {
+
+	public function validarUsuario($num_identificacion,$email){
+		
+		$query = $this->consulta("SELECT `idusuario`
+								FROM `usuarios`
+								WHERE `num_identificacion`='$num_identificacion' OR `email`='$email'");
+		
+		return $query;
+	}
+
 	public function listarUsuarios($tipos = array()){
 
 		if (count($tipos)>0) {
@@ -303,7 +313,7 @@ class Usuarios extends Database
 		}
 
 		
-		$query = $this->consulta("SELECT `idincentivo`, `incentivo`, `imagen`, `inicio`, `fin`, `meta`, `descripcion`, `usuario` 
+		$query = $this->consulta("SELECT `idincentivo`, `incentivo`, `imagen`, `inicio`, `fin`, `meta`, `valoracion`, `descripcion`, `usuario` 
 									FROM `incentivos`									 
 									WHERE $usuarios_select $between
 									ORDER BY `fin` DESC");
@@ -335,7 +345,7 @@ class Usuarios extends Database
 
 	public function incentivoDetalle($idincentivo=0){
 		
-		$query = $this->consulta("SELECT `idincentivo`, `incentivo`, `imagen`, `inicio`, `fin`, `meta`, `descripcion`, `usuario` 
+		$query = $this->consulta("SELECT `idincentivo`, `incentivo`, `imagen`, `inicio`, `fin`, `meta`, `valoracion`, `descripcion`, `usuario` 
 									FROM `incentivos` 
 									WHERE `idincentivo`='$idincentivo'");
 		
@@ -400,10 +410,31 @@ class Usuarios extends Database
 		return $query[0];
 	}
 	
-	public function listarCupones(){
+	public function listarCupones($estados = array(1), $expirados = true){
+
+		if (count($estados)>0) {
+
+			$where_estados = "(";
+
+			foreach ($estados as $key => $estado) {
+				$where_estados .= "`estado`='$estado'";
+			
+				if (($key+1) <  count($estados)) {
+					$where_estados .= " OR ";
+				}
+			}
+
+			$where_estados .= ")";
+		}else{
+			$where_estados = "";
+		}
+
+		if (!$expirados) {
+			$where_expirados = "AND `fecha_expiracion`>= DATE(NOW())";
+		}
 		
 		$query = $this->consulta("SELECT `idcodigo`, `titulo`, `aplicacion`, `val_descuento`, `fecha_expiracion`, `num_codigo_desc`, `estado`, `tipo`, `privado`, `monto_minimo` 
-									FROM `codigos_descuento`");
+									FROM `codigos_descuento` WHERE  $where_estados $where_expirados");
 		
 		return $query;
 	}

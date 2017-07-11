@@ -31,12 +31,19 @@
         <div class="row">
           <div class="col-xs-12">
             <!--<img src="assets/img/escuela-de-negocio.png" class="img-responsive">-->
+            <?php 
+            if (!isset($_GET["opcion"]) || $_GET["opcion"]=='Negocio') {
+            ?>
             <a href="<?=$banner_capacitacion[0]['link']?>">
               <img src="<?=$banner_capacitacion[0]['imagen']?>" class="img-responsive">
             </a>
+            <?php
+            }
+            ?>
           </div>
         </div>
         <hr>
+        <div class="row">
       <?php    
       echo '<div clas="col-xs-12">'.$categoria_actual['contenido'].'</div>';
 
@@ -57,21 +64,23 @@
             break;
         }
 
-        foreach ($elementos as $key => $elemento) {
+        $count = 1;
+
+        foreach ($elementos as $key => $elemento) {            
   
             switch ($elemento["tipo"]) {
               case 'YOUTUBE':
           ?>
-              <div class="<?=$col?>">
+              <div class="<?=$col?>" style="padding-top:1rem;">
                 <div class="embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" src="<?=$elemento['contenido']?>" frameborder="0" allowfullscreen></iframe>
+                  <iframe class="embed-responsive-item" src="<?=str_replace('<img ', '<img class="img-responsive"', $elemento['contenido'])?>" frameborder="0" allowfullscreen></iframe>
                 </div>            
               </div>
             <?php
                 break;
             case 'SLIDESHARE':
             ?>
-              <div class="<?=$col?>">
+              <div class="<?=$col?>" style="padding-top:1rem;">
                 <div class="embed-responsive embed-responsive-16by9">
                   <iframe class="embed-responsive-item" src="<?=$elemento['contenido']?>" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen> </iframe>
                 </div>
@@ -80,7 +89,7 @@
               break;
             case 'HTML':
             ?>
-              <div class="<?=$col?>">
+              <div class="<?=$col?>" style="padding-top:1rem;">
             <?php echo $elemento['contenido']; ?>
               </div>
             <?php
@@ -88,7 +97,7 @@
 
             case 'VIDEO':
               ?>
-              <div class="<?=$col?>">
+              <div class="<?=$col?>" style="padding-top:1rem;">
                 <div class="embed-responsive embed-responsive-16by9">
                   <video width="320" height="240" controls>
                     <source src="<?=$elemento['contenido']?>" type="video/mp4">                
@@ -110,7 +119,7 @@
                   } ?>                
                   <div class="caption">
                     <h3><?=$elemento["titulo"]?></h3>
-                    <p><?=$elemento["contenido"]?></p>                  
+                    <p><?=str_replace('<img ', '<img class="img-responsive" style="height:auto !important;"', $elemento['contenido'])?></p>                  
                   </div>
                 </div>
               </div>
@@ -121,6 +130,8 @@
                 # code...
                 break;
             }
+
+            $count++;
         }
 
       }
@@ -193,6 +204,7 @@
         <?php
       }*/
 		  ?>			
+      </div>
 			</div>
             <div class="clearfix"></div>
 		</div>

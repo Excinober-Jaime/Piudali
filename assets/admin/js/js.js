@@ -183,8 +183,36 @@ $(document).ready(function(){
         }
     });
 
+    $("#top-search").keypress(function( event ) {
+      if ( event.which == 13 ) {
+         event.preventDefault();
+         searchadmin();
+      }
+    });
+
     $("#search").click(function(){
-        
+        searchadmin();
+    })
+
+    var config = {
+                '.chosen-select'           : {},
+                '.chosen-select-deselect'  : {allow_single_deselect:true},
+                '.chosen-select-no-single' : {disable_search_threshold:10},
+                '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+                '.chosen-select-width'     : {width:"95%"}
+                }
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
+
+    CKEDITOR.replace('contenido');
+    CKEDITOR.replace('uso');        
+    //CKEDITOR.replace('presentacion');
+    CKEDITOR.replace('descripcion');  
+})
+
+function searchadmin(){
+    
         var search = $("#top-search").val();
         var trs = $(".datos > tr").toArray();
         var tds = Array();
@@ -214,23 +242,4 @@ $(document).ready(function(){
         }else{
             $("tr").show();
         }
-
-
-    })
-
-    var config = {
-                '.chosen-select'           : {},
-                '.chosen-select-deselect'  : {allow_single_deselect:true},
-                '.chosen-select-no-single' : {disable_search_threshold:10},
-                '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-                '.chosen-select-width'     : {width:"95%"}
-                }
-            for (var selector in config) {
-                $(selector).chosen(config[selector]);
-            }
-
-    CKEDITOR.replace('contenido');
-    CKEDITOR.replace('uso');        
-    //CKEDITOR.replace('presentacion');
-    CKEDITOR.replace('descripcion');  
-})
+}

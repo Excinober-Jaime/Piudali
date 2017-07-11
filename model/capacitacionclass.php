@@ -70,7 +70,7 @@ class Capacitacion extends Database
 	}
 
 	/***ELEMENTOS****/
-	public function listarElementosCat($categoria=0,$estados=array()){	
+	public function listarElementosCat($categoria=0,$estados=array(), $order_by = "DESC"){	
 
 		if (count($estados)>0) {
 
@@ -91,7 +91,8 @@ class Capacitacion extends Database
 			$estados_select = "";
 		}	
 		
-		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `imagen`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` WHERE `categorias_capacitacion_idcategoria`='$categoria' $estados_select");
+		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `imagen`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` WHERE `categorias_capacitacion_idcategoria`='$categoria' $estados_select
+			ORDER BY `idelemento` $order_by");
 		
 		return $query;
 	}
@@ -104,7 +105,8 @@ class Capacitacion extends Database
 			$where = "";
 		}
 		
-		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `imagen`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` $where");
+		$query = $this->consulta("SELECT `idelemento`, `titulo`, `tipo`, `imagen`, `contenido`, `perfil`, `estado`, `categorias_capacitacion_idcategoria` FROM `elementos_capacitacion` $where
+			ORDER BY `idelemento` DESC");
 		
 		return $query;
 	}
@@ -153,8 +155,6 @@ class Capacitacion extends Database
 
 		return $query;
 	}
-
-
 
 	public function detalleElemento($idelemento){
 		

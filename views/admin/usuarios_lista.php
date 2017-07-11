@@ -2,7 +2,8 @@
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
         <div class="col-lg-12">
-			<a class="pull-right" href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/Nuevo"?>"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+        	<a class="pull-right" href="<?=URL_ADMIN."/".URL_ADMIN_EXPORT."/".URL_ADMIN_USUARIOS?>">Exportar</a>
+			<a class="pull-right" href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/Nuevo"?>"><i class="fa fa-user-plus" aria-hidden="true"></i> | </a>			
 			<table class="table table-striped">
 			  <thead>
 			  	<tr>
