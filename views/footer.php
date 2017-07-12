@@ -65,14 +65,14 @@
 
 				</div>
 			</div>
-			<div class="clearfix"></div>
+			<!--<div class="clearfix"></div>
 			<hr/>
 			<div class="col-xs-12">
 				<center>
 					<img src="assets/img/diferenciador.png" class="img-responsive">
 				</center>
 			</div>
-		</div>
+		</div>-->
 	</footer>
 
 	<div class="modal fade" tabindex="-1" role="dialog">
