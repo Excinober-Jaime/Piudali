@@ -1,66 +1,76 @@
-	<div class="container">				
-		<?php if (!isset($_SESSION["idusuario"])) { ?>
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="col-xs-12" style="color:#3c763d; background-color:#dff0d8; border-color:#d6e9c6; padding:20px 10px;">
-					<div class="col-xs-12 col-md-6">
-						<h3 style="padding:0;margin:0;" class="text-center">Recibe nuestras noticias y ofertas*</h3>
-					</div>
-					<form method="post" id="form-newsletter" class="form-inline col-xs-12 col-md-6">
-					  <div class="form-group">
-					    <label class="sr-only" for="exampleInputEmail3">Nombre</label>
-					    <input type="text" class="form-control" name="nombre" id="nombre_newsletter" placeholder="Nombre">
-					  </div>
-					  <div class="form-group">
-					    <label class="sr-only" for="exampleInputPassword3">Email</label>
-					    <input type="email" class="form-control" name="email" id="email_newsletter" placeholder="Email">
-					  </div>				  
-					  <button type="button" class="btn btn-success" id="enviar_newsletter">Suscribirme!</button>
-					</form>	
+	<div class="clearfix"></div>
+	<?php if (!isset($_SESSION["idusuario"])) { ?>
+	<div class="newslatter">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-md-5">				
+							<h3 class="text-center">Recibe nuestras noticias*</h3>
 				</div>
-			</div>
-		</div>
-		<?php } ?>	
-		<div class="col-xs-12" style="color:#3c763d; background-color:#dff0d8; border-color:#d6e9c6; padding:20px 10px;">		
-			<div class="col-xs-12 col-md-4">
-				<ul>
-					<li><a href="<?=URL_SITIO?>Ingresar" style="color:#006837;">Acceso Distribuidores</a></li>
-					<li><a href="<?=URL_SITIO?>Ingresar" style="color:#006837;">Acceso Corporativo</a></li>
-					<li><a href="<?=URL_SITIO?>tiendas" style="color:#006837;">Dónde Comprar</a></li>
-				</ul>
-			</div>
-			<div class="col-xs-12 col-md-4">
-				<ul>
-					<li><a href="<?=URL_SITIO?>sobre-waliwa" style="color:#006837;">Quienes Somos</a></li>
-					<li><a href="<?=URL_SITIO?>quienes-somos" style="color:#006837;">Sobre Piudali</a></li>
-					<li><a href="<?=URL_SITIO?>compromiso-social" style="color:#006837;">Compromiso Social</a></li>
-				</ul>
-			</div>
-			<div class="col-xs-12 col-md-4">
-				<ul>
-					<li><a href="<?=URL_SITIO?>politica-datos" style="color:#006837;">Políticas del Sitio Web</a></li>
-					<li><a href="<?=URL_SITIO?>servicio-al-cliente" style="color:#006837;">Servicio al Cliente</a></li>
-					<li><a href="<?=URL_SITIO?>Contacto" style="color:#006837;">Contáctenos</a></li>
-				</ul>
+				<div class="col-xs-12 col-md-7">	
+				<center>
+							<form method="post" id="form-newsletter" class="form-inline">
+							  <div class="form-group">
+							    <label class="sr-only" for="exampleInputEmail3">Nombre</label>
+							    <input type="text" class="form-control" name="nombre" id="nombre_newsletter" placeholder="Nombre">
+							  </div>
+							  <div class="form-group">
+							    <label class="sr-only" for="exampleInputPassword3">Email</label>
+							    <input type="email" class="form-control" name="email" id="email_newsletter" placeholder="Email">
+							  </div>				  
+							  <button type="button" class="btn btn-success" id="enviar_newsletter">Suscribirme!</button>
+							</form>	
+				</center>
+				</div>
+				<div class="clearfix"></div>				
 			</div>
 		</div>
 	</div>
-	<br>
+	<?php } ?>	
 	<div class="franja"></div>
-	<footer class="container-fluid footer">
+	<footer class="footer">
 		<div class="container">
-			<div class="col-xs-12 col-md-2">
-				<img src="assets/img/link-grupo-marketing.png" class="img-responsive center-block">
+		<div class="col-xs-12 col-sm-4 col-md-3">		
+				<h3>Enlaces de Interes</h3>
+				<ul>
+					<li><a href="<?=URL_SITIO?>Ingresar">Acceso Distribuidores</a></li>
+					<li><a href="<?=URL_SITIO?>Ingresar">Acceso Corporativo</a></li>
+					<li><a href="<?=URL_SITIO?>tiendas">Dónde Comprar</a></li>
+		
+					<li><a href="<?=URL_SITIO?>sobre-waliwa">Quienes Somos</a></li>
+					<li><a href="<?=URL_SITIO?>quienes-somos">Sobre Piudali</a></li>
+					<li><a href="<?=URL_SITIO?>compromiso-social">Compromiso Social</a></li>
+			
+					<li><a href="<?=URL_SITIO?>politica-datos">Políticas del Sitio Web</a></li>
+					<li><a href="<?=URL_SITIO?>servicio-al-cliente">Servicio al Cliente</a></li>
+					<li><a href="<?=URL_SITIO?>Contacto">Contáctenos</a></li>
+				</ul>
 			</div>
-			<div class="col-xs-12 col-md-6">
-				<p>Contáctanos<br>
-Distribuidor Autorizado Link Grupo Marketing SAS<br>
-Teléfono: (+57)(2) 524 1887 - (+57) 311 627 9068 | Email: contacto@piudali.com.co<br><br>
-Todos los derechos reservados Link Grupo Marketing SAS © 2016 <br>
-Diseñado por iMarketing21 | Desarrollado por <a href="http://excinober.com" target="_new" style="color:#fff;">Excinober Benites</a></p>
+			<div class="col-xs-12 col-md-8 col-md-9">
+				<div class="col-xs-12 col-md-3 col-md-offset-1">
+					<center>
+						<img src="assets/img/link-grupo-marketing.png" class="img-responsive">
+						<br>
+						<img src="assets/img/piudali-footer.png" class="img-responsive">
+					</center>
+				</div>
+
+				<div class="col-xs-12 col-md-7 col-md-8">
+				<h4>Contáctanos</h4>
+					<p>
+	Distribuidor Autorizado Link Grupo Marketing SAS<br>
+	Teléfono: (+57)(2) 524 1887 - (+57) 311 627 9068 | Email: contacto@piudali.com.co<br><br>
+	<hr>
+	Todos los derechos reservados Link Grupo Marketing SAS © 2016 <br>
+	Diseñado por <a href="http://imarketing21.com" target="_new">iMarketing21</a> | Desarrollado por <a href="http://excinober.com" target="_new">Excinober Benites</a></p>
+
+				</div>
 			</div>
-			<div class="col-xs-12 col-md-4">
-				<img src="assets/img/piudali-footer.png" class="img-responsive center-block">
+			<div class="clearfix"></div>
+			<hr/>
+			<div class="col-xs-12">
+				<center>
+					<img src="assets/img/diferenciador.png" class="img-responsive">
+				</center>
 			</div>
 		</div>
 	</footer>

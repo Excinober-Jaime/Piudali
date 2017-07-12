@@ -53,11 +53,45 @@ body{
 	padding: 0px;
 }
 
+.newslatter{
+	background-color: #6d1e3f !important;
+	padding: 7px;
+	color:#fff;
+}
+
+.newslatter h3{
+	margin:0;
+}
+
 footer{
 	background-color: #006837;
 	border-top: 5px solid #742126;
 	color: #fff;
 	padding: 20px 0px;
+}
+
+.footer a{
+	color: #fff;
+}
+
+.footer h3{
+	margin: 0 0 7px 0;
+    font-size: 20px;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 5px;
+}
+
+.footer ul{
+	padding-left: 20px;
+}
+
+
+.footer img{
+	margin-bottom: 8px;
+}
+
+.footer hr{
+	opacity: 0.2 !important;
 }
 
 .texto-vinotinto{
