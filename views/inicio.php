@@ -95,9 +95,12 @@
 				producto_bloque($producto["img_principal"],$producto["nombre"],$producto["codigo"],$producto["precio"],$producto["precio_oferta"],$producto["url"],"col-sm-3");
 			}
 		?>
+	</div>
 	</div>		
-	<div class="col-xs-12" style="background-color:#FFF8EB;padding:20px;">
-		<?=$sobre_nosotros[0]["contenido"]?>
+	<div class="col-xs-12" style="background-color:#f9f9f9; padding:20px;">
+		<div class="container">
+			<?=$sobre_nosotros[0]["contenido"]?>
+		</div>
 	</div>
 	
 	<!--<div class="row">
@@ -120,7 +123,7 @@
 			<p>Detrás de la marca: Dos Mujeres y Un Sueño Durante muchos años las vidas de Martha Neira y Myriam Moya transcurrieron en paralelo. Químicas farmacéuticas egresadas de la misma universidad, su curiosid...</p>
 		</div>
 	</div>-->
-</div>
+
 <br>
 <br>
 <?php include "footer.php"; ?>
