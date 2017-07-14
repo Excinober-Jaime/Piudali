@@ -12,7 +12,7 @@
 	<div class="alert alert-danger" role="alert"><?=$alerta?></div>
 	<?php
 	}
-	?>	
+	?>
 	<h1 class="text-center">REGISTRO</h1>
 		<div class="row">
 			<center>
@@ -26,18 +26,10 @@
 				</div>
 			</center>
 			<hr>
-			<div>
-
-			<!--  
-			  <ul class="nav nav-tabs" role="tablist">
-			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><h4>PERSONA NATURAL (INDEPENDIENTE)</h4></a></li>
-			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><h4>PERSONA JURÍDICA (ORGANIZACIÓN)</h4></a></li>    
-			  </ul>-->
-
-			  
+			<div>			  
 			  <div class="tab-content">
 			    <div role="tabpanel" class="tab-pane active" id="home">
-			    	<form method="post">
+			    	<form method="post" id="formUsuarioNatural">
 				    	<div class="col-xs-12 col-md-6 col-md-offset-3">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Nombre</label>
@@ -64,7 +56,17 @@
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Fecha de Nacimiento</label>
-								<input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" placeholder="aaaa-mm-dd">
+								<div class="row">
+									<div class="col-sm-4">
+										<input type="text" name="dia_nacimiento" class="form-control"  placeholder="DD" style="text-align:center;" maxlength="2">
+									</div>
+									<div class="col-sm-4">
+										<input type="text" name="mes_nacimiento" class="form-control"  placeholder="MM" style="text-align:center;" maxlength="2">
+									</div>
+									<div class="col-sm-4">
+										<input type="text" name="ano_nacimiento" class="form-control"  placeholder="AAAA" style="text-align:center;" maxlength="4">
+									</div>
+								</div>
 							</div>		
 							<div class="form-group">
 								<label for="exampleInputEmail1">Dirección</label>
@@ -148,12 +150,13 @@
 							      <input type="checkbox" name="condiciones" value="1" required><a class="open-modal" idpage="22">Autorización datos personales</a>
 							    </label>
 							</div>
-							<button type="submit" name="crearUsuario" class="btn btn-default btn-lg center-block">CREAR CUENTA</button>		
+							<input type="hidden" name="crearUsuario" value="1">
+							<button type="button" id="crearUsuarioNatural" class="btn btn-default btn-lg center-block">CREAR CUENTA</button>		
 						</div>
 					</form>
 			    </div>
 			    <div role="tabpanel" class="tab-pane" id="profile">
-			    	<form method="post">
+			    	<form method="post" id="formUsuarioJuridico">
 				    	<div class="col-xs-12 col-md-6">
 				
 							<h3>DATOS DE USUARIO</h3>							
@@ -182,8 +185,18 @@
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Fecha de Nacimiento</label>
-								<input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" placeholder="aaaa-mm-dd">
-							</div>		
+								<div class="row">
+									<div class="col-sm-4">
+										<input type="text" name="dia_nacimiento" class="form-control"  placeholder="DD" style="text-align:center;" maxlength="2">
+									</div>
+									<div class="col-sm-4">
+										<input type="text" name="mes_nacimiento" class="form-control"  placeholder="MM" style="text-align:center;" maxlength="2">
+									</div>
+									<div class="col-sm-4">
+										<input type="text" name="ano_nacimiento" class="form-control"  placeholder="AAAA" style="text-align:center;" maxlength="4">
+									</div>
+								</div>
+							</div>	
 							<div class="form-group">
 								<label for="exampleInputEmail1">Dirección</label>
 								<input type="text" name="direccion" class="form-control" id="direccion" required>
@@ -300,7 +313,8 @@
 							    </label>
 							</div>		
 						</div>
-						<button type="submit" name="crearUsuarioOrganizacion" class="btn btn-default btn-lg center-block">CREAR CUENTA</button>
+						<input type="hidden" name="crearUsuarioOrganizacion" value="1">
+						<button type="button" id="crearCuentaJuridica" class="btn btn-default btn-lg center-block">CREAR CUENTA</button>
 			   		</form>
 			    </div>
 			  </div>

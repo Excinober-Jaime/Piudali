@@ -287,6 +287,12 @@ class Controller
 				$fecha_registro = fecha_actual("datetime");
 				$passwordmd5 = md5($password);
 
+				if (!empty($ano_nacimiento) && !empty($mes_nacimiento) && !empty($dia_nacimiento)) {
+					$fecha_nacimiento = $ano_nacimiento."-".$mes_nacimiento."-".$dia_nacimiento;	
+				}else{
+					$fecha_nacimiento = "0000-00-00";
+				}
+
 				$idorganizacion = $this->usuarios->crearOrganizacion($nit, $razon_social, $direccion_organizacion, $telefono_organizacion, $ciudad_organizacion);
 
 				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
@@ -327,6 +333,13 @@ class Controller
 				$fecha_registro = fecha_actual("datetime");
 				$passwordmd5 = md5($password);
 				$idorganizacion = 0;
+
+				if (!empty($ano_nacimiento) && !empty($mes_nacimiento) && !empty($dia_nacimiento)) {
+					$fecha_nacimiento = $ano_nacimiento."-".$mes_nacimiento."-".$dia_nacimiento;	
+				}else{
+					$fecha_nacimiento = "0000-00-00";
+				}
+				
 
 				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 
@@ -1634,7 +1647,7 @@ class Controller
 				$responseUrl = "http://naturalvitalis.com/respagos.php";
 				$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
 
-				require "include/pago_payu.php";
+				//require "include/pago_payu.php";
 
 				unset($_SESSION["idpdts"]);
 				unset($_SESSION["cantidadpdts"]);

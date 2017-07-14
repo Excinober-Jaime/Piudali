@@ -159,7 +159,16 @@ class Carrito extends Productos
 	public function porcDescuentoCupon(){
 
 		if (!empty($_SESSION["idcupon"]) && !empty($_SESSION["valor_cupon"]) && isset($_SESSION["aplicacion_cupon"])) {
-			$porc_descuento_cupon = $_SESSION["valor_cupon"];
+
+			$subtotalAntesIva = $this->getSubtotalAntesIva();
+
+			if ($_SESSION["aplicacion_cupon"]) {
+				//Descuento en pesos, se convierte a porcentual
+				$porc_descuento_cupon = ($_SESSION["valor_cupon"] / $subtotalAntesIva) * 100;
+			}else{
+				//Descuento en porcentaje
+				$porc_descuento_cupon = $_SESSION["valor_cupon"];
+			}			
 		}else{
 			$porc_descuento_cupon = 0;
 		}
