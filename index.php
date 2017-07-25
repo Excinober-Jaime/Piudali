@@ -44,6 +44,20 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}
 							break;
 
+						case URL_ADMIN_CODIGOS_PUNTOS:
+							if (isset($var3) && !empty($var3)) {
+
+								if ($var3=="Nuevo") {
+									$controller->adminGenerarCodigosPuntos();	
+								}else{
+
+								}						
+								
+							}else{
+								$controller->adminProductosLista();
+							}
+							break;
+
 						case URL_ADMIN_PRODUCTOS:
 							if (isset($var3) && !empty($var3)) {
 
@@ -394,6 +408,14 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 					$controller->adminLoguin();
 				}
 				
+				break;
+
+			case URL_CODIGOS_PUNTOS:
+				if (isset($var2) && !empty($var2)) {
+					$controller->paginaCodigosPuntos($var2);
+				}else{
+					$controller->paginaCodigosPuntos('');
+				}				
 				break;
 
 			case URL_PRODUCTOS:

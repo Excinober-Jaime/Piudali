@@ -64,6 +64,13 @@ $breadcrumb = explode("/", $_GET["url"]);
                     </ul>
                 </li>               							
                 <li><a href="<?=URL_ADMIN."/".URL_ADMIN_TICKETS?>"><i class="fa fa-ticket" aria-hidden="true"></i> <span class="nav-label">Tickets</span></a></li>
+
+                <li>
+                    <a href="#"><i class="fa fa-code" aria-hidden="true"></i> <span class="nav-label">Códigos con Puntos</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_CODIGOS_PUNTOS."/Nuevo"?>">Crear Códigos</a></li>
+                    </ul>
+                </li>
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_CAMPANAS?>"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span class="nav-label">Campañas</span></a></li>
                 <li><a href="<?=URL_ADMIN."/".URL_ADMIN_DESCUENTOS_ESPECIALES?>"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span class="nav-label">Escalas Especiales</span></a></li>
                 <li><a href="<?=URL_ADMIN."/".URL_ADMIN_CUPONES?>"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span class="nav-label">Cupones</span></a></li>      

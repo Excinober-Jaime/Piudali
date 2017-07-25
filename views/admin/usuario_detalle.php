@@ -37,6 +37,13 @@
 						<input type="text" class="form-control" name="direccion" id="direccion" value="<?=$usuario['direccion']?>" required>
 					</div>
 					<div class="form-group">
+						<label for="exampleInputEmail1">Mostrar en Mapa</label>
+						<select name="mapa" id="mapa" class="form-control">
+							<option value="0" <?php if (!$usuario['mapa']) echo 'selected'; ?>>NO</option>
+							<option value="1" <?php if ($usuario['mapa']) echo 'selected'; ?>>SI</option>							
+						</select>
+					</div>
+					<div class="form-group">
 						<label for="exampleInputEmail1">Teléfono</label>
 						<input type="text" class="form-control" name="telefono" id="telefono" value="<?=$usuario['telefono']?>">
 					</div>

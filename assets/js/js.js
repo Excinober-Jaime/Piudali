@@ -1,6 +1,3 @@
-var image = 'assets/img/marker.png';
-var center = {lat: 4.0645004, lng: -81.9883374};
-
 $(document).ready(function(){
 	$(".open-modal").click(function(){
 		var idpage = $(this).attr("idpage");
@@ -70,17 +67,6 @@ $(document).ready(function(){
 			$("#box-cod-rep2").hide('slow');
 		}
 	})*/
-
-	$(".tienda").click(function(){
-
-		var dir = $(this).attr("dir");
-		var ciudad = $(this).attr("ciudad");
-		var pais = $(this).attr("pais");
-
-		var address = dir+", "+ciudad+", "+pais;
-
-		initMap(address);
-	})
 
 	$("#crearCuentaJuridica").click(function(){
 
@@ -205,43 +191,100 @@ $(document).ready(function(){
 			},4000);
 		}
 	})
+
+	$(".tienda").click(function(){
+
+		$(".tienda").removeClass("active");
+		$(this).addClass("active");
+
+		var iddistribuidor = $(this).attr("iddistribuidor");		
+
+		openWindowMap(iddistribuidor);
+	})
 })
 
-function initMap(address) {
+var image = 'assets/img/marker.png';
+var center = {lat: 5.0645004, lng: -71.9883374};
+var contentString = '';
+var marker = [];
+var infowindow = [];
 
-    var myLatLng = center;
+function initMap(distribuidores, ciudad) {
+
+	var distribuidores = JSON.parse(distribuidores);
+	//console.log(distribuidores);
+
+	var myLatLng = center;
 
     map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
+      zoom: 5,
       center: myLatLng
     });
 
     
-    /*var marker = new google.maps.Marker({
+    /*var markerc = new google.maps.Marker({
       position: myLatLng,
       map: map,
-      title: 'Hello World!',
-      icon: image
+      title: 'Hello World!'
+      
     });*/
 
     var geocoder = new google.maps.Geocoder();
 
-    geocodeAddress(address, geocoder, map);
+    for (var i = 0; i < 10; i++) {
+    	
+    	if (distribuidores[i]["direccion"] != '') {
+	    	address = distribuidores[i]["direccion"]+", "+distribuidores[i]["ciudad"]+", Colombia";
+	    	
+	    	contentString = '<h3>'+distribuidores[i]["nombre"]+' '+distribuidores[i]["apellido"]+'</h3><p>'+distribuidores[i]["direccion"]+'<br>'+distribuidores[i]["ciudad"]+'<br>'+distribuidores[i]["telefono"]+'</p>';
+
+	    	geocodeAddress(address, geocoder, map, contentString, distribuidores[i]["idusuario"]);
+
+	    	//console.log(contentString);
+	    	sleep(0);
+	    }
+    }
+	
 }
 
-function geocodeAddress(address, geocoder, resultsMap) {
-        //var address = document.getElementById('address').value;
-        //var address = "Calle 48A # 29c - 11, Cali, Colombia";
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location,
-              icon: 'assets/img/marker.png'
-            });
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
+
+function geocodeAddress(address, geocoder, resultsMap, contentWindow, iddistribuidor) {
+	//var address = document.getElementById('address').value;
+	//var address = "Calle 48A # 29c - 11, Cali, Colombia";
+	geocoder.geocode({'address': address}, function(results, status) {
+	  if (status === 'OK') {
+	    //resultsMap.setCenter(results[0].geometry.location);
+	    marker[iddistribuidor] = new google.maps.Marker({
+	      map: resultsMap,
+	      position: results[0].geometry.location,
+	      icon: 'assets/img/marker.png'
+	    });
+
+	    if (contentWindow) {
+
+	    	infowindow[iddistribuidor] = new google.maps.InfoWindow({
+		      content: contentWindow
+		    });
+
+	    	marker[iddistribuidor].addListener('click', function() {
+		        infowindow[iddistribuidor].open(map, marker[iddistribuidor]);
+		    });
+	    }
+	  } else {
+	    console.log('Geocode was not successful for the following reason: ' + status);
+	  }
+	});
+}
+
+function openWindowMap(iddistribuidor){
+	infowindow[iddistribuidor].open(map, marker[iddistribuidor]);
+}
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}

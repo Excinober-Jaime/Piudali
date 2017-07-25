@@ -1,9 +1,40 @@
 <?php include "header.php"; ?>
-
 <div class="container">
-	<div class="col-xs-5">
+	<div class="col-xs-4">
 		<!--<?=$pagina_detalle["contenido"]?>-->
-		<h2>Cali</h2>
+
+		<div class="dropdown">
+		  <button class="btn btn-lg btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		    Ciudad
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		  	<?php
+		  	foreach ($ciudades as $key => $ciudad) {
+		  	?>
+		  	<li><a href="<?=URL_TIENDAS?>/?ciudad=<?=$ciudad["idciudad"]?>"><?=$ciudad["ciudad"]." (".$ciudad["departamento"].")"?></a></li>
+		  	<?php
+		  	}
+		  	?>
+		  </ul>
+		</div>
+
+
+		<div class="list-group" style="overflow-y:auto;max-height:800px;margin-top:20px;">
+
+		<?php 
+		foreach ($distribuidores as $key => $distribuidor) {
+		?>
+			<a class="list-group-item tienda" iddistribuidor="<?=$distribuidor["idusuario"]?>">
+			    <h4 class="list-group-item-heading"><?=$distribuidor["nombre"]." ".$distribuidor["apellido"]?></h4>
+			    <p class="list-group-item-text"><?=$distribuidor["direccion"]?><br><?=$distribuidor["telefono"]." - ".$distribuidor["telefono_m"]?><br><?=$distribuidor["ciudad"]?></p>
+			  </a>
+		<?php
+		}
+		?>
+		</div>
+
+		<!--<h2>Cali</h2>
 		<div class="row" style="font-size:0.8em;">
 		  <div class="col-xs-12 col-md-6">
 		  	<div class="panel panel-default">
@@ -54,66 +85,13 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>-->
 	</div>
-	<div class="col-xs-7">
+	<div class="col-xs-8">
 		<!-- 16:9 aspect ratio -->
 		<div class="embed-responsive embed-responsive-16by9 container-map">
 		  <div id="map" class="embed-responsive-item"></div>
 		</div>
 	</div>
 </div>
-<br>
-<br>
-
-<script>
-
-
-	  /*var image = 'assets/img/marker.png';
-	  var center = {lat: -81.9883374, lng: 4.0645004};
-      
-      function initMap() {
-
-        var myLatLng = center;
-
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 5,
-          center: myLatLng
-        });
-
-        
-
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Hello World!',
-          icon: image
-        });
-
-        var geocoder = new google.maps.Geocoder();
-
-        geocodeAddress(geocoder, map);
-      }
-
-       function geocodeAddress(geocoder, resultsMap) {
-        //var address = document.getElementById('address').value;
-        var address = "Calle 48A # 29c - 11, Cali, Colombia";
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location
-            });
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }*/
-
-
-    </script>
-    
-
-
 <?php include "footer.php"; ?>

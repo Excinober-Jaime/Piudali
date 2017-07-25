@@ -18,6 +18,7 @@ require "model/capacitacionclass.php";
 require "model/personalclass.php";
 require "model/cuentasclass.php";
 require "model/descuentosespecialesclass.php";
+require "model/codigospuntosclass.php";
 
 /** Require Includes **/
 require "include/constantes.php";
@@ -42,6 +43,7 @@ class Controller
 		$this->personal = new Personal();
 		$this->cuentas_virtuales = new CuentasVirtuales();
 		$this->descuentos_especiales = new Descuentosespeciales();
+		$this->codigos_puntos = new CodigosPuntos();
 	}
 
 
@@ -184,8 +186,22 @@ class Controller
 
 	public function pageTiendas(){
 		$paginas_menu = $this->paginasMenu();
-
 		$pagina_detalle = $this->paginas->contenidoPagina('tiendas');
+
+		$ciudades = $this->usuarios->listarCiudadesConDistribuidor();
+
+		if (isset($_GET["ciudad"]) && !empty($_GET["ciudad"])) {
+
+			$distribuidores = $this->usuarios->listarUsuariosMapa($_GET["ciudad"]);	
+		}else{
+			$distribuidores = $this->usuarios->listarUsuariosMapa(4270);	
+		}
+
+
+		
+		$json_maps = json_encode($distribuidores);
+		//$onload = "initMap('".$distribuidores."')";
+		//$onload = "initMap('".json_encode(array('Direccion'=>'Calle 48A # 29c - 11, Cali'))."')";
 		include "views/tiendas.php";
 	}
 
@@ -295,7 +311,7 @@ class Controller
 
 				$idorganizacion = $this->usuarios->crearOrganizacion($nit, $razon_social, $direccion_organizacion, $telefono_organizacion, $ciudad_organizacion);
 
-				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
+				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, 0, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 			
 				if (!empty($idusuario)) {
 					//Enviar email Bienvenida
@@ -341,7 +357,7 @@ class Controller
 				}
 				
 
-				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
+				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, 0, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 
 				if (!empty($idusuario)) {
 					
@@ -652,7 +668,7 @@ class Controller
 					$boletines = 0;
 				}
 
-				$actualizar_usuario = $this->usuarios->actualizarUsuario($_SESSION["idusuario"],$nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $telefono, $telefono_m, $_SESSION["tipo"], $segmento, $foto, $_SESSION["lider"], $ciudad);
+				$actualizar_usuario = $this->usuarios->actualizarUsuario($_SESSION["idusuario"],$nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $mapa, $telefono, $telefono_m, $_SESSION["tipo"], $segmento, $foto, $_SESSION["lider"], $ciudad);
 
 				if (isset($idorganizacion) && !empty($idorganizacion)) {
 					$actualizar_organizacion = $this->usuarios->actualizarOrganizacion($idorganizacion, $razon_social, $telefono_organizacion, $direccion_organizacion, $ciudad_organizacion);
@@ -1647,11 +1663,11 @@ class Controller
 				$responseUrl = "http://naturalvitalis.com/respagos.php";
 				$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
 
-				//require "include/pago_payu.php";
+				require "include/pago_payu.php";
 
 				unset($_SESSION["idpdts"]);
 				unset($_SESSION["cantidadpdts"]);
-			}		
+			}
 			
 		}else{
 			header("Location: ".URL_INGRESAR);
@@ -2343,11 +2359,11 @@ class Controller
 		}
 
 		if (isset($_POST["crearUsuario"])) {			
-			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, 0);
+			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, 0);
 		}
 
 		if (isset($_POST["actualizarUsuario"])) {
-			$this->usuarios->actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, 0, $direccion, $telefono, $telefono_m, $tipo, $segmento,'', $lider, $cod_lider, $ciudad);
+			$this->usuarios->actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento,'', $lider, $cod_lider, $ciudad);
 		}
 
 		if (isset($idusuario) && !empty($idusuario)) {
@@ -3445,6 +3461,51 @@ class Controller
 		$ciudades = $this->usuarios->listarCiudades();
 
 		include "views/admin/region_detalle.php";	
+	}
+
+
+	/****CÓDIGOS PUNTOS****/
+
+	public function adminGenerarCodigosPuntos(){
+
+		if (isset($_POST["generarCodigos"])) {
+			extract($_POST);
+
+			$codigos = array();
+			$imgsqr = array();
+
+			for ($i=0; $i < $cantidad; $i++) {
+				
+				do {
+				
+					$codigo = $this->codigos_puntos->generaCodigo();
+					$info = $this->codigos_puntos->datelleCodigo($codigo);	
+				
+				} while (count($info)>0);
+
+				if ($qr) {
+					$imgqr = $this->codigos_puntos->generarQR($codigo);
+					$imgsqr[$codigo] = $imgqr;
+				}
+
+				$idcodigo = $this->codigos_puntos->crearCodigo($codigo, $puntos, 0, $qr, fecha_actual("datetime"), $vencimiento, 0);
+
+				$codigos[] = $codigo;
+			}
+
+			include "views/admin/codigos_puntos_imprimir.php";
+
+		}else{
+
+			include "views/admin/codigos_puntos_generar.php";
+		}
+
+	}
+
+	public function paginaCodigosPuntos($codigo){
+
+		$paginas_menu = $this->paginasMenu();
+		include "views/codigos_puntos.php";
 	}
 }
 ?>

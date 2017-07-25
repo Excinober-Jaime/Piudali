@@ -32,7 +32,7 @@ class Usuarios extends Database
 			$where = "";
 		}
 		
-		$query = $this->consulta("SELECT `idusuario`, `nombre`, `apellido`, `sexo`, `fecha_nacimiento`, `email`, `password`, `num_identificacion`, `boletines`, `condiciones`, `direccion`, `telefono`, `telefono_m`, `tipo`, `segmento`, `foto`, `estado`, `fecha_registro`, `referente`, `lider`, `nivel`, `ciudades_idciudad`, `ciudades`.`ciudad` AS 'ciudad'
+		$query = $this->consulta("SELECT `idusuario`, `nombre`, `apellido`, `sexo`, `fecha_nacimiento`, `email`, `password`, `num_identificacion`, `boletines`, `condiciones`, `direccion`,  `mapa`, `telefono`, `telefono_m`, `tipo`, `segmento`, `foto`, `estado`, `fecha_registro`, `referente`, `lider`, `nivel`, `ciudades_idciudad`, `ciudades`.`ciudad` AS 'ciudad'
 									FROM `usuarios`
 									INNER JOIN `ciudades` ON (`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`) 
 									$where 
@@ -40,8 +40,20 @@ class Usuarios extends Database
 		
 		return $query;
 	}
+
+	public function listarUsuariosMapa($idciudad){
+
+				
+		$query = $this->consulta("SELECT `idusuario`, `nombre`, `apellido`, `sexo`, `fecha_nacimiento`, `email`, `password`, `num_identificacion`, `boletines`, `condiciones`, `direccion`,  `mapa`, `telefono`, `telefono_m`, `tipo`, `segmento`, `foto`, `estado`, `fecha_registro`, `referente`, `lider`, `nivel`, `ciudades_idciudad`, `ciudades`.`ciudad` AS 'ciudad'
+									FROM `usuarios`
+									INNER JOIN `ciudades` ON (`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`) 
+									WHERE `ciudades_idciudad`='$idciudad' AND `mapa`=1
+									ORDER BY `fecha_registro` DESC");
+		
+		return $query;
+	}
 	
-	public function crearUsuario($nombre="", $apellido="", $sexo="", $fecha_nacimiento="", $email="", $password="", $num_identificacion="", $boletines=0, $condiciones=0, $direccion="", $telefono="", $telefono_m="", $tipo="", $segmento="", $foto="", $estado=0, $fecha_registro="", $referente=0, $lider=0, $cod_lider=0, $nivel=0, $ciudad=0, $idorganizacion=0){	
+	public function crearUsuario($nombre="", $apellido="", $sexo="", $fecha_nacimiento="", $email="", $password="", $num_identificacion="", $boletines=0, $condiciones=0, $direccion="", $mapa=0, $telefono="", $telefono_m="", $tipo="", $segmento="", $foto="", $estado=0, $fecha_registro="", $referente=0, $lider=0, $cod_lider=0, $nivel=0, $ciudad=0, $idorganizacion=0){	
 		
 		$idusuario = $this->insertar("INSERT INTO usuarios(										
 										nombre,
@@ -54,6 +66,7 @@ class Usuarios extends Database
 										boletines, 
 										condiciones, 
 										direccion, 
+										mapa,
 										telefono, 
 										telefono_m, 
 										tipo,
@@ -76,6 +89,7 @@ class Usuarios extends Database
 										'$boletines', 
 										'$condiciones', 
 										'$direccion', 
+										'$mapa',
 										'$telefono', 
 										'$telefono_m', 
 										'$tipo',										
@@ -97,7 +111,7 @@ class Usuarios extends Database
 		return $idusuario;	
 	}
 
-	public function actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $telefono, $telefono_m, $tipo, $segmento, $foto, $lider, $cod_lider, $ciudad){
+	public function actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, $foto, $lider, $cod_lider, $ciudad){
 		
 		$query = $this->actualizar("UPDATE `usuarios` SET 									
 									`nombre`='$nombre',
@@ -107,6 +121,7 @@ class Usuarios extends Database
 									`email`='$email',
 									`boletines`='$boletines',									
 									`direccion`='$direccion',
+									`mapa`='$mapa',
 									`telefono`='$telefono',
 									`telefono_m`='$telefono_m',
 									`tipo`='$tipo',
@@ -153,9 +168,20 @@ class Usuarios extends Database
 		return $query;
 	}
 
+	public function listarCiudadesConDistribuidor(){
+		
+		$query = $this->consulta("SELECT `ciudades`.`idciudad`, `ciudades`.`codigo`, `ciudades`.`ciudad`, `ciudades`.`departamento` 
+									FROM `ciudades` 
+									INNER JOIN `usuarios` ON (`ciudades`.`idciudad`=`usuarios`.`ciudades_idciudad`) 
+									GROUP BY `ciudades`.`idciudad`
+									ORDER BY `ciudad` ASC");
+		
+		return $query;
+	}
+
 	public function loguearUsuario($email,$password){
 		
-		$query = $this->consulta("SELECT `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`lider`, `usuarios`.`ciudades_idciudad`, `usuarios`.`organizaciones_idorganizacion`, `ciudades`.`ciudad`
+		$query = $this->consulta("SELECT `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`mapa`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`lider`, `usuarios`.`ciudades_idciudad`, `usuarios`.`organizaciones_idorganizacion`, `ciudades`.`ciudad`
 									FROM `usuarios` 
 									INNER JOIN `ciudades` ON(`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`)
 									WHERE `email`='$email' AND `password`='$password'");
@@ -173,7 +199,7 @@ class Usuarios extends Database
 
 	public function detalleUsuario($idusuario){
 		
-		$query = $this->consulta("SELECT  `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`password`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`,  `usuarios`.`referente`,  `usuarios`.`lider`, `usuarios`.`cod_lider`,  `usuarios`.`nivel`, `usuarios`.`ciudades_idciudad`, `usuarios`.`organizaciones_idorganizacion`,`ciudades`.`ciudad` 
+		$query = $this->consulta("SELECT  `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`password`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`mapa`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`,  `usuarios`.`referente`,  `usuarios`.`lider`, `usuarios`.`cod_lider`,  `usuarios`.`nivel`, `usuarios`.`ciudades_idciudad`, `usuarios`.`organizaciones_idorganizacion`,`ciudades`.`ciudad` 
 									FROM `usuarios`
 									INNER JOIN `ciudades` ON(`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`)
 									WHERE `idusuario`='$idusuario'");
@@ -183,7 +209,7 @@ class Usuarios extends Database
 
 	public function detalleUsuarioEmail($email){
 		
-		$query = $this->consulta("SELECT  `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`password`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`lider`, `usuarios`.`ciudades_idciudad`, `ciudades`.`ciudad` 
+		$query = $this->consulta("SELECT  `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`password`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`mapa`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`lider`, `usuarios`.`ciudades_idciudad`, `ciudades`.`ciudad` 
 									FROM `usuarios`
 									INNER JOIN `ciudades` ON(`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`)
 									WHERE `usuarios`.`email`='$email'");
@@ -194,7 +220,7 @@ class Usuarios extends Database
 
 	public function detalleUsuarioCodLider($cod_lider){
 		
-		$query = $this->consulta("SELECT  `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`password`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`lider`, `usuarios`.`ciudades_idciudad`, `ciudades`.`ciudad` 
+		$query = $this->consulta("SELECT  `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`password`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`mapa`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`lider`, `usuarios`.`ciudades_idciudad`, `ciudades`.`ciudad` 
 									FROM `usuarios`
 									INNER JOIN `ciudades` ON(`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`)
 									WHERE `usuarios`.`cod_lider`='$cod_lider'");
@@ -507,7 +533,7 @@ class Usuarios extends Database
 			$where_nombre = "";
 		}
 		
-		$query = $this->consulta("SELECT  `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`password`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`nivel`,`usuarios`.`ciudades_idciudad`, `ciudades`.`ciudad` 
+		$query = $this->consulta("SELECT  `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`password`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`, `usuarios`.`mapa`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`nivel`,`usuarios`.`ciudades_idciudad`, `ciudades`.`ciudad` 
 									FROM `usuarios`
 									INNER JOIN `ciudades` ON(`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`) 
 									WHERE `lider`='$idlider' $where_estado $where_nombre");

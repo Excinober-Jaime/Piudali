@@ -52,8 +52,16 @@
   type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
   </script>
   <!--End of Zendesk Chat Script-->
+
+  <script type="text/javascript">
+    <?php if (isset($json_maps) && !empty($json_maps)) { ?>
+      var json_maps = '<?=$json_maps?>';
+    <?php } ?>
+  </script>
   </head>
-  <body>
+  <body <?php if(isset($onload) && !empty($onload)) { ?> onload="<?=$onload?>" <?php } ?>
+    <?php if(isset($json_maps) && !empty($json_maps)) { ?> onload="initMap(json_maps)" <?php } ?>
+  >
     <!-- Return to Top -->
     <a href="javascript:" id="return-to-top">
       <i class="fa fa-arrow-up" aria-hidden="true"></i>

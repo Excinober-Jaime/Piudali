@@ -21,14 +21,21 @@
 			<tbody>
 				<?php 
 				if (count($cupones)>0) {
-					foreach ($cupones as $key => $cupones) {
+					foreach ($cupones as $key => $cupon) {
 				?>
 						<tr>
-							<td class="text-center"><?=$cupones["titulo"]?></td>
-							<td class="text-center"><?=$cupones["val_descuento"]?>%</td>
-							<td class="text-center"><?=$cupones["num_codigo_desc"]?></td>
-							<td class="text-center">$<?=number_format($cupones["monto_minimo"])?></td>
-							<td class="text-center"><?=$cupones["fecha_expiracion"]?></td>
+							<td class="text-center"><?=$cupon["titulo"]?></td>
+							<td class="text-center">
+								<?php if ($cupon["aplicacion"]) {
+									echo convertir_pesos($cupon["val_descuento"]);
+								}else{
+									echo $cupon["val_descuento"]."%";
+								} 
+								?>
+							</td>
+							<td class="text-center"><?=$cupon["num_codigo_desc"]?></td>
+							<td class="text-center">$<?=number_format($cupon["monto_minimo"])?></td>
+							<td class="text-center"><?=$cupon["fecha_expiracion"]?></td>
 						</tr>
 				<?php
 					}
