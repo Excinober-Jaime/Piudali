@@ -1657,7 +1657,17 @@ class Controller
 					$taxReturnBase = round($totalNetoAntesIva-$pagoPuntos["valor_pago"]);
 				}
 				$lng = "ES";
-				$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];
+				if (isset($_SESSION["idorganizacion"]) && !empty($_SESSION["idorganizacion"])) {
+					$organizacion = $this->usuarios->detalleOrganizacionUsuario($_SESSION["idorganizacion"]);
+
+					if (count($organizacion)>0) {
+						$payerFullName = $organizacion["razon_social"];
+					}else{
+						$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];	
+					}
+				}else{
+					$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];
+				}				
 				$extra1 = $_SESSION["idusuario"];
 				$extra3 = "PIUDALI";
 				$responseUrl = "http://naturalvitalis.com/respagos.php";
@@ -2399,6 +2409,18 @@ class Controller
 	public function adminOrdenesLista(){
 
 		$ordenesLista = $this->usuarios->listarOrdenes();
+
+		if (count($ordenesLista)>0) {
+			foreach ($ordenesLista as $key => $orden) {
+				if (!empty($orden["organizaciones_idorganizacion"])) {
+					$organizacion = $this->usuarios->detalleOrganizacionUsuario($orden["organizaciones_idorganizacion"]);
+
+					if (count($organizacion)>0) {
+						$ordenesLista[$key]["razon_social"] = $organizacion["razon_social"];
+					}
+				}
+			}
+		}
 		include "views/admin/ordenes_lista.php";
 	}
 

@@ -19,7 +19,6 @@
 		  </ul>
 		</div>
 
-
 		<div class="list-group" style="overflow-y:auto;max-height:800px;margin-top:20px;">
 
 		<?php 
@@ -94,4 +93,6 @@
 		</div>
 	</div>
 </div>
+<br>
+<br>
 <?php include "footer.php"; ?>

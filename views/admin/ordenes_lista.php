@@ -24,7 +24,13 @@
 			  			<td><?=$orden["num_orden"]?></td>
 			  			<td><?=$orden["fecha_pedido"]?></td>
 			  			<td><?=$orden["total"]?></td>
-			  			<td><?=$orden["nombre"]." ".$orden["apellido"]?></td>
+			  			<td>
+			  			<?php if (isset($orden["razon_social"]) && !empty($orden["razon_social"])) { ?>
+			  				<?=$orden["razon_social"]?>	
+			  			<?php }else{ ?>
+			  				<?=$orden["nombre"]." ".$orden["apellido"]?>	
+			  			<?php } ?>
+			  			</td>
 			  			<td><?=$orden["estado"]?></td>
 			  			<td>
 			  				<a href="<?=URL_ADMIN."/".URL_ADMIN_ORDENES."/".$orden['idorden']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
