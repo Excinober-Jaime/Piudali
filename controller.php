@@ -56,6 +56,7 @@ class Controller
 		include "views/pagina.php";
 	}
 
+
 	public function contenidoPagina($idpagina){
 		$pagina = $this->paginas->detallePagina($idpagina);
 		return $pagina[0]["contenido"];

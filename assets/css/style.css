@@ -120,6 +120,89 @@ footer{
 	color: #fff;
 }
 
+/*CLUB*/
+.enlanceClub:hover{
+	text-decoration:none !important;
+}
+
+.saludoUsuario{
+	font-weight: bold;
+	font-size: 14px;
+}
+
+
+.box-session-club{
+	background-color: #f19300;
+	padding: 10px;
+	color: #fff;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	width: 80%;
+}
+
+.box-session-verde{
+	background-color: #006837;
+	padding: 10px;
+	color: #fff;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.box-session-verde:hover{
+	background-color: #dd7e00;
+}
+
+
+.box-session-verde a{
+	color: #fff;
+}
+
+@media (max-width: 992px) {
+  .box-session-club,
+  .box-session-verde {
+	  border-radius: 10px;
+	  margin-top: 15px;
+	  width: 100%;
+
+}
+
+}
+.box-session-club a{
+	color: #fff;
+}
+
+.btn-salir{
+	background-color: #dd7e00;
+	padding: 5px;
+	border-radius: 20px;
+}
+
+.btn-salir:hover{
+	background-color: #b76400;
+}
+.cantidad-puntos{
+	display: table;
+	position: relative;
+}
+.puntos-header{
+	background-color: #6d1e3f;
+	color: #fff;
+	border-radius: 100px;
+	padding: 10px;
+	margin:20px 10% 10% 0;
+	width: 100%;
+	height: 110px;
+}
+
+.header-club{
+	padding-bottom:25px;
+}
+
+
+
+/* END CLUB*/
+
+
 /*AREA DE DISTRIBUIDORES*/
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
 
@@ -220,3 +303,339 @@ footer{
 	color: #fff;
 	border-color: #006837;
 }
+
+/*CLUB PIUDALI*/
+
+.club{
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
+
+.club h2{
+	color: #12491d;
+	font-weight: 300;
+}
+
+.box-gris{
+	background-color: #f4f4f4;
+	border-radius: 20px;
+	padding: 20px;
+	width: 70%;
+	height: auto; 
+	margin:15px 15%;
+}
+
+.paddingOff{
+	padding: 0 !important;
+}
+
+.btn-violeta{
+	background-color: #6d1e3f;
+	color: #fff;
+	margin-bottom: 15px;
+}
+
+.btn-violeta:hover{
+	background-color: #35051b;
+	color: #fff !important;
+}
+
+
+.modalClub {
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+.modalClub .fade .modal-dialog {
+  -webkit-transform: translate(0, -25%);
+  -ms-transform: translate(0, -25%);
+  -o-transform: translate(0, -25%);
+  transform: translate(0, -25%);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  -o-transition: -o-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+}
+.modalClub .in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal-body-club {
+  position: relative;
+  padding: 15px 15px 45px 15px;
+  background-image: url('../img/franja.png');
+  background-repeat: repeat-x;
+  background-position: center bottom;
+}
+
+.slide img{
+	width: 100%;
+	height: auto;
+}
+
+.lista-regalos{
+	margin: 20px 0;
+}
+
+.lista-regalos img{
+	width: 100%;
+	height: auto;
+}
+
+.categoria-regalo{
+	color: #6d1e3f;
+	font-weight: bold;
+	margin-top: 15px;
+}
+
+.categoria-regalo-detalle h2{
+	color: #6d1e3f;
+	font-weight: bold;
+	margin-top: 0 !important;
+	font-size: 20px;
+}
+
+.nombre-regalo{
+	color: #666666;
+}
+
+.nombre-regalo-detalle h1{
+	color: #666666;
+	font-size: 27px;
+	margin-top: 5px;
+}
+
+.club .descripcion{
+	text-align: justify;
+	margin: 30px 0;
+}
+
+.puntos-precio{
+	font-size: 17px;
+	margin-top: 10px;
+	color: #41281b;
+}
+
+
+
+.puntos-precio span{
+	color: #006837;
+	font-weight: bold;
+}
+
+.destacarPrecio-detalle{
+	background-color:  #006837;
+	color: #fff !important;
+	padding: 5px;
+	border-radius: 20px;
+	font-size: 20px;
+}
+
+.btn-regalo{
+	background-color: #f19300;
+	padding: 10px 20px;
+	color: #fff;
+	text-align: center;
+		font-weight: bold;
+	font-size: 20px;
+	border-radius: 50px;
+	float: right;
+	display: inline-block;
+}
+
+
+.btn-regalo:hover{
+	background-color: #6d1e3f;
+	color: #fff;
+	text-decoration: none !important;
+}
+
+
+.panelInformacion{
+	margin-top: 25px;
+}
+
+@media (max-width: 992px) {
+	.img-producto{
+		margin-bottom: 15px;
+	}
+
+	.puntos-precio{
+
+	margin-top: 20px;
+	}
+}
+
+/*PANEL*/
+
+.tab-pane ul{
+	padding: 0 0 0 20px;
+}
+
+.tab-pane ul li{
+	list-style-color:#f19300;
+	margin-bottom: 5px;
+}
+
+.tab-pane h1,
+.tab-pane h2,
+.tab-pane h3,
+.tab-pane h4,
+.tab-pane h5,
+.tab-pane h6{
+	color:#006837;
+}
+
+
+
+.club .nav-tabs > li > a {
+  margin-right: 2px;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+  background-color: #cccccc;
+  color: #666 !important;
+  font-size: 18px;
+}
+
+
+.club .nav-tabs > li.active > a,
+.club .nav-tabs > li.active > a:hover,
+.club .nav-tabs > li.active > a:focus {
+  color: #666666;
+  cursor: default;
+  background-color: #f2f2f2;
+  border: none !important;
+}
+
+.club .tab-content > .active {
+  display: block;
+  background-color: #f2f2f2;
+  padding: 15px;
+}
+
+.club .nav-tabs {
+    border: none !important;
+}
+
+.club .nav-tabs > li {
+    float: left;
+    margin-bottom: -2px;
+}
+
+.pestanaActiva{
+	background-color: #f2f2f2;
+	text-align: center;
+	padding: 10px;
+	display: inline-block;
+	width: 49%;
+	margin:0px;
+	font-size: 18px;
+}
+
+.pestanaInactiva{
+	background-color: #fff;
+	text-align: center;
+	padding: 10px;
+	display: inline-block;
+	width: 49%;
+	margin:0px;
+	font-size: 18px;
+	color: #e0e0e0;
+}
+
+.numeroActivo{
+	background-color: #000;
+    color: #f2f2f2;
+    padding: 2px 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 150px;
+    display: inline-table;
+}
+
+.numeroInactivo{
+	background-color: #f2f2f2;
+    color: #fff;
+    padding: 2px 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 150px;
+    display: inline-table;
+}
+
+.box-activo{
+	background-color: #f2f2f2;
+	width: 99%;
+	height: auto;
+	padding: 15px;
+}
+
+.club .preguntasFrecuentes{
+	padding: 25px;
+}
+
+.club .preguntasFrecuentes h4,
+.club .preguntasFrecuentes h5,
+.club .preguntasFrecuentes i{
+	color:#006837;
+	font-weight: bold;
+}
+
+.club .preguntasFrecuentes ul{
+	padding-left: 18px;
+}
+
+.club .preguntasFrecuentes ul li a{
+	color: #4d4d4d;
+}
+
+.box-blanca{
+	background-color: #fff;
+	padding: 10px;
+	height: 170px;
+	margin-bottom: 25px;
+}
+
+.box-blanca h4{
+	text-align: center;
+	font-size: 15px;
+	color: #006837;
+}
+
+.box-blanca p{
+	text-align: center;
+	font-size: 20px;
+	margin-top: 40px;
+}
+
+
+@media (max-width: 992px) {
+	.club .nav-tabs > li > a {
+ 		font-size: 12px;
+	}
+
+	.btn-regalo{
+	float: none;
+	margin: 25px 0;
+
+	}
+
+
+	.box-blanca{
+	height: auto;
+}
+}
+
+
+
+

@@ -418,6 +418,7 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				}				
 				break;
 
+
 			case URL_PRODUCTOS:
 				if (isset($var2) && !empty($var2)) {
 					$controller->paginaProductoDetalle($var2);
