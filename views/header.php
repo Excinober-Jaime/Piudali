@@ -169,14 +169,16 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DÓNDE COMPRAR <span class="caret"></span></a>
               <ul class="dropdown-menu">
             <?php 
-            foreach ($paginas_menu as $pagina) {
+            /*foreach ($paginas_menu as $pagina) {
               if ($pagina["posicion"]=="DONDE COMPRAR") {
               ?>
                 <li><a href="<?=$pagina['url']?>"><?=$pagina["titulo"]?></a></li>
               <?php
               }
-            }
+            }*/
             ?>
+              <li><a href="<?=URL_TIENDAS?>">DISTRIBUIDORES COLOMBIA</a></li>
+              <!--<li><a href="">Tiendas</a></li>-->
               </ul>
             </li>            
             <?php 

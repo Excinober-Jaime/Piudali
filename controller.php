@@ -192,12 +192,69 @@ class Controller
 
 		if (isset($_GET["ciudad"]) && !empty($_GET["ciudad"])) {
 
-			$distribuidores = $this->usuarios->listarUsuariosMapa($_GET["ciudad"]);	
+			$idciudad = $_GET["ciudad"];
+			$distribuidores = $this->usuarios->listarUsuariosMapa($idciudad);	
 		}else{
-			$distribuidores = $this->usuarios->listarUsuariosMapa(4270);	
+			$idciudad = 4270;
+			$distribuidores = $this->usuarios->listarUsuariosMapa($idciudad);	
 		}
 
+		
 
+		if (count($distribuidores)>0) {
+			foreach ($distribuidores as $key => $distribuidor) {
+				if (!empty($distribuidor["organizaciones_idorganizacion"])) {
+					$organizacion = $this->usuarios->detalleOrganizacionUsuario($distribuidor["organizaciones_idorganizacion"]);
+
+					$distribuidores[$key]["nombre"] = $organizacion["razon_social"];
+					$distribuidores[$key]["apellido"] = "";
+					$distribuidores[$key]["direccion"] = $organizacion["direccion"];
+					$distribuidores[$key]["telefono"] = $organizacion["telefono"];
+					$distribuidores[$key]["telefono_m"] = "";
+					$distribuidores[$key]["ciudad"] = $organizacion["ciudad"];
+				}
+			}
+		}
+
+		if ($idciudad == 4270) {
+		
+
+			//Provisional artemisa
+			$puntos_artemisa = array("Centro Comercial Chipichape Local 8-118","Centro Comercial Centenario Local 131","Centro Comercial Cosmocentro L 2-68","Centro Comercial Unicentro local 320 Pasillo 5","Centro Comercial Unicentro Local 449 Oasis","Centro Cra 5 No.12-16","Avenida Estación No.5CN-34","Avenida Roosevelt No.25-32");
+
+			$i = 300;
+
+			foreach ($puntos_artemisa as $key => $punto) {
+				$distribuidores[$i]["nombre"] = "Artemisa";
+				$distribuidores[$i]["direccion"] = $punto;
+				$distribuidores[$i]["telefono"] = "(2) 4873030";
+				$distribuidores[$i]["telefono_m"] = "";
+				$distribuidores[$i]["ciudad"] = "Cali";
+
+				$i++;
+			}
+
+		}
+
+		$distribuidores_tiendas = $this->usuarios->listarUsuariosMapa();
+
+		$i = 0;
+
+		foreach ($ciudades as $key => $ciudad) {
+
+			foreach ($distribuidores_tiendas as $key2 => $distribuidor) {
+
+				if ($distribuidor["ciudad"] == $ciudad["ciudad"]) {
+					$ciudades_lista[$i]["idciudad"] = $ciudad["idciudad"];
+					$ciudades_lista[$i]["ciudad"] = $ciudad["ciudad"];
+					$ciudades_lista[$i]["departamento"] = $ciudad["departamento"];
+
+					$i++;
+
+					break;
+				}
+			}
+		}
 		
 		$json_maps = json_encode($distribuidores);
 		//$onload = "initMap('".$distribuidores."')";

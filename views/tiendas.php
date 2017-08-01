@@ -10,7 +10,7 @@
 		  </button>
 		  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 		  	<?php
-		  	foreach ($ciudades as $key => $ciudad) {
+		  	foreach ($ciudades_lista as $key => $ciudad) {
 		  	?>
 		  	<li><a href="<?=URL_TIENDAS?>/?ciudad=<?=$ciudad["idciudad"]?>"><?=$ciudad["ciudad"]." (".$ciudad["departamento"].")"?></a></li>
 		  	<?php

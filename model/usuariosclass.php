@@ -41,13 +41,17 @@ class Usuarios extends Database
 		return $query;
 	}
 
-	public function listarUsuariosMapa($idciudad){
+	public function listarUsuariosMapa($idciudad = 0){
 
+
+		if (!empty($idciudad)) {
+			$where_ciudad = "`ciudades_idciudad`='$idciudad' AND";
+		}
 				
-		$query = $this->consulta("SELECT `idusuario`, `nombre`, `apellido`, `sexo`, `fecha_nacimiento`, `email`, `password`, `num_identificacion`, `boletines`, `condiciones`, `direccion`,  `mapa`, `telefono`, `telefono_m`, `tipo`, `segmento`, `foto`, `estado`, `fecha_registro`, `referente`, `lider`, `nivel`, `ciudades_idciudad`, `ciudades`.`ciudad` AS 'ciudad'
+		$query = $this->consulta("SELECT `idusuario`, `nombre`, `apellido`, `sexo`, `fecha_nacimiento`, `email`, `password`, `num_identificacion`, `boletines`, `condiciones`, `direccion`,  `mapa`, `telefono`, `telefono_m`, `tipo`, `segmento`, `foto`, `estado`, `fecha_registro`, `referente`, `lider`, `nivel`, `ciudades_idciudad`, `organizaciones_idorganizacion`, `ciudades`.`ciudad` AS 'ciudad'
 									FROM `usuarios`
 									INNER JOIN `ciudades` ON (`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`) 
-									WHERE `ciudades_idciudad`='$idciudad' AND `mapa`=1
+									WHERE $where_ciudad `mapa`=1
 									ORDER BY `fecha_registro` DESC");
 		
 		return $query;
