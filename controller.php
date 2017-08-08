@@ -378,16 +378,49 @@ class Controller
 					$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
 
 					// Always set content-type when sending HTML email
-					$headers = "MIME-Version: 1.0"."\r\n";
+					/*$headers = "MIME-Version: 1.0"."\r\n";
 					$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
 
 					// More headers
 					$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
 
-					$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
+					$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);*/
 
-					echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";		
+					require_once 'include/PHPMailer-master/PHPMailerAutoload.php';
+
+					//Create a new PHPMailer instance
+					$mail = new PHPMailer;
+					//Set who the message is to be sent from
+					$mail->setFrom($plantilla["email"], "Piudali");
+					//Set an alternative reply-to address
+					//$mail->addReplyTo('replyto@example.com', 'First Last');
+					//Set who the message is to be sent to
+					$mail->addAddress($email, $nombre." ".$apellido);
+					//Set the subject line
+					$mail->Subject = $plantilla["asunto"];
+					//Read an HTML message body from an external file, convert referenced images to embedded,
+					//convert HTML into a basic plain-text alternative body
+					$mail->msgHTML($mensaje);
+					//Replace the plain text body with one created manually
+					//$mail->AltBody = 'This is a plain-text message body';
+					//Attach an image file
+					//$mail->addAttachment('images/phpmailer_mini.png');
+
+					//send the message, check for errors
+					if (!$mail->send()) {
+
+					   //echo $mail->ErrorInfo;
+
+					} else {
+
+					    //echo 'Por favor revisa tu correo';
+					}
+
+
+					echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";
+
 				}else{
+
 					echo "<script> alert('No fue posible realizar el registro. Por favor intente de nuevo');</script>";			
 				}
 			}
@@ -425,13 +458,44 @@ class Controller
 					$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
 
 					// Always set content-type when sending HTML email
-					$headers = "MIME-Version: 1.0"."\r\n";
+					/*$headers = "MIME-Version: 1.0"."\r\n";
 					$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
 
 					// More headers
 					$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
 
-					$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);
+					$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);*/
+
+					require_once 'include/PHPMailer-master/PHPMailerAutoload.php';
+
+					//Create a new PHPMailer instance
+					$mail = new PHPMailer;
+					//Set who the message is to be sent from
+					$mail->setFrom($plantilla["email"], "Piudali");
+					//Set an alternative reply-to address
+					//$mail->addReplyTo('replyto@example.com', 'First Last');
+					//Set who the message is to be sent to
+					$mail->addAddress($email, $nombre." ".$apellido);
+					//Set the subject line
+					$mail->Subject = $plantilla["asunto"];
+					//Read an HTML message body from an external file, convert referenced images to embedded,
+					//convert HTML into a basic plain-text alternative body
+					$mail->msgHTML($mensaje);
+					//Replace the plain text body with one created manually
+					//$mail->AltBody = 'This is a plain-text message body';
+					//Attach an image file
+					//$mail->addAttachment('images/phpmailer_mini.png');
+
+					//send the message, check for errors
+					if (!$mail->send()) {
+
+					   //echo $mail->ErrorInfo;
+
+					} else {
+
+					    //echo 'Por favor revisa tu correo';
+					}
+
 
 					echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";			
 				}else{
