@@ -67,7 +67,7 @@
 			  		<th>Total Pagado</th>			  		
 			  		<th>Representante</th>
 			  		<th>Director</th>
-			  		<th>Zona</th>
+			  		<th>Ciudad</th>
 			  		<th>Región</th>
 			  		<th>Estado</th>
 			  		<th>Número de Factura</th>
@@ -88,7 +88,7 @@
 		  			<td><?=convertir_pesos($ordenes["total"])?></td>	  			
 		  			<td><?=$ordenes["lider"]["nombre"]." ".$ordenes["lider"]["apellido"]?></td>
 		  			<td><?=$ordenes["director"]["nombre"]." ".$ordenes["director"]["apellido"]?></td>
-		  			<td><?=$ordenes["zona"]["zona"]?></td>
+		  			<td><?=$ordenes["comprador"]["ciudad"]?></td>
 		  			<td><?=$ordenes["region"]["region"]?></td>
 		  			<td><?=$ordenes["estado"]?></td>
 		  			<td><?=$ordenes["num_factura"]?></td>		  			

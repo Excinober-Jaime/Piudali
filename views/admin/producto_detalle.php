@@ -123,6 +123,7 @@
 						<option value="NORMAL" <?php if ($producto[0]['tipo']=='NORMAL') echo 'selected'; ?>>NORMAL</option>
 						<option value="PREMIO" <?php if ($producto[0]['tipo']=='PREMIO') echo 'selected'; ?>>PREMIO</option>
 						<option value="PROMOCION" <?php if ($producto[0]['tipo']=='PROMOCION') echo 'selected'; ?>>PROMOCION</option>
+						<option value="CLUB PIUDALI" <?php if ($producto[0]['tipo']=='CLUB PIUDALI') echo 'selected'; ?>>CLUB PIUDALÍ</option>
 					</select>
 				</div>
 				<div class="form-group">

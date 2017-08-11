@@ -135,49 +135,81 @@
 				</ul>
 				<?php }else{ ?>	
 				<p>El usuario no tiene documentos relacionados.</p>
-				<?php }	?>				
+				<?php }	?>
 				<hr>
-				<h2>ACCIONES</h2>				
+				<h2>ACCIONES</h2>
 				<form method="post" target="_new" action="<?=URL_INGRESO_REMOTO?>">
 					<input type="hidden" value="<?=$usuario["email"]?>" name="email">
 					<input type="hidden" value="<?=$usuario["password"]?>" name="password">
 
 					<button type="submit" name="ingresoRemoto" class="btn btn-primary" title="Ingresa como <?=$usuario["nombre"]." ".$usuario["apellido"]?>">Ingresar a Cuenta <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
 				</form>
-				<?php if ($usuario["tipo"]=="REPRESENTANTE COMERCIAL") {
-				?>
-				<hr>
-				<h2>CUENTA VIRTUAL <span class="pull-right">Disponible actual: <?=convertir_pesos($cuenta["valor"])?></span></h2>
-				<form method="post" enctype="multipart/form-data">
-					<div class="form-group">
-						<label for="exampleInputEmail1">Monto</label>
-						<div class="input-group">
-						  <div class="input-group-btn">
-						  	<button type="button" class="btn btn-primary">$</button>
-						  </div>
-					      <input type="text" class="form-control" name="monto" required>			      
-					    </div><!-- /input-group -->
-					</div>
-				    <div class="form-group">
-						<label for="exampleInputEmail1">Tipo de movimiento</label>
-						<select name="tipo_movimiento" class="form-control" required>
-							<option value="POSITIVO">POSITIVO</option>
-							<option value="NEGATIVO">NEGATIVO</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Descripción</label>
-						<textarea name="descripcion" class="form-control" required></textarea>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Adjunto</label>
-						<input type="file" name="adjunto" class="form-control">
-					</div>
-					<button type="submit" name="crearMovimiento" class="btn btn-primary">Generar Movimiento</button>
-				<?php
-				} ?>
+				<?php 
 
-			<?php } ?>
+				switch ($usuario["tipo"]) {
+					
+					case 'REPRESENTANTE COMERCIAL':
+				?>
+						<hr>
+						<h2>CUENTA VIRTUAL <span class="pull-right">Disponible actual: <?=convertir_pesos($cuenta["valor"])?></span></h2>
+						<form method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Monto</label>
+								<div class="input-group">
+								  <div class="input-group-btn">
+								  	<button type="button" class="btn btn-primary">$</button>
+								  </div>
+							      <input type="text" class="form-control" name="monto" required>			      
+							    </div><!-- /input-group -->
+							</div>
+						    <div class="form-group">
+								<label for="exampleInputEmail1">Tipo de movimiento</label>
+								<select name="tipo_movimiento" class="form-control" required>
+									<option value="POSITIVO">POSITIVO</option>
+									<option value="NEGATIVO">NEGATIVO</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Descripción</label>
+								<textarea name="descripcion" class="form-control" required></textarea>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Adjunto</label>
+								<input type="file" name="adjunto" class="form-control">
+							</div>
+							<button type="submit" name="crearMovimiento" class="btn btn-primary">Generar Movimiento</button>
+						</form>	
+				<?php
+						break;
+
+					case 'DISTRIBUIDOR DIRECTO':
+				?>
+
+						<hr>
+						<h2>PUNTOS <span class="pull-right">Disponible actual: <?=$puntos['disponibles']?></span></h2>
+						<form method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Puntos</label>
+								<div class="input-group">								  
+							      <input type="text" class="form-control" name="puntos" required>  
+							    </div><!-- /input-group -->
+							</div>						    
+							<div class="form-group">
+								<label for="exampleInputEmail1">Concepto</label>
+								<textarea name="concepto" class="form-control" required></textarea>
+							</div>
+							<button type="submit" name="obsequiarPuntos" class="btn btn-primary">Obsequiar puntos</button>
+						</form>	
+
+				<?php 
+						break;
+					
+					default:
+						# code...
+						break;
+				} 
+
+			 } ?>
 			</div>
 		</div>
 	</div>

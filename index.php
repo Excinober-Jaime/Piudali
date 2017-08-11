@@ -410,12 +410,32 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				
 				break;
 
-			case URL_CODIGOS_PUNTOS:
+			case URL_CLUB:
 				if (isset($var2) && !empty($var2)) {
-					$controller->paginaCodigosPuntos($var2);
+					
+					switch ($var2) {
+						
+						case URL_CLUB_PRODUCTO:
+							
+							if (isset($var3) && !empty($var3)) {
+								
+								$controller->detalleProductoClub($var3);
+
+							}else{
+								
+								header('Location: '.URL_CLUB);
+							}
+							break;
+
+						default:
+							# code...
+							break;
+					}
+
 				}else{
-					$controller->paginaCodigosPuntos('');
-				}				
+
+					$controller->homeClub();
+				}
 				break;
 
 

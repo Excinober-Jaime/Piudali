@@ -45,7 +45,10 @@ define("URL_USUARIO_TICKETS", "Tickets");
 define("URL_USUARIO_REFERIR", "Referir");
 
 define("URL_ADMIN_CODIGOS_PUNTOS", "Codigos");
-define("URL_CODIGOS_PUNTOS", "redimircodigo");
+
+define("URL_CLUB", "Club");
+define("URL_CLUB_INGRESAR", "Ingresar");
+define("URL_CLUB_PRODUCTO", "Producto");
 
 
 define("URL_REGISTRO", "Registro");

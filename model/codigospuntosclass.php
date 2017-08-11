@@ -57,7 +57,7 @@ class CodigosPuntos extends Database
 		return $idcodigo;
 	}
 
-	public function generarQR($codigo){
+	public function generarQR($codigo) {
 
 		$PNG_TEMP_DIR = "assets/img/codigospuntosqr/";
 		$PNG_WEB_DIR = 'assets/img/codigospuntosqr/';
@@ -70,6 +70,22 @@ class CodigosPuntos extends Database
 
         return $PNG_WEB_DIR.basename($filename);
 	}
-	
+
+	public function detalleCodigo($codigo) {
+
+		$query = $this->consulta("SELECT `idcodigo`, `codigo`, `puntos`, `redimido`, `qr`, `fecha_creacion`, `fecha_vencimiento`, `idredentor` FROM `codigos_puntos` WHERE `codigo`='$codigo'");
+		
+		return $query[0];
+
+	}
+
+	public function redimirCodigo($codigo, $idredentor){
+
+		$query = $this->actualizar("UPDATE `codigos_puntos` SET `redimido`='1', `idredentor`='$idredentor' WHERE `codigo` = '$codigo'");
+
+		return $query;
+
+	}
+			
 }
 ?>

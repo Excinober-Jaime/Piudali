@@ -68,27 +68,34 @@
     <div class="container">
     <header class="header-club">
     	 <div class="col-xs-12 col-md-3" style="padding-top:15px;">
-        	<a href="<?=URL_SITIO?>">
+        	<a href="<?=URL_CLUB?>">
           		<img src="assets/img/club-piudali.png" class="img-responsive center-block" style="margin-top: 18px;">
         	</a>        
       	</div>
       	<div class="col-xs-12 col-md-7">
               <div class="col-md-8">
                 <div class="box-session-club text-center">
+                <?php if (isset($_SESSION['idusuario'])) {  ?>
                   <div class="col-sm-8">
-                    <div class="saludoUsuario">¡Hola!, Jaime Andrés</div>
+                    <div class="saludoUsuario">¡Hola!, <?=$_SESSION['nombre'].' '.$_SESSION['apellido']?></div>
                     <small><a href="#">Visitar Mi Perfil</a></small>
                   </div>
                   <div class="col-sm-4">
-                    <a href="#" class="enlanceClub">
+                    <a href="<?=URL_USUARIO."/".URL_SALIR?>" class="enlanceClub">
                       <div class="btn-salir">SALIR</div>
                     </a>
                   </div>
-                  <div class="clearfix"></div>
+                  <?php }else{ ?>
+                   <div class="col-sm-12">
+                    <div class="saludoUsuario">¿Ya tienes una cuenta?</div>
+                    <small><a data-toggle="modal" data-target="#club">Inicia sesión</a></small>
+                  </div>                  
+                  <?php  } ?>
+                  <div class="clearfix"></div>                  
                 </div>
-              </div>
+              </div>          
               <div class="col-md-4">
-                <a href="#" class="enlanceClub">
+                <a href="<?=URL_SITIO?>" class="enlanceClub">
                   <div class="box-session-verde text-center">
                     Regresar a sitio corporativo
                   </div>
@@ -96,13 +103,80 @@
               </div>
           <div class="col-md-12">
           <center>
-            <p style="margin:15px 0; color: #41281b; font-size: 13px;" class="text-center">Ingresa aquí las claves alfanuméricas de <b>10 dígitos</b> impresas en los empaques.</p>
-            <form class="form-inline">
-              <div class="form-group">
-                <input type="text" class="form-control" id="inputPassword2" placeholder="Ejemplo:15s56g6saq">
-              </div>
-              <button type="submit" class="btn btn-default">INGRESAR CODIGO</button>
-            </form>
+            <br>
+            <?php 
+
+              if (isset($alert) && !empty($alert)) {
+            ?>
+              <div class="alert alert-success"><?=$alert?></div>
+            <?php
+              }
+
+              if (isset($codigo_por_asignar)) {
+              
+                if (count($codigo_por_asignar)>0) {
+            ?>  
+                  <form method="post">
+                      <div class="row">
+                        <div class="form-group col-sm-6 input-group-sm">
+                          <label for="Nombre">Nombre</label>
+                          <input type="text" name="nombre" class="form-control" placeholder="" required="required">
+                        </div>
+                        <div class="form-group col-sm-6 input-group-sm">
+                          <label for="Apellido">Apellido</label>
+                          <input type="text" name="apellido" class="form-control" placeholder="" required="required">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-sm-6 input-group-sm">
+                          <label for="Email">Email</label>
+                          <input type="email" name="email" class="form-control" placeholder="" required="required">
+                        </div>
+                        <div class="form-group col-sm-6 input-group-sm">                        
+                          <label for="Ciudad">Ciudad</label>
+                          <select name="ciudad" class="form-control" required>        
+                            <option>Seleccione</option>
+                            <?php 
+                            foreach ($ciudades as $key => $ciudad) {
+                              ?>
+                              <option value="<?=$ciudad["idciudad"]?>"><?=$ciudad["ciudad"]?></option>
+                              <?php
+                            }
+                            ?>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-sm-6 input-group-sm">
+                          <label for="Contraseña">Contraseña</label>
+                          <input type="password" name="password" class="form-control" placeholder="" required="required">
+                        </div>
+                        <div class="form-group col-sm-6 input-group-sm">
+                          <label for="Contraseña Nuevamente">Contraseña Nuevamente</label>
+                          <input type="password" name="password2" class="form-control" placeholder="" required="required">
+                        </div>
+                      </div>
+                      <input type="hidden" name="redimir_codigo" value="<?=$codigo_por_asignar['codigo']?>">
+                      <button type="submit" name="registrarUsuario" class="btn btn-primary">REGISTRARME</button>
+                  </form>
+            <?php
+
+                }else{
+
+            ?>
+            <?php
+
+                }
+
+            }else{ ?>
+              <p style="margin:15px 0; color: #41281b; font-size: 13px;" class="text-center">Ingresa aquí las claves alfanuméricas de <b>10 dígitos</b> impresas en los empaques.</p>
+              <form class="form-inline" method="post">
+                <div class="form-group">
+                  <input type="text" name="codigo" class="form-control" id="inputPassword2" placeholder="Ejemplo:15s56g6saq" required="required" value="<?=$_GET['codigopuntos']?>">
+                </div>
+                <button type="submit" name="redimirCodigo" class="btn btn-default">INGRESAR CÓDIGO</button>
+              </form>
+            <?php } ?>
           </center>
           </div>
         </div>
@@ -120,13 +194,29 @@
       
       <div class="col-xs-12 col-md-2">
         <center>
+        <?php if (isset($_SESSION['idusuario'])) {  ?>
         <div class="cantidad-puntos">
           <div class="puntos-header text-center">
             <div>Tienes</div>
-            <div style="font-size: 35px; font-weight: 700;">1.200</div>
+            <div style="font-size: 35px; font-weight: 700;">
+              <?php 
+
+              if (isset($puntos) && !empty($puntos)) {
+                
+                echo $puntos['disponibles'];
+
+              }else{
+
+                echo '0';
+
+              }
+
+              ?>
+              </div>
             <div>Puntos</div>
           </div>
         </div>
+        <?php } ?>
         </center>
       </div>
       <div class="clearfix">

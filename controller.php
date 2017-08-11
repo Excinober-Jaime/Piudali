@@ -367,9 +367,9 @@ class Controller
 					$fecha_nacimiento = "0000-00-00";
 				}
 
-				$idorganizacion = $this->usuarios->crearOrganizacion($nit, $razon_social, $direccion_organizacion, $telefono_organizacion, $ciudad_organizacion);
+				$idorganizacion = $this->usuarios->crearOrganizacion($nit, strtoupper($razon_social), strtoupper($direccion_organizacion), $telefono_organizacion, $ciudad_organizacion);
 
-				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, 0, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
+				$idusuario = $this->usuarios->crearUsuario(strtoupper($nombre), strtoupper($apellido), $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, strtoupper($direccion), 0, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 			
 				if (!empty($idusuario)) {
 					//Enviar email Bienvenida
@@ -448,7 +448,7 @@ class Controller
 				}
 				
 
-				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, $direccion, 0, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
+				$idusuario = $this->usuarios->crearUsuario(strtoupper($nombre), strtoupper($apellido), $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, strtoupper($direccion), 0, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 
 				if (!empty($idusuario)) {
 					
@@ -522,7 +522,15 @@ class Controller
 			if (count($usuario)>0) {
 				
 				$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"], $usuario["lider"], $usuario["organizaciones_idorganizacion"]);
-				header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);
+
+				if ($usuario["tipo"] == 'CONSUMIDOR') {
+					
+					header('Location: '.URL_CLUB);
+
+				}else{
+
+					header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);
+				}
 			}else{
 				echo "<script> alert('Los datos de acceso son incorrectos. Por favor intenta de nuevo'); </script>";
 			}
@@ -2490,6 +2498,15 @@ class Controller
 			$idmovimiento = $this->cuentas_virtuales->crearMovimiento($monto, $descripcion, $destino, $cuenta["idcuenta"], $idusuario);
 		}
 
+		if (isset($_POST['obsequiarPuntos']) && isset($idusuario) && !empty($idusuario)) {
+
+			extract($_POST);
+
+			$estado_puntos = 1;
+
+			$this->usuarios->asignarNuevosPuntos($puntos, $concepto, fecha_actual('datetime'), 0, $estado_puntos, $idusuario, 0);
+		}
+
 		if (isset($_POST["crearUsuario"])) {			
 			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, 0);
 		}
@@ -2502,10 +2519,12 @@ class Controller
 			$usuario = $this->usuarios->detalleUsuario($idusuario);
 			$documentos = $this->usuarios->listarDocumentos($idusuario);
 			$cuenta = $this->cuentas_virtuales->consultarCuenta($idusuario);
+			$puntos = $this->usuarios->puntosDisponibles($idusuario);			
 		}
 
 		$lideres = 	$this->usuarios->listarUsuarios(array("REPRESENTANTE COMERCIAL"));
 		$ciudades = $this->listarCiudades();
+		
 
 		include "views/admin/usuario_detalle.php";
 	}
@@ -3646,10 +3665,121 @@ class Controller
 
 	}
 
-	public function paginaCodigosPuntos($codigo){
+	public function homeClub() {
 
 		$paginas_menu = $this->paginasMenu();
-		include "views/codigos_puntos.php";
+		$ciudades = $this->usuarios->listarCiudades();
+
+		if (isset($_SESSION['idusuario']) && $_SESSION['tipo']!='CONSUMIDOR') {
+			
+			header('Location: '.URL_SITIO);
+		
+		}
+
+		if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
+
+			$codigo_detalle = $this->codigos_puntos->detalleCodigo($_POST['codigo']);
+
+
+			if (!$codigo_detalle['redimido']) {
+
+				if ($codigo_detalle['fecha_vencimiento'] >= fecha_actual('datetime')) {
+				
+			
+					if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR') {
+
+						if (count($codigo_detalle)>0) {
+
+							$filas = $this->codigos_puntos->redimirCodigo($codigo_detalle['codigo'], $_SESSION['idusuario']);
+
+							if ($filas) {
+
+								$estado_puntos = 1;
+								
+								$idnuevospuntos = $this->usuarios->asignarNuevosPuntos($codigo_detalle['puntos'], "CLUB PIUDALI", fecha_actual('datetime'), 0, $estado_puntos, $_SESSION['idusuario'], 0);
+
+								if ($idnuevospuntos) {
+									
+									$alert = "Felicidades, tienes ".$codigo_detalle['puntos']." nuevos puntos disponibles para redimir en premios.";
+								}
+							}				
+						}
+					}else{
+
+						$codigo_por_asignar = $codigo_detalle;
+						$alert = 'Tu código tiene '.$codigo_por_asignar['puntos'].' puntos. Por favor completa el registro para que puedas redimirlos.';
+					}
+				}else{
+
+					$alert = 'El código se encuentra vencido';
+				}
+
+			}else{
+
+				$alert = 'El código ya fue redimido!';
+			}
+		}
+
+		if (isset($_POST['registrarUsuario'])) {
+			extract($_POST);
+
+			$tipo = 'CONSUMIDOR';
+			$estado = 1;
+
+			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, '', '0000-00-00', $email, md5($password), '', 0, 0, '', 0, '', '', $tipo, '', '', $estado, fecha_actual('datetime'), 0, 0, 0, 0, $ciudad, 0);
+
+			if ($idusuario) {
+
+				$this->actualizarSesion($idusuario, $nombre, $apellido, $email, '', '', '', $ciudad, '', $tipo, 0, 0);
+
+				if (isset($redimir_codigo) && !empty($redimir_codigo)) {
+					
+					$codigo = $this->codigos_puntos->detalleCodigo($redimir_codigo);
+
+					if (count($codigo)>0) {
+
+						if (!$codigo['redimido']) {
+
+							if ($codigo['fecha_vencimiento'] >= fecha_actual('datetime')) {
+
+								$filas = $this->codigos_puntos->redimirCodigo($redimir_codigo, $idusuario);
+
+								if ($filas) {
+
+									$estado_puntos = 1;
+									
+									$idnuevospuntos = $this->usuarios->asignarNuevosPuntos($codigo['puntos'], "CLUB PIUDALI", fecha_actual('datetime'), 0, $estado_puntos, $idusuario, 0);
+								}
+							}
+						}
+					}
+				}
+			}
+
+			header('Location: '.URL_CLUB);
+		}
+
+		if (isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario'])) {
+			
+			$puntos = $this->usuarios->puntosDisponibles($_SESSION['idusuario']);
+		}
+
+		$productos_club = $this->productos->listarProductos(array('CLUB PIUDALI'), array(1));
+		$valor_punto = 1; //Pesos que vale un punto
+
+		include "views/club/inicio.php";
+	}
+
+	public function detalleProductoClub($urlpdt=''){
+
+		$paginas_menu = $this->paginasMenu();
+		$producto = $this->productos->detalleProductos(0,$urlpdt);
+		$producto = $producto[0];
+		$valor_punto = 1; //Pesos que vale un punto
+
+
+		include 'views/club/detalle-regalo.php';
+
 	}
 }
 ?>
