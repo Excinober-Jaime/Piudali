@@ -89,8 +89,8 @@ class Controller
 		$estados_banners = array(1);
 		$banners = $this->banners->listarBanners($posicion_banners,$estados_banners);
 
-		$posicion_banners="POPUP";		
-		$banner_popup = $this->banners->listarBanners($posicion_banners,$estados_banners);
+		//$posicion_banners="POPUP";		
+		//$banner_popup = $this->banners->listarBanners($posicion_banners,$estados_banners);
 
 		$paginas_menu = $this->paginasMenu();
 

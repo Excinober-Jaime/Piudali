@@ -239,7 +239,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="<?=URL_SITIO?>">INICIO <span class="sr-only">(current)</span></a></li>            
+            <!--<li><a href="<?=URL_CLUB?>">INICIO <span class="sr-only">(current)</span></a></li>            
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PRODUCTOS <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -281,6 +281,7 @@
             ?>
               </ul>
             </li>            
+            <li><a href="">SOBRE EL CLUB</a></li>-->
             <!--*<?php 
             /*foreach ($paginas_menu as $pagina) {
               if ($pagina["posicion"]=="SIN CATEGORIA") {
@@ -291,8 +292,13 @@
             }*/
             ?>-->
             <!--<li><a href="/blog">BLOG</a></li>-->
+            <li><a href="<?=URL_CLUB?>">INICIO</a></li>
+            <li><a href="<?=URL_CONTACTO?>">SOBRE EL CLUB</a></li>            
+            <li><a href="<?=URL_CONTACTO?>">PREMIOS</a></li>            
+            <li><a href="<?=URL_CONTACTO?>">ENTÉRATE</a></li>            
+            <li><a href="<?=URL_CONTACTO?>">¿DÓNDE COMPRAR?</a></li>
             <li><a href="<?=URL_CONTACTO?>">CONTÁCTO</a></li>
-          </ul>          
+          </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>

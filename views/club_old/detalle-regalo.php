@@ -60,7 +60,7 @@ CONTENIDO
 			    ?>
 			</div>
 			<div class="col-xs-12 col-md-8" style="padding-right: 0 !important">
-				<a href="#" class="btn-regalo">¡Lo quiero!</a>
+				<a class="btn-regalo agregarPdt" idpdt="<?=$producto["idproducto"]?>">¡Lo quiero!</a>
 			</div>
 		</div>
 		<div class="col-sm-12 panelInformacion">

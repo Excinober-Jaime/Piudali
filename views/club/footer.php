@@ -1,165 +1,19 @@
-	<div class="clearfix"></div>
-	<?php if (!isset($_SESSION["idusuario"])) { ?>
-	<div class="newslatter">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 col-md-5">				
-							<h3 class="text-center">Recibe nuestras noticias*</h3>
-				</div>
-				<div class="col-xs-12 col-md-7">	
-				<center>
-							<form method="post" id="form-newsletter" class="form-inline">
-							  <div class="form-group">
-							    <label class="sr-only" for="exampleInputEmail3">Nombre</label>
-							    <input type="text" class="form-control" name="nombre" id="nombre_newsletter" placeholder="Nombre">
-							  </div>
-							  <div class="form-group">
-							    <label class="sr-only" for="exampleInputPassword3">Email</label>
-							    <input type="email" class="form-control" name="email" id="email_newsletter" placeholder="Email">
-							  </div>				  
-							  <button type="button" class="btn btn-success" id="enviar_newsletter">Suscribirme!</button>
-							</form>	
-				</center>
-				</div>
-				<div class="clearfix"></div>				
-			</div>
-		</div>
 	</div>
-	<?php } ?>	
-	<div class="franja"></div>
-	<footer class="footer">
-		<div class="container">
-		<div class="col-xs-12 col-sm-4 col-md-3">		
-				<h3>Enlaces de Interes</h3>
-				<ul>
-					<li><a href="<?=URL_SITIO?>Ingresar">Acceso Distribuidores</a></li>
-					<li><a href="<?=URL_SITIO?>Ingresar">Acceso Corporativo</a></li>
-					<li><a href="<?=URL_SITIO?>tiendas">Dónde Comprar</a></li>
-		
-					<li><a href="<?=URL_SITIO?>sobre-waliwa">Quienes Somos</a></li>
-					<li><a href="<?=URL_SITIO?>quienes-somos">Sobre Piudali</a></li>
-					<li><a href="<?=URL_SITIO?>compromiso-social">Compromiso Social</a></li>
-			
-					<li><a href="<?=URL_SITIO?>politica-datos">Políticas del Sitio Web</a></li>
-					<li><a href="<?=URL_SITIO?>servicio-al-cliente">Servicio al Cliente</a></li>
-					<li><a href="<?=URL_SITIO?>Contacto">Contáctenos</a></li>
-				</ul>
-			</div>
-			<div class="col-xs-12 col-sm-8 col-md-9">
-				<div class="col-xs-12 col-md-3 col-md-offset-1">
-					<center>
-						<img src="assets/img/link-grupo-marketing.png" class="img-responsive">
-						<br>
-						<img src="assets/img/piudali-footer.png" class="img-responsive">
-					</center>
-				</div>
-
-				<div class="col-xs-12 col-md-8">
-				<h4>Contáctanos</h4>
-					<p>
-	Distribuidor Exclusivo para Colombia Link Grupo Marketing SAS<br>
-	Teléfono: (+57)(2) 524 1887 - (+57) 311 627 9068 <br> Email: contacto@piudali.com.co<br>
-	<hr>
-	Todos los derechos reservados Link Grupo Marketing SAS © 2016 <br>
-	Diseñado por <a href="http://imarketing21.com" target="_new">iMarketing21</a> | Desarrollado por <a href="http://excinober.com" target="_new">Excinober Benites</a></p>
-
-				</div>
-			</div>
-			<!--<div class="clearfix"></div>
-			<hr/>
-			<div class="col-xs-12">
-				<center>
-					<img src="assets/img/diferenciador.png" class="img-responsive">
-				</center>
-			</div>
-		</div>-->
-	</footer>
-
-	<div class="modal fade" tabindex="-1" role="dialog">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title"></h4>
-	      </div>
-	      <div class="modal-body">
-	        
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>	        
-	      </div>
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
-	<!-- Modal -->
-	<div class="modalClub fade" id="club" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	      </div>
-	      <div class="modal-body-club">
-	      <center>
-	      	<img src="assets/img/club-piudali.png" width="40%" height="auto" >
-	      </center>
-	      	<div class="box-gris">
-	      		<form action="<?=URL_INGRESAR?>" method="post">
-				  <div class="form-group">
-				    <label for="">Correo Electrónico</label>
-				    <input type="email" name="email" class="form-control" placeholder="Email" required="required">
-				  </div>
-				  <div class="form-group">
-				    <label for="">Contraseña</label>
-				    <input type="password" name="password" class="form-control" placeholder="Password" required="required">
-				  </div>
-				  <div class="col-md-6 paddingOff">
-				  	<button type="submit" name="ingresar" class="btn btn-default">Ingresar</button>
-				  </div>
-				  <div class="col-md-6 paddingOff">
-				  	<a href="#">¿Olvidaste tu contraseña?</a>
-				  </div>
-				  <div class="clearfix"></div>
-				</form>
-	      	</div>
-	      	<center>
-	      		<!--<div class="btn btn-violeta">SOY, NUEVO (A), QUIERO REGISTRARME</div>-->
-	      		<br/>
-	      		<a href="#">¿Qué es el Club Piudalí?</a>
-	      	</center>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/js.js"></script>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  	<script type="text/javascript" src="assets/club/js/materialize.min.js"></script>
+  	<script src="assets/js/js.js"></script>
     <script src="assets/js/carrito.js"></script>
     <script src="assets/js/return-to-top.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFBMLpxKg2tqIa4wVB4xA5rPsPl_-IfEQ">
-    </script>
-    <?php
-    if (isset($banner_popup) && count($banner_popup)>0) {
-    	$banner_popup = $banner_popup[0];
-    ?>
-    	<script type="text/javascript">
-
-	    	$(document).ready(function(){
-	    		var img = "<?=$banner_popup['imagen']?>";
-				var descripcion = "<?=$banner_popup['nombre']?>";
-				var href = "<?=$banner_popup['link']?>";
-				var data = '<a href="'+href+'"><img src="'+img+'" class="img-responsive" title="'+descripcion+'"></a>';
-				$(".modal-body").html(data);
-				$('.modal').modal();	    		
-	    	})
-
-    	</script>
-    <?php
-    }
-    ?>    
-  </body>
-</html>
+	    </script>
+      <script type="text/javascript">
+        
+         $(document).ready(function(){
+            
+            $('.parallax').parallax();
+          });
+      </script>
+    </body>
+  </html>
