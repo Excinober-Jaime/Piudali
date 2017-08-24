@@ -801,7 +801,7 @@ class Controller
 				$actualizar_usuario = $this->usuarios->actualizarUsuario($_SESSION["idusuario"],$nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $mapa, $telefono, $telefono_m, $_SESSION["tipo"], $segmento, $foto, $_SESSION["lider"], $ciudad);
 
 				if (isset($idorganizacion) && !empty($idorganizacion)) {
-					$actualizar_organizacion = $this->usuarios->actualizarOrganizacion($idorganizacion, $razon_social, $telefono_organizacion, $direccion_organizacion, $ciudad_organizacion);
+					$actualizar_organizacion = $this->usuarios->actualizarOrganizacion($idorganizacion, $nit, $razon_social, $telefono_organizacion, $direccion_organizacion, $ciudad_organizacion);
 				}
 
 				if (!empty($nueva_contrasena)) {
@@ -2462,6 +2462,19 @@ class Controller
 	public function adminUsuariosLista(){
 
 		$usuariosLista = $this->usuarios->listarUsuarios();
+
+		if (count($usuariosLista)>0) {
+		
+			foreach ($usuariosLista as $key => $usuario) {
+				
+				if (!empty($usuario['organizaciones_idorganizacion'])) {
+					
+					$usuariosLista[$key]['organizacion'] = $this->usuarios->detalleOrganizacionUsuario($usuario['organizaciones_idorganizacion']);
+
+				}
+			}
+		}
+
 		include "views/admin/usuarios_lista.php";
 	}
 
@@ -2507,16 +2520,29 @@ class Controller
 			$this->usuarios->asignarNuevosPuntos($puntos, $concepto, fecha_actual('datetime'), 0, $estado_puntos, $idusuario, 0);
 		}
 
-		if (isset($_POST["crearUsuario"])) {			
+		if (isset($_POST["crearUsuario"])) {
+			
 			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, 0);
 		}
 
 		if (isset($_POST["actualizarUsuario"])) {
+
 			$this->usuarios->actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento,'', $lider, $cod_lider, $ciudad);
+		}
+
+		if (isset($_POST['actualizarOrganizacion'])) {
+			
+			$this->usuarios->actualizarOrganizacion($idorganizacion, $nit, $razon_social, $telefono_organizacion, $direccion_organizacion, $ciudad_organizacion);
 		}
 
 		if (isset($idusuario) && !empty($idusuario)) {
 			$usuario = $this->usuarios->detalleUsuario($idusuario);
+
+			if (!empty($usuario['organizaciones_idorganizacion'])) {
+				
+				$organizacion = $this->usuarios->detalleOrganizacionUsuario($usuario['organizaciones_idorganizacion']);
+			}
+
 			$documentos = $this->usuarios->listarDocumentos($idusuario);
 			$cuenta = $this->cuentas_virtuales->consultarCuenta($idusuario);
 			$puntos = $this->usuarios->puntosDisponibles($idusuario);			

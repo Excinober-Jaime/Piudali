@@ -7,13 +7,11 @@
 			<table class="table table-striped">
 			  <thead>
 			  	<tr>
-			  		<th>Identificación</th>
-			  		<th>Nombre</th>
-			  		<th>Apellido</th>		  		
-			  		<th>Email</th>
-			  		<th>Teléfono</th>
-			  		<th>Móvil</th>
+			  		<th>Cliente</th>
+			  		<th>Segmento</th>
 			  		<th>Ciudad</th>
+			  		<th>Teléfono</th>
+			  		<th>Contácto</th>
 			  		<th>Tipo</th>
 			  		<th>Fecha Registro</th>
 			  	</tr>
@@ -21,15 +19,27 @@
 			  <tbody class="datos">
 			  	<?php 
 			  	foreach ($usuariosLista as $usuario) {
+
+			  		if (count($usuario['organizacion'])>0) {
+			  			
+			  			$cliente = $usuario['organizacion']['razon_social'];
+			  			$ciudad = $usuario['organizacion']['ciudad'];
+			  			$telefono = $usuario['organizacion']['telefono'];
+
+			  		}else{
+
+			  			$cliente = $usuario['nombre'].' '.$usuario['apellido'];
+			  			$ciudad = $usuario['ciudad'];
+			  			$telefono = $usuario['telefono'];
+
+			  		}
 		  		?>
 		  		<tr>
-		  			<td><?=$usuario["num_identificacion"]?></td>
-		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/".$usuario['idusuario']?>"><?=$usuario["nombre"]?></a></td>
-		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/".$usuario['idusuario']?>"><?=$usuario["apellido"]?></a></td>
-		  			<td><?=$usuario["email"]?></td>
-		  			<td><?=$usuario["telefono"]?></td>
-		  			<td><?=$usuario["telefono_m"]?></td>
-		  			<td><?=$usuario["ciudad"]?></td>
+		  			<td><?=$cliente?></td>
+		  			<td><?=$usuario['segmento']?></td>
+		  			<td><?=$ciudad?></td>
+		  			<td><?=$telefono?></td>
+		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/".$usuario['idusuario']?>"><?=$usuario["nombre"].' '.$usuario["apellido"]?></a></td>	  			
 		  			<td><?=$usuario["tipo"]?></td>
 		  			<td><?=$usuario["fecha_registro"]?></td>
 		  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS."/".$usuario['idusuario']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>

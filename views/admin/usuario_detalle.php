@@ -2,8 +2,8 @@
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
         <div class="col-lg-12">			
-			<div class="col-xs-12 col-md-6">
-				<h2>INFORMACIÓN</h2>
+			<div class="col-xs-12 col-md-4">
+				<h2>CONTÁCTO</h2>
 				<form method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Nombre</label>
@@ -145,7 +145,55 @@
 					
 				</form>
 			</div>
-			<div class="col-xs-12 col-md-6">
+			<?php 
+
+			if (isset($organizacion)) {
+
+			?>
+			<div class="col-xs-12 col-md-4">
+				<h2>ORGANIZACIÓN</h2>
+				<form method="post">
+					<div class="form-group">
+						<label for="exampleInputEmail1">Razón Social</label>
+						<input type="text" class="form-control" name="razon_social" id="razon_social" value="<?=$organizacion['razon_social']?>" required>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Nit</label>
+						<input type="text" class="form-control" name="nit" id="nit" value="<?=$organizacion['nit']?>" required>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Teléfono</label>
+						<input type="text" class="form-control" name="telefono_organizacion" id="telefono_organizacion" value="<?=$organizacion['telefono']?>" required>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Dirección</label>
+						<input type="text" class="form-control" name="direccion_organizacion" id="direccion_organizacion" value="<?=$organizacion['direccion']?>" required>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Ciudad</label>
+						<select name="ciudad_organizacion" class="form-control" required>
+							<option value="">-Seleccione-</option>
+							<?php
+							foreach ($ciudades as $key => $ciudad) {
+								?>
+								<option value="<?=$ciudad["idciudad"]?>" <?php if ($organizacion["ciudades_idciudad"] == $ciudad["idciudad"]) echo "selected"; ?>><?=$ciudad["ciudad"]?></option>
+								<?php
+							}
+							?>
+						</select>
+					</div>					
+					<input type="hidden" name="idorganizacion" value="<?=$organizacion['idorganizacion']?>">
+					<center>
+						<button type="submit" name="actualizarOrganizacion" class="btn btn-primary">ACTUALIZAR ORGANIZACIÓN</button>
+					</center>
+				</form>
+			</div>
+			<?php
+
+			}
+
+			?>			
+			<div class="col-xs-12 col-md-4">
 			<?php if (isset($idusuario) && $idusuario!='') { ?>
 				<h2>DOCUMENTOS</h2>
 				<?php if ($documentos) { ?>

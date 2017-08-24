@@ -32,7 +32,7 @@ class Usuarios extends Database
 			$where = "";
 		}
 		
-		$query = $this->consulta("SELECT `idusuario`, `nombre`, `apellido`, `sexo`, `fecha_nacimiento`, `email`, `password`, `num_identificacion`, `boletines`, `condiciones`, `direccion`,  `mapa`, `telefono`, `telefono_m`, `tipo`, `segmento`, `foto`, `estado`, `fecha_registro`, `referente`, `lider`, `nivel`, `ciudades_idciudad`, `ciudades`.`ciudad` AS 'ciudad'
+		$query = $this->consulta("SELECT `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`password`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`,  `usuarios`.`mapa`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`referente`, `usuarios`.`lider`, `usuarios`.`nivel`, `usuarios`.`ciudades_idciudad`, `usuarios`.`organizaciones_idorganizacion`, `ciudades`.`ciudad` AS 'ciudad'
 									FROM `usuarios`
 									INNER JOIN `ciudades` ON (`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`) 
 									$where 
@@ -807,13 +807,17 @@ class Usuarios extends Database
 
 	public function detalleOrganizacionUsuario($idorganizacion){
 		
-		$query = $this->consulta("SELECT `organizaciones`.`idorganizacion`, `organizaciones`.`nit`, `organizaciones`.`razon_social`, `organizaciones`.`direccion`, `organizaciones`.`telefono`, `organizaciones`.`ciudades_idciudad`, `ciudades`.`ciudad` AS 'ciudad' FROM `organizaciones` INNER JOIN `ciudades` ON(`organizaciones`.`ciudades_idciudad`=`ciudades`.`idciudad`) WHERE `organizaciones`.`idorganizacion`='$idorganizacion'");
+		$query = $this->consulta("SELECT `organizaciones`.`idorganizacion`, `organizaciones`.`nit`, `organizaciones`.`razon_social`, `organizaciones`.`direccion`, `organizaciones`.`telefono`, `organizaciones`.`ciudades_idciudad`, `ciudades`.`ciudad` AS 'ciudad' 
+					FROM `organizaciones` 
+					INNER JOIN `ciudades` ON(`organizaciones`.`ciudades_idciudad`=`ciudades`.`idciudad`) 
+					WHERE `organizaciones`.`idorganizacion`='$idorganizacion'");
 
 		return $query[0];
 	}
 
-	public function actualizarOrganizacion($idorganizacion, $razon_social, $telefono, $direccion, $ciudad){
+	public function actualizarOrganizacion($idorganizacion, $nit, $razon_social, $telefono, $direccion, $ciudad){
 		$query = $this->actualizar("UPDATE `organizaciones` SET 
+										`nit`='$nit',
 										`razon_social`='$razon_social',
 										`direccion`='$direccion',
 										`telefono`='$telefono',

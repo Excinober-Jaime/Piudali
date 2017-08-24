@@ -87,7 +87,7 @@
 					<h3>DATOS DE LA ORGANIZACIÓN</h3>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Nit</label>
-						<input type="text" name="nit" class="form-control" id="nit" value="<?=$organizacion["nit"]?>" disabled>
+						<input type="text" name="nit" class="form-control" id="nit" value="<?=$organizacion["nit"]?>" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Razon Social</label>
