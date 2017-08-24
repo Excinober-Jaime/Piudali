@@ -97,12 +97,10 @@
 								<label for="exampleInputEmail1">Tipo de Usuario</label>
 								<select name="segmento" class="form-control" required>
 									<option value="">Seleccione</option>
-									<option value="Profesional de Belleza">Profesional de Belleza</option>
-									<option value="SPA">SPA</option>
+									<option value="Esteticista">Esteticista</option>
+									<option value="Terapeuta">Terapeuta</option>
 									<option value="Médico">Médico</option>
-									<option value="Dermatólogo">Dermatólogo</option>
-									<option value="Terapéuta">Terapéuta</option>
-									<option value="Comercializador">Comercializador</option>
+									<option value="Comercializador Independiente">Comercializador Independiente</option>
 									<option value="Otro">Otro</option>
 								</select>
 							</div>
@@ -222,19 +220,15 @@
 									?>
 								</select>
 							</div>
+							<hr>
 							<div class="form-group">
-								<label for="exampleInputEmail1">Segmento</label>
-								<select name="segmento" class="form-control" required>
-									<option value="">Seleccione</option>
-									<option value="Profesional de Belleza">Profesional de Belleza</option>
-									<option value="SPA">SPA</option>
-									<option value="Médico">Médico</option>
-									<option value="Dermatólogo">Dermatólogo</option>
-									<option value="Terapéuta">Terapéuta</option>
-									<option value="Comercializador">Comercializador</option>
-									<option value="Otro">Otro</option>
-								</select>
-							</div>								
+								<label for="exampleInputEmail1">Contraseña</label>
+								<input type="password" name="password" class="form-control" id="password" required>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Repita Contraseña</label>
+								<input type="password" name="password2" class="form-control" id="password2" required>
+							</div>														
 						</div>
 						<div class="col-xs-12 col-md-6">
 							<h3>DATOS DE LA ORGANIZACIÓN</h3>							
@@ -251,10 +245,6 @@
 								<input type="text" name="telefono_organizacion" class="form-control" id="telefono_organizacion">
 							</div>
 							<div class="form-group">
-								<label for="exampleInputEmail1">Dirección</label>
-								<input type="text" name="direccion_organizacion" class="form-control" id="direccion_organizacion">
-							</div>
-							<div class="form-group">
 								<label for="exampleInputEmail1">Ciudad</label>
 								<select name="ciudad_organizacion" class="form-control" required>
 									<option>Seleccione</option>
@@ -266,16 +256,23 @@
 									}
 									?>
 								</select>
-							</div>							
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Dirección</label>
+								<input type="text" name="direccion_organizacion" class="form-control" id="direccion_organizacion">
+							</div>														
+							<div class="form-group">
+								<label for="exampleInputEmail1">Segmento</label>
+								<select name="segmento" class="form-control" required>
+									<option value="">Seleccione</option>					
+									<option value="SPA">SPA</option>
+									<option value="Centro Médico">Centro Médico</option>
+									<option value="Institución Especializada">Institución Especializada</option>
+									<option value="Distribuidor Especializado">Distribuidor Especializado</option>
+									<option value="Otro">Otro</option>
+								</select>
+							</div>
 							<hr>
-							<div class="form-group">
-								<label for="exampleInputEmail1">Contraseña</label>
-								<input type="password" name="password" class="form-control" id="password" required>
-							</div>
-							<div class="form-group">
-								<label for="exampleInputEmail1">Repita Contraseña</label>
-								<input type="password" name="password2" class="form-control" id="password2" required>
-							</div>
 							<div class="row">
 								<div class="col-xs-6">
 									<label class="mr-sm-2" for="inlineFormCustomSelect">¿Tienes un código de representante?</label>

@@ -67,14 +67,36 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Segmento</label>
 						<select name="segmento" class="form-control" required>
-							<option value="">Seleccione</option>
-							<option value="Profesional de Belleza" <?php if ($usuario['segmento']=='Profesional de Belleza') echo 'selected'; ?>>Profesional de Belleza</option>
-							<option value="SPA" <?php if ($usuario['segmento']=='SPA') echo 'selected'; ?>>SPA</option>
-							<option value="Médico" <?php if ($usuario['segmento']=='Médico') echo 'selected'; ?>>Médico</option>
-							<option value="Dermatólogo" <?php if ($usuario['segmento']=='Dermatólogo') echo 'selected'; ?>>Dermatólogo</option>
-							<option value="Terapéuta" <?php if ($usuario['segmento']=='Terapéuta') echo 'selected'; ?>>Terapéuta</option>
-							<option value="Comercializador" <?php if ($usuario['segmento']=='Comercializador') echo 'selected'; ?>>Comercializador</option>
-							<option value="Otro" <?php if ($usuario['segmento']=='Otro') echo 'selected'; ?>>Otro</option>
+							<option value="">Seleccione</option>							
+								
+								<optgroup label="Perfiles Antiguos">
+									
+									<option value="Profesional de Belleza" <?php if ($usuario['segmento']=='Profesional de Belleza') echo 'selected'; ?>>Profesional de Belleza</option>
+
+									<option value="Dermatólogo" <?php if ($usuario['segmento']=='Dermatólogo') echo 'selected'; ?>>Dermatólogo</option>
+									
+								</optgroup>
+								
+								<optgroup label="Perfiles Actuales">
+
+									<option value="Esteticista">Esteticista</option>
+									
+									<option value="Médico" <?php if ($usuario['segmento']=='Médico') echo 'selected'; ?>>Médico</option>
+									
+									<option value="Terapeuta" <?php if ($usuario['segmento']=='Terapeuta') echo 'selected'; ?>>Terapeuta</option>
+
+									<option value="Comercializador Independiente" <?php if ($usuario['segmento']=='Comercializador Independiente') echo 'selected'; ?>>Comercializador Independiente</option>
+
+									<option value="SPA" <?php if ($usuario['segmento']=='SPA') echo 'selected'; ?>>SPA</option>
+
+									<option value="Centro Médico">Centro Médico</option>
+
+									<option value="Institución Especializada">Institución Especializada</option>
+
+									<option value="Distribuidor Especializado">Distribuidor Especializado</option>									
+
+									<option value="Otro" <?php if ($usuario['segmento']=='Otro') echo 'selected'; ?>>Otro</option>
+								</optgroup>							
 						</select>
 					</div>							
 					<div class="form-group">
