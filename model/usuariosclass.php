@@ -123,7 +123,7 @@ class Usuarios extends Database
 									`sexo`='$sexo',
 									`fecha_nacimiento`='$fecha_nacimiento',
 									`email`='$email',
-									`boletines`='$boletines',									
+									`boletines`='$boletines',	
 									`direccion`='$direccion',
 									`mapa`='$mapa',
 									`telefono`='$telefono',
