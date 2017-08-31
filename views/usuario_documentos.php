@@ -10,12 +10,18 @@
     <div class="clearfix"></div>
     <div class="informacion">
     <div class="col-xs-12">
-	<?php 
-	if ($documentos) {
-	?>
+	
 		<ul class="list-group">		
-			<li class="list-group-item"><a href="documentos/FORMATO-AFILIACION-LIDER-COMERCIAL-PIUDALI.pdf" target="_new"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> ACUERDO DE REPRESENTACIÓN COMERCIAL</a></li>
-		<?php foreach ($documentos as $key => $documento) {
+			<li class="list-group-item"><a href="documentos/25ACUERDO DE REPRESENTANCIÓN COMERCIAL.pdf" target="_new"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> ACUERDO DE REPRESENTACIÓN COMERCIAL</a></li>
+			<li class="list-group-item"><a href="documentos/25CAMARA DE COMERCIO LINK GRUPO MARKETING SAS.pdf" target="_new"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> CÁMARA DE COMERCIO LINK GRUPO MARKETING SAS</a></li>
+			<li class="list-group-item"><a href="documentos/14377685652-2 RUT LINK.pdf" target="_new"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> RUT LINK GRUPO MARKETING SAS</a></li>
+
+		<?php 
+
+		if ($documentos) {
+
+		 foreach ($documentos as $key => $documento) {
+
 		?>
 			<li class="list-group-item">
 				<a href="<?="include/descargar.php?url=".$documento["url"]?>">
@@ -25,11 +31,14 @@
 				<a href="<?=URL_USUARIO."/".URL_USUARIO_DOCUMENTOS?>/?eliminarDocumento=<?=$documento["iddocumento"]?>">
 					<span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
 				</a></li>
-		<?php } ?>	  
-		</ul>
-	<?php }else{ ?>	
-	<p>No ha subido ningún documento.</p>
+		
+		<?php }  
+
+		} else{ ?>
+
+	<li class="list-unstyled">No ha subido ningún documento.</li>
 	<?php }	?>	
+	</ul>
 	<hr>
 	<h3 class="text-center">Subir Nuevo Documento</h3>
 	<form method="post" enctype="multipart/form-data">

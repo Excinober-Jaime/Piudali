@@ -82,7 +82,7 @@
 					<button type="submit" name="cambiarDatos" class="btn btn-default btn-lg center-block">GUARDAR CAMBIOS</button>				
 				</div>
 				<div class="col-xs-12 col-md-6">
-				<?php if ($organizacion) { ?>					
+				<?php if ($organizacion) { ?>
 					<input type="hidden" name="idorganizacion" value="<?=$organizacion["idorganizacion"]?>">
 					<h3>DATOS DE LA ORGANIZACIÓN</h3>
 					<div class="form-group">
@@ -115,7 +115,7 @@
 						</select>
 					</div>
 					<hr>
-				<?php }  ?>
+				<?php } ?>
 					<?php 
 					if (!empty($usuario["foto"])) {
 					?>

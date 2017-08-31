@@ -103,6 +103,8 @@ define("URL_ADMIN_PAGOS_INCENTIVOS", "PagosIncentivos");
 define("URL_ADMIN_PAGO_INCENTIVO", "PagoIncentivo");
 define("URL_ADMIN_ELIMINAR_ENTIDAD", "EliminarEntidad");
 
+define("URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES", "ModelosNegocioDistribuidores");
+
 define("URL_ADMIN_SALIR", "Salir");
 
 /**INFORMES**/
