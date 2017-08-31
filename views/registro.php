@@ -145,7 +145,7 @@
 							</div>
 							<div class="checkbox">
 							    <label>
-							      <input type="checkbox" name="condiciones" value="1" required><a class="open-modal" idpage="22">Autorización datos personales</a>
+							      <input type="checkbox" name="condiciones" value="1" required="required"><a class="open-modal" idpage="22">Autorización datos personales</a>
 							    </label>
 							</div>
 							<input type="hidden" name="crearUsuario" value="1">
@@ -306,7 +306,7 @@
 							</div>
 							<div class="checkbox">
 							    <label>
-							      <input type="checkbox" name="condiciones" value="1" required> Acepto los <a class="open-modal" idpage="22">Autorización de datos personales</a>
+							      <input type="checkbox" name="condiciones" value="1" required="required"> Acepto los <a class="open-modal" idpage="22">Autorización de datos personales</a>
 							    </label>
 							</div>		
 						</div>

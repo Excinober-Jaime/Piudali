@@ -115,7 +115,7 @@ class Usuarios extends Database
 		return $idusuario;	
 	}
 
-	public function actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, $foto, $lider, $cod_lider, $ciudad){
+	public function actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, $num_identificacion, $boletines, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, $foto, $lider, $cod_lider, $ciudad){
 		
 		$query = $this->actualizar("UPDATE `usuarios` SET 									
 									`nombre`='$nombre',
@@ -123,6 +123,7 @@ class Usuarios extends Database
 									`sexo`='$sexo',
 									`fecha_nacimiento`='$fecha_nacimiento',
 									`email`='$email',
+									`num_identificacion`='$num_identificacion',
 									`boletines`='$boletines',	
 									`direccion`='$direccion',
 									`mapa`='$mapa',
@@ -130,13 +131,16 @@ class Usuarios extends Database
 									`telefono_m`='$telefono_m',
 									`tipo`='$tipo',
 									`segmento`='$segmento',
-									`lider`='$lider',
-									`cod_lider`='$cod_lider',
+									`lider`='$lider',									
 									`ciudades_idciudad`= '$ciudad'
 									WHERE `idusuario`='$idusuario'");
 
 		if (!empty($foto)) {
 			$this->actualizar("UPDATE `usuarios` SET `foto`='$foto' WHERE `idusuario`='$idusuario'");
+		}
+
+		if (!empty($cod_lider)) {
+			$this->actualizar("UPDATE `usuarios` SET `cod_lider`='$cod_lider' WHERE `idusuario`='$idusuario'");
 		}
 		
 		return $query;

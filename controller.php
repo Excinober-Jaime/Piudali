@@ -798,7 +798,7 @@ class Controller
 					$boletines = 0;
 				}
 
-				$actualizar_usuario = $this->usuarios->actualizarUsuario($_SESSION["idusuario"],$nombre, $apellido, $sexo, $fecha_nacimiento, $email, $boletines, $direccion, $mapa, $telefono, $telefono_m, $_SESSION["tipo"], $segmento, $foto, $_SESSION["lider"], $ciudad);
+				$actualizar_usuario = $this->usuarios->actualizarUsuario($_SESSION["idusuario"],$nombre, $apellido, $sexo, $fecha_nacimiento, $email, $num_identificacion, $boletines, $direccion, $mapa, $telefono, $telefono_m, $_SESSION["tipo"], $segmento, $foto, $_SESSION["lider"], '', $ciudad);
 
 				if (isset($idorganizacion) && !empty($idorganizacion)) {
 					$actualizar_organizacion = $this->usuarios->actualizarOrganizacion($idorganizacion, $nit, $razon_social, $telefono_organizacion, $direccion_organizacion, $ciudad_organizacion);
@@ -2527,7 +2527,7 @@ class Controller
 
 		if (isset($_POST["actualizarUsuario"])) {
 
-			$this->usuarios->actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento,'', $lider, $cod_lider, $ciudad);
+			$this->usuarios->actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, $num_identificacion, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento,'', $lider, $cod_lider, $ciudad);
 		}
 
 		if (isset($_POST['actualizarOrganizacion'])) {

@@ -11,7 +11,8 @@
 				<div class="col-xs-12 col-md-6">									
 					<div class="form-group">
 						<label for="exampleInputEmail1">Número de Identificación</label>
-						<input type="text" name="num_identificacion" class="form-control" id="num_identificacion" value="<?=$usuario["num_identificacion"]?>" disabled>
+						<input type="text" name="" class="form-control" id="" value="<?=$usuario["num_identificacion"]?>" disabled>
+						<input type="hidden" name="num_identificacion" value="<?=$usuario["num_identificacion"]?>">
 					</div>	
 					<div class="form-group">
 						<label for="exampleInputEmail1">Nombre</label>
