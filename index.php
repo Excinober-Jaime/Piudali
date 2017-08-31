@@ -22,6 +22,12 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 			case URL_ADMIN:
 
 				if (isset($var2) && $var2!='') {
+
+					if (!$_SESSION["admin"]) {
+					
+						header('Location: '.URL_SITIO.URL_ADMIN);
+
+					}
 					
 					switch ($var2) {
 
@@ -405,6 +411,7 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 					}
 					
 				}else{
+
 					$controller->adminLoguin();
 				}
 				

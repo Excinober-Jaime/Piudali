@@ -1480,7 +1480,9 @@ class Controller
 	}
 
 	public function usuarioCerrarSesion(){
-		session_destroy();
+
+		//session_destroy();
+
 		unset($_SESSION["idusuario"]);
 		unset($_SESSION["nombre"]);
 		unset($_SESSION["apellido"]);
@@ -1490,8 +1492,20 @@ class Controller
 		unset($_SESSION["direccion"]);
 		unset($_SESSION["ciudades_idciudad"]);
 		unset($_SESSION["ciudad"]);
+		unset($_SESSION["lider"]);
+		unset($_SESSION["idorganizacion"]);
 		unset($_SESSION["tipo"]);
 
+		if (isset($_SESSION["idusuario_remoto"])) {
+
+			unset($_SESSION["idusuario_remoto"]);
+			unset($_SESSION["email_remoto"]);
+			unset($_SESSION["nombre_remoto"]);
+			unset($_SESSION["apellido_remoto"]);
+			unset($_SESSION["tipo_remoto"]);
+			
+		}
+		
 		header("Location: ".URL_SITIO);
 	}
 
