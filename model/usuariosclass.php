@@ -115,7 +115,7 @@ class Usuarios extends Database
 		return $idusuario;	
 	}
 
-	public function actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, $num_identificacion, $boletines, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, $foto, $lider, $cod_lider, $ciudad){
+	public function actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, $num_identificacion, $boletines, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, $foto, $lider, $cod_lider, $ciudad, $estado = ''){
 		
 		$query = $this->actualizar("UPDATE `usuarios` SET 									
 									`nombre`='$nombre',
@@ -142,14 +142,18 @@ class Usuarios extends Database
 		if (!empty($cod_lider)) {
 			$this->actualizar("UPDATE `usuarios` SET `cod_lider`='$cod_lider' WHERE `idusuario`='$idusuario'");
 		}
+
+		if ($estado !='') {
+			$this->actualizar("UPDATE `usuarios` SET `estado`='$estado' WHERE `idusuario`='$idusuario'");
+		}
 		
 		return $query;
 	}
 
 	public function cambiarContrasenaUsuario($idusuario, $contrasena_actual, $nueva_contrasena){
 		
-		$query = $this->actualizar("UPDATE `usuarios` SET 									
-									`password`='$nueva_contrasena'
+		$query = $this->actualizar("UPDATE `usuarios` 
+									SET `password`='$nueva_contrasena'
 									WHERE `idusuario`='$idusuario' AND `password`='$contrasena_actual'");
 		
 		return $query;

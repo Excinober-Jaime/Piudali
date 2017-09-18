@@ -79,7 +79,7 @@
 								
 								<optgroup label="Perfiles Actuales">
 
-									<option value="Esteticista">Esteticista</option>
+									<option value="Esteticista" <?php if ($usuario['segmento']=='Esteticista') echo 'selected'; ?>>Esteticista</option>
 									
 									<option value="Médico" <?php if ($usuario['segmento']=='Médico') echo 'selected'; ?>>Médico</option>
 									
@@ -89,14 +89,16 @@
 
 									<option value="SPA" <?php if ($usuario['segmento']=='SPA') echo 'selected'; ?>>SPA</option>
 
-									<option value="Centro Médico">Centro Médico</option>
+									<option value="Centro Médico" <?php if ($usuario['segmento']=='Centro Médico') echo 'selected'; ?>>Centro Médico</option>
 
-									<option value="Institución Especializada">Institución Especializada</option>
+									<option value="Institución Especializada" <?php if ($usuario['segmento']=='Institución Especializada') echo 'selected'; ?>>Institución Especializada</option>
 
-									<option value="Distribuidor Especializado">Distribuidor Especializado</option>									
+									<option value="Distribuidor Especializado" <?php if ($usuario['segmento']=='Distribuidor Especializado') echo 'selected'; ?>>Distribuidor Especializado</option>	
+
+									<option value="Tienda Especializada" <?php if ($usuario['segmento']=='Tienda Especializada') echo 'selected'; ?>>Tienda Especializada</option>
 
 									<option value="Otro" <?php if ($usuario['segmento']=='Otro') echo 'selected'; ?>>Otro</option>
-								</optgroup>							
+								</optgroup>
 						</select>
 					</div>							
 					<div class="form-group">

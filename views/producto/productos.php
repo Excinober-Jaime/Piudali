@@ -35,7 +35,7 @@ function producto_bloque($imagen="",$nombre="",$codigo="",$precio=0,$oferta=0,$l
                   if ($oferta>0) {
                   ?>
                     <div style="float:right;width:20%;margin:0px; padding:0px;">
-                      <div style="background:#ec7e07;border-radius:20px;width:40px;height:40px;padding-top:10px;color:#fff;font-size:15px;text-align:center;"><?=round(($oferta/$precio)-1)?></div>
+                      <div style="background:#ec7e07;border-radius:20px;width:40px;height:40px;padding-top:10px;color:#fff;font-size:15px;text-align:center;"><?=round((($oferta/$precio)-1)*100)?></div>
                     </div>
                   <?php                  
                   }?>                

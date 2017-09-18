@@ -269,6 +269,7 @@
 									<option value="Centro Médico">Centro Médico</option>
 									<option value="Institución Especializada">Institución Especializada</option>
 									<option value="Distribuidor Especializado">Distribuidor Especializado</option>
+									<option value="Tienda Especializada">Tienda Especializada</option>
 									<option value="Otro">Otro</option>
 								</select>
 							</div>

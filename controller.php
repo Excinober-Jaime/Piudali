@@ -19,6 +19,7 @@ require "model/personalclass.php";
 require "model/cuentasclass.php";
 require "model/descuentosespecialesclass.php";
 require "model/codigospuntosclass.php";
+require "model/modelosnegociodistribuidoresclass.php";
 
 /** Require Includes **/
 require "include/constantes.php";
@@ -44,6 +45,7 @@ class Controller
 		$this->cuentas_virtuales = new CuentasVirtuales();
 		$this->descuentos_especiales = new Descuentosespeciales();
 		$this->codigos_puntos = new CodigosPuntos();
+		$this->modelos_negocio_distribuidores = new ModelosNegocioDistribuidores();
 	}
 
 
@@ -2541,7 +2543,7 @@ class Controller
 
 		if (isset($_POST["actualizarUsuario"])) {
 
-			$this->usuarios->actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, $num_identificacion, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento,'', $lider, $cod_lider, $ciudad);
+			$this->usuarios->actualizarUsuario($idusuario, $nombre, $apellido, $sexo, $fecha_nacimiento, $email, $num_identificacion, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento,'', $lider, $cod_lider, $ciudad, $estado);
 		}
 
 		if (isset($_POST['actualizarOrganizacion'])) {
