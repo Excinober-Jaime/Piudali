@@ -104,6 +104,7 @@ define("URL_ADMIN_PAGO_INCENTIVO", "PagoIncentivo");
 define("URL_ADMIN_ELIMINAR_ENTIDAD", "EliminarEntidad");
 
 define("URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES", "ModelosNegocioDistribuidores");
+define("URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES_VINCULAR", "VincularUsuario");
 
 define("URL_ADMIN_SALIR", "Salir");
 

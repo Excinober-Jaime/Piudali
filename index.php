@@ -146,6 +146,24 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}
 							break;
 
+						case URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES:
+							
+							if (isset($var3) && !empty($var3)) {
+
+								if ($var3 == URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES_VINCULAR) {
+									$controller->adminModeloNegocioDistribuidorVincular();
+								}else{
+
+									if ($var3=="Nuevo") {
+										$var3 = "";								
+									}
+									$controller->adminModelosNegocioDistribuidoresDetalle($var3);
+								}
+							}else{
+								$controller->adminModelosNegocioDistribuidores();
+							}
+							break;
+
 						case URL_ADMIN_PLANTILLAS:
 							if (isset($var3) && !empty($var3)) {
 								

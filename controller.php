@@ -2451,6 +2451,57 @@ class Controller
 		}
 	}
 
+	/*****Modelos de negocio Distribuidores*****/
+
+	public function adminModelosNegocioDistribuidores(){
+
+		$modelos = $this->modelos_negocio_distribuidores->listarModelos();
+
+		include 'views/admin/modelos_negocio_distribuidores_lista.php';
+	}
+
+	public function adminModelosNegocioDistribuidoresDetalle($idmodelo){
+
+		extract($_POST);
+
+		if (isset($_POST["crearModelo"])) {
+
+			$idmodelo = $this->modelos_negocio_distribuidores->crearModelo($nombre, $monto_minimo, $puntos, $referidos, $incentivos, $estado);
+		}
+
+		if (isset($minimo) && count($minimo)>0) {
+
+			foreach ($minimo as $key => $value) {
+				if (!empty($maximo[$key]) && !empty($porcentaje[$key])) {
+					$idescala = $this->modelos_negocio_distribuidores->crearEscala($idmodelo, $minimo[$key], $maximo[$key], $porcentaje[$key]);
+				}
+			}
+		}
+
+
+
+		if (isset($idmodelo) && !empty($idmodelo)) {
+			
+			$modelo = $this->modelos_negocio_distribuidores->detalleModelo($idmodelo);
+			$escalas = $this->modelos_negocio_distribuidores->listarEscalas($idmodelo);
+			$usuarios = $this->modelos_negocio_distribuidores->listarUsuarios($idmodelo);
+			
+			$distribuidores = $this->usuarios->listarUsuarios(array("DISTRIBUIDOR DIRECTO"));
+		}
+
+		include 'views/admin/modelos_negocio_distribuidores_detalle.php';
+	}
+
+	public function adminModeloNegocioDistribuidorVincular(){
+
+		if (isset($_POST["idusuario"]) && !empty($_POST["idusuario"]) && isset($_POST["idmodelo"]) && !empty($_POST["idmodelo"])) {
+			
+			$this->modelos_negocio_distribuidores->vincularUsuario($_POST["idusuario"], $_POST["idmodelo"]);
+
+			echo true;
+		}
+	}
+
 	/*****Plantillas*****/
 
 	public function adminPlantillasLista(){

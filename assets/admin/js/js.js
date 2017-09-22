@@ -157,13 +157,13 @@ $(document).ready(function(){
 
     $(".vincular-usuario-escala-especial").click(function(){
         var idusuario = $(this).attr("idusuario");
-        var iddescuento = $(this).attr("iddescuento");
+        var idmodelo = $(this).attr("idmodelo");
 
         if (idusuario!='') {
             $.ajax({
                 type: 'POST',
-                url: "Admin/DescuentosEspeciales/VincularUsuario",
-                data: { idusuario:idusuario, iddescuento:iddescuento },
+                url: "Admin/ModelosNegocioDistribuidores/VincularUsuario",
+                data: { idusuario:idusuario, idmodelo:idmodelo },
                 dataType: 'text',
                 async: false,
                 success: function(response) {

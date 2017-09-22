@@ -72,9 +72,16 @@ $breadcrumb = explode("/", $_GET["url"]);
                     </ul>
                 </li>
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_CAMPANAS?>"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span class="nav-label">Campañas</span></a></li>
-                <li><a href="<?=URL_ADMIN."/".URL_ADMIN_DESCUENTOS_ESPECIALES?>"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span class="nav-label">Escalas Especiales</span></a></li>
+                <!--<li><a href="<?=URL_ADMIN."/".URL_ADMIN_DESCUENTOS_ESPECIALES?>"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span class="nav-label">Escalas Especiales</span></a></li>-->
+                
+                <li>
+                    <a href="<?=URL_ADMIN."/".URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES?>"><i class="fa fa-briefcase" aria-hidden="true"></i>
+                    <span class="nav-label">Modelos de Negocio</span></a>
+                </li>
+                
                 <li><a href="<?=URL_ADMIN."/".URL_ADMIN_CUPONES?>"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span class="nav-label">Cupones</span></a></li>      
 				<li><a href="<?=URL_ADMIN."/".URL_ADMIN_ORDENES?>"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="nav-label">Ordenes</span></a></li>
+
                 <li>
                     <a href="#"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Capacitación</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
