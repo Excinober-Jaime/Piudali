@@ -1,5 +1,10 @@
 <?php include "header.php"; ?>
-
+<script>
+  fbq('track', 'CompleteRegistration', {
+    value: 1,
+    currency: COP,
+  });
+</script>
 <div class="container">	
 	<div class="col-xs-12 col-md-12">
 	<a href="<?=$banners[0]['link']?>">
@@ -47,7 +52,7 @@
 								<label for="exampleInputEmail1">Email</label>
 								<input type="email" name="email" class="form-control" id="email" required>
 							</div>	
-							<div class="form-group">
+							<!--<div class="form-group">
 								<label for="exampleInputEmail1">Sexo</label>
 								<select name="sexo" class="form-control" required>
 									<option value="FEMENINO">FEMENINO</option>
@@ -67,15 +72,15 @@
 										<input type="text" name="ano_nacimiento" class="form-control"  placeholder="AAAA" style="text-align:center;" maxlength="4">
 									</div>
 								</div>
-							</div>		
-							<div class="form-group">
+							</div>-->	
+							<!--<div class="form-group">
 								<label for="exampleInputEmail1">Dirección</label>
 								<input type="text" name="direccion" class="form-control" id="direccion" required>
-							</div>
-							<div class="form-group">
+							</div>-->
+							<!--<div class="form-group">
 								<label for="exampleInputEmail1">Teléfono</label>
 								<input type="text" name="telefono" class="form-control" id="telefono">
-							</div>
+							</div>-->
 							<div class="form-group">
 								<label for="exampleInputEmail1">Teléfono Móvil</label>
 								<input type="text" name="telefono_m" class="form-control" id="telefono_m">
@@ -174,7 +179,7 @@
 								<label for="exampleInputEmail1">Email</label>
 								<input type="email" name="email" class="form-control" id="email" required>
 							</div>	
-							<div class="form-group">
+							<!--<div class="form-group">
 								<label for="exampleInputEmail1">Sexo</label>
 								<select name="sexo" class="form-control" required>
 									<option value="FEMENINO">FEMENINO</option>
@@ -202,7 +207,7 @@
 							<div class="form-group">
 								<label for="exampleInputEmail1">Teléfono</label>
 								<input type="text" name="telefono" class="form-control" id="telefono">
-							</div>
+							</div>-->
 							<div class="form-group">
 								<label for="exampleInputEmail1">Teléfono Móvil</label>
 								<input type="text" name="telefono_m" class="form-control" id="telefono_m">

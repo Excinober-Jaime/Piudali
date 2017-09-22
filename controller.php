@@ -371,7 +371,7 @@ class Controller
 
 				$idorganizacion = $this->usuarios->crearOrganizacion($nit, strtoupper($razon_social), strtoupper($direccion_organizacion), $telefono_organizacion, $ciudad_organizacion);
 
-				$idusuario = $this->usuarios->crearUsuario(strtoupper($nombre), strtoupper($apellido), $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, strtoupper($direccion), 0, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
+				$idusuario = $this->usuarios->crearUsuario(strtoupper($nombre), strtoupper($apellido), '', '0000-00-00', $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, strtoupper($direccion), 0, '', $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 			
 				if (!empty($idusuario)) {
 					//Enviar email Bienvenida
@@ -450,7 +450,7 @@ class Controller
 				}
 				
 
-				$idusuario = $this->usuarios->crearUsuario(strtoupper($nombre), strtoupper($apellido), $sexo, $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, strtoupper($direccion), 0, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
+				$idusuario = $this->usuarios->crearUsuario(strtoupper($nombre), strtoupper($apellido), '', '0000-00-00', $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, strtoupper($direccion), 0, '', $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 
 				if (!empty($idusuario)) {
 					
