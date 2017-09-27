@@ -2464,6 +2464,11 @@ class Controller
 
 		extract($_POST);
 
+		if (isset($_POST["actualizarModelo"])) {
+
+			$this->modelos_negocio_distribuidores->actualizarModelo($idmodelo, $nombre, $monto_minimo, $puntos, $referidos, $incentivos, $estado);
+		}
+
 		if (isset($_POST["crearModelo"])) {
 
 			$idmodelo = $this->modelos_negocio_distribuidores->crearModelo($nombre, $monto_minimo, $puntos, $referidos, $incentivos, $estado);
@@ -2485,6 +2490,9 @@ class Controller
 			$modelo = $this->modelos_negocio_distribuidores->detalleModelo($idmodelo);
 			$escalas = $this->modelos_negocio_distribuidores->listarEscalas($idmodelo);
 			$usuarios = $this->modelos_negocio_distribuidores->listarUsuarios($idmodelo);
+
+			$usuarios_con_modelo_asignado = $this->modelos_negocio_distribuidores->listarUsuarios();
+
 			
 			$distribuidores = $this->usuarios->listarUsuarios(array("DISTRIBUIDOR DIRECTO"));
 		}

@@ -132,16 +132,27 @@
 									<?php 
 									if (count($distribuidores)>0) {
 										foreach ($distribuidores as $key => $distribuidor) {
-											if(!in_array($distribuidor["idusuario"], $ids_vinculados)){
+											
 									?>
 									<tr>
 										<td><?=$distribuidor["nombre"].' '.$distribuidor["apellido"]?></td>
 										<td class="text-center">
-											<a class="vincular-usuario-escala-especial" idusuario="<?=$distribuidor["idusuario"]?>" idmodelo="<?=$modelo["idmodelo"]?>"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+
+											<?php 
+											if(!in_array($distribuidor["idusuario"], $ids_vinculados)){
+											?>
+												<a class="vincular-usuario-escala-especial" idusuario="<?=$distribuidor["idusuario"]?>" idmodelo="<?=$modelo["idmodelo"]?>"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+											<?php
+											}else{
+											?>
+												<span class=" glyphicon glyphicon-check" aria-hidden="true"></span>
+											<?php	
+											}
+											?>										
 										</td>
 									</tr>
 									<?php
-											}
+											
 										}
 									}
 									?>
