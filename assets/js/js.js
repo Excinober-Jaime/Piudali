@@ -108,6 +108,23 @@ $(document).ready(function(){
 
 			$(this).text("CARGANDO...");
 
+			//Registro en Mailchimp
+			$.ajax({
+			  type: 'POST',
+			  crossDomain: true,
+			  url: 'https://piudali.us16.list-manage.com/subscribe/post?u=38aa1fae8e888e044646240c1&amp;id=b8ebc5f9f4',
+			  data: { EMAIL:email, FNAME:nombre, LNAME:apellido, MMERGE3:"", MMERGE4:"", MMERGE6:num_identificacion, MMERGE7:"", MMERGE8:telefono_m, MMERGE9:"", MMERGE10:"1", MMERGE12:razon_social, MMERGE13:"" },
+			  success: function(data) {
+			  	
+			  	console.log(data);
+			  },
+			  error: function(err) {
+					
+					console.log(err);
+			  }
+			});
+
+			/*
 			//Registro en Constant Contact
 
 			$.ajax({
@@ -119,13 +136,9 @@ $(document).ready(function(){
 			  	console.log("Registrado en constant contact");
 			  	//console.log(data);
 			  },
-			  error: function(xhr, status, err) {
-					/*json = xhr.responseJSON;
-			        console.log(xhr);
-			        console.log(status);
-			        console.log(err);*/
+			  error: function(xhr, status, err) {					
 			  }
-			});
+			});*/
 
 			setTimeout(function(){
 				$("#formUsuarioJuridico").submit();
@@ -167,8 +180,25 @@ $(document).ready(function(){
 
 			$(this).text("CARGANDO...");
 
-			//Registro en Constant Contact
+			//Registro en Mailchimp
+			$.ajax({
+			  type: 'POST',
+			  crossDomain: true,
+			  url: 'https://piudali.us16.list-manage.com/subscribe/post?u=38aa1fae8e888e044646240c1&amp;id=b8ebc5f9f4',
+			  data: { EMAIL:email, FNAME:nombre, LNAME:apellido, MMERGE3:"", MMERGE4:"", MMERGE6:num_identificacion, MMERGE7:"", MMERGE8:telefono_m, MMERGE9:"", MMERGE10:"1", MMERGE12:"", MMERGE13:"" },
+			  success: function(data) {
+			  	
+			  	console.log(data);
+			  },
+			  error: function(err) {
+					
+					console.log(err);			        
+			  }
+			});
 
+			/*
+
+			Registro en constant contact
 			$.ajax({
 			  type: 'POST',
 			  crossDomain: true,
@@ -176,15 +206,13 @@ $(document).ready(function(){
 			  data: { ca:"d49ae990-6aec-4703-8dd2-43bd0626645c", list:"1688625949", source:"EFD", required:"list,email,first_name", url:"", email:email, first_name:nombre, last_name:apellido, phone:telefono, birthday_month:mes_nacimiento, birthday_day:dia_nacimiento },
 			  success: function(data, status, xhr) {
 			  	console.log("Registrado en constant contact");
-			  	//console.log(data);
+			  	
 			  },
 			  error: function(xhr, status, err) {
-					/*json = xhr.responseJSON;
-			        console.log(xhr);
-			        console.log(status);
-			        console.log(err);*/
+					
 			  }
 			});
+			*/
 
 			setTimeout(function(){
 				$("#formUsuarioNatural").submit();
