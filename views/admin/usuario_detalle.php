@@ -16,6 +16,7 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Sexo</label>
 						<select name="sexo" id="sexo" class="form-control" required>
+							<option value="">--Seleccione--</option>
 							<option value="MASCULINO" <?php if ($usuario['sexo']=='MASCULINO') echo 'selected'; ?>>MASCULINO</option>
 							<option value="FEMENINO" <?php if ($usuario['sexo']=='FEMENINO') echo 'selected'; ?>>FEMENINO</option>
 						</select>
