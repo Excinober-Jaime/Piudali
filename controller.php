@@ -2510,6 +2510,16 @@ class Controller
 		}
 	}
 
+	public function adminModeloNegocioDistribuidorEliminar(){
+
+		if (isset($_POST["idusuario"]) && !empty($_POST["idusuario"]) && isset($_POST["idmodelo"]) && !empty($_POST["idmodelo"])) {
+			
+			$this->modelos_negocio_distribuidores->eliminarUsuario($_POST["idusuario"], $_POST["idmodelo"]);
+
+			echo true;
+		}
+	}
+
 	/*****Plantillas*****/
 
 	public function adminPlantillasLista(){

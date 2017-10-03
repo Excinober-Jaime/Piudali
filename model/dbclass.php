@@ -22,7 +22,7 @@ class Database {
     );*/
 
     $this->conexion = new PDO(
-    'mysql:host=localhost;dbname=piudali2',
+    'mysql:host=localhost;dbname=piudali_local',
     'root',
     '',
     array(

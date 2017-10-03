@@ -40,8 +40,7 @@ class ModelosNegocioDistribuidores extends Database
 
 	}
 
-	public function listarModelos(){
-		
+	public function listarModelos(){		
 		
 		$query = $this->consulta("SELECT `idmodelo`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `estado` 
 								FROM `modelos_negocio_distribuidores`");
@@ -104,6 +103,23 @@ class ModelosNegocioDistribuidores extends Database
 							`usuarios_idusuario`) VALUES (
 							'$idmodelo',
 							'$idusuario')");
+	}
+
+	public function eliminarUsuario($idusuario, $idmodelo){
+
+		$query = $this->actualizar("DELETE FROM `modelos_negocio_distribuidores_has_usuarios` WHERE `modelos_negocio_distribuidores_idmodelo`='$idmodelo' AND `usuarios_idusuario`='$idusuario'");
+
+		return $query;
+	}
+
+	public static function consultarPorcentaje($idmodelo, $monto){
+		
+		$database = new Database;
+
+		$query = $database->consulta("SELECT `porcentaje` FROM `escalas_especiales` WHERE `modelos_negocio_distribuidores_idmodelo`='$idmodelo' AND `minimo`<= '$monto' AND `maximo`>='$monto'");
+		
+		return $query[0];
+								
 	}
 
 }

@@ -103,7 +103,7 @@
 								<tr>
 									<td><?=$usuario["nombre"].' '.$usuario["apellido"]?></td>
 									<td class="text-center">
-										<a class="eliminar-usuario-escala-especial" idusuario="<?=$distribuidor["idusuario"]?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+										<a class="eliminar-usuario-escala-especial" idusuario="<?=$usuario["idusuario"]?>" idmodelo="<?=$idmodelo?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 									</td>
 								</tr>
 								<?php

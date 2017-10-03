@@ -183,6 +183,35 @@ $(document).ready(function(){
         }
     });
 
+    $(".eliminar-usuario-escala-especial").click(function(){
+        var idusuario = $(this).attr("idusuario");
+        var idmodelo = $(this).attr("idmodelo");
+
+
+       if (idusuario!='') {
+            $.ajax({
+                type: 'POST',
+                url: "Admin/ModelosNegocioDistribuidores/EliminarUsuario",
+                data: { idusuario:idusuario, idmodelo:idmodelo },
+                dataType: 'text',
+                async: false,
+                success: function(response) {
+
+                        if (response==true) {
+                            alert("El usuario se eliminó con éxito");
+                        }else{
+                            alert("No se pudo eliminar al usuario del modelo");
+                        }
+
+                        location.reload();
+                },
+                error: function() {
+                    alert("No se pudo eliminar al usuario del modelo");
+                }
+            });
+        }
+    });
+
     $("#top-search").keypress(function( event ) {
       if ( event.which == 13 ) {
          event.preventDefault();

@@ -198,13 +198,27 @@ class Carrito extends Productos
 
 	public function porcDescuentoEscala(){
 
-		$descuentos_especiales = Descuentosespeciales::consultarDescuento($_SESSION["idusuario"]);
+		$modelo_negocio_distribuidor = Usuarios::usuarioModeloNegocioDistribuidor($_SESSION["idusuario"]);
 
-		if (count($descuentos_especiales)) {
+		//$descuentos_especiales = Descuentosespeciales::consultarDescuento($_SESSION["idusuario"]);
+
+		/*if (count($descuentos_especiales)) {
 
 			$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
 
 			$porcentaje = Descuentosespeciales::consultarPorcentaje($descuentos_especiales["iddescuento"], $subtotalNetoAntesIva);
+				
+		}*/
+		if (count($modelo_negocio_distribuidor)>0) {
+
+			$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
+
+			$porcentaje = ModelosNegocioDistribuidores::consultarPorcentaje($modelo_negocio_distribuidor["modelos_negocio_distribuidores_idmodelo"], $subtotalNetoAntesIva);
+
+			if (empty($porcentaje)) {
+				
+				$porcentaje['porcentaje'] = 0;
+			}
 				
 		}else{
 
@@ -213,16 +227,9 @@ class Carrito extends Productos
 			$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
 
 			$campana_actual = $campanas2->getCamapanaActual();
-			$id_campana_actual = $campana_actual["idcampana"];		
+			$id_campana_actual = $campana_actual["idcampana"];
 
 			$porcentaje = $campanas2->getPorcEscalaDistribuidor($subtotalNetoAntesIva, $id_campana_actual);
-
-			//Ajuste provisional para Nelly Suarez y James Arturo Ortiz
-			/*if (isset($_SESSION["idusuario"])) {
-				if ($_SESSION["idusuario"] == 78 || $_SESSION["idusuario"] == 29 || $_SESSION["idusuario"] == 28 || $_SESSION["idusuario"] == 32 || $_SESSION["idusuario"] == 31 || $_SESSION["idusuario"] == 13) {
-					$porcentaje["porcentaje"] = 30;
-				}
-			}*/
 		}
 
 		if (empty($porcentaje["porcentaje"])) {

@@ -152,6 +152,9 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
 								if ($var3 == URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES_VINCULAR) {
 									$controller->adminModeloNegocioDistribuidorVincular();
+								}
+								elseif ($var3 == URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES_ELIMINAR) {
+									$controller->adminModeloNegocioDistribuidorEliminar();
 								}else{
 
 									if ($var3=="Nuevo") {
