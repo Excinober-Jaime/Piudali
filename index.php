@@ -120,7 +120,7 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							if (isset($var3) && !empty($var3)) {
 
 								if ($var3=="Nuevo") {
-									$var3 = "";								
+									$var3 = "";
 								}
 								$controller->adminCampanaDetalle($var3);							
 								
@@ -534,9 +534,20 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 						case URL_USUARIO_PREMIOS:
 							$controller->usuarioPremios();
 							break;
+
 						case URL_USUARIO_INCENTIVOS:
-							$controller->usuarioIncentivos();
+
+							if (!Controller::$DISABLE_INCENTIVOS){
+
+								$controller->usuarioIncentivos();
+
+							}else{
+
+								header('Location:'. URL_SITIO);
+
+							}
 							break;
+
 						case URL_USUARIO_PROMOCIONES:
 							$controller->usuarioPromociones();
 							break;
@@ -550,7 +561,15 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							$controller->usuarioDocumentos();
 							break;
 						case URL_USUARIO_PUNTOS:
-							$controller->usuarioPuntos();
+							
+							if (!Controller::$DISABLE_PUNTOS){
+
+								$controller->usuarioPuntos();
+							}else{
+
+							header('Location:'. URL_SITIO);
+
+							}
 							break;
 
 						case URL_USUARIO_CLIENTES:
@@ -578,7 +597,16 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							break;
 
 						case URL_USUARIO_REFERIR:
-							$controller->usuarioReferir();
+
+							if (!Controller::$DISABLE_REFERIDOS){
+
+								$controller->usuarioReferir();
+
+							}else{
+
+							header('Location:'. URL_SITIO);
+
+							}
 							break;
 
 						case URL_SALIR:						

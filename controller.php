@@ -28,6 +28,10 @@ require "include/functions.php";
 
 class Controller
 {
+	/**MODULOS POR DEFECTOS**/
+	public static $DISABLE_PUNTOS = false;
+	public static $DISABLE_REFERIDOS = false;
+	public static $DISABLE_INCENTIVOS = false;
 
 	public function __construct()
 	{
@@ -46,6 +50,35 @@ class Controller
 		$this->descuentos_especiales = new Descuentosespeciales();
 		$this->codigos_puntos = new CodigosPuntos();
 		$this->modelos_negocio_distribuidores = new ModelosNegocioDistribuidores();
+		
+
+		/**MODULOS DISTRIBUIDORES**/
+
+		if (isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO') {
+
+			$usuario_modelo = $this->usuarios->usuarioModeloNegocioDistribuidor($_SESSION['idusuario']);
+
+			if (count($usuario_modelo)>0) {
+				
+				$modelo = $this->modelos_negocio_distribuidores->detalleModelo($usuario_modelo['`modelos_negocio_distribuidores_idmodelo`']);
+
+				/**PERMISOS**/
+				if (!$modelo['puntos']) {
+
+					self::$DISABLE_PUNTOS = true;	
+				}
+
+				if (!$modelo['referidos']) {
+					
+					self::$DISABLE_REFERIDOS = true;	
+				}
+
+				if (!$modelo['incentivos']) {
+					
+					self::$DISABLE_INCENTIVOS = true;
+				}
+			}
+		}
 	}
 
 

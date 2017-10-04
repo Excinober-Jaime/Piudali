@@ -67,11 +67,26 @@
               <ul class="nav navbar-nav">
                 	<li><a href="<?=URL_USUARIO?>">Perfil</a></li>
                 	<li><a href="<?=URL_USUARIO."/".URL_USUARIO_COMPRAR?>">Comprar <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_NEGOCIO?>">Mis Compras</a></li>					
-					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_REFERIR?>">Referir</a></li>
-					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_PUNTOS?>">Puntos</a></li>
+					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_NEGOCIO?>">Mis Compras</a></li>
+
+					<?php if (!Controller::$DISABLE_REFERIDOS) { ?>					
+					
+						<li><a href="<?=URL_USUARIO."/".URL_USUARIO_REFERIR?>">Referir</a></li>
+
+					<?php } ?>
+
+					<?php if (!Controller::$DISABLE_PUNTOS) { ?>					
+
+						<li><a href="<?=URL_USUARIO."/".URL_USUARIO_PUNTOS?>">Puntos</a></li>
+
+					<?php } ?>
+
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_PREMIOS?>">Premios</a></li>
-					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_INCENTIVOS?>">Incentivos</a></li>
+
+					<?php if (!Controller::$DISABLE_INCENTIVOS) { ?>					
+						<li><a href="<?=URL_USUARIO."/".URL_USUARIO_INCENTIVOS?>">Incentivos</a></li>
+
+					<?php } ?>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_PROMOCIONES?>">Promociones</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CUPONES?>">Cupones</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_TICKETS?>">PQRS</a></li>
