@@ -24,7 +24,7 @@
 
 		?>
 			<li class="list-group-item">
-				<a href="<?="include/descargar.php?url=".$documento["url"]?>">
+				<a href="<?=URL_SITIO.$documento["url"]?>" target="_new">
 					<span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> 
 					<?=$documento["nombre"]?>					
 				</a>
@@ -32,7 +32,7 @@
 					<span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
 				</a></li>
 		
-		<?php }  
+		<?php }
 
 		} else{ ?>
 

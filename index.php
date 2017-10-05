@@ -184,9 +184,14 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							if (isset($var3) && !empty($var3)) {
 
 								if ($var3=="Nuevo") {
-									$var3 = "";
+
+									$controller->adminUsuarioNuevo();		
+
+								}else{
+
+									$controller->adminUsuarioDetalle($var3);				
 								}
-								$controller->adminUsuarioDetalle($var3);							
+												
 								
 							}else{
 								$controller->adminUsuariosLista();

@@ -2596,6 +2596,40 @@ class Controller
 		include "views/admin/usuarios_lista.php";
 	}
 
+	public function adminUsuarioNuevo(){
+
+		extract($_POST);
+
+		$lideres = 	$this->usuarios->listarUsuarios(array("REPRESENTANTE COMERCIAL"));
+		$ciudades = $this->listarCiudades();
+
+		if (isset($_POST["crearUsuario"])) {
+
+			if ($password != $password2) {
+				
+				echo "<script>alert('Las contraseñas no coinciden'); window.history.back();</script>";
+
+			}else{
+
+				//Crear organización
+				$idorganizacion = 0;
+
+				if (!empty($nit) && !empty($razon_social) && !empty($ciudad_organizacion)) {
+					
+
+					$idorganizacion = $this->usuarios->crearOrganizacion($nit, strtoupper($razon_social), strtoupper($direccion_organizacion), $telefono_organizacion, $ciudad_organizacion);
+
+				}
+
+				//Crear usuario
+			
+				$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, md5($password), $num_identificacion, 0, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, $idorganizacion);
+			}
+		}
+
+		include "views/admin/usuario_nuevo.php";
+	}
+
 	public function adminUsuarioDetalle($idusuario){
 
 		extract($_POST);
@@ -2639,8 +2673,15 @@ class Controller
 		}
 
 		if (isset($_POST["crearUsuario"])) {
+
+			if ($password != $password2) {
+				
+				echo "<script>alert('Las contraseñas no coinciden'); window.history.back();</script>";
+
+			}else{
 			
-			$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email,"", $num_identificacion, 0, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, 0);
+				$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, md5($password), $num_identificacion, 0, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, 0);
+			}
 		}
 
 		if (isset($_POST["actualizarUsuario"])) {

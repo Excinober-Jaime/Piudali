@@ -35,7 +35,7 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Dirección</label>
-						<input type="text" class="form-control" name="direccion" id="direccion" value="<?=$usuario['direccion']?>" required>
+						<input type="text" class="form-control" name="direccion" id="direccion" value="<?=$usuario['direccion']?>">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Mostrar en Mapa</label>
@@ -141,6 +141,15 @@
 					<?php
 					}else{
 					?>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Contraseña</label>
+							<input type="password" name="password" class="form-control" id="password" required>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Repita Contraseña</label>
+							<input type="password" name="password2" class="form-control" id="password2" required>
+						</div>
+
 						<button type="submit" name="crearUsuario" class="btn btn-lg btn-primary center-block">GUARDAR</button>
 					<?php
 					}
@@ -148,7 +157,7 @@
 					
 				</form>
 			</div>
-			<?php 
+			<?php
 
 			if (isset($organizacion)) {
 
@@ -203,7 +212,7 @@
 				<ul class="list-group">								
 					<?php foreach ($documentos as $key => $documento) {
 					?>
-						<li class="list-group-item"><a href="<?="include/descargar.php?url=".$documento["url"]?>"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> <?=$documento["nombre"]?></a></li>
+						<li class="list-group-item"><a  href="<?=URL_SITIO.$documento["url"]?>" target='_new'><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> <?=$documento["nombre"]?></a></li>
 					<?php } ?>	  
 				</ul>
 				<?php }else{ ?>	
