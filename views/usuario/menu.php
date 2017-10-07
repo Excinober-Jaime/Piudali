@@ -1,3 +1,4 @@
+<?php if (!Controller::$DISABLE_BANNERS_USUARIO) { ?>
 <div class="row">
 	<div class="col-xs-12">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -40,6 +41,7 @@
 		</div>	
 	</div>
 </div>
+<?php } ?>
 
 
 <div class="row">
@@ -111,7 +113,12 @@
 					<?php } ?>
 
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_TICKETS?>">PQRS</a></li>
+
+					<?php if (!Controller::$DISABLE_CAPACITACION) { ?>
+
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_NEGOCIO?>">Capacitación</a></li>
+
+					<?php } ?>
                 
                 	<?php if (!Controller::$DISABLE_POLITICAS) { ?>
 

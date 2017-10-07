@@ -592,8 +592,17 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							break;						
 
 						case URL_USUARIO_CAPACITACION:
-							$controller->usuarioCapacitacion();						
-							break;
+
+							if (!Controller::$DISABLE_CAPACITACION){
+
+								$controller->usuarioCapacitacion();
+
+							}else{
+
+								header('Location:'. URL_SITIO);
+
+							}
+							break;					
 
 						case URL_USUARIO_DOCUMENTOS:
 							$controller->usuarioDocumentos();

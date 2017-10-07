@@ -37,6 +37,8 @@ class Controller
 	public static $DISABLE_CUPONES = false;
 	public static $DISABLE_POLITICAS = false;
 	public static $DISABLE_COMPRAR = false;
+	public static $DISABLE_BANNERS_USUARIO = false;
+	public static $DISABLE_CAPACITACION = false;
 
 	public function __construct()
 	{
@@ -90,6 +92,8 @@ class Controller
 				self::$DISABLE_CUPONES = true;
 				self::$DISABLE_POLITICAS = true;
 				self::$DISABLE_COMPRAR = true;
+				self::$DISABLE_BANNERS_USUARIO = true;
+				self::$DISABLE_CAPACITACION = true;
 
 			}
 		}
