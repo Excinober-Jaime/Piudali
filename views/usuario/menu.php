@@ -66,7 +66,13 @@
 			?>
               <ul class="nav navbar-nav">
                 	<li><a href="<?=URL_USUARIO?>">Perfil</a></li>
+
+	                <?php if (!Controller::$DISABLE_COMPRAR) { ?>
+
                 	<li><a href="<?=URL_USUARIO."/".URL_USUARIO_COMPRAR?>">Comprar <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+
+                	<?php } ?>
+                	
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_NEGOCIO?>">Mis Compras</a></li>
 
 					<?php if (!Controller::$DISABLE_REFERIDOS) { ?>					
@@ -81,31 +87,50 @@
 
 					<?php } ?>
 
+					<?php if (!Controller::$DISABLE_PREMIOS) { ?>
+
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_PREMIOS?>">Premios</a></li>
+
+					<?php } ?>
 
 					<?php if (!Controller::$DISABLE_INCENTIVOS) { ?>					
 						<li><a href="<?=URL_USUARIO."/".URL_USUARIO_INCENTIVOS?>">Incentivos</a></li>
 
 					<?php } ?>
+
+					<?php if (!Controller::$DISABLE_PROMOCIONES) { ?>				
+
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_PROMOCIONES?>">Promociones</a></li>
+
+					<?php } ?>
+
+					<?php if (!Controller::$DISABLE_CUPONES) { ?>				
+
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CUPONES?>">Cupones</a></li>
+
+					<?php } ?>
+
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_TICKETS?>">PQRS</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_NEGOCIO?>">Capacitación</a></li>
                 
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Políticas <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-					      <?php
-					      foreach ($paginas_menu as $pagina) {
-				              if ($pagina["posicion"]=="INTERNAS DISTRIBUIDORES" || $pagina["posicion"]=="INTERNAS DISTRIBUIDORES Y LIDERES") {
-				          ?>
-				          <li><a class="open-modal" idpage="<?=$pagina["idpagina"]?>"><?=$pagina["titulo"]?></a></li>
-				          <?php
-				              }
-				          }
-					      ?>
-                  </ul>
-                </li>
+                	<?php if (!Controller::$DISABLE_POLITICAS) { ?>
+
+		                <li class="dropdown">
+		                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Políticas <span class="caret"></span></a>
+		                  <ul class="dropdown-menu">
+							      <?php
+							      foreach ($paginas_menu as $pagina) {
+						              if ($pagina["posicion"]=="INTERNAS DISTRIBUIDORES" || $pagina["posicion"]=="INTERNAS DISTRIBUIDORES Y LIDERES") {
+						          ?>
+						          <li><a class="open-modal" idpage="<?=$pagina["idpagina"]?>"><?=$pagina["titulo"]?></a></li>
+						          <?php
+						              }
+						          }
+							      ?>
+		                  </ul>
+		                </li>
+
+		            <?php } ?>
               </ul>
               <?php
 					break;

@@ -382,7 +382,7 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 								$controller->adminPersonalDetalle($var3);
 							}else{
 								$controller->adminPersonalLista();
-							}							
+							}
 							break;
 						case URL_ADMIN_CUPONES:
 							if (isset($var3) && !empty($var3)) {								
@@ -526,9 +526,11 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}
 							$controller->usuarioCambiarDatos($return);
 							break;
+
 						case URL_USUARIO_NEGOCIO:
 							$controller->usuarioNegocio();
 							break;
+
 						case URL_USUARIO_DETALLE_ORDEN:
 							if (isset($var3) && !empty($var3)) {
 								$controller->usuarioDetalleOrden($var3);
@@ -536,8 +538,18 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 								$controller->usuarioNegocio();
 							}
 							break;
+
 						case URL_USUARIO_PREMIOS:
-							$controller->usuarioPremios();
+
+							if (!Controller::$DISABLE_PREMIOS){
+
+								$controller->usuarioPremios();
+
+							}else{
+
+								header('Location:'. URL_SITIO);
+
+							}							
 							break;
 
 						case URL_USUARIO_INCENTIVOS:
@@ -554,17 +566,39 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							break;
 
 						case URL_USUARIO_PROMOCIONES:
-							$controller->usuarioPromociones();
-							break;
+
+							if (!Controller::$DISABLE_PROMOCIONES){
+
+								$controller->usuarioPromociones();
+
+							}else{
+
+								header('Location:'. URL_SITIO);
+
+							}
+							break;						
+							
 						case URL_USUARIO_CUPONES:
-							$controller->usuarioCupones();
-							break;
+
+							if (!Controller::$DISABLE_CUPONES){
+
+								$controller->usuarioCupones();
+
+							}else{
+
+								header('Location:'. URL_SITIO);
+
+							}
+							break;						
+
 						case URL_USUARIO_CAPACITACION:
 							$controller->usuarioCapacitacion();						
 							break;
+
 						case URL_USUARIO_DOCUMENTOS:
 							$controller->usuarioDocumentos();
 							break;
+
 						case URL_USUARIO_PUNTOS:
 							
 							if (!Controller::$DISABLE_PUNTOS){
@@ -586,7 +620,16 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							break;
 
 						case URL_USUARIO_COMPRAR:
-							$controller->usuarioComprar();
+
+							if (!Controller::$DISABLE_COMPRAR){
+
+								$controller->usuarioComprar();
+
+							}else{
+
+							header('Location:'. URL_SITIO);
+
+							}
 							break;
 
 						case URL_USUARIO_TICKETS:

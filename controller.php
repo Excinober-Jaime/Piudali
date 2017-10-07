@@ -32,6 +32,11 @@ class Controller
 	public static $DISABLE_PUNTOS = false;
 	public static $DISABLE_REFERIDOS = false;
 	public static $DISABLE_INCENTIVOS = false;
+	public static $DISABLE_PREMIOS = false;
+	public static $DISABLE_PROMOCIONES = false;
+	public static $DISABLE_CUPONES = false;
+	public static $DISABLE_POLITICAS = false;
+	public static $DISABLE_COMPRAR = false;
 
 	public function __construct()
 	{
@@ -77,6 +82,15 @@ class Controller
 					
 					self::$DISABLE_INCENTIVOS = true;
 				}
+
+
+				//AJUSTE PROVISIONAL PARA TIENDAS Y DISTRIBUIDORES ESPECIALIZADOS
+				self::$DISABLE_PREMIOS = true;
+				self::$DISABLE_PROMOCIONES = true;
+				self::$DISABLE_CUPONES = true;
+				self::$DISABLE_POLITICAS = true;
+				self::$DISABLE_COMPRAR = true;
+
 			}
 		}
 	}

@@ -400,6 +400,7 @@ class Carrito extends Productos
 		}
 		
 		return $flete;
+
 	}
 
 	public function getTotal(){
