@@ -157,13 +157,13 @@ $(document).ready(function(){
 
     $(".vincular-usuario-escala-especial").click(function(){
         var idusuario = $(this).attr("idusuario");
-        var idmodelo = $(this).attr("idmodelo");
+        var idcanal = $(this).attr("idcanal");
 
         if (idusuario!='') {
             $.ajax({
                 type: 'POST',
-                url: "Admin/ModelosNegocioDistribuidores/VincularUsuario",
-                data: { idusuario:idusuario, idmodelo:idmodelo },
+                url: "Admin/CanalesDistribucion/VincularUsuario",
+                data: { idusuario:idusuario, idcanal:idcanal },
                 dataType: 'text',
                 async: false,
                 success: function(response) {
@@ -185,14 +185,14 @@ $(document).ready(function(){
 
     $(".eliminar-usuario-escala-especial").click(function(){
         var idusuario = $(this).attr("idusuario");
-        var idmodelo = $(this).attr("idmodelo");
+        var idcanal = $(this).attr("idcanal");
 
 
        if (idusuario!='') {
             $.ajax({
                 type: 'POST',
-                url: "Admin/ModelosNegocioDistribuidores/EliminarUsuario",
-                data: { idusuario:idusuario, idmodelo:idmodelo },
+                url: "Admin/CanalesDistribucion/EliminarUsuario",
+                data: { idusuario:idusuario, idcanal:idcanal },
                 dataType: 'text',
                 async: false,
                 success: function(response) {
@@ -200,13 +200,13 @@ $(document).ready(function(){
                         if (response==true) {
                             alert("El usuario se eliminó con éxito");
                         }else{
-                            alert("No se pudo eliminar al usuario del modelo");
+                            alert("No se pudo eliminar al usuario del canal");
                         }
 
                         location.reload();
                 },
                 error: function() {
-                    alert("No se pudo eliminar al usuario del modelo");
+                    alert("No se pudo eliminar al usuario del canal");
                 }
             });
         }

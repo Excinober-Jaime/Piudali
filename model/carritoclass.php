@@ -198,7 +198,7 @@ class Carrito extends Productos
 
 	public function porcDescuentoEscala(){
 
-		$modelo_negocio_distribuidor = Usuarios::usuarioModeloNegocioDistribuidor($_SESSION["idusuario"]);
+		$canal_distribucion_distribuidor = Usuarios::usuarioCanalDistribucion($_SESSION["idusuario"]);
 
 		//$descuentos_especiales = Descuentosespeciales::consultarDescuento($_SESSION["idusuario"]);
 
@@ -209,11 +209,11 @@ class Carrito extends Productos
 			$porcentaje = Descuentosespeciales::consultarPorcentaje($descuentos_especiales["iddescuento"], $subtotalNetoAntesIva);
 				
 		}*/
-		if (count($modelo_negocio_distribuidor)>0) {
+		if (count($canal_distribucion_distribuidor)>0) {
 
 			$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
 
-			$porcentaje = ModelosNegocioDistribuidores::consultarPorcentaje($modelo_negocio_distribuidor["modelos_negocio_distribuidores_idmodelo"], $subtotalNetoAntesIva);
+			$porcentaje = CanalesDistribucion::consultarPorcentaje($canal_distribucion_distribuidor["modelos_negocio_distribuidores_idmodelo"], $subtotalNetoAntesIva);
 
 			if (empty($porcentaje)) {
 				

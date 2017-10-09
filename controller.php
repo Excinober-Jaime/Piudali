@@ -19,7 +19,7 @@ require "model/personalclass.php";
 require "model/cuentasclass.php";
 require "model/descuentosespecialesclass.php";
 require "model/codigospuntosclass.php";
-require "model/modelosnegociodistribuidoresclass.php";
+require "model/canalesdistribucionclass.php";
 
 /** Require Includes **/
 require "include/constantes.php";
@@ -56,7 +56,7 @@ class Controller
 		$this->cuentas_virtuales = new CuentasVirtuales();
 		$this->descuentos_especiales = new Descuentosespeciales();
 		$this->codigos_puntos = new CodigosPuntos();
-		$this->modelos_negocio_distribuidores = new ModelosNegocioDistribuidores();
+		$this->canales_distribucion = new CanalesDistribucion();
 		
 
 		/**MODULOS DISTRIBUIDORES**/
@@ -67,20 +67,20 @@ class Controller
 
 			if (count($usuario_modelo)>0) {
 				
-				$modelo = $this->modelos_negocio_distribuidores->detalleModelo($usuario_modelo['`modelos_negocio_distribuidores_idmodelo`']);
+				$canal = $this->canales_distribucion->detalleCanal($usuario_modelo['`modelos_negocio_distribuidores_idmodelo`']);
 
 				/**PERMISOS**/
-				if (!$modelo['puntos']) {
+				if (!$canal['puntos']) {
 
 					self::$DISABLE_PUNTOS = true;	
 				}
 
-				if (!$modelo['referidos']) {
+				if (!$canal['referidos']) {
 					
 					self::$DISABLE_REFERIDOS = true;	
 				}
 
-				if (!$modelo['incentivos']) {
+				if (!$canal['incentivos']) {
 					
 					self::$DISABLE_INCENTIVOS = true;
 				}
@@ -2504,68 +2504,67 @@ class Controller
 
 	/*****Modelos de negocio Distribuidores*****/
 
-	public function adminModelosNegocioDistribuidores(){
+	public function adminCanalesDistribucion(){
 
-		$modelos = $this->modelos_negocio_distribuidores->listarModelos();
+		$canales = $this->canales_distribucion->listarCanales();
 
-		include 'views/admin/modelos_negocio_distribuidores_lista.php';
+		include 'views/admin/canales_distribucion_lista.php';
 	}
 
-	public function adminModelosNegocioDistribuidoresDetalle($idmodelo){
+	public function adminCanalDistribucionDetalle($idcanal){
 
 		extract($_POST);
 
-		if (isset($_POST["actualizarModelo"])) {
+		if (isset($_POST["actualizarCanal"])) {
 
-			$this->modelos_negocio_distribuidores->actualizarModelo($idmodelo, $nombre, $monto_minimo, $puntos, $referidos, $incentivos, $estado);
+			$this->canales_distribucion->actualizarCanal($idcanal, $nombre, $monto_minimo, $puntos, $referidos, $incentivos, $estado);
 		}
 
-		if (isset($_POST["crearModelo"])) {
+		if (isset($_POST["crearCanal"])) {
 
-			$idmodelo = $this->modelos_negocio_distribuidores->crearModelo($nombre, $monto_minimo, $puntos, $referidos, $incentivos, $estado);
+			$idcanal = $this->canales_distribucion->crearCanal($nombre, $monto_minimo, $puntos, $referidos, $incentivos, $estado);
 		}
 
 		if (isset($minimo) && count($minimo)>0) {
 
 			foreach ($minimo as $key => $value) {
 				if (!empty($maximo[$key]) && !empty($porcentaje[$key])) {
-					$idescala = $this->modelos_negocio_distribuidores->crearEscala($idmodelo, $minimo[$key], $maximo[$key], $porcentaje[$key]);
+					$idescala = $this->canales_distribucion->crearEscala($idcanal, $minimo[$key], $maximo[$key], $porcentaje[$key]);
 				}
 			}
 		}
 
 
 
-		if (isset($idmodelo) && !empty($idmodelo)) {
+		if (isset($idcanal) && !empty($idcanal)) {
 			
-			$modelo = $this->modelos_negocio_distribuidores->detalleModelo($idmodelo);
-			$escalas = $this->modelos_negocio_distribuidores->listarEscalas($idmodelo);
-			$usuarios = $this->modelos_negocio_distribuidores->listarUsuarios($idmodelo);
+			$canal = $this->canales_distribucion->detalleCanal($idcanal);
+			$escalas = $this->canales_distribucion->listarEscalas($idcanal);
+			$usuarios = $this->canales_distribucion->listarUsuarios($idcanal);
 
-			$usuarios_con_modelo_asignado = $this->modelos_negocio_distribuidores->listarUsuarios();
-
+			$usuarios_con_canal_asignado = $this->canales_distribucion->listarUsuarios();
 			
 			$distribuidores = $this->usuarios->listarUsuarios(array("DISTRIBUIDOR DIRECTO"));
 		}
 
-		include 'views/admin/modelos_negocio_distribuidores_detalle.php';
+		include 'views/admin/canal_distribucion_detalle.php';
 	}
 
-	public function adminModeloNegocioDistribuidorVincular(){
+	public function adminCanalDistribucionVincular(){
 
-		if (isset($_POST["idusuario"]) && !empty($_POST["idusuario"]) && isset($_POST["idmodelo"]) && !empty($_POST["idmodelo"])) {
+		if (isset($_POST["idusuario"]) && !empty($_POST["idusuario"]) && isset($_POST["idcanal"]) && !empty($_POST["idcanal"])) {
 			
-			$this->modelos_negocio_distribuidores->vincularUsuario($_POST["idusuario"], $_POST["idmodelo"]);
+			$this->canales_distribucion->vincularUsuario($_POST["idusuario"], $_POST["idcanal"]);
 
 			echo true;
 		}
 	}
 
-	public function adminModeloNegocioDistribuidorEliminar(){
+	public function adminCanalDistribucionEliminar(){
 
-		if (isset($_POST["idusuario"]) && !empty($_POST["idusuario"]) && isset($_POST["idmodelo"]) && !empty($_POST["idmodelo"])) {
+		if (isset($_POST["idusuario"]) && !empty($_POST["idusuario"]) && isset($_POST["idcanal"]) && !empty($_POST["idcanal"])) {
 			
-			$this->modelos_negocio_distribuidores->eliminarUsuario($_POST["idusuario"], $_POST["idmodelo"]);
+			$this->canales_distribucion->eliminarUsuario($_POST["idusuario"], $_POST["idcanal"]);
 
 			echo true;
 		}

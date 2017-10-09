@@ -146,24 +146,24 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}
 							break;
 
-						case URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES:
+						case URL_ADMIN_CANALES_DISTRIBUCION:
 							
 							if (isset($var3) && !empty($var3)) {
 
-								if ($var3 == URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES_VINCULAR) {
-									$controller->adminModeloNegocioDistribuidorVincular();
+								if ($var3 == URL_ADMIN_CANALES_DISTRIBUCION_VINCULAR) {
+									$controller->adminCanalDistribucionVincular();
 								}
-								elseif ($var3 == URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES_ELIMINAR) {
-									$controller->adminModeloNegocioDistribuidorEliminar();
+								elseif ($var3 == URL_ADMIN_CANALES_DISTRIBUCION_ELIMINAR) {
+									$controller->adminCanalDistribucionEliminar();
 								}else{
 
 									if ($var3=="Nuevo") {
 										$var3 = "";								
 									}
-									$controller->adminModelosNegocioDistribuidoresDetalle($var3);
+									$controller->adminCanalDistribucionDetalle($var3);
 								}
 							}else{
-								$controller->adminModelosNegocioDistribuidores();
+								$controller->adminCanalesDistribucion();
 							}
 							break;
 

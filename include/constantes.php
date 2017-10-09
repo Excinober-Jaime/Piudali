@@ -103,9 +103,13 @@ define("URL_ADMIN_PAGOS_INCENTIVOS", "PagosIncentivos");
 define("URL_ADMIN_PAGO_INCENTIVO", "PagoIncentivo");
 define("URL_ADMIN_ELIMINAR_ENTIDAD", "EliminarEntidad");
 
-define("URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES", "ModelosNegocioDistribuidores");
-define("URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES_VINCULAR", "VincularUsuario");
-define("URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES_ELIMINAR", "EliminarUsuario");
+define("URL_ADMIN_CANALES_DISTRIBUCION", "CanalesDistribucion");
+define("URL_ADMIN_CANALES_DISTRIBUCION_VINCULAR", "VincularUsuario");
+define("URL_ADMIN_CANALES_DISTRIBUCION_ELIMINAR", "EliminarUsuario");
+
+//define("URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES", "ModelosNegocioDistribuidores");
+//define("URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES_VINCULAR", "VincularUsuario");
+//define("URL_ADMIN_MODELOS_NEGOCIO_DISTRIBUIDORES_ELIMINAR", "EliminarUsuario");
 
 define("URL_ADMIN_SALIR", "Salir");
 

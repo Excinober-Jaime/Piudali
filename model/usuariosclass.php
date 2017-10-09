@@ -868,7 +868,7 @@ class Usuarios extends Database
 		return $query;
 	}
 
-	public static function usuarioModeloNegocioDistribuidor($idusuario){
+	public static function usuarioCanalDistribucion($idusuario){
 		
 		$database = new Database;
 

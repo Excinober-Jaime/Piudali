@@ -3,10 +3,10 @@
 /**
 * 
 */
-class ModelosNegocioDistribuidores extends Database
+class CanalesDistribucion extends Database
 {
 
-	public function actualizarModelo($idmodelo, $nombre = '', $monto_minimo = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $estado = 0){
+	public function actualizarCanal($idcanal, $nombre = '', $monto_minimo = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $estado = 0){
 
 		$query = $this->actualizar("UPDATE `modelos_negocio_distribuidores` SET 
 									`nombre`= '$nombre',
@@ -15,14 +15,14 @@ class ModelosNegocioDistribuidores extends Database
 									`referidos`= '$referidos',
 									`incentivos`= '$incentivos',
 									`estado`= '$estado' 
-									WHERE `idmodelo`='$idmodelo'");
+									WHERE `idmodelo`='$idcanal'");
 
 		return $query;
 	}
 	
-	public function crearModelo($nombre = '', $monto_minimo = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $estado = 0){
+	public function crearCanal($nombre = '', $monto_minimo = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $estado = 0){
 
-		$idmodelo = $this->insertar("INSERT INTO `modelos_negocio_distribuidores`(	
+		$idcanal = $this->insertar("INSERT INTO `modelos_negocio_distribuidores`(	
 									`nombre`, 
 									`monto_minimo`, 
 									`puntos`, 
@@ -36,11 +36,11 @@ class ModelosNegocioDistribuidores extends Database
 									'$incentivos',
 									'$estado')");
 
-		return $idmodelo;
+		return $idcanal;
 
 	}
 
-	public function listarModelos(){		
+	public function listarCanales(){		
 		
 		$query = $this->consulta("SELECT `idmodelo`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `estado` 
 								FROM `modelos_negocio_distribuidores`");
@@ -48,18 +48,18 @@ class ModelosNegocioDistribuidores extends Database
 		return $query;
 	}
 
-	public function detalleModelo($idmodelo=0){
+	public function detalleCanal($idcanal=0){
 		
 		
 		$query = $this->consulta("SELECT `idmodelo`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `estado` 
 								FROM `modelos_negocio_distribuidores`
-								WHERE `idmodelo`='$idmodelo'");
+								WHERE `idmodelo`='$idcanal'");
 		
 		return $query[0];
 	}
 
 
-	public function crearEscala($idmodelo, $minimo, $maximo, $porcentaje){
+	public function crearEscala($idcanal, $minimo, $maximo, $porcentaje){
 
 		$idescala = $this->insertar("INSERT INTO `escalas_especiales`(
 									`minimo`, 
@@ -69,24 +69,24 @@ class ModelosNegocioDistribuidores extends Database
 									'$minimo',
 									'$maximo',
 									'$porcentaje',
-									'$idmodelo')");
+									'$idcanal')");
 		return $idescala;
 	}
 
-	public function listarEscalas($idmodelo){
+	public function listarEscalas($idcanal){
 
-		$query = $this->consulta("SELECT `idescala`, `minimo`, `maximo`, `porcentaje`, `modelos_negocio_distribuidores_idmodelo` FROM `escalas_especiales` WHERE `modelos_negocio_distribuidores_idmodelo` ='$idmodelo'");
+		$query = $this->consulta("SELECT `idescala`, `minimo`, `maximo`, `porcentaje`, `modelos_negocio_distribuidores_idmodelo` FROM `escalas_especiales` WHERE `modelos_negocio_distribuidores_idmodelo` ='$idcanal'");
 
 		return $query;
 	}
 
-	public function listarUsuarios($idmodelo = 0){
+	public function listarUsuarios($idcanal = 0){
 
 		$where = '';
 		
-		if (!empty($idmodelo)) {
+		if (!empty($idcanal)) {
 			
-			$where = "WHERE `modelos_negocio_distribuidores_has_usuarios`.`modelos_negocio_distribuidores_idmodelo`='$idmodelo'";
+			$where = "WHERE `modelos_negocio_distribuidores_has_usuarios`.`modelos_negocio_distribuidores_idmodelo`='$idcanal'";
 		}
 
 		$query = $this->consulta("SELECT `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`
@@ -96,27 +96,27 @@ class ModelosNegocioDistribuidores extends Database
 		return $query;
 	}
 
-	public function vincularUsuario($idusuario, $idmodelo){
+	public function vincularUsuario($idusuario, $idcanal){
 
 		$this->insertar("INSERT INTO `modelos_negocio_distribuidores_has_usuarios`(
 							`modelos_negocio_distribuidores_idmodelo`, 
 							`usuarios_idusuario`) VALUES (
-							'$idmodelo',
+							'$idcanal',
 							'$idusuario')");
 	}
 
-	public function eliminarUsuario($idusuario, $idmodelo){
+	public function eliminarUsuario($idusuario, $idcanal){
 
-		$query = $this->actualizar("DELETE FROM `modelos_negocio_distribuidores_has_usuarios` WHERE `modelos_negocio_distribuidores_idmodelo`='$idmodelo' AND `usuarios_idusuario`='$idusuario'");
+		$query = $this->actualizar("DELETE FROM `modelos_negocio_distribuidores_has_usuarios` WHERE `modelos_negocio_distribuidores_idmodelo`='$idcanal' AND `usuarios_idusuario`='$idusuario'");
 
 		return $query;
 	}
 
-	public static function consultarPorcentaje($idmodelo, $monto){
+	public static function consultarPorcentaje($idcanal, $monto){
 		
 		$database = new Database;
 
-		$query = $database->consulta("SELECT `porcentaje` FROM `escalas_especiales` WHERE `modelos_negocio_distribuidores_idmodelo`='$idmodelo' AND `minimo`<= '$monto' AND `maximo`>='$monto'");
+		$query = $database->consulta("SELECT `porcentaje` FROM `escalas_especiales` WHERE `modelos_negocio_distribuidores_idmodelo`='$idcanal' AND `minimo`<= '$monto' AND `maximo`>='$monto'");
 		
 		return $query[0];
 								

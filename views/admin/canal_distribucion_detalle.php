@@ -7,41 +7,41 @@
 					<div class="col-xs-12 col-md-6">
 						<div class="form-group">
 							<label for="exampleInputEmail1">Nombre</label>
-							<input type="text" class="form-control" name="nombre" id="nombre" value="<?=$modelo['nombre']?>" required>
+							<input type="text" class="form-control" name="nombre" id="nombre" value="<?=$canal['nombre']?>" required>
 						</div>						
 						<div class="form-group">
 							<label for="exampleInputEmail1">Monto Mínimo</label>
-							<input type="text" class="form-control" name="monto_minimo" id="monto_minimo" value="<?=$modelo['monto_minimo']?>" required>
+							<input type="text" class="form-control" name="monto_minimo" id="monto_minimo" value="<?=$canal['monto_minimo']?>" required>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Puntos</label>
 							<select class="form-control" name="puntos" required>
 								<option value=''>--Seleccione--</option>
-								<option value='1' <?php if ($modelo['puntos']) echo 'selected'; ?>>Si</option>
-								<option value='0' <?php if (!$modelo['puntos']) echo 'selected'; ?>>No</option>
+								<option value='1' <?php if ($canal['puntos']) echo 'selected'; ?>>Si</option>
+								<option value='0' <?php if (!$canal['puntos']) echo 'selected'; ?>>No</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Referidos</label>
 							<select class="form-control" name="referidos" required> 
 								<option value=''>--Seleccione--</option>
-								<option value='1' <?php if ($modelo['referidos']) echo 'selected'; ?>>Si</option>
-								<option value='0' <?php if (!$modelo['referidos']) echo 'selected'; ?>>No</option>
+								<option value='1' <?php if ($canal['referidos']) echo 'selected'; ?>>Si</option>
+								<option value='0' <?php if (!$canal['referidos']) echo 'selected'; ?>>No</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Incentivos</label>
 							<select class="form-control" name="incentivos" required>
 								<option value=''>--Seleccione--</option>
-								<option value='1' <?php if ($modelo['incentivos']) echo 'selected'; ?>>Si</option>
-								<option value='0' <?php if (!$modelo['incentivos']) echo 'selected'; ?>>No</option>
+								<option value='1' <?php if ($canal['incentivos']) echo 'selected'; ?>>Si</option>
+								<option value='0' <?php if (!$canal['incentivos']) echo 'selected'; ?>>No</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Estado</label>
 							<select name="estado" id="estado" class="form-control" required>
-								<option value="1" <?php if ($modelo['estado']) echo 'selected'; ?>>Activo</option>
-								<option value="0" <?php if (!$modelo['estado']) echo 'selected'; ?>>Inactivo</option>
+								<option value="1" <?php if ($canal['estado']) echo 'selected'; ?>>Activo</option>
+								<option value="0" <?php if (!$canal['estado']) echo 'selected'; ?>>Inactivo</option>
 							</select>
 						</div>
 					</div>
@@ -103,7 +103,7 @@
 								<tr>
 									<td><?=$usuario["nombre"].' '.$usuario["apellido"]?></td>
 									<td class="text-center">
-										<a class="eliminar-usuario-escala-especial" idusuario="<?=$usuario["idusuario"]?>" idmodelo="<?=$idmodelo?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+										<a class="eliminar-usuario-escala-especial" idusuario="<?=$usuario["idusuario"]?>" idcanal="<?=$idcanal?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 									</td>
 								</tr>
 								<?php
@@ -141,7 +141,7 @@
 											<?php 
 											if(!in_array($distribuidor["idusuario"], $ids_vinculados)){
 											?>
-												<a class="vincular-usuario-escala-especial" idusuario="<?=$distribuidor["idusuario"]?>" idmodelo="<?=$modelo["idmodelo"]?>"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+												<a class="vincular-usuario-escala-especial" idusuario="<?=$distribuidor["idusuario"]?>" idcanal="<?=$canal["idmodelo"]?>"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
 											<?php
 											}else{
 											?>
@@ -163,13 +163,13 @@
 				</div>
 				<hr>
 				<?php
-				if (isset($idmodelo) && $idmodelo!='') {
+				if (isset($idcanal) && $idcanal!='') {
 				?>
-					<button type="submit" name="actualizarModelo" class="btn btn-lg btn-primary center-block">ACTUALIZAR</button>
+					<button type="submit" name="actualizarCanal" class="btn btn-lg btn-primary center-block">ACTUALIZAR</button>
 				<?php
 				}else{
 				?>
-					<button type="submit" name="crearModelo" class="btn btn-lg btn-primary center-block">GUARDAR</button>
+					<button type="submit" name="crearCanal" class="btn btn-lg btn-primary center-block">GUARDAR</button>
 				<?php
 				}
 				?>
