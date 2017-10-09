@@ -213,7 +213,7 @@ class Carrito extends Productos
 
 			$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
 
-			$porcentaje = CanalesDistribucion::consultarPorcentaje($canal_distribucion_distribuidor["modelos_negocio_distribuidores_idmodelo"], $subtotalNetoAntesIva);
+			$porcentaje = CanalesDistribucion::consultarPorcentaje($canal_distribucion_distribuidor["canales_distribucion_idcanal"], $subtotalNetoAntesIva);
 
 			if (empty($porcentaje)) {
 				

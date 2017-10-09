@@ -63,11 +63,11 @@ class Controller
 
 		if (isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO') {
 
-			$usuario_modelo = $this->usuarios->usuarioModeloNegocioDistribuidor($_SESSION['idusuario']);
+			$usuario_canal = $this->usuarios->usuarioCanalDistribucion($_SESSION['idusuario']);
 
-			if (count($usuario_modelo)>0) {
+			if (count($usuario_canal)>0) {
 				
-				$canal = $this->canales_distribucion->detalleCanal($usuario_modelo['`modelos_negocio_distribuidores_idmodelo`']);
+				$canal = $this->canales_distribucion->detalleCanal($usuario_canal['`canales_distribucion_idcanal`']);
 
 				/**PERMISOS**/
 				if (!$canal['puntos']) {

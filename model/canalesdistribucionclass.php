@@ -8,21 +8,21 @@ class CanalesDistribucion extends Database
 
 	public function actualizarCanal($idcanal, $nombre = '', $monto_minimo = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $estado = 0){
 
-		$query = $this->actualizar("UPDATE `modelos_negocio_distribuidores` SET 
+		$query = $this->actualizar("UPDATE `canales_distribucion` SET 
 									`nombre`= '$nombre',
 									`monto_minimo`= '$monto_minimo',
 									`puntos`= '$puntos',
 									`referidos`= '$referidos',
 									`incentivos`= '$incentivos',
 									`estado`= '$estado' 
-									WHERE `idmodelo`='$idcanal'");
+									WHERE `idcanal`='$idcanal'");
 
 		return $query;
 	}
 	
 	public function crearCanal($nombre = '', $monto_minimo = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $estado = 0){
 
-		$idcanal = $this->insertar("INSERT INTO `modelos_negocio_distribuidores`(	
+		$idcanal = $this->insertar("INSERT INTO `canales_distribucion`(	
 									`nombre`, 
 									`monto_minimo`, 
 									`puntos`, 
@@ -42,8 +42,8 @@ class CanalesDistribucion extends Database
 
 	public function listarCanales(){		
 		
-		$query = $this->consulta("SELECT `idmodelo`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `estado` 
-								FROM `modelos_negocio_distribuidores`");
+		$query = $this->consulta("SELECT `idcanal`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `estado`
+								FROM `canales_distribucion`");
 		
 		return $query;
 	}
@@ -51,9 +51,9 @@ class CanalesDistribucion extends Database
 	public function detalleCanal($idcanal=0){
 		
 		
-		$query = $this->consulta("SELECT `idmodelo`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `estado` 
-								FROM `modelos_negocio_distribuidores`
-								WHERE `idmodelo`='$idcanal'");
+		$query = $this->consulta("SELECT `idcanal`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `estado` 
+								FROM `canales_distribucion`
+								WHERE `idcanal`='$idcanal'");
 		
 		return $query[0];
 	}
@@ -65,7 +65,7 @@ class CanalesDistribucion extends Database
 									`minimo`, 
 									`maximo`, 
 									`porcentaje`, 
-									`modelos_negocio_distribuidores_idmodelo`) VALUES (
+									`canales_distribucion_idcanal`) VALUES (
 									'$minimo',
 									'$maximo',
 									'$porcentaje',
@@ -75,7 +75,7 @@ class CanalesDistribucion extends Database
 
 	public function listarEscalas($idcanal){
 
-		$query = $this->consulta("SELECT `idescala`, `minimo`, `maximo`, `porcentaje`, `modelos_negocio_distribuidores_idmodelo` FROM `escalas_especiales` WHERE `modelos_negocio_distribuidores_idmodelo` ='$idcanal'");
+		$query = $this->consulta("SELECT `idescala`, `minimo`, `maximo`, `porcentaje`, `canales_distribucion_idcanal` FROM `escalas_especiales` WHERE `canales_distribucion_idcanal` ='$idcanal'");
 
 		return $query;
 	}
@@ -86,20 +86,20 @@ class CanalesDistribucion extends Database
 		
 		if (!empty($idcanal)) {
 			
-			$where = "WHERE `modelos_negocio_distribuidores_has_usuarios`.`modelos_negocio_distribuidores_idmodelo`='$idcanal'";
+			$where = "WHERE `canales_distribucion_has_usuarios`.`canales_distribucion_idcanal`='$idcanal'";
 		}
 
 		$query = $this->consulta("SELECT `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`
-								FROM `modelos_negocio_distribuidores_has_usuarios` 
-								INNER JOIN `usuarios` ON (`modelos_negocio_distribuidores_has_usuarios`.`usuarios_idusuario`=`usuarios`.`idusuario`) 
+								FROM `canales_distribucion_has_usuarios` 
+								INNER JOIN `usuarios` ON (`canales_distribucion_has_usuarios`.`usuarios_idusuario`=`usuarios`.`idusuario`) 
 								$where");
 		return $query;
 	}
 
 	public function vincularUsuario($idusuario, $idcanal){
 
-		$this->insertar("INSERT INTO `modelos_negocio_distribuidores_has_usuarios`(
-							`modelos_negocio_distribuidores_idmodelo`, 
+		$this->insertar("INSERT INTO `canales_distribucion_has_usuarios`(
+							`canales_distribucion_idcanal`, 
 							`usuarios_idusuario`) VALUES (
 							'$idcanal',
 							'$idusuario')");
@@ -107,7 +107,7 @@ class CanalesDistribucion extends Database
 
 	public function eliminarUsuario($idusuario, $idcanal){
 
-		$query = $this->actualizar("DELETE FROM `modelos_negocio_distribuidores_has_usuarios` WHERE `modelos_negocio_distribuidores_idmodelo`='$idcanal' AND `usuarios_idusuario`='$idusuario'");
+		$query = $this->actualizar("DELETE FROM `canales_distribucion_has_usuarios` WHERE `canales_distribucion_idcanal`='$idcanal' AND `usuarios_idusuario`='$idusuario'");
 
 		return $query;
 	}
@@ -116,7 +116,7 @@ class CanalesDistribucion extends Database
 		
 		$database = new Database;
 
-		$query = $database->consulta("SELECT `porcentaje` FROM `escalas_especiales` WHERE `modelos_negocio_distribuidores_idmodelo`='$idcanal' AND `minimo`<= '$monto' AND `maximo`>='$monto'");
+		$query = $database->consulta("SELECT `porcentaje` FROM `escalas_especiales` WHERE `canales_distribucion_idcanal`='$idcanal' AND `minimo`<= '$monto' AND `maximo`>='$monto'");
 		
 		return $query[0];
 								

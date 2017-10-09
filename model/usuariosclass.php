@@ -872,7 +872,7 @@ class Usuarios extends Database
 		
 		$database = new Database;
 
-		$query = $database->consulta("SELECT `modelos_negocio_distribuidores_idmodelo`, `usuarios_idusuario` FROM `modelos_negocio_distribuidores_has_usuarios` WHERE `usuarios_idusuario`='$idusuario'");
+		$query = $database->consulta("SELECT `canales_distribucion_idcanal`, `usuarios_idusuario` FROM `canales_distribucion_has_usuarios` WHERE `usuarios_idusuario`='$idusuario'");
 
 		return $query[0];
 	}

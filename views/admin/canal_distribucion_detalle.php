@@ -141,7 +141,7 @@
 											<?php 
 											if(!in_array($distribuidor["idusuario"], $ids_vinculados)){
 											?>
-												<a class="vincular-usuario-escala-especial" idusuario="<?=$distribuidor["idusuario"]?>" idcanal="<?=$canal["idmodelo"]?>"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+												<a class="vincular-usuario-escala-especial" idusuario="<?=$distribuidor["idusuario"]?>" idcanal="<?=$canal["idcanal"]?>"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
 											<?php
 											}else{
 											?>

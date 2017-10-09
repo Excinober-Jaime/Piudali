@@ -29,7 +29,7 @@
 			  			<td><?=$canal["referidos"]?></td>
 			  			<td><?=$canal["incentivos"]?></td>
 			  			<td><?=$canal["estado"]?></td>
-			  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_CANALES_DISTRIBUCION."/".$canal['idmodelo']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+			  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_CANALES_DISTRIBUCION."/".$canal['idcanal']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
 			  		</tr>
 			  		<?php
 				  	}
