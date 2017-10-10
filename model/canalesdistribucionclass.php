@@ -42,7 +42,7 @@ class CanalesDistribucion extends Database
 
 	public function listarCanales(){		
 		
-		$query = $this->consulta("SELECT `idcanal`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `estado`
+		$query = $this->consulta("SELECT `idcanal`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `comision`, `estado`
 								FROM `canales_distribucion`");
 		
 		return $query;
@@ -51,7 +51,7 @@ class CanalesDistribucion extends Database
 	public function detalleCanal($idcanal=0){
 		
 		
-		$query = $this->consulta("SELECT `idcanal`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `estado` 
+		$query = $this->consulta("SELECT `idcanal`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `comision`, `estado` 
 								FROM `canales_distribucion`
 								WHERE `idcanal`='$idcanal'");
 		

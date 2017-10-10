@@ -106,7 +106,7 @@
 
 					<?php } ?>
 
-					<?php if (!Controller::$DISABLE_CUPONES) { ?>				
+					<?php if (!Controller::$DISABLE_CUPONES) { ?>
 
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CUPONES?>">Cupones</a></li>
 

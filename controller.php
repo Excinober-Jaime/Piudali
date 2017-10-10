@@ -67,7 +67,7 @@ class Controller
 
 			if (count($usuario_canal)>0) {
 				
-				$canal = $this->canales_distribucion->detalleCanal($usuario_canal['`canales_distribucion_idcanal`']);
+				$canal = $this->canales_distribucion->detalleCanal($usuario_canal['canales_distribucion_idcanal']);
 
 				/**PERMISOS**/
 				if (!$canal['puntos']) {
@@ -958,8 +958,6 @@ class Controller
 							$distribuidores[$key]["ordenes"] = $ordenes;
 						}
 
-
-
 						//Niveles
 						$nombre_niveles = array('FRONTAL','REFERIDOS','REFERIDOS','REFERIDOS','REFERIDOS');
 						$niveles = array();
@@ -968,18 +966,50 @@ class Controller
 						for ($i=0; $i <=4 ; $i++) {
 
 							$niveles[$i]["neto"] = 0;
+							$niveles[$i]["comision"] = 0;
 
 							foreach ($distribuidores as $key => $distribuidor) {
 
+								//Default
+								$distribuidor['tipo_cliente'] = 'DISTRIBUIDOR DIRECTO';
+
+								/***CONSULTAR PORCENTAJE COMISIÓN CORRESPONDIENTE AL CANAL DEL DISTRIBUIDOR****/
+
+								$porc_canal = 0;
+
+								$distribuidor_canal = $this->usuarios->usuarioCanalDistribucion($distribuidor['idusuario']);
+
+								if (count($distribuidor_canal)>0) {
+
+									$detalle_canal = $this->canales_distribucion->detalleCanal($distribuidor_canal['canales_distribucion_idcanal']);
+
+									$porc_canal = $detalle_canal['comision'];
+									$tipo_cliente = $detalle_canal['nombre'];
+
+									$distribuidor['porc_canal'] = $porc_canal;
+									$distribuidor['tipo_cliente'] = $tipo_cliente;
+								}
+
 								if ($distribuidor["nivel"]==$i) {
+
+									if (!empty($distribuidor['porc_canal'])) {
+													
+										$porc_comision = $distribuidor['porc_canal'];
+									
+									}else{
+
+										$porc_comision = $porc_niveles[$i];
+									}
+
+									$comision_cliente = ($distribuidor["compras_netas"] * $porc_comision) / 100;
+
+
 									$niveles[$i]["distribuidores"][$key] = $distribuidor;
 									$niveles[$i]["neto"]+=$distribuidor["compras_netas"];
-								}								
-							}							
-						}	
-
-						/*var_dump($niveles[0]["distribuidores"]);
-						exit();*/
+									$niveles[$i]["comision"]+=$comision_cliente;
+								}
+							}	
+						}
 					}
 
 					include "views/lider_negocio.php";
