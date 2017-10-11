@@ -262,6 +262,7 @@ function initMap(distribuidores, ciudad) {
     for (var i = 0; i < 10; i++) {
     	
     	if (distribuidores[i]["direccion"] != '') {
+    		
 	    	address = distribuidores[i]["direccion"]+", "+distribuidores[i]["ciudad"]+", Colombia";
 	    	
 	    	contentString = '<h3>'+distribuidores[i]["nombre"]+' '+distribuidores[i]["apellido"]+'</h3><p>'+distribuidores[i]["direccion"]+'<br>'+distribuidores[i]["ciudad"]+'<br>'+distribuidores[i]["telefono"]+'</p>';

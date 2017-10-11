@@ -77,7 +77,7 @@ class Controller
 
 				if (!$canal['referidos']) {
 					
-					self::$DISABLE_REFERIDOS = true;	
+					self::$DISABLE_REFERIDOS = true;
 				}
 
 				if (!$canal['incentivos']) {
@@ -239,25 +239,30 @@ class Controller
 	}
 
 	public function pageTiendas(){
+
 		$paginas_menu = $this->paginasMenu();
 		$pagina_detalle = $this->paginas->contenidoPagina('tiendas');
-
-		$ciudades = $this->usuarios->listarCiudadesConDistribuidor();
 
 		if (isset($_GET["ciudad"]) && !empty($_GET["ciudad"])) {
 
 			$idciudad = $_GET["ciudad"];
-			$distribuidores = $this->usuarios->listarUsuariosMapa($idciudad);	
+			
 		}else{
+
+			//Cali por defecto
 			$idciudad = 4270;
-			$distribuidores = $this->usuarios->listarUsuariosMapa($idciudad);	
 		}
 
-		
+		$distribuidores_mapa = $this->usuarios->listarUsuariosMapa($idciudad);	
 
-		if (count($distribuidores)>0) {
-			foreach ($distribuidores as $key => $distribuidor) {
+		if (count($distribuidores_mapa)>0) {
+
+			foreach ($distribuidores_mapa as $key => $distribuidor) {
+
+				$distribuidores[$key]["idusuario"] = $distribuidor["idusuario"];
+
 				if (!empty($distribuidor["organizaciones_idorganizacion"])) {
+
 					$organizacion = $this->usuarios->detalleOrganizacionUsuario($distribuidor["organizaciones_idorganizacion"]);
 
 					$distribuidores[$key]["nombre"] = $organizacion["razon_social"];
@@ -266,19 +271,29 @@ class Controller
 					$distribuidores[$key]["telefono"] = $organizacion["telefono"];
 					$distribuidores[$key]["telefono_m"] = "";
 					$distribuidores[$key]["ciudad"] = $organizacion["ciudad"];
+				
+				}else{
+
+					$distribuidores[$key]["nombre"] = $distribuidor["nombre"];
+					$distribuidores[$key]["apellido"] = $distribuidor["apellido"];
+					$distribuidores[$key]["direccion"] = $distribuidor["direccion"];
+					$distribuidores[$key]["telefono"] = $distribuidor["telefono"];
+					$distribuidores[$key]["telefono_m"] = $distribuidor["telefono_m"];;
+					$distribuidores[$key]["ciudad"] = $distribuidor["ciudad"];
 				}
 			}
 		}
 
-		if ($idciudad == 4270) {
-		
+		if ($idciudad == 4270) { //Cali
 
 			//Provisional artemisa
 			$puntos_artemisa = array("Centro Comercial Chipichape Local 8-118","Centro Comercial Centenario Local 131","Centro Comercial Cosmocentro L 2-68","Centro Comercial Unicentro local 320 Pasillo 5","Centro Comercial Unicentro Local 449 Oasis","Centro Cra 5 No.12-16","Avenida Estación No.5CN-34","Avenida Roosevelt No.25-32");
 
 			$i = 300;
 
-			foreach ($puntos_artemisa as $key => $punto) {
+			foreach ($puntos_artemisa as $punto) {
+
+				$distribuidores[$i]["idusuario"] = 'ART'.$i;
 				$distribuidores[$i]["nombre"] = "Artemisa";
 				$distribuidores[$i]["direccion"] = $punto;
 				$distribuidores[$i]["telefono"] = "(2) 4873030";
@@ -287,18 +302,54 @@ class Controller
 
 				$i++;
 			}
-
 		}
 
-		$distribuidores_tiendas = $this->usuarios->listarUsuariosMapa();
+		if ($idciudad == 3394) { //Bogotá
+			
+
+			//Provisional supernaturistas
+			$puntos_super = array(
+
+							array ('direccion' => '<b>Niza</b> Av. 127 con Av. Suba C.C. Niza Int. 13', 'telefono' => '253 1429'),
+							array ('direccion' => '<b>Carrera 15</b> Av. 15 # 105 A - 20', 'telefono' => '619 1662'),
+							array ('direccion' => '<b>Santa Ana</b> Cra. 7 # 108 - 44 (en Olímpica)', 'telefono' => '213 9922'),
+							array ('direccion' => '<b>Calle 100</b> Calle 98 # 17A - 64', 'telefono' => '256 9136'),
+							array ('direccion' => 'Calle 119 # 14B - 10', 'telefono' => '215 7214'),
+							array ('direccion' => 'AK 45 # 104 - 60 (Autonorte con 104)', 'telefono' => '214 6229'),
+							array ('direccion' => 'Cra. 7 # 82 - 62 Lc 28 ', 'telefono' => '622 0790'),
+							array ('direccion' => 'Cra. 15 # 118 - 50', 'telefono' => '214 0824'),
+							array ('direccion' => 'Cra. 7 # 17 - 13', 'telefono' => '491 1218'),
+							array ('direccion' => 'Cra. 7A # 140 - 20 Lc 108', 'telefono' => '700 5781'),
+							array ('direccion' => 'C.C. Bazaar Alsacia Calle 12B # 71D - 61 (Av. Boyacá) Lc 1 - 18', 'telefono' => '411 7058'),
+							array ('direccion' => 'Cra. 18A # 135 - 46', 'telefono' => '627 9854')
+						);
+
+			$i = 300;
+
+			foreach ($puntos_super as $punto) {
+
+				$distribuidores[$i]["idusuario"] = 'SUP'.$i;
+				$distribuidores[$i]["nombre"] = "Supermercado Naturista";
+				$distribuidores[$i]["direccion"] = $punto['direccion'];
+				$distribuidores[$i]["telefono"] = $punto['telefono'];
+				$distribuidores[$i]["telefono_m"] = "";
+				$distribuidores[$i]["ciudad"] = "Bogotá";
+
+				$i++;
+			}
+		}
+
+		$distribuidores_mapa_all = $this->usuarios->listarUsuariosMapa();	
+		$ciudades = $this->usuarios->listarCiudadesConDistribuidor();
 
 		$i = 0;
 
-		foreach ($ciudades as $key => $ciudad) {
+		foreach ($ciudades as $ciudad) {
 
-			foreach ($distribuidores_tiendas as $key2 => $distribuidor) {
+			foreach ($distribuidores_mapa_all as $key2 => $distribuidor) {
 
-				if ($distribuidor["ciudad"] == $ciudad["ciudad"]) {
+				if ($distribuidor["ciudades_idciudad"] == $ciudad["idciudad"]) {
+					
 					$ciudades_lista[$i]["idciudad"] = $ciudad["idciudad"];
 					$ciudades_lista[$i]["ciudad"] = $ciudad["ciudad"];
 					$ciudades_lista[$i]["departamento"] = $ciudad["departamento"];
