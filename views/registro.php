@@ -102,6 +102,11 @@
 								<label for="exampleInputEmail1">Tipo de Usuario</label>
 								<select name="segmento" class="form-control" required>
 									<option value="">Seleccione</option>
+									<option value="SPA">SPA</option>
+									<option value="Centro Médico">Centro Médico</option>
+									<option value="Institución Especializada">Institución Especializada</option>
+									<option value="Distribuidor Especializado">Distribuidor Especializado</option>
+									<option value="Tienda Especializada">Tienda Especializada</option>
 									<option value="Esteticista">Esteticista</option>
 									<option value="Terapeuta">Terapeuta</option>
 									<option value="Médico">Médico</option>
@@ -275,6 +280,7 @@
 									<option value="Institución Especializada">Institución Especializada</option>
 									<option value="Distribuidor Especializado">Distribuidor Especializado</option>
 									<option value="Tienda Especializada">Tienda Especializada</option>
+									<option value="Comercializador Independiente">Comercializador Independiente</option>
 									<option value="Otro">Otro</option>
 								</select>
 							</div>
@@ -326,16 +332,6 @@
 		</form>
 		<br>
 	</div>
-
-	<!--<div class="col-xs-12 col-md-3">
-		<?php
-		foreach ($banners as $banner) {
-		?>
-			<a href="<?=$banner['link']?>"><img src="<?=$banner['imagen']?>" class="img-responsive"></a><br>
-		<?php
-		}
-		?>
-	</div>-->
 </div>
 <br><br>
 <?php include "footer.php"; ?>

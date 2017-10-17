@@ -39,6 +39,7 @@ class Controller
 	public static $DISABLE_COMPRAR = false;
 	public static $DISABLE_BANNERS_USUARIO = false;
 	public static $DISABLE_CAPACITACION = false;
+	public static $CANAL_DISTRIBUCION = false;
 
 	public function __construct()
 	{
@@ -69,6 +70,9 @@ class Controller
 				
 				$canal = $this->canales_distribucion->detalleCanal($usuario_canal['canales_distribucion_idcanal']);
 
+
+				self::$CANAL_DISTRIBUCION = $canal['nombre'];
+
 				/**PERMISOS**/
 				if (!$canal['puntos']) {
 
@@ -90,8 +94,6 @@ class Controller
 				self::$DISABLE_PREMIOS = true;
 				self::$DISABLE_PROMOCIONES = true;
 				self::$DISABLE_CUPONES = true;
-				self::$DISABLE_POLITICAS = true;
-				self::$DISABLE_COMPRAR = true;
 				self::$DISABLE_BANNERS_USUARIO = true;
 				self::$DISABLE_CAPACITACION = true;
 
@@ -118,8 +120,52 @@ class Controller
 
 	public function paginasMenu(){
 		
-		$paginas_menu = $this->paginas->listarPaginas();
+		$paginas_menu = $this->paginas->listarPaginas();	
+
 		$paginas_menu["CATEGORIAS MENU"] = $this->categoriasMenu();
+
+		/*$usuario_canal = $this->usuarios->usuarioCanalDistribucion($_SESSION['idusuario']);
+
+		if (count($usuario_canal)>0) {
+			
+			$canal = $this->canales_distribucion->detalleCanal($usuario_canal['canales_distribucion_idcanal']);
+		
+			if ($canal['nombre'] == 'DISTRIBUIDORES ESPECIALIZADOS') {
+				
+				$paginas_menu = array(								
+									
+									array(
+										'posicion' => 'INTERNAS DISTRIBUIDORES',
+										'idpagina' => 14,
+										'titulo' => 'Políticas de Manejo de Datos'
+										),
+
+									array(
+										'posicion' => 'INTERNAS DISTRIBUIDORES',
+										'idpagina' => 37,
+										'titulo' => 'Terminos y Condiciones Distribuidores Especializados'
+										)
+								);
+
+			}elseif ($canal['nombre'] == 'TIENDAS ESPECIALIZADAS'){
+
+				$paginas_menu = array(								
+									
+									array(
+										'posicion' => 'INTERNAS DISTRIBUIDORES',
+										'idpagina' => 14,
+										'titulo' => 'Políticas de Manejo de Datos'
+										),
+
+									array(
+										'posicion' => 'INTERNAS DISTRIBUIDORES',
+										'idpagina' => 34,
+										'titulo' => 'Terminos y Condiciones Tiendas  Especializadas'
+										)
+								);
+			}
+
+		}*/
 
 		return $paginas_menu;
 	}
@@ -437,7 +483,9 @@ class Controller
 			}
 
 			$alerta = "Diligencia el formulario con los datos de tu referido";
+
 		}else{
+
 			$referente = 0;
 			$nivel = 0;
 		}
@@ -1546,7 +1594,26 @@ class Controller
 
 		$banners = $this->banners->listarBanners($posicion_banners, $estados);
 
-		$comprar = $this->paginas->detallePagina(32);
+		$usuario_canal = $this->usuarios->usuarioCanalDistribucion($_SESSION['idusuario']);
+
+		$pagina_comprar = 32;
+
+		if (count($usuario_canal)>0) {
+			
+			$canal = $this->canales_distribucion->detalleCanal($usuario_canal['canales_distribucion_idcanal']);
+
+			if ($canal['nombre'] == 'DISTRIBUIDORES ESPECIALIZADOS') {
+				
+				$pagina_comprar = 35;
+
+			}elseif ($canal['nombre'] == 'TIENDAS ESPECIALIZADAS'){
+
+				$pagina_comprar = 36;
+			}
+
+		}
+
+		$comprar = $this->paginas->detallePagina($pagina_comprar);
 
 		include "views/usuario_comprar.php";
 	}

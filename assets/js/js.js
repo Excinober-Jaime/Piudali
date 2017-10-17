@@ -80,6 +80,7 @@ $(document).ready(function(){
 		var password2 = $("#formUsuarioJuridico input[name|='password2']").val();
 		var dia_nacimiento = $("#formUsuarioJuridico input[name|='dia_nacimiento']").val();
 		var mes_nacimiento = $("#formUsuarioJuridico input[name|='mes_nacimiento']").val();
+		var segmento = $("#formUsuarioJuridico select[name|='segmento']").val();
 
 		var razon_social = $("#formUsuarioJuridico input[name|='razon_social']").val();
 		var nit = $("#formUsuarioJuridico input[name|='nit']").val();
@@ -108,37 +109,25 @@ $(document).ready(function(){
 
 			$(this).text("CARGANDO...");
 
-			//Registro en Mailchimp
-			$.ajax({
-			  type: 'POST',
-			  crossDomain: true,
-			  url: 'https://piudali.us16.list-manage.com/subscribe/post?u=38aa1fae8e888e044646240c1&amp;id=b8ebc5f9f4',
-			  data: { EMAIL:email, FNAME:nombre, LNAME:apellido, MMERGE3:"", MMERGE4:"", MMERGE6:num_identificacion, MMERGE7:"", MMERGE8:telefono_m, MMERGE9:"", MMERGE10:"1", MMERGE12:razon_social, MMERGE13:"" },
-			  success: function(data) {
-			  	
-			  	console.log(data);
-			  },
-			  error: function(err) {
-					
-					console.log(err);
-			  }
-			});
+			if (segmento != 'Tienda Especializada' && segmento != 'Distribuidor Especializado') {
 
-			/*
-			//Registro en Constant Contact
+				//Registro en Mailchimp
+				$.ajax({
+				  type: 'POST',
+				  crossDomain: true,
+				  url: 'https://piudali.us16.list-manage.com/subscribe/post?u=38aa1fae8e888e044646240c1&amp;id=b8ebc5f9f4',
+				  data: { EMAIL:email, FNAME:nombre, LNAME:apellido, MMERGE3:"", MMERGE4:"", MMERGE6:num_identificacion, MMERGE7:"", MMERGE8:telefono_m, MMERGE9:"", MMERGE10:"1", MMERGE12:razon_social, MMERGE13:"" },
+				  success: function(data) {
+				  	
+				  	console.log(data);
+				  },
+				  error: function(err) {
+						
+						console.log(err);
+				  }
+				});
 
-			$.ajax({
-			  type: 'POST',
-			  crossDomain: true,
-			  url: 'https://visitor2.constantcontact.com/api/signup',
-			  data: { ca:"d49ae990-6aec-4703-8dd2-43bd0626645c", list:"1688625949", source:"EFD", required:"list,email,first_name", url:"", email:email, first_name:nombre, last_name:apellido, phone:telefono, birthday_month:mes_nacimiento, birthday_day:dia_nacimiento },
-			  success: function(data, status, xhr) {
-			  	console.log("Registrado en constant contact");
-			  	//console.log(data);
-			  },
-			  error: function(xhr, status, err) {					
-			  }
-			});*/
+			}
 
 			setTimeout(function(){
 				$("#formUsuarioJuridico").submit();
@@ -158,7 +147,7 @@ $(document).ready(function(){
 		var password2 = $("#formUsuarioNatural input[name|='password2']").val();
 		var dia_nacimiento = $("#formUsuarioNatural input[name|='dia_nacimiento']").val();
 		var mes_nacimiento = $("#formUsuarioNatural input[name|='mes_nacimiento']").val();
-
+		var segmento = $("#formUsuarioNatural select[name|='segmento']").val();
 
 		if (nombre=="") {
 			alert("Por favor ingrese el nombre");
@@ -180,39 +169,24 @@ $(document).ready(function(){
 
 			$(this).text("CARGANDO...");
 
-			//Registro en Mailchimp
-			$.ajax({
-			  type: 'POST',
-			  crossDomain: true,
-			  url: 'https://piudali.us16.list-manage.com/subscribe/post?u=38aa1fae8e888e044646240c1&amp;id=b8ebc5f9f4',
-			  data: { EMAIL:email, FNAME:nombre, LNAME:apellido, MMERGE3:"", MMERGE4:"", MMERGE6:num_identificacion, MMERGE7:"", MMERGE8:telefono_m, MMERGE9:"", MMERGE10:"1", MMERGE12:"", MMERGE13:"" },
-			  success: function(data) {
-			  	
-			  	console.log(data);
-			  },
-			  error: function(err) {
-					
-					console.log(err);			        
-			  }
-			});
+			if (segmento != 'Tienda Especializada' && segmento != 'Distribuidor Especializado') {
 
-			/*
-
-			Registro en constant contact
-			$.ajax({
-			  type: 'POST',
-			  crossDomain: true,
-			  url: 'https://visitor2.constantcontact.com/api/signup',
-			  data: { ca:"d49ae990-6aec-4703-8dd2-43bd0626645c", list:"1688625949", source:"EFD", required:"list,email,first_name", url:"", email:email, first_name:nombre, last_name:apellido, phone:telefono, birthday_month:mes_nacimiento, birthday_day:dia_nacimiento },
-			  success: function(data, status, xhr) {
-			  	console.log("Registrado en constant contact");
-			  	
-			  },
-			  error: function(xhr, status, err) {
-					
-			  }
-			});
-			*/
+				//Registro en Mailchimp
+				$.ajax({
+				  type: 'POST',
+				  crossDomain: true,
+				  url: 'https://piudali.us16.list-manage.com/subscribe/post?u=38aa1fae8e888e044646240c1&amp;id=b8ebc5f9f4',
+				  data: { EMAIL:email, FNAME:nombre, LNAME:apellido, MMERGE3:"", MMERGE4:"", MMERGE6:num_identificacion, MMERGE7:"", MMERGE8:telefono_m, MMERGE9:"", MMERGE10:"1", MMERGE12:"", MMERGE13:"" },
+				  success: function(data) {
+				  	
+				  	console.log(data);
+				  },
+				  error: function(err) {
+						
+						console.log(err);			        
+				  }
+				});
+			}
 
 			setTimeout(function(){
 				$("#formUsuarioNatural").submit();
