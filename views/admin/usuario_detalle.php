@@ -3,7 +3,7 @@
 	<div class="row">
         <div class="col-lg-12">			
 			<div class="col-xs-12 col-md-4">
-				<h2>CONTÁCTO</h2>
+				<h2><b>CONTÁCTO</b></h2>
 				<form method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Nombre</label>
@@ -207,8 +207,11 @@
 			?>			
 			<div class="col-xs-12 col-md-4">
 			<?php if (isset($idusuario) && $idusuario!='') { ?>
-				<h2>DOCUMENTOS</h2>
+
+				<h2><b>DOCUMENTOS</b></h2>
+
 				<?php if ($documentos) { ?>
+
 				<ul class="list-group">								
 					<?php foreach ($documentos as $key => $documento) {
 					?>
@@ -219,7 +222,7 @@
 				<p>El usuario no tiene documentos relacionados.</p>
 				<?php }	?>
 				<hr>
-				<h2>ACCIONES</h2>
+				<h2><b>ACCIONES</b></h2>
 				<form method="post" target="_new" action="<?=URL_INGRESO_REMOTO?>">
 					<input type="hidden" value="<?=$usuario["email"]?>" name="email">
 					<input type="hidden" value="<?=$usuario["password"]?>" name="password">
@@ -268,7 +271,7 @@
 				?>
 
 						<hr>
-						<h2>PUNTOS <span class="pull-right">Disponible actual: <?=$puntos['disponibles']?></span></h2>
+						<h2><b>PUNTOS</b> <span class="pull-right">Disponible actual: <?=$puntos['disponibles']?></span></h2>
 						<form method="post" enctype="multipart/form-data">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Puntos</label>
@@ -282,6 +285,53 @@
 							</div>
 							<button type="submit" name="obsequiarPuntos" class="btn btn-primary">Obsequiar puntos</button>
 						</form>	
+
+						<!--CRÉDITO-->
+						<hr>
+						<h2><b>CRÉDITO</b></h2>
+
+						<?php 
+
+						if (isset($credito) && count($credito)>0) {
+							
+						?>
+						<h2>
+							
+							Cupo asignado: <?=convertir_pesos($credito['cupo_asignado'])?><br>
+							Cupo disponible: <?=convertir_pesos($credito['cupo_disponible'])?><br>
+							Cupo usado: <?=convertir_pesos($credito['cupo_usado'])?><br>
+
+						</h2>
+						<?php
+
+						}else{
+
+						?>
+						<form method="post" enctype="multipart/form-data">
+							<p>Este usuario no tiene crédito.</p>
+							<label for="exampleInputEmail1">Cupo Asignado</label>
+							<div class="input-group">								  
+						      <input type="number" class="form-control" name="cupo_asignado" required>  
+						    </div><!-- /input-group -->
+						    <label for="exampleInputEmail1">Cupo Usado</label>
+							<div class="input-group">								  
+						      <input type="number" class="form-control" name="cupo_usado" required>  
+						    </div><!-- /input-group -->
+						    <label for="exampleInputEmail1">Cupo Disponible</label>
+							<div class="input-group">
+						      <input type="number" class="form-control" name="cupo_disponible" required>  
+						    </div><!-- /input-group -->
+						    <label for="exampleInputEmail1">Plazo en Días</label>
+							<div class="input-group">
+						      <input type="number" maxlength="3" class="form-control" name="plazo" required>
+						    </div><!-- /input-group -->
+						    <br>
+							<button type="submit" name="asignarCredito" class="btn btn-primary">Asignar crédito</button>
+						</form>
+						<?php
+						}
+
+						?>
 
 				<?php 
 						break;

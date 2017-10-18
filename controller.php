@@ -750,6 +750,7 @@ class Controller
 	}
 
 	public function suscribirNewsletter(){
+
 		extract($_POST);
 
 		if (isset($nombre) && isset($email)) {
@@ -2859,6 +2860,12 @@ class Controller
 			$this->usuarios->actualizarOrganizacion($idorganizacion, $nit, $razon_social, $telefono_organizacion, $direccion_organizacion, $ciudad_organizacion);
 		}
 
+		if (isset($_POST['asignarCredito'])) {
+			
+			$this->usuarios->asignarCredito($idusuario, $cupo_asignado, $cupo_usado, $cupo_disponible, $plazo);
+
+		}
+
 		if (isset($idusuario) && !empty($idusuario)) {
 			$usuario = $this->usuarios->detalleUsuario($idusuario);
 
@@ -2869,7 +2876,8 @@ class Controller
 
 			$documentos = $this->usuarios->listarDocumentos($idusuario);
 			$cuenta = $this->cuentas_virtuales->consultarCuenta($idusuario);
-			$puntos = $this->usuarios->puntosDisponibles($idusuario);			
+			$puntos = $this->usuarios->puntosDisponibles($idusuario);
+			$credito = $this->usuarios->detalleCredito($idusuario);
 		}
 
 		$lideres = 	$this->usuarios->listarUsuarios(array("REPRESENTANTE COMERCIAL"));

@@ -877,5 +877,30 @@ class Usuarios extends Database
 		return $query[0];
 	}
 
+	public function detalleCredito($idusuario){
+
+		$query = $this->consulta("SELECT `idcredito`, `cupo_asignado`, `cupo_usado`, `cupo_disponible`, `plazo`, `usuarios_idusuario` FROM `creditos` WHERE `usuarios_idusuario`='$idusuario'");
+
+		return $query[0];
+
+	}
+
+	public function asignarCredito($idusuario, $cupo_asignado=0, $cupo_usado=0, $cupo_disponible=0, $plazo=0){
+
+		$idcredito = $this->insertar("INSERT INTO `creditos`(					
+										`cupo_asignado`, 
+										`cupo_usado`, 
+										`cupo_disponible`, 
+										`plazo`, 
+										`usuarios_idusuario`) VALUES (				
+										'$cupo_asignado',
+										'$cupo_usado',
+										'$cupo_disponible',
+										'$plazo',
+										'$idusuario')");
+		return $idcredito;
+
+	}
+
 }
 ?>

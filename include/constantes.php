@@ -122,4 +122,8 @@ define("URL_ADMIN_INFORME_PAGOS", "InformePagos");
 define("URL_ADMIN_GEOLOCALIZACION", "Geolocalizacion");
 define("URL_ADMIN_GEOLOCALIZACION_ZONAS", "Zonas");
 define("URL_ADMIN_GEOLOCALIZACION_REGIONES", "Regiones");
+
+
+/**CRÉDITOS**/
+define("CREDIOS", "Créditos");
 ?>
