@@ -902,5 +902,18 @@ class Usuarios extends Database
 
 	}
 
+	public function actualizarCredito($idcredito, $cupo_asignado=0, $cupo_usado=0, $cupo_disponible=0, $plazo=0){
+
+		$query = $this->actualizar("UPDATE `creditos` SET 							
+									`cupo_asignado` = '$cupo_asignado',
+									`cupo_usado` = '$cupo_usado',
+									`cupo_disponible` = '$cupo_disponible',
+									`plazo` = '$plazo'
+									WHERE `idcredito` = '$idcredito'");
+
+		return $query;
+
+	}
+
 }
 ?>

@@ -68,6 +68,7 @@ $breadcrumb = explode("/", $_GET["url"]);
                 <li>
                     <a href="#"><i class="fa fa-code" aria-hidden="true"></i> <span class="nav-label">Códigos con Puntos</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_CODIGOS_PUNTOS?>">Listar Códigos</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_CODIGOS_PUNTOS."/Nuevo"?>">Crear Códigos</a></li>
                     </ul>
                 </li>

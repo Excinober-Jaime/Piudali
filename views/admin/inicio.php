@@ -1,8 +1,8 @@
 <?php include "header.php";?>
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <img src="http://linkgrupomarketing.com/images/logo.png" class="img-responsive center-block m-b m-t">
-            <h1 class="text-center">SISTEMA DE GESTIÓN DE CLIENTES - CRM</h1>
+            <img src="assets/admin/img/logo-cohett.png" class="img-responsive center-block m-b m-t">
+            <!--<h1 class="text-center">SISTEMA DE GESTIÓN DE CLIENTES - CRM</h1>-->
         </div>
         <hr>
         <div class="row">

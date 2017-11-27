@@ -1809,6 +1809,10 @@ class Controller
 			
 			$paginas_menu = $this->paginasMenu();
 
+			$credito = false;
+
+			$credito = $this->usuarios->detalleCredito($_SESSION["idusuario"]);
+
 			$itemsCarrito = $this->carrito->listarItems();
 			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
 			$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
@@ -1987,42 +1991,106 @@ class Controller
 
 				$mail = mail($_SESSION["email"], $plantilla["asunto"], $mensaje, $headers);
 
-				//Variables Pago Payu
-				$merchantId = 502548;
-				$ApiKey = "28tuaar72n6g65ervovdl1sst";
-				$referenceCode = $codigo_orden;
-				//$accountId = ;
-				$description = "COMPRA PRODUCTOS PIUDALI";
-				$currency = "COP";
-				$buyerEmail = $_SESSION["email"];
-				$amount = round($total);
-				$tax = round($iva);
-				if ($iva == 0) {
-					$taxReturnBase = 0;
+
+				if (isset($_GET['method']) && !empty($_GET['method'])) {
+
+					switch ($_GET['method']) {
+						
+						case 'credito':
+							
+							$credito = $this->usuarios->detalleCredito($_SESSION["idusuario"]);
+
+							if (count($credito)>0) {
+	 				
+				 				if ($credito['cupo_disponible'] >= $total) {
+				 					
+
+				 					$cupo_asignado = $credito['cupo_asignado'];
+				 					$cupo_disponible = $credito['cupo_disponible'];
+				 					$cupo_usado = $credito['cupo_usado'];
+				 					$plazo_dias = $credito['plazo'];
+
+				 					$cupo_usado += $total;
+				 					$cupo_disponible -= $total;
+
+				 					$filas = $this->usuarios->actualizarCredito($credito['idcredito'], $cupo_asignado, $cupo_usado, $cupo_disponible, $plazo);
+
+				 					if ($filas) {
+
+				 						$estado = 'PENDIENTE';
+				 						$currency = 'COP';
+				 						$metodo = 'Crédito';
+				 						
+				 						include 'views/respuesta_pago_credito.php';
+
+				 					}else{
+
+				 						header("Location: ".URL_SITIO);
+
+				 					}
+
+				 				}else{
+
+				 					header("Location: ".URL_SITIO);
+				 				}
+
+				 			}else{
+
+				 				header("Location: ".URL_SITIO);
+				 			}
+
+							break;
+						
+						default:
+
+							/****PAGO CON PAYU****/
+
+							//Variables Pago Payu
+							$merchantId = 502548;
+							$ApiKey = "28tuaar72n6g65ervovdl1sst";
+							$referenceCode = $codigo_orden;
+							$description = "COMPRA PRODUCTOS PIUDALI";
+							$currency = "COP";
+							$buyerEmail = $_SESSION["email"];
+							$amount = round($total);
+							$tax = round($iva);
+							if ($iva == 0) {
+								$taxReturnBase = 0;
+							}else{
+								$taxReturnBase = round($totalNetoAntesIva-$pagoPuntos["valor_pago"]);
+							}
+							$lng = "ES";
+
+							if (isset($_SESSION["idorganizacion"]) && !empty($_SESSION["idorganizacion"])) {
+
+								$organizacion = $this->usuarios->detalleOrganizacionUsuario($_SESSION["idorganizacion"]);
+
+								if (count($organizacion)>0) {
+									$payerFullName = $organizacion["razon_social"];
+								}else{
+									$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];	
+								}
+							}else{
+								$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];
+							}				
+							$extra1 = $_SESSION["idusuario"];
+							$extra3 = "PIUDALI";
+							$responseUrl = "http://naturalvitalis.com/respagos.php";
+							$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
+
+							require "include/pago_payu.php";
+
+						break;
+					}					
+
+					unset($_SESSION["idpdts"]);
+					unset($_SESSION["cantidadpdts"]);
+
 				}else{
-					$taxReturnBase = round($totalNetoAntesIva-$pagoPuntos["valor_pago"]);
+
+					header("Location: ".URL_SITIO);
+
 				}
-				$lng = "ES";
-				if (isset($_SESSION["idorganizacion"]) && !empty($_SESSION["idorganizacion"])) {
-					$organizacion = $this->usuarios->detalleOrganizacionUsuario($_SESSION["idorganizacion"]);
-
-					if (count($organizacion)>0) {
-						$payerFullName = $organizacion["razon_social"];
-					}else{
-						$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];	
-					}
-				}else{
-					$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];
-				}				
-				$extra1 = $_SESSION["idusuario"];
-				$extra3 = "PIUDALI";
-				$responseUrl = "http://naturalvitalis.com/respagos.php";
-				$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
-
-				require "include/pago_payu.php";
-
-				unset($_SESSION["idpdts"]);
-				unset($_SESSION["cantidadpdts"]);
 			}
 			
 		}else{
@@ -4023,16 +4091,32 @@ class Controller
 
 	}
 
+	public function adminCodigosPuntosLista(){
+
+		$codigos = $this->codigos_puntos->listarCodigos();
+
+		foreach ($codigos as $key => $codigo) {
+			
+			if (!empty($codigo['idredentor'])) {
+				
+				$redentor = $this->usuario->detalleUsuario($codigo['idredentor']);
+				$codigos[$key]['redentor'] = $redentor['nombre'].' '.$redentor['apellido'];
+			}
+		}
+
+		include 'views/admin/codigos_puntos_lista.php';
+	}
+
 	public function homeClub() {
 
 		$paginas_menu = $this->paginasMenu();
 		$ciudades = $this->usuarios->listarCiudades();
 
-		if (isset($_SESSION['idusuario']) && $_SESSION['tipo']!='CONSUMIDOR') {
+		/*if (isset($_SESSION['idusuario']) && $_SESSION['tipo']!='CONSUMIDOR') {
 			
 			header('Location: '.URL_SITIO);
 		
-		}
+		}*/
 
 		if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
 
@@ -4138,6 +4222,15 @@ class Controller
 
 		include 'views/club/detalle-regalo.php';
 
+	}
+
+
+	/*****LANDING****/
+	public function landingCosmeticaEcologica(){
+
+		$paginas_menu = $this->paginasMenu();
+
+		include 'views/landing/cosmetica_ecologica.php';
 	}
 }
 ?>

@@ -28,6 +28,15 @@ class CodigosPuntos extends Database
 		return $codigo;
 	}
 
+	public function listarCodigos(){
+		
+		$query = $this->consulta("SELECT `idcodigo`, `codigo`, `puntos`, `redimido`, `qr`, `fecha_creacion`, `fecha_vencimiento`, `idredentor` 
+								FROM `codigos_puntos` 
+								");
+		
+		return $query;
+	}
+
 	public function datelleCodigo($codigo){
 		$query = $this->consulta("SELECT `idcodigo`, `codigo`, `puntos`, `redimido`, `qr`, `fecha_creacion`, `fecha_vencimiento`, `idredentor` 
 								FROM `codigos_puntos` 

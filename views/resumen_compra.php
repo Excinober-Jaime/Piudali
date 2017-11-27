@@ -79,10 +79,24 @@
 	 </div>
 	 <div class="col-xs-12 text-right">
 	 	<?php 
+
 	 	if ($total>0) {
-	 		if (isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"]<=$subtotalAntesIva) {
+
+	 		if (isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"] <= $subtotalAntesIva) {
+
+	 			if (isset($credito) && !empty($credito)) {
+	 				
+	 				if ($credito['cupo_disponible'] >= $total) {
+	 					
+	 				?>
+	 					<a href="<?=URL_GENERAR_ORDEN?>?method=credito" class="btn btn-lg btn-default" style='margin-top: 1rem;'>USAR CUPO DE CRÉDITO</a>
+	 				<?php
+
+	 				}
+
+	 			}
 	 	?>
-	 		<a href="<?=URL_GENERAR_ORDEN?>" class="btn btn-lg btn-default">FINALIZAR COMPRA</a>
+	 			<a href="<?=URL_GENERAR_ORDEN?>?method=payu" class="btn btn-lg btn-default" style='margin-top: 1rem;'>FINALIZAR COMPRA</a>
 	 	<?php
 	 		}	
 	 	}

@@ -1,6 +1,6 @@
 <?php 
 define("URL_SITIO", "http://localhost/piudali/www/");
-define("URL_SITIO", "http://piudali.com.co/");
+//define("URL_SITIO", "http://piudali.com.co/");
 define("URL_INICIO", "Inicio");
 define("URL_PRODUCTOS", "Productos");
 define("URL_CATEGORIA", "Categoria");
@@ -126,4 +126,7 @@ define("URL_ADMIN_GEOLOCALIZACION_REGIONES", "Regiones");
 
 /**CRÉDITOS**/
 define("CREDIOS", "Créditos");
+
+/***LANDING**/
+define('COSMETICA_ECOLOGICA', 'cosmetica-ecologica');
 ?>

@@ -57,10 +57,10 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 									$controller->adminGenerarCodigosPuntos();	
 								}else{
 
-								}						
+								}
 								
 							}else{
-								$controller->adminProductosLista();
+								$controller->adminCodigosPuntosLista();
 							}
 							break;
 
@@ -460,6 +460,26 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}
 							break;
 
+						case 'PEDIDO':
+							
+							include 'views/club/pedido-regalo.php';
+							break;
+
+						case 'CONFIRMACION':
+							
+							include 'views/club/confirmacion-regalo.php';
+							break;
+
+						case 'DETALLE':
+							
+							include 'views/club/detalle-regalo.php';
+							break;
+
+						case 'FINALIZAR':
+							
+							include 'views/club/finalizar.php';
+							break;
+
 						default:
 							# code...
 							break;
@@ -468,6 +488,7 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				}else{
 
 					$controller->homeClub();
+
 				}
 				break;
 
@@ -735,6 +756,10 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				$controller->salirUsuarioRemoto();
 				break;
 			
+			case COSMETICA_ECOLOGICA:
+				$controller->landingCosmeticaEcologica();
+				break;
+
 			default:
 				$controller->paginaContenido($var1);
 				break;

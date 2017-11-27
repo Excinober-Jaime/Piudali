@@ -64,12 +64,22 @@
   </a>
   <div class="container">
      <header class="row header-club">
-      <div class="col s3" style="margin-top: 10px;">
+      <div class="col s12 m3" style="margin-top: 10px;">
         <a href="<?=URL_CLUB?>">
             <img src="assets/club/img/club-piudali.png" class="responsive-img">
         </a> 
       </div>
-      <div class="col s7">
+      <?php 
+        if (isset($_GET['codigopuntos'])) {
+      ?>
+      <div class="col s12 m9" style="margin-top: 10px;">
+      <h5 class="center-align">Felicidades tu código <?=$_GET['codigopuntos']?> tiene 5.000 puntos. <a href="#">Haz clic aquí para continuar</a></h5>
+      </div>
+
+      <?php
+        }else{
+          ?>
+          <div class="col s12 m7">
         <div class="col s8">
           <div class="box-session-club center-align">
           <?php if (isset($_SESSION['idusuario'])) {  ?>
@@ -99,7 +109,7 @@
           </a>
         </div>
       </div>
-      <div class="col s2">
+      <div class="col s12 m2">
         <center>
         <?php if (isset($_SESSION['idusuario'])) {  ?>
         <div class="cantidad-puntos">
@@ -126,6 +136,10 @@
         <?php } ?>
         </center>
       </div>
+          <?php
+        }
+      ?>
+      
     </header>
   </div>
   <div class="franja"></div>

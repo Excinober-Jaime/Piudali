@@ -26,9 +26,8 @@
                 <h1 class="logo-name">PIUDALI</h1>
 
             </div>-->
+            <img src="assets/admin/img/logo-cohett.png" class="img-responsive">
             <h2>Piudalí Administrador</h2>
-            <!--<p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.</p>-->
-            <p>Login in</p>
             <form class="m-t" role="form" method="post">
                 <div class="form-group">
                     <input type="email" name="email" class="form-control" placeholder="Username" required="">
