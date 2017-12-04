@@ -55,131 +55,179 @@
     type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
     </script>
     <!--End of Zendesk Chat Script-->
+
+    <script type="text/javascript">
+      <?php if (isset($json_maps) && !empty($json_maps)) { ?>
+        var json_maps = '<?=$json_maps?>';
+      <?php } ?>
+    </script>
     </head>
 
-<body>
+<body <?php if(isset($json_maps) && !empty($json_maps)) { ?> onload="initMap(json_maps)" <?php } ?>>
   <!-- Return to Top -->
   <a href="javascript:" id="return-to-top">
     <i class="fa fa-arrow-up" aria-hidden="true"></i>
   </a>
   <div class="container">
-     <header class="row header-club">
-      <div class="col s12 m3" style="margin-top: 10px;">
-        <a href="<?=URL_CLUB?>">
-            <img src="assets/club/img/club-piudali.png" class="responsive-img">
-        </a> 
-      </div>
-      <?php 
-        if (isset($_GET['codigopuntos'])) {
-      ?>
-      <div class="col s12 m9" style="margin-top: 10px;">
-      <h5 class="center-align">Felicidades tu código <?=$_GET['codigopuntos']?> tiene 5.000 puntos. <a href="#">Haz clic aquí para continuar</a></h5>
-      </div>
+    <div class="row">
+    <header class="header-club">
+       <div class="col s12 m3" style="padding-top:15px;">
+          <a href="<?=URL_CLUB?>">
+              <img src="assets/club/img/club-piudali.png" class="responsive-img" style="margin-top: 8px;">
+          </a>        
+        </div>
+        <div class="col s12 m9">
+             
+          <?php 
 
-      <?php
-        }else{
+          if (isset($response_codigo) && !empty($response_codigo)) {
+            
           ?>
-          <div class="col s12 m7">
-        <div class="col s8">
-          <div class="box-session-club center-align">
-          <?php if (isset($_SESSION['idusuario'])) {  ?>
-            <div class="col s8">
-              <div class="saludoUsuario">¡Hola!, <?=$_SESSION['nombre'].' '.$_SESSION['apellido']?></div>
-              <small><a href="#">Visitar Mi Perfil</a></small>
+          <div class="col s12 m6">
+              <center>
+                <p style="margin:25px 10px; color: #41281b; font-size: 16px;" class="text-center">
+          <?php 
+
+            switch ($response_codigo['estado']) {
+        
+              case 'REDIMIDO':
+                echo 'Lo sentimos, el código ya fue redimido! <br><a href="'.URL_CLUB.'">Intenta de nuevo</a>';
+                break;
+
+              case 'VENCIDO':
+                echo 'Lo sentimos, el código se encuentra vencido! <br><a href="'.URL_CLUB.'">Intenta de nuevo</a>';
+                break;
+
+              case 'AUTENTICAR':
+                echo 'Tu código tiene '.number_format($response_codigo['codigo']['puntos']).' puntos. Por favor <a class="open-iniciar">inicia sesión</a> o completa el <a class="open-iniciar">registro</a> para que puedas redimirlos.';
+                break;
+              
+              case 'ASIGNADO':
+                echo 'Felicidades, tienes '.number_format($response_codigo['codigo']['puntos']).' nuevos puntos disponibles para redimir en premios. <br><a href="'.URL_CLUB.'">Ingresar más códigos</a>';
+                break;
+
+              case 'NO EXISTE':
+                echo 'Lo sentimos, el código no existe :( <br><a href="'.URL_CLUB.'">Intenta de nuevo</a>';
+                break;
+
+              default:
+                # code...
+                break;
+            }
+            ?>
+
+                </p>
+              </center>
             </div>
-            <div class="col s4">
-              <a href="<?=URL_USUARIO."/".URL_SALIR?>" class="enlanceClub">
-                <div class="btn-salir">SALIR</div>
-              </a>
-            </div>
-            <?php }else{ ?>
-             <div class="col s12">
-              <div class="saludoUsuario">¿Ya tienes una cuenta?</div>
-              <small><a data-toggle="modal" data-target="#club">Inicia sesión</a></small>
-            </div>                  
-            <?php  } ?>
-            <div class="clearfix"></div>                  
-          </div>
-        </div>          
-        <div class="col s4">
-          <a href="<?=URL_SITIO?>" class="enlanceClub">
-            <div class="box-session-verde center-align">
-              Regresar a sitio corporativo
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="col s12 m2">
-        <center>
-        <?php if (isset($_SESSION['idusuario'])) {  ?>
-        <div class="cantidad-puntos">
-          <div class="puntos-header center-align">
-            <div>Tienes</div>
-            <div style="font-size: 35px; font-weight: 700;">
-              <?php 
-
-              if (isset($puntos) && !empty($puntos)) {
-                
-                echo $puntos['disponibles'];
-
-              }else{
-
-                echo '0';
-
-              }
-
-              ?>
+            <?php 
+          }else{
+          ?>
+              <div class="col s12 m6">
+                <center>
+                <p style="margin:15px 0; color: #41281b; font-size: 13px;" class="text-center">Ingresa aquí las claves alfanuméricas de <b>10 dígitos</b> impresas en los empaques o escanea el QR <i class="fa fa-qrcode" aria-hidden="true"></i>.</p>
+                <form class="form-inline" method="post">
+                  <div class="col s6 m8">
+                    <div class="form-group">
+                      <input type="text" name="codigo" class="form-control" id="codigo" placeholder="Ejemplo:15s56g6saq" required>
+                    </div>
+                  </div>
+                  <div class="col s6 m4">
+                    <button type="submit" name="redimirCodigo" class="btn green darken-1">Ingresar</button>
+                  </div>
+                </form>
+                </center>
               </div>
-            <div>Puntos</div>
-          </div>
+          <?php } ?>
+
+               <div class="col s12 m5 offset-m1">
+                <div class="box-session-club text-center">
+                  
+                  
+                <?php 
+                  if (isset($_SESSION['idusuario']) && $_SESSION['tipo']=='CONSUMIDOR') {
+                ?>
+                      <div class="col s8">
+                        <div class="saludoUsuario">¡Hola!, <?=$_SESSION['nombre']?></div>
+                        <small>
+                            <a href="<?=URL_CLUB.'/'.URL_CLUB_PERFIL?>">Mi Perfil</a> |
+                            <a href="<?=URL_CLUB.'/'.URL_CLUB_BANCO_PUNTOS?>">Banco de Puntos</a>                        
+                        </small>
+                      </div>
+                      <div class="col s4">
+                        <a href="<?=URL_USUARIO.'/'.URL_SALIR.'?return='.URL_CLUB?>" class="enlanceClub">
+                          <center><div class="btn-salir">SALIR</div></center>
+                        </a>
+                      </div>
+                <?php
+                  }else{
+                ?>
+                    <div class="col s6">                      
+                        <a href="#" class="enlanceClub open-iniciar" id="">
+                            <center><div class="btn-salir">Inicia sesión</div></center>
+                        </a>
+                    </div>
+                    <div class="col s6">
+                        <a href="#" class="enlanceClub open-registro" id="">
+                          <center><div class="btn-salir">Registrate</div></center>
+                        </a>
+                    </div>
+                <?php
+                  }
+                ?>
+
+                  
+
+
+                  <div class="clearfix"></div>
+                </div>
+                 <?php 
+                  if (isset($_SESSION['idusuario']) && $_SESSION['tipo']=='CONSUMIDOR') {
+                  ?>
+                    <div class="box-session-verde text-center">
+                        Tienes <strong><?=number_format(intval($puntos['disponibles']))?></strong> puntos
+                    </div>
+                  <?php } ?>
+              </div>
         </div>
-        <?php } ?>
-        </center>
-      </div>
-          <?php
-        }
-      ?>
+      <!--<div class="col-xs-12 col-md-3 text-center social">
+        <a href="https://www.instagram.com/piudalicolombia/" title="Instagram" target="_new">
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.facebook.com/Piudali-Colombia-1698229213799755/" title="Facebook" target="_new">
+          <i class="fa fa-facebook-official" aria-hidden="true"></i>
+        </a>        
+        <a href="https://www.youtube.com/channel/UCUu4Moh5uFyEyt1Dx0qxuMg" target="_new">
+          <i class="fa fa-youtube-square" aria-hidden="true"></i>
+        </a>
+      </div>-->
       
-    </header>
-  </div>
+      
+      <div class="clearfix"></div>
+      </header>
+      </div>
+    </div>
   <div class="franja"></div>
   
     <nav class="white" style="border:0;box-shadow: none;">
       <center>
-        <a class="waves-effect orange btn-large" href="<?=URL_CLUB?>/#sobre-el-club"><i class="large material-icons right">group</i>SOBRE EL CLUB</a>
-        <a class="waves-effect orange btn-large" href="<?=URL_CLUB?>/#premios">
+        <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#sobre-el-club"><i class="large material-icons right">group</i>SOBRE EL CLUB</a>
+        <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#premios">
           <i class="large material-icons right">card_giftcard</i> PREMIOS
         </a>
-        <a class="waves-effect orange btn-large" href="<?=URL_CLUB?>/#enterate">
+        <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#enterate">
           <i class="large material-icons right">art_track</i> ENTÉRATE
         </a>
-        <a class="waves-effect orange btn-large" href="<?=URL_CLUB?>/#donde-comprar">
-          <i class="large material-icons right">location_on</i> ¿DÓNDE COMPRAR?
+        <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#donde-comprar">
+          <i class="large material-icons right">location_on</i> ¿DÓNDE REDIMIR?
         </a>
-        <a class="waves-effect orange btn-large" href="<?=URL_CLUB?>/#contacto">
+        <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#preguntas-frecuentes">
+          <i class="large material-icons right">question_answer</i> PREGUNTAS FRECUENTES
+        </a>
+        <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#contacto">
           <i class="large material-icons right">contact_phone</i> CONTÁCTO
         </a>
       </center>
     </nav>
-    <div class="parallax-container" id="sobre-el-club">
-      <div class="parallax"><img src="http://localhost/piudali/www/assets/img/banners/banner-linea-corporal-piudali(1).png">
-
-        <div class="container">
-          <div class="card" style="background-color: rgba(225,225,225,0.8);top: 100px;">
-            <div class="card-content black-text">
-              <span class="card-title">Sobre el Club</span>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>            
-          </div>
-        </div>
-
-      </div>
-    </div>
   <div class="">
 
 

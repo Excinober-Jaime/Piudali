@@ -11,12 +11,6 @@ body{
 	padding: 0px;
 }
 
-
-.header-club input[type=text]:not(.browser-default){
-height: 2.4rem !important;
-margin: 0 !important;
-}
-
 /*CLUB*/
 .enlanceClub:hover{
 	text-decoration:none !important;
@@ -34,21 +28,20 @@ margin: 0 !important;
 	color: #fff;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
-	width: 100%;
+	width: 80%;
 }
 
 .box-session-verde{
 	background-color: #006837;
-	padding: 5px;
+	padding: 10px;
 	color: #fff;
-	border-radius: 10px;
-	margin-top: 10px;
-	text-align: center;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
-/*.box-session-verde:hover{
+.box-session-verde:hover{
 	background-color: #dd7e00;
-}*/
+}
 
 
 .box-session-verde a{
@@ -93,7 +86,7 @@ margin: 0 !important;
 }
 
 .header-club{
-	/*padding-bottom:25px;*/
+	padding-bottom:25px;
 }
 
 

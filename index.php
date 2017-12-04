@@ -444,6 +444,7 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				break;
 
 			case URL_CLUB:
+
 				if (isset($var2) && !empty($var2)) {
 					
 					switch ($var2) {
@@ -458,6 +459,11 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 								
 								header('Location: '.URL_CLUB);
 							}
+							break;
+
+						case URL_CLUB_PERFIL:
+							
+							$controller->perfilClub();
 							break;
 
 						case 'PEDIDO':
