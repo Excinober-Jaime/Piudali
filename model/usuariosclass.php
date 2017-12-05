@@ -581,7 +581,7 @@ class Usuarios extends Database
 
 	public function listarPuntosDisponibles($idusuario){
 		
-		$query = $this->consulta("SELECT (`puntos`-`redimido`) AS 'disponibles', idpuntos, puntos, redimido
+		$query = $this->consulta("SELECT (`puntos`-`redimido`) AS 'disponibles', idpuntos, puntos, redimido, `fecha_adquirido`, `concepto`, `estado`
 					FROM `puntos`
 					WHERE `usuarios_idusuario` = '$idusuario' AND `estado`='1' AND NOW()<= DATE_ADD(`fecha_adquirido`, INTERVAL 365 DAY)
 					ORDER BY fecha_adquirido ASC");

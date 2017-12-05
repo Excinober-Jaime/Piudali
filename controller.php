@@ -4374,6 +4374,11 @@ class Controller
 
 	public function detalleProductoClub($urlpdt=''){
 
+		if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
+
+			$response_codigo = $this->redimirCodigoPuntos($_POST['codigo']);	
+		}
+		
 		$paginas_menu = $this->paginasMenu();
 		$producto = $this->productos->detalleProductos(0,$urlpdt);
 		$producto = $producto[0];
@@ -4385,11 +4390,16 @@ class Controller
 
 	public function perfilClub(){
 
-
 		if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR') {
+
+			if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
+
+				$response_codigo = $this->redimirCodigoPuntos($_POST['codigo']);	
+			}
 			
 			$usuario = $this->usuarios->detalleUsuario($_SESSION['idusuario']);
 			$ciudades = $this->usuarios->listarCiudades();
+			$puntos = $this->usuarios->puntosDisponibles($_SESSION['idusuario']);
 
 			include 'views/club/perfil.php';	
 
@@ -4399,6 +4409,27 @@ class Controller
 		}
 
 		
+	}
+
+	public function bancoPuntos(){
+
+		if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR') {
+
+			if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
+
+				$response_codigo = $this->redimirCodigoPuntos($_POST['codigo']);	
+			}
+
+			$puntos_banco = $this->usuarios->listarPuntosDisponibles($_SESSION['idusuario']);
+			$puntos = $this->usuarios->puntosDisponibles($_SESSION['idusuario']);
+
+			include 'views/club/banco_puntos.php';
+
+
+		}else{
+
+			header('Location: '.URL_CLUB);
+		}
 	}
 
 

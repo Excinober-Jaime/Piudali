@@ -466,6 +466,11 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							$controller->perfilClub();
 							break;
 
+						case URL_CLUB_BANCO_PUNTOS:
+							
+							$controller->bancoPuntos();
+							break;
+
 						case 'PEDIDO':
 							
 							include 'views/club/pedido-regalo.php';

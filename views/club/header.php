@@ -85,38 +85,41 @@
           ?>
           <div class="col s12 m6">
               <center>
-                <p style="margin:25px 10px; color: #41281b; font-size: 16px;" class="text-center">
+    
+                <div class="card-panel red lighten-5">
+
+                  <span class="black-text">
           <?php 
 
             switch ($response_codigo['estado']) {
         
               case 'REDIMIDO':
-                echo 'Lo sentimos, el código ya fue redimido! <br><a href="'.URL_CLUB.'">Intenta de nuevo</a>';
+                echo 'Lo sentimos, el código ya fue redimido! <br><a class="blue-text text-darken-4" href="'.URL_CLUB.'">Intenta de nuevo</a>';
                 break;
 
               case 'VENCIDO':
-                echo 'Lo sentimos, el código se encuentra vencido! <br><a href="'.URL_CLUB.'">Intenta de nuevo</a>';
+                echo 'Lo sentimos, el código se encuentra vencido! <br><a class="blue-text text-darken-4" href="'.URL_CLUB.'">Intenta de nuevo</a>';
                 break;
 
               case 'AUTENTICAR':
-                echo 'Tu código tiene '.number_format($response_codigo['codigo']['puntos']).' puntos. Por favor <a class="open-iniciar">inicia sesión</a> o completa el <a class="open-iniciar">registro</a> para que puedas redimirlos.';
+                echo 'Tu código tiene '.number_format($response_codigo['codigo']['puntos']).' puntos. Por favor <a class="blue-text text-darken-4 open-iniciar">inicia sesión</a> o completa el <a class="blue-text text-darken-4 open-iniciar">registro</a> para que puedas registrarlos.';
                 break;
               
               case 'ASIGNADO':
-                echo 'Felicidades, tienes '.number_format($response_codigo['codigo']['puntos']).' nuevos puntos disponibles para redimir en premios. <br><a href="'.URL_CLUB.'">Ingresar más códigos</a>';
+                echo 'Felicidades, tienes '.number_format($response_codigo['codigo']['puntos']).' nuevos puntos disponibles para redimir en premios. <br><a class="blue-text text-darken-4" href="'.URL_CLUB.'">Ingresar más códigos</a>';
                 break;
 
               case 'NO EXISTE':
-                echo 'Lo sentimos, el código no existe :( <br><a href="'.URL_CLUB.'">Intenta de nuevo</a>';
+                echo 'Lo sentimos, el código no existe :( <br><a class="blue-text text-darken-4" href="'.URL_CLUB.'">Intenta de nuevo</a>';
                 break;
 
               default:
                 # code...
                 break;
             }
-            ?>
-
-                </p>
+            ?>  
+                </span>
+                </div>
               </center>
             </div>
             <?php 
@@ -126,13 +129,13 @@
                 <center>
                 <p style="margin:15px 0; color: #41281b; font-size: 13px;" class="text-center">Ingresa aquí las claves alfanuméricas de <b>10 dígitos</b> impresas en los empaques o escanea el QR <i class="fa fa-qrcode" aria-hidden="true"></i>.</p>
                 <form class="form-inline" method="post">
-                  <div class="col s6 m8">
+                  <div class="col s5 m5 l6">
                     <div class="form-group">
                       <input type="text" name="codigo" class="form-control" id="codigo" placeholder="Ejemplo:15s56g6saq" required>
                     </div>
                   </div>
-                  <div class="col s6 m4">
-                    <button type="submit" name="redimirCodigo" class="btn green darken-1">Ingresar</button>
+                  <div class="col s7 m7 l6">
+                    <button type="submit" name="redimirCodigo" class="btn green darken-4">Registrar QR</button>
                   </div>
                 </form>
                 </center>
@@ -208,9 +211,9 @@
     </div>
   <div class="franja"></div>
   
-    <nav class="white" style="border:0;box-shadow: none;">
-      <center>
-        <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#sobre-el-club"><i class="large material-icons right">group</i>SOBRE EL CLUB</a>
+    <!--<nav class="white" style="border:0;box-shadow: none;">
+      <center>-->
+        <!--<a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#sobre-el-club"><i class="large material-icons right">group</i>SOBRE EL CLUB</a>
         <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#premios">
           <i class="large material-icons right">card_giftcard</i> PREMIOS
         </a>
@@ -225,9 +228,56 @@
         </a>
         <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#contacto">
           <i class="large material-icons right">contact_phone</i> CONTÁCTO
+        </a>-->
+        <!--<a class="waves-effect btn-flat" href="<?=URL_CLUB?>/#sobre-el-club"><i class="large material-icons right">group</i>SOBRE EL CLUB</a>
+        <a class="waves-effect btn-flat" href="<?=URL_CLUB?>/#premios">
+          <i class="large material-icons right">card_giftcard</i> PREMIOS
         </a>
-      </center>
-    </nav>
+        <a class="waves-effect btn-flat" href="<?=URL_CLUB?>/#enterate">
+          <i class="large material-icons right">art_track</i> ENTÉRATE
+        </a>
+        <a class="waves-effect btn-flat" href="<?=URL_CLUB?>/#donde-comprar">
+          <i class="large material-icons right">location_on</i> ¿DÓNDE REDIMIR?
+        </a>
+        <a class="waves-effect btn-flat" href="<?=URL_CLUB?>/#preguntas-frecuentes">
+          <i class="large material-icons right">question_answer</i> PREGUNTAS FRECUENTES
+        </a>
+        <a class="waves-effect btn-flat" href="<?=URL_CLUB?>/#contacto">
+          <i class="large material-icons right">contact_phone</i> CONTÁCTO
+        </a>-->
+
+      <!--</center>-->
+      <nav>
+        <div class="nav-wrapper green darken-3">
+          <div class="container">            
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+              <li><a href="<?=URL_CLUB?>/#premios">PREMIOS</a></li>
+              <li><a href="<?=URL_CLUB?>/#enterate">ENTÉRATE</a></li>
+              <li><a href="<?=URL_CLUB?>/#donde-comprar">¿DÓNDE REDIMIR?</a></li>
+              <li><a href="<?=URL_CLUB?>/#preguntas-frecuentes">PREGUNTAS FRECUENTES</a></li>
+              <li><a href="<?=URL_CLUB?>/#contacto">CONTÁCTO</a></li>
+            </ul>
+            <ul id="slide-out" class="side-nav">
+              <!--<li>
+              <div class="user-view">                
+                <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+                <a href="#!name"><span class="white-text name">John Doe</span></a>
+                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+              </div></li>-->
+              <li><a class="open-iniciar"><i class="material-icons">input</i>INICIAR SESIÓN</a></li>
+              <li><a class="open-registro"><i class="material-icons">person_add</i>REGISTRARSE</a></li>
+              <li><div class="divider"></div></li>
+              <li><a href="<?=URL_CLUB?>/#premios">PREMIOS</a></li>
+              <li><a href="<?=URL_CLUB?>/#enterate">ENTÉRATE</a></li>
+              <li><a href="<?=URL_CLUB?>/#donde-comprar">¿DÓNDE REDIMIR?</a></li>
+              <li><a href="<?=URL_CLUB?>/#preguntas-frecuentes">PREGUNTAS FRECUENTES</a></li>
+              <li><a href="<?=URL_CLUB?>/#contacto">CONTÁCTO</a></li>
+            </ul>
+             <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+          </div>
+        </div>
+      </nav>
+    <!--</nav>-->
   <div class="">
 
 

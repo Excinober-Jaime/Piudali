@@ -1,15 +1,13 @@
     <div class="franja"></div>
-       <footer class="page-footer green darken-1">
+       <footer class="page-footer green darken-3">
           <div class="container">
             <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Club Piudalí</h5>
-                <a class="waves-effect green darken-3 waves-light btn-large open-iniciar"><i class="material-icons left">input</i>Inicia Sesión</a>
-                <a class="waves-effect green darken-3 waves-light btn-large open-registro"><i class="material-icons right">person_add</i>Registrate</a>
-                <p class="grey-text text-lighten-4"></p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Enlaces</h5>
+              <div class="col offset-l2 offset-m2 l4 m5 s12">
+                <img src="http://piudali.com.co/assets/img/link-grupo-marketing.png" class="responsive-img" style="max-width: 200px;"><br>
+                <img src="http://piudali.com.co/assets/img/piudali-footer.png" class="responsive-img" style="max-width: 200px;">
+              </div>              
+              <div class="col l4 m5 s12">
+                <h5 class="white-text">Enlaces de Interés</h5>
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="#!">Términos y Condiciones</a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">Preguntas Frecuentes</a></li>
@@ -126,7 +124,10 @@
             let modal_iniciar=new Materialize.Modal($("#modal-iniciar"));
             let modal_registro=new Materialize.Modal($("#modal-registro"));
             
-            $('.parallax').parallax();
+            //$('.parallax').parallax();
+             $('.carousel.carousel-slider').carousel({fullWidth: true});
+
+             $(".button-collapse").sideNav();
 
             $('.open-iniciar').click(function(event){
 
