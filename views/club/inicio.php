@@ -48,8 +48,8 @@
 <!--<div class="divider"></div>
 <div class="row" id="donaciones">
 	<h2 class="center-align">Donaciones</h2>
-</div>-->
-<div class="divider"></div>
+</div>
+<div class="divider"></div>-->
 <div class="row" id="enterate">
 	<h2 class="center-align">Entérate</h2>
 	<div class="col s12 m4">
@@ -134,7 +134,7 @@
 		 </div>
 	</div>
 </div>
-<div class="divider"></div>
+<!--<div class="divider"></div>-->
 <div class="row" id="donde-comprar">
 	<h2 class="center-align">¿Dónde Redimir Tus Puntos?</h2>
 	<div class="row">
@@ -178,7 +178,7 @@
 	<h2 class="center-align">Preguntas Frecuentes</h2>
 	<div class="container">
 		<p class="flow-text center-align grey-text text-darken-2">Pensamos en lo importante y valioso que es para nosotros tu interés en hacer parte de nuestro selecto grupo de clientes, conoce todo lo que necesitas para redimir tus puntos por compras en nuestra plataforma CLUB PIUDALI.<br><br>Selecciona una categoría y encuentra la pregunta de tu interés.</p>
-
+		<div class="box-blanca"><!-- CAJA BLANCA  - PREGUNTAS FRECUENTES-->
 		<div class="row">
 		    <div class="col s12">
 		      <ul class="tabs">
@@ -336,6 +336,7 @@
 		    	</ul>
 		    </div>
 		</div>
+	</div><!-- CAJA BLANCA  - FIN PREGUNTAS FRECUENTES-->
 	</div>
 </div>
 <div class="divider"></div>

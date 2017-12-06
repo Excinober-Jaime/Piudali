@@ -1,0 +1,313 @@
+body{
+	border-top: 5px solid #006837;
+}
+
+
+.franja{
+	background-image: url('../../img/franja.png');
+	background-repeat: repeat-x;
+	height: 30px;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.header-club input[type=text]:not(.browser-default){
+height: 2.4rem !important;
+margin: 0 !important;
+}
+
+/*CLUB*/
+.enlanceClub:hover{
+	text-decoration:none !important;
+}
+
+.saludoUsuario{
+	font-weight: bold;
+	font-size: 14px;
+}
+
+
+.box-session-club{
+	background-color: #f19300;
+	padding: 10px;
+	color: #fff;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	width: 100%;
+}
+
+.box-session-verde{
+	background-color: #006837;
+	padding: 5px;
+	color: #fff;
+	border-radius: 10px;
+	margin-top: 10px;
+	text-align: center;
+}
+
+/*.box-session-verde:hover{
+	background-color: #dd7e00;
+}*/
+
+
+.box-session-verde a{
+	color: #fff;
+}
+
+@media (max-width: 992px) {
+  .box-session-club,
+  .box-session-verde {
+	  border-radius: 10px;
+	  margin-top: 15px;
+	  width: 100%;
+
+}
+
+}
+.box-session-club a{
+	color: #fff;
+}
+
+.btn-salir{
+	background-color: #dd7e00;
+	padding: 5px;
+	border-radius: 20px;
+}
+
+.btn-salir:hover{
+	background-color: #b76400;
+}
+.cantidad-puntos{
+	display: table;
+	position: relative;
+}
+.puntos-header{
+	background-color: #6d1e3f;
+	color: #fff;
+	border-radius: 100px;
+	padding: 10px;
+	margin:20px 10% 10% 0;
+	width: 100%;
+	height: 110px;
+}
+
+.texto-destacado{
+	font-size: 60px;	
+	color: #742126;
+	margin: 40px 0px; 
+} 
+
+.social{
+	padding-top: 25px;
+}
+
+.social .fa-facebook-official{
+	color: #3A5A98;
+	font-size: 3rem;
+}
+
+.social .fa-instagram{
+	color: #3C4F56;
+	font-size: 3rem;
+}
+
+.social .fa-youtube-square{
+	color: #CA2128;
+	font-size: 3rem;
+}
+
+.whatsapp{
+	color: #189D0E;
+	font-size: 15px;	
+}
+
+.navbar-default{
+	
+	/*border-top: 5px;*/
+/*	border-top: 40px solid transparent;	
+	border-bottom: 0px solid transparent;
+	border-left: 0px solid transparent;
+	border-right: 0px solid transparent;
+
+	border-image: url('../img/franja.png') 30 round;*/
+
+}
+
+.franja{
+	background-image: url('../../img/franja.png');
+	background-repeat: repeat-x;
+	height: 30px;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.newslatter{
+	background-color: #6d1e3f !important;
+	padding: 7px;
+	color:#fff;
+}
+
+.newslatter h3{
+	margin:0;
+}
+
+footer{
+	background-color: #006837;
+	border-top: 5px solid #742126;
+	color: #fff;
+	padding: 20px 0px;
+}
+
+.footer a{
+	color: #fff;
+}
+
+.footer h3{
+	margin: 0 0 7px 0;
+    font-size: 20px;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 5px;
+}
+
+.footer ul{
+	padding-left: 20px;
+}
+
+
+.footer img{
+	margin-bottom: 8px;
+}
+
+.footer hr{
+	opacity: 0.2 !important;
+}
+
+.texto-vinotinto{
+	color: #742126;
+}
+
+.fondo-vinotinto{
+	background-color: #742126;
+	color: #fff;
+}
+
+.fondo-verde{
+	background-color: #006837;
+	color: #fff;
+}
+
+.box-session{
+	background-color: #006837;
+	padding: 10px;
+	color: #fff;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.box-session a{
+	color: #fff;
+}
+
+/*AREA DE DISTRIBUIDORES*/
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+
+.contenPanel .titulo{
+	padding:0 !important;
+	}
+
+
+.contenPanel h1{	
+	color:#000;
+	font-family: 'Lato', sans-serif;
+	font-weight:300;
+	border-bottom:1px solid #000;
+	text-transform: uppercase;
+	margin-top:0;
+	}
+	
+	.contenPanel h2{
+		font-family: 'Lato', sans-serif;
+		background-color:/*#660000*/#218a22;
+		color:#fff;
+		font-size:16px;
+		margin:0;
+		padding:5px;
+	}
+	
+	.contenPanel h3{
+		font-family: 'Lato', sans-serif;
+		/*color:#660000;*/
+		color: #000;
+	}
+
+.contenPanel i, .contenPanel label{
+		/*color:#660000;*/
+		color: #000;
+	}
+
+.contenPanel .btn-default{color:#fff;}
+	
+	.contenPanel .panel-default > .panel-heading {
+    
+    background-color: #fff;
+    border-color: #000;
+}
+
+
+.contenPanel .panel-title{
+	font-weight:400;
+	}
+.contenPanel .list-group-item{
+	background-color:/*#660000*/#218a22;
+	color:#fff;
+	}
+
+
+
+.contenPanel .list-group-item a{
+	color:#fff;
+	}
+
+.contenPanel .panel-title a{color:#000 !important;}
+
+
+	
+.informacion{
+	background-color:#F8F8F8;
+	border-radius:10px;
+	margin:15px 0;
+	padding:25px 15px;
+	}
+	
+	.informacion table{
+		border: 1px solid #ddd;
+		background-color:#fff;
+		font-family: 'Lato', sans-serif;
+		font-weight:400 !important;
+		}
+	
+	.informacion table th{
+		background-color:/*#660000*/#218a22;
+		color:#fff;
+		}
+	
+	
+.box-destacar{
+	background-color:#fff;
+	padding:15px 5px;
+	border: 1px solid #ddd;
+	}
+
+.form-search{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.form-search .input-group-addon{
+	background-color: #006837;
+	color: #fff;
+	border-color: #006837;
+}

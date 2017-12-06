@@ -3,12 +3,12 @@
 <div class="container">
 	<div class="row" id="premios">
 		<div class="row">
-			<div class="col s12 m6 l5 offset-l1 center-align">
+			<div class="col s12 m6 l5 center-align">
 				<center>
 					<img src="<?=$producto['img_principal']?>" class="responsive-img materialboxed">
 				</center>
 			</div>
-			<div class="col s12 m6 l5">
+			<div class="col s12 m6 l7">
 				<h5 class="center-align orange-text text-darken-2"><?=$producto['nombre']?></h5>
 				<div class="divider" style="margin-bottom: 10px;"></div>
 				<div class="row center-align">
@@ -18,7 +18,7 @@
 					<span>PUNTOS PIUDALÍ</span>
 				</div>
 				<div class="row">
-					<div class="input-field col s6">
+					<div class="input-field col s6 m3 offset-m2">
 						<?php
 					    if ($producto["cantidad"]>0) {			    
 					    ?>

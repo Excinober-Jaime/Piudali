@@ -254,6 +254,7 @@
               <li><a href="<?=URL_CLUB?>/#premios">PREMIOS</a></li>
               <li><a href="<?=URL_CLUB?>/#enterate">ENTÉRATE</a></li>
               <li><a href="<?=URL_CLUB?>/#donde-comprar">¿DÓNDE REDIMIR?</a></li>
+              <li><a href="<?=URL_PRODUCTOS?>">PRODUCTOS</a></li>
               <li><a href="<?=URL_CLUB?>/#preguntas-frecuentes">PREGUNTAS FRECUENTES</a></li>
               <li><a href="<?=URL_CLUB?>/#contacto">CONTÁCTO</a></li>
             </ul>
@@ -270,6 +271,7 @@
               <li><a href="<?=URL_CLUB?>/#premios">PREMIOS</a></li>
               <li><a href="<?=URL_CLUB?>/#enterate">ENTÉRATE</a></li>
               <li><a href="<?=URL_CLUB?>/#donde-comprar">¿DÓNDE REDIMIR?</a></li>
+              <li><a href="<?=URL_PRODUCTOS?>">PRODUCTOS</a></li>
               <li><a href="<?=URL_CLUB?>/#preguntas-frecuentes">PREGUNTAS FRECUENTES</a></li>
               <li><a href="<?=URL_CLUB?>/#contacto">CONTÁCTO</a></li>
             </ul>
