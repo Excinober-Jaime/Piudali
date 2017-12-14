@@ -102,27 +102,6 @@
 			<?=$sobre_nosotros[0]["contenido"]?>
 		</div>
 	</div>
-	
-	<!--<div class="row">
-		<div class="col-xs-12">
-			<h2 class="text-center">ÚLTIMAS NOTICIAS</h2>
-		</div>
-		<div class="col-xs-6 col-md-4">
-			<img src="http://piudali.com.co/wp-content/uploads/2016/03/AMAZONAS-10-150.jpg" class="img-responsive">
-			<h3>Detrás de la marca: Dos Mujeres y Un Sueño</h3>
-			<p>Detrás de la marca: Dos Mujeres y Un Sueño Durante muchos años las vidas de Martha Neira y Myriam Moya transcurrieron en paralelo. Químicas farmacéuticas egresadas de la misma universidad, su curiosid...</p>
-		</div>
-		<div class="col-xs-6 col-md-4">
-			<img src="http://piudali.com.co/wp-content/uploads/2016/03/2012-11-02-08.34.21.jpg" class="img-responsive">
-			<h3>Descubriendo Nuestro Amazonas</h3>
-			<p>Descubriendo nuestro Amazonas Todo descubrimiento puede ser visto desde por lo menos tres puntos de vista: desde una perspectiva histórica, desde una perspectiva cultural y desde una perspectiva perso...</p>
-		</div>
-		<div class="col-xs-6 col-md-4">
-			<img src="http://piudali.com.co/wp-content/uploads/2016/03/AMAZONAS-10-150.jpg" class="img-responsive">
-			<h3>Detrás de la marca: Dos Mujeres y Un Sueño</h3>
-			<p>Detrás de la marca: Dos Mujeres y Un Sueño Durante muchos años las vidas de Martha Neira y Myriam Moya transcurrieron en paralelo. Químicas farmacéuticas egresadas de la misma universidad, su curiosid...</p>
-		</div>
-	</div>-->
 
 <br>
 <br>

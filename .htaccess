@@ -1,8 +1,16 @@
 RewriteEngine On
 
+RewriteCond %{HTTP_HOST} ^www.piudali.com.co [NC]
+RewriteRule ^(.*)$ https://piudali.com.co/$1 [L,R=301]
+
+RewriteCond %{HTTPS} off
+#RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
-
-#RewriteRule ^(.+)/(.+)/$ index.php?var1=$1&var2=$2
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
-RewriteRule ^blog/(.*)$ blog/?p=var1
+#RewriteRule ^blog/(.*)$ blog/?p=var1
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]

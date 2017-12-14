@@ -184,7 +184,7 @@
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_NEGOCIO?>">Capacitación</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_TICKETS?>">PQRS</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_DOCUMENTOS?>">Documentos</a></li>
-					<li><a href="http://piudali.com.co/crm/">Gestión de clientes</a></li>
+					<li><a href="https://piudali.com.co/crm/">Gestión de clientes</a></li>
                 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Políticas <span class="caret"></span></a>
@@ -304,7 +304,7 @@
 				<p class="text-center" style="font-size: 11px;line-height: 15px;">Propiedad intelectual y tecnológica:</p>
 				</div>
 				<div class="col-xs-7">
-					<img src="http://linkgrupomarketing.com/images/logo.png" class="img-responsive" style="max-width: 110px;">
+					<img src="<?=URL_SITIO?>assets/img/logo-link-grupo-marketing.png" class="img-responsive" style="max-width: 110px;">
 				</div>
 			</div>
 		</div>
@@ -325,17 +325,10 @@
 						<p class="text-center" style="font-size: 11px;line-height: 15px;">Propiedad intelectual y tecnológica:</p>
 					</div>
 					<div class="col-xs-7">
-						<img src="http://linkgrupomarketing.com/images/logo.png" class="img-responsive" style="max-width: 110px;">
+						<img src="<?=URL_SITIO?>assets/img/logo-link-grupo-marketing.png" class="img-responsive" style="max-width: 110px;">
 					</div>
 				</div>
 			</div>
-			<!--<div class="alert alert-success text-center" role="alert">
-				<span class="pull-left"><span style="text-transform: uppercase;"><?=$_SESSION["nombre"]?></span>, TU PERFIL ES DE <?=$_SESSION['tipo']?></span>
-				<img src="http://linkgrupomarketing.com/images/logo.png" class="img-responsive pull-right" style="max-width: 100px;">
-				</div>	-->
-			<!--<div class="col-xs-6" class="alert-success">				
-				<span class="pull-left"><span style="text-transform: uppercase;"><?=$_SESSION["nombre"]?></span>, TU PERFIL ES DE <?=$_SESSION['tipo']?></span>
-			</div>-->
 		<?php
 		}
 		?>
