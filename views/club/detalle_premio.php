@@ -42,7 +42,7 @@
 					</div>
 					<div class="col s6 center-align">
 						<br>
-						<button class="btn orange waves-effect waves-light">LO QUIERO!</button>
+						<button idpdt="<?=$producto["idproducto"]?>" class="btn orange waves-effect waves-light agregarPdt">LO QUIERO!</button>
 					</div>
 					<div class="col s12">
 						<div class="row">
