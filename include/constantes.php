@@ -51,6 +51,7 @@ define("URL_CLUB_INGRESAR", "Ingresar");
 define("URL_CLUB_PRODUCTO", "Producto");
 define("URL_CLUB_PERFIL", "Perfil");
 define("URL_CLUB_BANCO_PUNTOS", "BancoPuntos");
+define("URL_CLUB_CARRITO", "Carrito");
 
 
 define("URL_REGISTRO", "Registro");

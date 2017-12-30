@@ -33,15 +33,15 @@
             <div class="row">
               <h4 class="center-align">Inicia sesión</h4>
               <div class="input-field offset-m3 col s12 m6">
-                <input id="email" name="email" type="email" class="validate" value="servicioalcliente@piudali.com.co">
+                <input id="email-login" name="email" type="email" class="validate" value="servicioalcliente@piudali.com.co">
                 <label for="email">Email</label>
               </div>
               <div class="input-field offset-m3 col s12 m6">
-                <input id="password" name="password" type="password" class="validate" value="excinober">
+                <input id="password-login" name="password" type="password" class="validate" value="excinober">
                 <label for="password">Contraseña</label>
               </div>
               <div class="col s12 center-align">
-                <button type="submit" name="ingresarUsuario" class="waves-effect waves-light green darken-1 btn-large">Ingresar</button>
+                <button type="submit" name="ingresarUsuario" id="iniciar-sesion" class="waves-effect waves-light green darken-1 btn-large">Ingresar</button>
               </div>
             </div>
           </form>

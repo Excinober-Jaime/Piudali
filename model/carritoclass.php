@@ -87,13 +87,11 @@ class Carrito extends Productos
 
 				$producto = $this->infoProducto($idpdt);
 				$precio = $this->ajustarPrecio($producto["precio"],$producto["precio_oferta"]);
-				//$iva = $this->calcularIva($precio,$producto["iva"]);
 				$subtotal = $this->calcularSubtotal($precio,$producto["iva"],$_SESSION["cantidadpdts"][$key]);			
 				
 
 				$this->itemscarrito['id'][] = $idpdt;
 				$this->itemscarrito['precio'][] = $precio;
-				//$this->itemscarrito['valor_iva'][] = $iva;
 				$this->itemscarrito['cantidad'][] = $_SESSION["cantidadpdts"][$key];
 				$this->itemscarrito['cantidadstock'][] = $producto["cantidad"];
 				$this->itemscarrito['nombre'][] = $producto["nombre"];
@@ -117,9 +115,10 @@ class Carrito extends Productos
 		if (isset($_SESSION["idpdts"]) && count($_SESSION["idpdts"]>0)) {
 
 			foreach ($_SESSION["idpdts"] as $key => $idpdt) {
+				
 				$producto = $this->infoProducto($idpdt);
 
-				if ($producto['tipo']!='PREMIO') {									
+				if ($producto['tipo']!='PREMIO') {
 
 					$precio = $this->ajustarPrecio($producto["precio"],$producto["precio_oferta"]);
 					//$iva = $this->calcularIva($precio,$producto["iva"]);
@@ -163,13 +162,18 @@ class Carrito extends Productos
 			$subtotalAntesIva = $this->getSubtotalAntesIva();
 
 			if ($_SESSION["aplicacion_cupon"]) {
+			
 				//Descuento en pesos, se convierte a porcentual
 				$porc_descuento_cupon = ($_SESSION["valor_cupon"] / $subtotalAntesIva) * 100;
+			
 			}else{
+				
 				//Descuento en porcentaje
 				$porc_descuento_cupon = $_SESSION["valor_cupon"];
-			}			
+			}
+
 		}else{
+
 			$porc_descuento_cupon = 0;
 		}
 
@@ -188,6 +192,7 @@ class Carrito extends Productos
 	}
 
 	public function getSubtotalNetoAntesIva(){
+
 		$subtotalAntesIva = $this->getSubtotalAntesIva();
 		$descuentoCupon	= $this->getDescuentoCupon();
 		$subtotalNetoAntesIva = $subtotalAntesIva - $descuentoCupon;
@@ -196,53 +201,60 @@ class Carrito extends Productos
 	}
 
 
-	public function porcDescuentoEscala(){
+	public function porcDescuentoEscala($tipo_usuario = ''){
 
-		$canal_distribucion_distribuidor = Usuarios::usuarioCanalDistribucion($_SESSION["idusuario"]);
+		if ($tipo_usuario == 'CONSUMIDOR') {
+			
+			$porcentaje['porcentaje'] = 0;
 
-		//$descuentos_especiales = Descuentosespeciales::consultarDescuento($_SESSION["idusuario"]);
-
-		/*if (count($descuentos_especiales)) {
-
-			$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
-
-			$porcentaje = Descuentosespeciales::consultarPorcentaje($descuentos_especiales["iddescuento"], $subtotalNetoAntesIva);
-				
-		}*/
-		if (count($canal_distribucion_distribuidor)>0) {
-
-			$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
-
-			$porcentaje = CanalesDistribucion::consultarPorcentaje($canal_distribucion_distribuidor["canales_distribucion_idcanal"], $subtotalNetoAntesIva);
-
-			if (empty($porcentaje)) {
-				
-				$porcentaje['porcentaje'] = 0;
-			}
-				
 		}else{
 
-			$campanas2 = new Campanas();
+			$canal_distribucion_distribuidor = Usuarios::usuarioCanalDistribucion($_SESSION["idusuario"]);
 
-			$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
+			//$descuentos_especiales = Descuentosespeciales::consultarDescuento($_SESSION["idusuario"]);
 
-			$campana_actual = $campanas2->getCamapanaActual();
-			$id_campana_actual = $campana_actual["idcampana"];
+			/*if (count($descuentos_especiales)) {
 
-			$porcentaje = $campanas2->getPorcEscalaDistribuidor($subtotalNetoAntesIva, $id_campana_actual);
-		}
+				$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
 
-		if (empty($porcentaje["porcentaje"])) {
-			$porcentaje["porcentaje"] = 0;
+				$porcentaje = Descuentosespeciales::consultarPorcentaje($descuentos_especiales["iddescuento"], $subtotalNetoAntesIva);
+					
+			}*/
+			if (count($canal_distribucion_distribuidor)>0) {
+
+				$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
+
+				$porcentaje = CanalesDistribucion::consultarPorcentaje($canal_distribucion_distribuidor["canales_distribucion_idcanal"], $subtotalNetoAntesIva);
+
+				if (empty($porcentaje)) {
+					
+					$porcentaje['porcentaje'] = 0;
+				}
+					
+			}else{
+
+				$campanas2 = new Campanas();
+
+				$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
+
+				$campana_actual = $campanas2->getCamapanaActual();
+				$id_campana_actual = $campana_actual["idcampana"];
+
+				$porcentaje = $campanas2->getPorcEscalaDistribuidor($subtotalNetoAntesIva, $id_campana_actual);
+			}
+
+			if (empty($porcentaje["porcentaje"])) {
+				$porcentaje["porcentaje"] = 0;
+			}
 		}
 
 		return $porcentaje["porcentaje"];
 
 	}
 
-	public function getDescuentoEscala(){
+	public function getDescuentoEscala($tipo_usuario = ''){
 
-		$porc_escala = $this->porcDescuentoEscala();
+		$porc_escala = $this->porcDescuentoEscala($tipo_usuario);
 		$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
 
 		$descuento_escala = $porc_escala/100;
@@ -261,6 +273,7 @@ class Carrito extends Productos
 	}
 
 	public function getBaseRTF(){
+
 		$subtotalAntesIvaPremios = $this->getSubtotalAntesIvaPremios();
 		$totalNetoAntesIva = $this->getTotalNetoAntesIva();
 		$baseRTF = $totalNetoAntesIva + $subtotalAntesIvaPremios;
@@ -284,10 +297,19 @@ class Carrito extends Productos
 		return $porc_rft;
 	}
 
-	public function getRTF(){
-		$baseRTF = $this->getBaseRTF();
-		$porcRTF = $this->porcRTF();
-		$rtf = $baseRTF * $porcRTF;
+	public function getRTF($tipo_usuario = ''){
+
+		if ($tipo_usuario == 'CONSUMIDOR') {
+			
+			$rtf = 0;
+		
+		}else{
+
+			$baseRTF = $this->getBaseRTF();
+			$porcRTF = $this->porcRTF();
+			$rtf = $baseRTF * $porcRTF;
+		}
+
 		return $rtf;
 	}
 
@@ -332,7 +354,7 @@ class Carrito extends Productos
 	public function getValorPunto(){
 		//En pesos
 		$valor_punto = 1;
-		return $valor_punto; 
+		return $valor_punto;
 	}
 
 	public function getPagoPuntos(){

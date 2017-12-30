@@ -4283,9 +4283,7 @@ class Controller
 				echo "<script> alert('Los datos de acceso son incorrectos. Por favor intenta de nuevo'); </script>";
 				}	
 			
-			}
-
-			
+			}			
 		}
 
 		if (isset($_POST['registrarUsuario'])) {
@@ -4407,9 +4405,91 @@ class Controller
 
 			header('Location: '.URL_CLUB);
 		}
-
 		
 	}
+
+
+	public function carritoClub(){
+
+		if (isset($_POST["redimirCupon"])) {
+
+			if (!empty($_POST["cupon_descuento"])) {
+				$cupon = $_POST["cupon_descuento"];
+				$cupon = $this->carrito->infoCupon($cupon);
+
+				if (!empty($cupon)) {
+
+					if ($cupon["monto_minimo"] <= $this->carrito->getSubtotalAntesIva()) {
+
+						$_SESSION["idcupon"] = $cupon["idcodigo"];
+						$_SESSION["valor_cupon"] = $cupon["val_descuento"];
+						$_SESSION["aplicacion_cupon"] = $cupon["aplicacion"];
+						$_SESSION["monto_minimo_cupon"] = $cupon["monto_minimo"];
+
+					}else{
+
+						unset($_SESSION["idcupon"]);
+						unset($_SESSION["valor_cupon"]);
+						unset($_SESSION["aplicacion_cupon"]);
+						unset($_SESSION["monto_minimo_cupon"]);
+						
+						echo "<script>alert('La compra no cumple con el monto minimo para aplicar el cupon');</script>";
+					}
+
+				}else{
+					//No se encuentra el cupón
+				}
+			}
+		}
+
+		if (isset($_POST["usar_puntos"]) && $_POST["usar_puntos"]==1) {
+			$_SESSION["usar_puntos"] = true;
+		}
+
+		if (isset($_POST["usar_puntos"]) && $_POST["usar_puntos"]==0) {
+			$_SESSION["usar_puntos"] = false;
+		}
+
+
+		if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"])) {
+
+			$puntos_disponibles = $this->usuarios->puntosDisponibles($_SESSION["idusuario"]);
+
+		}else{
+
+			$puntos_disponibles = 0;
+		}
+
+		$tipo_usuario = 'CONSUMIDOR';
+
+		$itemsCarrito = $this->carrito->listarItems();
+		$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
+		$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
+		$descuentoCupon = $this->carrito->getDescuentoCupon();
+		$subtotalNetoAntesIva = $this->carrito->getSubtotalNetoAntesIva();
+		$descuentoEscala = $this->carrito->getDescuentoEscala($tipo_usuario);
+		$porcDescuentoEscala = $this->carrito->porcDescuentoEscala($tipo_usuario);
+		$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
+
+		$retencion = $this->carrito->getRTF($tipo_usuario);
+
+		$pagoPuntos = $this->carrito->getPagoPuntos();
+
+		$iva = $this->carrito->getIva();
+		$flete = $this->carrito->calcularFlete();
+		$total = $this->carrito->getTotal();
+		$rentabilidad = $this->carrito->getRentabilidad();
+
+		/*$campana_actual = $this->campanas->getCamapanaActual();
+
+		if ($campana_actual["monto_minimo"]>$subtotalAntesIva) {
+			$alerta = 'El pedido no cumple con el monto mínimo, por favor agrega más productos. Si no eres un distribuidor por favor da clic <a href="'.URL_SITIO.'tiendas">aquí.</a>';
+		}*/
+
+		//var_dump($itemsCarrito);
+		include "views/club/carrito.php";
+	}
+
 
 	public function bancoPuntos(){
 

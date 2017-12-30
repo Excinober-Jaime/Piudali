@@ -20,7 +20,46 @@ $(document).ready(function(){
 				alert('El producto no se agrego');
 			}
 		});
+	});
 
-		alert(idpdt+cantidad);
+	$(".cambiarCantidad").change(function(){
+		idpdt = $(this).attr("idpdt");
+		cantidad = $(this).val();	
+
+		$.ajax({
+			type: 'POST',
+			url: "Carrito/ActualizarCantidadPdt",
+			data: {	idpdt:idpdt, cantidad:cantidad },
+			dataType: 'html',
+			async: false,
+			success: function(response) {
+				if (response=="OK") {
+					window.location="Club/Carrito/";
+				}
+			},
+			error: function() {
+				alert('No fue posible cambiar la cantidad');
+			}
+		});
+	});
+
+	$(".eliminarPdtCarrito").click(function(){
+		var idpdt = $(this).attr("idpdt");
+		
+		$.ajax({
+			type: 'POST',
+			url: "Carrito/EliminarPdtCarrito",
+			data: {	idpdt:idpdt },
+			dataType: 'html',
+			async: false,
+			success: function(response) {
+				if (response=="OK") {
+					window.location="Club/Carrito/";
+				}
+			},
+			error: function() {
+				alert('No fue posible eliminar el producto');
+			}
+		});
 	});
 });

@@ -210,43 +210,6 @@
       </div>
     </div>
   <div class="franja"></div>
-  
-    <!--<nav class="white" style="border:0;box-shadow: none;">
-      <center>-->
-        <!--<a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#sobre-el-club"><i class="large material-icons right">group</i>SOBRE EL CLUB</a>
-        <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#premios">
-          <i class="large material-icons right">card_giftcard</i> PREMIOS
-        </a>
-        <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#enterate">
-          <i class="large material-icons right">art_track</i> ENTÉRATE
-        </a>
-        <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#donde-comprar">
-          <i class="large material-icons right">location_on</i> ¿DÓNDE REDIMIR?
-        </a>
-        <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#preguntas-frecuentes">
-          <i class="large material-icons right">question_answer</i> PREGUNTAS FRECUENTES
-        </a>
-        <a class="waves-effect green darken-1 btn-large" href="<?=URL_CLUB?>/#contacto">
-          <i class="large material-icons right">contact_phone</i> CONTÁCTO
-        </a>-->
-        <!--<a class="waves-effect btn-flat" href="<?=URL_CLUB?>/#sobre-el-club"><i class="large material-icons right">group</i>SOBRE EL CLUB</a>
-        <a class="waves-effect btn-flat" href="<?=URL_CLUB?>/#premios">
-          <i class="large material-icons right">card_giftcard</i> PREMIOS
-        </a>
-        <a class="waves-effect btn-flat" href="<?=URL_CLUB?>/#enterate">
-          <i class="large material-icons right">art_track</i> ENTÉRATE
-        </a>
-        <a class="waves-effect btn-flat" href="<?=URL_CLUB?>/#donde-comprar">
-          <i class="large material-icons right">location_on</i> ¿DÓNDE REDIMIR?
-        </a>
-        <a class="waves-effect btn-flat" href="<?=URL_CLUB?>/#preguntas-frecuentes">
-          <i class="large material-icons right">question_answer</i> PREGUNTAS FRECUENTES
-        </a>
-        <a class="waves-effect btn-flat" href="<?=URL_CLUB?>/#contacto">
-          <i class="large material-icons right">contact_phone</i> CONTÁCTO
-        </a>-->
-
-      <!--</center>-->
       <nav>
         <div class="nav-wrapper green darken-3">
           <div class="container">            
@@ -274,6 +237,14 @@
               <li><a href="<?=URL_PRODUCTOS?>">PRODUCTOS</a></li>
               <li><a href="<?=URL_CLUB?>/#preguntas-frecuentes">PREGUNTAS FRECUENTES</a></li>
               <li><a href="<?=URL_CLUB?>/#contacto">CONTÁCTO</a></li>
+            </ul>
+            <ul class="right">
+              <li>
+                <a href="<?=URL_CLUB.'/'.URL_CLUB_CARRITO?>">
+                  <i class="material-icons left">shopping_cart</i> <span id="cantidad-carrito"><?=Carrito::productosAgregados()?> Productos</span>
+                  <!--<span id="total-carrito">$<?=number_format(Carrito::totalCarrito())?></span>-->
+                </a>
+              </li>
             </ul>
              <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
           </div>
