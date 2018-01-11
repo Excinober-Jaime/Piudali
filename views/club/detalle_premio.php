@@ -49,12 +49,18 @@
 						    <div class="col s12">
 						      <ul class="tabs">
 						        <li class="tab col s3"><a class="active" href="#tab_descripcion">Descripción</a></li>
-						        <li class="tab col s3"><a href="#tab_mas_info">Más Información</a></li>						        
+						        <li class="tab col s3"><a href="#tab_mas_info">Más Información</a></li>
+						        <?php if (!empty($producto["uso"])) { ?>
+	    						<li class="tab col s3"><a href="#tab_uso">Ver Video</a></li>
+	    						<?php } ?>					        
 						        
 						      </ul>
 						    </div>
 						    <div id="tab_descripcion" class="col s12"><?=$producto['descripcion']?></div>
-						    <div id="tab_mas_info" class="col s12"><?=$producto['mas_info']?></div>					    						    
+						    <div id="tab_mas_info" class="col s12"><?=$producto['mas_info']?></div>					    						 
+						    <?php if (!empty($producto["uso"])) { ?>   
+						    <div id="tab_uso" class="col s12"><?=$producto['uso']?></div>
+						    <?php } ?>					        
 						</div>
 					</div>
 				</div>

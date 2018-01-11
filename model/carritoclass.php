@@ -500,13 +500,13 @@ class Carrito extends Productos
 		return $idorden;
 	}
 
-	public function getDetalleOrden(){
+	public function getDetalleOrden($tipo_usuario = ''){
 
 		if (isset($_SESSION["idpdts"]) && count($_SESSION["idpdts"]>0)) {
 
 			$detalle_orden = array();
 			$porc_descuento_cupon = $this->porcDescuentoCupon();
-			$porc_escala = $this->porcDescuentoEscala();
+			$porc_escala = $this->porcDescuentoEscala($tipo_usuario);
 			$pagoPuntos = $this->getPagoPuntos();
 			$valor_descuento_puntos = $pagoPuntos["valor_pago"]/(count($_SESSION["cantidadpdts"]));
 

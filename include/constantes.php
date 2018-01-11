@@ -1,6 +1,6 @@
 <?php 
-define("URL_SITIO", "http://localhost/piudali/www/");
-//define("URL_SITIO", "https://piudali.com.co/");
+//define("URL_SITIO", "http://localhost/piudali/www/");
+define("URL_SITIO", "https://piudali.com.co/");
 define("URL_INICIO", "Inicio");
 define("URL_PRODUCTOS", "Productos");
 define("URL_CATEGORIA", "Categoria");
@@ -49,9 +49,14 @@ define("URL_ADMIN_CODIGOS_PUNTOS", "Codigos");
 define("URL_CLUB", "Club");
 define("URL_CLUB_INGRESAR", "Ingresar");
 define("URL_CLUB_PRODUCTO", "Producto");
+define("URL_CLUB_PREMIOS", "Premios");
+define("URL_CLUB_PRODUCTOS", "Productos");
 define("URL_CLUB_PERFIL", "Perfil");
 define("URL_CLUB_BANCO_PUNTOS", "BancoPuntos");
 define("URL_CLUB_CARRITO", "Carrito");
+define("URL_CLUB_RESUMEN_COMPRA", "ResumenCompra");
+define("URL_CLUB_GENERAR_ORDEN", "GenerarOrden");
+define("URL_CLUB_ENTRADAS", "Entradas");
 
 
 define("URL_REGISTRO", "Registro");
@@ -104,6 +109,10 @@ define("URL_ADMIN_PAGOS_COMISIONES", "PagosComisiones");
 define("URL_ADMIN_PAGO_COMISION", "PagoComision");
 define("URL_ADMIN_PAGOS_INCENTIVOS", "PagosIncentivos");
 define("URL_ADMIN_PAGO_INCENTIVO", "PagoIncentivo");
+
+define("URL_ADMIN_ENTRADAS_CLUB", "EntradasClub");
+
+
 define("URL_ADMIN_ELIMINAR_ENTIDAD", "EliminarEntidad");
 
 define("URL_ADMIN_CANALES_DISTRIBUCION", "CanalesDistribucion");
@@ -132,4 +141,12 @@ define("CREDIOS", "Créditos");
 
 /***LANDING**/
 define('COSMETICA_ECOLOGICA', 'cosmetica-ecologica');
+
+/***PAYU LATAM***/
+define('merchantId', 502548);
+define('ApiKey', '28tuaar72n6g65ervovdl1sst');
+define('currency', 'COP');
+define('lng', 'ES');
+define('extra3', 'PIUDALI');
+define('responseUrl', 'http://naturalvitalis.com/respagos.php');
 ?>

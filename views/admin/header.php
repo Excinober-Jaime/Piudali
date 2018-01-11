@@ -61,6 +61,7 @@ $breadcrumb = explode("/", $_GET["url"]);
                     <ul class="nav nav-second-level">
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_PAGINAS?>">Páginas</a></li>
                         <li><a href="<?=URL_ADMIN."/".URL_ADMIN_BANNERS?>">Banners</a></li>   
+                        <li><a href="<?=URL_ADMIN."/".URL_ADMIN_ENTRADAS_CLUB?>">Entradas Club</a></li>
                     </ul>
                 </li>               							
                 <li><a href="<?=URL_ADMIN."/".URL_ADMIN_TICKETS?>"><i class="fa fa-ticket" aria-hidden="true"></i> <span class="nav-label">Tickets</span></a></li>

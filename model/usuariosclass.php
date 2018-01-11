@@ -6,6 +6,35 @@
 class Usuarios extends Database
 {
 
+	public function actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudades_idciudad, $ciudad, $tipo="", $lider=0, $idorganizacion=0, $usuarioremoto=array()){
+
+		if (!empty($usuarioremoto)) {
+
+			$_SESSION["idusuario_remoto"] = $usuarioremoto["idusuario"];
+			$_SESSION["email_remoto"] = $usuarioremoto["email"];
+			$_SESSION["nombre_remoto"] = $usuarioremoto["nombre"];
+			$_SESSION["apellido_remoto"] = $usuarioremoto["apellido"];
+			$_SESSION["tipo_remoto"] = $usuarioremoto["tipo"];
+			
+		}
+		
+		$_SESSION["idusuario"] = $idusuario;
+		$_SESSION["nombre"] = $nombre;
+		$_SESSION["apellido"] = $apellido;
+		$_SESSION["email"] = $email;
+		$_SESSION["telefono"] = $telefono;
+		$_SESSION["telefono_m"] = $telefono_m;
+		$_SESSION["direccion"] = $direccion;
+		$_SESSION["ciudades_idciudad"] = $ciudades_idciudad;
+		$_SESSION["ciudad"] = $ciudad;
+		$_SESSION["lider"] = $lider;
+		$_SESSION["idorganizacion"] = $idorganizacion;
+
+		if (!empty($tipo)) {
+			$_SESSION["tipo"] = $tipo;
+		}		
+	}
+
 	public function validarUsuario($num_identificacion,$email){
 		
 		$query = $this->consulta("SELECT `idusuario`
@@ -579,21 +608,7 @@ class Usuarios extends Database
 		return $query[0];
 	}
 
-	public function listarPuntosDisponibles($idusuario){
-		
-		$query = $this->consulta("SELECT (`puntos`-`redimido`) AS 'disponibles', idpuntos, puntos, redimido, `fecha_adquirido`, `concepto`, `estado`
-					FROM `puntos`
-					WHERE `usuarios_idusuario` = '$idusuario' AND `estado`='1' AND NOW()<= DATE_ADD(`fecha_adquirido`, INTERVAL 365 DAY)
-					ORDER BY fecha_adquirido ASC");
-		
-		return $query;
-	}
-
-	public function actualizarPuntosRedimidos($idpuntos, $puntos_redimidos){
-		
-		$query = $this->actualizar("UPDATE `puntos` SET `redimido` = $puntos_redimidos WHERE `idpuntos` = '$idpuntos'");		
-		return $query;
-	}
+	
 
 	public function actualizarPuntosEstado($idpuntos, $estado=0){
 		

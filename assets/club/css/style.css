@@ -102,7 +102,8 @@ margin: 0 !important;
 
 #premios h2,
 #enterate h2,
-#donde-comprar h2{
+#donde-comprar h2, 
+#productos h2{
 	color: #12491d;
 	font-weight: 300 !important;
 	text-transform: uppercase;

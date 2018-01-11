@@ -1,10 +1,10 @@
 RewriteEngine On
 
-#RewriteCond %{HTTP_HOST} ^www.piudali.com.co [NC]
-#RewriteRule ^(.*)$ https://piudali.com.co/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^www.piudali.com.co [NC]
+RewriteRule ^(.*)$ https://piudali.com.co/$1 [L,R=301]
 
-#RewriteCond %{HTTPS} off
-#RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f

@@ -34,7 +34,8 @@
 					<select name="posicion" id="posicion" class="form-control" required>
 						<option value="HOME" <?php if ($banner[0]['posicion']=='HOME') echo 'selected'; ?>>HOME</option>
 						<option value="SIDEBAR" <?php if ($banner[0]['posicion']=='SIDEBAR') echo 'selected'; ?>>SIDEBAR</option>
-						<option value="PANEL INTERNO" <?php if ($banner[0]['posicion']=='PANEL INTERNO') echo 'selected'; ?>>PANEL INTERNO</option>
+						<option value="PANEL INTERNO" <?php if ($banner[0]['posicion']=='PANEL INTERNO') echo 'selected'; ?>>PANEL INTERNO</option>					
+						<option value="CLUB" <?php if ($banner[0]['posicion']=='CLUB') echo 'selected'; ?>>CLUB PIUDALI</option>
 						<option value="CONTACTO" <?php if ($banner[0]['posicion']=='CONTACTO') echo 'selected'; ?>>CONTÁCTO</option>
 						<option value="REGISTRO" <?php if ($banner[0]['posicion']=='REGISTRO') echo 'selected'; ?>>REGISTRO</option>
 						<option value="POPUP" <?php if ($banner[0]['posicion']=='POPUP') echo 'selected'; ?>>POP UP</option>

@@ -76,10 +76,14 @@
 			 		Teléfono: <?=$_SESSION["telefono"]?><br>
 			 		Teléfono Móvil: <?=$_SESSION["telefono_m"]?><br><br>
 				 	
-			 		<a href="<?=URL_CLUB."/".URL_CLUB_PERFIL?>" class="btn green">Cambiar Datos</a>
+			 		<a href="<?=URL_CLUB."/".URL_CLUB_PERFIL?>?return=<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>" class="btn green">Cambiar Datos</a>
 			 		
 	          	</span>
 	        </div>
+	    <?php } else { ?>
+	    	<h5>Por favor ingresa o registrate para cargar tu dirección</h5>
+	    	<a class="open-iniciar btn orange" return="<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>">Iniciar sesión</a>
+	    	<a class="open-registro btn green">Regístrarse</a>
 	    <?php } ?>
 		</div>
 		<div class="col s12 m4" style="background-color: #f2f2f2; border-radius: 10px;padding: 1rem;">
@@ -155,7 +159,22 @@
 					<a href="<?=URL_CLUB.'/'.URL_PRODUCTOS_CLUB?>" class="btn-large orange">SEGUIR COMPRANDO</a>
 				</div>
 				<div class="col s5 right-align ">
-					<a href="<?=URL_CLUB.'/'.URL_RESUMEN_COMPRA_CLUB?>" class="btn-large green">ORDENAR YA!</a>
+					
+					<?php if (!isset($_SESSION['idusuario'])) { ?>
+						
+					<a class="btn-large open-iniciar green" return="<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>">ORDENAR YA!</a>
+
+					<?php } else { ?>
+
+						<?php if ($total>0) { ?>
+
+							<a href="<?=URL_CLUB.'/'.URL_CLUB_RESUMEN_COMPRA?>" class="btn-large green">ORDENAR YA!</a>
+
+						<?php } else { ?>
+							
+					
+						<?php }  ?>
+					<?php }  ?>
 				</div>
 			</div>
 		</div>

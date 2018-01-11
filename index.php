@@ -3,8 +3,7 @@ error_reporting(0);
 session_start();
 
 require "controller.php";
-
-$controller = new Controller();
+require "controllerClub.php";
 
 if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
@@ -20,6 +19,8 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 		switch ($var1) {
 
 			case URL_ADMIN:
+
+				$controller = new Controller();
 
 				if (isset($var2) && $var2!='') {
 
@@ -89,6 +90,20 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 								$controller->adminPaginasLista();
 							}
 							break;
+
+						case URL_ADMIN_ENTRADAS_CLUB:
+							if (isset($var3) && !empty($var3)) {
+								
+								if ($var3=="Nuevo") {
+									$var3 = "";
+								}
+								$controller->adminEntradaDetalle($var3);
+								
+							}else{
+								$controller->adminEntradasLista();
+							}
+							break;
+						
 
 						case URL_ADMIN_BANNERS:
 							if (isset($var3) && !empty($var3)) {
@@ -443,17 +458,43 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				
 				break;
 
-			case URL_CLUB:
+			case URL_CLUB:				
+
+				$controllerClub = new ControllerClub();
 
 				if (isset($var2) && !empty($var2)) {
 					
 					switch ($var2) {
+
+						case URL_CLUB_ENTRADAS:
+							
+							if (isset($var3) && !empty($var3)) {
+								
+								$controllerClub->contenidoEntrada($var3);
+
+							}else{
+
+								$controllerClub->entradasClub();
+							}							
+							break;
+
+						case URL_CLUB_PRODUCTOS:							
+												
+							$controllerClub->listarProductosClub($var3);
+							
+							break;
+
+						case URL_CLUB_PREMIOS:
+												
+							$controllerClub->listarPremiosClub($var3);
+							
+							break;
 						
 						case URL_CLUB_PRODUCTO:
 							
 							if (isset($var3) && !empty($var3)) {
 								
-								$controller->detalleProductoClub($var3);
+								$controllerClub->detalleProductoClub($var3);
 
 							}else{
 								
@@ -463,16 +504,24 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
 						case URL_CLUB_PERFIL:
 							
-							$controller->perfilClub();
+							$controllerClub->perfilClub();
 							break;
 
 						case URL_CLUB_BANCO_PUNTOS:
 							
-							$controller->bancoPuntos();
+							$controllerClub->bancoPuntos();
 							break;
 
 						case URL_CLUB_CARRITO:
-							$controller->carritoClub();
+							$controllerClub->carritoClub();
+							break;
+
+						case URL_CLUB_RESUMEN_COMPRA:
+							$controllerClub->resumenCompraClub();
+							break;
+
+						case URL_CLUB_GENERAR_ORDEN:
+							$controllerClub->generarOrdenClub();
 							break;
 
 						case 'PEDIDO':
@@ -502,13 +551,15 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
 				}else{
 
-					$controller->homeClub();
+					$controllerClub->homeClub();
 
 				}
 				break;
 
-
 			case URL_PRODUCTOS:
+
+				$controller = new Controller();
+
 				if (isset($var2) && !empty($var2)) {
 					$controller->paginaProductoDetalle($var2);
 				}else{
@@ -517,6 +568,9 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				break;
 
 			case URL_CATEGORIA:
+
+				$controller = new Controller();
+
 				if (isset($var2) && !empty($var2)) {
 					$controller->paginaCategoria($var2);
 				}else{
@@ -525,29 +579,55 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				break;
 
 			case URL_REGISTRO:
+
+				$controller = new Controller();
+
 				$controller->pageRegistro();
 				break;
 
 			case URL_INGRESAR:
+
+				$controller = new Controller();
+
 				$controller->pageIngresar();
 				break;
+
 			case URL_CONTACTO:
+
+				$controller = new Controller();
+
 				$controller->pageContacto();
+
 				break;
 
 			case URL_RESTAURAR_CONTRASENA:
+
+				$controller = new Controller();
+
 				$controller->pageRestaurarContrasena();
+
 				break;
 
 			case URL_BUSCAR:
+
+				$controller = new Controller();
+				
 				$controller->pageBuscar();
+
 				break;
 
 			case URL_TIENDAS:
+
+				$controller = new Controller();
+
 				$controller->pageTiendas();
+
 				break;
 
 			case URL_USUARIO:
+
+				$controller = new Controller();
+
 				if (isset($var2) && !empty($var2)) {
 
 					switch ($var2) {
@@ -716,6 +796,9 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				break;
 
 			case URL_CARRITO:
+
+				$controller = new Controller();
+
 				if (isset($var2) && !empty($var2)) {
 					switch ($var2) {
 						case URL_CARRITO_AGREGAR:
@@ -744,14 +827,25 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				break;
 
 			case URL_RESUMEN_COMPRA:
+				
+				$controller = new Controller();
+
 				$controller->verResumenCompra();
+
 				break;
 
 			case URL_GENERAR_ORDEN:
+
+				$controller = new Controller();
+
 				$controller->generarOrden();
+
 				break;
 
 			case URL_PAGINA_CONTENIDO:
+
+				$controller = new Controller();
+
 				if (isset($var2) && !empty($var2)) {
 					echo $controller->contenidoPagina($var2);
 				}else{
@@ -760,31 +854,53 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				break;
 
 			case URL_SUSCRIBIR_NEWSLETTER:
+
+				$controller = new Controller();
+
 				echo $controller->suscribirNewsletter();
 				break;
 
 			case URL_INGRESO_REMOTO:
+
+				$controller = new Controller();
+
 				$controller->ingresoUsuarioRemoto();
 				break;
 
 			case URL_SALIR_REMOTO:
+
+				$controller = new Controller();
+
 				$controller->salirUsuarioRemoto();
 				break;
 			
 			case COSMETICA_ECOLOGICA:
+
+				$controller = new Controller();
+
 				$controller->landingCosmeticaEcologica();
+
 				break;
 
 			default:
+
+				$controller = new Controller();
+
 				$controller->paginaContenido($var1);
+
 				break;
 		}
 		
 	}else{
+
+		$controller = new Controller();
 		/* Página de Inicio */
 		$controller->pageInicio();
 	}
 }else{
+
+	$controller = new Controller();
+
 	$controller->pageInicio();
 }
 

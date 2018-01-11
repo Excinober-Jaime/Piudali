@@ -20,6 +20,10 @@ require "model/cuentasclass.php";
 require "model/descuentosespecialesclass.php";
 require "model/codigospuntosclass.php";
 require "model/canalesdistribucionclass.php";
+require "model/puntosclass.php";
+require "model/plantillasemailclass.php";
+require "model/entradasclubclass.php";
+require "model/ventasvirtualesclass.php";
 
 /** Require Includes **/
 require "include/constantes.php";
@@ -58,6 +62,7 @@ class Controller
 		$this->descuentos_especiales = new Descuentosespeciales();
 		$this->codigos_puntos = new CodigosPuntos();
 		$this->canales_distribucion = new CanalesDistribucion();
+		$this->entradas = new Entradas();
 		
 
 		/**MODULOS DISTRIBUIDORES**/
@@ -184,7 +189,7 @@ class Controller
 
 	public function pageInicio(){
 		
-		$posicion_banners="HOME";		
+		$posicion_banners="HOME";
 		$estados_banners = array(1);
 		$banners = $this->banners->listarBanners($posicion_banners,$estados_banners);
 
@@ -415,36 +420,7 @@ class Controller
 
 
 
-/************USUARIOS**************/
-
-	public function actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudades_idciudad, $ciudad, $tipo="", $lider=0, $idorganizacion=0, $usuarioremoto=array()){
-
-		if (!empty($usuarioremoto)) {
-
-			$_SESSION["idusuario_remoto"] = $usuarioremoto["idusuario"];
-			$_SESSION["email_remoto"] = $usuarioremoto["email"];
-			$_SESSION["nombre_remoto"] = $usuarioremoto["nombre"];
-			$_SESSION["apellido_remoto"] = $usuarioremoto["apellido"];
-			$_SESSION["tipo_remoto"] = $usuarioremoto["tipo"];
-			
-		}
-		
-		$_SESSION["idusuario"] = $idusuario;
-		$_SESSION["nombre"] = $nombre;
-		$_SESSION["apellido"] = $apellido;
-		$_SESSION["email"] = $email;
-		$_SESSION["telefono"] = $telefono;
-		$_SESSION["telefono_m"] = $telefono_m;
-		$_SESSION["direccion"] = $direccion;
-		$_SESSION["ciudades_idciudad"] = $ciudades_idciudad;
-		$_SESSION["ciudad"] = $ciudad;
-		$_SESSION["lider"] = $lider;
-		$_SESSION["idorganizacion"] = $idorganizacion;
-
-		if (!empty($tipo)) {
-			$_SESSION["tipo"] = $tipo;
-		}		
-	}
+/************USUARIOS**************/	
 
 	public function pageRegistro(){
 
@@ -666,7 +642,7 @@ class Controller
 
 		if (count($usuario)>0) {
 			
-			$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"], $usuario["lider"], $usuario["organizaciones_idorganizacion"], $usuarioremoto);
+			$this->usuarios->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"], $usuario["lider"], $usuario["organizaciones_idorganizacion"], $usuarioremoto);
 
 			if ($usuario['tipo'] == 'CONSUMIDOR') {
 
@@ -754,7 +730,7 @@ class Controller
 			
 			$usuario = $this->usuarios->detalleUsuario($_SESSION["idusuario_remoto"]);
 
-			$this->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"],$usuario["lider"], $usuario["organizaciones_idorganizacion"]);
+			$this->usuarios->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"],$usuario["lider"], $usuario["organizaciones_idorganizacion"]);
 
 			unset($_SESSION["idusuario_remoto"]);
 			unset($_SESSION["email_remoto"]);
@@ -990,7 +966,7 @@ class Controller
 				}
 
 				$info_ciudad = $this->usuarios->nombreCiudad($ciudad);
-				$this->actualizarSesion($_SESSION["idusuario"], $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudad, $info_ciudad["ciudad"], $_SESSION["tipo"], $_SESSION["lider"], $idorganizacion);
+				$this->usuarios->actualizarSesion($_SESSION["idusuario"], $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudad, $info_ciudad["ciudad"], $_SESSION["tipo"], $_SESSION["lider"], $idorganizacion);
 
 				if ($actualizar_usuario===1) {
 					if (!empty($return)) {
@@ -1897,32 +1873,11 @@ class Controller
 			$num_factura = "";
 
 			//Descontar puntos usuario
-			if ($pagoPuntos["puntos"]>0) {
-
-				$puntos_sin_redimir = $pagoPuntos["puntos"];
-				$puntos_disponibles = $this->usuarios->listarPuntosDisponibles($_SESSION["idusuario"]);
-
-				foreach ($puntos_disponibles as $puntos_fila) {
-					
-					if ($puntos_sin_redimir>=$puntos_fila["disponibles"]) {
-						$puntos_redimidos = $puntos_fila["disponibles"];
-						$puntos_actualizar = $puntos_fila["puntos"];
-					}else{
-						$puntos_restantes = $puntos_sin_redimir;
-						$puntos_actualizar = $puntos_fila["redimido"]+$puntos_restantes;
-						$puntos_redimidos = $puntos_sin_redimir;
-					}
-
-					$puntos_sin_redimir=$puntos_sin_redimir-$puntos_redimidos;
-
-					$this->usuarios->actualizarPuntosRedimidos($puntos_fila["idpuntos"],$puntos_actualizar);
-					
-					if ($puntos_sin_redimir==0) {
-						break;
-					}
-				}
+			if ($pagoPuntos['puntos'] > 0) {
+				
+				$this->puntos->descontarPuntos($pagoPuntos['puntos'], $_SESSION['idusuario']);
 			}
-			
+						
 			//Crear Orden
 			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
 
@@ -1951,7 +1906,7 @@ class Controller
 					foreach ($detalleOrden as $key => $producto) {
 
 						//Descontar stock
-						$filas = $this->descontarStock($producto["idpdt"],$producto["cantidad"]);
+						$filas = $this->productos->descontarStock($producto["idpdt"],$producto["cantidad"]);
 
 						//Agregar detalle orden
 						$id_detalle_orden = $this->carrito->agregarDetalleOrden($producto["nombre"], $producto["codigo"], $producto["cantidad"], $producto["precio"], $producto["precio_base"], $producto["descuento_cupon"], $producto["iva"], $producto["descuento_puntos"], $idorden);
@@ -2125,16 +2080,6 @@ class Controller
 		}else{
 			header("Location: ".URL_INGRESAR);
 		}
-	}
-
-	public function descontarStock($idpdt, $cantidad){
-
-		$producto = $this->productos->detalleProductos($idpdt);
-		$cantidad_actual = $producto[0]["cantidad"];
-		$cantidad_nueva = $cantidad_actual - $cantidad;
-		$filas = $this->productos->actualizarCantidadProducto($idpdt,$cantidad_nueva);
-
-		return $filas;
 	}
 
 
@@ -2516,6 +2461,92 @@ class Controller
 
 		include "views/admin/paginas_lista.php";	
 	}	
+
+	/****entradas***/
+
+	public function adminEntradaDetalle($identrada){
+
+		if (isset($_POST["actualizarEntrada"])) {
+
+			extract($_POST);
+
+			if ($tipo == 'IMAGEN') {
+			
+				//Upload banner
+				if($_FILES["imagen"]["error"]==UPLOAD_ERR_OK){
+
+					$rutaimg=$_FILES["imagen"]["tmp_name"];
+					$nombreimg=$_FILES["imagen"]["name"];
+					$destino = DIR_IMG_ENTRADAS.$nombreimg;
+					move_uploaded_file($rutaimg, $destino);
+
+				}else{
+
+					$destino = "";
+				}
+
+				$ruta = $destino;
+
+			}else{
+
+				$ruta = $url_video;
+
+			}
+			
+			$url = convierte_url($titulo);
+
+			$this->entradas->actualizarEntrada($titulo,$contenido,$url,$tipo,$ruta,$estado,$identrada);
+		}
+
+		if (isset($_POST["crearEntrada"])) {
+			
+			extract($_POST);
+
+			if ($tipo == 'IMAGEN') {
+			
+				//Upload banner
+				if($_FILES["imagen"]["error"]==UPLOAD_ERR_OK){
+
+					$rutaimg=$_FILES["imagen"]["tmp_name"];
+					$nombreimg=$_FILES["imagen"]["name"];
+					$destino = DIR_IMG_ENTRADAS.$nombreimg;
+					move_uploaded_file($rutaimg, $destino);
+
+				}else{
+
+					$destino = "";
+				}
+
+				$ruta = $destino;
+
+			}else{
+
+				$ruta = $url_video;
+
+			}
+			
+			$url = convierte_url($titulo);
+
+
+			$identrada = $this->entradas->crearEntrada($titulo,$contenido,$url,$tipo,$ruta,$estado);
+		}
+
+
+		if (isset($identrada) && $identrada!='') {
+
+			$entrada = $this->entradas->detalleEntrada($identrada);
+		}
+
+		include "views/admin/entrada_detalle.php";
+
+	}
+
+	public function adminEntradasLista(){
+		
+		$entradas = $this->entradas->listarEntradas(array(0,1));
+
+		include "views/admin/entradas_lista.php";
+	}
 
 	/***banners***/
 
@@ -3405,6 +3436,10 @@ class Controller
 					$filas = $this->geolocalizacion->eliminarRegion($_POST["identidad"]);
 					break;
 
+				case 'entrada':
+					$filas = $this->entradas->eliminarEntrada($_POST["identidad"]);
+					break;
+
 				default:
 					# code...
 					break;
@@ -4135,383 +4170,6 @@ class Controller
 
 		include 'views/admin/codigos_puntos_lista.php';
 	}
-
-	private function registrarConsumidor($num_identificacion, $nombre, $apellido, $email, $ciudad, $telefono, $contrasena){
-
-		if (count($this->usuarios->validarUsuario($num_identificacion, $email))>0) {
-
-				$alerta = "Usted ya posee una cuenta";
-
-				return array('tipo'		=>	'alerta', 
-							'response'	=>	$alerta
-							);
-
-		}else{
-
-			$sexo = '';
-			$fecha_nacimiento = '';
-			$boletines = 0;
-			$condiciones = 0;
-			$direccion = 0;
-			$mapa = 0;
-			$telefono_m = '';
-			$tipo = 'CONSUMIDOR';
-			$segmento = '';
-			$foto = '';
-			$estado = 1;
-			$fecha_registro = fecha_actual('datetime');
-			$referente = 0;
-			$lider = 0;
-			$cod_lider = 0;
-			$nivel = 0;
-			$organizacion = 0;
-
-			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, md5($password), $num_identificacion, $boletines, $condiciones, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, $cod_lider, $nivel, $ciudad, $organizacion);
-
-			if ($idusuario) {
-
-				$this->actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, '', '', $ciudad, '', $tipo, 0, 0);	
-			}
-
-			return array(	
-						'tipo'		=>	'idusuario', 
-						'response'	=>	$idusuario
-					);
-		}
-
-	}
-
-	private function redimirCodigoPuntos($codigo){
-
-		$codigo_detalle = $this->codigos_puntos->detalleCodigo($codigo);
-
-			if (count($codigo_detalle)>0) {				
-			
-				if (!$codigo_detalle['redimido']) {
-
-					if ($codigo_detalle['fecha_vencimiento'] >= fecha_actual('datetime')) {
-				
-						if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR') {
-
-							if (count($codigo_detalle)>0) {
-
-								$filas = $this->codigos_puntos->redimirCodigo($codigo_detalle['codigo'], $_SESSION['idusuario']);
-
-								if ($filas) {
-
-									$estado_puntos = 1;
-									
-									$idnuevospuntos = $this->usuarios->asignarNuevosPuntos($codigo_detalle['puntos'], "CLUB PIUDALI", fecha_actual('datetime'), 0, $estado_puntos, $_SESSION['idusuario'], 0);
-
-									if ($idnuevospuntos) {
-
-										if (isset($_SESSION['codigo_por_asignar'])) {
-											
-											unset($_SESSION['codigo_por_asignar']);
-										}
-
-										return array(
-								
-											'estado' => 'ASIGNADO',
-											'codigo' => $codigo_detalle
-										);
-									}
-								}
-							}
-
-						}else{						
-							
-							$_SESSION['codigo_por_asignar'] = $codigo_detalle;
-
-							return array(
-
-								'estado' => 'AUTENTICAR',
-								'codigo' => $codigo_detalle
-							);	
-						}
-					}else{
-						
-						return array(					
-							'estado' => 'VENCIDO'
-						);	
-					}
-
-				}else{
-
-					return array(					
-						'estado' => 'REDIMIDO'
-					);	
-				}
-
-			}else{
-
-				return array(					
-						'estado' => 'NO EXISTE'
-					);	
-			}
-	}
-
-	public function homeClub() {
-
-		$paginas_menu = $this->paginasMenu();
-
-		$ciudades = $this->usuarios->listarCiudades();
-
-		if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
-
-			$response_codigo = $this->redimirCodigoPuntos($_POST['codigo']);
-			
-		}
-
-		if (isset($_POST['ingresarUsuario'])) {
-
-			extract($_POST);
-
-			$response = $this->loguearUsuario($email, md5($password));
-
-			if (isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario'])) {
-				
-				if (!empty($response) && is_array($response)) {
-
-					$response_codigo = $response;
-				}
-
-			}else{
-
-				if (!empty($response)) {
-				
-				echo "<script> alert('Los datos de acceso son incorrectos. Por favor intenta de nuevo'); </script>";
-				}	
-			
-			}			
-		}
-
-		if (isset($_POST['registrarUsuario'])) {
-
-			extract($_POST);
-
-			$response = $this->registrarConsumidor($num_identificacion, $nombre, $apellido, $email, $ciudad, $telefono, $contrasena);
-		}
-
-		if (isset($_GET['ciudad_redimir']) && !empty($_GET['ciudad_redimir'])) {
-
-			$ciudad_redimir = $_GET['ciudad_redimir'];
-
-		}else{
-
-			$ciudad_redimir = 4270;
-		}
-			
-		if ($ciudad_redimir == 4270) { //Cali
-
-			//Provisional artemisa
-			$puntos_artemisa = array("Centro Comercial Chipichape Local 8-118","Centro Comercial Centenario Local 131","Centro Comercial Cosmocentro L 2-68","Centro Comercial Unicentro local 320 Pasillo 5","Centro Comercial Unicentro Local 449 Oasis","Centro Cra 5 No.12-16","Avenida Estación No.5CN-34","Avenida Roosevelt No.25-32");
-
-			$i = 0;
-
-			foreach ($puntos_artemisa as $punto) {
-
-				$distribuidores[$i]["idusuario"] = 'ART'.$i;
-				$distribuidores[$i]["nombre"] = "Artemisa";
-				$distribuidores[$i]["direccion"] = $punto;
-				$distribuidores[$i]["telefono"] = "(2) 4873030";
-				$distribuidores[$i]["telefono_m"] = "";
-				$distribuidores[$i]["ciudad"] = "Cali";
-
-				$i++;
-			}
-		}
-
-		if ($ciudad_redimir == 3394) { //Bogotá	
-			
-
-			//Provisional supernaturistas
-			$puntos_super = array(
-
-							array ('direccion' => '<b>Niza</b> Av. 127 con Av. Suba C.C. Niza Int. 13', 'telefono' => '253 1429'),
-							array ('direccion' => '<b>Carrera 15</b> Av. 15 # 105 A - 20', 'telefono' => '619 1662'),
-							array ('direccion' => '<b>Santa Ana</b> Cra. 7 # 108 - 44 (en Olímpica)', 'telefono' => '213 9922'),
-							array ('direccion' => '<b>Calle 100</b> Calle 98 # 17A - 64', 'telefono' => '256 9136'),
-							array ('direccion' => 'Calle 119 # 14B - 10', 'telefono' => '215 7214'),
-							array ('direccion' => 'AK 45 # 104 - 60 (Autonorte con 104)', 'telefono' => '214 6229'),
-							array ('direccion' => 'Cra. 7 # 82 - 62 Lc 28 ', 'telefono' => '622 0790'),
-							array ('direccion' => 'Cra. 15 # 118 - 50', 'telefono' => '214 0824'),
-							array ('direccion' => 'Cra. 7 # 17 - 13', 'telefono' => '491 1218'),
-							array ('direccion' => 'Cra. 7A # 140 - 20 Lc 108', 'telefono' => '700 5781'),
-							array ('direccion' => 'C.C. Bazaar Alsacia Calle 12B # 71D - 61 (Av. Boyacá) Lc 1 - 18', 'telefono' => '411 7058'),
-							array ('direccion' => 'Cra. 18A # 135 - 46', 'telefono' => '627 9854')
-						);
-
-			$i = 0;
-
-			foreach ($puntos_super as $punto) {
-
-				$distribuidores[$i]["idusuario"] = 'SUP'.$i;
-				$distribuidores[$i]["nombre"] = "Supermercado Naturista";
-				$distribuidores[$i]["direccion"] = $punto['direccion'];
-				$distribuidores[$i]["telefono"] = $punto['telefono'];
-				$distribuidores[$i]["telefono_m"] = "";
-				$distribuidores[$i]["ciudad"] = "Bogotá";
-
-				$i++;
-			}
-		}
-
-		$json_maps = json_encode($distribuidores);
-
-		if (isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario'])) {
-			
-			$puntos = $this->usuarios->puntosDisponibles($_SESSION['idusuario']);
-		}
-
-		$productos_club = $this->productos->listarProductos(array('CLUB PIUDALI'), array(1));
-		$valor_punto = 1; //Pesos que vale un punto
-
-		include "views/club/inicio.php";
-	}
-
-	public function detalleProductoClub($urlpdt=''){
-
-		if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
-
-			$response_codigo = $this->redimirCodigoPuntos($_POST['codigo']);	
-		}
-		
-		$paginas_menu = $this->paginasMenu();
-		$producto = $this->productos->detalleProductos(0,$urlpdt);
-		$producto = $producto[0];
-		$valor_punto = 1; //Pesos que vale un punto
-
-		include 'views/club/detalle_premio.php';
-		//include 'views/club_old/detalle-regalo.php';
-	}
-
-	public function perfilClub(){
-
-		if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR') {
-
-			if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
-
-				$response_codigo = $this->redimirCodigoPuntos($_POST['codigo']);	
-			}
-			
-			$usuario = $this->usuarios->detalleUsuario($_SESSION['idusuario']);
-			$ciudades = $this->usuarios->listarCiudades();
-			$puntos = $this->usuarios->puntosDisponibles($_SESSION['idusuario']);
-
-			include 'views/club/perfil.php';	
-
-		}else{
-
-			header('Location: '.URL_CLUB);
-		}
-		
-	}
-
-
-	public function carritoClub(){
-
-		if (isset($_POST["redimirCupon"])) {
-
-			if (!empty($_POST["cupon_descuento"])) {
-				$cupon = $_POST["cupon_descuento"];
-				$cupon = $this->carrito->infoCupon($cupon);
-
-				if (!empty($cupon)) {
-
-					if ($cupon["monto_minimo"] <= $this->carrito->getSubtotalAntesIva()) {
-
-						$_SESSION["idcupon"] = $cupon["idcodigo"];
-						$_SESSION["valor_cupon"] = $cupon["val_descuento"];
-						$_SESSION["aplicacion_cupon"] = $cupon["aplicacion"];
-						$_SESSION["monto_minimo_cupon"] = $cupon["monto_minimo"];
-
-					}else{
-
-						unset($_SESSION["idcupon"]);
-						unset($_SESSION["valor_cupon"]);
-						unset($_SESSION["aplicacion_cupon"]);
-						unset($_SESSION["monto_minimo_cupon"]);
-						
-						echo "<script>alert('La compra no cumple con el monto minimo para aplicar el cupon');</script>";
-					}
-
-				}else{
-					//No se encuentra el cupón
-				}
-			}
-		}
-
-		if (isset($_POST["usar_puntos"]) && $_POST["usar_puntos"]==1) {
-			$_SESSION["usar_puntos"] = true;
-		}
-
-		if (isset($_POST["usar_puntos"]) && $_POST["usar_puntos"]==0) {
-			$_SESSION["usar_puntos"] = false;
-		}
-
-
-		if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"])) {
-
-			$puntos_disponibles = $this->usuarios->puntosDisponibles($_SESSION["idusuario"]);
-
-		}else{
-
-			$puntos_disponibles = 0;
-		}
-
-		$tipo_usuario = 'CONSUMIDOR';
-
-		$itemsCarrito = $this->carrito->listarItems();
-		$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
-		$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
-		$descuentoCupon = $this->carrito->getDescuentoCupon();
-		$subtotalNetoAntesIva = $this->carrito->getSubtotalNetoAntesIva();
-		$descuentoEscala = $this->carrito->getDescuentoEscala($tipo_usuario);
-		$porcDescuentoEscala = $this->carrito->porcDescuentoEscala($tipo_usuario);
-		$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
-
-		$retencion = $this->carrito->getRTF($tipo_usuario);
-
-		$pagoPuntos = $this->carrito->getPagoPuntos();
-
-		$iva = $this->carrito->getIva();
-		$flete = $this->carrito->calcularFlete();
-		$total = $this->carrito->getTotal();
-		$rentabilidad = $this->carrito->getRentabilidad();
-
-		/*$campana_actual = $this->campanas->getCamapanaActual();
-
-		if ($campana_actual["monto_minimo"]>$subtotalAntesIva) {
-			$alerta = 'El pedido no cumple con el monto mínimo, por favor agrega más productos. Si no eres un distribuidor por favor da clic <a href="'.URL_SITIO.'tiendas">aquí.</a>';
-		}*/
-
-		//var_dump($itemsCarrito);
-		include "views/club/carrito.php";
-	}
-
-
-	public function bancoPuntos(){
-
-		if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR') {
-
-			if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
-
-				$response_codigo = $this->redimirCodigoPuntos($_POST['codigo']);	
-			}
-
-			$puntos_banco = $this->usuarios->listarPuntosDisponibles($_SESSION['idusuario']);
-			$puntos = $this->usuarios->puntosDisponibles($_SESSION['idusuario']);
-
-			include 'views/club/banco_puntos.php';
-
-
-		}else{
-
-			header('Location: '.URL_CLUB);
-		}
-	}
-
 
 	/*****LANDING****/
 	public function landingCosmeticaEcologica(){

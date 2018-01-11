@@ -256,6 +256,17 @@ class Productos extends Database
 		
 		return $filas;
 	}
+
+	public function descontarStock($idpdt, $cantidad){
+
+		$producto = $this->detalleProductos($idpdt);
+		$cantidad_actual = $producto[0]["cantidad"];
+		$cantidad_nueva = $cantidad_actual - $cantidad;
+		$filas = $this->actualizarCantidadProducto($idpdt,$cantidad_nueva);
+
+		return $filas;
+
+	}
 	
 }
 ?>

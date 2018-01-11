@@ -187,7 +187,7 @@
                   if (isset($_SESSION['idusuario']) && $_SESSION['tipo']=='CONSUMIDOR') {
                   ?>
                     <div class="box-session-verde text-center">
-                        Tienes <strong><?=number_format(intval($puntos['disponibles']))?></strong> puntos
+                        Tienes <strong><?=number_format(intval($this->puntos_disponibles['disponibles']))?></strong> puntos
                     </div>
                   <?php } ?>
               </div>
@@ -217,7 +217,7 @@
               <li><a href="<?=URL_CLUB?>/#premios">PREMIOS</a></li>
               <li><a href="<?=URL_CLUB?>/#enterate">ENTÉRATE</a></li>
               <li><a href="<?=URL_CLUB?>/#donde-comprar">¿DÓNDE REDIMIR?</a></li>
-              <li><a href="<?=URL_PRODUCTOS?>">PRODUCTOS</a></li>
+              <li><a href="<?=URL_CLUB.'/'.URL_CLUB_PRODUCTOS?>">PRODUCTOS</a></li>
               <li><a href="<?=URL_CLUB?>/#preguntas-frecuentes">PREGUNTAS FRECUENTES</a></li>
               <li><a href="<?=URL_CLUB?>/#contacto">CONTÁCTO</a></li>
             </ul>

@@ -61,5 +61,70 @@ class Ordenes extends Database
 
 		return $filas_ordenes;
 	}
+
+	public function enviarEmailOrden($detalle_orden = array(), $subtotalAntesIva = 0, $descuentoCupon = 0, $porcDescuentoEscala = 0, $descuentoEscala = 0, $totalNetoAntesIva = 0, $retencion = 0, $iva = 0, $pago_puntos = 0, $flete = 0, $total = 0, $codigo_orden = '', $estado = '', $nombre = '', $apellido = '', $email = ''){
+
+
+		$tabla_orden = '<table cellspacing="10" border="0" width="650px" align="center">
+						<thead>
+							<tr>
+								<th align="center">DESCRIPCIÓN</th>
+								<th align="center">PRECIO</th>
+								<th align="center">CANTIDAD</th>
+								<th align="right">SUBTOTAL</th>
+							</tr>
+						</thead>
+						<tbody>';
+
+		if (count($detalle_orden)>0) {
+
+			foreach ($detalle_orden as $key => $producto) {
+
+				$tabla_orden .= '<tr><td>'.$producto["nombre"].'<br>'.$producto["codigo"].'<br>'.$producto["iva_porc"].'%</td>
+						<td>$'.convertir_pesos($producto["precio"]).'</td>
+						<td align="center">'.$producto["cantidad"].'</td>
+						<td align="right">$'.convertir_pesos($producto["subtotal"]).'</td></tr>';
+			}
+		}
+		
+		$tabla_orden .='<tr><td colspan="3" align="right">Subtotal antes de IVA</td>
+						<td align="right">$'.convertir_pesos($subtotalAntesIva).'</td></tr>
+					<tr><td colspan="3" align="right">Descuento Cupón</td>
+						<td align="right">$'.convertir_pesos($descuentoCupon).'</td></tr>
+					<tr><td colspan="3" align="right">Subtotal Neto Antes de Iva</td>
+						<td align="right">$'.convertir_pesos(($subtotalAntesIva-$descuentoCupon)).'</td></tr>
+					<tr><td colspan="3" align="right">Descuento por Escala %</td>
+						<td align="right">'.$porcDescuentoEscala.'%</td></tr>
+					<tr><td colspan="3" align="right">Descuento por Escala $</td>
+						<td align="right">$'.convertir_pesos($descuentoEscala).'</td></tr>
+					<tr><td colspan="3" align="right">Total Neto antes de IVA</td>
+						<td align="right">$'.convertir_pesos($totalNetoAntesIva).'</td></tr>
+					<tr><td colspan="3" align="right">Retención</td>
+						<td align="right">$'.convertir_pesos($retencion).'</td></tr>
+					<tr><td colspan="3" align="right">IVA</td>
+						<td align="right">$'.convertir_pesos($iva).'</td></tr>
+					<tr><td colspan="3" align="right">Pago con puntos</td>
+						<td align="right">$'.convertir_pesos($pago_puntos).'</td></tr>
+					<tr><td colspan="3" align="right">Costo de Envío</td>
+						<td align="right">$'.convertir_pesos($flete).'</td></tr>
+					<tr><td colspan="3" align="right"><b>TOTAL A PAGAR</b></td>
+						<td align="right"><b>$'.convertir_pesos($total).'</b></td></tr>
+				</tbody>
+			</table>';
+		
+		$idplantilla=1;
+		$plantilla = PlantillasEmail::detalle_plantilla($idplantilla);
+
+		$mensaje = shorcodes_orden_compra($nombre." ".$apellido,$codigo_orden,$plantilla["mensaje"],$tabla_orden,$estado);
+		
+		// Always set content-type when sending HTML email
+		$headers = "MIME-Version: 1.0"."\r\n";
+		$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
+
+		// More headers
+		$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
+
+		$mail = mail($_SESSION["email"], $plantilla["asunto"], $mensaje, $headers);		
+	}
 }
 ?>

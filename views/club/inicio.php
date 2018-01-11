@@ -1,15 +1,34 @@
 <?php include 'header.php'; ?>
-<!--<div class="parallax-container" id="sobre-el-club">
-  <div class="parallax"><img src="<?=URL_SITIO?>assets/club/img/banner1.png">
-   
-  </div>
-</div>-->
-<div class="carousel carousel-slider">
-	<a class="carousel-item" href="#one!"><img src="<?=URL_SITIO?>assets/club/img/BANNER-PLAN-DE-PUNTOS.png"></a>
-	<a class="carousel-item" href="#two!"><img src="<?=URL_SITIO?>assets/club/img/BANNER-PLAN-DE-PUNTOS-2.png"></a>
-</div>
+
+<?php 
+if (!empty($banners)) {
+	
+	if (count($banners)>1) {
+?>
+		<div class="carousel carousel-slider">
+			<?php foreach ($banners as $key => $banner) { ?>
+				
+			<a class="carousel-item" href="<?=$banner['link']?>">
+				<img src="<?=$banner['imagen']?>">
+			</a>
+			
+			<?php } ?>
+		</div>
+<?php 	}else{ ?>
+
+	<div class="parallax-container" id="sobre-el-club">
+	  <div class="parallax">
+	  	
+	  		<img src="<?=$banners[0]['imagen']?>">
+	  	
+	  </div>
+	</div>
+<?php
+	}
+}
+?>
 <div class="divider"></div>
-<div class="row" id="premios">
+<div class="section" id="premios">
 	<h2 class="center-align">Premios</h2>
 	<div class="row">
 	<?php
@@ -40,98 +59,53 @@
 	?>
 	</div>
 	
-	
 	<center>
-		<a class="waves-effect green darken-4 btn-large"><i class="material-icons right">cloud</i>Más Premios</a>			
+		<a class="waves-effect green darken-4 btn-large" href="<?=URL_CLUB.'/'.URL_CLUB_PREMIOS?>"><i class="material-icons right">cloud</i>Más Premios</a>			
 	</center>
 </div>
-<!--<div class="divider"></div>
-<div class="row" id="donaciones">
-	<h2 class="center-align">Donaciones</h2>
-</div>
-<div class="divider"></div>-->
-<div class="row" id="enterate">
-	<h2 class="center-align">Entérate</h2>
-	<div class="col s12 m4">
-		<div class="card hoverable">
-		    <div class="card-image waves-effect waves-block waves-light">
-		      <img class="activator" src="<?=URL_SITIO?>assets/club/img/enterate/entrada1.jpg">
-		    </div>
-		    <div class="card-content">
-		      <span class="card-title activator grey-text text-darken-4">El concepto de la BELLEZA está cambiando!<i class="material-icons right">more_vert</i></span>
-		      <p>
-		      	Los avisos publicitarios con modelos delgadas y con un rostro sin arrugas ni imperfecciones, ha generado mucho daño a la sociedad.
-		      </p>
-		    </div>
-		     <!--<div class="card-action">
-              <a clas="activator">This is a link</a>
-            </div>-->
-		    <div class="card-reveal">
-		      <span class="card-title grey-text text-darken-4">El concepto de la BELLEZA está cambiando!<i class="material-icons right">close</i></span>
-		      <p>Como resultado de este cambio "conciencia social" las personas están empezando a desarrollar una relación más positiva con sus cuerpos, al mismo tiempo que evidenciaban una ‘fatiga de la belleza irreal’ de la publicidad clásica. <br><br>
-				Este cambio comenzó un par de décadas atrás, con la puesta en duda del modelo de belleza perfecta propuesto por la publicidad, debido al alarmante número de jóvenes muertas por anorexia en todo el mundo”<br><br>
+<div class="section" id="enterate">
+	<div class="row">
+		<h2 class="center-align">Entérate</h2>
+		<?php foreach ($entradas as $key => $entrada) { ?>
 
-				PIUDALÍ AMAZONIAN SKINCARE, promueve la belleza natural.<br>
-				Somos CIENCIA Y CONCIENCIA
-</p>
-		    </div>
-		 </div>
+			<div class="col s12 m4">
+				<div class="card hoverable">
+			    	<div class="card-image waves-effect waves-block waves-light">
+		<?php
+			
+			if ($entrada['tipo'] == 'IMAGEN') {
+		?>
+						 <a href="<?=URL_CLUB.'/'.URL_CLUB_ENTRADAS.'/'.$entrada['url']?>" >
+						 	<img class="activator" src="<?=$entrada['ruta']?>">
+						 </a>
+		<?php
+			}elseif ($entrada['tipo'] == 'VIDEO'){
+		?>
+						<div class="video-container">
+					        <iframe src="<?=$entrada['ruta']?>" frameborder="0" allowfullscreen></iframe>
+					    </div>
+		<?php } ?>
+
+					</div>
+				    <div class="card-content">
+				      <span class="card-title activator grey-text text-darken-4"><?=$entrada['titulo']?><!--<i class="material-icons right">more_vert</i>--></span>
+				      <p>
+				      	<?=substr($entrada['contenido'], 0, 250)?>...
+				      </p>
+				    </div>
+				    <div class="card-action">
+		              <a href="<?=URL_CLUB.'/'.URL_CLUB_ENTRADAS.'/'.$entrada['url']?>" clas="activator">Continuar leyendo...</a>
+		            </div>
+				   
+				 </div>
+			</div>
+
+		<?php } ?>
 	</div>
-	<div class="col s12 m4">
-		<div class="card hoverable">
-		    <div class="card-image waves-effect waves-block waves-light">
-		      <img class="activator" src="<?=URL_SITIO?>assets/club/img/enterate/entrada2.png">
-		    </div>
-		    <div class="card-content">
-		      <span class="card-title activator grey-text text-darken-4">7 consejos para cuidar tu piel masculina<i class="material-icons right">more_vert</i></span>
-		      <p>
-		      	Son tres los factores fisiológicos que diferencian la piel masculina de la femenina: espesor, firmeza y secreción sebácea. 
-		      </p>        
-		    </div>
-		     <!--<div class="card-action">
-              <a href="#">This is a link</a>
-            </div>-->
-		    <div class="card-reveal">
-		      <span class="card-title grey-text text-darken-4">7 consejos para cuidar tu piel masculina<i class="material-icons right">close</i></span>
-		      <p>Son tres los factores fisiológicos que diferencian la piel masculina de la femenina: espesor, firmeza y secreción sebácea. <br><br>La masculina es 24% más espesa que la femenina, por lo que es más resistente; además, la cantidad de grasa cutánea secretada por el hombre es mucho mayor por razones hormonales, por ello tiene más imperfecciones y brillos.<br><br>
-		      	7 consejos para cuidar tu piel:</p>
-<ol>
-<li>Realiza una limpieza facial diaria</li>
-<li>Exfolia tu rostro y cuerpo una vez a la semana.</li>
-<li> Para la afeitada usa gel de ducha Piudalí, te protege de la irritación y te hidrata.</li>
-<li> Después de afeitarte, utiliza crema hidratante para el día.</li>
-<li> Aplica crema para el contorno de ojos para eliminar las bolsas y ojeras, ya que esta zona es </li>sumamente delicada.
-<li> Hidrata tus labios diariamente con bálsamo reparador Piudali.</li>
-<li> Aplica en las noches crema ritual de juventud para prevenir la aparición de las arrugas, ya </li>que si bien tardan más en salir que en las femeninas, suelen ser mucho más profundas y marcadas.</ol>
-		      
-		    </div>
-		 </div>
-	</div>
-	<div class="col s12 m4">
-		<div class="card hoverable">
-		    <div class="card-image waves-effect waves-block waves-light">
-		      <img class="activator" src="<?=URL_SITIO?>assets/club/img/enterate/entrada3.jpg">
-		    </div>
-		    <div class="card-content">
-		      <span class="card-title activator grey-text text-darken-4">Cuida tu piel en el embarazo sin ingredientes nocivos<i class="material-icons right">more_vert</i></span>
-		      <p>
-		      	Desde el primer momento del embarazo, hay que prevenir las estrías, aplicando un producto emoliente para aportar elasticidad a la piel y es necesario aplicar dos veces al día, con masajes circulares muy suaves, en abdomen y senos, hasta la total absorción del producto. 
-		      </p>        
-		    </div>
-		    <!-- <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>-->
-		    <div class="card-reveal">
-		      <span class="card-title grey-text text-darken-4">Cuida tu piel en el embarazo sin ingredientes nocivos<i class="material-icons right">close</i></span>
-		      <p>Desde el primer momento del embarazo, hay que prevenir las estrías, aplicando un producto emoliente para aportar elasticidad a la piel y es necesario aplicar dos veces al día, con masajes circulares muy suaves, en abdomen y senos, hasta la total absorción del producto. <br><br>
-		      La leche corporal de Piudali Amazonian Skincare es tu mejor opción porque no contiene ingredientes nocivos para tu piel y para la seguridad de tu bebé.<br><br>
-			Con ingredientes de origen 100% vegetal con seguridad comprobada, dermatológicamente sin crueldad en animales.<br><br>
-			Aceites: Germen de trigo, buriti, andiroba, nuez de Brasil, macadamia, semillas de maracuyá, semillas de granadillas, caléndula y girasol.<br>
-			Extractos: Aloe vera, ñame y chontaduro rico en vitamina A.<br>
-			Mantequilla: Copoazú y karité.
-				</p>
-		    </div>
-		 </div>
+	<div class="row">
+		<center>
+			<a class="waves-effect green darken-4 btn-large" href="<?=URL_CLUB.'/'.URL_CLUB_ENTRADAS?>"><i class="material-icons right">cloud</i>Entérate Más...</a>			
+		</center>
 	</div>
 </div>
 <!--<div class="divider"></div>-->
