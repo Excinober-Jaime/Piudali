@@ -1,4 +1,7 @@
 $(document).ready(function(){
+
+	$('[data-toggle="popover"]').popover();
+
 	$(".open-modal").click(function(){
 		var idpage = $(this).attr("idpage");
 
@@ -290,4 +293,14 @@ function sleep(milliseconds) {
       break;
     }
   }
+}
+
+function copyToClipboard(elemento) {
+
+	var $temp = $("<input>");
+	$("body").append($temp);
+	$temp.val($(elemento).text()).select();
+	document.execCommand("copy");
+	$temp.remove();
+
 }

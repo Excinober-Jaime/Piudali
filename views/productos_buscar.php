@@ -7,7 +7,7 @@
 		
 			foreach ($productosLista as $producto) {
 
-				producto_bloque($producto["img_principal"],$producto["nombre"],$producto["codigo"],$producto["precio"],$producto["precio_oferta"],$producto["url"],"col-sm-4");
+				producto_bloque($producto["img_principal"],$producto["nombre"],$producto["codigo"],$producto["tipo"],$producto["precio"],$producto["precio_oferta"],$producto["url"],"col-sm-4");
 			}
 		}else{
 			?>

@@ -115,7 +115,7 @@
 				var href = "<?=$banner_popup['link']?>";
 				var data = '<a href="'+href+'"><img src="'+img+'" class="img-responsive" title="'+descripcion+'"></a>';
 				$(".modal-body").html(data);
-				$('.modal').modal();	    		
+				$('.modal').modal();		
 	    	})
 
     	</script>

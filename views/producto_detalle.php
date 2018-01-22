@@ -61,8 +61,30 @@
 				</div>							
 			</div>
 			<hr>		
-			<button type="button" idpdt="<?=$producto[0]["idproducto"]?>" class="btn btn-primary btn-lg btn-block agregarPdt">Añadir Producto</button>			
-			<br>
+			<button type="button" idpdt="<?=$producto[0]["idproducto"]?>" class="btn btn-primary btn-lg btn-block agregarPdt">Añadir Producto</button>	
+			<hr>
+			<?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $producto[0]["tipo"] == 'NORMAL') { ?>
+				
+
+				<div class="panel panel-default">
+				  <div class="panel-heading">VENDE ESTE PRODUCTO VIRTUALMENTE Y GANA EL 20%</div>
+				  <div class="panel-body">
+				  	<p>
+				  		Sin inventario. Nosotros entregamos directamente a tus clientes.<br>
+				  		Nos encargamos de recaudar a tus clientes y te consignamos el 20%.
+				  	</p>
+				  	<p>Comparte este enlace para vender este producto</p>
+				    <p id="urlpdt"><?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_PRODUCTO.'/'.$producto[0]["url"].'?d='.$_SESSION['idusuario']?>
+				   	</p>				   	
+				   	<center>
+				   		<button class="btn btn-primary btn-sm" onclick="copyToClipboard('#urlpdt')">Copiar enlace</button>
+				   		<button class="btn btn-default btn-sm">¿Cómo funciona?</button>
+				   	</center>
+				  </div>
+				</div>
+
+			<?php } ?>
+			
 			<div class="col-xs-12 text-center" style="font-size:20px;">
 				<?php
 	            $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -124,7 +146,7 @@
 		<?php
 		foreach ($productos_relacionados as $producto_relacionado) {
 
-			producto_bloque($producto_relacionado["img_principal"],$producto_relacionado["nombre"],$producto_relacionado["codigo"],$producto_relacionado["precio"],$producto_relacionado["precio_oferta"],$producto_relacionado["url"],"col-sm-2");
+			producto_bloque($producto_relacionado["img_principal"],$producto_relacionado["nombre"],$producto_relacionado["codigo"],$producto_relacionado["tipo"],$producto_relacionado["precio"],$producto_relacionado["precio_oferta"],$producto_relacionado["url"],"col-sm-2", true);
 		}
 		?>
 	</div>

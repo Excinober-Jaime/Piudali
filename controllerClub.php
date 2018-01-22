@@ -355,6 +355,7 @@ class ControllerClub
 		if (isset($_POST["redimirCupon"])) {
 
 			if (!empty($_POST["cupon_descuento"])) {
+
 				$cupon = $_POST["cupon_descuento"];
 				$cupon = $this->carrito->infoCupon($cupon);
 
@@ -488,14 +489,14 @@ class ControllerClub
 
 			if ($idorden) {
 				
-				//Cargar Nuevos Puntos
-				$valor_punto = 1;
+				//Cargar Nuevos Puntos Consumidor
+				/*$valor_punto = 1;
 				$fecha_adquirido = fecha_actual('datetime');
 				$redimido = 0;
 				$estado_puntos = 0;
 
 				$nuevos_puntos = $totalNetoAntesIva*($valor_punto/100);
-				$idnuevospuntos = $this->usuarios->asignarNuevosPuntos($nuevos_puntos, "COMPRAS", $fecha_adquirido, $redimido, $estado_puntos, $_SESSION["idusuario"], $idorden);
+				$idnuevospuntos = $this->usuarios->asignarNuevosPuntos($nuevos_puntos, "COMPRAS", $fecha_adquirido, $redimido, $estado_puntos, $_SESSION["idusuario"], $idorden);*/
 
 				//Registrar detalle de orden
 				if (count($detalleOrden)>0) {
@@ -516,6 +517,16 @@ class ControllerClub
 					$comision_pagada = 0;
 
 					$this->ventas_virtuales->crear_venta($comision_pagada, $idorden, $_SESSION['iddistribuidor']);
+
+					//Cargar Nuevos Puntos A Distribuidor
+					$valor_punto = 1;
+					$fecha_adquirido = fecha_actual('datetime');
+					$redimido = 0;
+					$estado_puntos = 0;
+
+					$nuevos_puntos = $totalNetoAntesIva*($valor_punto/100);
+
+					$idnuevospuntosdistribuidor = $this->usuarios->asignarNuevosPuntos($nuevos_puntos, "VENTA A COMPRADOR", $fecha_adquirido, $redimido, $estado_puntos, $_SESSION['iddistribuidor'], $idorden);
 				}
 
 

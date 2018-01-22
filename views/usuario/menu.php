@@ -68,6 +68,8 @@
 			?>
               <ul class="nav navbar-nav">
                 	<li><a href="<?=URL_USUARIO?>">Perfil</a></li>
+                	
+                	<li><a href="<?=URL_USUARIO."/".URL_USUARIO_VENTAS_VIRTUALES?>">Ventas Virtuales</a></li>
 
 	                <?php if (!Controller::$DISABLE_COMPRAR) { ?>
 

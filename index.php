@@ -757,6 +757,10 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}
 							break;
 
+						case URL_USUARIO_VENTAS_VIRTUALES:
+							$controller->usuarioVentasVirtuales();
+							break;
+
 						case URL_USUARIO_TICKETS:
 							if (isset($var3) && !empty($var3)) {
 								if ($var3=="Nuevo") {

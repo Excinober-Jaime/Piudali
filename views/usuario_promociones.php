@@ -15,7 +15,7 @@
 			
 				foreach ($promociones as $promocion) {
 
-					producto_bloque($promocion["img_principal"],$promocion["nombre"],$promocion["codigo"],$promocion["precio"],$promocion["precio_oferta"],$promocion["url"],"col-sm-4");
+					producto_bloque($promocion["img_principal"],$promocion["nombre"],$promocion["codigo"],$promocion["tipo"],$promocion["precio"],$promocion["precio_oferta"],$promocion["url"],"col-sm-4");
 				}
 			}else{
 				?>

@@ -11,7 +11,7 @@
                 <?php
                 foreach ($premios as $premio) {
     
-                    producto_bloque($premio["img_principal"],$premio["nombre"],$premio["codigo"],$premio["precio"],$premio["precio_oferta"],$premio["url"],"col-sm-4");
+                    producto_bloque($premio["img_principal"],$premio["nombre"],$premio["codigo"],$premio["tipo"],$premio["precio"],$premio["precio_oferta"],$premio["url"],"col-sm-4");
                 }
                 ?>
             </div>

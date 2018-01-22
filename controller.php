@@ -63,6 +63,7 @@ class Controller
 		$this->codigos_puntos = new CodigosPuntos();
 		$this->canales_distribucion = new CanalesDistribucion();
 		$this->entradas = new Entradas();
+		$this->ventas_virtuales = new VentasVirtuales();
 		
 
 		/**MODULOS DISTRIBUIDORES**/
@@ -1614,6 +1615,38 @@ class Controller
 		$comprar = $this->paginas->detallePagina($pagina_comprar);
 
 		include "views/usuario_comprar.php";
+	}
+
+	public function usuarioVentasVirtuales(){
+
+		$paginas_menu = $this->paginasMenu();
+
+		$moduloActual = URL_USUARIO_VENTAS_VIRTUALES;
+
+		$posicion_banners="PANEL INTERNO";
+		$estados = array(1);
+
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
+
+		$campanas = $this->campanas->listarCampanas();
+
+		if (isset($_POST["idcampana"]) && !empty($_POST["idcampana"])) {
+
+			$es_ano = substr($_POST["idcampana"], 0, 3);
+			if ($es_ano=="ano") {
+				$ano = substr($_POST["idcampana"], 3, 7);
+				$campana_seleccionada = array('fecha_ini' => $ano.'-01-01', 'fecha_fin' => $ano.'-12-31');
+			}else{
+				$campana_seleccionada = $this->campanas->detalleCampana($_POST["idcampana"]);
+			}			
+			
+		}else{
+			$campana_seleccionada = $this->campanas->getCamapanaActual();
+		}
+
+		$ventas = $this->ventas_virtuales->listar_ventas($_SESSION['idusuario'], $campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"]);
+
+		include 'views/usuario_ventas_virtuales.php';
 	}
 
 	public function usuarioTickets(){
