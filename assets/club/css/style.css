@@ -1,9 +1,150 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
 body{
-	border-top: 5px solid #006837;
 	font-family: 'Lato', sans-serif;
 }
+
+
+
+.login{
+	background-color: #f19300;
+	color: #fff;
+	padding: 7px 0;
+}
+
+	.login a{
+		color: #fff;
+	}
+
+	.login a:hover{
+		color: #6D1E3F;
+	}
+
+
+	.login .row{
+		margin-bottom: 0 !important;
+	}
+
+
+.nombre-usuario{
+	text-align: center;
+}
+
+.puntos-disponibles{
+	background-color: #6D1E3F;
+	padding: 3px 10px;
+	color: #fff;
+	border-radius: 20px;
+	text-align: center;
+	display: -webkit-inline-box;
+}
+
+
+@media (max-width: 690px) {
+  .puntos-disponibles{
+  		display: block;
+  		margin: 5px 0 15px 0;
+	}
+
+	.nombre-usuario{
+		display: block;
+	}
+}
+
+.carrito-compra{
+	background-color: #6D1E3F;
+	padding: 10px;
+	border-radius: 20px;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.carrito-compra a{
+	color: #fff;
+}
+ 
+
+#cantidad-carrito{
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    display: table-caption;
+}
+
+
+.btn-salir{
+	background-color: #dd7e00;
+	padding: 3px 20px;
+	border-radius: 20px;
+	display: -webkit-inline-box;
+	float: right;
+}
+
+.btn-salir:hover{
+	background-color: #b76400;
+	color: #fff;
+}
+
+
+.btn-verde{
+	background-color: #006837;
+	padding: 3px 20px;
+	border-radius: 20px;
+	display: -webkit-inline-box;
+	float: right;
+	margin-left: 20px;
+}
+
+	.btn-verde:hover{
+		background-color: #024925;
+		color: #fff;
+	}
+
+
+.btn-violeta{
+	background-color: #6D1E3F;
+	padding: 3px 20px;
+	border-radius: 20px;
+	display: -webkit-inline-box;
+	float: right;
+	margin-left: 20px;
+}
+
+	.btn-violeta:hover{
+		background-color: #4C122D;
+		color: #fff;
+	}
+
+.btn{
+	height: auto !important;
+	line-height:normal !important;
+}
+
+.box-gris{
+	background-color: #f2f2f2;
+	padding: 5px;
+	border-radius: 20px;
+	margin: 15px 0 0 0;
+	width: 100%;
+}
+
+.bg-form{
+	background-color: #f2f2f2;
+	padding: 15px !important;
+	border-radius: 20px;
+	margin: 15px 0 0 0;
+}
+
+
 
 .franja{
 	background-image: url('../../img/franja.png');
@@ -14,6 +155,9 @@ body{
 	padding: 0px;
 }
 
+.titulos{
+	color: #2E7D32;
+}
 
 .header-club input[type=text]:not(.browser-default){
 height: 2.4rem !important;
@@ -40,6 +184,9 @@ margin: 0 !important;
 	width: 100%;
 }
 
+
+
+
 .box-session-verde{
 	background-color: #006837;
 	padding: 5px;
@@ -47,6 +194,7 @@ margin: 0 !important;
 	border-radius: 10px;
 	margin-top: 10px;
 	text-align: center;
+	display: -webkit-inline-box;
 }
 
 /*.box-session-verde:hover{
@@ -72,15 +220,7 @@ margin: 0 !important;
 	color: #fff;
 }
 
-.btn-salir{
-	background-color: #dd7e00;
-	padding: 5px;
-	border-radius: 20px;
-}
 
-.btn-salir:hover{
-	background-color: #b76400;
-}
 .cantidad-puntos{
 	display: table;
 	position: relative;
@@ -143,5 +283,58 @@ margin: 0 !important;
 	border-radius: 25px;
 }
 
+.page-footer {
+	background-color: #520d2a;
+	color: #fff;
+}
+
+
+.page-footer a{
+	color: #fff;
+}
+
+.footer-copyright{
+	background-color: #3c061c !important;
+}
+
+.redes-sociales {
+    margin-top: 15px;
+}
+
+.redes-sociales span {
+    margin-right: 25px;
+}
+
+.redes-sociales i {
+    background-color: #ee7e1c;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 20px;
+}
+
+@media (max-width: 767px) {
+    .redes-sociales {
+        text-align: center;
+        margin: 25px 0px 15px 0;
+    }
+}
+
+.autor{
+	margin-top: 15px;
+}
 
 /* END CLUB*/
+
+
+/*PRODUCTOS*/
+
+.padding-full{
+	padding: 30px;
+}
+
+.material-placeholder img{
+	border:double 1px #e2e2e2;
+}

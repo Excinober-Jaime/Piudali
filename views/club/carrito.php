@@ -1,6 +1,7 @@
 <?php include 'header.php'; ?>
 <div class="divider"></div>
 <div class="container">
+	<div class="padding-full">
 	<div class="row">
 		<table class="">
 			<thead>
@@ -64,6 +65,7 @@
 			</tbody>
 		</table>
 	</div>
+</div>
 	<div class="divider"></div><br>
 	<div class="row">
 		<div class="col s12 m8">

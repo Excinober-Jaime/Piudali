@@ -68,25 +68,88 @@
   <a href="javascript:" id="return-to-top">
     <i class="fa fa-arrow-up" aria-hidden="true"></i>
   </a>
-  <div class="container">
+  
+      <section class="login">
+          <!--<div class="box-session-club text-center">-->   
+                <?php 
+                  if (isset($_SESSION['idusuario']) && $_SESSION['tipo']=='CONSUMIDOR') {
+                ?>
+                <div class="container">
+                  <div class="row">
+                    <div class="col s12 m6">
+                      <!-- LLAMAR NOMBRE Y PUNTOS DISPONIBLES--> 
+                      <span class="nombre-usuario">¡Hola!, <?=$_SESSION['nombre']?></span>
+                      <?php 
+                        if (isset($_SESSION['idusuario']) && $_SESSION['tipo']=='CONSUMIDOR') {
+                        ?>
+                          <div class="puntos-disponibles text-center">
+                              Tienes <strong><?=number_format(intval($this->puntos_disponibles['disponibles']))?></strong> puntos
+                          </div>
+                        <?php } ?>
+                        <!-- / LLAMAR NOMBRE Y PUNTOS DISPONIBLES-->
+                    </div>
+
+
+
+                    <div class="col s12 m6">
+                            <a href="<?=URL_CLUB.'/'.URL_CLUB_PERFIL?>">Mi Perfil</a> |
+                            <a href="<?=URL_CLUB.'/'.URL_CLUB_BANCO_PUNTOS?>">Banco de Puntos</a>                        
+                            <a href="<?=URL_USUARIO.'/'.URL_SALIR.'?return='.URL_CLUB?>" class="enlanceClub">
+                              <div class="btn-salir text-center">SALIR</div>
+                            </a>
+                  </div>
+                </div>
+                </div>
+                <?php
+                  }else{
+                ?>
+                    <div class="container">
+                      <div class="row">                    
+                        <a href="#" class="enlanceClub open-iniciar" id="">
+                            <center><div class="btn-verde">Inicia sesión</div></center>
+                        </a>
+                    
+                        <a href="#" class="enlanceClub open-registro" id="">
+                          <center><div class="btn-violeta">Registrate</div></center>
+                        </a>
+                      </div>
+                    </div>
+                <?php
+                  }
+                ?>
+
+                  
+
+
+                  <div class="clearfix"></div>
+           <!--</div>-->
+      </section>
+
+
+<div class="container">
     <div class="row">
+
     <header class="header-club">
-       <div class="col s12 m3" style="padding-top:15px;">
+      <!--COLUMNA 1-->
+       <div class="col s12 m12 l4" style="padding-top:15px;">
           <a href="<?=URL_CLUB?>">
-              <img src="assets/club/img/club-piudali.png" class="responsive-img" style="margin-top: 8px;">
+              <center><img src="assets/club/img/club-piudali.png" class="responsive-img" style="margin-top: 8px;"></center>
           </a>        
         </div>
-        <div class="col s12 m9">
-             
+      <!--COLUMNA 2-->
+        <div class="col s12 m12 l8">
+      
+      <!--INGRESAR CLAVES-->   
           <?php 
 
           if (isset($response_codigo) && !empty($response_codigo)) {
             
           ?>
-          <div class="col s12 m6">
+          <div class="">
               <center>
     
-                <div class="card-panel red lighten-5">
+                <div class="col s12 m8 l7 offset-l2">
+                <div class="box-gris">
 
                   <span class="black-text">
           <?php 
@@ -120,76 +183,46 @@
             ?>  
                 </span>
                 </div>
+                </div>
               </center>
             </div>
             <?php 
           }else{
           ?>
-              <div class="col s12 m6">
-                <center>
-                <p style="margin:15px 0; color: #41281b; font-size: 13px;" class="text-center">Ingresa aquí las claves alfanuméricas de <b>10 dígitos</b> impresas en los empaques o escanea el QR <i class="fa fa-qrcode" aria-hidden="true"></i>.</p>
-                <form class="form-inline" method="post">
-                  <div class="col s5 m5 l6">
-                    <div class="form-group">
-                      <input type="text" name="codigo" class="form-control" id="codigo" placeholder="Ejemplo:15s56g6saq" required>
-                    </div>
-                  </div>
-                  <div class="col s7 m7 l6">
-                    <button type="submit" name="redimirCodigo" class="btn green darken-4">Registrar QR</button>
-                  </div>
-                </form>
-                </center>
+              <div class="col s12 m8 l7 offset-l2">
+                <center><small>Ingresa aquí las claves alfanuméricas de <b>10 dígitos</b> impresas en los empaques <!--o escanea el QR <i class="fa fa-qrcode" aria-hidden="true"></i>-->.</small></center>
+                <div class="box-gris">
+                  <center>
+                    <form class="form-inline" method="post">
+                      <div class="col s5 m5 l6">
+                        <div class="form-group">
+                          <input type="text" name="codigo" class="form-control" id="codigo" placeholder="Ejemplo:15s56g6saq" required>
+                        </div>
+                      </div>
+                      <div class="col s7 m7 l6">
+                        <button type="submit" name="redimirCodigo" class="btn btn-verde" style="margin-top: 10px;">Ingresar Claves</button>
+                      </div>
+                    </form>
+                    <div style="clear: both;"></div>
+                    
+                  </center>
+                </div>
               </div>
           <?php } ?>
 
-               <div class="col s12 m5 offset-m1">
-                <div class="box-session-club text-center">
-                  
-                  
-                <?php 
-                  if (isset($_SESSION['idusuario']) && $_SESSION['tipo']=='CONSUMIDOR') {
-                ?>
-                      <div class="col s8">
-                        <div class="saludoUsuario">¡Hola!, <?=$_SESSION['nombre']?></div>
-                        <small>
-                            <a href="<?=URL_CLUB.'/'.URL_CLUB_PERFIL?>">Mi Perfil</a> |
-                            <a href="<?=URL_CLUB.'/'.URL_CLUB_BANCO_PUNTOS?>">Banco de Puntos</a>                        
-                        </small>
-                      </div>
-                      <div class="col s4">
-                        <a href="<?=URL_USUARIO.'/'.URL_SALIR.'?return='.URL_CLUB?>" class="enlanceClub">
-                          <center><div class="btn-salir">SALIR</div></center>
-                        </a>
-                      </div>
-                <?php
-                  }else{
-                ?>
-                    <div class="col s6">                      
-                        <a href="#" class="enlanceClub open-iniciar" id="">
-                            <center><div class="btn-salir">Inicia sesión</div></center>
-                        </a>
-                    </div>
-                    <div class="col s6">
-                        <a href="#" class="enlanceClub open-registro" id="">
-                          <center><div class="btn-salir">Registrate</div></center>
-                        </a>
-                    </div>
-                <?php
-                  }
-                ?>
-
-                  
-
-
-                  <div class="clearfix"></div>
+               <div class="col s12 m4 l2 offset-l1">
+                <div class="carrito-compra">
+                  <center>
+                    <a href="<?=URL_CLUB.'/'.URL_CLUB_CARRITO?>">
+                    <i class="material-icons">shopping_cart</i>
+                    <span id="cantidad-carrito">
+                      <?=Carrito::productosAgregados()?>
+                    </span><br/>
+                    <span>Productos</span>
+                    <!--<span id="total-carrito">$<?=number_format(Carrito::totalCarrito())?></span>-->
+                    </a>
+                  </center>
                 </div>
-                 <?php 
-                  if (isset($_SESSION['idusuario']) && $_SESSION['tipo']=='CONSUMIDOR') {
-                  ?>
-                    <div class="box-session-verde text-center">
-                        Tienes <strong><?=number_format(intval($this->puntos_disponibles['disponibles']))?></strong> puntos
-                    </div>
-                  <?php } ?>
               </div>
         </div>
       <!--<div class="col-xs-12 col-md-3 text-center social">
@@ -238,14 +271,7 @@
               <li><a href="<?=URL_CLUB?>/#preguntas-frecuentes">PREGUNTAS FRECUENTES</a></li>
               <li><a href="<?=URL_CLUB?>/#contacto">CONTÁCTO</a></li>
             </ul>
-            <ul class="right">
-              <li>
-                <a href="<?=URL_CLUB.'/'.URL_CLUB_CARRITO?>">
-                  <i class="material-icons left">shopping_cart</i> <span id="cantidad-carrito"><?=Carrito::productosAgregados()?> Productos</span>
-                  <!--<span id="total-carrito">$<?=number_format(Carrito::totalCarrito())?></span>-->
-                </a>
-              </li>
-            </ul>
+            
              <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
           </div>
         </div>
