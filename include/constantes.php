@@ -48,6 +48,7 @@ define("URL_USUARIO_VENTAS_VIRTUALES", "VentasVirtuales");
 define("URL_ADMIN_CODIGOS_PUNTOS", "Codigos");
 
 define("URL_CLUB", "Club");
+define("URL_CLUB_MIN", "club");
 define("URL_CLUB_INGRESAR", "Ingresar");
 define("URL_CLUB_PRODUCTO", "Producto");
 define("URL_CLUB_PRODUCTO_ALIADO", "ProductoAliado");

@@ -266,10 +266,12 @@
               <li><a class="open-iniciar"><i class="material-icons">input</i>INICIAR SESIÓN</a></li>
               <li><a class="open-registro"><i class="material-icons">person_add</i>REGISTRARSE</a></li>
               <li><div class="divider"></div></li>
-              <li><a href="<?=URL_CLUB?>/#premios">PREMIOS</a></li>
+              <!--<li><a href="<?=URL_CLUB?>/#premios">PREMIOS</a></li>-->
+              <li><a href="<?=URL_CLUB?>/#en-que-redimir">¿EN QUÉ REDIMIR MIS PUNTOS?</a></li>
               <li><a href="<?=URL_CLUB?>/#enterate">ENTÉRATE</a></li>
-              <li><a href="<?=URL_CLUB?>/#donde-comprar">¿DÓNDE REDIMIR?</a></li>
-              <li><a href="<?=URL_PRODUCTOS?>">PRODUCTOS</a></li>
+              <!--<li><a href="<?=URL_CLUB?>/#donde-comprar">¿DÓNDE REDIMIR?</a></li>
+              <li><a href="<?=URL_PRODUCTOS?>">PRODUCTOS</a></li>-->
+              <li><a href="#">CUIDA TU PIEL</a></li> 
               <li><a href="<?=URL_CLUB?>/#preguntas-frecuentes">PREGUNTAS FRECUENTES</a></li>
               <li><a href="<?=URL_CLUB?>/#contacto">CONTÁCTO</a></li>
             </ul>

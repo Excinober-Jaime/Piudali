@@ -500,7 +500,7 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				
 				break;
 
-			case URL_CLUB:				
+			case URL_CLUB:
 
 				$controllerClub = new ControllerClub();
 

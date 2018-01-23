@@ -70,6 +70,11 @@ class Controller
 		$this->organizaciones = new Organizaciones();
 		$this->sucursales = new Sucursales();
 		$this->productos_aliados = new ProductosAliados();
+
+		if (isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR') {
+			
+			header('Location: '.URL_SITIO.URL_CLUB);
+		}
 		
 
 		/**MODULOS DISTRIBUIDORES**/

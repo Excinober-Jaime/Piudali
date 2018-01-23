@@ -786,7 +786,7 @@ class ControllerClub
 
 					}else{
 
-						header("Location: ".URL_CLUB);	
+						header("Location: ".URL_SITIO.URL_CLUB);	
 					}
 					
 					
