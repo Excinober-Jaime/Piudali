@@ -59,5 +59,19 @@ class Organizaciones extends Database
 
 		return $query;
 	}
+
+	public function disponible_ciudad($idciudad){
+
+		$query = $this->consulta("
+			
+								SELECT `idorganizacion`
+								FROM `organizaciones`
+								INNER JOIN `sucursales` ON (`sucursales`.`organizaciones_idorganizacion` = `organizaciones`.`idorganizacion`)
+								WHERE `sucursales`.`ciudades_idciudad` = '$idciudad'
+			");
+
+		return $query;
+
+	}
 }
 ?>

@@ -8,6 +8,7 @@ class ControllerClub
 {
 
 	public  $puntos_disponibles = 0;
+	public 	$response_codigo = '';
 	
 	function __construct()
 	{
@@ -56,6 +57,13 @@ class ControllerClub
 			extract($_POST);
 
 			$response = $this->registrarConsumidor($num_identificacion, $nombre, $apellido, $email, $ciudad, $telefono, $contrasena);
+		}
+
+
+		if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
+
+			$this->response_codigo = $this->redimirCodigoPuntos($_POST['codigo']);
+			
 		}
 
 		if (isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario'])) {
@@ -273,14 +281,34 @@ class ControllerClub
 		$productos_club = $this->productos->listarProductos(array('CLUB PIUDALI'), array(1));
 		$productos_aliados = $this->productos_aliados->listarProductos();
 
-		$random_productos_club = array_rand($productos_club);
-		$random_productos_aliados = array_rand($productos_aliados);
+		array_rand($productos_club);
+		array_rand($productos_aliados);
+
+		if (isset($_SESSION['idusuario']) && !empty($_SESSION['ciudades_idciudad'])) {
+			
+			$organizaciones_en_ciudad = $this->organizaciones->disponible_ciudad($_SESSION['ciudades_idciudad']);
+
+			foreach ($productos_aliados as $key => $producto_aliado) {
+				
+				foreach ($organizaciones_en_ciudad as $key2 => $organizacion) {
+					
+					if ($producto_aliado['organizaciones_idorganizacion'] == $organizacion['idorganizacion']) {
+						
+						$productos_aliados_filtrado[] = $producto_aliado;
+
+					}
+
+				}
+			}
+
+			$productos_aliados = $productos_aliados_filtrado;
+		}
 
 		$opciones = array('CLUB', 'ALIADOS');
 
 		$productos_redimir = array();
 
-		for ($i=0; $i < 8; $i++) { 
+		for ($i=0; $i < 8; $i++) {
 			
 			shuffle($opciones);
 
@@ -359,6 +387,68 @@ class ControllerClub
 		$sucursales = $this->sucursales->listarSucursales($organizacion['idorganizacion']);
 
 		include 'views/club/detalle_producto_aliado.php';
+	}
+
+	public function opcionesRedimirPuntos(){
+
+		$productos_club = $this->productos->listarProductos(array('CLUB PIUDALI'), array(1));
+		$productos_aliados = $this->productos_aliados->listarProductos();
+
+		array_rand($productos_club);
+		array_rand($productos_aliados);
+
+		$opciones = array('CLUB', 'ALIADOS');
+
+		$productos_redimir = array();
+
+		$total_opciones = (count($productos_club) + count($productos_aliados));
+
+		for ($i=0; $i < $total_opciones; $i++) { 
+			
+			shuffle($opciones);
+
+			if ($opciones[0] == 'CLUB') {
+				
+				if (isset($productos_club[0])) {
+					
+					$productos_redimir[$i] = $productos_club[0];
+					$productos_redimir[$i]['tipo'] = 'CLUB';
+					unset($productos_club[0]);
+
+				}else{
+
+					if (isset($productos_aliados[0])) {
+					
+						$productos_redimir[$i] = $productos_aliados[0];
+						$productos_redimir[$i]['tipo'] = 'ALIADOS';
+						unset($productos_aliados[0]);
+					}
+				}
+
+			}else{
+
+				if (isset($productos_aliados[0])) {
+					
+					$productos_redimir[$i] = $productos_aliados[0];
+					$productos_redimir[$i]['tipo'] = 'ALIADOS';
+					unset($productos_aliados[0]);
+
+				}else{
+
+					if (isset($productos_club[0])) {
+					
+						$productos_redimir[$i] = $productos_club[0];
+						$productos_redimir[$i]['tipo'] = 'CLUB';
+						unset($productos_club[0]);
+
+					}
+
+				}
+			}
+		}
+		
+
+		include 'views/club/en_que_redimir.php';
 	}
 
 	public function perfilClub(){

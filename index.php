@@ -556,6 +556,12 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}
 							break;
 
+						case URL_CLUB_EN_QUE_REDIMIR:
+							
+							$controllerClub->opcionesRedimirPuntos();
+
+							break;
+
 						case URL_CLUB_PERFIL:
 							
 							$controllerClub->perfilClub();

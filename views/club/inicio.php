@@ -53,8 +53,10 @@ if (!empty($banners)) {
 				<div class="col s12 m4 l3">
 				  <div class="card hoverable">
         			<div class="card-image">
-				      <img src="<?=$producto['img_principal']?>">
-				      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="<?=$url?>"><i class="material-icons">add</i></a>
+        				<a href="<?=$url?>">
+				      		<img src="<?=$producto['img_principal']?>">
+				      	</a>
+				      	<a class="btn-floating halfway-fab waves-effect waves-light orange" href="<?=$url?>"><i class="material-icons">add</i></a>
 				    </div>
 				    <div class="card-content">
 				    	<span class="card-title teal-text text-darken-4"><?=$producto['nombre']?></span>				      	
@@ -67,44 +69,12 @@ if (!empty($banners)) {
 		}
 	?>
 	</div>
+	<center>
+		<a class="waves-effect green darken-4 btn-large" href="<?=URL_CLUB.'/'.URL_CLUB_EN_QUE_REDIMIR?>"><i class="material-icons right">card_giftcard</i>Más Opciones</a>
+	</center>
+	<br>
 </div>
 
-
-<!--<div class="section" id="premios">
-	<h2 class="center-align">Premios</h2>
-	<div class="row">
-	<?php
-
-		if (count($productos_club)>0) {
-
-			foreach ($productos_club as $key => $producto) {
-	
-				if ($key == 8) {
-					break;
-				}
-	?>
-				<div class="col s12 m4 l3">
-				  <div class="card hoverable">
-        			<div class="card-image">
-				      <img src="<?=$producto['img_principal']?>">
-				      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="<?=URL_CLUB.'/'.URL_CLUB_PRODUCTO.'/'.$producto['url']?>"><i class="material-icons">add</i></a>
-				    </div>
-				    <div class="card-content">
-				    	<span class="card-title teal-text text-darken-4"><?=$producto['nombre']?></span>				      	
-				    </div>
-				  </div>
-				</div>
-
-	<?php
-			}
-		}
-	?>
-	</div>
-	
-	<center>
-		<a class="waves-effect green darken-4 btn-large" href="<?=URL_CLUB.'/'.URL_CLUB_PREMIOS?>"><i class="material-icons right">cloud</i>Más Premios</a>			
-	</center>
-</div>-->
 <div class="section" id="enterate">
 	<div class="row">
 		<h2 class="center-align">Entérate</h2>
@@ -146,7 +116,7 @@ if (!empty($banners)) {
 	</div>
 	<div class="row">
 		<center>
-			<a class="waves-effect green darken-4 btn-large" href="<?=URL_CLUB.'/'.URL_CLUB_ENTRADAS?>"><i class="material-icons right">cloud</i>Entérate Más...</a>			
+			<a class="waves-effect green darken-4 btn-large" href="<?=URL_CLUB.'/'.URL_CLUB_ENTRADAS?>"><i class="material-icons right">art_track</i>Entérate Más...</a>			
 		</center>
 	</div>
 </div>

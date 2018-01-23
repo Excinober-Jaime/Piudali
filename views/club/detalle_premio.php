@@ -14,10 +14,10 @@
 					<h5 class="center-align orange-text text-darken-2"><?=$producto['nombre']?></h5>
 				</div>
 				<div class="col s12 m4 center-align">
-					<div class="chip orange white-text">				
+					<div class="chip orange white-text" style="font-size:30px;">
 						<?=number_format($producto['precio'] / $valor_punto)?>
 					</div>
-					<span>PUNTOS PIUDALÍ</span>
+					<p>PUNTOS PIUDALÍ</p>
 				</div>
 				
 			</div>

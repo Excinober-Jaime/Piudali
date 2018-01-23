@@ -51,7 +51,7 @@
 					?>
 					<li class="collection-item avatar">
 				      <i class="material-icons circle">location_on</i>
-				      <span class="title"><?=$sucursal['nombre']?></span>
+				      <span class="title"><b><?=$sucursal['nombre']?></b></span>
 				      <p>
 				         <?=$sucursal['telefono']?> <br>
 				         <?=$sucursal['email']?><br>

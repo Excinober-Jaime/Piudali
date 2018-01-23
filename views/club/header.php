@@ -142,7 +142,7 @@
       <!--INGRESAR CLAVES-->   
           <?php 
 
-          if (isset($response_codigo) && !empty($response_codigo)) {
+          if (isset($this->response_codigo) && !empty($this->response_codigo)) {
             
           ?>
           <div class="">
@@ -154,7 +154,7 @@
                   <span class="black-text">
           <?php 
 
-            switch ($response_codigo['estado']) {
+            switch ($this->response_codigo['estado']) {
         
               case 'REDIMIDO':
                 echo 'Lo sentimos, el código ya fue redimido! <br><a class="blue-text text-darken-4" href="'.URL_CLUB.'">Intenta de nuevo</a>';
@@ -165,11 +165,11 @@
                 break;
 
               case 'AUTENTICAR':
-                echo 'Tu código tiene '.number_format($response_codigo['codigo']['puntos']).' puntos. Por favor <a class="blue-text text-darken-4 open-iniciar">inicia sesión</a> o completa el <a class="blue-text text-darken-4 open-iniciar">registro</a> para que puedas registrarlos.';
+                echo 'Tu código tiene '.number_format($this->response_codigo['codigo']['puntos']).' puntos. Por favor <a class="blue-text text-darken-4 open-iniciar">inicia sesión</a> o completa el <a class="blue-text text-darken-4 open-iniciar">registro</a> para que puedas registrarlos.';
                 break;
               
               case 'ASIGNADO':
-                echo 'Felicidades, tienes '.number_format($response_codigo['codigo']['puntos']).' nuevos puntos disponibles para redimir en premios. <br><a class="blue-text text-darken-4" href="'.URL_CLUB.'">Ingresar más códigos</a>';
+                echo 'Felicidades, tienes '.number_format($this->response_codigo['codigo']['puntos']).' nuevos puntos disponibles para redimir en premios. <br><a class="blue-text text-darken-4" href="'.URL_CLUB.'">Ingresar más códigos</a>';
                 break;
 
               case 'NO EXISTE':
