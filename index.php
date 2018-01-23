@@ -78,6 +78,48 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							}
 							break;
 
+						case URL_ADMIN_ORGANIZACIONES:
+
+							if (isset($var3) && !empty($var3)) {
+
+								if ($var3=="Nuevo") {
+									$var3 = "";
+								}
+								$controller->adminOrganizacionDetalle($var3);							
+								
+							}else{
+								$controller->adminOrganizacionesLista();
+							}
+							break;
+
+						case URL_ADMIN_SUCURSALES:
+
+							if (isset($var3) && !empty($var3)) {
+
+								if ($var3=="Nuevo") {
+									$var3 = "";
+								}
+								$controller->adminSucursalDetalle($var3);							
+								
+							}else{
+								$controller->adminSucursalesLista();
+							}
+							break;
+
+						case URL_ADMIN_PRODUCTOS_ALIADOS:
+
+							if (isset($var3) && !empty($var3)) {
+
+								if ($var3=="Nuevo") {
+									$var3 = "";
+								}
+								$controller->adminProductoAliadoDetalle($var3);							
+								
+							}else{
+								$controller->adminProductosAliadosLista();
+							}
+							break;
+
 						case URL_ADMIN_PAGINAS:
 							if (isset($var3) && !empty($var3)) {
 								
@@ -495,6 +537,18 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							if (isset($var3) && !empty($var3)) {
 								
 								$controllerClub->detalleProductoClub($var3);
+
+							}else{
+								
+								header('Location: '.URL_CLUB);
+							}
+							break;
+
+						case URL_CLUB_PRODUCTO_ALIADO:
+							
+							if (isset($var3) && !empty($var3)) {
+								
+								$controllerClub->detalleProductoAliadoClub($var3);
 
 							}else{
 								

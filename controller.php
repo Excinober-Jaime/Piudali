@@ -24,6 +24,9 @@ require "model/puntosclass.php";
 require "model/plantillasemailclass.php";
 require "model/entradasclubclass.php";
 require "model/ventasvirtualesclass.php";
+require "model/organizacionesclass.php";
+require "model/sucursalesclass.php";
+require "model/productosaliadosclass.php";
 
 /** Require Includes **/
 require "include/constantes.php";
@@ -64,6 +67,9 @@ class Controller
 		$this->canales_distribucion = new CanalesDistribucion();
 		$this->entradas = new Entradas();
 		$this->ventas_virtuales = new VentasVirtuales();
+		$this->organizaciones = new Organizaciones();
+		$this->sucursales = new Sucursales();
+		$this->productos_aliados = new ProductosAliados();
 		
 
 		/**MODULOS DISTRIBUIDORES**/
@@ -2420,6 +2426,151 @@ class Controller
 		$productosLista = $this->productos->listarProductos($tipos, $estados);
 
 		include "views/admin/productos_lista.php";
+	}
+
+	/**Organizaciones***/
+
+	public function adminOrganizacionesLista(){
+		
+		$organizaciones = $this->organizaciones->listarOrganizaciones();
+
+		include "views/admin/organizaciones_lista.php";
+	}
+
+	public function adminOrganizacionDetalle($idorganizacion){
+
+		$ciudades = $this->listarCiudades();
+
+		if (isset($_POST["actualizarOrganizacion"])) {
+			
+			extract($_POST);
+
+			$this->organizaciones->actualizarOrganizacion($idorganizacion,$nit,$razon_social,$direccion,$telefono,$idciudad);
+
+		}
+
+		if (isset($_POST["crearOrganizacion"])) {
+			
+			extract($_POST);
+
+			$idorganizacion = $this->organizaciones->crearOrganizacion($nit,$razon_social,$direccion,$telefono,$idciudad);
+		}
+
+
+		if (isset($idorganizacion) && $idorganizacion!='') {
+
+			$organizacion = $this->organizaciones->detalleOrganizacion($idorganizacion);
+		}
+
+		include "views/admin/organizacion_detalle.php";
+
+	}
+
+	/**SUCURSALES**/
+
+	public function adminSucursalesLista(){
+		
+		$sucursales = $this->sucursales->listarSucursales();
+
+		include "views/admin/sucursales_lista.php";
+	}
+
+	public function adminSucursalDetalle($idsucursal){
+
+		$ciudades = $this->listarCiudades();
+		$organizaciones = $this->organizaciones->listarOrganizaciones();
+
+		if (isset($_POST["actualizarSucursal"])) {
+			
+			extract($_POST);
+
+			$this->sucursales->actualizarSucursal($idsucursal, $nombre, $direccion, $telefono, $email, $idorganizacion, $idciudad);
+
+		}
+
+		if (isset($_POST["crearSucursal"])) {
+			
+			extract($_POST);
+
+			$idsucursal = $this->sucursales->crearSucursal($nombre, $direccion, $telefono, $email, $idorganizacion, $idciudad);
+		}
+
+
+		if (isset($idsucursal) && $idsucursal!='') {
+
+			$sucursal = $this->sucursales->detalleSucursal($idsucursal);
+		}
+
+		include "views/admin/sucursal_detalle.php";
+
+	}
+
+	/***Productos Aliados**/
+
+	public function adminProductosAliadosLista(){
+		
+		$productos = $this->productos_aliados->listarProductos();
+
+		include "views/admin/productos_aliados_lista.php";
+	}
+
+	public function adminProductoAliadoDetalle($idproducto){
+
+		$organizaciones = $this->organizaciones->listarOrganizaciones();
+
+		if (isset($_POST["actualizarProducto"])) {
+			
+			extract($_POST);
+
+			//Upload foto
+			if($_FILES["img_principal"]["error"]==UPLOAD_ERR_OK){
+
+				$rutaimg=$_FILES["img_principal"]["tmp_name"];
+				$nombreimg=$_FILES["img_principal"]["name"];
+				$destino = DIR_IMG_PRODUCTOS_ALIADOS.$nombreimg;
+				move_uploaded_file($rutaimg, $destino);
+
+			}else{
+
+				$destino = "";
+			}
+
+			$url = convierte_url($nombre);
+
+			$this->productos_aliados->actualizarProducto($idproducto, $nombre, $url, $destino, $descripcion, $mas_info, $estado, $idorganizacion);
+
+		}
+
+		if (isset($_POST["crearProducto"])) {
+			
+			extract($_POST);
+
+			//Upload foto
+			if($_FILES["img_principal"]["error"]==UPLOAD_ERR_OK){
+
+				$rutaimg=$_FILES["img_principal"]["tmp_name"];
+				$nombreimg=$_FILES["img_principal"]["name"];
+				$destino = DIR_IMG_PRODUCTOS_ALIADOS.$nombreimg;
+				move_uploaded_file($rutaimg, $destino);
+
+			}else{
+
+				$destino = "";
+			}
+
+			$url = convierte_url($nombre);
+
+			$idproducto = $this->productos_aliados->crearProducto($nombre, $url, $destino, $descripcion, $mas_info, $estado, $idorganizacion);
+		}
+
+
+		if (isset($idproducto) && $idproducto!='') {
+
+			$producto = $this->productos_aliados->detalleProducto($idproducto);
+		}
+
+		include "views/admin/producto_aliado_detalle.php";
+
 	}
 
 	/***paginas***/

@@ -28,7 +28,49 @@ if (!empty($banners)) {
 }
 ?>
 <div class="divider"></div>
-<div class="section" id="premios">
+<div class="section" id="en-que-redimir">
+	<h2 class="center-align">¿EN QUÉ REDIMIR MIS PUNTOS?</h2>
+	<div class="row">
+	<?php 
+
+		if (count($productos_redimir)>0) {
+
+			foreach ($productos_redimir as $key => $producto) {
+	
+				if ($key == 12) {
+					break;
+				}
+
+				if ($producto['tipo'] == 'CLUB') {
+					
+					$url = URL_CLUB.'/'.URL_CLUB_PRODUCTO.'/'.$producto['url'];
+
+				}else{
+
+					$url = URL_CLUB.'/'.URL_CLUB_PRODUCTO_ALIADO.'/'.$producto['url'];
+				}
+	?>
+				<div class="col s12 m4 l3">
+				  <div class="card hoverable">
+        			<div class="card-image">
+				      <img src="<?=$producto['img_principal']?>">
+				      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="<?=$url?>"><i class="material-icons">add</i></a>
+				    </div>
+				    <div class="card-content">
+				    	<span class="card-title teal-text text-darken-4"><?=$producto['nombre']?></span>				      	
+				    </div>
+				  </div>
+				</div>
+
+	<?php
+			}
+		}
+	?>
+	</div>
+</div>
+
+
+<!--<div class="section" id="premios">
 	<h2 class="center-align">Premios</h2>
 	<div class="row">
 	<?php
@@ -62,7 +104,7 @@ if (!empty($banners)) {
 	<center>
 		<a class="waves-effect green darken-4 btn-large" href="<?=URL_CLUB.'/'.URL_CLUB_PREMIOS?>"><i class="material-icons right">cloud</i>Más Premios</a>			
 	</center>
-</div>
+</div>-->
 <div class="section" id="enterate">
 	<div class="row">
 		<h2 class="center-align">Entérate</h2>
@@ -109,7 +151,7 @@ if (!empty($banners)) {
 	</div>
 </div>
 <!--<div class="divider"></div>-->
-<div class="row" id="donde-comprar">
+<!--<div class="row" id="donde-comprar">
 	<h2 class="center-align">¿Dónde Redimir Tus Puntos?</h2>
 	<div class="row">
 		<div class="input-field col s12 m4">
@@ -146,7 +188,7 @@ if (!empty($banners)) {
 			
 	  	</div>
   	</div>
-</div>
+</div>-->
 <div class="divider"></div>
 <div class="row" id="preguntas-frecuentes">
 	<h2 class="center-align">Preguntas Frecuentes</h2>

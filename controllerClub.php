@@ -20,6 +20,9 @@ class ControllerClub
 		$this->banners = new Banners();
 		$this->entradas = new Entradas();
 		$this->ventas_virtuales = new VentasVirtuales();
+		$this->productos_aliados = new ProductosAliados();
+		$this->organizaciones = new Organizaciones();
+		$this->sucursales = new Sucursales();
 
 		//Loguear usuario
 
@@ -191,6 +194,7 @@ class ControllerClub
 
 		$ciudades = $this->usuarios->listarCiudades();
 
+		/****
 		if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
 
 			$response_codigo = $this->redimirCodigoPuntos($_POST['codigo']);
@@ -262,11 +266,65 @@ class ControllerClub
 		}
 
 		$json_maps = json_encode($distribuidores);
-
+		****/
 
 		$entradas = $this->entradas->listarEntradas(array(1), 'LIMIT 3');
 
 		$productos_club = $this->productos->listarProductos(array('CLUB PIUDALI'), array(1));
+		$productos_aliados = $this->productos_aliados->listarProductos();
+
+		$random_productos_club = array_rand($productos_club);
+		$random_productos_aliados = array_rand($productos_aliados);
+
+		$opciones = array('CLUB', 'ALIADOS');
+
+		$productos_redimir = array();
+
+		for ($i=0; $i < 8; $i++) { 
+			
+			shuffle($opciones);
+
+			if ($opciones[0] == 'CLUB') {
+				
+				if (isset($productos_club[0])) {
+					
+					$productos_redimir[$i] = $productos_club[0];
+					$productos_redimir[$i]['tipo'] = 'CLUB';
+					unset($productos_club[0]);
+
+				}else{
+
+					if (isset($productos_aliados[0])) {
+					
+						$productos_redimir[$i] = $productos_aliados[0];
+						$productos_redimir[$i]['tipo'] = 'ALIADOS';
+						unset($productos_aliados[0]);
+					}
+				}
+
+			}else{
+
+				if (isset($productos_aliados[0])) {
+					
+					$productos_redimir[$i] = $productos_aliados[0];
+					$productos_redimir[$i]['tipo'] = 'ALIADOS';
+					unset($productos_aliados[0]);
+
+				}else{
+
+					if (isset($productos_club[0])) {
+					
+						$productos_redimir[$i] = $productos_club[0];
+						$productos_redimir[$i]['tipo'] = 'CLUB';
+						unset($productos_club[0]);
+
+					}
+
+				}
+			}
+
+		}
+
 		$valor_punto = 1; //Pesos que vale un punto
 
 		include "views/club/inicio.php";
@@ -286,6 +344,21 @@ class ControllerClub
 
 		include 'views/club/detalle_premio.php';
 		//include 'views/club_old/detalle-regalo.php';
+	}
+
+	public function detalleProductoAliadoClub($urlpdt=''){
+
+		/*if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
+
+			$response_codigo = $this->redimirCodigoPuntos($_POST['codigo']);	
+		}*/
+		
+		$producto = $this->productos_aliados->detalleProductoUrl($urlpdt);
+		$organizacion =$this->organizaciones->detalleOrganizacion($producto['organizaciones_idorganizacion']);
+
+		$sucursales = $this->sucursales->listarSucursales($organizacion['idorganizacion']);
+
+		include 'views/club/detalle_producto_aliado.php';
 	}
 
 	public function perfilClub(){

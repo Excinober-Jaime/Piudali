@@ -43,6 +43,7 @@ $breadcrumb = explode("/", $_GET["url"]);
                  switch ($_SESSION["admin_rol"]) {
                     case 'ADMIN':
                 ?>
+
 				<li class="active"><a href="<?=URL_ADMIN."/".URL_ADMIN_USUARIOS?>"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Usuarios</span></a></li>
 				<li>
                     <a href="#"><i class="fa fa-suitcase" aria-hidden="true"></i> <span class="nav-label">Catálogo</span> <span class="fa arrow"></span></a>
@@ -55,7 +56,22 @@ $breadcrumb = explode("/", $_GET["url"]);
                         </li>
                         <!--<li><a href="dashboard_5.html">Dashboard v.5 <span class="label label-primary pull-right">NEW</span></a></li>-->
                     </ul>
-                </li>								
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-suitcase" aria-hidden="true"></i> <span class="nav-label">Organizaciones</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="<?=URL_ADMIN."/".URL_ADMIN_ORGANIZACIONES?>">Organizaciones</a>
+                        </li>
+                        <li>
+                            <a href="<?=URL_ADMIN."/".URL_ADMIN_SUCURSALES?>">Sucursales</a>
+                        </li>
+                        <li>
+                            <a href="<?=URL_ADMIN."/".URL_ADMIN_PRODUCTOS_ALIADOS?>">Productos Aliados</a>
+                        </li>
+                        <!--<li><a href="dashboard_5.html">Dashboard v.5 <span class="label label-primary pull-right">NEW</span></a></li>-->
+                    </ul>
+                </li>                               
                 <li>
                     <a href="#"><i class="fa fa-align-center" aria-hidden="true"></i> <span class="nav-label">Contenidos</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">

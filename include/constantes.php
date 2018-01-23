@@ -50,6 +50,7 @@ define("URL_ADMIN_CODIGOS_PUNTOS", "Codigos");
 define("URL_CLUB", "Club");
 define("URL_CLUB_INGRESAR", "Ingresar");
 define("URL_CLUB_PRODUCTO", "Producto");
+define("URL_CLUB_PRODUCTO_ALIADO", "ProductoAliado");
 define("URL_CLUB_PREMIOS", "Premios");
 define("URL_CLUB_PRODUCTOS", "Productos");
 define("URL_CLUB_PERFIL", "Perfil");
@@ -58,6 +59,7 @@ define("URL_CLUB_CARRITO", "Carrito");
 define("URL_CLUB_RESUMEN_COMPRA", "ResumenCompra");
 define("URL_CLUB_GENERAR_ORDEN", "GenerarOrden");
 define("URL_CLUB_ENTRADAS", "Entradas");
+define("URL_CLUB_EN_QUE_REDIMIR", "En-que-puedo-redimir-mis-puntos");
 
 
 define("URL_REGISTRO", "Registro");
@@ -70,6 +72,7 @@ define("URL_SUSCRIBIR_NEWSLETTER", "SuscribirNewsletter");
 
 
 define("DIR_IMG_PRODUCTOS", "assets/img/productos/");
+define("DIR_IMG_PRODUCTOS_ALIADOS", "assets/img/productosaliados/");
 define("DIR_IMG_PAGINAS", "assets/img/paginas/");
 define("DIR_IMG_BANNERS", "assets/img/banners/");
 define("DIR_IMG_CATEGORIAS", "assets/img/categorias/");
@@ -110,6 +113,10 @@ define("URL_ADMIN_PAGOS_COMISIONES", "PagosComisiones");
 define("URL_ADMIN_PAGO_COMISION", "PagoComision");
 define("URL_ADMIN_PAGOS_INCENTIVOS", "PagosIncentivos");
 define("URL_ADMIN_PAGO_INCENTIVO", "PagoIncentivo");
+define("URL_ADMIN_ORGANIZACIONES", "Organizaciones");
+define("URL_ADMIN_SUCURSALES", "Sucursales");
+define("URL_ADMIN_PRODUCTOS_ALIADOS", "ProductosAliados");
+
 
 define("URL_ADMIN_ENTRADAS_CLUB", "EntradasClub");
 
