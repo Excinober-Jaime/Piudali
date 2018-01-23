@@ -25,6 +25,30 @@ $(document).ready(function(){
 
   });
 
+  $('.closeLogOpenRegistro').click(function(){
+
+    modal_iniciar.close();
+    
+    setTimeout(function(){
+
+      modal_registro.open();
+
+    }, 500);
+
+  });
+
+  $('.closeRegistroOpenLog').click(function(){
+
+    modal_registro.close();
+    
+    setTimeout(function(){
+
+      modal_iniciar.open();
+
+    }, 500);
+
+  });
+
   $('select').material_select();
 
   $(".tienda").click(function(){

@@ -76,9 +76,9 @@
                 <div class="col s12 center-align">
                   <input type="hidden" id="return_login" name="return_login" value="">
                   <button type="submit" name="ingresarUsuario" id="iniciar-sesion" class="waves-effect waves-light btn btn-verde">Ingresar</button>
-                </div>  
+                  <a class="left closeLogOpenRegistro" style="cursor: pointer;">¿No tienes cuenta?</a>
+                </div>
             </form>
-            
           </div>
         </div>
       </div>
@@ -133,7 +133,8 @@
                 <label for="password">Contraseña</label>
               </div>
               <div class="col s12 center-align">
-                <button type="submit" name="registrarUsuario" class="waves-effect waves-light green darken-1 btn-large">Registrarme</button>
+                <button type="submit" name="registrarUsuario" class="waves-effect waves-light green darken-1 btn-large">Registrarme</button><br><br>
+                <a class="closeRegistroOpenLog" style="cursor: pointer;">¿Ya tienes una cuenta?</a>
               </div>
             </div>
           </form>
