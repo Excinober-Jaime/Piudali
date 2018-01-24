@@ -4,6 +4,7 @@ session_start();
 
 require "controller.php";
 require "controllerClub.php";
+require "controllerTienda.php";
 
 if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
@@ -616,6 +617,24 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 				}
 				break;
 
+			case URL_TIENDA:
+				
+				$controllerTienda = new ControllerTienda();
+
+				if (isset($var2) && !empty($var2)) {
+					
+					switch ($var2) {
+
+					}
+
+				}else{
+
+					$controllerTienda->inicioTienda();
+
+				}		
+
+				break;
+			
 			case URL_PRODUCTOS:
 
 				$controller = new Controller();

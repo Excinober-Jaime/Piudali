@@ -52,9 +52,6 @@
           </div>
 </footer>
 
-
-
-
     <!-- Modal Iniciar -->
     <div id="modal-iniciar" class="modal">
       <div class="franja"></div>
@@ -82,7 +79,6 @@
           </div>
         </div>
       </div>
-      
     </div>
 
     <!-- Modal Registro -->

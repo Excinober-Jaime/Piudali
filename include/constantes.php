@@ -62,6 +62,8 @@ define("URL_CLUB_GENERAR_ORDEN", "GenerarOrden");
 define("URL_CLUB_ENTRADAS", "Entradas");
 define("URL_CLUB_EN_QUE_REDIMIR", "En-que-puedo-redimir-mis-puntos");
 
+define("URL_TIENDA", "Tienda");
+
 
 define("URL_REGISTRO", "Registro");
 define("URL_INGRESAR", "Ingresar");
