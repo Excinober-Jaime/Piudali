@@ -24,11 +24,11 @@
        <link href="assets/css/return-to-top.css" rel="stylesheet">
        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-       <style type="text/css">
+      <!-- <style type="text/css">
         body{
           font-family: 'Open Sans', sans-serif;
         }
-      </style>
+      </style>-->
 
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,29 +47,48 @@
 
     </script>
     <!--Start of Zendesk Chat Script-->
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
     window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
     d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
     _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
     $.src="https://v2.zopim.com/?4N01XhSlB3VxmzRKfI542gkx8YzOeR4C";z.t=+new Date;$.
     type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
-    </script>
+    </script>-->
     <!--End of Zendesk Chat Script-->
-
-    <script type="text/javascript">
-      <?php if (isset($json_maps) && !empty($json_maps)) { ?>
-        var json_maps = '<?=$json_maps?>';
-      <?php } ?>
-    </script>
     </head>
 
 <body>
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId            : '143866273085649',
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v2.11'
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/es_ES/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <div class="fb-customerchat"
+   page_id="1698229213799755"
+   ref="">
+  </div>
+
   <!-- Return to Top -->
-  <a href="javascript:" id="return-to-top">
+  <!--<a href="javascript:" id="return-to-top">
     <i class="fa fa-arrow-up" aria-hidden="true"></i>
-  </a>
+  </a>-->
   
-      <section class="login">
+      <!--<section class="login">
           
                 <?php 
                   if (isset($_SESSION['idusuario']) && $_SESSION['tipo']=='CONSUMIDOR') {
@@ -77,7 +96,7 @@
                 <div class="container">
                   <div class="row">
                     <div class="col s12 m6">
-                      <!-- LLAMAR NOMBRE--> 
+                      
                       <span class="nombre-usuario">¡Hola!, <?=$_SESSION['nombre']?></span>
                     </div>
 
@@ -111,7 +130,7 @@
 
                   <div class="clearfix"></div>
         
-      </section>
+      </section>-->
 
 
 <div class="container">

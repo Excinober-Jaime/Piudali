@@ -11,17 +11,17 @@
           <div class="col m3 offset-m1">
   
         <ul>
-          <li><a href="https://piudali.com.co/Ingresar">Acceso Distribuidores</a></li>
+          <!--<li><a href="https://piudali.com.co/Ingresar">Acceso Distribuidores</a></li>
           <li><a href="https://piudali.com.co/Ingresar">Acceso Corporativo</a></li>
-          <li><a href="https://piudali.com.co/tiendas">Dónde Comprar</a></li>
+          <li><a href="https://piudali.com.co/tiendas">Dónde Comprar</a></li>-->
     
-          <li><a href="https://piudali.com.co/sobre-waliwa">Quienes Somos</a></li>
+          <!--<li><a href="https://piudali.com.co/sobre-waliwa">Quienes Somos</a></li>
           <li><a href="https://piudali.com.co/quienes-somos">Sobre Piudali</a></li>
-          <li><a href="https://piudali.com.co/compromiso-social">Compromiso Social</a></li>
+          <li><a href="https://piudali.com.co/compromiso-social">Compromiso Social</a></li>-->
       
-          <li><a href="https://piudali.com.co/politica-datos">Políticas del Sitio Web</a></li>
+          <!--<li><a href="https://piudali.com.co/politica-datos">Políticas del Sitio Web</a></li>
           <li><a href="https://piudali.com.co/servicio-al-cliente">Servicio al Cliente</a></li>
-          <li><a href="https://piudali.com.co/Contacto">Contáctenos</a></li>
+          <li><a href="https://piudali.com.co/Contacto">Contáctenos</a></li>-->
         </ul>       
           </div>
 
