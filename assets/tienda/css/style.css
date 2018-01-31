@@ -249,6 +249,13 @@ margin: 0 !important;
 	text-transform: uppercase;
 }
 
+#promesas h3{
+
+	color: #fff;
+	font-weight: 300 !important;
+	text-transform: uppercase;	
+}
+
 #preguntas-frecuentes h2{
 	color: #fff;
 	font-weight: 300 !important;
@@ -354,9 +361,14 @@ margin: 0 !important;
 
 #container-banner-principal {
 	height: 100%; 
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: 90% 100%;
+}
+
+.img-flotante { 
+	position: absolute;
+	right: 5%;
+	bottom: -5%;
+	max-height:100%;
+	z-index: 9999;
 }
 
 @media (min-width: 601px) and (max-width: 991px) {
@@ -370,9 +382,13 @@ margin: 0 !important;
 
 @media (max-width: 600px) {
 
-	#container-banner-principal {		
-		background-size: 0px 0px;
-	}	
+	.img-flotante { 
+		position: absolute;
+		right: 1%;
+		bottom: -8%;
+		max-height:50%;
+		z-index: 9999;
+	}
 
 	#como-usarlo{
 		background-size: 0px 0px;

@@ -625,11 +625,29 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 					
 					switch ($var2) {
 
+						case URL_TIENDA_PRODUCTO:
+							
+							if (isset($var3) && !empty($var3)) {
+
+								$controllerTienda->inicioTienda($var3);
+							
+							}else{
+
+								header('Location: '.URL_SITIO.URL_CLUB);
+
+							}							
+							break;
+
+						default:
+
+							header('Location: '.URL_SITIO.URL_CLUB);
+
+						break;
 					}
 
 				}else{
 
-					$controllerTienda->inicioTienda();
+					header('Location: '.URL_SITIO.URL_CLUB);
 
 				}		
 

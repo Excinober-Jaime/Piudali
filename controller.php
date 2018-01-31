@@ -215,7 +215,6 @@ class Controller
 		$tipos = array('NORMAL');
 		$estados = array(1);
 		$productosLista = $this->productos->listarProductos($tipos, $estados);
-		
 
 		require "views/producto/productos.php";
 		include "views/inicio.php";

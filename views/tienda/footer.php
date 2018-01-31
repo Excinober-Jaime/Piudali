@@ -72,7 +72,7 @@
                 </div>
                 <div class="col s12 center-align">
                   <input type="hidden" id="return_login" name="return_login" value="">
-                  <button type="submit" name="ingresarUsuario" id="iniciar-sesion" class="waves-effect waves-light btn btn-verde">Ingresar</button>
+                  <button type="submit" name="ingresarUsuario" id="iniciar-sesion" class="waves-effect waves-light btn btn-verde">CONTINUAR</button>
                   <a class="left closeLogOpenRegistro" style="cursor: pointer;">¿No tienes cuenta?</a>
                 </div>
             </form>
@@ -87,7 +87,7 @@
       <div class="modal-content">
         <div class="row">
           <a class="modal-action modal-close waves-effect waves-green btn-flat">X</a>
-          <h4 class="center-align titulos">Registrate</h4>
+          <h4 class="center-align titulos">Crea tu Cuenta</h4>
           <form class="col s12 m8 offset-m2 bg-form" method="post">
             <div class="row">
               
@@ -129,7 +129,7 @@
                 <label for="password">Contraseña</label>
               </div>
               <div class="col s12 center-align">
-                <button type="submit" name="registrarUsuario" class="waves-effect waves-light green darken-1 btn-large">Registrarme</button><br><br>
+                <button type="submit" name="registrarUsuario" class="waves-effect waves-light green darken-1 btn-large">CONTINUAR</button><br><br>
                 <a class="closeRegistroOpenLog" style="cursor: pointer;">¿Ya tienes una cuenta?</a>
               </div>
             </div>

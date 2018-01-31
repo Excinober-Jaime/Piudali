@@ -45,7 +45,7 @@ function producto_bloque($imagen="",$nombre="",$codigo="",$tipo="",$precio=0,$of
               <?php 
               if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $tipo == 'NORMAL' && !$relacionados){
               ?>
-                <a class="btn btn-primary" data-toggle="popover" title="Comparte éste enlace" data-placement="top" data-content="<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_PRODUCTO.'/'.$link.'?d='.$_SESSION['idusuario']?>">Vender</a>
+                <a class="btn btn-primary" data-toggle="popover" title="Comparte éste enlace" data-placement="top" data-content="<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$link.'?d='.$_SESSION['idusuario']?>">Vender</a>
               <?php
               }
               ?>

@@ -1,76 +1,48 @@
 <?php include 'header.php'; ?>
+<div style="position: relative;">
 <div class="parallax-container">
     <div class="parallax">
     	<img src="assets/tienda/img/avatar_all.png">
     </div>
-    <div class="row" id="container-banner-principal" style="background-image: url(assets/tienda/img/modelo2.png);"> 
-    	<div class="col s12 m7 l5 offset-l1 valign-wrapper" style="height: 100%;">
+    <div class="row" id="container-banner-principal"> 
+    	<div class="col s11 m7 l5 offset-l1 valign-wrapper" style="height: 100%;">
     		<div class="row">
-    			<h3>Crema de Limpieza Rostro</h3>
-    			<h5>REMUEVE FÁCILMENTE EL MAQUILLAJE,
-                    IMPUREZAS Y DEMÁS RESIDUOS DE LA PIEL,
-                DEJÁNDOLA SUAVE, FIRME Y RADIANTE TODOS LOS DÍAS.</h5>
-                <button class="btn-large" style="background:#f19300;">COMPRAR!</button>
+    			<h3 style="color: #6D1E3F;"><?=$this->nombre_pdt?></h3>
+    			<h5 class="flow-text"><?=$this->promesa_pdt?></h5>
+                <button class="btn-large open-registro" style="background:#f19300;">COMPRAR!</button>
            </div>
         </div>
     </div>
+</div>
+<img src="assets/tienda/img/<?=$this->img_flotante_1?>" class='img-flotante'>
 </div>
 <div class="divider"></div>
 <div class="section" id="ingredientes">
 	<h3 class="center-align">INGREDIENTES</h3>
 	<div class="row">
-		<div class="col s12 m6">		    
-			<div class="card horizontal">
-				  <div class="card-image">
-				    <img src="assets/tienda/img/ingredientes/chontaduro.jpg">
-				  </div>
-				  <div class="card-stacked">
-				    <div class="card-content">
-				    <h5>Chontaduro</h5>
-				      <p>El aceite extraído de este fruto tiene poder de penetración excepcional, por tanto, su acción  antioxidante, alcanza las mitocondrias produciendo un efecto de antienvejecimiento,  regenerativo y  nutriente en las capas más profundas de la piel.</p>
-				    </div>		        
-				  </div>
-			</div>			
-		</div>
-		<div class="col s12 m6">		    
-			<div class="card horizontal">
-				  <div class="card-image">
-				    <img src="assets/tienda/img/ingredientes/chontaduro.jpg">
-				  </div>
-				  <div class="card-stacked">
-				    <div class="card-content">
-				    <h5>Chontaduro</h5>
-				      <p>El aceite extraído de este fruto tiene poder de penetración excepcional, por tanto, su acción  antioxidante, alcanza las mitocondrias produciendo un efecto de antienvejecimiento,  regenerativo y  nutriente en las capas más profundas de la piel.</p>
-				    </div>		        
-				  </div>
-			</div>			
-		</div>
-		<div class="col s12 m6">		    
-			<div class="card horizontal">
-				  <div class="card-image">
-				    <img src="assets/tienda/img/ingredientes/chontaduro.jpg">
-				  </div>
-				  <div class="card-stacked">
-				    <div class="card-content">
-				    <h5>Chontaduro</h5>
-				      <p>El aceite extraído de este fruto tiene poder de penetración excepcional, por tanto, su acción  antioxidante, alcanza las mitocondrias produciendo un efecto de antienvejecimiento,  regenerativo y  nutriente en las capas más profundas de la piel.</p>
-				    </div>		        
-				  </div>
-			</div>			
-		</div>
-		<div class="col s12 m6">
-			<div class="card horizontal">
-				  <div class="card-image">
-				    <img src="assets/tienda/img/ingredientes/chontaduro.jpg">
-				  </div>
-				  <div class="card-stacked">
-				    <div class="card-content">
-				    <h5>Chontaduro</h5>
-				      <p>El aceite extraído de este fruto tiene poder de penetración excepcional, por tanto, su acción  antioxidante, alcanza las mitocondrias produciendo un efecto de antienvejecimiento,  regenerativo y  nutriente en las capas más profundas de la piel.</p>
-				    </div>		        
-				  </div>
-			</div>			
-		</div>
+
+		<?php  
+			foreach ($this->ingredientes_pdt as $key => $ingrediente) {
+		?>		
+
+			<div class="col s12 m6">		    
+				<div class="card horizontal">
+					  <div class="card-image">
+					    <img src="assets/tienda/img/<?=$this->ingredientes[$ingrediente][0]?>">
+					  </div>
+					  <div class="card-stacked">
+					    <div class="card-content">
+					    <h5><?=$this->ingredientes[$ingrediente][1]?></h5>
+					      <p><?=$this->ingredientes[$ingrediente][2]?></p>
+					    </div>		        
+					  </div>
+				</div>			
+			</div>
+		<?php
+			}
+		?>
+		
+		
 	</div>
 </div>
 <div class="divider"></div>
@@ -114,7 +86,7 @@
 				<h1 style="font-weight: 600;margin: 0;line-height: 1em;">10%</h1>
 				<h5 style="font-weight: 100;margin: 0;line-height: 1em;">De descuento<h5>
 					<p class="flow-text">Usando el cupón de descuento: <b>LOREM</b></p>
-					<button class="btn-large truncate" style="background-color: #f19300;">USAR CUPÓN DE DESCUENTO</button>
+					<button class="btn-large truncate open-registro" style="background-color: #f19300;">USAR CUPÓN DE DESCUENTO</button>
 				<h6>*Aplica para compras superiores a $80.000</h6>
 				<br>
 			</div>
@@ -135,42 +107,48 @@
 </div>
 <div class="divider"></div>
 <div class="section" id="promesas">
-	<div class="container">
+	<h3 class="center-align">¿PORQUÉ SOMOS DIFERENTES?</h3>
+	<div class="container">		
 		<div class="row">
 			<div class="col s12 m6">
-				<h6 class="flow-text white-text center-align">
+				<h6 class="flow-text white-text left-align">
+					<i class="material-icons">check_circle</i> Pioneros en Colombia en cosmética ecológica.
+				</h6>
+			</div>
+			<div class="col s12 m6">
+				<h6 class="flow-text white-text left-align">
 					<i class="material-icons">check_circle</i> Ingredientes de origen natural, 100% vegetal.
 				</h6>
 			</div>
-			<div class="col s12 m6">
-				<h6 class="flow-text white-text center-align">
-					<i class="material-icons">check_circle</i> Especies nativas del Amazonas y Andes Colombianos.
-				</h6>
-			</div>
 		</div>
 		<div class="row">
 			<div class="col s12 m6">
-				<h6 class="flow-text white-text center-align">
+				<h6 class="flow-text white-text left-align">
+					<i class="material-icons">check_circle</i> Especies nativas del Amazonas y los Andes Colombianos.
+				</h6>
+			</div>
+			<div class="col s12 m6">
+				<h6 class="flow-text white-text left-align">
 					<i class="material-icons">check_circle</i> Sin parabenos, colorantes y aromas de origen sintético.
 				</h6>
 			</div>
-			<div class="col s12 m6">
-				<h6 class="flow-text white-text center-align">
-					<i class="material-icons">check_circle</i> Sin ingredientes derivados de la petroquímica.
-				</h6>
-			</div>
 		</div>
 		<div class="row">
 			<div class="col s12 m6">
-				<h6 class="flow-text white-text center-align">
-					<i class="material-icons">check_circle</i> Seguridad probada dermatológicamente.
+				<h6 class="flow-text white-text left-align">
+					<i class="material-icons">check_circle</i> Sin ingredientes derivados de la petroquímica.
 				</h6>
 			</div>
 			<div class="col s12 m6">
-				<h6 class="flow-text white-text center-align">
-					<i class="material-icons">check_circle</i> Elaborados con agua de manantial (no clorada).
+				<h6 class="flow-text white-text left-align">
+					<i class="material-icons">check_circle</i> Sin especies genéticamente modificadas.
 				</h6>
 			</div>
+			<!--<div class="col s12">
+				<h6 class="flow-text white-text left-align">
+					<i class="material-icons">check_circle</i> Conservantes y emulsificantes ecocertificados.
+				</h6>
+			</div>-->
 		</div>
 	</div>
 </div>
@@ -496,16 +474,18 @@
 <div class="section" id="comprar">
 	<div class="container">
 		
-		<div class="row">
+		<div class="row valign-wrapper">
 			<div class="col s12 m6 center-align">
 				<img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg" class="responsive-img" style="max-height: 400px;">			
 			</div>
 			<div class="col s12 m6 center-align">
-				<h3>Crema de Limpieza Rostro</h3>
-				<p class="flow-text">
-					REMUEVE FÁCILMENTE EL MAQUILLAJE, IMPUREZAS Y DEMÁS RESIDUOS DE LA PIEL, DEJÁNDOLA SUAVE, FIRME Y RADIANTE TODOS LOS DÍAS.
-				</p>
-				<button class="btn-large" style="background-color: #f19300;">COMPRAR</button>
+				<div class="row">
+					<h3 style="color: #6D1E3F;">Crema de Limpieza Rostro</h3>
+					<p class="flow-text">
+						REMUEVE FÁCILMENTE EL MAQUILLAJE, IMPUREZAS Y DEMÁS RESIDUOS DE LA PIEL, DEJÁNDOLA SUAVE, FIRME Y RADIANTE TODOS LOS DÍAS.
+					</p>
+					<button class="btn-large open-registro" style="background-color: #f19300;">COMPRAR</button>
+				</div>
 			</div>
 		</div>
 	</div>

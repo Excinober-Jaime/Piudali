@@ -74,7 +74,7 @@
 				  		Nos encargamos de recaudar a tus clientes y te consignamos el 20%.
 				  	</p>
 				  	<p>Comparte este enlace para vender este producto</p>
-				    <p id="urlpdt"><?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_PRODUCTO.'/'.$producto[0]["url"].'?d='.$_SESSION['idusuario']?>
+				    <p id="urlpdt"><?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$producto[0]["url"].'?d='.$_SESSION['idusuario']?>
 				   	</p>				   	
 				   	<center>
 				   		<button class="btn btn-primary btn-sm" onclick="copyToClipboard('#urlpdt')">Copiar enlace</button>
