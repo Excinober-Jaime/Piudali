@@ -371,11 +371,32 @@ margin: 0 !important;
 	z-index: 9999;
 }
 
+
+.card-ingredientes {
+
+	max-height: 185px;
+}
+
+.card-ingredientes > .card-stacked {
+
+	overflow-y: auto;
+}
+
 @media (min-width: 601px) and (max-width: 991px) {
 
 	#como-usarlo{
 		background-size: 40%;
 		background-position: 100% 100%;
+	}
+
+	.card-ingredientes {
+
+		max-height: 185px;
+	}
+
+	.card-ingredientes > .card-stacked {
+	
+		overflow-y: auto;
 	}
 }
 
@@ -394,4 +415,13 @@ margin: 0 !important;
 		background-size: 0px 0px;
 	}
 
+	.card-ingredientes {
+
+		max-height: none;
+	}
+
+	.card-ingredientes > .card-stacked {
+	
+		overflow-y: hidden;
+	}
 }

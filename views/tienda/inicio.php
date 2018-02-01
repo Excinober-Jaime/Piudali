@@ -26,7 +26,7 @@
 		?>		
 
 			<div class="col s12 m6">		    
-				<div class="card horizontal">
+				<div class="card horizontal card-ingredientes">
 					  <div class="card-image">
 					    <img src="assets/tienda/img/<?=$this->ingredientes[$ingrediente][0]?>">
 					  </div>
@@ -52,26 +52,16 @@
 		<div class="row">
 			<div class="col s12 m6 l6">
 				<ul>
-					<li>
-						<h4 style="color: #6D1E3F;">Paso 1</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.</p>
-					</li>
-					<li>
-						<h4 style="color: #6D1E3F;">Paso 2</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.</p>
-					</li>
-					<li>
-						<h4 style="color: #6D1E3F;">Paso 3</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.</p>
-					</li>
-					<li>
-						<h4 style="color: #6D1E3F;">Paso 4</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.</p>
-					</li>
+					<?php 
+					foreach ($this->uso as $key => $paso) {
+					?>
+						<li>
+							<h4 style="color: #6D1E3F;">Paso <?=$key?></h4>
+							<p><?=$paso?></p>
+						</li>
+					<?php
+					}
+					?>					
 				</ul>
 			</div>			
 		</div>
