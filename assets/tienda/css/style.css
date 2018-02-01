@@ -371,6 +371,35 @@ margin: 0 !important;
 	z-index: 9999;
 }
 
+.banner-principal{
+	position: relative;
+}
+
+.parallax-container .parallax img{
+	width: 100% !important;
+}
+
+
+@media (max-width: 601px){
+.img-flotante {
+position: relative !important;
+width: 50%;
+    
+}
+
+.banner-principal{
+	position: initial;
+	text-align: center;
+}
+
+.parallax-container .parallax img{
+	min-width: 100%;
+}
+
+
+}
+
+
 
 .card-ingredientes {
 
@@ -424,4 +453,36 @@ margin: 0 !important;
 	
 		overflow-y: hidden;
 	}
+}
+
+
+.puntos-club{
+	background-image: url('../../tienda/img/bg-puntos.png');
+	color: #fff;
+}
+
+.puntos-club .z-depth-2{
+	background-color: #fff;
+	color: rgba(0, 0, 0, 0.87);
+	border-radius: 20px;
+}
+
+
+.puntos-club .flow-text{
+	font-size: 1.2rem;
+}
+
+
+.box-promesas{
+	background-image: url('../../tienda/img/bg-diferentes.png');
+	background-size: cover;
+}
+
+
+.tituloVerde{
+	background-color: #97BE0C;
+	color: #41281B;
+	text-align:center;
+	padding: 10px 0;
+	margin: 0; 
 }

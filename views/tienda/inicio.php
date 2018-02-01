@@ -1,11 +1,11 @@
 <?php include 'header.php'; ?>
-<div style="position: relative;">
+<div class="banner-principal">
 <div class="parallax-container">
     <div class="parallax">
-    	<img src="assets/tienda/img/avatar_all.png">
+    	<img src="assets/tienda/img/avatar_all.png" class="hide-on-small-only">
     </div>
     <div class="row" id="container-banner-principal"> 
-    	<div class="col s11 m7 l5 offset-l1 valign-wrapper" style="height: 100%;">
+    	<div class="col s12 m7 l5 offset-l1 valign-wrapper" style="height: 100%;">
     		<div class="row">
     			<h3 style="color: #6D1E3F;"><?=$this->nombre_pdt?></h3>
     			<h5 class="flow-text"><?=$this->promesa_pdt?></h5>
@@ -14,7 +14,9 @@
         </div>
     </div>
 </div>
-<img src="assets/tienda/img/<?=$this->img_flotante_1?>" class='img-flotante'>
+<center>
+	<img src="assets/tienda/img/<?=$this->img_flotante_1?>" class="img-flotante img-responsive" />
+</center>
 </div>
 <div class="divider"></div>
 <div class="section" id="ingredientes">
@@ -68,27 +70,29 @@
 	</div>
 </div>
 <div class="divider"></div>
-<div class="section" id="action">
+<div class="section puntos-club" id="action">
 	<div class="container center-align">
 		<div class="row">
-			<div class="col s12 m4 z-depth-2">
+			<div class="col s12 m12 l3 z-depth-2">
 				<h4 style="font-weight: 100;margin-bottom: 0;line-height: 1em;">Obtén el<h4>
-				<h1 style="font-weight: 600;margin: 0;line-height: 1em;">10%</h1>
+				<h1 style="font-weight: 600;margin: 0;line-height: 1em; color: #00973A;">10%</h1>
 				<h5 style="font-weight: 100;margin: 0;line-height: 1em;">De descuento<h5>
-					<p class="flow-text">Usando el cupón de descuento: <b>LOREM</b></p>
+					<p class="flow-text">Usando el cupón de descuento: <br/><b style="color: #00973A; font-size: 1.9em">LOREM</b></p>
 					<button class="btn-large truncate open-registro" style="background-color: #f19300;">USAR CUPÓN DE DESCUENTO</button>
 				<h6>*Aplica para compras superiores a $80.000</h6>
 				<br>
 			</div>
-			<div class="col s12 m4 offset-m1">
-				<h2 style="font-weight: 100;margin: 0;line-height: 1em;">Además...</h2>
-				<p class="flow-text">
-					Todos nuestros productos tienen un código único con el que podrás ganar puntos y redimirlos en lo que quieras!
-					<br><br>
-					Conocerás nuestro Club, en el que aprenderás más sobre el cuidado de tu cuerpo.
-				</p>
+			<div class="col m6 s12 l4 offset-l1">
+				<img src="assets/tienda/img/club-piudali.png" class="img-responsive">
+				
+					<h4>Premiamos tu fidelidad y confianza!</h4>
+
+					<p>Gana puntos por tus compras virtuales y en puntos de venta, redime tus puntos en premios, productos y servicios. Además descubre todo los beneficios y contenidos que tenemos para ti.</p>
+					
+					<p>Conoce nuestro Club, en el que aprenderás más sobre el cuidado de tu cuerpo.</p>
+				
 			</div>
-			<div class="col s12 m3">
+			<div class="col m6 s12 l4">
 				<img src="assets/tienda/img/qr.png" class="responsive-img">
 			</div>
 		</div>
@@ -96,10 +100,23 @@
 	</div>
 </div>
 <div class="divider"></div>
-<div class="section" id="promesas">
-	<h3 class="center-align">¿PORQUÉ SOMOS DIFERENTES?</h3>
+<h3 class="center-align tituloVerde">¿PORQUÉ SOMOS DIFERENTES?</h3>
+<div class="section box-promesas" id="promesas">
+	<!--<h3 class="center-align">¿PORQUÉ SOMOS DIFERENTES?</h3>-->
 	<div class="container">		
 		<div class="row">
+			<div class="col s6 m6 l2 offset-l2">
+				<img src="assets/tienda/img/cara.png" class="responsive-img" />
+			</div>
+			<div class="col s6 m6 l2">
+				<img src="assets/tienda/img/manos.png" class="responsive-img" />
+			</div>
+			<div class="col s6 m6 l2">
+				<img src="assets/tienda/img/cuerpo.png" class="responsive-img" />
+			</div>
+			<div class="col s6 m6 l2">
+				<img src="assets/tienda/img/pies.png" class="responsive-img" />
+			</div>
 			<div class="col s12 m6">
 				<h6 class="flow-text white-text left-align">
 					<i class="material-icons">check_circle</i> Pioneros en Colombia en cosmética ecológica.
