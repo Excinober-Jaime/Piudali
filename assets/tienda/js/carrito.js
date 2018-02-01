@@ -23,6 +23,7 @@ $(document).ready(function(){
 	});
 
 	$(".cambiarCantidad").change(function(){
+
 		idpdt = $(this).attr("idpdt");
 		cantidad = $(this).val();	
 
@@ -34,7 +35,7 @@ $(document).ready(function(){
 			async: false,
 			success: function(response) {
 				if (response=="OK") {
-					window.location="Club/Carrito/";
+					window.location="Tienda/Carrito/";
 				}
 			},
 			error: function() {
@@ -54,7 +55,7 @@ $(document).ready(function(){
 			async: false,
 			success: function(response) {
 				if (response=="OK") {
-					window.location="Club/Carrito/";
+					window.location="Tienda/Carrito/";
 				}
 			},
 			error: function() {

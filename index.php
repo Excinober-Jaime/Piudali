@@ -585,26 +585,6 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							$controllerClub->generarOrdenClub();
 							break;
 
-						case 'PEDIDO':
-							
-							include 'views/club/pedido-regalo.php';
-							break;
-
-						case 'CONFIRMACION':
-							
-							include 'views/club/confirmacion-regalo.php';
-							break;
-
-						case 'DETALLE':
-							
-							include 'views/club/detalle-regalo.php';
-							break;
-
-						case 'FINALIZAR':
-							
-							include 'views/club/finalizar.php';
-							break;
-
 						default:
 							# code...
 							break;
@@ -625,6 +605,12 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 					
 					switch ($var2) {
 
+						case URL_TIENDA_PERFIL:
+							
+							$controllerTienda->perfilTienda();
+							
+							break;
+
 						case URL_TIENDA_PRODUCTO:
 							
 							if (isset($var3) && !empty($var3)) {
@@ -636,6 +622,24 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 								header('Location: '.URL_SITIO.URL_CLUB);
 
 							}							
+							break;
+
+						case URL_TIENDA_PRODUCTOS:
+							
+							$controllerTienda->productosTienda();
+							
+							break;
+
+						case URL_TIENDA_CARRITO:
+							$controllerTienda->carritoTienda();
+							break;
+
+						case URL_TIENDA_RESUMEN_COMPRA:
+							$controllerTienda->resumenCompraTienda();
+							break;
+
+						case URL_TIENDA_GENERAR_ORDEN:
+							$controllerTienda->generarOrdenTienda();
 							break;
 
 						default:

@@ -20,6 +20,35 @@ class ControllerTienda
 		$this->productos = new Productos();
 		$this->carrito = new Carrito();
 		$this->ordenes = new Ordenes();
+		$this->ventas_virtuales = new VentasVirtuales();
+
+		//Loguear usuario
+
+		if (isset($_POST['ingresarUsuario'])) {
+
+			extract($_POST);
+
+			$response = $this->loguearUsuario($email, md5($password), array(), $return_login);
+
+			if (!$response) {
+			
+			echo "<script> alert('Los datos de acceso son incorrectos. Por favor intenta de nuevo'); </script>";
+			
+			}else{
+
+				if ($_SESSION['tipo'] == 'CONSUMIDOR') {
+					
+					header('Location: '.URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_CARRITO);
+				
+				}else{
+
+					header('Location: '.URL_SITIO.URL_CLUB);
+
+				}
+			}
+			
+			
+		}
 
 
 		//Registrar usuario 
@@ -35,6 +64,13 @@ class ControllerTienda
 
 
 			}
+		}
+
+		//Validar si proviene de un enlace de distribuidor
+		if (isset($_GET['d']) && !empty($_GET['d'])) {
+			
+			$_SESSION['iddistribuidor'] = $_GET['d'];
+
 		}
 	}
 
@@ -443,6 +479,7 @@ class ControllerTienda
 
 	public function inicioTienda($url = '') {
 
+
 		$ciudades = $this->usuarios->listarCiudades();
 
 		$producto = $this->productos->detalleProductos(0,$url);
@@ -451,6 +488,329 @@ class ControllerTienda
 
 		include 'views/tienda/inicio.php';
 
+	}
+
+	public function productosTienda(){
+
+		if (isset($_SESSION['iddistribuidor']) && !empty($_SESSION['iddistribuidor'])) {
+			
+			$productos = $this->productos->listarProductos(array('NORMAL'), array(1));
+
+			include 'views/tienda/productos_lista.php';	
+		
+		}else{
+
+			header('Location: '.URL_SITIO.URL_CLUB);
+		}
+
+		
+	}
+
+	public function carritoTienda(){
+
+		if (isset($_SESSION['iddistribuidor']) && !empty($_SESSION['iddistribuidor'])) {
+
+			if (isset($_POST["redimirCupon"])) {
+
+				if (!empty($_POST["cupon_descuento"])) {
+
+					$cupon = $_POST["cupon_descuento"];
+					$cupon = $this->carrito->infoCupon($cupon);
+
+					if (!empty($cupon)) {
+
+						if ($cupon["monto_minimo"] <= $this->carrito->getSubtotalAntesIva()) {
+
+							$_SESSION["idcupon"] = $cupon["idcodigo"];
+							$_SESSION["valor_cupon"] = $cupon["val_descuento"];
+							$_SESSION["aplicacion_cupon"] = $cupon["aplicacion"];
+							$_SESSION["monto_minimo_cupon"] = $cupon["monto_minimo"];
+
+						}else{
+
+							unset($_SESSION["idcupon"]);
+							unset($_SESSION["valor_cupon"]);
+							unset($_SESSION["aplicacion_cupon"]);
+							unset($_SESSION["monto_minimo_cupon"]);
+							
+							echo "<script>alert('La compra no cumple con el monto minimo para aplicar el cupon');</script>";
+						}
+
+					}else{
+						//No se encuentra el cupón
+					}
+				}
+			}
+
+			/*if (isset($_POST["usar_puntos"]) && $_POST["usar_puntos"]==1) {
+				$_SESSION["usar_puntos"] = true;
+			}
+
+			if (isset($_POST["usar_puntos"]) && $_POST["usar_puntos"]==0) {
+				$_SESSION["usar_puntos"] = false;
+			}*/
+
+
+			/*if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"])) {
+
+				$puntos_disponibles = $this->usuarios->puntosDisponibles($_SESSION["idusuario"]);
+
+			}else{*/
+
+				$puntos_disponibles = 0;
+			//}
+
+			$tipo_usuario = 'CONSUMIDOR';
+
+			$itemsCarrito = $this->carrito->listarItems();
+			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
+			$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
+			$descuentoCupon = $this->carrito->getDescuentoCupon();
+			$subtotalNetoAntesIva = $this->carrito->getSubtotalNetoAntesIva();
+			$descuentoEscala = $this->carrito->getDescuentoEscala($tipo_usuario);
+			$porcDescuentoEscala = $this->carrito->porcDescuentoEscala($tipo_usuario);
+			$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
+
+			$retencion = $this->carrito->getRTF($tipo_usuario);
+
+			$pagoPuntos = $this->carrito->getPagoPuntos();
+
+			$iva = $this->carrito->getIva();
+			$flete = $this->carrito->calcularFlete();
+			$total = $this->carrito->getTotal();
+			$rentabilidad = $this->carrito->getRentabilidad();
+
+			include "views/tienda/carrito.php";
+
+		}else{
+
+			header('Location: '.URL_SITIO.URL_CLUB);
+		}
+	}
+
+	public function resumenCompraTienda(){
+
+		if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"]) && $_SESSION["tipo"]== 'CONSUMIDOR') {
+
+			$tipo_usuario = 'CONSUMIDOR';
+
+			$itemsCarrito = $this->carrito->listarItems();
+			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
+			$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
+			$descuentoCupon = $this->carrito->getDescuentoCupon();
+			$subtotalNetoAntesIva = $this->carrito->getSubtotalNetoAntesIva();
+			$descuentoEscala = $this->carrito->getDescuentoEscala($tipo_usuario);
+			$porcDescuentoEscala = $this->carrito->porcDescuentoEscala($tipo_usuario);
+			$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
+			$retencion = $this->carrito->getRTF($tipo_usuario);
+			$pagoPuntos = $this->carrito->getPagoPuntos();
+			$iva = $this->carrito->getIva();
+			$flete = $this->carrito->calcularFlete();
+			$total = $this->carrito->getTotal();
+			$rentabilidad = $this->carrito->getRentabilidad();
+
+			include "views/tienda/resumen_compra.php";
+		}
+	}
+
+	public function generarOrdenTienda(){
+
+		if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"]) && count($_SESSION["idpdts"])>0 && count($_SESSION["cantidadpdts"])>0 && $_SESSION["tipo"]== 'CONSUMIDOR') {
+
+			$tipo_usuario = 'CONSUMIDOR';
+
+			$codigo_orden = $this->carrito->generarCodOrden();
+			$fecha_pedido = fecha_actual("date");
+
+			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
+			$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
+			$descuentoCupon = $this->carrito->getDescuentoCupon();
+			$descuentoEscala = $this->carrito->getDescuentoEscala($tipo_usuario);
+			$porcDescuentoEscala = $this->carrito->porcDescuentoEscala($tipo_usuario);
+			$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
+			$retencion = $this->carrito->getRTF($tipo_usuario);
+			$detalleOrden = $this->carrito->getDetalleOrden($tipo_usuario);
+			
+			$pagoPuntos = $this->carrito->getPagoPuntos();		
+			
+			$iva = $this->carrito->getIva();
+			$flete = $this->carrito->calcularFlete();
+			$total = $this->carrito->getTotal();
+			
+			$estado = "PENDIENTE";
+			$fecha_facturacion = "0000-00-00";
+			$num_factura = "";
+			
+			//Crear Orden
+			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
+
+			if ($idorden) {
+
+				//Registrar detalle de orden
+				if (count($detalleOrden)>0) {
+
+					foreach ($detalleOrden as $key => $producto) {
+
+						//Descontar stock
+						$filas = $this->productos->descontarStock($producto["idpdt"],$producto["cantidad"]);
+
+						//Agregar detalle orden
+						$id_detalle_orden = $this->carrito->agregarDetalleOrden($producto["nombre"], $producto["codigo"], $producto["cantidad"], $producto["precio"], $producto["precio_base"], $producto["descuento_cupon"], $producto["iva"], $producto["descuento_puntos"], $idorden);
+					}
+				}
+
+				//Registrar si la compra fue hecha a través de un enlace de distribuidor
+				if (isset($_SESSION['iddistribuidor']) && !empty($_SESSION['iddistribuidor']) && $_SESSION['iddistribuidor'] != $_SESSION['idusuario']) {
+					
+					$comision_pagada = 0;
+
+					$this->ventas_virtuales->crear_venta($comision_pagada, $idorden, $_SESSION['iddistribuidor']);
+
+					//Cargar Nuevos Puntos A Distribuidor
+					$valor_punto = 1;
+					$fecha_adquirido = fecha_actual('datetime');
+					$redimido = 0;
+					$estado_puntos = 0;
+
+					$nuevos_puntos = $totalNetoAntesIva*($valor_punto/100);
+
+					$idnuevospuntosdistribuidor = $this->usuarios->asignarNuevosPuntos($nuevos_puntos, "VENTA A COMPRADOR", $fecha_adquirido, $redimido, $estado_puntos, $_SESSION['iddistribuidor'], $idorden);
+				}
+
+
+				//Enviar Email Orden
+				$this->ordenes->enviarEmailOrden($detalleOrden, $subtotalAntesIva, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $retencion, $iva, $pagoPuntos["valor_pago"], $flete, $total, $codigo_orden, $estado, $_SESSION['nombre'], $_SESSION['apellido'], $_SESSION['email']);				
+
+				/****PAGO CON PAYU****/
+
+				//Variables Pago Payu
+
+				$referenceCode = $codigo_orden;
+				$description = "COMPRA PRODUCTOS PIUDALI";
+				$buyerEmail = $_SESSION["email"];
+				$amount = round($total);
+				$tax = round($iva);
+				if ($iva == 0) {
+					$taxReturnBase = 0;
+				}else{
+					$taxReturnBase = round($totalNetoAntesIva-$pagoPuntos["valor_pago"]);
+				}
+
+				if (isset($_SESSION["idorganizacion"]) && !empty($_SESSION["idorganizacion"])) {
+
+					$organizacion = $this->usuarios->detalleOrganizacionUsuario($_SESSION["idorganizacion"]);
+
+					if (count($organizacion)>0) {
+						$payerFullName = $organizacion["razon_social"];
+					}else{
+						$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];	
+					}
+				}else{
+					$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];
+				}
+
+				$extra1 = $_SESSION["idusuario"];
+				
+				$signature=md5(ApiKey."~".merchantId."~".$referenceCode."~".$amount."~".currency);
+
+				require "include/pago_payu.php";
+
+				unset($_SESSION["idpdts"]);
+				unset($_SESSION["cantidadpdts"]);	
+			}
+			
+		}else{
+			header("Location: ".URL_CLUB_INGRESAR);
+		}
+	}
+
+
+	public function perfilTienda(){
+
+		if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR' && isset($_SESSION['iddistribuidor']) && !empty($_SESSION['iddistribuidor'])) {
+
+			if (isset($_SESSION['idusuario']) && isset($_POST["actualizarPerfil"])) {
+
+				extract($_POST);
+
+				$tipo_usuario = 'CONSUMIDOR';
+				
+				$filas = $this->usuarios->actualizarUsuario($_SESSION['idusuario'], $nombre, $apellido, '', '', $email, $num_identificacion, 0, $direccion, 0, $telefono, $telefono_m, $tipo_usuario, '', '', 0, 0, $ciudad);
+
+				if ($filas) {
+					
+					$info_ciudad = $this->usuarios->nombreCiudad($ciudad);
+
+					$this->usuarios->actualizarSesion($_SESSION["idusuario"], $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudad, $info_ciudad["ciudad"], $tipo_usuario, 0, 0);
+				}
+
+				if (isset($_GET['return']) && !empty($_GET['return'])) {
+							
+					header("Location: ".$_GET['return']);
+
+				}
+			}
+
+			if (isset($_SESSION['idusuario']) && isset($_POST["cambiarPassword"])) {
+							
+				$cambio_contrasena = $this->usuarios->cambiarContrasenaUsuario($_SESSION["idusuario"], md5($contrasena_actual), md5($nueva_contrasena));
+
+				if ($cambio_contrasena===1) {
+					
+				}else{
+					
+				}
+
+				if (isset($_GET['return']) && !empty($_GET['return'])) {
+							
+					header("Location: ".$_GET['return']);
+
+				}
+			}
+			
+			$usuario = $this->usuarios->detalleUsuario($_SESSION['idusuario']);
+			$ciudades = $this->usuarios->listarCiudades();
+
+			include 'views/tienda/perfil.php';
+
+		}else{
+
+			header('Location: '.URL_CLUB);
+		}
+		
+	}
+
+	private function loguearUsuario($email, $password, $usuarioremoto = array(), $return_login=''){
+
+		$usuario = $this->usuarios->loguearUsuario($email, $password);
+		$usuario = $usuario[0];
+
+		if (count($usuario)>0) {
+			
+			$this->usuarios->actualizarSesion($usuario["idusuario"], $usuario["nombre"], $usuario["apellido"], $usuario["email"], $usuario["telefono"], $usuario["telefono_m"], $usuario["direccion"], $usuario["ciudades_idciudad"], $usuario["ciudad"], $usuario["tipo"], $usuario["lider"], $usuario["organizaciones_idorganizacion"], $usuarioremoto);
+
+			/*if ($usuario['tipo'] == 'CONSUMIDOR') {
+
+				if (isset($return_login) && !empty($return_login)) {
+					
+					header("Location: ".$return_login);
+
+				}else{
+
+					header("Location: ".URL_SITIO.URL_TIENDA_PRODUCTOS);	
+				}
+
+			}else{
+
+				header('Location: '.URL_SITIO.URL_CLUB);
+			}*/
+
+			return true;
+
+		}else{
+
+			return false;
+		}
 	}
 
 

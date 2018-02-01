@@ -64,8 +64,11 @@ define("URL_CLUB_EN_QUE_REDIMIR", "En-que-puedo-redimir-mis-puntos");
 
 define("URL_TIENDA", "Tienda");
 define("URL_TIENDA_PRODUCTO", "Producto");
+define("URL_TIENDA_PRODUCTOS", "Productos");
 define("URL_TIENDA_CARRITO", "Carrito");
 define("URL_TIENDA_RESUMEN_COMPRA", "ConfirmarCompra");
+define("URL_TIENDA_GENERAR_ORDEN", "GenerarOrden");
+define("URL_TIENDA_PERFIL", "Perfil");
 
 
 define("URL_REGISTRO", "Registro");

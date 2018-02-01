@@ -65,13 +65,13 @@
 			 		Teléfono: <?=$_SESSION["telefono"]?><br>
 			 		Teléfono Móvil: <?=$_SESSION["telefono_m"]?><br><br>
 				 	
-			 		<a href="<?=URL_CLUB."/".URL_CLUB_PERFIL?>?return=<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>" class="btn green">Cambiar Datos</a>
+			 		<a href="<?=URL_TIENDA."/".URL_TIENDA_PERFIL?>?return=<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_CARRITO?>" class="btn green">Cambiar Datos</a>
 			 		
 	          	</span>
 	        </div>
 	    <?php } else { ?>
 	    	<h5>Por favor ingresa o registrate para cargar tu dirección</h5>
-	    	<a class="open-iniciar btn orange" return="<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>">Iniciar sesión</a>
+	    	<a class="open-iniciar btn orange" return="<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_CARRITO?>">Iniciar sesión</a>
 	    	<a class="open-registro btn green">Regístrarse</a>
 	    <?php } ?>
 		</div>
@@ -88,10 +88,7 @@
 				<div class="col s6 m4 right-align"><?=convertir_pesos($subtotalNetoAntesIva)?></div>
 			
 				<div class="col s6 m8 right-align">IVA</div>
-				<div class="col s6 m4 right-align"><?=convertir_pesos($iva)?></div>				
-
-				<div class="col s6 m8 right-align">Pago con puntos:</div>
-				<div class="col s6 m4 right-align"><?=convertir_pesos($pagoPuntos["valor_pago"])?></div>				
+				<div class="col s6 m4 right-align"><?=convertir_pesos($iva)?></div>			
 
 				<div class="col s6 m8 right-align">Costo de Envío</div>
 				<div class="col s6 m4 right-align"><?=convertir_pesos($flete)?></div>
@@ -106,12 +103,9 @@
 					
 					<?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR' && $total > 0) { ?>
 						
-					<a href="<?=URL_CLUB.'/'.URL_CLUB_GENERAR_ORDEN?>" class="btn-large orange right">FINALIZAR COMPRA</a>
+					<a href="<?=URL_TIENDA.'/'.URL_TIENDA_GENERAR_ORDEN?>" class="btn-large orange right">FINALIZAR COMPRA</a>
 
-					<?php } else { ?>
-
-						
-					<?php }  ?>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

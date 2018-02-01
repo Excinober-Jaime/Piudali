@@ -2,7 +2,7 @@
   <html>
     <head>
 
-      <title>Club Piudalí</title>
+      <title>E-commerce Piudalí</title>
 
       <meta charset="utf-8">
 
@@ -138,10 +138,8 @@
 
     <header class="header-club">
       <!--COLUMNA 1-->
-       <div class="col s12 m12 l4" style="padding-top:15px;">
-          <a href="<?=URL_TIENDA?>">
-              <center><img src="assets/img/logo-piudali.png" class="responsive-img" style=" max-width: 250px;"></center>
-          </a>
+       <div class="col s12 m12 l4" style="padding-top:15px;">          
+              <center><img src="assets/img/logo-piudali.png" class="responsive-img" style=" max-width: 250px;"></center>          
         </div>
       <!--COLUMNA 2-->
         <div class="col s12 m12 l8">

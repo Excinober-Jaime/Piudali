@@ -79,7 +79,7 @@
 				<h1 style="font-weight: 600;margin: 0;line-height: 1em; color: #00973A;">10%</h1>
 				<h5 style="font-weight: 100;margin: 0;line-height: 1em;">De descuento<h5>
 					<p class="flow-text">Usando el cupón de descuento: <br/><b style="color: #00973A; font-size: 1.9em">LOREM</b></p>
-					<button class="btn-large truncate open-registro" style="background-color: #f19300;">USAR CUPÓN DE DESCUENTO</button>
+					<button class="btn-large truncate open-registro agregarPdt" style="background-color: #f19300;" idpdt="<?=$this->id_pdt?>">USAR CUPÓN DE DESCUENTO</button>
 				<h6>*Aplica para compras superiores a $80.000</h6>
 				<br>
 			</div>
@@ -491,11 +491,10 @@
 					<h3 style="color: #6D1E3F;"><?=$this->nombre_pdt?></h3>
 					<p class="flow-text"><?=$this->promesa_pdt?>
 					</p>
-					<button class="btn-large open-registro" style="background-color: #f19300;">COMPRAR</button>
+					<button class="btn-large open-registro agregarPdt" idpdt="<?=$this->id_pdt?>" style="background-color: #f19300;">COMPRAR</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </div>
 <?php include 'footer.php'; ?>

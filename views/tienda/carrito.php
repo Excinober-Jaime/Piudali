@@ -38,7 +38,7 @@
 						<?=convertir_pesos($itemsCarrito["precio"][$key])?>
 					</td>
 					<td>
-						<select name="cantidad" id="cantidad" class="cambiarCantidad" idpdt="<?=$iditem?>">
+						<select name="cantidad" id="cantidad" class="cambiarCantidad browser-default" idpdt="<?=$iditem?>">
 							<?php 
 							for ($i=1; $i <= $itemsCarrito["cantidadstock"][$key]; $i++) {
 								?>
@@ -68,7 +68,7 @@
 </div>
 	<div class="divider"></div><br>
 	<div class="row">
-		<div class="col s12 m8">
+		<div class="col s12 m7">
 		<?php  if (isset($_SESSION["idusuario"])) { ?>
 			<div class="card-panel">
 				<h4>DIRECCIÓN DE ENVÍO</h4>			
@@ -78,7 +78,7 @@
 			 		Teléfono: <?=$_SESSION["telefono"]?><br>
 			 		Teléfono Móvil: <?=$_SESSION["telefono_m"]?><br><br>
 				 	
-			 		<a href="<?=URL_CLUB."/".URL_CLUB_PERFIL?>?return=<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>" class="btn green">Cambiar Datos</a>
+			 		<a href="<?=URL_TIENDA."/".URL_TIENDA_PERFIL?>?return=<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_CARRITO?>" class="btn green">Cambiar Datos</a>
 			 		
 	          	</span>
 	        </div>
@@ -88,7 +88,7 @@
 	    	<a class="open-registro btn green">Regístrarse</a>
 	    <?php } ?>
 		</div>
-		<div class="col s12 m4" style="background-color: #f2f2f2; border-radius: 10px;padding: 1rem;">
+		<div class="col s12 m5" style="background-color: #f2f2f2; border-radius: 10px;padding: 1rem;">
 			<div class="row">
 				<div class="col s6 m8 right-align">Subtotal antes de IVA</div>
 				<div class="col s6 m4 right-align"><?=convertir_pesos($subtotalAntesIva)?></div>
@@ -117,37 +117,7 @@
 				<div class="col s6 m4 right-align"><?=convertir_pesos($subtotalNetoAntesIva)?></div>
 			
 				<div class="col s6 m8 right-align">IVA</div>
-				<div class="col s6 m4 right-align"><?=convertir_pesos($iva)?></div>				
-
-
-				<?php if (isset($_SESSION["usar_puntos"]) && $_SESSION["usar_puntos"]==true) { ?>
-
-		 			<form method="post" id="nousarpuntos">
-			 			<input type="hidden" name="usar_puntos" value="0">
-			 		</form>
-			 		<div class="col s6 m8 right-align">Pago con puntos:</div>
-					<div class="col s6 m4 right-align"><?=convertir_pesos($pagoPuntos["valor_pago"])?></div>					 	
-				 	<div class="col s12 right-align">
-					 	<div class="card-panel green lighten-5">
-							<button class="btn green darken-1" onclick="javascript: document.getElementById('nousarpuntos').submit()"><i class="material-icons left">add</i>No Redimir Puntos</button>
-						</div>				 		
-					</div>
-				 	<?php }else{ ?>
-
-				 	<?php if (!empty($puntos_disponibles)) { ?>
-
-				 		<form method="post" id="usarpuntos">
-				 			<input type="hidden" name="usar_puntos" value="1">
-				 		</form>
-				 		<div class="col s6 m8 right-align">Puntos Disponibles:</div>
-						<div class="col s6 m4 right-align"><?=round($puntos_disponibles["disponibles"])?></div>
-					 	<div class="col s12 right-align">
-						 	<div class="card-panel green lighten-5">
-								<button class="btn green darken-1" onclick="javascript: document.getElementById('usarpuntos').submit()"><i class="material-icons left">add</i>Redimir Puntos</button>
-							</div>	
-						</div>
-				 	<?php } ?>
-			 	<?php } ?>
+				<div class="col s6 m4 right-align"><?=convertir_pesos($iva)?></div>
 
 				<div class="col s6 m8 right-align">Costo de Envío</div>
 				<div class="col s6 m4 right-align"><?=convertir_pesos($flete)?></div>
@@ -158,7 +128,7 @@
 			<div class="divider"></div>
 			<div class="row" style="margin-top: 1rem;">
 				<div class="col s7 right-align">
-					<a href="<?=URL_CLUB.'/'.URL_PRODUCTOS_CLUB?>" class="btn-large orange">SEGUIR COMPRANDO</a>
+					<a href="<?=URL_TIENDA.'/'.URL_TIENDA_PRODUCTOS?>" class="btn-large orange">AGREGAR OTRO PRODUCTO</a>
 				</div>
 				<div class="col s5 right-align ">
 					
@@ -170,7 +140,7 @@
 
 						<?php if ($total>0) { ?>
 
-							<a href="<?=URL_CLUB.'/'.URL_CLUB_RESUMEN_COMPRA?>" class="btn-large green">ORDENAR YA!</a>
+							<a href="<?=URL_TIENDA.'/'.URL_TIENDA_RESUMEN_COMPRA?>" class="btn-large green">ORDENAR YA!</a>
 
 						<?php } else { ?>
 							
