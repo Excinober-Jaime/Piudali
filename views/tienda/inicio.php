@@ -56,7 +56,7 @@
 					foreach ($this->uso as $key => $paso) {
 					?>
 						<li>
-							<h4 style="color: #6D1E3F;">Paso <?=$key?></h4>
+							<h4 style="color: #6D1E3F;">Paso <?=$key+1?></h4>
 							<p><?=$paso?></p>
 						</li>
 					<?php

@@ -136,8 +136,11 @@ class ControllerTienda
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('chontaduro', 'cacao', 'calendula', 'trigo', 'girasol', 'maracuya');
 					$this->uso = array(
-						'',
-						''
+						'Aplicar sobre el rostro y cuello',
+						'Realizar movimientos suaves circulares hasta retirar todas las impurezas.',
+						'Enjuagar bien con agua o pomos húmedos.',
+						'Seque con una toalla limpia y seca.',
+						'Usar todos los días mañana y noche. Conservar en lugar fresco y seco.'
 					);
 
 					break;
@@ -150,7 +153,13 @@ class ControllerTienda
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Clear-Away-Amazon-Facial-Scrub.png';
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('nogal','durazno','mango','cacao','maracuya','chontaduro', 'cafe','jojoba','seje', 'te', 'trigo');
-					$this->uso = array();
+					$this->uso = array(
+						'Aplicar sobre el rostro y cuello',
+						'Realizar movimientos suaves circulares hasta retirar todas las impurezas.',
+						'Enjuagar bien con agua o pomos húmedos.',
+						'Seque con una toalla limpia y seca.',
+						'Aplicar 1 o 2 veces a la semana. Conservar en lugar fresco y seco.'
+					);
 
 					break;
 
@@ -162,7 +171,12 @@ class ControllerTienda
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-Awakening-Toner.png';
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('chontaduro', 'guayaba', 'aloe','balu');
-					$this->uso = array();
+					$this->uso = array(
+						'Aplicar sobre el rostro y cuello después de la limpieza y/o exfoliación.',
+						'Usar en cualquier momento para hidratar la piel.',
+						'Conservar en lugar fresco y seco.'
+
+					);
 
 					break;
 
@@ -174,7 +188,12 @@ class ControllerTienda
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-Awakening-Daily-Facial-Moisturizer.png';
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('chontaduro','manzanilla','almendras','romero','calendula', 'girasol', 'copoazu');
-					$this->uso = array();
+					$this->uso = array(
+						'Aplicar una ligera capa en la mañana sobre el rostro y el cuello.',
+						'Realizar movimientos suaves circulares ascendentes.',
+						'Dejar durante el día.',
+						'Usar después de la crema de limpieza rostro y tónico. Conservar en lugar fresco y seco.'
+					);
 
 					break;
 
@@ -186,7 +205,11 @@ class ControllerTienda
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazonian-Eye-Cream.png';
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('copoazu', 'trigo','seje','acai','name','chontaduro');
-					$this->uso = array();
+					$this->uso = array(
+						'Aplicar con ligeros y suaves toques en el contorno de los ojos.',
+						'Usar día y noche.',
+						'Conservar en lugar fresco y seco.'
+					);
 
 					break;
 
@@ -198,7 +221,13 @@ class ControllerTienda
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-Night-Renewal-Cream.png';
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('name','chontaduro','romero','calendula','aloe','manzanilla','trebolrojo','copoazu','almendras','trigo','girasol','macadamia','te','aguacate');
-					$this->uso = array();
+					$this->uso = array(
+						'Aplicar en la noche una ligera capa sobre el rostro y cuello.',
+						'Masajear suevemente con movimientos ascendentes',
+						'Dejar durante toda la noche.',
+						'Retirar al dia siguiente con crema de Limpieza rostro.',
+						'Conservar en lugar fresco y seco.'
+					);
 
 					break;
 
@@ -210,7 +239,10 @@ class ControllerTienda
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-balm-for-lush-lips.png';
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('trigo','macadamia','zanahoria','calendula','andiroba','te','ricino','girasol','maracuya','buriti','laurel','candelilla','abejas','karite','cacao','copoazu');
-					$this->uso = array();
+					$this->uso = array(
+						'Aplicar sobre los labios, una o varias veces al día y masajear suavemente.',
+						'Conservar en lugar fresco y seco.'
+					);
 
 					break;
 
@@ -222,7 +254,11 @@ class ControllerTienda
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Amazon Awakening Body Wash.png';
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('aloe','guayaba','mango','chontaduro','copoazu','trigo','acai');
-					$this->uso = array();
+					$this->uso = array(
+						'Frotar suavemente sobre el cuerpo húmedo, aplicar con las manos o toallita en forma circular hasta obtener abundante espuma y enjuague.',
+						'Aplicar el gel de ducha corporal todos los días como ritual de limpieza y relajación.',
+						'Conservar en lugar fresco y seco.'
+					);
 
 					break;
 
@@ -234,7 +270,12 @@ class ControllerTienda
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Clear-away-amazon-body-scrub.png';
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('durazno','maracuya','chontaduro','mango','jojoba','trigo','te','buriti','karite','cacao');
-					$this->uso = array();
+					$this->uso = array(
+						'Aplicar en la mano o toallita y extender por todo el cuerpo con movimientos circulares.',
+						'Concentrándose en las partes más queratinizadas (rodillas, codos y pies) y enjuagar.',
+						'Se recomienda exfoliar para abrir los poros y reparar la piel para cualquier tratamiento de nutrición o hidratación. 1 o 2 veces al mes.',
+						'Conservar en lugar fresco y seco.'
+					);
 
 					break;
 
@@ -247,7 +288,11 @@ class ControllerTienda
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('trigo','buriti','andiroba','macadamia','maracuya','calendula','girasol','aloe','chontaduro','copoazu');
 
-					$this->uso = array();
+					$this->uso = array(
+						'Aplicar abundantemente en la mañana o en la noche. Masajear la piel hasta que se absorba completamente.',
+						'Ideal para pieles con sequedad extrema.<br>Ideal para personas que reciben tratamientos que alteran la humedad de la piel.',
+						'Conservar en lugar fresco y seco.'
+					);
 
 					break;
 
@@ -259,7 +304,12 @@ class ControllerTienda
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Deep-Nourishing-hand-cream.png';
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('maracuya', 'seje','trigo','andiroba','copoazu','chontaduro','aloe','te');
-					$this->uso = array();
+					$this->uso = array(
+						'Aplicar día y noche generosamente en las manos y masajear suavemente.',
+						'Aplicar una vez por semana exfoliante para una limpieza profunda y renovar las células muertas.',
+						'Ideal para personas que manipulan agentes químico, o que realizan trabajos extremos.',
+						'Conservar en lugar fresco y seco.'
+					);
 
 					break;
 
@@ -271,7 +321,13 @@ class ControllerTienda
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Amazon-body-butter.png';
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('copoazu','trigo','jojoba','maracuya','chontaduro','aloe','te','buriti');
-					$this->uso = array();
+					$this->uso = array(
+						'Aplicar sobre la piel limpia de todo el cuerpo.',
+						'Ideal para zonas más queratinizadas en especial en los codos, las rodillas y los pies.',
+						'Masajear hasta que se absorba completamente.',
+						'Ideal para pieles con sequedad extrema.<br>Ideal para rituales de spa.',
+						'Conservar en lugar fresco y seco.'
+					);
 
 					break;
 
@@ -295,7 +351,15 @@ class ControllerTienda
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Pure-Amazon-Body-Oil.png';
 					$this->img_flotante_2 = '';
 					$this->ingredientes_pdt = array('trigo','calendula','te','chontaduro','uva','almendras','girasol','maracuya','buriti','romero','aguacate');
-					$this->uso = array();
+					$this->uso = array(
+						'Frotar sobre la piel limpia y preferiblemente húmeda, hasta que se absorba completamente.',
+						'Usar de día o de noche.',
+						'Dejar secar antes de colocar su ropa.',
+						'Ideal para pieles con sequedad extrema.',
+						'Recomendado para majases relajantes y terapéuticos. Ideal para rituales de spa.',
+						'Conservar en lugar fresco y seco.'
+
+					);
 
 					break;
 				
