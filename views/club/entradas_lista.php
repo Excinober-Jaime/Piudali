@@ -24,10 +24,10 @@
 		<?php } ?>
 
 					</div>
-				    <div class="card-content">
+				    <div class="card-content" style="height: 300px;overflow-y: auto;">
 				      <span class="card-title activator grey-text text-darken-4"><?=$entrada['titulo']?><!--<i class="material-icons right">more_vert</i>--></span>
 				      <p>
-				      	<?=substr($entrada['contenido'], 0, 250)?>...
+				      	<?=substr($entrada['contenido'], 0, 500)?>...
 				      </p>
 				    </div>
 				    <div class="card-action">

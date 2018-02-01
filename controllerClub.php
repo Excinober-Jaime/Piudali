@@ -24,6 +24,7 @@ class ControllerClub
 		$this->productos_aliados = new ProductosAliados();
 		$this->organizaciones = new Organizaciones();
 		$this->sucursales = new Sucursales();
+		$this->paginas = new Paginas();
 
 		//Loguear usuario
 
@@ -201,80 +202,6 @@ class ControllerClub
 		$banners = $this->banners->listarBanners($posicion_banners,$estados_banners);
 
 		$ciudades = $this->usuarios->listarCiudades();
-
-		/****
-		if (isset($_POST['redimirCodigo']) && !empty($_POST['codigo'])) {
-
-			$response_codigo = $this->redimirCodigoPuntos($_POST['codigo']);
-			
-		}
-
-		if (isset($_GET['ciudad_redimir']) && !empty($_GET['ciudad_redimir'])) {
-
-			$ciudad_redimir = $_GET['ciudad_redimir'];
-
-		}else{
-
-			$ciudad_redimir = 4270;
-		}
-			
-		if ($ciudad_redimir == 4270) { //Cali
-
-			//Provisional artemisa
-			$puntos_artemisa = array("Centro Comercial Chipichape Local 8-118","Centro Comercial Centenario Local 131","Centro Comercial Cosmocentro L 2-68","Centro Comercial Unicentro local 320 Pasillo 5","Centro Comercial Unicentro Local 449 Oasis","Centro Cra 5 No.12-16","Avenida Estación No.5CN-34","Avenida Roosevelt No.25-32");
-
-			$i = 0;
-
-			foreach ($puntos_artemisa as $punto) {
-
-				$distribuidores[$i]["idusuario"] = 'ART'.$i;
-				$distribuidores[$i]["nombre"] = "Artemisa";
-				$distribuidores[$i]["direccion"] = $punto;
-				$distribuidores[$i]["telefono"] = "(2) 4873030";
-				$distribuidores[$i]["telefono_m"] = "";
-				$distribuidores[$i]["ciudad"] = "Cali";
-
-				$i++;
-			}
-		}
-
-		if ($ciudad_redimir == 3394) { //Bogotá	
-			
-
-			//Provisional supernaturistas
-			$puntos_super = array(
-
-							array ('direccion' => '<b>Niza</b> Av. 127 con Av. Suba C.C. Niza Int. 13', 'telefono' => '253 1429'),
-							array ('direccion' => '<b>Carrera 15</b> Av. 15 # 105 A - 20', 'telefono' => '619 1662'),
-							array ('direccion' => '<b>Santa Ana</b> Cra. 7 # 108 - 44 (en Olímpica)', 'telefono' => '213 9922'),
-							array ('direccion' => '<b>Calle 100</b> Calle 98 # 17A - 64', 'telefono' => '256 9136'),
-							array ('direccion' => 'Calle 119 # 14B - 10', 'telefono' => '215 7214'),
-							array ('direccion' => 'AK 45 # 104 - 60 (Autonorte con 104)', 'telefono' => '214 6229'),
-							array ('direccion' => 'Cra. 7 # 82 - 62 Lc 28 ', 'telefono' => '622 0790'),
-							array ('direccion' => 'Cra. 15 # 118 - 50', 'telefono' => '214 0824'),
-							array ('direccion' => 'Cra. 7 # 17 - 13', 'telefono' => '491 1218'),
-							array ('direccion' => 'Cra. 7A # 140 - 20 Lc 108', 'telefono' => '700 5781'),
-							array ('direccion' => 'C.C. Bazaar Alsacia Calle 12B # 71D - 61 (Av. Boyacá) Lc 1 - 18', 'telefono' => '411 7058'),
-							array ('direccion' => 'Cra. 18A # 135 - 46', 'telefono' => '627 9854')
-						);
-
-			$i = 0;
-
-			foreach ($puntos_super as $punto) {
-
-				$distribuidores[$i]["idusuario"] = 'SUP'.$i;
-				$distribuidores[$i]["nombre"] = "Supermercado Naturista";
-				$distribuidores[$i]["direccion"] = $punto['direccion'];
-				$distribuidores[$i]["telefono"] = $punto['telefono'];
-				$distribuidores[$i]["telefono_m"] = "";
-				$distribuidores[$i]["ciudad"] = "Bogotá";
-
-				$i++;
-			}
-		}
-
-		$json_maps = json_encode($distribuidores);
-		****/
 
 		$entradas = $this->entradas->listarEntradas(array(1), 'LIMIT 3');
 
@@ -836,6 +763,15 @@ class ControllerClub
 
 		include 'views/club/entradas_lista.php';
 	}
+
+	public function paginaClub($url){
+
+		$pagina = $this->paginas->contenidoPagina($url);
+
+		include 'views/club/pagina.php';
+	}
+
+
 
 }
 ?>

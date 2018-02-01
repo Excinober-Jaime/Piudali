@@ -1,6 +1,6 @@
 <?php 
-define("URL_SITIO", "http://localhost/piudali/www/");
-//define("URL_SITIO", "https://piudali.com.co/");
+//define("URL_SITIO", "http://localhost/piudali/www/");
+define("URL_SITIO", "https://piudali.com.co/");
 define("URL_INICIO", "Inicio");
 define("URL_PRODUCTOS", "Productos");
 define("URL_CATEGORIA", "Categoria");
@@ -61,6 +61,7 @@ define("URL_CLUB_RESUMEN_COMPRA", "ResumenCompra");
 define("URL_CLUB_GENERAR_ORDEN", "GenerarOrden");
 define("URL_CLUB_ENTRADAS", "Entradas");
 define("URL_CLUB_EN_QUE_REDIMIR", "En-que-puedo-redimir-mis-puntos");
+define("URL_CLUB_PAGINAS", "Pagina");
 
 define("URL_TIENDA", "Tienda");
 define("URL_TIENDA_PRODUCTO", "Producto");

@@ -585,6 +585,19 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							$controllerClub->generarOrdenClub();
 							break;
 
+						case URL_CLUB_PAGINAS:
+							
+							if (isset($var3) && !empty($var3)) {
+
+								$controllerClub->paginaClub($var3);
+							
+							}else{
+
+								header('Location: '.URL_CLUB);
+							}
+
+							break;
+
 						default:
 							# code...
 							break;
