@@ -12,12 +12,12 @@ $(document).ready(function(){
 			dataType: 'json',
 			async: false,
 			success: function(response) {
-				$("#total-carrito").text("Total a pagar $"+response.total);
+				//$("#total-carrito").text("Total a pagar $"+response.total);
 				$("#cantidad-carrito").text(response.cantidad);
-				alert('El producto se agrego al carrito');
+				//alert('El producto se agrego al carrito');
 			},
 			error: function() {
-				alert('El producto no se agrego');
+				alert('Tenemos un inconveniente. Por favor inténtalo más tarde!');
 			}
 		});
 	});

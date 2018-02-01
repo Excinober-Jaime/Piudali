@@ -9,7 +9,8 @@
     		<div class="row">
     			<h3 style="color: #6D1E3F;"><?=$this->nombre_pdt?></h3>
     			<h5 class="flow-text"><?=$this->promesa_pdt?></h5>
-                <button class="btn-large open-registro" style="background:#f19300;">COMPRAR!</button>
+                <button class="btn-large open-registro agregarPdt" idpdt="<?=$this->id_pdt?>" style="background:#f19300;">COMPRAR!</button>
+                <input type="hidden" id="cantidad" value="1">
            </div>
         </div>
     </div>
@@ -46,7 +47,7 @@
 	</div>
 </div>
 <div class="divider"></div>
-<div class="section" id="como-usarlo" style="background-image: url(assets/tienda/img/modelo2.png);">
+<div class="section" id="como-usarlo" style="background-image: url(assets/tienda/img/<?=$this->img_flotante_2?>);">
 	<h3 class="center-align">¿CÓMO USARLO?</h3>
 	<div class="container">
 		<div class="row">
@@ -464,15 +465,14 @@
 <div class="section" id="comprar">
 	<div class="container">
 		
-		<div class="row valign-wrapper">
+		<div class="row">
 			<div class="col s12 m6 center-align">
-				<img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg" class="responsive-img" style="max-height: 400px;">			
+				<img src="assets/tienda/img/<?=$this->img_flotante_1?>" class="responsive-img" style="max-height: 400px;">			
 			</div>
 			<div class="col s12 m6 center-align">
 				<div class="row">
-					<h3 style="color: #6D1E3F;">Crema de Limpieza Rostro</h3>
-					<p class="flow-text">
-						REMUEVE FÁCILMENTE EL MAQUILLAJE, IMPUREZAS Y DEMÁS RESIDUOS DE LA PIEL, DEJÁNDOLA SUAVE, FIRME Y RADIANTE TODOS LOS DÍAS.
+					<h3 style="color: #6D1E3F;"><?=$this->nombre_pdt?></h3>
+					<p class="flow-text"><?=$this->promesa_pdt?>
 					</p>
 					<button class="btn-large open-registro" style="background-color: #f19300;">COMPRAR</button>
 				</div>

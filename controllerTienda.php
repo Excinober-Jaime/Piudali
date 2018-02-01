@@ -5,7 +5,7 @@
 */
 class ControllerTienda
 {
-
+	public $id_pdt = 0;
 	public $nombre_pdt = '';
 	public $promesa_pdt = '';
 	public $banner_parallax = '';
@@ -20,6 +20,67 @@ class ControllerTienda
 		$this->productos = new Productos();
 		$this->carrito = new Carrito();
 		$this->ordenes = new Ordenes();
+
+
+		//Registrar usuario 
+
+		if (isset($_POST['registrarUsuario'])) {
+
+			extract($_POST);
+
+			$response = $this->registrarConsumidor($num_identificacion, $nombre, $apellido, $email, $ciudad, $telefono, $contrasena);
+
+			if ($response['tipo'] == 'idusuario' && isset($_SESSION['idusuario'])) {
+				
+
+
+			}
+		}
+	}
+
+	private function registrarConsumidor($num_identificacion, $nombre, $apellido, $email, $ciudad, $telefono, $contrasena){
+
+		if (count($this->usuarios->validarUsuario($num_identificacion, $email))>0) {
+
+				$alerta = "Usted ya posee una cuenta";
+
+				return array('tipo'		=>	'alerta', 
+							'response'	=>	$alerta
+							);
+
+		}else{
+
+			$sexo = '';
+			$fecha_nacimiento = '';
+			$boletines = 0;
+			$condiciones = 0;
+			$direccion = 0;
+			$mapa = 0;
+			$telefono_m = '';
+			$tipo = 'CONSUMIDOR';
+			$segmento = '';
+			$foto = '';
+			$estado = 1;
+			$fecha_registro = fecha_actual('datetime');
+			$referente = 0;
+			$lider = 0;
+			$cod_lider = 0;
+			$nivel = 0;
+			$organizacion = 0;
+
+			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, md5($password), $num_identificacion, $boletines, $condiciones, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, $cod_lider, $nivel, $ciudad, $organizacion);
+
+			if ($idusuario) {
+
+				$this->usuarios->actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, '', '', $ciudad, '', $tipo, 0, 0);	
+			}
+
+			return array(	
+						'tipo'		=>	'idusuario', 
+						'response'	=>	$idusuario
+					);
+		}
+
 	}
 
 	private function infoProducto($producto){
@@ -123,17 +184,19 @@ class ControllerTienda
 
 		if (!empty($producto)) {
 
+			$this->id_pdt = $producto['idproducto'];
+
 			switch ($producto['codigo']) {
 				
 				case 'P-001':
 					
 					$this->nombre_pdt = 'Crema de Limpieza Rostro';
 					
-					$this->promesa_pdt = '<b>LIMPIA PROFUNDAMENTE Y PURIFICA LA PIEL</b><br>Remueve fácilmente el maquillaje, impurezas y demás residuos de la piel, dejándola suave, firme y radiante todos los días. Se adapta a todo tipo de piel.';
+					$this->promesa_pdt = '<b>Limpia profundamente y purifica la piel.</b><br>Remueve fácilmente el maquillaje, impurezas y demás residuos de la piel, dejándola suave, firme y radiante todos los días. Se adapta a todo tipo de piel.';
 
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_amazon-awakeing-facial-cleanser.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-facial_amazon-awakeing-facial-cleanser.png';
 					$this->ingredientes_pdt = array('chontaduro', 'cacao', 'calendula', 'trigo', 'girasol', 'maracuya');
 					$this->uso = array(
 						'Aplicar sobre el rostro y cuello',
@@ -148,10 +211,10 @@ class ControllerTienda
 				case 'P-002':
 					
 					$this->nombre_pdt = 'Exfoliante y Purificante de la Amazonía';
-					$this->promesa_pdt = '<b>EXFOLIA, PURIFICA Y RENUEVA LA PIEL</b><br>Con aroma del tradicional café Colombiano y extractos de la selva Amazónica. Elimina las células muertas, remplazandolas por nuevas. Refresca y revitaliza todo tipo de piel.';
+					$this->promesa_pdt = '<b>Exfolia, purifica y renueva la piel</b><br>Con aroma del tradicional café Colombiano y extractos de la selva Amazónica. Elimina las células muertas, remplazandolas por nuevas. Refresca y revitaliza todo tipo de piel.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Clear-Away-Amazon-Facial-Scrub.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-Awakening-Toner.png';
 					$this->ingredientes_pdt = array('nogal','durazno','mango','cacao','maracuya','chontaduro', 'cafe','jojoba','seje', 'te', 'trigo');
 					$this->uso = array(
 						'Aplicar sobre el rostro y cuello',
@@ -166,10 +229,10 @@ class ControllerTienda
 				case 'P-003':
 					
 					$this->nombre_pdt = 'Tónico Facial Despertar de la Amazonía';
-					$this->promesa_pdt = '<b>REFRESCA COMO LA NIEBLA DE UNA MAÑANA EN LA SELVA AMAZÓNICA </b><br>Hidrata, tonifica y suaviza delicadamente la piel. Se adapta a todo tipo de piel.';
+					$this->promesa_pdt = '<b>Refresca como la niebla de una mañana en la selva amazónica</b><br>Hidrata, tonifica y suaviza delicadamente la piel. Se adapta a todo tipo de piel.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-Awakening-Toner.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-Awakening-Toner.png';
 					$this->ingredientes_pdt = array('chontaduro', 'guayaba', 'aloe','balu');
 					$this->uso = array(
 						'Aplicar sobre el rostro y cuello después de la limpieza y/o exfoliación.',
@@ -183,10 +246,10 @@ class ControllerTienda
 				case 'P-004':
 					
 					$this->nombre_pdt = 'Hidratante Natural Rostro';
-					$this->promesa_pdt = '<b>HIDRATA Y NUTRE PRODUNDAMENTE LA PIEL</b><br>Ofrece un adecuado balance de humedad. Contrarresta los efectos adversos de los radicales libres causantes del envejecimiento prematuro. Rica en vitaminas naturales A, C y E. Se adapta a todo tipo de piel.';
+					$this->promesa_pdt = '<b>Hidrata y nutre profundamente la piel</b><br>Ofrece un adecuado balance de humedad. Contrarresta los efectos adversos de los radicales libres causantes del envejecimiento prematuro. Rica en vitaminas naturales A, C y E. Se adapta a todo tipo de piel.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-Awakening-Daily-Facial-Moisturizer.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-Awakening-Daily-Facial-Moisturizer.png';
 					$this->ingredientes_pdt = array('chontaduro','manzanilla','almendras','romero','calendula', 'girasol', 'copoazu');
 					$this->uso = array(
 						'Aplicar una ligera capa en la mañana sobre el rostro y el cuello.',
@@ -200,10 +263,10 @@ class ControllerTienda
 				case 'P-005':
 					
 					$this->nombre_pdt = 'Crema Revitalizante Contorno de Ojos';
-					$this->promesa_pdt = '<b>NUTRE, TONIFICA Y REVITALIZA EL CONTORNO DE LOS OJOS</b><br>Esta exótica crema rica en antioxidantes, mejora la apariencia de ojos cansados o fatigados. Ayuda a prevenir el envejecimiento y a minimizar líneas de expresión y arrugas.';
+					$this->promesa_pdt = '<b>Nutre, tonifica y revitaliza el contorno de los ojos</b><br>Esta exótica crema rica en antioxidantes, mejora la apariencia de ojos cansados o fatigados. Ayuda a prevenir el envejecimiento y a minimizar líneas de expresión y arrugas.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazonian-Eye-Cream.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-facial_Amazonian-Eye-Cream.png';
 					$this->ingredientes_pdt = array('copoazu', 'trigo','seje','acai','name','chontaduro');
 					$this->uso = array(
 						'Aplicar con ligeros y suaves toques en el contorno de los ojos.',
@@ -216,10 +279,10 @@ class ControllerTienda
 				case 'P-006':
 					
 					$this->nombre_pdt = 'Ritual de la Juventud de la Amazonía';
-					$this->promesa_pdt = '<b>NUTRE, TONIFICA Y REJUVENECE LA PIEL</b><br>Esta exótica crema revitaliza la piel, dejándola juvenil, tersa y radiante. Reduce la apariencia de las líneas de expresión y arrugas. Aporta firmeza y elasticidad a la piel.';
+					$this->promesa_pdt = '<b>Nutre, tonifica y rejuvenece la piel</b><br>Esta exótica crema revitaliza la piel, dejándola juvenil, tersa y radiante. Reduce la apariencia de las líneas de expresión y arrugas. Aporta firmeza y elasticidad a la piel.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-Night-Renewal-Cream.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-Awakening-Toner.png';
 					$this->ingredientes_pdt = array('name','chontaduro','romero','calendula','aloe','manzanilla','trebolrojo','copoazu','almendras','trigo','girasol','macadamia','te','aguacate');
 					$this->uso = array(
 						'Aplicar en la noche una ligera capa sobre el rostro y cuello.',
@@ -234,10 +297,10 @@ class ControllerTienda
 				case 'P-007':
 					
 					$this->nombre_pdt = 'Reparador de labios - Nuez';
-					$this->promesa_pdt = '<b>HIDRATA Y PROTEGE LOS LABIOS</b><br>Ofrece una deliciosa sensación al aplicar las mantequillas, ceras y aceites de frutos amazónicos hidratantes. La acción de los carotenoides y Fito-esteroles permite lucir labios humectados, suaves, sanos y con agradable brillo natural';
+					$this->promesa_pdt = '<b>Hidrata y protege los labios</b><br>Ofrece una deliciosa sensación al aplicar las mantequillas, ceras y aceites de frutos amazónicos hidratantes. La acción de los carotenoides y Fito-esteroles permite lucir labios humectados, suaves, sanos y con agradable brillo natural';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-balm-for-lush-lips.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-balm-for-lush-lips.png';
 					$this->ingredientes_pdt = array('trigo','macadamia','zanahoria','calendula','andiroba','te','ricino','girasol','maracuya','buriti','laurel','candelilla','abejas','karite','cacao','copoazu');
 					$this->uso = array(
 						'Aplicar sobre los labios, una o varias veces al día y masajear suavemente.',
@@ -249,10 +312,10 @@ class ControllerTienda
 				case 'P-008':
 					
 					$this->nombre_pdt = 'Gel de Ducha Corporal';
-					$this->promesa_pdt = '<b>LIMPIA, HIDRATA Y REVITALIZA LA PIEL</b><br>		Hidrata, refresca, suaviza y revitaliza la piel dejando una sensación de limpieza y relajación en la ducha diaria. Con deliciosos aromás exóticos de la selva Amazónica.';
+					$this->promesa_pdt = '<b>Limpia, hidrata y revitaliza la piel</b><br>Hidrata, refresca, suaviza y revitaliza la piel dejando una sensación de limpieza y relajación en la ducha diaria. Con deliciosos aromás exóticos de la selva Amazónica.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Amazon Awakening Body Wash.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-coporal_Amazon Awakening Body Wash.png';
 					$this->ingredientes_pdt = array('aloe','guayaba','mango','chontaduro','copoazu','trigo','acai');
 					$this->uso = array(
 						'Frotar suavemente sobre el cuerpo húmedo, aplicar con las manos o toallita en forma circular hasta obtener abundante espuma y enjuague.',
@@ -265,10 +328,10 @@ class ControllerTienda
 				case 'P-009':
 					
 					$this->nombre_pdt = 'Exfoliante Corporal de la Amazonía';
-					$this->promesa_pdt = '<b>EXFOLIA, NUTRE Y RENUEVA LA PIEL DEL CUERPO</b><br>Exfolia la piel, eliminando las células muertas, reemplazandolas por nuevas. Refresca, purifica y revitaliza la piel.';
+					$this->promesa_pdt = '<b>Exfolia, nutre y renueva la piel del cuerpo</b><br>Exfolia la piel, eliminando las células muertas, reemplazandolas por nuevas. Refresca, purifica y revitaliza la piel.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Clear-away-amazon-body-scrub.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-coporal_Clear-away-amazon-body-scrub.png';
 					$this->ingredientes_pdt = array('durazno','maracuya','chontaduro','mango','jojoba','trigo','te','buriti','karite','cacao');
 					$this->uso = array(
 						'Aplicar en la mano o toallita y extender por todo el cuerpo con movimientos circulares.',
@@ -282,10 +345,10 @@ class ControllerTienda
 				case 'P-010':
 					
 					$this->nombre_pdt = 'Loción Corporal Hidratante';
-					$this->promesa_pdt = '<b>HIDRATA, NUTRE Y RESTABLECE EL BALANCE NATURAL DE LA PIEL</b><br>Por sus componentes naturales exóticos y antioxidantes brinda a la piel suavidad y vitalidad, dejando una sensación de frescura y relajación.';
+					$this->promesa_pdt = '<b>Hidrata, nutre y restalece el balance natural de la piel</b><br>Por sus componentes naturales exóticos y antioxidantes brinda a la piel suavidad y vitalidad, dejando una sensación de frescura y relajación.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Antioxidant-Moisturizing-Body-lotion.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-coporal_Antioxidant-Moisturizing-Body-lotion.png';
 					$this->ingredientes_pdt = array('trigo','buriti','andiroba','macadamia','maracuya','calendula','girasol','aloe','chontaduro','copoazu');
 
 					$this->uso = array(
@@ -299,10 +362,10 @@ class ControllerTienda
 				case 'P-0011':
 					
 					$this->nombre_pdt = 'Crema Nutritiva para Manos';
-					$this->promesa_pdt = '<b>HIDRATA & NUTRE LAS MANOS</b><br>Hidrata, humecta, nutre y revitaliza la piel de las manos, dejando una sensación de suavidad, frescura y relajación. Por su contenido de aceites exóticos y antioxidantes previene el envejecimiento.';
+					$this->promesa_pdt = '<b>Hidrata y nutre las manos</b><br>Hidrata, humecta, nutre y revitaliza la piel de las manos, dejando una sensación de suavidad, frescura y relajación. Por su contenido de aceites exóticos y antioxidantes previene el envejecimiento.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Deep-Nourishing-hand-cream.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-coporal_Deep-Nourishing-hand-cream.png';
 					$this->ingredientes_pdt = array('maracuya', 'seje','trigo','andiroba','copoazu','chontaduro','aloe','te');
 					$this->uso = array(
 						'Aplicar día y noche generosamente en las manos y masajear suavemente.',
@@ -316,10 +379,10 @@ class ControllerTienda
 				case 'P-012':
 					
 					$this->nombre_pdt = 'Mantequilla Corporal de la Amazonía';
-					$this->promesa_pdt = '<b>HIDRATA, NUTRE Y RESTABLECE EL BALANCE NATURAL DE LA PIEL</b><br>Exótica mantequilla con aromas que evocan la selva Amazónica. Nutre y revitaliza la piel. Acondiciona, suaviza e hidrata profundamente.';
+					$this->promesa_pdt = '<b>Hidrata, nutre y restablece el balance natural de la piel</b><br>Exótica mantequilla con aromas que evocan la selva Amazónica. Nutre y revitaliza la piel. Acondiciona, suaviza e hidrata profundamente.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Amazon-body-butter.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-coporal_Amazon-body-butter.png';
 					$this->ingredientes_pdt = array('copoazu','trigo','jojoba','maracuya','chontaduro','aloe','te','buriti');
 					$this->uso = array(
 						'Aplicar sobre la piel limpia de todo el cuerpo.',
@@ -334,22 +397,25 @@ class ControllerTienda
 				case 'P-014':
 					
 					$this->nombre_pdt = 'Bálsamo Amazónico reparador de labios en barra';
-					$this->promesa_pdt = '';
-					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-balm-for-lush-lips-stick.png';
-					$this->img_flotante_2 = '';
-					$this->ingredientes_pdt = array();
-					$this->uso = array();
+					$this->promesa_pdt = '<b>Hidrata y protege los labios</b><br>Ofrece una deliciosa sensación al aplicar las mantequillas, ceras y aceites de frutos amazónicos hidratantes. La acción de los carotenoides y Fito-esteroles permite lucir labios humectados, suaves, sanos y con agradable brillo natural';
+					$this->banner_parallax = '';
+					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-balm-for-lush-lips-stick.png';
+					$this->ingredientes_pdt = array('trigo','macadamia','zanahoria','calendula','andiroba','te','ricino','girasol','maracuya','buriti','laurel','candelilla','abejas','karite','cacao','copoazu');
+					$this->uso = array(
+						'Aplicar sobre los labios, una o varias veces al día y masajear suavemente.',
+						'Conservar en lugar fresco y seco.'
+					);
 
 					break;
 
 				case 'P-013':
 					
 					$this->nombre_pdt = 'Elixir Nutritivo y Relajante / Aceite';
-					$this->promesa_pdt = '<b>RELAJA, NUTRE Y RESTABLECE EL BALANCE NATURAL DE LA PIEL</b><br>Aporta nutrientes y antioxidantes que ayudan a mejorar la elasticidad y firmeza de la piel. Facilita todo tipo de masajes.';
+					$this->promesa_pdt = '<b>Relaja, nutre y restablece el balance natural de la piel</b><br>Aporta nutrientes y antioxidantes que ayudan a mejorar la elasticidad y firmeza de la piel. Facilita todo tipo de masajes.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Pure-Amazon-Body-Oil.png';
-					$this->img_flotante_2 = '';
+					$this->img_flotante_2 = 'modelo/linea-coporal_Pure-Amazon-Body-Oil.png';
 					$this->ingredientes_pdt = array('trigo','calendula','te','chontaduro','uva','almendras','girasol','maracuya','buriti','romero','aguacate');
 					$this->uso = array(
 						'Frotar sobre la piel limpia y preferiblemente húmeda, hasta que se absorba completamente.',
@@ -376,6 +442,8 @@ class ControllerTienda
 	}
 
 	public function inicioTienda($url = '') {
+
+		$ciudades = $this->usuarios->listarCiudades();
 
 		$producto = $this->productos->detalleProductos(0,$url);
 

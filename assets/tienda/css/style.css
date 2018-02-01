@@ -368,6 +368,7 @@ margin: 0 !important;
 	right: 5%;
 	bottom: -5%;
 	max-height:100%;
+	max-width: 50%;
 	z-index: 9999;
 }
 
