@@ -36,7 +36,7 @@
 					  <div class="card-stacked">
 					    <div class="card-content">
 					    <h5><?=$this->ingredientes[$ingrediente][1]?></h5>
-					      <p><?=$this->ingredientes[$ingrediente][2]?></p>
+					      <p><?=substr($this->ingredientes[$ingrediente][2], 0, 200)?>...</p>
 					    </div>		        
 					  </div>
 				</div>			

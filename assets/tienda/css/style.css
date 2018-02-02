@@ -409,7 +409,7 @@ width: 50%;
 
 .card-ingredientes > .card-stacked {
 
-	overflow-y: auto;
+	/*overflow-y: auto;*/
 }
 
 @media (min-width: 601px) and (max-width: 991px) {
@@ -426,7 +426,7 @@ width: 50%;
 
 	.card-ingredientes > .card-stacked {
 	
-		overflow-y: auto;
+		/*overflow-y: auto;*/
 	}
 }
 

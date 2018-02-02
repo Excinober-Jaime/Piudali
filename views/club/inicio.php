@@ -99,7 +99,7 @@ if (!empty($banners)) {
 		<?php } ?>
 
 					</div>
-				    <div class="card-content" style="height: 300px;overflow-y: auto;">
+				    <div class="card-content card-enterate">
 				      <span class="card-title activator grey-text text-darken-4"><?=$entrada['titulo']?><!--<i class="material-icons right">more_vert</i>--></span>
 				      <p>
 				      	<?=substr($entrada['contenido'], 0, 500)?>...
