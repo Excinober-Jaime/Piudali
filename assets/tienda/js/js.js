@@ -5,7 +5,13 @@ $(document).ready(function(){
   
   $('.parallax').parallax();
   
-  $('.carousel.carousel-slider').carousel({fullWidth: true});
+  $('.carousel').carousel({
+      fullWidth: false,
+      shift: 0,
+      padding: 0,
+      indicators: false,
+      noWrap: false
+  });
 
    $(".button-collapse").sideNav();
 

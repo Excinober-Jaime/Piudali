@@ -8,11 +8,14 @@ class ControllerTienda
 	public $id_pdt = 0;
 	public $nombre_pdt = '';
 	public $promesa_pdt = '';
+	public $url_pdt = '';
 	public $banner_parallax = '';
 	public $img_flotante_1 = '';
 	public $img_flotante_2 = '';
 	public $ingredientes = array();
 	public $uso = array();
+	public $distribuidor = array();
+	public $imagenes_pdts_png = array();
 	
 	function __construct()
 	{
@@ -21,6 +24,24 @@ class ControllerTienda
 		$this->carrito = new Carrito();
 		$this->ordenes = new Ordenes();
 		$this->ventas_virtuales = new VentasVirtuales();
+
+		$this->imagenes_pdts_png = array (
+
+			'P-001' => 'productos/linea-facial/linea-facial_amazon-awakeing-facial-cleanser.png',
+			'P-002' => 'productos/linea-facial/linea-facial_Clear-Away-Amazon-Facial-Scrub.png',
+			'P-003' => 'productos/linea-facial/linea-facial_Amazon-Awakening-Toner.png',
+			'P-004' => 'productos/linea-facial/linea-facial_Amazon-Awakening-Daily-Facial-Moisturizer.png',
+			'P-005' => 'productos/linea-facial/linea-facial_Amazonian-Eye-Cream.png',
+			'P-006' => 'productos/linea-facial/linea-facial_Amazon-Night-Renewal-Cream.png',
+			'P-007' => 'productos/linea-facial/linea-facial_Amazon-balm-for-lush-lips.png',
+			'P-008' => 'productos/linea-corporal/linea-coporal_Amazon Awakening Body Wash.png',
+			'P-009' => 'productos/linea-corporal/linea-coporal_Clear-away-amazon-body-scrub.png',
+			'P-010' => 'productos/linea-corporal/linea-coporal_Antioxidant-Moisturizing-Body-lotion.png',
+			'P-0011' => 'productos/linea-corporal/linea-coporal_Deep-Nourishing-hand-cream.png',
+			'P-012' => 'productos/linea-corporal/linea-coporal_Amazon-body-butter.png',
+			'P-013' => 'productos/linea-corporal/linea-coporal_Pure-Amazon-Body-Oil.png',
+			'P-014' => 'productos/linea-facial/linea-facial_Amazon-balm-for-lush-lips-stick.png'
+		);
 
 		//Loguear usuario
 
@@ -70,8 +91,19 @@ class ControllerTienda
 		if (isset($_GET['d']) && !empty($_GET['d'])) {
 			
 			$_SESSION['iddistribuidor'] = $_GET['d'];
-
 		}
+
+		if (isset($_SESSION['iddistribuidor']) && !empty($_SESSION['iddistribuidor'])) {
+			
+			$this->distribuidor = $this->usuarios->detalleUsuario($_SESSION['iddistribuidor']);
+		}
+	
+
+	}
+
+	public function img_pdt_png($codigo = ''){
+
+		return $this->imagenes_pdts_png[$codigo];
 	}
 
 	private function registrarConsumidor($num_identificacion, $nombre, $apellido, $email, $ciudad, $telefono, $contrasena){
@@ -116,7 +148,6 @@ class ControllerTienda
 						'response'	=>	$idusuario
 					);
 		}
-
 	}
 
 	private function infoProducto($producto){
@@ -221,6 +252,7 @@ class ControllerTienda
 		if (!empty($producto)) {
 
 			$this->id_pdt = $producto['idproducto'];
+			$this->url_pdt = $producto['url'];
 
 			switch ($producto['codigo']) {
 				
@@ -228,7 +260,7 @@ class ControllerTienda
 					
 					$this->nombre_pdt = 'Crema de Limpieza Rostro';
 					
-					$this->promesa_pdt = '<b>Limpia profundamente y purifica la piel.</b><br>Remueve fácilmente el maquillaje, impurezas y demás residuos de la piel, dejándola suave, firme y radiante todos los días. Se adapta a todo tipo de piel.';
+					$this->promesa_pdt = '<b>Limpia profundamente y purifica la piel.</b><br>Remueve fácilmente el maquillaje, impurezas y demás residuos de la piel, dejándola suave, firme y radiante todos los días. Se adapta a todo tipo de piel.';		
 
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_amazon-awakeing-facial-cleanser.png';
@@ -484,6 +516,8 @@ class ControllerTienda
 
 		$producto = $this->productos->detalleProductos(0,$url);
 
+		$productos = $this->productos->listarProductos(array('NORMAL'), array(1));
+
 		$this->infoProducto($producto[0]);
 
 		include 'views/tienda/inicio.php';
@@ -509,6 +543,16 @@ class ControllerTienda
 	public function carritoTienda(){
 
 		if (isset($_SESSION['iddistribuidor']) && !empty($_SESSION['iddistribuidor'])) {
+
+			$categoria_crosselling = 0;
+
+			if (count($_SESSION['idpdts'])>0) {
+				
+				$producto = $this->productos->detalleProductos($_SESSION['idpdts'][0]);
+				$categoria_crosselling = $producto[0]['categorias_idcategoria'];
+			}
+
+			$productos = $this->productos->listarProductos(array('NORMAL'), array(1), $categoria_crosselling);
 
 			if (isset($_POST["redimirCupon"])) {
 
@@ -542,42 +586,26 @@ class ControllerTienda
 				}
 			}
 
-			/*if (isset($_POST["usar_puntos"]) && $_POST["usar_puntos"]==1) {
-				$_SESSION["usar_puntos"] = true;
-			}
-
-			if (isset($_POST["usar_puntos"]) && $_POST["usar_puntos"]==0) {
-				$_SESSION["usar_puntos"] = false;
-			}*/
-
-
-			/*if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"])) {
-
-				$puntos_disponibles = $this->usuarios->puntosDisponibles($_SESSION["idusuario"]);
-
-			}else{*/
-
-				$puntos_disponibles = 0;
-			//}
-
+			$puntos_disponibles = 0;
+		
 			$tipo_usuario = 'CONSUMIDOR';
 
 			$itemsCarrito = $this->carrito->listarItems();
 			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
 			$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
-			$descuentoCupon = $this->carrito->getDescuentoCupon();
-			$subtotalNetoAntesIva = $this->carrito->getSubtotalNetoAntesIva();
+			$descuentoCupon = $this->carrito->getDescuentoCupon($tipo_usuario);
+			$subtotalNetoAntesIva = $this->carrito->getSubtotalNetoAntesIva($tipo_usuario);
 			$descuentoEscala = $this->carrito->getDescuentoEscala($tipo_usuario);
 			$porcDescuentoEscala = $this->carrito->porcDescuentoEscala($tipo_usuario);
-			$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
+			$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva($tipo_usuario);
 
 			$retencion = $this->carrito->getRTF($tipo_usuario);
 
 			$pagoPuntos = $this->carrito->getPagoPuntos();
 
-			$iva = $this->carrito->getIva();
-			$flete = $this->carrito->calcularFlete();
-			$total = $this->carrito->getTotal();
+			$iva = $this->carrito->getIva($tipo_usuario);
+			$flete = $this->carrito->calcularFlete($tipo_usuario);
+			$total = $this->carrito->getTotal($tipo_usuario);
 			$rentabilidad = $this->carrito->getRentabilidad();
 
 			include "views/tienda/carrito.php";
@@ -597,16 +625,16 @@ class ControllerTienda
 			$itemsCarrito = $this->carrito->listarItems();
 			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
 			$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
-			$descuentoCupon = $this->carrito->getDescuentoCupon();
-			$subtotalNetoAntesIva = $this->carrito->getSubtotalNetoAntesIva();
+			$descuentoCupon = $this->carrito->getDescuentoCupon($tipo_usuario);
+			$subtotalNetoAntesIva = $this->carrito->getSubtotalNetoAntesIva($tipo_usuario);
 			$descuentoEscala = $this->carrito->getDescuentoEscala($tipo_usuario);
 			$porcDescuentoEscala = $this->carrito->porcDescuentoEscala($tipo_usuario);
-			$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
+			$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva($tipo_usuario);
 			$retencion = $this->carrito->getRTF($tipo_usuario);
 			$pagoPuntos = $this->carrito->getPagoPuntos();
-			$iva = $this->carrito->getIva();
-			$flete = $this->carrito->calcularFlete();
-			$total = $this->carrito->getTotal();
+			$iva = $this->carrito->getIva($tipo_usuario);
+			$flete = $this->carrito->calcularFlete($tipo_usuario);
+			$total = $this->carrito->getTotal($tipo_usuario);
 			$rentabilidad = $this->carrito->getRentabilidad();
 
 			include "views/tienda/resumen_compra.php";
@@ -624,18 +652,18 @@ class ControllerTienda
 
 			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
 			$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
-			$descuentoCupon = $this->carrito->getDescuentoCupon();
+			$descuentoCupon = $this->carrito->getDescuentoCupon($tipo_usuario);
 			$descuentoEscala = $this->carrito->getDescuentoEscala($tipo_usuario);
 			$porcDescuentoEscala = $this->carrito->porcDescuentoEscala($tipo_usuario);
-			$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
+			$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva($tipo_usuario);
 			$retencion = $this->carrito->getRTF($tipo_usuario);
 			$detalleOrden = $this->carrito->getDetalleOrden($tipo_usuario);
 			
 			$pagoPuntos = $this->carrito->getPagoPuntos();		
 			
-			$iva = $this->carrito->getIva();
-			$flete = $this->carrito->calcularFlete();
-			$total = $this->carrito->getTotal();
+			$iva = $this->carrito->getIva($tipo_usuario);
+			$flete = $this->carrito->calcularFlete($tipo_usuario);
+			$total = $this->carrito->getTotal($tipo_usuario);
 			
 			$estado = "PENDIENTE";
 			$fecha_facturacion = "0000-00-00";

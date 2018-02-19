@@ -50,14 +50,36 @@
 					
 					?>
 					<li class="collection-item avatar">
-				      <i class="material-icons circle">location_on</i>
-				      <span class="title"><b><?=$sucursal['nombre']?></b></span>
-				      <p>
-				         <?=$sucursal['telefono']?> <br>
-				         <?=$sucursal['email']?><br>
+					<?php
+						if (!empty($sucursal['imagen'])) {
+					?>
+							<img src="<?=$sucursal['imagen']?>" class="responsive-img circle">
+					<?php
+						}else{
+					?>
+							<i class="material-icons circle">location_on</i>
+					<?php	
+						}
+					?>
+				      
+				      <span class="title" style="font-size: 14px;"><b><?=$sucursal['nombre']?></b></span>
+				      <p style="font-size: 12px;line-height: 14px;">
+				         Tel: <?=$sucursal['telefono']?> <br>
+				         <?=$sucursal['email']?><br>				         
 				         <?=$sucursal['direccion']?> <br>
 				         <?=$sucursal['ciudad']?>
 				      </p>
+
+				      <?php if (!empty($sucursal['pagina_web'])) { ?>
+				      	<br>
+				      	<a style="font-size: 12px;" href="<?=$sucursal['pagina_web']?>" target='_new'>
+						  <div class="chip" style="background-color: #f19300;font-size: 12px;">
+						    Página Web
+						    <i class="close material-icons">link</i>
+						  </div>
+						</a>
+				      
+				      <?php }  ?>
 				      
 				    </li>						
 					<?php

@@ -14,10 +14,13 @@
 					<h5 class="center-align orange-text text-darken-2"><?=$producto['nombre']?></h5>
 				</div>
 				<div class="col s12 m4 center-align">
+					<p style="margin-bottom: 2px;">Llévalo por: 
+						<?=convertir_pesos($producto['precio'])?> ó por
+					</p>
 					<div class="chip orange white-text" style="font-size:30px;">
 						<?=number_format($producto['precio'] / $valor_punto)?>
 					</div>
-					<p>PUNTOS PIUDALÍ</p>
+					<p style="margin-top: 0px;margin-bottom: 2px;">PUNTOS PIUDALÍ</p>
 				</div>
 				
 			</div>
@@ -41,7 +44,38 @@
 					    <div id="tab_uso" class="col s12"><?=$producto['uso']?></div>
 					    <?php } ?>	
 				</div>
-				<div class="col s12 m4 center-align">
+				<div class="col s12 m4 center-align">					
+					<div class="card-panel " style="background-color: rgba(0,0,0,0.1);color: #000;">
+						<?php 
+						if (isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario'])) {
+						?>
+						<p style="font-size: 13px;line-height: 1.1rem !important;">
+							
+								Tienes 
+								<b><?php 
+								if (isset($this->puntos_disponibles)) {
+								
+									echo round($this->puntos_disponibles['disponibles']);
+								
+								}
+								?></b>
+								puntos, redímelos y llévalo pagando <b>$30.000</b> adicionales.<br> ¡Ó sigue acumulando puntos!
+							
+						</p>
+						<?php	
+						}else{
+						?>
+						<p style="font-size: 13px;line-height: 1.1rem !important;">
+							
+								Recuerda que puedes pagar con puntos, o con puntos más dinero.
+							
+						</p>
+						<?php	
+						}
+						?>
+						
+					</div>
+					
 					<div class="input-field col s12">
 						<?php
 					    if ($producto["cantidad"]>0) {			    
@@ -68,6 +102,7 @@
 						<br>
 						<button idpdt="<?=$producto["idproducto"]?>" class="btn orange waves-effect waves-light agregarPdt">LO QUIERO!</button>
 					</div>
+					
 				</div>
 				
 				

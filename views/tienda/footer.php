@@ -1,4 +1,4 @@
-    <div class="franja"></div>
+<div class="franja"></div>
 <footer class="page-footer darken-3">
 <div class="container">
       <div class="row">
@@ -27,27 +27,37 @@
 
           <div class="col m5">
             <br/>
-            Distribuidor Exclusivo para Colombia Link Grupo Marketing SAS<br/>
+            <!--Distribuidor Exclusivo para Colombia Link Grupo Marketing SAS<br/>-->
+            <h5>Contácto</h5>
             Teléfono: (+57)(2) 524 1887 - (+57) 311 627 9068<br/>
             Email: contacto@piudali.com.co<br/>
             <div class="redes-sociales">
               <span>Síguenos en: </span>
-                    <a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                      <a href="#" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                      <a href="#" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
-                  </div>
-            <div class="autor"><small>Todos los derechos reservados Link Grupo Marketing SAS © 2018 </small></div>
+                <a href="https://www.facebook.com/PiudaliColombia/" target="_new"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/piudalicolombia/" target="_new"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://www.youtube.com/channel/UCUu4Moh5uFyEyt1Dx0qxuMg" target="_new"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+            </div>
+            <!--<div class="autor"><small>Todos los derechos reservados Link Grupo Marketing SAS © 2018 </small></div>-->
             
-                  <div class="autor"><small>Diseñado y Desarrollado por <a href="http://imarketing21.com/">iMarketing21</a></small></div>
+                  <!--<div class="autor"><small>Diseñado y Desarrollado por <a href="http://imarketing21.com/">iMarketing21</a></small></div>-->
           </div>
           <div class="clearfix"></div>
       </div>
       
     </div>
     <div class="footer-copyright">
-            <div class="container">
-            © 2017 Copyright Link Grupo Marketing
-            <a class="grey-text text-lighten-4 right" href="<?=URL_SITIO?>">Ir a www.piudali.com.co</a>
+            <div class="container">            
+              <?php
+
+                if (isset($this->distribuidor) && !empty($this->distribuidor)) {
+                ?>
+                <p class="left" style="text-transform: uppercase;"><?=$this->distribuidor['nombre']?> <?=$this->distribuidor['apellido']?> - DISTRIBUIDOR AUTORIZADO</p>
+                <?php
+                }
+              ?>
+              <p class="right">
+                © 2018 Copyright Link Grupo Marketing SAS
+              </p>
             </div>
           </div>
 </footer>

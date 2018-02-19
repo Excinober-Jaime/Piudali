@@ -4,8 +4,6 @@ body{
 	font-family: 'Lato', sans-serif;
 }
 
-
-
 .login{
 	background-color: #f19300;
 	color: #fff;
@@ -369,7 +367,7 @@ margin: 0 !important;
 	bottom: -5%;
 	max-height:100%;
 	max-width: 50%;
-	z-index: 9999;
+	/*z-index: 9999;*/
 }
 
 .banner-principal{
@@ -453,6 +451,11 @@ width: 50%;
 	.card-ingredientes > .card-stacked {
 	
 		overflow-y: hidden;
+	}
+
+	.valign-wrapper {
+	  display: block !important;	   
+	  
 	}
 }
 

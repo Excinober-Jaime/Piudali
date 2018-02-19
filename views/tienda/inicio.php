@@ -9,7 +9,16 @@
     		<div class="row">
     			<h3 style="color: #6D1E3F;"><?=$this->nombre_pdt?></h3>
     			<h5 class="flow-text"><?=$this->promesa_pdt?></h5>
-                <button class="btn-large open-registro agregarPdt" idpdt="<?=$this->id_pdt?>" style="background:#f19300;">COMPRAR!</button>
+    			<?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'CONSUMIDOR'){?>
+					
+					<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='1' style="background:#f19300;">AGREGAR AL PEDIDO!</button>
+
+                <?php }else{ ?>
+
+                	<button class="btn-large open-registro agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f19300;">COMPRAR!</button>
+                
+                <?php } ?>
+                
                 <input type="hidden" id="cantidad" value="1">
            </div>
         </div>
@@ -22,6 +31,16 @@
 <div class="divider"></div>
 <div class="section" id="ingredientes">
 	<h3 class="center-align">INGREDIENTES</h3>
+	<div class="row">
+		<div class="container">
+			<p class="flow-text center-align">
+		
+				PIUDALÍ® Amazonian Skincare ofrece una fórmula natural única para el bienestar y cuidado de la piel para toda la familia. Desarrollada con los más altos estándares de calidad y rigor científico.<br><br>
+Una mezcla balanceada científicamente con plantas y frutos exóticos de reconocida efectividad, provenientes de nuestra Biodiversidad Colombiana, con más de 20 ingredientes de origen natural 100% vegetal; hacen de  PIUDALÍ® Amazonian Skincare una línea de productos cosméticos innovadores y únicos.
+
+			</p>
+		</div>
+	</div>
 	<div class="row">
 
 		<?php  
@@ -74,39 +93,54 @@
 <div class="section puntos-club" id="action">
 	<div class="container center-align">
 		<div class="row">
-			<div class="col s12 m12 l3 z-depth-2">
-				<h4 style="font-weight: 100;margin-bottom: 0;line-height: 1em;">Obtén el<h4>
-				<h1 style="font-weight: 600;margin: 0;line-height: 1em; color: #00973A;">10%</h1>
-				<h5 style="font-weight: 100;margin: 0;line-height: 1em;">De descuento<h5>
-					<p class="flow-text">Usando el cupón de descuento: <br/><b style="color: #00973A; font-size: 1.9em">LOREM</b></p>
-					<button class="btn-large truncate open-registro agregarPdt" style="background-color: #f19300;" idpdt="<?=$this->id_pdt?>">USAR CUPÓN DE DESCUENTO</button>
-				<h6>*Aplica para compras superiores a $80.000</h6>
-				<br>
+			<div class="col s12 m12 l3 z-depth-2">				
+				<h3 style="color: #41281B;">Envío a toda Colombia</h3>				
+				<i class="large material-icons">local_shipping</i>
+				<h5 style="color: #12491d;">Todos los medios de pago</h5>
+				<img src="http://localhost/piudali/www/assets/img/medios-de-pago.png" class="responsive-img">
+				<?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'CONSUMIDOR'){?>
+					
+					<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='1' style="background:#f19300;">AGREGAR AL PEDIDO!</button>
+
+                <?php }else{ ?>
+
+                	<button class="btn-large open-registro agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f19300;">COMPRAR!</button>
+                
+                <?php } ?>
+
+				<!--<h6>*Aplica para compras superiores a $80.000</h6>
+				-->
+				<br><br>
+			</div>
+			<div class="col m6 s12 l4">
+				<!--<img src="assets/tienda/img/qr.png" class="responsive-img">-->
+				<h3>Para ganar puntos y ser parte del Club</h3>
+				<ul>
+					<li>Identifica</li>
+				</ul>
 			</div>
 			<div class="col m6 s12 l4 offset-l1">
 				<img src="assets/tienda/img/club-piudali.png" class="img-responsive">
 				
-					<h4>Premiamos tu fidelidad y confianza!</h4>
+					<h4>Premiamos tu fidelidad y valoramos tu confianza!</h4>
 
-					<p>Gana puntos por tus compras virtuales y en puntos de venta, redime tus puntos en premios, productos y servicios. Además descubre todo los beneficios y contenidos que tenemos para ti.</p>
+					<!--<p>Gana puntos por tus compras. <br>Redime tus puntos en premios, productos y servicios.</p>-->
 					
-					<p>Conoce nuestro Club, en el que aprenderás más sobre el cuidado de tu cuerpo.</p>
+					<p>Descúbre Entérate de noticias, tips y más...</p>
 				
 			</div>
-			<div class="col m6 s12 l4">
-				<img src="assets/tienda/img/qr.png" class="responsive-img">
-			</div>
+			
 		</div>
 		
 	</div>
 </div>
 <div class="divider"></div>
-<h3 class="center-align tituloVerde">¿PORQUÉ SOMOS DIFERENTES?</h3>
+<h3 class="center-align tituloVerde">¿POR QUÉ SOMOS DIFERENTES?</h3>
 <div class="section box-promesas" id="promesas">
 	<!--<h3 class="center-align">¿PORQUÉ SOMOS DIFERENTES?</h3>-->
 	<div class="container">		
 		<div class="row">
-			<div class="col s6 m6 l2 offset-l2">
+			<!--<div class="col s6 m6 l2 offset-l2">
 				<img src="assets/tienda/img/cara.png" class="responsive-img" />
 			</div>
 			<div class="col s6 m6 l2">
@@ -117,340 +151,52 @@
 			</div>
 			<div class="col s6 m6 l2">
 				<img src="assets/tienda/img/pies.png" class="responsive-img" />
-			</div>
-			<div class="col s12 m6">
-				<h6 class="flow-text white-text left-align">
-					<i class="material-icons">check_circle</i> Pioneros en Colombia en cosmética ecológica.
-				</h6>
-			</div>
-			<div class="col s12 m6">
-				<h6 class="flow-text white-text left-align">
-					<i class="material-icons">check_circle</i> Ingredientes de origen natural, 100% vegetal.
-				</h6>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col s12 m6">
-				<h6 class="flow-text white-text left-align">
-					<i class="material-icons">check_circle</i> Especies nativas del Amazonas y los Andes Colombianos.
-				</h6>
-			</div>
-			<div class="col s12 m6">
-				<h6 class="flow-text white-text left-align">
-					<i class="material-icons">check_circle</i> Sin parabenos, colorantes y aromas de origen sintético.
-				</h6>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col s12 m6">
-				<h6 class="flow-text white-text left-align">
-					<i class="material-icons">check_circle</i> Sin ingredientes derivados de la petroquímica.
-				</h6>
-			</div>
-			<div class="col s12 m6">
-				<h6 class="flow-text white-text left-align">
-					<i class="material-icons">check_circle</i> Sin especies genéticamente modificadas.
-				</h6>
-			</div>
-			<!--<div class="col s12">
-				<h6 class="flow-text white-text left-align">
-					<i class="material-icons">check_circle</i> Conservantes y emulsificantes ecocertificados.
-				</h6>
 			</div>-->
+			
+		</div>
+		<div class="row">
+			<div class="col s12 m6">
+				<p class="flow-text center-align">
+					Pioneros en Colombia en cosmética ecológica. <br>
+					Ingredientes de origen natural, 100% vegetal. <br>				
+					Especies nativas del Amazonas y los Andes Colombianos.
+				</p>
+			</div>
+			<div class="col s12 m6">
+				<p class="flow-text center-align">
+					Sin parabenos, colorantes y aromas de origen sintético. <br>
+					Sin ingredientes derivados de la petroquímica. <br>
+					Sin especies genéticamente modificadas.
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 m6">
+				<img src="https://piudali.com.co/assets/img/capacitacion/cienciaconciencia.png" class="responsive-img">
+			</div>
+			<div class="col s12 m6">
+				<img src="https://piudali.com.co/assets/img/capacitacion/sellospiudali.png" class="responsive-img">
+			</div>
 		</div>
 	</div>
 </div>
 <div class="divider"></div>
 <div class="section" id="productos">
 	<h3 class="center-align">MÁS PRODUCTOS</h3>
-	<div class="row hide-on-small-only hide-on-med-only">
-		<div class="carousel carousel-slider center" data-indicators="true">
-		    <div class="carousel-item" href="#one!">			    
-				    <div class="col l2">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col l2">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col l2">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col l2">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col l2">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col l2">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-		    </div>
-		    <div class="carousel-item" href="#two!">
-		      		<div class="col l2">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col l2">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col l2">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col l2">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col l2">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col l2">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-		    </div>		    
-		</div>
-	</div>
-	<div class="row hide-on-small-only hide-on-large-only">
-		<div class="carousel carousel-slider center" data-indicators="true">
-		    <div class="carousel-item" href="#one!">			    
-				    <div class="col m3">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col m3">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col m3">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col m3">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-		    </div>
-		    <div class="carousel-item" href="#two!">
-		      		<div class="col m3">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col m3">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col m3">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col m3">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-		    </div>		    
-		</div>
-	</div>
-	<div class="row hide-on-med-only hide-on-large-only">
-		<div class="carousel carousel-slider center" data-indicators="true">
-		    <div class="carousel-item" href="#one!">			    
-				    
-					<div class="col s6">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col s6">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-		    </div>
-		    <div class="carousel-item" href="#two!">
-		      		
-					<div class="col s6">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-					<div class="col s6">
-					  <div class="card hoverable">
-	        			<div class="card-image">
-					      <img src="https://piudali.com.co/assets/img/productos/productos-web_Amazonian-Eye-Cream-Crema-Contorno-de-Ojos.jpg">
-					      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="#"><i class="material-icons">add</i></a>
-					    </div>
-					    <div class="card-content">
-					    	<span class="card-title teal-text text-darken-4">Crema Revitalizante Contorno de Ojos</span>				      	
-					    </div>
-					  </div>
-					</div>
-		    </div>		    
+	<div class="container">
+		<div class="row">
+			<div class="carousel">
+				<?php 
+				foreach ($productos as $key => $pdt) {
+				?>
+					<a class="carousel-item" href="<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$pdt['url']?>">
+						<img src="<?=$pdt['img_principal']?>">
+						<h6 class="center-align" style="color: #6D1E3F;"><?=$pdt['nombre']?></h6>
+					</a>
+				<?php
+				}
+				?>
+			</div>
 		</div>
 	</div>
 </div>
@@ -468,14 +214,6 @@
 				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col s12 m6">
-				<img src="https://piudali.com.co/assets/img/capacitacion/cienciaconciencia.png" class="responsive-img">
-			</div>
-			<div class="col s12 m6">
-				<img src="https://piudali.com.co/assets/img/capacitacion/sellospiudali.png" class="responsive-img">
-			</div>
-		</div>
 	</div>
 </div>
 <div class="divider"></div>
@@ -491,7 +229,15 @@
 					<h3 style="color: #6D1E3F;"><?=$this->nombre_pdt?></h3>
 					<p class="flow-text"><?=$this->promesa_pdt?>
 					</p>
-					<button class="btn-large open-registro agregarPdt" idpdt="<?=$this->id_pdt?>" style="background-color: #f19300;">COMPRAR</button>
+					<?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'CONSUMIDOR'){?>
+					
+						<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='1' style="background:#f19300;">AGREGAR AL PEDIDO!</button>
+
+	                <?php }else{ ?>
+
+	                	<button class="btn-large open-registro agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f19300;">COMPRAR!</button>
+	                
+	                <?php } ?>					
 				</div>
 			</div>
 		</div>

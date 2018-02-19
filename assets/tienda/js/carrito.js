@@ -4,6 +4,7 @@ $(document).ready(function(){
 
 		idpdt = $(this).attr("idpdt");
 		cantidad = $("#cantidad").val();
+		isRegister = $(this).attr("isreg");
 
 		$.ajax({
 			type: 'POST',
@@ -14,12 +15,18 @@ $(document).ready(function(){
 			success: function(response) {
 				//$("#total-carrito").text("Total a pagar $"+response.total);
 				$("#cantidad-carrito").text(response.cantidad);
+				
 				//alert('El producto se agrego al carrito');
 			},
 			error: function() {
 				alert('Tenemos un inconveniente. Por favor inténtalo más tarde!');
 			}
 		});
+
+		if (isRegister == 1) {
+
+			window.location.href = 'Tienda/Carrito';
+		}
 	});
 
 	$(".cambiarCantidad").change(function(){

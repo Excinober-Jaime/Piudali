@@ -26,7 +26,7 @@
 							<a class="eliminarPdtCarrito" idpdt="<?=$iditem?>"><i class="fa fa-times" aria-hidden="true"></i></a>
 						</div>
 						<div class="col s3">
-							<img src="<?=$itemsCarrito["img_principal"][$key]?>" class="" style="max-width:100px;">
+							<img src="<?=$itemsCarrito["img_principal"][$key]?>" class="" style="max-width:130px;">
 						</div>
 						<div class="col s8">
 							<span class="left">
@@ -65,7 +65,57 @@
 			</tbody>
 		</table>
 	</div>
-</div>
+	</div>
+	<?php 
+	if ($subtotalAntesIva <= 200000) {
+	?>
+
+	<div class="divider"></div>
+    <div class="row valign-wrapper">
+    	<div class="col s12 m5"> 
+    		<p class="flow-text center-align">
+		      	<?php 
+		      	switch ($subtotalAntesIva) {
+
+		      		case $subtotalAntesIva <= 100000:
+
+		      			echo $_SESSION['nombre'].', recuerda que si tu compra es mayor a $100.000 el envío te saldrá <b>GRATIS!</b>. Mira estos productos que puedes agregar a tu pedido.';
+		      			break;
+
+		      		case $subtotalAntesIva > 100000 && $subtotalAntesIva <= 200000:
+
+		      			echo $_SESSION['nombre'].', enviaremos tu pedido sin costo de envío :) además, puedes obtener un <b>10% de descuento</b> por compras mayores a $200.000. <br><br>Éstos productos se complementan perfecto con tu pedido, agrega algunos y obtén el descuento!';
+		      			break;
+		      		
+		      		default:
+		      			# code...
+		      			break;
+		      	}
+		      	?>
+		    </p>
+    	</div>
+    	<div class="col s12 m7">
+			<div class="carousel center-align">
+				<?php 
+				foreach ($productos as $key => $pdt) {
+
+					$nombre_es = explode('-', $pdt['nombre']);
+					$nombre_es = $nombre_es[1];
+				?>
+					<a class="carousel-item" href="<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$pdt['url']?>">
+						<img src="assets/tienda/img/<?=$this->img_pdt_png($pdt['codigo'])?>" style='max-height: 200px;width: auto;'>
+						<h6 class="center-align" style="color: #000;"><?=$nombre_es?></h6>
+						<span style="color: #6D1E3F;">VER</span>
+					</a>
+				<?php
+				}
+				?>
+			</div>
+		</div>
+	</div>
+	<?php
+	}
+	?>
 	<div class="divider"></div><br>
 	<div class="row">
 		<div class="col s12 m7">
@@ -92,7 +142,7 @@
 			<div class="row">
 				<div class="col s6 m8 right-align">Subtotal antes de IVA</div>
 				<div class="col s6 m4 right-align"><?=convertir_pesos($subtotalAntesIva)?></div>
-			
+			<!--
 				<div class="col s12 right-align">
 
 					<div class="card-panel green lighten-5">
@@ -108,7 +158,7 @@
 				 		</div>
 				 	</div>
 				</div>				
-			
+			-->
 				<div class="col s6 m8 right-align">Descuento Cupón</div>
 				<div class="col s6 m4 right-align"><?=convertir_pesos($descuentoCupon)?></div>
 			

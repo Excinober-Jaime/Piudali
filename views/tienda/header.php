@@ -2,15 +2,22 @@
   <html>
     <head>
 
-      <title>E-commerce Piudalí</title>
+      <title><?php ($this->nombre_pdt) ? print($this->nombre_pdt) : print('Tienda');  ?> | Piudalí</title>
 
       <meta charset="utf-8">
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-      <meta name="description" content="PIUDALÍ Amazonian Skincare ofrece una línea de bienestar y cuidado para la piel con ingredientes de alta calidad de origen 100% natural">
+      <meta name="description" content="<?=strip_tags($this->promesa_pdt)?>">
       <meta name="author" content="Link Grupo Marketing en colaboración de Excinober Benites e iMarketing21">
+
+      <!--Etiquetas OpenGraph-->
+      <meta property="og:url" content="<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$this->url_pdt?>"/>
+      <meta property="og:type" content="product"/>
+      <meta property="og:title" content="<?=$this->nombre_pdt?>"/>
+      <meta property="og:description" content="<?=strip_tags($this->promesa_pdt)?>"/>
+      <meta property="og:image" content="<?=URL_SITIO?>assets/tienda/img/<?=$this->img_flotante_1?>" />
 
       <base href="<?=URL_SITIO?>">
 

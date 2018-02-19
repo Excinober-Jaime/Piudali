@@ -20,6 +20,28 @@
 					<input type="text" class="form-control" name="email" id="email" value="<?=$sucursal['email']?>" required>
 				</div>
 				<div class="form-group">
+					<label for="exampleInputEmail1">Página Web</label>
+					<input type="text" class="form-control" name="pagina_web" id="pagina_web" value="<?=$sucursal['pagina_web']?>" required>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-md-6">
+						<div class="form-group">
+							<label for="exampleInputEmail1">Imágen</label>
+							<input type="file" name="imagen" class="form-control">
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6">
+						<?php
+						if (!empty($sucursal['imagen'])) {				
+						
+						?>
+							<img src="<?=$sucursal['imagen']?>" class="img-responsive" style="max-width: 300px;">
+						<?php
+						}	
+						?>				
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="exampleInputEmail1">Organización</label>
 					<select name="idorganizacion" class="form-control" required>
 						<option value="">-Seleccione-</option>

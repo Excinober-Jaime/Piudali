@@ -6,11 +6,11 @@
 			if (count($codigos)>0) {
 				foreach ($codigos as $key => $codigo) {
 			?>
-				<div class="col-xs-6 col-md-3">
-					<?php if ($qr) { ?>
-						<img src="<?=$imgsqr[$codigo]?>" class="img-responsive">
+				<div class="" style="width: 1.5cm;margin: 0px;float: left;padding: 0px;">
+					<?php if ($codigo['qr']) { ?>
+						<img src="assets/img/codigospuntosqr/<?=$codigo['codigo']?>.png" class="img-responsive">
 					<?php } ?>
-					<h3 class="text-center"><?=$codigo?></h3>
+					<h4 class="text-center" style="color: #000;margin-top: 2px;margin-bottom: 3px;"><?=$codigo['codigo']?></h4>
 				</div>
 			<?php
 				}
@@ -18,7 +18,7 @@
 			?>
 		</div>
 		<center>
-			<button class="btn btn-primary btn-lg" onclick="jQuery('.print-code').print()">Imprimir</button>
+			<button class="btn btn-primary btn-lg" onclick="jQuery('.print-code').print({ stylesheet: 'assets/admin/css/print_codes_qr/style.css' })">Imprimir</button>
 		</center>
 	</div>
 </div>

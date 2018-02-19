@@ -155,34 +155,51 @@ class Carrito extends Productos
 		return $subtotalAntesIvaPremios;
 	}
 
-	public function porcDescuentoCupon(){
+	public function porcDescuentoCupon($tipo_usuario = ''){
 
-		if (!empty($_SESSION["idcupon"]) && !empty($_SESSION["valor_cupon"]) && isset($_SESSION["aplicacion_cupon"])) {
+		$subtotalAntesIva = $this->getSubtotalAntesIva();
 
-			$subtotalAntesIva = $this->getSubtotalAntesIva();
-
-			if ($_SESSION["aplicacion_cupon"]) {
+		if ($tipo_usuario == 'CONSUMIDOR') {
 			
-				//Descuento en pesos, se convierte a porcentual
-				$porc_descuento_cupon = ($_SESSION["valor_cupon"] / $subtotalAntesIva) * 100;
-			
-			}else{
+			if ($subtotalAntesIva > 200000) {
 				
-				//Descuento en porcentaje
-				$porc_descuento_cupon = $_SESSION["valor_cupon"];
+				$porc_descuento_cupon = 10;
 			}
 
 		}else{
 
-			$porc_descuento_cupon = 0;
+			if (!empty($_SESSION["idcupon"]) && !empty($_SESSION["valor_cupon"]) && isset($_SESSION["aplicacion_cupon"])) {
+
+				if ($_SESSION["aplicacion_cupon"]) {
+				
+					//Descuento en pesos, se convierte a porcentual
+					$porc_descuento_cupon = ($_SESSION["valor_cupon"] / $subtotalAntesIva) * 100;
+				
+				}else{
+					
+					//Descuento en porcentaje
+					$porc_descuento_cupon = $_SESSION["valor_cupon"];
+				}
+
+			}else{
+
+				$porc_descuento_cupon = 0;
+			}
 		}
 
 		return $porc_descuento_cupon;
 	}
 
-	public function getDescuentoCupon(){
+	public function getDescuentoCupon($tipo_usuario = ''){
 
-		$porc_descuento_cupon = $this->porcDescuentoCupon();
+		if ($tipo_usuario == 'CONSUMIDOR') {
+			
+			$porc_descuento_cupon = $this->porcDescuentoCupon($tipo_usuario);
+		
+		}else{
+
+			$porc_descuento_cupon = $this->porcDescuentoCupon();	
+		}		
 
 		$subtotalAntesIva = $this->getSubtotalAntesIva();
 		$descuento_cupon = $porc_descuento_cupon/100;
@@ -191,10 +208,19 @@ class Carrito extends Productos
 		return $descuentoCupon;
 	}
 
-	public function getSubtotalNetoAntesIva(){
+	public function getSubtotalNetoAntesIva($tipo_usuario = ''){
+
+		if ($tipo_usuario == 'CONSUMIDOR') {
+			
+			$descuentoCupon	= $this->getDescuentoCupon($tipo_usuario);
+
+		}else{
+
+			$descuentoCupon	= $this->getDescuentoCupon();
+		}
 
 		$subtotalAntesIva = $this->getSubtotalAntesIva();
-		$descuentoCupon	= $this->getDescuentoCupon();
+		
 		$subtotalNetoAntesIva = $subtotalAntesIva - $descuentoCupon;
 
 		return $subtotalNetoAntesIva;
@@ -263,9 +289,10 @@ class Carrito extends Productos
 		return $descuentoEscala;
 	}
 
-	public function getTotalNetoAntesIva(){
-		$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva();
-		$descuentoEscala = $this->getDescuentoEscala();
+	public function getTotalNetoAntesIva($tipo_usuario = ''){
+			
+		$subtotalNetoAntesIva = $this->getSubtotalNetoAntesIva($tipo_usuario);
+		$descuentoEscala = $this->getDescuentoEscala($tipo_usuario);
 
 		$totalNetoAntesIva = $subtotalNetoAntesIva - $descuentoEscala;
 
@@ -313,12 +340,12 @@ class Carrito extends Productos
 		return $rtf;
 	}
 
-	public function getIva(){
+	public function getIva($tipo_usuario = ''){
 
 		$totalIva = 0;
 
-		$porc_descuento_cupon = $this->porcDescuentoCupon();
-		$porc_escala = $this->porcDescuentoEscala();
+		$porc_descuento_cupon = $this->porcDescuentoCupon($tipo_usuario);
+		$porc_escala = $this->porcDescuentoEscala($tipo_usuario);
 
 		if (isset($_SESSION["idpdts"]) && count($_SESSION["idpdts"])>0) {
 			
@@ -405,19 +432,38 @@ class Carrito extends Productos
 		return $pago_puntos;
 	}
 
-	public function calcularFlete(){
+	public function calcularFlete($tipo_usuario = ''){
 
 		$subtotalAntesIva = $this->getSubtotalAntesIva();
 
 		if ($subtotalAntesIva>0) {
+
+			if ($tipo_usuario == 'CONSUMIDOR') {
 			
-			if (isset($_SESSION["ciudad"]) && $_SESSION["ciudad"] == "Cali") {
-				$flete = 7000;
+				if ($subtotalAntesIva <= 100000) {
+					
+					if (isset($_SESSION["ciudad"]) && $_SESSION["ciudad"] == "Cali") {
+						$flete = 7000;
+					}else{
+						$flete = 14000;
+					}
+					
+				}else{
+
+					$flete = 0;
+				}
+
 			}else{
-				$flete = 14000;
+			
+				if (isset($_SESSION["ciudad"]) && $_SESSION["ciudad"] == "Cali") {
+					$flete = 7000;
+				}else{
+					$flete = 14000;
+				}
 			}
-							
+
 		}else{
+
 			$flete = 0;
 		}
 		
@@ -425,14 +471,14 @@ class Carrito extends Productos
 
 	}
 
-	public function getTotal(){
+	public function getTotal($tipo_usuario = ''){
 		
 		$subtotalAntesIvaPremios = $this->getSubtotalAntesIvaPremios();
-		$totalNetoAntesIva = $this->getTotalNetoAntesIva();
-		$totalIva = $this->getIva();
-		$totalRTF = $this->getRTF();
+		$totalNetoAntesIva = $this->getTotalNetoAntesIva($tipo_usuario);
+		$totalIva = $this->getIva($tipo_usuario);
+		$totalRTF = $this->getRTF($tipo_usuario);
 		$pagoPuntos = $this->getPagoPuntos();
-		$flete = $this->calcularFlete();
+		$flete = $this->calcularFlete($tipo_usuario);
 
 		$total = ($totalNetoAntesIva + $subtotalAntesIvaPremios + $totalIva - $totalRTF - $pagoPuntos["valor_pago"]) + $flete;
 

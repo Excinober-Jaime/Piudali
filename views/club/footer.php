@@ -73,7 +73,8 @@
                 <div class="col s12 center-align">
                   <input type="hidden" id="return_login" name="return_login" value="">
                   <button type="submit" name="ingresarUsuario" id="iniciar-sesion" class="waves-effect waves-light btn btn-verde">Ingresar</button>
-                  <a class="left closeLogOpenRegistro" style="cursor: pointer;">¿No tienes cuenta?</a>
+                  <a class="left closeLogOpenRegistro" style="cursor: pointer;font-size: 12px;">¿No tienes cuenta?</a>
+                  <a class="left" style="cursor: pointer;font-size: 12px;">¿Olvidaste tu contraseña?</a>
                 </div>
             </form>
           </div>

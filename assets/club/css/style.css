@@ -102,11 +102,12 @@ body{
 
 .btn-verde{
 	background-color: #006837;
-	padding: 3px 20px;
+	padding: 3px 15px;
 	border-radius: 20px;
 	display: -webkit-inline-box;
 	float: right;
 	margin-left: 20px;
+	font-size: 14px;
 }
 
 	.btn-verde:hover{
@@ -248,7 +249,9 @@ margin: 0 !important;
 #en-que-redimir h2,
 #enterate h2,
 #donde-comprar h2, 
-#productos h2{
+#productos h2,
+#contenido h2{
+
 	color: #12491d;
 	font-weight: 300 !important;
 	text-transform: uppercase;
@@ -322,6 +325,7 @@ margin: 0 !important;
 
 @media (max-width: 767px) {
     .redes-sociales {
+    	
         text-align: center;
         margin: 25px 0px 15px 0;
     }

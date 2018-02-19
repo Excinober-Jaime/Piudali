@@ -57,12 +57,22 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
 								if ($var3=="Nuevo") {
 									$controller->adminGenerarCodigosPuntos();	
-								}else{
-
 								}
 								
 							}else{
+								
 								$controller->adminCodigosPuntosLista();
+							}
+							break;
+
+						case URL_ADMIN_CODIGOS_PUNTOS_IMPRIMIR:
+							if (isset($var3) && !empty($var3)) {
+
+								$controller->adminCodigosPuntosImprimir($var3);
+
+							}else{
+
+								header('Location: '.URL_SITIO.URL_ADMIN.'/'.URL_ADMIN_CODIGOS_PUNTOS);
 							}
 							break;
 

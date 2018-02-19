@@ -277,10 +277,9 @@ class ControllerClub
 
 				}
 			}
-
 		}
 
-		$valor_punto = 1; //Pesos que vale un punto
+		$valor_punto = 5; //Pesos que vale un punto
 
 		include "views/club/inicio.php";
 	}
@@ -295,7 +294,7 @@ class ControllerClub
 		//$paginas_menu = $this->paginasMenu();
 		$producto = $this->productos->detalleProductos(0,$urlpdt);
 		$producto = $producto[0];
-		$valor_punto = 1; //Pesos que vale un punto
+		$valor_punto = 5; //Pesos que vale un punto
 
 		include 'views/club/detalle_premio.php';
 		//include 'views/club_old/detalle-regalo.php';

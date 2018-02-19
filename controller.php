@@ -2424,7 +2424,7 @@ class Controller
 
 	public function adminProductosLista(){
 
-		$tipos = array('NORMAL','PREMIO','PROMOCION');
+		$tipos = array('NORMAL','PREMIO','PROMOCION', 'CLUB PIUDALI');
 		$estados = array(1,0);
 		
 		$productosLista = $this->productos->listarProductos($tipos, $estados);
@@ -2488,15 +2488,40 @@ class Controller
 			
 			extract($_POST);
 
-			$this->sucursales->actualizarSucursal($idsucursal, $nombre, $direccion, $telefono, $email, $idorganizacion, $idciudad);
+			//Upload imagen
+			if($_FILES["imagen"]["error"]==UPLOAD_ERR_OK){
 
+				$rutaimg=$_FILES["imagen"]["tmp_name"];
+				$nombreimg=$_FILES["imagen"]["name"];
+				$destino = DIR_IMG_SUCURSALES.$nombreimg;
+				move_uploaded_file($rutaimg, $destino);
+
+			}else{
+
+				$destino = "";
+			}
+
+			$this->sucursales->actualizarSucursal($idsucursal, $nombre, $direccion, $telefono, $email, $pagina_web, $destino, $idorganizacion, $idciudad);
 		}
 
 		if (isset($_POST["crearSucursal"])) {
 			
 			extract($_POST);
 
-			$idsucursal = $this->sucursales->crearSucursal($nombre, $direccion, $telefono, $email, $idorganizacion, $idciudad);
+			//Upload imagen
+			if($_FILES["imagen"]["error"]==UPLOAD_ERR_OK){
+
+				$rutaimg=$_FILES["imagen"]["tmp_name"];
+				$nombreimg=$_FILES["imagen"]["name"];
+				$destino = DIR_IMG_SUCURSALES.$nombreimg;
+				move_uploaded_file($rutaimg, $destino);
+
+			}else{
+
+				$destino = "";
+			}
+
+			$idsucursal = $this->sucursales->crearSucursal($nombre, $direccion, $telefono, $email, $pagina_web, $destino, $idorganizacion, $idciudad);
 		}
 
 
@@ -4310,51 +4335,70 @@ class Controller
 	public function adminGenerarCodigosPuntos(){
 
 		if (isset($_POST["generarCodigos"])) {
+
 			extract($_POST);
 
 			$codigos = array();
 			$imgsqr = array();
 
-			for ($i=0; $i < $cantidad; $i++) {
-				
-				do {
-				
-					$codigo = $this->codigos_puntos->generaCodigo();
-					$info = $this->codigos_puntos->datelleCodigo($codigo);	
-				
-				} while (count($info)>0);
 
-				if ($qr) {
-					$imgqr = $this->codigos_puntos->generarQR($codigo);
-					$imgsqr[$codigo] = $imgqr;
+			//Crear Lote
+			$idlote = $this->codigos_puntos->crearLote($idproducto);
+
+			if (!empty($idlote)) {
+
+				//Insertar Códigos
+
+				for ($i=0; $i < $cantidad; $i++) {
+					
+					do {
+					
+						$codigo = $this->codigos_puntos->generaCodigo();
+						$info = $this->codigos_puntos->datalleCodigo($codigo);	
+					
+					} while (count($info)>0);
+
+					if ($qr) {
+						$imgqr = $this->codigos_puntos->generarQR($codigo);		
+					}
+
+					$idcodigo = $this->codigos_puntos->crearCodigo($codigo, $puntos, 0, $qr, fecha_actual("datetime"), $vencimiento, 0, $idlote);
 				}
 
-				$idcodigo = $this->codigos_puntos->crearCodigo($codigo, $puntos, 0, $qr, fecha_actual("datetime"), $vencimiento, 0);
-
-				$codigos[] = $codigo;
-			}
-
-			include "views/admin/codigos_puntos_imprimir.php";
+				$this->adminCodigosPuntosImprimir($idlote);
+			}				
 
 		}else{
+
+			$productos = $this->productos->listarProductos(array('NORMAL'),array(1));
 
 			include "views/admin/codigos_puntos_generar.php";
 		}
 
 	}
 
+	public function adminCodigosPuntosImprimir($idlote){
+
+		$codigos = $this->codigos_puntos->listarCodigos($idlote);
+
+		include "views/admin/codigos_puntos_imprimir.php";		
+	}
+
 	public function adminCodigosPuntosLista(){
 
-		$codigos = $this->codigos_puntos->listarCodigos();
+		$lotes = $this->codigos_puntos->listarLotes();
 
-		foreach ($codigos as $key => $codigo) {
+
+		//$codigos = $this->codigos_puntos->listarCodigos();
+
+		/*foreach ($codigos as $key => $codigo) {
 			
 			if (!empty($codigo['idredentor'])) {
 				
 				$redentor = $this->usuario->detalleUsuario($codigo['idredentor']);
 				$codigos[$key]['redentor'] = $redentor['nombre'].' '.$redentor['apellido'];
 			}
-		}
+		}*/
 
 		include 'views/admin/codigos_puntos_lista.php';
 	}

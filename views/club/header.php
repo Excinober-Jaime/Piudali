@@ -190,17 +190,28 @@
           }else{
           ?>
               <div class="col s12 m8 l7 offset-l2">
-                <center><small>Ingresa aquí las claves alfanuméricas de <b>10 dígitos</b> impresas en los empaques <!--o escanea el QR <i class="fa fa-qrcode" aria-hidden="true"></i>-->.</small></center>
+                <center><small>Ingresa aquí el código alfanumérico de <b>5 dígitos</b> impresos en los empaques <!--o escanea el QR <i class="fa fa-qrcode" aria-hidden="true"></i>-->.</small></center>
                 <div class="box-gris">
                   <center>
                     <form class="form-inline" method="post">
                       <div class="col s5 m5 l6">
                         <div class="form-group">
-                          <input type="text" name="codigo" class="form-control" id="codigo" placeholder="Ejemplo:15s56g6saq" required>
+                          <input type="text" name="codigo" class="form-control" id="codigo" 
+                          <?php 
+                          if (isset($_GET['codigopuntos']) && !empty($_GET['codigopuntos'])) {
+                          ?>
+                          value = "<?=$_GET['codigopuntos']?>"
+                          <?php
+                          }else{
+                          ?>
+                          placeholder="Ejemplo:A1B2C"
+                          <?php
+                          }
+                          ?>  required>
                         </div>
                       </div>
                       <div class="col s7 m7 l6">
-                        <button type="submit" name="redimirCodigo" class="btn btn-verde" style="margin-top: 10px;">Ingresar Claves</button>
+                        <button type="submit" name="redimirCodigo" class="btn btn-verde" style="margin-top: 10px;">Ingresar Código</button>
                       </div>
                     </form>
                     <div style="clear: both;"></div>

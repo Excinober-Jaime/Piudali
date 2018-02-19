@@ -17,7 +17,7 @@
 				      <a class="btn-floating halfway-fab waves-effect waves-light orange" href="<?=URL_CLUB.'/'.URL_CLUB_PRODUCTO.'/'.$producto['url']?>"><i class="material-icons">add</i></a>
 				    </div>
 				    <div class="card-content">
-				    	<span class="card-title teal-text text-darken-4"><?=$producto['nombre']?></span>				      	
+				    	<span class="card-title teal-text text-darken-4 truncate"><?=$producto['nombre']?></span>
 				    </div>
 				  </div>
 				</div>

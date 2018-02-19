@@ -9,7 +9,6 @@ define("URL_PAGINA_CONTENIDO", "ContenidoPagina");
 define("URL_BUSCAR", "Resultados");
 define("URL_TIENDAS", "Tiendas");
 
-
 /***CARRITO****/
 define("URL_CARRITO", "Carrito");
 define("URL_RESUMEN_COMPRA", "ResumenCompra");
@@ -46,6 +45,7 @@ define("URL_USUARIO_REFERIR", "Referir");
 define("URL_USUARIO_VENTAS_VIRTUALES", "VentasVirtuales");
 
 define("URL_ADMIN_CODIGOS_PUNTOS", "Codigos");
+define("URL_ADMIN_CODIGOS_PUNTOS_IMPRIMIR", "ImprimirCodigos");
 
 define("URL_CLUB", "Club");
 define("URL_CLUB_MIN", "club");
@@ -91,7 +91,10 @@ define("DIR_IMG_INCENTIVOS", "assets/img/incentivos/");
 define("DIR_IMG_ENTRADAS", "assets/img/entradas/");
 define("DIR_IMG_DOCUMENTOS", "documentos/");
 define("DIR_ADJUNTOS", "adjuntos/");
+define("DIR_IMG_SUCURSALES", "assets/img/sucursales/");
 
+/***POS**/
+define('URL_POS', 'pos');
 
 /***ADMIN**/
 define("URL_ADMIN", "Admin");

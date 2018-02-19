@@ -5,7 +5,7 @@ if (!empty($banners)) {
 	
 	if (count($banners)>1) {
 ?>
-		<div class="carousel carousel-slider">
+		<div class="carousel carousel-slider" data-indicators="true">
 			<?php foreach ($banners as $key => $banner) { ?>
 				
 			<a class="carousel-item" href="<?=$banner['link']?>">
@@ -59,7 +59,7 @@ if (!empty($banners)) {
 				      	<a class="btn-floating halfway-fab waves-effect waves-light orange" href="<?=$url?>"><i class="material-icons">add</i></a>
 				    </div>
 				    <div class="card-content">
-				    	<span class="card-title teal-text text-darken-4"><?=$producto['nombre']?></span>				      	
+				    	<span class="card-title teal-text text-darken-4 truncate"><?=$producto['nombre']?></span>				      	
 				    </div>
 				  </div>
 				</div>
@@ -80,7 +80,7 @@ if (!empty($banners)) {
 		<h2 class="center-align">Entérate</h2>
 		<?php foreach ($entradas as $key => $entrada) { ?>
 
-			<div class="col s12 m4">
+			<div class="col s12 m3">
 				<div class="card hoverable">
 			    	<div class="card-image waves-effect waves-block waves-light">
 		<?php
@@ -102,7 +102,7 @@ if (!empty($banners)) {
 				    <div class="card-content card-enterate">
 				      <span class="card-title activator grey-text text-darken-4"><?=$entrada['titulo']?><!--<i class="material-icons right">more_vert</i>--></span>
 				      <p>
-				      	<?=substr($entrada['contenido'], 0, 500)?>...
+				      	<?=substr($entrada['contenido'], 0, 250)?>...
 				      </p>
 				    </div>
 				    <div class="card-action">
@@ -163,7 +163,7 @@ if (!empty($banners)) {
 <div class="row" id="preguntas-frecuentes">
 	<h2 class="center-align">Preguntas Frecuentes</h2>
 	<div class="container">
-		<p class="flow-text center-align grey-text text-darken-2">Pensamos en lo importante y valioso que es para nosotros tu interés en hacer parte de nuestro selecto grupo de clientes consumidores de la marca.
+		<p class="flow-text center-align grey-text text-darken-2">Pensamos en lo importante y valioso que es para nosotros tu interés en ser parte de nuestro selecto grupo de clientes consumidores de la marca.
 		Conoce todo lo que necesitas para redimir tus puntos por compras.  El CLUB CLIENTE PIUDALÍ te ofrece un plan de beneficios, premiamos tu fidelidad y valoramos tu confianza.<br><br>
 		Selecciona una categoría y encuentra la pregunta de tu interés.
 		</p>
@@ -269,14 +269,14 @@ if (!empty($banners)) {
 				    <li>
 				      	<div class="collapsible-header"><i class="material-icons">question_answer</i>¿Cómo acumulo los puntos en la plataforma?</div>
 				    	<div class="collapsible-body">
-				    	<ol>
-				    		<li>Inicias sesión con tu usuario y contraseña</li>
-				    		<li>Busca el código  QR en el empaque</li>
-				    		<li>Agrega los códigos QR de cada empaque en la opción código, en la parte superior de la plataforma virtual.</li>
-							<li>Una vez agregas el código de cada empaque el código queda inhabilitado para volver a ingresarlo en la plataforma.</li>
-							<li>Cada vez que ingresas un código suma a tu banco de puntos.</li>
-							<li>Te invitamos a no digitar códigos que no han sido productos de tu compra, para evitar inconvenientes con tus beneficios.</li>
-				    	</ol>
+					    	<ol>
+					    		<li>Inicias sesión con tu usuario y contraseña</li>
+					    		<li>Busca el código  QR en el empaque</li>
+					    		<li>Agrega los códigos QR de cada empaque en la opción código, en la parte superior de la plataforma virtual.</li>
+								<li>Una vez agregas el código de cada empaque el código queda inhabilitado para volver a ingresarlo en la plataforma.</li>
+								<li>Cada vez que ingresas un código suma a tu banco de puntos.</li>
+								<li>Te invitamos a no digitar códigos que no han sido productos de tu compra, para evitar inconvenientes con tus beneficios.</li>
+					    	</ol>
 				    	</div>
 				    </li>
 				    <li>
@@ -323,6 +323,15 @@ if (!empty($banners)) {
 				    		<li>LLa cuenta de usuario es permitida para personas mayores de edad.  Esto lo validamos cuando aceptas los términos y condiciones del sitio.</li>
 				    		<li>No se puede transferir la cuenta ni ceder puntos a otros usuarios activos.</li>
 				    		<li>Si redimes puntos en establecimientos aliados debes presentar directamente la cédula no se acepta personas diferentes al portador.</li>
+				    	</ol>
+				    	</div>
+				    </li>
+				    <li>
+				      	<div class="collapsible-header"><i class="material-icons">question_answer</i>¿Cuánto vale un (1) punto?</div>
+				    	<div class="collapsible-body">
+				    	<ol>
+				    		<li>Un (1) punto equivale a $5 pesos colombianos.</li>
+				    		<li>Ejemplo: Si realizas una compra de $100.000 netos, podrás redimir 1.000 puntos, que corresponden al 5% de tus compras netas.</li>
 				    	</ol>
 				    	</div>
 				    </li>
