@@ -223,6 +223,12 @@ $(document).ready(function(){
         searchadmin();
     })
 
+    $('#imprimirQR').click(function(){
+        
+        //jQuery('.print-code').print({ stylesheet: 'assets/admin/css/print_codes_qr/style.css' })
+        $('.print-code').print({ stylesheet: 'assets/admin/css/print_codes_qr/style.css' });
+    })
+
     var config = {
                 '.chosen-select'           : {},
                 '.chosen-select-deselect'  : {allow_single_deselect:true},

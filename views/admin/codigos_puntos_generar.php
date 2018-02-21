@@ -5,7 +5,7 @@
 			<form method="post">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Cantidad de Códigos a Generar</label>
-					<input type="number" min="1" max="170" class="form-control" name="cantidad" id="cantidad" required>
+					<input type="number" min="1" max="1000" class="form-control" name="cantidad" id="cantidad" required>
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Puntos</label>

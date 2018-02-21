@@ -68,27 +68,27 @@
 </div>
 	<div class="divider"></div><br>
 	<div class="row">
-		<div class="col s12 m8">
-		<?php  if (isset($_SESSION["idusuario"])) { ?>
-			<div class="card-panel">
-				<h4>DIRECCIÓN DE ENVÍO</h4>			
-	          	<span class="black-text">				 	
-			 		Dirección: <?=$_SESSION["direccion"]?><br>
-			 		Ciudad: <?=$_SESSION["ciudad"]?><br>
-			 		Teléfono: <?=$_SESSION["telefono"]?><br>
-			 		Teléfono Móvil: <?=$_SESSION["telefono_m"]?><br><br>
-				 	
-			 		<a href="<?=URL_CLUB."/".URL_CLUB_PERFIL?>?return=<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>" class="btn green">Cambiar Datos</a>
-			 		
-	          	</span>
-	        </div>
-	    <?php } else { ?>
-	    	<h5>Por favor ingresa o registrate para cargar tu dirección</h5>
-	    	<a class="open-iniciar btn orange" return="<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>">Iniciar sesión</a>
-	    	<a class="open-registro btn green">Regístrarse</a>
-	    <?php } ?>
+		<div class="col s12 m7">
+			<?php  if (isset($_SESSION["idusuario"])) { ?>
+				<div class="card-panel">
+					<h4>DIRECCIÓN DE ENVÍO</h4>			
+		          	<span class="black-text">				 	
+				 		Dirección: <?=$_SESSION["direccion"]?><br>
+				 		Ciudad: <?=$_SESSION["ciudad"]?><br>
+				 		Teléfono: <?=$_SESSION["telefono"]?><br>
+				 		Teléfono Móvil: <?=$_SESSION["telefono_m"]?><br><br>
+					 	
+				 		<a href="<?=URL_CLUB."/".URL_CLUB_PERFIL?>?return=<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>" class="btn green">Cambiar Datos</a>
+				 		
+		          	</span>
+		        </div>
+		    <?php } else { ?>
+		    	<h5>Por favor ingresa o registrate para cargar tu dirección</h5>
+		    	<a class="open-iniciar btn orange" return="<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>">Iniciar sesión</a>
+		    	<a class="open-registro btn green">Regístrarse</a>
+		    <?php } ?>
 		</div>
-		<div class="col s12 m4" style="background-color: #f2f2f2; border-radius: 10px;padding: 1rem;">
+		<div class="col s12 m5" style="background-color: #f2f2f2; border-radius: 10px;padding: 1rem;">
 			<div class="row">
 				<div class="col s6 m8 right-align">Subtotal antes de IVA</div>
 				<div class="col s6 m4 right-align"><?=convertir_pesos($subtotalAntesIva)?></div>
@@ -129,7 +129,7 @@
 					<div class="col s6 m4 right-align"><?=convertir_pesos($pagoPuntos["valor_pago"])?></div>					 	
 				 	<div class="col s12 right-align">
 					 	<div class="card-panel green lighten-5">
-							<button class="btn green darken-1" onclick="javascript: document.getElementById('nousarpuntos').submit()"><i class="material-icons left">add</i>No Redimir Puntos</button>
+							<button class="btn green darken-1" onclick="javascript: document.getElementById('nousarpuntos').submit()">No Redimir Puntos</button>
 						</div>				 		
 					</div>
 				 	<?php }else{ ?>
@@ -140,7 +140,7 @@
 				 			<input type="hidden" name="usar_puntos" value="1">
 				 		</form>
 				 		<div class="col s6 m8 right-align">Puntos Disponibles:</div>
-						<div class="col s6 m4 right-align"><?=round($puntos_disponibles["disponibles"])?></div>
+						<div class="col s6 m4 right-align"><?=number_format(round($puntos_disponibles["disponibles"]))?></div>
 					 	<div class="col s12 right-align">
 						 	<div class="card-panel green lighten-5">
 								<button class="btn green darken-1" onclick="javascript: document.getElementById('usarpuntos').submit()"><i class="material-icons left">add</i>Redimir Puntos</button>

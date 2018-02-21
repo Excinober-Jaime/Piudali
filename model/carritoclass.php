@@ -5,11 +5,19 @@
 class Carrito extends Productos
 {
 
-	public $itemscarrito = array();		
-	
+	public $itemscarrito = array();
+	public static $valor_punto = 1;
+	public static $cobro_flete = true;
+	public static $pago_puntos_on = true;
 
 	function __construct()
 	{
+
+	}
+
+	public function get_valor_punto(){
+
+		return Carrito::$valor_punto;
 
 	}
 
@@ -378,19 +386,18 @@ class Carrito extends Productos
 
 	}
 
-	public function getValorPunto(){
-		//En pesos
-		$valor_punto = 1;
-		return $valor_punto;
-	}
-
 	public function getPagoPuntos(){
 
 		if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"])) {
 
 			if (isset($_SESSION["usar_puntos"]) && $_SESSION["usar_puntos"]==true) {
 
-				$valorPunto = $this->getValorPunto();
+				if (!Carrito::$pago_puntos_on) {
+					
+					return array("puntos" => 0, "valor_pago" => 0, "valor_punto" => 0);
+				}
+
+				$valorPunto = $this->get_valor_punto();
 				$totalNetoAntesIva = $this->getTotalNetoAntesIva();
 				$totalIva = $this->getIva();
 				$totalRTF = $this->getRTF();
@@ -434,6 +441,11 @@ class Carrito extends Productos
 
 	public function calcularFlete($tipo_usuario = ''){
 
+		if (!Carrito::$cobro_flete) {
+			
+			return 0;
+		}
+
 		$subtotalAntesIva = $this->getSubtotalAntesIva();
 
 		if ($subtotalAntesIva>0) {
@@ -468,7 +480,7 @@ class Carrito extends Productos
 		}
 		
 		return $flete;
-
+		
 	}
 
 	public function getTotal($tipo_usuario = ''){

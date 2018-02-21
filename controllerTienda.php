@@ -16,9 +16,11 @@ class ControllerTienda
 	public $uso = array();
 	public $distribuidor = array();
 	public $imagenes_pdts_png = array();
-	
+	public $pago_puntos_on = false;
+
 	function __construct()
 	{
+
 		$this->usuarios = new Usuarios();
 		$this->productos = new Productos();
 		$this->carrito = new Carrito();
@@ -42,6 +44,8 @@ class ControllerTienda
 			'P-013' => 'productos/linea-corporal/linea-coporal_Pure-Amazon-Body-Oil.png',
 			'P-014' => 'productos/linea-facial/linea-facial_Amazon-balm-for-lush-lips-stick.png'
 		);
+
+		Carrito::$pago_puntos_on = $this->pago_puntos_on;
 
 		//Loguear usuario
 

@@ -7,8 +7,10 @@
 class ControllerClub
 {
 
-	public  $puntos_disponibles = 0;
-	public 	$response_codigo = '';
+	public $puntos_disponibles = 0;
+	public $response_codigo = '';
+	public $valor_punto = 5; //Pesos que vale un punto de CONSUMIDOR
+	public $cobro_flete = false; //Flete para consumidores del club
 	
 	function __construct()
 	{
@@ -26,6 +28,9 @@ class ControllerClub
 		$this->sucursales = new Sucursales();
 		$this->paginas = new Paginas();
 
+		Carrito::$valor_punto = $this->valor_punto;
+		Carrito::$cobro_flete = $this->cobro_flete;
+		
 		//Loguear usuario
 
 		if (isset($_POST['ingresarUsuario'])) {
@@ -279,8 +284,6 @@ class ControllerClub
 			}
 		}
 
-		$valor_punto = 5; //Pesos que vale un punto
-
 		include "views/club/inicio.php";
 	}
 
@@ -294,7 +297,6 @@ class ControllerClub
 		//$paginas_menu = $this->paginasMenu();
 		$producto = $this->productos->detalleProductos(0,$urlpdt);
 		$producto = $producto[0];
-		$valor_punto = 5; //Pesos que vale un punto
 
 		include 'views/club/detalle_premio.php';
 		//include 'views/club_old/detalle-regalo.php';
@@ -577,15 +579,6 @@ class ControllerClub
 			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
 
 			if ($idorden) {
-				
-				//Cargar Nuevos Puntos Consumidor
-				/*$valor_punto = 1;
-				$fecha_adquirido = fecha_actual('datetime');
-				$redimido = 0;
-				$estado_puntos = 0;
-
-				$nuevos_puntos = $totalNetoAntesIva*($valor_punto/100);
-				$idnuevospuntos = $this->usuarios->asignarNuevosPuntos($nuevos_puntos, "COMPRAS", $fecha_adquirido, $redimido, $estado_puntos, $_SESSION["idusuario"], $idorden);*/
 
 				//Registrar detalle de orden
 				if (count($detalleOrden)>0) {
@@ -599,25 +592,6 @@ class ControllerClub
 						$id_detalle_orden = $this->carrito->agregarDetalleOrden($producto["nombre"], $producto["codigo"], $producto["cantidad"], $producto["precio"], $producto["precio_base"], $producto["descuento_cupon"], $producto["iva"], $producto["descuento_puntos"], $idorden);
 					}
 				}
-
-				//Registrar si la compra fue hecha a través de un enlace de distribuidor
-				if (isset($_SESSION['iddistribuidor']) && !empty($_SESSION['iddistribuidor']) && $_SESSION['iddistribuidor'] != $_SESSION['idusuario']) {
-					
-					$comision_pagada = 0;
-
-					$this->ventas_virtuales->crear_venta($comision_pagada, $idorden, $_SESSION['iddistribuidor']);
-
-					//Cargar Nuevos Puntos A Distribuidor
-					$valor_punto = 1;
-					$fecha_adquirido = fecha_actual('datetime');
-					$redimido = 0;
-					$estado_puntos = 0;
-
-					$nuevos_puntos = $totalNetoAntesIva*($valor_punto/100);
-
-					$idnuevospuntosdistribuidor = $this->usuarios->asignarNuevosPuntos($nuevos_puntos, "VENTA A COMPRADOR", $fecha_adquirido, $redimido, $estado_puntos, $_SESSION['iddistribuidor'], $idorden);
-				}
-
 
 				//Enviar Email Orden
 				$this->ordenes->enviarEmailOrden($detalleOrden, $subtotalAntesIva, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $retencion, $iva, $pagoPuntos["valor_pago"], $flete, $total, $codigo_orden, $estado, $_SESSION['nombre'], $_SESSION['apellido'], $_SESSION['email']);				

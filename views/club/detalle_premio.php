@@ -18,7 +18,7 @@
 						<?=convertir_pesos($producto['precio'])?> ó por
 					</p>
 					<div class="chip orange white-text" style="font-size:30px;">
-						<?=number_format($producto['precio'] / $valor_punto)?>
+						<?=number_format($producto['precio'] / $this->valor_punto)?>
 					</div>
 					<p style="margin-top: 0px;margin-bottom: 2px;">PUNTOS PIUDALÍ</p>
 				</div>
@@ -50,16 +50,39 @@
 						if (isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario'])) {
 						?>
 						<p style="font-size: 13px;line-height: 1.1rem !important;">
-							
-								Tienes 
-								<b><?php 
-								if (isset($this->puntos_disponibles)) {
+							<?php 
+							switch ($this->puntos_disponibles['disponibles'] * $this->valor_punto) {
+
+								case 0:
+									echo $_SESSION['nombre'].', no tienes puntos disponibles. Llévalo por '.convertir_pesos($producto['precio']);
+									break;
+
+								case ($this->puntos_disponibles['disponibles'] * $this->valor_punto) < $producto['precio']:		
+									?>
+									<?=$_SESSION['nombre']?>, tienes 
+									<b><?php 
+									if (isset($this->puntos_disponibles)) {
+									
+										echo number_format(round($this->puntos_disponibles['disponibles']));
+									
+									}
+									?></b>
+									puntos, redímelos y llévalo pagando <b>
+										<?=convertir_pesos($producto['precio']-($this->puntos_disponibles['disponibles'] * $this->valor_punto))?></b> adicionales.<br> ¡Ó sigue acumulando puntos!
+									<?php
+									break;
+
+								case ($this->puntos_disponibles['disponibles'] * $this->valor_punto) >= $producto['precio']:
+									
+									echo $_SESSION['nombre'].', tienes suficientes puntos para llevarlo. ¡Aprovecha!';
+
+									break;
 								
-									echo round($this->puntos_disponibles['disponibles']);
-								
-								}
-								?></b>
-								puntos, redímelos y llévalo pagando <b>$30.000</b> adicionales.<br> ¡Ó sigue acumulando puntos!
+								default:
+									
+									break;
+							}
+							?>								
 							
 						</p>
 						<?php	
@@ -67,7 +90,7 @@
 						?>
 						<p style="font-size: 13px;line-height: 1.1rem !important;">
 							
-								Recuerda que puedes pagar con puntos, o con puntos más dinero.
+								Recuerda que puedes pagar con puntos, o con <br>puntos + dinero.
 							
 						</p>
 						<?php	

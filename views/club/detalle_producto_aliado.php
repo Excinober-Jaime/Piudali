@@ -62,7 +62,7 @@
 						}
 					?>
 				      
-				      <span class="title" style="font-size: 14px;"><b><?=$sucursal['nombre']?></b></span>
+				      <p class="title" style="font-size: 13px;line-height: 1.1rem;"><b><?=$sucursal['nombre']?></b></p>
 				      <p style="font-size: 12px;line-height: 14px;">
 				         Tel: <?=$sucursal['telefono']?> <br>
 				         <?=$sucursal['email']?><br>				         
@@ -70,10 +70,9 @@
 				         <?=$sucursal['ciudad']?>
 				      </p>
 
-				      <?php if (!empty($sucursal['pagina_web'])) { ?>
-				      	<br>
-				      	<a style="font-size: 12px;" href="<?=$sucursal['pagina_web']?>" target='_new'>
-						  <div class="chip" style="background-color: #f19300;font-size: 12px;">
+				      <?php if (!empty($sucursal['pagina_web'])) { ?>		      	
+				      	<a href="<?=$sucursal['pagina_web']?>" target='_new'>
+						  <div class="chip" style="background-color: #f19300;color:#fff !important;font-size: 10px;margin-top: 3px;">
 						    Página Web
 						    <i class="close material-icons">link</i>
 						  </div>

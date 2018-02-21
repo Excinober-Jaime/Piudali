@@ -18,7 +18,7 @@
 			?>
 		</div>
 		<center>
-			<button class="btn btn-primary btn-lg" onclick="jQuery('.print-code').print({ stylesheet: 'assets/admin/css/print_codes_qr/style.css' })">Imprimir</button>
+			<button class="btn btn-primary btn-lg" id="imprimirQR">Imprimir</button>
 		</center>
 	</div>
 </div>
