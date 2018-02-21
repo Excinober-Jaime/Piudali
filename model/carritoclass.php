@@ -394,7 +394,11 @@ class Carrito extends Productos
 
 				if (!Carrito::$pago_puntos_on) {
 					
-					return array("puntos" => 0, "valor_pago" => 0, "valor_punto" => 0);
+					return array(
+							"puntos" => 0, 
+							"valor_pago" => 0, 
+							"valor_punto" => 0
+						);
 				}
 
 				$valorPunto = $this->get_valor_punto();

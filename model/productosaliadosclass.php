@@ -6,11 +6,31 @@
 class ProductosAliados extends Database
 {
 	
-	public function listarProductos(){
+	public function listarProductos($estados = array()){
+
+		if (count($estados)>0) {
+
+			$estados_select = "WHERE (";
+
+			$count = 0;
+
+			foreach ($estados as $estado) {
+				if ($count>0) {
+					$estados_select .= " OR ";
+				}
+
+				$estados_select .= "`estado` = '$estado'";
+				$count++;
+			}
+			$estados_select .= ")";
+		}else{
+			$estados_select = "";
+		}
 
 		$query = $this->consulta("SELECT `idproducto`, `nombre`, `url`, `img_principal`, `descripcion`, `mas_info`, `estado`, `organizaciones_idorganizacion`, `organizaciones`.`razon_social`
 								FROM `productos_aliados`
 								INNER JOIN `organizaciones` ON (`organizaciones`.`idorganizacion` = `productos_aliados`.`organizaciones_idorganizacion`)
+								$estados_select;
 								");
 		
 		return $query;

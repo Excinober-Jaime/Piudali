@@ -18,7 +18,7 @@
 					$url = URL_CLUB.'/'.URL_CLUB_PRODUCTO_ALIADO.'/'.$producto['url'];
 				}
 	?>
-				<div class="col s12 m4 l3" style="height: 550px;">
+				<div class="col s12 m4 l3">
 				  <div class="card hoverable">
         			<div class="card-image">
         				<a href="<?=$url?>">
@@ -26,7 +26,7 @@
 				      	</a>
 				      	<a class="btn-floating halfway-fab waves-effect waves-light orange" href="<?=$url?>"><i class="material-icons">add</i></a>
 				    </div>
-				    <div class="card-content">
+				    <div class="card-content" style="height: 80px;">
 				    	<span class="card-title teal-text text-darken-4 truncate"><?=$producto['nombre']?></span>				      	
 				    </div>
 				  </div>

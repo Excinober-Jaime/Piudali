@@ -59,6 +59,7 @@
 
 								case ($this->puntos_disponibles['disponibles'] * $this->valor_punto) < $producto['precio']:		
 									?>
+
 									<?=$_SESSION['nombre']?>, tienes 
 									<b><?php 
 									if (isset($this->puntos_disponibles)) {
@@ -70,6 +71,7 @@
 									puntos, redímelos y llévalo pagando <b>
 										<?=convertir_pesos($producto['precio']-($this->puntos_disponibles['disponibles'] * $this->valor_punto))?></b> adicionales.<br> ¡Ó sigue acumulando puntos!
 									<?php
+									
 									break;
 
 								case ($this->puntos_disponibles['disponibles'] * $this->valor_punto) >= $producto['precio']:

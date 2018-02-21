@@ -156,6 +156,16 @@
 				<div class="col s6 m4 right-align"><?=convertir_pesos($total)?></div>
 			</div>
 			<div class="divider"></div>
+			<?php 
+			if ($total>0 && $total<1000) {
+			?>
+				 <div class="card-panel red">
+		          <span class="white-text">Nuestro sistema de pagos no permite realizar transacciones inferiores a $1.000. Por favor agrega al menos otro producto para continuar.
+		          </span>
+		        </div>
+			<?php
+			}
+			?>
 			<div class="row" style="margin-top: 1rem;">
 				<div class="col s7 right-align">
 					<a href="<?=URL_CLUB.'/'.URL_PRODUCTOS_CLUB?>" class="btn-large orange">SEGUIR COMPRANDO</a>
@@ -168,7 +178,7 @@
 
 					<?php } else { ?>
 
-						<?php if ($total>0) { ?>
+						<?php if ($total>=1000) { ?>
 
 							<a href="<?=URL_CLUB.'/'.URL_CLUB_RESUMEN_COMPRA?>" class="btn-large green">ORDENAR YA!</a>
 
