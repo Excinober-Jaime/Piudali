@@ -13,7 +13,7 @@
         <ul>
           <li><a href="https://piudali.com.co/Ingresar">Acceso Distribuidores</a></li>
           <li><a href="https://piudali.com.co/Ingresar">Acceso Corporativo</a></li>
-          <li><a href="https://piudali.com.co/tiendas">Dónde Comprar</a></li>
+          <li><a href="https://piudali.com.co/Tiendas">Dónde Comprar</a></li>
     
           <li><a href="https://piudali.com.co/sobre-waliwa">Quienes Somos</a></li>
           <li><a href="https://piudali.com.co/quienes-somos">Sobre Piudali</a></li>
@@ -32,13 +32,13 @@
             Email: contacto@piudali.com.co<br/>
             <div class="redes-sociales">
               <span>Síguenos en: </span>
-                    <a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                      <a href="#" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                      <a href="#" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/PiudaliColombia/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                      <a href="https://www.instagram.com/piudalicolombia/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                      <a href="https://www.youtube.com/channel/UCUu4Moh5uFyEyt1Dx0qxuMg" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
                   </div>
             <div class="autor"><small>Todos los derechos reservados Link Grupo Marketing SAS © 2018 </small></div>
             
-                  <div class="autor"><small>Diseñado y Desarrollado por <a href="http://imarketing21.com/">iMarketing21</a></small></div>
+                  <div class="autor"><small>Diseñado por <a href="http://imarketing21.com/">iMarketing21</a>| Desarrollado por Excinober Benites</small></div>
           </div>
           <div class="clearfix"></div>
       </div>
@@ -46,7 +46,7 @@
     </div>
     <div class="footer-copyright">
             <div class="container">
-            © 2017 Copyright Link Grupo Marketing
+            © 2018 Copyright Link Grupo Marketing
             <a class="grey-text text-lighten-4 right" href="<?=URL_SITIO?>">Ir a www.piudali.com.co</a>
             </div>
           </div>

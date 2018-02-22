@@ -89,7 +89,7 @@ class Carrito extends Productos
 
 	public function listarItems(){
 
-		if (isset($_SESSION["idpdts"]) && count($_SESSION["idpdts"]>0)) {			
+		if (isset($_SESSION["idpdts"]) && count($_SESSION["idpdts"]>0)) {
 		
 			foreach ($_SESSION["idpdts"] as $key => $idpdt) {
 

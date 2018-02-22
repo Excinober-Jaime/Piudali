@@ -249,50 +249,6 @@ class ControllerClub
 		$productos_redimir = array_merge($productos_aliados, $productos_club);
 		shuffle($productos_redimir);
 
-
-
-		/*for ($i=0; $i < 8; $i++) {
-			
-			shuffle($opciones);
-
-			if ($opciones[0] == 'CLUB') {
-				
-				if (isset($productos_club[0])) {
-					
-					$productos_redimir[$i] = $productos_club[0];
-					$productos_redimir[$i]['tipo'] = 'CLUB';
-					unset($productos_club[0]);
-
-				}elseif (isset($productos_aliados[0])) {
-					
-						$productos_redimir[$i] = $productos_aliados[0];
-						$productos_redimir[$i]['tipo'] = 'ALIADOS';
-						unset($productos_aliados[0]);
-					
-				}
-
-			}else{
-
-				if (isset($productos_aliados[0])) {
-					
-					$productos_redimir[$i] = $productos_aliados[0];
-					$productos_redimir[$i]['tipo'] = 'ALIADOS';
-					unset($productos_aliados[0]);
-
-				}elseif (isset($productos_club[0])) {
-					
-						$productos_redimir[$i] = $productos_club[0];
-						$productos_redimir[$i]['tipo'] = 'CLUB';
-						unset($productos_club[0]);	
-
-				}
-			}
-		}*/
-
-
-
-		//var_dump(count($productos_aliados));
-
 		include "views/club/inicio.php";
 	}
 
@@ -336,52 +292,6 @@ class ControllerClub
 
 		$productos_redimir = array_merge($productos_aliados, $productos_club);
 		shuffle($productos_redimir);
-
-
-
-		/*for ($i=0; $i < $total_opciones; $i++) { 
-			
-			shuffle($opciones);
-
-			if ($opciones[0] == 'CLUB') {
-				
-				if (isset($productos_club[0])) {
-					
-					$productos_redimir[$i] = $productos_club[0];
-					$productos_redimir[$i]['tipo'] = 'CLUB';
-					unset($productos_club[0]);
-
-				}else{
-
-					if (isset($productos_aliados[0])) {
-					
-						$productos_redimir[$i] = $productos_aliados[0];
-						$productos_redimir[$i]['tipo'] = 'ALIADOS';
-						unset($productos_aliados[0]);
-					}
-				}
-
-			}else{
-
-				if (isset($productos_aliados[0])) {
-					
-					$productos_redimir[$i] = $productos_aliados[0];
-					$productos_redimir[$i]['tipo'] = 'ALIADOS';
-					unset($productos_aliados[0]);
-
-				}else{
-
-					if (isset($productos_club[0])) {
-					
-						$productos_redimir[$i] = $productos_club[0];
-						$productos_redimir[$i]['tipo'] = 'CLUB';
-						unset($productos_club[0]);
-
-					}
-
-				}
-			}
-		}*/
 		
 
 		include 'views/club/en_que_redimir.php';

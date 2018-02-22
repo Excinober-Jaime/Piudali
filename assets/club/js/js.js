@@ -7,6 +7,12 @@ $(document).ready(function(){
   
   $('.carousel.carousel-slider').carousel({fullWidth: true});
 
+  setInterval(function(){
+
+    $('.carousel.carousel-slider').carousel('next');
+
+  },6000);
+
    $(".button-collapse").sideNav();
 
   $('.open-iniciar').click(function(event){

@@ -1845,7 +1845,7 @@ class Controller
 		$campana_actual = $this->campanas->getCamapanaActual();
 
 		if ($campana_actual["monto_minimo"]>$subtotalAntesIva) {
-			$alerta = 'El pedido no cumple con el monto mínimo, por favor agrega más productos. Si no eres un distribuidor por favor da clic <a href="'.URL_SITIO.'tiendas">aquí.</a>';
+			$alerta = 'El pedido no cumple con el monto mínimo, por favor agrega más productos. Si no eres un distribuidor por favor da clic <a href="'.URL_SITIO.URL_CLUB.'">aquí.</a>';
 		}
 
 		include "views/carrito.php";

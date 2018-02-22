@@ -47,13 +47,13 @@
 
     </script>
     <!--Start of Zendesk Chat Script-->
-    <script type="text/javascript">
+   <!-- <script type="text/javascript">
     window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
     d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
     _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
     $.src="https://v2.zopim.com/?4N01XhSlB3VxmzRKfI542gkx8YzOeR4C";z.t=+new Date;$.
     type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
-    </script>
+    </script>-->
     <!--End of Zendesk Chat Script-->
 
     <script type="text/javascript">
@@ -64,6 +64,31 @@
     </head>
 
 <body <?php if(isset($json_maps) && !empty($json_maps)) { ?> onload="initMap(json_maps)" <?php } ?>>
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId            : '143866273085649',
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v2.11'
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/es_ES/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <div class="fb-customerchat"
+   page_id="1698229213799755"
+   ref="">
+  </div>
+  
   <!-- Return to Top -->
   <a href="javascript:" id="return-to-top">
     <i class="fa fa-arrow-up" aria-hidden="true"></i>
