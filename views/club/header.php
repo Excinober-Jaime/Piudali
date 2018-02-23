@@ -93,7 +93,29 @@
   <a href="javascript:" id="return-to-top">
     <i class="fa fa-arrow-up" aria-hidden="true"></i>
   </a>
-  
+      <?php if (!empty($this->alert)) { ?>      
+        <section style="background-color: #6D1E3F !important;">
+          <p class="center-align" style="margin: 0; padding: 5px; color: #fff;">
+          <?php 
+          
+          switch ($this->alert['tipo']) {
+
+             case 'CUENTA_YA_EXISTE':
+               echo $this->alert['mensaje'];
+               break;
+
+              case 'REGISTRO_OK':
+                echo $this->alert['mensaje'];
+                break;
+             
+             default:
+               # code...
+               break;
+           } 
+          ?>
+          </p>
+        </section>
+      <?php } ?>
       <section class="login">
           <!--<div class="box-session-club text-center">-->   
                 <?php 
@@ -190,7 +212,7 @@
                 break;
 
               case 'AUTENTICAR':
-                echo 'Tu código tiene '.number_format($this->response_codigo['codigo']['puntos']).' puntos. Por favor <a class="blue-text text-darken-4 open-iniciar">inicia sesión</a> o completa el <a class="blue-text text-darken-4 open-iniciar">registro</a> para que puedas registrarlos.';
+                echo 'Tu código tiene '.number_format($this->response_codigo['codigo']['puntos']).' puntos. Por favor <a class="blue-text text-darken-4 open-iniciar">inicia sesión</a> o completa el <a class="blue-text text-darken-4 open-registro">registro</a> para que puedas registrarlos.';
                 break;
               
               case 'ASIGNADO':

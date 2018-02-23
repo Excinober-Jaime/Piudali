@@ -7,6 +7,7 @@
 class ControllerClub
 {
 
+	public $alert = '';
 	public $puntos_disponibles = 0;
 	public $response_codigo = '';
 	public $valor_punto = 5; //Pesos que vale un punto de CONSUMIDOR
@@ -62,7 +63,49 @@ class ControllerClub
 
 			extract($_POST);
 
-			$response = $this->registrarConsumidor($num_identificacion, $nombre, $apellido, $email, $ciudad, $telefono, $contrasena);
+			if (count($this->usuarios->validarUsuario($num_identificacion, $email))>0) {
+
+				$this->alert = array(
+								'tipo'		=>	'CUENTA_YA_EXISTE',
+								'mensaje'	=>	'Usted ya posee una cuenta. Inicie sesión <a class="open-iniciar">aquí</a>'
+							);
+			}else{
+
+				$sexo = '';
+				$fecha_nacimiento = '';
+				$boletines = 0;
+				$condiciones = 0;
+				$direccion = 0;
+				$mapa = 0;
+				$telefono_m = '';
+				$tipo = 'CONSUMIDOR';
+				$segmento = '';
+				$foto = '';
+				$estado = 1;
+				$fecha_registro = fecha_actual('datetime');
+				$referente = 0;
+				$lider = 0;
+				$cod_lider = 0;
+				$nivel = 0;
+				$organizacion = 0;
+
+				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, md5($password), $num_identificacion, $boletines, $condiciones, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, $cod_lider, $nivel, $ciudad, $organizacion);
+
+				if ($idusuario) {
+
+					$this->usuarios->actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, '', '', $ciudad, '', $tipo, 0, 0);	
+					
+					$this->alert = array(
+								'tipo'		=>	'REGISTRO_OK',
+								'mensaje'	=>	'Bienvenido'
+							);
+				
+					if (isset($_SESSION['codigo_por_asignar']['codigo']) && !empty($_SESSION['codigo_por_asignar']['codigo'])) {
+						
+						$this->response_codigo = $this->redimirCodigoPuntos($_SESSION['codigo_por_asignar']['codigo']);
+					}
+				}
+			}
 		}
 
 
@@ -85,56 +128,11 @@ class ControllerClub
 		}
 	}
 
-	private function registrarConsumidor($num_identificacion, $nombre, $apellido, $email, $ciudad, $telefono, $contrasena){
-
-		if (count($this->usuarios->validarUsuario($num_identificacion, $email))>0) {
-
-				$alerta = "Usted ya posee una cuenta";
-
-				return array('tipo'		=>	'alerta', 
-							'response'	=>	$alerta
-							);
-
-		}else{
-
-			$sexo = '';
-			$fecha_nacimiento = '';
-			$boletines = 0;
-			$condiciones = 0;
-			$direccion = 0;
-			$mapa = 0;
-			$telefono_m = '';
-			$tipo = 'CONSUMIDOR';
-			$segmento = '';
-			$foto = '';
-			$estado = 1;
-			$fecha_registro = fecha_actual('datetime');
-			$referente = 0;
-			$lider = 0;
-			$cod_lider = 0;
-			$nivel = 0;
-			$organizacion = 0;
-
-			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, md5($password), $num_identificacion, $boletines, $condiciones, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, $cod_lider, $nivel, $ciudad, $organizacion);
-
-			if ($idusuario) {
-
-				$this->usuarios->actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, '', '', $ciudad, '', $tipo, 0, 0);	
-			}
-
-			return array(	
-						'tipo'		=>	'idusuario', 
-						'response'	=>	$idusuario
-					);
-		}
-
-	}
-
 	private function redimirCodigoPuntos($codigo){
 
 		$codigo_detalle = $this->codigos_puntos->detalleCodigo($codigo);
 
-			if (count($codigo_detalle)>0) {				
+			if (count($codigo_detalle)>0) {
 			
 				if (!$codigo_detalle['redimido']) {
 
@@ -142,31 +140,29 @@ class ControllerClub
 				
 						if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR') {
 
-							if (count($codigo_detalle)>0) {
+							$filas = $this->codigos_puntos->redimirCodigo($codigo_detalle['codigo'], $_SESSION['idusuario']);
 
-								$filas = $this->codigos_puntos->redimirCodigo($codigo_detalle['codigo'], $_SESSION['idusuario']);
+							if ($filas) {
 
-								if ($filas) {
-
-									$estado_puntos = 1;
-									
-									$idnuevospuntos = $this->usuarios->asignarNuevosPuntos($codigo_detalle['puntos'], "CLUB PIUDALI", fecha_actual('datetime'), 0, $estado_puntos, $_SESSION['idusuario'], 0);
-
-									if ($idnuevospuntos) {
-
-										if (isset($_SESSION['codigo_por_asignar'])) {
-											
-											unset($_SESSION['codigo_por_asignar']);
-										}
-
-										return array(
+								$estado_puntos = 1;
 								
-											'estado' => 'ASIGNADO',
-											'codigo' => $codigo_detalle
-										);
+								$idnuevospuntos = $this->usuarios->asignarNuevosPuntos($codigo_detalle['puntos'], "CLUB PIUDALI", fecha_actual('datetime'), 0, $estado_puntos, $_SESSION['idusuario'], 0);
+
+								if ($idnuevospuntos) {
+
+									if (isset($_SESSION['codigo_por_asignar'])) {
+										
+										unset($_SESSION['codigo_por_asignar']);
 									}
+
+									return array(
+							
+										'estado' => 'ASIGNADO',
+										'codigo' => $codigo_detalle
+									);
 								}
 							}
+							
 
 						}else{						
 							

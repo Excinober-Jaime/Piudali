@@ -31,6 +31,7 @@ class Usuarios extends Database
 		$_SESSION["idorganizacion"] = $idorganizacion;
 
 		if (!empty($tipo)) {
+			
 			$_SESSION["tipo"] = $tipo;
 		}		
 	}

@@ -56,7 +56,7 @@ Una mezcla balanceada científicamente con plantas y frutos exóticos de reconoc
 					    <div class="card-content">
 					    <h5><?=$this->ingredientes[$ingrediente][1]?></h5>
 					      <p><?=substr($this->ingredientes[$ingrediente][2], 0, 200)?>...</p>
-					    </div>		        
+					    </div> 
 					  </div>
 				</div>			
 			</div>

@@ -99,14 +99,16 @@ class CodigosPuntos extends Database
 
 	public function generarQR($codigo) {
 
-		$PNG_TEMP_DIR = "assets/img/codigospuntosqr/";
-		$PNG_WEB_DIR = 'assets/img/codigospuntosqr/';
+		//$PNG_TEMP_DIR = "assets/img/codigospuntosqr/";
+		//$PNG_WEB_DIR = 'assets/img/codigospuntosqr/';
+		$PNG_TEMP_DIR = "assets/img/codigosqrpuntos/";
+		$PNG_WEB_DIR = 'assets/img/codigosqrpuntos/';
 
 		$data = URL_SITIO.URL_CLUB."?codigopuntos=".$codigo;
 		$errorCorrectionLevel = 'Q';
 		$matrixPointSize = 2;
 		$filename = $PNG_TEMP_DIR.$codigo.'.png';
-        QRcode::png($data, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+        QRcode::png($data, $filename, $errorCorrectionLevel, $matrixPointSize, 0);
 
         return $PNG_WEB_DIR.basename($filename);
 	}
