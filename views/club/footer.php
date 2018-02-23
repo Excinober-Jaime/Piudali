@@ -63,11 +63,11 @@
           <h4 class="center-align titulos">Inicia sesión</h4>
             <form class="col s12 m6 offset-m3 bg-form" method="post">
                 <div class="input-field">
-                  <input id="email-login" name="email" type="email" class="validate" value="servicioalcliente@piudali.com.co">
+                  <input id="email-login" name="email" type="email" class="validate" value="">
                   <label for="email">Email</label>
                 </div>
                 <div class="input-field">
-                  <input id="password-login" name="password" type="password" class="validate" value="excinober">
+                  <input id="password-login" name="password" type="password" class="validate" value="">
                   <label for="password">Contraseña</label>
                 </div>
                 <div class="col s12 center-align">

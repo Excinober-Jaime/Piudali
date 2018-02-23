@@ -63,7 +63,7 @@
 			<hr>		
 			<button type="button" idpdt="<?=$producto[0]["idproducto"]?>" class="btn btn-primary btn-lg btn-block agregarPdt">Añadir Producto</button>	
 			<hr>
-			<?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $producto[0]["tipo"] == 'NORMAL') { ?>
+			<?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $producto[0]["tipo"] == 'NORMAL') { /* ?>
 				
 
 				<div class="panel panel-default">
@@ -83,7 +83,7 @@
 				  </div>
 				</div>
 
-			<?php } ?>
+			<?php */} ?>
 			
 			<div class="col-xs-12 text-center" style="font-size:20px;">
 				<?php
