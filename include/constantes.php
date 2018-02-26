@@ -94,7 +94,9 @@ define("DIR_ADJUNTOS", "adjuntos/");
 define("DIR_IMG_SUCURSALES", "assets/img/sucursales/");
 
 /***POS**/
-define('URL_POS', 'pos');
+define('URL_POS', 'Redencion');
+define('URL_POS_CERRAR_SESION', 'Salir');
+
 
 /***ADMIN**/
 define("URL_ADMIN", "Admin");

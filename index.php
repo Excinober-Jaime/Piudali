@@ -5,6 +5,7 @@ session_start();
 require "controller.php";
 require "controllerClub.php";
 require "controllerTienda.php";
+require "controllerPOS.php";
 
 if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
@@ -677,6 +678,32 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 					header('Location: '.URL_SITIO.URL_CLUB);
 
 				}		
+
+				break;
+
+			case URL_POS:
+
+				$controllerPOS = new ControllerPOS();
+
+				if (isset($var2) && !empty($var2)) {
+
+					switch ($var2) {
+
+						case URL_POS_CERRAR_SESION:
+
+							$controllerPOS->cerrar_sesion();	
+
+							break;
+						
+						default:
+							# code...
+							break;
+					}
+
+				}else{
+
+					$controllerPOS->home();
+				}
 
 				break;
 			

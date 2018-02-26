@@ -27,6 +27,8 @@ require "model/ventasvirtualesclass.php";
 require "model/organizacionesclass.php";
 require "model/sucursalesclass.php";
 require "model/productosaliadosclass.php";
+require "model/vendedoresposclass.php";
+require "model/mailchimpclass.php";
 
 /** Require Includes **/
 require "include/constantes.php";
@@ -70,6 +72,7 @@ class Controller
 		$this->organizaciones = new Organizaciones();
 		$this->sucursales = new Sucursales();
 		$this->productos_aliados = new ProductosAliados();
+		$this->mailchimp = new Mailchimp();
 
 		if (isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR') {
 			
@@ -511,19 +514,14 @@ class Controller
 				$idusuario = $this->usuarios->crearUsuario(strtoupper($nombre), strtoupper($apellido), '', '0000-00-00', $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, strtoupper($direccion), 0, '', $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 			
 				if (!empty($idusuario)) {
+
+					//Suscribir en Mailchimp
+					$suscribir = $this->mailchimp->suscribir($email, strtoupper($nombre), strtoupper($apellido), $idusuario, '', '', $num_identificacion, strtoupper($direccion), $telefono_m, $segmento, 1, fecha_actual('date'), $idorganizacion);
+
 					//Enviar email Bienvenida
 					$idplantilla=2;
 					$plantilla = $this->usuarios->detallePlantilla($idplantilla);
 					$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
-
-					// Always set content-type when sending HTML email
-					/*$headers = "MIME-Version: 1.0"."\r\n";
-					$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
-
-					// More headers
-					$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
-
-					$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);*/
 
 					require_once 'include/PHPMailer-master/PHPMailerAutoload.php';
 
@@ -552,11 +550,8 @@ class Controller
 
 					} else {
 
-					    //echo 'Por favor revisa tu correo';
-					}
-
-
-					echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";
+						echo "<script> alert('Tu registro fue exitoso. Por favor ingresa con tus datos'); window.location='".URL_SITIO.URL_INGRESAR."';</script>";    
+					}					
 
 				}else{
 
@@ -590,20 +585,14 @@ class Controller
 				$idusuario = $this->usuarios->crearUsuario(strtoupper($nombre), strtoupper($apellido), '', '0000-00-00', $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, strtoupper($direccion), 0, '', $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 
 				if (!empty($idusuario)) {
+
+					//Suscribir en Mailchimp
+					$suscribir = $this->mailchimp->suscribir($email, strtoupper($nombre), strtoupper($apellido), $idusuario, '', '', $num_identificacion, strtoupper($direccion), $telefono_m, $segmento, 1, fecha_actual('date'), $idorganizacion);
 					
 					//Enviar email Bienvenida
 					$idplantilla=2;
 					$plantilla = $this->usuarios->detallePlantilla($idplantilla);
 					$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
-
-					// Always set content-type when sending HTML email
-					/*$headers = "MIME-Version: 1.0"."\r\n";
-					$headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
-
-					// More headers
-					$headers .= 'From: Piudali <'.$plantilla["email"].'>'."\r\n";
-
-					$mail = mail($email, $plantilla["asunto"], $mensaje, $headers);*/
 
 					require_once 'include/PHPMailer-master/PHPMailerAutoload.php';
 

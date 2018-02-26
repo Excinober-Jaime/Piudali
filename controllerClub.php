@@ -204,7 +204,7 @@ class ControllerClub
 
 		$ciudades = $this->usuarios->listarCiudades();
 
-		$entradas = $this->entradas->listarEntradas(array(1), 'LIMIT 3');
+		$entradas = $this->entradas->listarEntradas(array(1), 'LIMIT 4');
 
 		$productos_club = $this->productos->listarProductos(array('CLUB PIUDALI'), array(1));
 		$productos_aliados = $this->productos_aliados->listarProductos(array(1));

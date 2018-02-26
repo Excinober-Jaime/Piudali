@@ -112,7 +112,7 @@ $(document).ready(function(){
 
 			$(this).text("CARGANDO...");
 
-			if (segmento != 'Tienda Especializada' && segmento != 'Distribuidor Especializado') {
+			/*if (segmento != 'Tienda Especializada' && segmento != 'Distribuidor Especializado') {
 
 				//Registro en Mailchimp
 				$.ajax({
@@ -130,11 +130,11 @@ $(document).ready(function(){
 				  }
 				});
 
-			}
+			}*/
 
 			setTimeout(function(){
 				$("#formUsuarioJuridico").submit();
-			},4000);
+			},2000);
 		}
 	})
 
@@ -172,7 +172,7 @@ $(document).ready(function(){
 
 			$(this).text("CARGANDO...");
 
-			if (segmento != 'Tienda Especializada' && segmento != 'Distribuidor Especializado') {
+			/*if (segmento != 'Tienda Especializada' && segmento != 'Distribuidor Especializado') {
 
 				//Registro en Mailchimp
 				$.ajax({
@@ -189,11 +189,11 @@ $(document).ready(function(){
 						console.log(err);			        
 				  }
 				});
-			}
+			}*/
 
 			setTimeout(function(){
 				$("#formUsuarioNatural").submit();
-			},4000);
+			},2000);
 		}
 	})
 

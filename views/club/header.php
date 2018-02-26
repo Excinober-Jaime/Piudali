@@ -308,7 +308,7 @@
               <!--<li><a href="<?=URL_CLUB?>/#premios">PREMIOS</a></li>-->
               <li><a href="<?=URL_CLUB?>/#en-que-redimir">¿EN QUÉ REDIMIR MIS PUNTOS?</a></li>
               <li><a href="<?=URL_CLUB?>/#enterate">ENTÉRATE</a></li>  
-              <li><a href="<?=URL_CLUB.'/'.URL_CLUB_PAGINAS.'/cuida-tu-piel'?>">CUIDA TU PIEL</a></li>              
+              <!--<li><a href="<?=URL_CLUB.'/'.URL_CLUB_PAGINAS.'/cuida-tu-piel'?>">CUIDA TU PIEL</a></li>              -->
               <!--<li><a href="<?=URL_CLUB?>/#donde-comprar">¿DÓNDE REDIMIR?</a></li>-->
               <!--<li><a href="<?=URL_CLUB.'/'.URL_CLUB_PRODUCTOS?>">PRODUCTOS</a></li>-->
               <li><a href="<?=URL_CLUB?>/#preguntas-frecuentes">PREGUNTAS FRECUENTES</a></li>

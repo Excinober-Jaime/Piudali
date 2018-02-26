@@ -27,13 +27,12 @@
 				    <div class="card-content" style="height: 300px;overflow-y: auto;">
 				      <span class="card-title activator grey-text text-darken-4"><?=$entrada['titulo']?><!--<i class="material-icons right">more_vert</i>--></span>
 				      <p>
-				      	<?=substr($entrada['contenido'], 0, 250)?>...
+				      	<?=substr(strip_tags($entrada['contenido'], '<br>'), 0, 300)?>...
 				      </p>
 				    </div>
 				    <div class="card-action">
 		              <a href="<?=URL_CLUB.'/'.URL_CLUB_ENTRADAS.'/'.$entrada['url']?>" clas="activator">Continuar leyendo...</a>
-		            </div>
-				   
+		            </div>				   
 				 </div>
 			</div>
 
