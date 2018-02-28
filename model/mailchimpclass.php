@@ -6,9 +6,9 @@
 class Mailchimp
 {
 	
-	private $api_key = 'aab812d8fa237106ba4309564daf9c88-us16';
- 	private $list_id = 'b8ebc5f9f4';
- 	private $url = 'https://us16.api.mailchimp.com/3.0/lists/b8ebc5f9f4/members/';
+	public $api_key = 'aab812d8fa237106ba4309564daf9c88-us16';
+ 	public $list_id = 'b8ebc5f9f4';
+ 	public $url = 'https://us16.api.mailchimp.com/3.0/lists/b8ebc5f9f4/members/';
 
  	public function suscribir($email ='', $fname = '', $lname = '', $id = 0, $genero = '', $cumpleanos = '', $cedula = '', $direccion = '', $celular = '', $segmento = '', $estado = 1, $registro = '', $organizacion = 0, $ciudad = ''){
 
@@ -16,7 +16,9 @@ class Mailchimp
 
  			'email_address' => $email,
 		    'status'        => 'subscribed',
+
 		    'merge_fields'  => array(
+
 		      'FNAME'       => $fname,
 		      'LNAME'       => $lname,
 		      'ID'       	=> $id,
@@ -50,7 +52,7 @@ class Mailchimp
 		* ================
 		*/
 		curl_setopt($ch, CURLOPT_URL, $this->url);
-		curl_setopt($ch, CURLOPT_USERPWD, 'user:' . $this->api_key);
+		curl_setopt($ch, CURLOPT_USERPWD, 'user:'.$this->api_key);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);

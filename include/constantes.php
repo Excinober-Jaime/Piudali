@@ -96,6 +96,8 @@ define("DIR_IMG_SUCURSALES", "assets/img/sucursales/");
 /***POS**/
 define('URL_POS', 'Redencion');
 define('URL_POS_CERRAR_SESION', 'Salir');
+define('URL_POS_CONSULTA', 'Consulta');
+define('URL_POS_REDIMIR', 'Redimir');
 
 
 /***ADMIN**/

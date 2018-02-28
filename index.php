@@ -694,6 +694,18 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							$controllerPOS->cerrar_sesion();	
 
 							break;
+
+						case URL_POS_CONSULTA:
+							
+							$controllerPOS->consultar_cliente();
+
+							break;
+
+						case URL_POS_REDIMIR:
+							
+							$controllerPOS->redimir_puntos();
+
+							break;
 						
 						default:
 							# code...
