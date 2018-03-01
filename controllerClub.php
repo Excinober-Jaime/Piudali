@@ -508,41 +508,49 @@ class ControllerClub
 				}
 
 				//Enviar Email Orden
-				$this->ordenes->enviarEmailOrden($detalleOrden, $subtotalAntesIva, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $retencion, $iva, $pagoPuntos["valor_pago"], $flete, $total, $codigo_orden, $estado, $_SESSION['nombre'], $_SESSION['apellido'], $_SESSION['email']);				
+				$this->ordenes->enviarEmailOrden($detalleOrden, $subtotalAntesIva, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $retencion, $iva, $pagoPuntos["valor_pago"], $flete, $total, $codigo_orden, $estado, $_SESSION['nombre'], $_SESSION['apellido'], $_SESSION['email']);
 
-				/****PAGO CON PAYU****/
+				if ($total == 0) {
+					
+					include 'views/club/compra_gratuita.php';
 
-				//Variables Pago Payu
-
-				$referenceCode = $codigo_orden;
-				$description = "COMPRA PRODUCTOS PIUDALI";
-				$buyerEmail = $_SESSION["email"];
-				$amount = round($total);
-				$tax = round($iva);
-				if ($iva == 0) {
-					$taxReturnBase = 0;
 				}else{
-					$taxReturnBase = round($totalNetoAntesIva-$pagoPuntos["valor_pago"]);
-				}
 
-				if (isset($_SESSION["idorganizacion"]) && !empty($_SESSION["idorganizacion"])) {
+					/****PAGO CON PAYU****/
 
-					$organizacion = $this->usuarios->detalleOrganizacionUsuario($_SESSION["idorganizacion"]);
+					//Variables Pago Payu
 
-					if (count($organizacion)>0) {
-						$payerFullName = $organizacion["razon_social"];
+					$referenceCode = $codigo_orden;
+					$description = "COMPRA PRODUCTOS PIUDALI";
+					$buyerEmail = $_SESSION["email"];
+					$amount = round($total);
+					$tax = round($iva);
+					if ($iva == 0) {
+						$taxReturnBase = 0;
 					}else{
-						$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];	
+						$taxReturnBase = round($totalNetoAntesIva-$pagoPuntos["valor_pago"]);
 					}
-				}else{
-					$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];
+
+					if (isset($_SESSION["idorganizacion"]) && !empty($_SESSION["idorganizacion"])) {
+
+						$organizacion = $this->usuarios->detalleOrganizacionUsuario($_SESSION["idorganizacion"]);
+
+						if (count($organizacion)>0) {
+							$payerFullName = $organizacion["razon_social"];
+						}else{
+							$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];	
+						}
+					}else{
+						$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];
+					}
+
+					$extra1 = $_SESSION["idusuario"];
+					
+					$signature=md5(ApiKey."~".merchantId."~".$referenceCode."~".$amount."~".currency);
+
+					require "include/pago_payu.php";
+
 				}
-
-				$extra1 = $_SESSION["idusuario"];
-				
-				$signature=md5(ApiKey."~".merchantId."~".$referenceCode."~".$amount."~".currency);
-
-				require "include/pago_payu.php";
 
 				unset($_SESSION["idpdts"]);
 				unset($_SESSION["cantidadpdts"]);	

@@ -199,7 +199,7 @@
               }
             }
             ?>
-            <!--<li><a href="/blog">BLOG</a></li>-->
+            <li><a href="<?=URL_CLUB?>" target="_new">CLUB</a></li>
             <li><a href="<?=URL_CONTACTO?>">CONTÁCTO</a></li>
           </ul>          
         </div><!-- /.navbar-collapse -->

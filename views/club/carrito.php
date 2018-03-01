@@ -178,7 +178,7 @@
 
 					<?php } else { ?>
 
-						<?php if ($total>=1000) { ?>
+						<?php if (($total == 0) || ($total>=1000)) { ?>
 
 							<a href="<?=URL_CLUB.'/'.URL_CLUB_RESUMEN_COMPRA?>" class="btn-large green">ORDENAR YA!</a>
 

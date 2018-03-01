@@ -104,7 +104,7 @@
 				
 				<div class="col s12 right-align ">
 					
-					<?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR' && $total > 0) { ?>
+					<?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR' && ($total == 0 || $total>=1000)) { ?>
 						
 					<a href="<?=URL_CLUB.'/'.URL_CLUB_GENERAR_ORDEN?>" class="btn-large orange right">FINALIZAR COMPRA</a>
 

@@ -12,6 +12,8 @@
       <meta name="description" content="PIUDALÍ Amazonian Skincare ofrece una línea de bienestar y cuidado para la piel con ingredientes de alta calidad de origen 100% natural">
       <meta name="author" content="Link Grupo Marketing en colaboración de Excinober Benites e iMarketing21">
 
+      <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
+
       <base href="<?=URL_SITIO?>">
 
       <!--Import Google Icon Font-->
