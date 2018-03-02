@@ -123,7 +123,9 @@
 		    <li role="presentation"><a href="#uso" aria-controls="uso" role="tab" data-toggle="tab" class="texto-vinotinto">Ver Video</a></li>
 		    <?php
 		    } ?> 
-		    <li role="presentation"><a href="#mas_info" aria-controls="mas_info" role="tab" data-toggle="tab" class="texto-vinotinto">Ingredientes</a></li>
+		    <li role="presentation"><a href="#mas_info" aria-controls="mas_info" role="tab" data-toggle="tab" class="texto-vinotinto">
+		    	<?php ($producto[0]["tipo"] == 'PREMIO')? print('Más Información') : print('Ingredientes') ?>	
+		    </a></li>
 		  </ul>
 
 		  <!-- Tab panes -->

@@ -6,11 +6,11 @@
 			if (count($codigos)>0) {
 				foreach ($codigos as $key => $codigo) {
 			?>
-				<div class="" style="width: 1.5cm;margin-left: 0.5cm;float: left;padding: 0px;">
+				<div class="" style="width: 1.5cm;height:2.2cm !important;margin-left: 0.4cm;float: left;padding: 0px;">
 					<?php if ($codigo['qr']) { ?>
 						<img src="assets/img/codigosqrpuntos/<?=$codigo['codigo']?>.png" class="img-responsive">
 					<?php } ?>
-					<h4 class="text-center" style="color: #000;margin-top: 2px;margin-bottom: 0.5cm;font-size: 12px;"><?=$codigo['codigo']?></h4>
+					<h4 class="text-center" style="color: #000;margin-top: 1px;margin-bottom: 0.5cm;font-size: 11px;"><?=$codigo['codigo']?></h4>
 				</div>
 			<?php
 				}
