@@ -516,7 +516,7 @@ class Controller
 				if (!empty($idusuario)) {
 
 					//Suscribir en Mailchimp
-					$suscribir = $this->mailchimp->suscribir($email, strtoupper($nombre), strtoupper($apellido), $idusuario, '', '', $num_identificacion, strtoupper($direccion), $telefono_m, $segmento, 1, fecha_actual('date'), $idorganizacion);
+					$suscribir = $this->mailchimp->suscribir('b8ebc5f9f4', $email, strtoupper($nombre), strtoupper($apellido), $idusuario, '', '', $num_identificacion, strtoupper($direccion), $telefono_m, $segmento, 1, fecha_actual('date'), $idorganizacion, 'DISTRIBUIDOR DIRECTO');
 
 					//Enviar email Bienvenida
 					$idplantilla=2;
@@ -587,7 +587,7 @@ class Controller
 				if (!empty($idusuario)) {
 
 					//Suscribir en Mailchimp
-					$suscribir = $this->mailchimp->suscribir($email, strtoupper($nombre), strtoupper($apellido), $idusuario, '', '', $num_identificacion, strtoupper($direccion), $telefono_m, $segmento, 1, fecha_actual('date'), $idorganizacion);
+					$suscribir = $this->mailchimp->suscribir('b8ebc5f9f4',$email, strtoupper($nombre), strtoupper($apellido), $idusuario, '', '', $num_identificacion, strtoupper($direccion), $telefono_m, $segmento, 1, fecha_actual('date'), $idorganizacion, 'DISTRIBUIDOR DIRECTO');
 					
 					//Enviar email Bienvenida
 					$idplantilla=2;
@@ -3119,7 +3119,50 @@ class Controller
 
 				//Crear usuario
 			
-				$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, md5($password), $num_identificacion, 0, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, $idorganizacion);
+				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, md5($password), $num_identificacion, 0, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, $idorganizacion);
+
+				if ($idusuario) {
+
+					//Enviar email Bienvenida
+					$idplantilla=2;
+					$plantilla = $this->usuarios->detallePlantilla($idplantilla);
+					$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
+
+					require_once 'include/PHPMailer-master/PHPMailerAutoload.php';
+
+					
+					$mail = new PHPMailer;					
+					$mail->setFrom($plantilla["email"], "Piudali");					
+					$mail->addAddress($email, $nombre." ".$apellido);				
+					$mail->Subject = $plantilla["asunto"];					
+					$mail->msgHTML($mensaje);					
+					if (!$mail->send()) {				
+
+					} else {					
+					}			
+
+					switch ($tipo) {
+
+						case 'DISTRIBUIDOR DIRECTO':
+
+							//Suscribir en Mailchimp						
+							$suscribir = $this->mailchimp->suscribir('b8ebc5f9f4', $email, strtoupper($nombre), strtoupper($apellido), $idusuario, '', '', $num_identificacion, strtoupper($direccion), $telefono_m, $segmento, 1, fecha_actual('date'), $idorganizacion, 'DISTRIBUIDOR DIRECTO');
+						
+
+							break;
+
+						case 'REPRESENTANTE COMERCIAL':
+							
+							//Suscribir en Mailchimp						
+							$suscribir = $this->mailchimp->suscribir('ef24b7641d', $email, strtoupper($nombre), strtoupper($apellido), $idusuario, '', '', $num_identificacion, strtoupper($direccion), $telefono_m, $segmento, 1, fecha_actual('date'), $idorganizacion, 'REPRESENTANTE COMERCIAL');
+							break;
+						
+						default:
+							# code...
+							break;
+					}					
+					
+				}
 			}
 		}
 
@@ -3176,7 +3219,49 @@ class Controller
 
 			}else{
 			
-				$this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, md5($password), $num_identificacion, 0, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, 0);
+				$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, md5($password), $num_identificacion, 0, 0, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, "", $estado, fecha_actual('datetime'), 0, $lider, $cod_lider, 0, $ciudad, 0);
+
+				if ($idusuario) {
+
+					//Enviar email Bienvenida
+					$idplantilla=2;
+					$plantilla = $this->usuarios->detallePlantilla($idplantilla);
+					$mensaje = shorcodes_registro_usuario($nombre." ".$apellido,$email,$password,$plantilla["mensaje"]);
+
+					require_once 'include/PHPMailer-master/PHPMailerAutoload.php';
+
+					
+					$mail = new PHPMailer;					
+					$mail->setFrom($plantilla["email"], "Piudali");					
+					$mail->addAddress($email, $nombre." ".$apellido);				
+					$mail->Subject = $plantilla["asunto"];					
+					$mail->msgHTML($mensaje);					
+					if (!$mail->send()) {				
+
+					} else {					
+					}			
+
+					switch ($tipo) {
+
+						case 'DISTRIBUIDOR DIRECTO':
+
+							//Suscribir en Mailchimp						
+							$suscribir = $this->mailchimp->suscribir('b8ebc5f9f4', $email, strtoupper($nombre), strtoupper($apellido), $idusuario, '', '', $num_identificacion, strtoupper($direccion), $telefono_m, $segmento, 1, fecha_actual('date'), $idorganizacion, 'DISTRIBUIDOR DIRECTO');
+						
+
+							break;
+
+						case 'REPRESENTANTE COMERCIAL':
+							
+							//Suscribir en Mailchimp						
+							$suscribir = $this->mailchimp->suscribir('ef24b7641d', $email, strtoupper($nombre), strtoupper($apellido), $idusuario, '', '', $num_identificacion, strtoupper($direccion), $telefono_m, $segmento, 1, fecha_actual('date'), $idorganizacion, 'REPRESENTANTE COMERCIAL');
+							break;
+						
+						default:
+							# code...
+							break;
+					}					
+				}
 			}
 		}
 

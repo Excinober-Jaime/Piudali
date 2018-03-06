@@ -7,34 +7,65 @@ class Mailchimp
 {
 	
 	public $api_key = 'aab812d8fa237106ba4309564daf9c88-us16';
- 	public $list_id = 'b8ebc5f9f4';
- 	public $url = 'https://us16.api.mailchimp.com/3.0/lists/b8ebc5f9f4/members/';
+ 	
 
- 	public function suscribir($email ='', $fname = '', $lname = '', $id = 0, $genero = '', $cumpleanos = '', $cedula = '', $direccion = '', $celular = '', $segmento = '', $estado = 1, $registro = '', $organizacion = 0, $ciudad = ''){
+ 	public function suscribir($list_id = '', $email ='', $fname = '', $lname = '', $id = 0, $genero = '', $cumpleanos = '', $cedula = '', $direccion = '', $celular = '', $segmento = '', $estado = 1, $registro = '', $organizacion = 0, $ciudad = '', $tipo = 'DISTRIBUIDOR DIRECTO'){
 
- 		$data = array(
+ 		switch ($tipo) {
 
- 			'email_address' => $email,
-		    'status'        => 'subscribed',
+ 			case 'DISTRIBUIDOR DIRECTO':
 
-		    'merge_fields'  => array(
+ 				$data = array(
 
-		      'FNAME'       => $fname,
-		      'LNAME'       => $lname,
-		      'ID'       	=> $id,
-		      'GÉNERO'      => $genero,
-		      'CUMPLEAÑOS'  => $cumpleanos,
-		      'CÉDULA'      => $cedula,
-		      'DIRECCIÓN'   => $direccion,
-		      'CELULAR'     => $celular,
-		      'SEGMENTO'    => $segmento,
-		      'ESTADO'     	=> $estado,
-		      'REGISTRO'    => $registro,
-		      'ORGANIZACION'=> $organizacion,
-		      'CIUDAD'		=> $ciudad
+		 			'email_address' => $email,
+				    'status'        => 'subscribed',
 
-		    )
- 		);
+				    'merge_fields'  => array(
+
+				      'FNAME'       => $fname,
+				      'LNAME'       => $lname,
+				      'ID'       	=> $id,
+				      'GÉNERO'      => $genero,
+				      'CUMPLEAÑOS'  => $cumpleanos,
+				      'CÉDULA'      => $cedula,
+				      'DIRECCIÓN'   => $direccion,
+				      'CELULAR'     => $celular,
+				      'SEGMENTO'    => $segmento,
+				      'ESTADO'     	=> $estado,
+				      'REGISTRO'    => $registro,
+				      'ORGANIZACION'=> $organizacion,
+				      'CIUDAD'		=> $ciudad
+
+				    )
+		 		);
+ 				break;
+
+ 			case 'REPRESENTANTE COMERCIAL':
+ 				
+ 				$data = array(
+
+		 			'email_address' => $email,
+				    'status'        => 'subscribed',
+
+				    'merge_fields'  => array(
+
+				      'FNAME'       => $fname,
+				      'LNAME'       => $lname,
+				      'ID'       	=> $id,				      
+				      'SEGMENTO'    => $segmento,				      
+				      'REGISTRO'    => $registro,				      
+				      'CIUDAD'		=> $ciudad
+
+				    )
+		 		);
+
+ 				break;
+ 			
+ 			default:
+ 				
+ 				$data = array();
+ 				break;
+ 		}
 
  		// Encode the data
   		$encoded_pfb_data = json_encode($data);
@@ -51,7 +82,7 @@ class Mailchimp
 		* _SSL_VERIFYPEER should probably be set but I didn't do it here
 		* ================
 		*/
-		curl_setopt($ch, CURLOPT_URL, $this->url);
+		curl_setopt($ch, CURLOPT_URL, 'https://us16.api.mailchimp.com/3.0/lists/'.$list_id.'/members/');
 		curl_setopt($ch, CURLOPT_USERPWD, 'user:'.$this->api_key);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

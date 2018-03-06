@@ -62,7 +62,11 @@ class Entradas extends Database
 			$estados_select = "";
 		}
 		
-		$query = $this->consulta("SELECT `identrada`, `titulo`, `contenido`, `url`, `tipo`, `ruta`, `estado` FROM `entradas_club` WHERE $estados_select $limit");
+		$query = $this->consulta("SELECT `identrada`, `titulo`, `contenido`, `url`, `tipo`, `ruta`, `estado` 
+								FROM `entradas_club` 
+								WHERE $estados_select 
+								ORDER BY `identrada` DESC
+								$limit");
 		
 		return $query;
 	}
