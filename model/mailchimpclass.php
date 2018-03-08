@@ -6,7 +6,7 @@
 class Mailchimp
 {
 	
-	public $api_key = 'aab812d8fa237106ba4309564daf9c88-us16';
+	public $api_key = '11da7b41f5afb512170d3cb4d7986132-us16';
  	
 
  	public function suscribir($list_id = '', $email ='', $fname = '', $lname = '', $id = 0, $genero = '', $cumpleanos = '', $cedula = '', $direccion = '', $celular = '', $segmento = '', $estado = 1, $registro = '', $organizacion = 0, $ciudad = '', $tipo = 'DISTRIBUIDOR DIRECTO'){

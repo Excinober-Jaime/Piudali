@@ -67,7 +67,7 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Segmento</label>
-						<select name="segmento" class="form-control" required>
+						<select name="segmento" class="form-control">
 							<option value="">Seleccione</option>							
 								
 								<optgroup label="Perfiles Antiguos">
@@ -150,23 +150,23 @@
 				
 					<div class="form-group">
 						<label for="exampleInputEmail1">Razón Social</label>
-						<input type="text" class="form-control" name="razon_social" id="razon_social" value="" required>
+						<input type="text" class="form-control" name="razon_social" id="razon_social" value="">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Nit</label>
-						<input type="text" class="form-control" name="nit" id="nit" value="" required>
+						<input type="text" class="form-control" name="nit" id="nit" value="">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Teléfono</label>
-						<input type="text" class="form-control" name="telefono_organizacion" id="telefono_organizacion" value="" required>
+						<input type="text" class="form-control" name="telefono_organizacion" id="telefono_organizacion" value="">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Dirección</label>
-						<input type="text" class="form-control" name="direccion_organizacion" id="direccion_organizacion" value="" required>
+						<input type="text" class="form-control" name="direccion_organizacion" id="direccion_organizacion" value="">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Ciudad</label>
-						<select name="ciudad_organizacion" class="form-control" required>
+						<select name="ciudad_organizacion" class="form-control">
 							<option value="">-Seleccione-</option>
 							<?php
 							foreach ($ciudades as $key => $ciudad) {

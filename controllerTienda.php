@@ -158,9 +158,9 @@ class ControllerTienda
 
 		$this->ingredientes = array(
 
-			'chontaduro' => array ('ingredientes/chontaduro.jpg', 'Chontaduro' ,'El aceite extraído de este fruto tiene poder de penetración excepcional, por tanto, su acción antioxidante, alcanza las mitocondrias produciendo un efecto de antienvejecimiento, regenerativo y nutriente en las capas más profundas de la piel.'),
+			'chontaduro' => array ('ingredientes/chontaduro.jpg', 'Chontaduro' ,'Fruto rico en carotenos, nutrientes, ácidos grasos esenciales y vitaminas A, C y D. Los carotenoides, por su función antioxidante, contrarrestan los efectos dañinos de los radicales libre y ayudan a mantener la juventud de la piel.'),
 
-			'cafe' => array ('ingredientes/cafe.jpg', 'Café' ,'El aceite de café se obtiene por la expresión de los granos.  Por su alto contenido de acidos grasos tiene propiedades de sintesis de cerámidas, hiratación, keratinización de la piel. Por su alto     contenido de terpenos tiene efectos lipoliticos, reafirmantes, regenerantes.'),
+			'cafe' => array ('ingredientes/cafe.jpg', 'Aceite de Café Arábigo' ,'El aceite de café es antioxidante, por lo cual protege la piel y ayuda a tratar afecciones como el acné. Mejorar la circulación sanguínea'),
 
 			'abejas' => array ('ingredientes/abejas.jpg', 'Cera de Abejas' ,'Una cera natural producida por las abejas, con propiedades emolientes, calmantes y suavizantes.  La cera proporciona una barrera natural contra el frío, el viento y la pérdida de     humedad. También sirve como un emulsionante y para ayudar a mantener la consistencia del producto. Provee un agradable olor a miel.'),
 
@@ -182,23 +182,23 @@ class ControllerTienda
 			'babassu' => array ('ingredientes/babassu.jpg', 'Babassú' ,'Aceite comestible de la semilla de babassú es muy apreciado por sus cualidades antioxidantes y antirradicales libres ya que contiene vitamina E natural y fitosteroles. Combate la inflamación  efectivamente y tradicionalmente se ha usado por los nativos para el tratamiento de excemas, quemaduras y cortadas. Los estudios informan que su uso tópico es muy seguro.'),
 			'balu' => array ('ingredientes/balu.jpg', 'Balú' ,'La comunidad Ingana localizada en el Putumayo considera el árbol de balú como un milagro, ya que salvo a la comunidad de la extinción, por su gran contenido de aminoácidos afines a la piel y  el cabello, Formador de film, Humectante. Estimula ligeramente,  la proliferación de los fibroblastos'),
 
-			'buriti' => array ('ingredientes/buriti.jpg', 'Buriti' ,'Llamado el " árbol de la vida" por las tribus amazónicas, la palma de Buriti alcanza niveles altísimos y produce una fruta amarilla única por su diseño estriado. El aceite de esta fruta tropical es rica en ácidos grasos, carotenoides y vitaminas A y C, que le confieren sus propiedades: antioxidante, anti-inflamatoria, emoliente y suavizante.'),
+			'buriti' => array ('ingredientes/buriti.jpg', 'Aceite de Buriti' ,'Rico en carotenoides, tocoferoles, betacarotenos, ácidos grasos esenciales, vitamina A y C. Tiene propiedades antioxidante, antiinflamatoria, emoliente y suavizante. Nutre, repara y protege la piel.'),
 
-			'cacao' => array ('ingredientes/cacao.jpg', 'Cacao' ,'Manteca extraída de granos de cacao, con excelentes propiedades emolientes. Se utiliza para suavizar y proteger la piel y la mucosa de los labios. Es una excelente fuente de antioxidantes naturales los cuales combaten los radicales libres y ayudan a proteger la piel de los inevitables signos del envejecimiento y del estress ambiental.'),
+			'cacao' => array ('ingredientes/cacao.jpg', 'Mantequilla de Cacao' ,'Es rica en ácidos grasos esenciales, vitamina E y antioxidantes. Tiene una alta capacidad de hidratar la piel y los labios, repara y protege del sol y del medio ambiente. Ideal para pieles muy secas y agrietadas.'),
 
-			'calendula' => array ('ingredientes/calendula.jpg', 'Caléndula' ,'La Caléndula puede reducir la aparición de enrojecimiento e irritación por su efecto calmante y refrescante de la piel. Favorece la curación de las heridas y posee propiedades anti-inflamatorias    y antibacterianas. Los principales componentes de la caléndula incluyen carotenoides y flavonoides  (triter-penoides / ácido oleanólico).'),
+			'calendula' => array ('ingredientes/calendula.jpg', 'Aceite de Flores de Caléndula' ,'Tiene propiedades antiinflamatorias, antibacterianas, calmantes y antioxidantes.  Ayuda a aliviar las afecciones cutáneas como acné, erupciones, eczema, y a suavizar la piel.'),
 
 			'candelilla' => array ('ingredientes/candelilla.jpg', 'Candelilla' ,'La cera de candelilla es una cera vegetal relativamente dura, obtenida de la capa protectora de arbustos de Candelilla. Su color es por lo general amarillo claro se usa como protectora y emoliente y también por su capacidad de dar consistencia y  formar barrera protectora.'),
 
 			'copoazu' => array ('ingredientes/copoazu.jpg', 'Cupuasú ' ,'La manteca de Cupuaçu es un excelente emoliente con una alta capacidad de retención de agua. Esta mantequilla de base vegetal es mucho más eficaz que los emolientes de origen animal        como la lanolina. De hecho, tiene la capacidad de retener 100 veces más humedad que la lanolina para una hidratación de mayor duración.'),
 
-			'durazno' => array ('ingredientes/durazno.jpg', 'Durazno' ,'La nuez molida es un exfoliante o abrasivo de origen natural, adecuado para productos de cuidado personal encaminados a eliminar las células superficiales de la piel y eliminar asperezas.'),
+			'durazno' => array ('ingredientes/durazno.jpg', 'Nuez de Durazno' ,'La semilla o nuez del durazno molida es un exfoliante de origen natural, ideal para eliminar la grasa y las células muertas de la superficie de la piel. Ayuda a eliminar impurezas y asperezas.'),
 
 			'girasol' => array ('ingredientes/girasol.jpg', 'Aceite de Girasol' ,'El aceite no volátil obtenido por expresión de las  semillas de girasol es un excelente emoliente. Rico en vitamina E nutre y ayuda a la piel a retener la humedad.'),
 
 			'guayaba' => array ('ingredientes/guayaba.jpg', 'Guayaba' ,'Provienen de America tropical, su contenido de vitaminac C, vitamina B y polifenoles lo hace excelente para productos antiedad.'),
 
-			'jojoba' => array ('ingredientes/jojoba.jpg', 'Jojoba' ,'Derivado del aceite de jojoba, conservando las características de humectación, suavidad en la piel, reduce líneas suaves del rostro.'),
+			'jojoba' => array ('ingredientes/jojoba.jpg', 'Aceite de Jojoba' ,'Es el aceite vegetal más extraordinario y completo que se conoce porque no se oxida. Ideal para todo tipo de piel por su propiedad protectora, reparadora y antiinflamatoria. Hidrata y suaviza.'),
 
 			'karite' => array ('ingredientes/karite.jpg', 'Karité' ,'La manteca de karité es un humectante natural intenso, muy apreciado por sus propiedades emolientes, cicatrizantes y protectoras de la piel y el cabello. La mantequilla de Karité tiene un alto Factor Natural  de Humectación, porque es rica en ácidos grasos y ácidos grasos esenciales y vitamina E que ayudan a restaurar el contenido de         lípidos de la piel y la protegen del daño de los radicales libres.'),
 
@@ -206,17 +206,17 @@ class ControllerTienda
 
 			'macadamia' => array ('ingredientes/macadamia.jpg', 'Macadamia' ,'  El aceite de macadamia es muy similar al propio aceite natural de la piel (sebo). Esto permite biocompatibilidad de aceite de nuez de macadamia se absorbe con eficacia, lo que permite la piel recibir rápidamente sus efectos de suavizado y acondicionamiento. El aceite también tiene un alto nivel de ácido palmitoleico, un antioxidante natural que ayuda a la piel a combatir los radicales libres que pueden causar daño oxidativo a las células.'),
 
-			'mango' => array ('ingredientes/mango.jpg', 'Mango' ,'La mantequilla de mango se obtiene de la almendra de la semilla de fruta de mango y es una buena fuente de ácidos grasos esenciales (Oleico). Tiene propiedades hidratantes, nutritivas y de lubricación beneficioso para el cuidado de la piel y el cabello.'),
+			'mango' => array ('ingredientes/mango.jpg', 'Mantequilla de Mango' ,'Rica en antioxidantes. Tiene propiedades hidratantes, emolientes, favorece la cicatrización de las heridas y la regeneración de la piel. Protege la piel de los rayos ultravioletas y suaviza.'),
 
 			'manzanilla' => array ('ingredientes/manzanilla.jpg', 'Extracto de Manzanilla' ,'Derivado de las flores de la manzanilla es conocido por sus propiedades suavizantes, cicatrizantes, calmantes, anti-inflamatorias, protectoras, anti-irritantes y antimicrobianas.'),
 
-			'maracuya' => array ('ingredientes/maracuya.png', 'Maracuyá' ,'El aceite de las semillas de maracuyá contiene altos niveles de ácido linoléico y ácidos grasos Omega 6, es de fácil absorción por la piel y la mantiene suave y flexible. El aceite también ha demostrado tener propiedades hidratantes, antioxidantes, antiinflamatorias, antipruriginosas y astringentes.'),
+			'maracuya' => array ('ingredientes/maracuya.png', 'Aceite de semillas de Maracuyá' ,'Es rico en antioxidantes, ácido linoléico y ácidos grasos Omega 6. Tiene propiedades antiinflamatoria y astringente. Ideal para piel grasa. Nutre, hidrata y repara la piel.'),
 
 			'name' => array ('ingredientes/name.jpg', 'Ñame' ,'El extracto de las raíces de Dioscorea villosa (ñame salvaje) contiene como activos saponinas (Dioscin principalmente), fitoesteroles y taninos. La Dioscin tiene propiedades anti-inflamatorias.
 
 				Por las propiedades antimicrobianas y antibacterianas de las saponinas se utiliza en la protección de la piel y por su contenido en fitosteroles base para la síntesis de hormonas femeninas se utiliza como antiedad en pieles prematuramente envejecidas.'),
 
-			'nogal' => array ('ingredientes/nogal.jpg', 'Nogal' ,'La cáscara de nuez molida es un exfoliante o abrasivo de origen natural, adecuado para productos de cuidado personal encaminados a eliminar las células superficiales de la piel y eliminar asperezas.'),
+			'nogal' => array ('ingredientes/nogal.jpg', 'Polvo de nuez de nogal' ,'La semilla de nuez molida es un exfoliante de origen natural, ideal para eliminar las células muertas de la piel. Ayuda a eliminar impurezas y asperezas.'),
 
 			'ricino' => array ('ingredientes/ricino.jpg', 'Ricino' ,'Un aceite extraido de la semilla de ricino o higuerilla por expresión en frío.	El aceite de ricino se compone principalmente de ácidos grasos y de él se han elaborado muchos derivados útiles en cosmética como lo son los ricinoleatos. Este aceite altamente emoliente confiere brillo y suavidad a los labios y retiene la humedad.'),
 
@@ -237,9 +237,7 @@ class ControllerTienda
 				 El extracto ayuda a mejorar el tono de la piel, le da claridad y la acondiciona.
 				También se ha usado para reducir los signos de envejecimiento de la piel porque aumenta la producción de colágeno.'),
 
-			'trigo' => array ('ingredientes/trigo.jpg', 'Trigo' ,' El aceite de germen de trigo tiene altas concentraciones de vitamina E natural, minerales, vitaminas, proteinas y ácidos grasos esenciales. Protege la piel de las    irritaciones, y promueve la formación de piel más joven debido a las fitoestimulinas que contiene. El poder antioxidante de la vitamina E combate los radicales libres y sirve como un agente anti-  envejecimiento.
-
- 				Su principal uso es para combatir la resequedad en la piel, protección de las quemaduras solares y manejo de piel prematuramente envejecida.'),
+			'trigo' => array ('ingredientes/trigo.jpg', 'Aceite de Germen de Trigo' ,'Rico en vitamina E natural, minerales, proteínas y ácidos grasos esenciales. Nutre, repara, protege la piel. Promueve la formación de piel más joven debido a sus fitoestimulinas'),
 
 			'uva' => array ('ingredientes/uva.jpg', 'Uva' ,'Este aceite emoliente tiene un alto contenido de ácidos grasos (ácido linoléico) y antioxidantes. La aplicación tópica de extractode semillas de uva (que contiene proantocianidina) GSPE ) se ha  demostrado que es beneficioso para la cicatrización de heridas y desinfección de las mismas.
 

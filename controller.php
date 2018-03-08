@@ -3136,9 +3136,11 @@ class Controller
 					$mail->addAddress($email, $nombre." ".$apellido);				
 					$mail->Subject = $plantilla["asunto"];					
 					$mail->msgHTML($mensaje);					
-					if (!$mail->send()) {				
-
-					} else {					
+					
+					if (!$mail->send()) {
+						//echo 'correo bienvenida NO';
+					} else {
+						//echo 'correo bienvenida OK';
 					}			
 
 					switch ($tipo) {
@@ -3160,7 +3162,7 @@ class Controller
 						default:
 							# code...
 							break;
-					}					
+					}
 					
 				}
 			}
