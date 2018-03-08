@@ -490,3 +490,25 @@ width: 50%;
 	padding: 10px 0;
 	margin: 0; 
 }
+
+.cupon{
+	border: 1px #6d1e3f dashed;
+	padding: 5px;
+	border-radius: 20px;
+	width: 100%;
+	margin: 15px 0; 
+	color:#6d1e3f;
+}
+
+
+
+.categoria-img{
+	width: 55%;
+}
+
+	@media (max-width: 600px) {
+
+		.categoria-img{
+			width: 95%;
+			}
+		}
