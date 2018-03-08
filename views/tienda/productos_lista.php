@@ -1,7 +1,9 @@
 <?php include 'header.php'; ?>
+<img src="assets/tienda/img/campana-mujer.png" style="width: 100%; display: block;">
 <div class="divider"></div>
 <div class="section" id="productos">
-	<h3 class="center-align">PRODUCTOS</h3>
+
+	<h4 class="center-align" style="color: #2b8e3c; ">Selecciona el producto de tu preferencia</h4>
 	<div class="row">
 	<?php
 

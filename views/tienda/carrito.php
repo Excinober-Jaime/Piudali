@@ -70,58 +70,21 @@
 	if ($subtotalAntesIva <= 200000) {
 	?>
 
-	<div class="divider"></div>
-    <div class="row valign-wrapper">
-    	<div class="col s12 m5"> 
-    		<p class="flow-text center-align">
-		      	<?php 
-		      	switch ($subtotalAntesIva) {
-
-		      		case $subtotalAntesIva <= 100000:
-
-		      			echo $_SESSION['nombre'].', recuerda que si tu compra es mayor a $100.000 el envío te saldrá <b>GRATIS!</b>. Mira estos productos que puedes agregar a tu pedido.';
-		      			break;
-
-		      		case $subtotalAntesIva > 100000 && $subtotalAntesIva <= 200000:
-
-		      			echo $_SESSION['nombre'].', enviaremos tu pedido sin costo de envío :) además, puedes obtener un <b>10% de descuento</b> por compras mayores a $200.000. <br><br>Éstos productos se complementan perfecto con tu pedido, agrega algunos y obtén el descuento!';
-		      			break;
-		      		
-		      		default:
-		      			# code...
-		      			break;
-		      	}
-		      	?>
-		    </p>
-    	</div>
-    	<div class="col s12 m7">
-			<div class="carousel center-align">
-				<?php 
-				foreach ($productos as $key => $pdt) {
-
-					$nombre_es = explode('-', $pdt['nombre']);
-					$nombre_es = $nombre_es[1];
-				?>
-					<a class="carousel-item" href="<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$pdt['url']?>">
-						<img src="assets/tienda/img/<?=$this->img_pdt_png($pdt['codigo'])?>" style='max-height: 200px;width: auto;'>
-						<h6 class="center-align" style="color: #000;"><?=$nombre_es?></h6>
-						<span style="color: #6D1E3F;">VER</span>
-					</a>
-				<?php
-				}
-				?>
-			</div>
-		</div>
-	</div>
+	
 	<?php
 	}
 	?>
 	<div class="divider"></div><br>
 	<div class="row">
 		<div class="col s12 m7">
+
+		
+
+
+
 		<?php  if (isset($_SESSION["idusuario"])) { ?>
-			<div class="card-panel">
-				<h4>DIRECCIÓN DE ENVÍO</h4>			
+			<div>
+				<h4 style="color: #6d1e3f; font-size: 1.9em">DIRECCIÓN DE ENVÍO</h4>			
 	          	<span class="black-text">				 	
 			 		Dirección: <?=$_SESSION["direccion"]?><br>
 			 		Ciudad: <?=$_SESSION["ciudad"]?><br>
@@ -133,9 +96,61 @@
 	          	</span>
 	        </div>
 	    <?php } else { ?>
+	    	<center>Para continuar con tu compra, <a class="open-iniciar" return="<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>" style="cursor: pointer;">Iniciar sesión</a> o ingresa tus datos.</center>
+	    	<div class="row">
+		        <form class="" method="post">
+            <div class="container">
+              <div class="row">
+              <div class="input-field col s12 m6">
+                <input id="num_identificacion" name="num_identificacion" type="text" class="validate" required="required">
+                <label for="num_identificacion">Número de identificación</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="nombre" name="nombre" type="text" class="validate" required="required">
+                <label for="nombre">Nombre</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="apellido" name="apellido" type="text" class="validate" required="required">
+                <label for="apellido">Apellido</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="email" name="email" type="email" class="validate" required="required">
+                <label for="email">Email</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <select class="" id="ciudad" name="ciudad" required>        
+                  <option>Seleccione</option>
+                  <?php 
+                  foreach ($ciudades as $key => $ciudad) {
+                    ?>
+                    <option value="<?=$ciudad["idciudad"]?>"><?=$ciudad["ciudad"]?></option>
+                    <?php
+                  }
+                  ?>
+                </select>
+                <label for="ciudad">Ciudad</label>
+              </div>
+              <!--<div class="input-field col s12 m6">
+                <input id="telefono" name="telefono" type="text" class="validate" required="required">
+                <label for="telefono">Teléfono</label>
+              </div>-->
+              <div class="input-field col s12 m6">
+                <input id="password" name="password" type="password" class="validate" required="required">
+                <label for="password">Contraseña</label>
+              </div>
+              <div class="col s12">
+                <button type="submit" name="registrarUsuario" class="waves-effect waves-light green darken-1 btn-large">CONTINUAR</button><br><br>
+                <a class="closeRegistroOpenLog" style="cursor: pointer;">¿Ya tienes una cuenta?</a>
+              </div>
+              </div>
+            </div>
+          </form>
+		      </div>
+		<!--
 	    	<h5>Por favor ingresa o registrate para cargar tu dirección</h5>
 	    	<a class="open-iniciar btn orange" return="<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>">Iniciar sesión</a>
-	    	<a class="open-registro btn green">Regístrarse</a>
+	    	<a class="open-registro btn green">Regístrarse</a>-->
+	 
 	    <?php } ?>
 		</div>
 		<div class="col s12 m5" style="background-color: #f2f2f2; border-radius: 10px;padding: 1rem;">
@@ -172,8 +187,8 @@
 				<div class="col s6 m8 right-align">Costo de Envío</div>
 				<div class="col s6 m4 right-align"><?=convertir_pesos($flete)?></div>
 			
-				<div class="col s6 m8 right-align">TOTAL A PAGAR</div>
-				<div class="col s6 m4 right-align"><?=convertir_pesos($total)?></div>
+				<div class="col s6 m8 right-align"><b>TOTAL A PAGAR</b></div>
+				<div class="col s6 m4 right-align"><b><?=convertir_pesos($total)?></b></div>
 			</div>
 			<div class="divider"></div>
 			<div class="row" style="margin-top: 1rem;">
@@ -200,6 +215,58 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="divider"></div>
+    <div class="row valign-wrapper">
+    	
+    	<div class="col s12 m7">
+    		<h3 class="center-align" style="margin-bottom: 0; font-size: 1.9em; color: #009330">MÁS PRODUCTOS DE LA LÍNEA FACIAL</h3>
+				<p class="center-align">Agraga el producto que más se adapte a tu necesidad.</p>
+				
+			<div class="carousel center-align">
+
+				<?php 
+				foreach ($productos as $key => $pdt) {
+
+					$nombre_es = explode('-', $pdt['nombre']);
+					$nombre_es = $nombre_es[1];
+				?>
+					<a class="carousel-item" href="<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$pdt['url']?>">
+						<img src="assets/tienda/img/<?=$this->img_pdt_png($pdt['codigo'])?>" style='max-height: 200px;width: auto;'>
+						<h6 class="center-align" style="color: #000;"><?=$nombre_es?></h6>
+						<span style="color: #6D1E3F;">VER</span>
+					</a>
+				<?php
+				}
+				?>
+			</div>
+		</div>
+		<div class="col s12 m5"> 
+    		<p class="flow-text center-align">
+		      	<?php 
+		      	switch ($subtotalAntesIva) {
+
+		      		case $subtotalAntesIva <= 100000:
+
+		      			echo $_SESSION['nombre'].'Si tu compra es igual o mayor a $100.000 el envío te saldrá <b>GRATIS!</b>.';
+		      			break;
+
+		      		case $subtotalAntesIva > 100000 && $subtotalAntesIva <= 200000:
+
+		      			echo $_SESSION['nombre'].'Si tu compra es igual o mayor a $100.000 el envío te saldrá <b>GRATIS!</b>.';
+		      			break;
+		      		
+		      		default:
+		      			# code...
+		      			break;
+		      	}
+		      	?>
+		    </p>
+		    <center>
+					<span><h6>Envío a toda Colombia, Todos los medios de pago</h6></span>          
+	        		<img src="http://localhost/piudali/www/assets/img/medios-de-pago.png" class="responsive-img">
+        		</center>
+    	</div>
 	</div>
 </div>
 <?php include 'footer.php'; ?>
