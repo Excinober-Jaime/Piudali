@@ -12,6 +12,8 @@
       <meta name="description" content="<?=strip_tags($this->promesa_pdt)?>">
       <meta name="author" content="Link Grupo Marketing en colaboración de Excinober Benites e iMarketing21">
 
+      <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
+
       <!--Etiquetas OpenGraph-->
       <meta property="og:url" content="<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$this->url_pdt?>"/>
       <meta property="og:type" content="product"/>

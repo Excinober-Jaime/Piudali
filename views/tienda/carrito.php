@@ -197,13 +197,9 @@
 				</div>
 				<div class="col s5 right-align ">
 					
-					<?php if (!isset($_SESSION['idusuario'])) { ?>
-						
-					<a class="btn-large open-iniciar green" return="<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>">ORDENAR YA!</a>
-
-					<?php } else { ?>
-
-						<?php if ($total>0) { ?>
+					<?php if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"]) && $_SESSION["tipo"]== 'CONSUMIDOR')  { ?>
+					
+					<?php if ($total>0) { ?>
 
 							<a href="<?=URL_TIENDA.'/'.URL_TIENDA_RESUMEN_COMPRA?>" class="btn-large green">ORDENAR YA!</a>
 
@@ -211,6 +207,11 @@
 							
 					
 						<?php }  ?>
+
+					<?php } else { ?>
+
+						<a class="btn-large open-iniciar green" return="<?=URL_SITIO.URL_CLUB.'/'.URL_CLUB_CARRITO?>">ORDENAR YA!</a>
+						
 					<?php }  ?>
 				</div>
 			</div>
@@ -244,23 +245,36 @@
 		<div class="col s12 m5"> 
     		<p class="flow-text center-align">
 		      	<?php 
-		      	switch ($subtotalAntesIva) {
+		      	/*switch ($subtotalAntesIva) {
 
 		      		case $subtotalAntesIva <= 100000:
 
-		      			echo $_SESSION['nombre'].'Si tu compra es igual o mayor a $100.000 el envío te saldrá <b>GRATIS!</b>.';
+		      			echo $_SESSION['nombre'].', si tu compra es igual o mayor a $100.000 el envío te saldrá <b>GRATIS!</b>.';
 		      			break;
 
 		      		case $subtotalAntesIva > 100000 && $subtotalAntesIva <= 200000:
 
-		      			echo $_SESSION['nombre'].'Si tu compra es igual o mayor a $100.000 el envío te saldrá <b>GRATIS!</b>.';
+		      			echo $_SESSION['nombre'].', si tu compra es igual o mayor a $100.000 el envío te saldrá <b>GRATIS!</b>.';
 		      			break;
 		      		
 		      		default:
 		      			# code...
 		      			break;
+		      	}*/
+
+		      	//Ajustar al terminar mes mujer
+
+		      	if (isset($_SESSION['idusuario'])) {
+
+		      		echo $_SESSION['nombre'].', si tu compra es igual o mayor a $100.000 el envío te saldrá <b>GRATIS!</b>.';	
+
+		      	}else{
+		      		
+		      		echo 'Si tu compra es igual o mayor a $100.000 el envío te saldrá <b>GRATIS!</b>.';
 		      	}
+		      	
 		      	?>
+
 		    </p>
 		    <center>
 					<span><h6>Envío a toda Colombia, Todos los medios de pago</h6></span>          

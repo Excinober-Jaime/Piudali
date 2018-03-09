@@ -4,7 +4,8 @@ $(document).ready(function(){
 
 		idpdt = $(this).attr("idpdt");
 		cantidad = $("#cantidad").val();
-		isRegister = $(this).attr("isreg");
+		//isRegister = $(this).attr("isreg");
+		isRegister = 1;
 
 		$.ajax({
 			type: 'POST',
@@ -19,7 +20,7 @@ $(document).ready(function(){
 				//alert('El producto se agrego al carrito');
 			},
 			error: function() {
-				alert('Tenemos un inconveniente. Por favor inténtalo más tarde!');
+				//alert('Tenemos un inconveniente. Por favor inténtalo más tarde!');
 			}
 		});
 

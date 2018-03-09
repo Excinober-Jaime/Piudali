@@ -169,10 +169,13 @@ class Carrito extends Productos
 
 		if ($tipo_usuario == 'CONSUMIDOR') {
 			
-			if ($subtotalAntesIva > 200000) {
+			//Activar una vez termine campaña MUJER
+			/*if ($subtotalAntesIva > 200000) {
 				
 				$porc_descuento_cupon = 10;
-			}
+			}*/
+
+			$porc_descuento_cupon = 20;
 
 		}else{
 
@@ -459,9 +462,9 @@ class Carrito extends Productos
 				if ($subtotalAntesIva <= 100000) {
 					
 					if (isset($_SESSION["ciudad"]) && $_SESSION["ciudad"] == "Cali") {
-						$flete = 7000;
+						$flete = 5000;
 					}else{
-						$flete = 14000;
+						$flete = 10000;
 					}
 					
 				}else{

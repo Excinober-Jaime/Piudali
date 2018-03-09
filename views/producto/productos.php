@@ -38,16 +38,16 @@ function producto_bloque($imagen="",$nombre="",$codigo="",$tipo="",$precio=0,$of
                       <div style="background:#ec7e07;border-radius:20px;width:40px;height:40px;padding-top:10px;color:#fff;font-size:15px;text-align:center;"><?=round((($oferta/$precio)-1)*100)?></div>
                     </div>
                   <?php                  
-                  }?>                
+                  }?>
             </div>
             <p><center>
               <a href="<?=URL_PRODUCTOS.'/'.$link?>" class="btn btn-default" role="button">Ver Detalle</a>
               <?php 
-              if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $tipo == 'NORMAL' && !$relacionados){ /*
+              if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $tipo == 'NORMAL' && !$relacionados){ 
               ?>
-                <a class="btn btn-primary" data-toggle="popover" title="Comparte éste enlace" data-placement="top" data-content="<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$link.'?d='.$_SESSION['idusuario']?>">Vender</a>
+                <a class="btn btn-primary" data-toggle="popover" title="Comparte éste enlace y vende virtualmente" data-placement="top" data-content="<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$link.'?d='.$_SESSION['idusuario']?>">Vender</a>
               <?php
-              */}
+              }
               ?>
               
             </center></p>

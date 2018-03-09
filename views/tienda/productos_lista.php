@@ -1,5 +1,5 @@
 <?php include 'header.php'; ?>
-<img src="assets/tienda/img/campana-mujer.png" style="width: 100%; display: block;">
+<!--<img src="assets/tienda/img/campana-mujer.png" style="width: 100%; display: block;">-->
 <div class="divider"></div>
 <div class="section" id="productos">
 

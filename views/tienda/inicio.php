@@ -15,7 +15,7 @@
 
                 <?php }else{ ?>
                 	<!--ENVIAR DIRECTAMENTE AL CARRO-->
-                	<button class="btn-large open-registro agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 20% DE DESCUENTO</button>
+                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 20% DE DESCUENTO</button>
                 
                 <?php } ?>
                 
@@ -25,7 +25,7 @@
     </div>
 </div>
 <center>
-	<img src="assets/tienda/img/<?=$this->img_flotante_1?>" class="img-flotante img-responsive" />
+	<img src="assets/tienda/img/<?=$this->img_flotante_1?>" class="img-flotante img-responsive" style='max-width: 600px !important;'/>
 </center>
 </div>
 <div class="divider"></div>
@@ -37,7 +37,7 @@
 			<p class="flow-text center-align">
 				La cosmética ecológica, es amigable con el piel y con el medio ambiente. Sus ingredientes son mayoritariamente de origen vegetal, su producción y cosecha no generan desequilibrio en el ecosistema, no provienen de especies amenazadas y evita el uso de ingredientes nocivos para la piel.</p>
 			<p class="flow-text center-align">
-				PIUDALÍ® Amazonian Skincare contiene ingredientes naturales, 100% de origen vegetal obtenidos de especies nativas del Amazonas y los andes colombianos.
+				PIUDALÍ® Amazonian Skincare contiene ingredientes naturales, 100% de origen vegetal obtenidos de especies nativas del amazonas y los andes colombianos.
 			</p>
 		</div>
 	</div>
@@ -75,7 +75,6 @@
 							}
 						?>
 						
-						
 					</div>
 				</div>
 			      
@@ -85,14 +84,14 @@
 		</div>
 	</div>
 	<center>
-		<h4 style="color: #6d1e3f">Precio $90.000</h4>
+		<h4 style="color: #6d1e3f">Precio <?=convertir_pesos($this->precio_pdt)?></h4>
 		<?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'CONSUMIDOR'){?>
 						
 						<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='1' style="background:#f19300;">AGREGAR AL PEDIDO!</button>
 
 	                <?php }else{ ?>
 
-	                	<button class="btn-large open-registro agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 20% DE DESCUENTO</button>
+	                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 20% DE DESCUENTO</button>
 	                
 	                <?php } ?>
 	                
@@ -136,19 +135,30 @@
 					<h5 style="color: #009330">INGREDIENTES NATURALES</h5>
 					<div style="font-size:1.2em">
 						<p>
-						<b>Aceites:</b> semillas de maracuyá, seje, sésamo, germen de trigo y andiroba con propiedades desinflamatorias.</p>
-						<p><b>Matequilla:</b> copoazú.</p>
-						<p><b>Extractos:</b> chontaduro, aloe vera, té verde y árbol de té.</p>
+							<?php 
+							foreach ($this->ingredientes_pdt as $key => $ingrediente){
+
+								echo $this->ingredientes[$ingrediente][1];
+
+								if (end($this->ingredientes_pdt) == $ingrediente) {
+									
+									echo '. ';
+								}else{
+									echo ', ';
+								}
+							}
+							?>
+						</p>
 					</div>
 					<br/>
-					<h4 style="color: #6d1e3f">Precio $90.000</h4>
+					<h4 style="color: #6d1e3f">Precio <?=convertir_pesos($this->precio_pdt)?></h4>
 					<?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'CONSUMIDOR'){?>
 					
 						<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='1' style="background:#f19300;">AGREGAR AL PEDIDO!</button>
 
 	                <?php }else{ ?>
 	                	<!--ENVIAR DIRECTAMENTE AL CARRO-->
-	                	<button class="btn-large open-registro agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 20% DE DESCUENTO</button>
+	                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 20% DE DESCUENTO</button>
 	                
 	                <?php } ?>					
 				</div>
@@ -162,10 +172,10 @@
 		<div class="row">
 			<div class="col s12 m12 l3 z-depth-2">
 				<div class="cupon">
-					<h5>Recibe el 20% en tu compra en el mes de la mujer.</h5>				
-					<h5 style="font-weight: bold; margin-bottom: 0px !important">CÓDIGO CUPÓN:</h5>
-					<h4 style="font-weight: bold; margin-top: 0px">MUJER</h4>
-					<p>Agrégalo en el momento de tu compra. <small>Válido hasta el 30 de marzo de 2018.</small></p>
+					<h5>Recibe un descuento especial en el mes de la mujer.</h5>				
+					<h2 style="font-weight: bold; margin-top: 0px; line-height: 2.5rem;">20%</h2>
+					<h5 style="font-weight: bold; margin-bottom: 0px !important; line-height: 1.1rem;">DESCUENTO</h5>
+					<p><small>Válido hasta el 30 de marzo de 2018.</small></p>
 				</div>
 				<?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'CONSUMIDOR'){?>
 					
@@ -173,7 +183,7 @@
 
                 <?php }else{ ?>
                 	<!--ENVIAR DIRECTAMENTE AL CARRO-->
-                	<button class="btn-large open-registro agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRARLO!</button>
+                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRARLO!</button>
                 
                 <?php } ?>
 
@@ -255,15 +265,15 @@
 	<h3 class="center-align">SOBRE PIUDALÍ</h3>
 	<div class="container">
 		<div class="row">
-			<div class="col s12 m6 l7">	
-				<p class="flow-text center-align" style="font-size: 1.2rem;">PIUDALÍ® Amazonian Skincare ofrece una completa línea de bienestar y cuidado para la piel de toda la familia. </p>  
+			<div class="col s12 m6 l7" style="padding-top:0;">	
+				<p class="flow-text center-align" style="font-size: 1.2rem;margin-top:0;">PIUDALÍ® Amazonian Skincare ofrece una completa línea de bienestar y cuidado para la piel de toda la familia. </p>  
 
-<h3 style="font-size: 1.28rem; text-align: center; font-weight: bold !important;">"Una fórmula natural única para el bienestar y cuidado de la piel" </h3>
+<h3 style="font-size: 1.1rem; text-align: center; font-weight: bold !important;">"Una fórmula natural única para el bienestar y cuidado de la piel" </h3>
 <p class="flow-text center-align" style="font-size: 1.28rem;">
 Nuestra fórmula está  diseñada con una mezcla científicamente balanceada con plantas y frutos exóticos de reconocida efectividad como el Chontaduro, Buriti, Açaí, Copoazú, Babassú, Seje, Andiroba, Balú, Guayaba, Mango, Cacao, Karité, entre más de 20 ingredientes de origen natural.  Lo que hace de PIUDALÍ® Amazonian Skincare una línea de productos cosméticos innovadores y únicos. </p>  
 
 
-<h3 style="font-size: 1.2rem; text-align: center; font-weight: bold !important;">"Somos pioneros en Colombia en cosmética ecológica y ganadores del concurso “a ciencia cierta BIO” de Colciencia 2016".  </h3>
+<h3 style="font-size: 1.1rem; text-align: center; font-weight: bold !important;">"Somos pioneros en Colombia en cosmética ecológica y ganadores del concurso “a ciencia cierta BIO” de Colciencia 2016".  </h3>
 				<img src="https://piudali.com.co/assets/img/capacitacion/cienciaconciencia.png" class="responsive-img">
 			</div>
 			<div class="col s12 m6 l5">
@@ -304,7 +314,7 @@ Nuestra fórmula está  diseñada con una mezcla científicamente balanceada con
 						<h5 class="flow-text"><?=$this->promesa_pdt?></h5>
 
 						
-						<h4 style="color: #6d1e3f">Precio $90.000</h4>
+						<h4 style="color: #6d1e3f">Precio <?=convertir_pesos($this->precio_pdt)?></h4>
 					</center>
 					<center>
 					<?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'CONSUMIDOR'){?>
@@ -313,7 +323,7 @@ Nuestra fórmula está  diseñada con una mezcla científicamente balanceada con
 
 	                <?php }else{ ?>
 	                	<!--ENVIAR DIRECTAMENTE AL CARRO-->
-	                	<button class="btn-large open-registro agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 20% DE DESCUENTO</button>
+	                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 20% DE DESCUENTO</button>
 	                
 	                <?php } ?>	
 	                </center>
@@ -355,7 +365,15 @@ Nuestra fórmula está  diseñada con una mezcla científicamente balanceada con
 						?>
 							<a class="carousel-item" href="<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$pdt['url']?>">
 								<img src="<?=$pdt['img_principal']?>">
-								<h6 class="center-align" style="color: #6D1E3F;"><?=$pdt['nombre']?></h6>
+								<h6 class="center-align" style="color: #6D1E3F;"><?php 
+									
+									$nombre = explode('-',$pdt['nombre']);
+									echo $nombre[1];
+
+								?>
+										
+
+								</h6>
 							</a>
 						<?php
 						}

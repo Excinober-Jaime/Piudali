@@ -63,27 +63,44 @@
 			<hr>		
 			<button type="button" idpdt="<?=$producto[0]["idproducto"]?>" class="btn btn-primary btn-lg btn-block agregarPdt">Añadir Producto</button>	
 			<hr>
-			<?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $producto[0]["tipo"] == 'NORMAL') { /* ?>
+			<?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $producto[0]["tipo"] == 'NORMAL') {  ?>
 				
 
 				<div class="panel panel-default">
-				  <div class="panel-heading">VENDE ESTE PRODUCTO VIRTUALMENTE Y GANA EL 20%</div>
+				  <div class="panel-heading text-center" style="background-color: rgba(109,30,63,1);color:#fff;">VENDE ESTE PRODUCTO VIRTUALMENTE Y GANA EL 20%</div>
 				  <div class="panel-body">
-				  	<p>
-				  		Sin inventario. Nosotros entregamos directamente a tus clientes.<br>
-				  		Nos encargamos de recaudar a tus clientes y te consignamos el 20%.
-				  	</p>
-				  	<p>Comparte este enlace para vender este producto</p>
-				    <p id="urlpdt"><?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$producto[0]["url"].'?d='.$_SESSION['idusuario']?>
-				   	</p>				   	
+				  	<h4 class="text-center">Vende Online y gana el 20% sin necesidad de inventario.</h4>
+				  	<p class="text-center">Comparte este enlace para vender este producto:</p>
+				  	<div class="well" id="urlpdt">
+				    <?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$producto[0]["url"].'?d='.$_SESSION['idusuario']?>
+				   </div>
+				   
 				   	<center>
-				   		<button class="btn btn-primary btn-sm" onclick="copyToClipboard('#urlpdt')">Copiar enlace</button>
-				   		<button class="btn btn-default btn-sm">¿Cómo funciona?</button>
-				   	</center>
+				   		<button class="btn btn-primary btn-sm" onclick="copyToClipboard('#urlpdt')">Copiar enlace</button> 		
+
+				   		<a class="btn btn-default btn-sm" role="button" data-toggle="collapse" href="#como-funciona-ecommerce" aria-expanded="false" aria-controls="collapseExample">
+						  ¿Cómo funciona?
+						</a>	
+					</center>					
+					<div class="collapse" id="como-funciona-ecommerce">
+					  <div class="well">
+					  	<ul class="list-group">
+					  		<li class="list-group-item">1. Copia el enlace que aparece en la sección "VENDER ESTE PRODUCTOS VIRTUALMENTE"</li>
+					  		<li class="list-group-item">2. Comparte el enlace a tus clientes en medios digitales, correos electrónicos, redes sociales, páginas, blogs, tiendas virtuales, etc.</li>
+					  		<li class="list-group-item">3. Al dar clic en el enlace, tus clientes acceden a una página de venta del producto que les compartiste.</li>
+					  		<li class="list-group-item">4. Tu cliente puede pagar de forma segura con tarjeta de crédito, débito, efecty, baloto y más.</li>
+					  		<li class="list-group-item">5. Nosotros recaudamos el pago y consignamos el 20% a tu cuenta bancaria.</li>
+					  		<li class="list-group-item">6. Nosotros entregamos el pedido a tu cliente.</li>
+					  		<li class="list-group-item">7. Entregamos en 1 día para Cali y 2 a 3 días para otras ciudades.</li>
+					  		<li class="list-group-item">8. El costo del flete es de $5.000 para Cali y de $10.000 para otras ciudades. Flete gratis a partir de compras iguales o superiores a $100.000.</li>
+
+					  	</ul>
+					  </div>
+					</div>				   	
 				  </div>
 				</div>
 
-			<?php */} ?>
+			<?php } ?>
 			
 			<div class="col-xs-12 text-center" style="font-size:20px;">
 				<?php
