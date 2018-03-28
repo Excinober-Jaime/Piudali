@@ -94,11 +94,19 @@ class Carrito extends Productos
 			foreach ($_SESSION["idpdts"] as $key => $idpdt) {
 
 				$producto = $this->infoProducto($idpdt);
-				$precio = $this->ajustarPrecio($producto["precio"],$producto["precio_oferta"]);
-				$subtotal = $this->calcularSubtotal($precio,$producto["iva"],$_SESSION["cantidadpdts"][$key]);			
+
+				if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO') {
+					
+					$precio = $this->ajustarPrecio($producto["precio"],$producto["precio_oferta"]);	
+				}else{
+
+					$precio = $producto["precio"];
+				}
+				
+				$subtotal = $this->calcularSubtotal($precio,$producto["iva"],$_SESSION["cantidadpdts"][$key]);
 				
 
-				$this->itemscarrito['id'][] = $idpdt;
+				/*$this->itemscarrito['id'][] = $idpdt;
 				$this->itemscarrito['precio'][] = $precio;
 				$this->itemscarrito['cantidad'][] = $_SESSION["cantidadpdts"][$key];
 				$this->itemscarrito['cantidadstock'][] = $producto["cantidad"];
@@ -107,7 +115,24 @@ class Carrito extends Productos
 				$this->itemscarrito['iva'][] = $producto["iva"];
 				$this->itemscarrito['img_principal'][] = $producto["img_principal"];
 				$this->itemscarrito['compania'][] = $producto["compania"];
-				$this->itemscarrito['subtotal'][] = $subtotal;
+				$this->itemscarrito['tipo'][] = $producto["tipo"];
+				$this->itemscarrito['subtotal'][] = $subtotal;*/
+
+				$this->itemscarrito[$key] = array(
+
+					'id' 			=> $idpdt,
+					'precio' 		=> $precio,
+					'cantidad' 		=> $_SESSION["cantidadpdts"][$key],
+					'cantidadstock' => $producto["cantidad"],
+					'nombre' 		=> $producto["nombre"],
+					'codigo' 		=> $producto["codigo"],
+					'iva' 			=> $producto["iva"],
+					'img_principal' => $producto["img_principal"],
+					'compania' 		=> $producto["compania"],
+					'tipo' 			=> $producto["tipo"],
+					'subtotal' 		=> $subtotal
+
+				);
 			}
 		}else{
 			$this->itemscarrito=array();
@@ -120,7 +145,17 @@ class Carrito extends Productos
 
 		$subtotalAntesIva=0;
 
-		if (isset($_SESSION["idpdts"]) && count($_SESSION["idpdts"]>0)) {
+		$productos = $this->listarItems();
+
+		foreach ($productos as $key => $producto) {
+			
+			if ($producto['tipo'] != 'PREMIO') {
+
+				$subtotalAntesIva += $producto['subtotal'];
+			}
+		}
+
+		/*if (isset($_SESSION["idpdts"]) && count($_SESSION["idpdts"]>0)) {
 
 			foreach ($_SESSION["idpdts"] as $key => $idpdt) {
 				
@@ -135,30 +170,24 @@ class Carrito extends Productos
 					$subtotalAntesIva += $subtotal;
 				}
 			}
-		}
+		}*/
 
 		return $subtotalAntesIva;
 	}
 
 	public function getSubtotalAntesIvaPremios(){
 
-		$subtotalAntesIvaPremios=0;
+		$subtotalAntesIvaPremios = 0;
 
-		if (isset($_SESSION["idpdts"]) && count($_SESSION["idpdts"]>0)) {
+		$productos = $this->listarItems();
 
-			foreach ($_SESSION["idpdts"] as $key => $idpdt) {
-				$producto = $this->infoProducto($idpdt);
-
-				if ($producto['tipo']=='PREMIO') {
-
-					$precio = $this->ajustarPrecio($producto["precio"],$producto["precio_oferta"]);
-					//$iva = $this->calcularIva($precio,$producto["iva"]);
-					$subtotal = $this->calcularSubtotal($precio,$producto["iva"],$_SESSION["cantidadpdts"][$key]);
-					
-					$subtotalAntesIvaPremios += $subtotal;
-				}
+		foreach ($productos as $key => $producto) {
+			
+			if ($producto['tipo']=='PREMIO') {
+				
+				$subtotalAntesIvaPremios += $producto['subtotal'];
 			}
-		}
+		}	
 
 		return $subtotalAntesIvaPremios;
 	}
@@ -358,32 +387,23 @@ class Carrito extends Productos
 		$porc_descuento_cupon = $this->porcDescuentoCupon($tipo_usuario);
 		$porc_escala = $this->porcDescuentoEscala($tipo_usuario);
 
-		if (isset($_SESSION["idpdts"]) && count($_SESSION["idpdts"])>0) {
+		$productos = $this->listarItems();
+
+		foreach ($productos as $key => $producto) {
+
+			if ($producto['tipo']!='PREMIO') {					
 			
-				foreach ($_SESSION["idpdts"] as $key => $idpdt) {
+				$subtotal_dto_cupon = $producto['subtotal'] - ($producto['subtotal']*($porc_descuento_cupon/100));
+				$subtotal_dto_escala = $subtotal_dto_cupon - ($subtotal_dto_cupon*($porc_escala/100));
 
-				$producto = $this->infoProducto($idpdt);
+			}else{
 
-				$porc_iva = $producto["iva"];			
-				$precio = $this->ajustarPrecio($producto["precio"],$producto["precio_oferta"]);
-				//$iva = $this->calcularIva($precio,$porc_iva);
-				$subtotal = $this->calcularSubtotal($precio,$porc_iva,$_SESSION["cantidadpdts"][$key]);
-
-				if ($producto['tipo']!='PREMIO') {					
-				
-					$subtotal_dto_cupon = $subtotal - ($subtotal*($porc_descuento_cupon/100));
-					$subtotal_dto_escala = $subtotal_dto_cupon - ($subtotal_dto_cupon*($porc_escala/100));
-				}else{
-					$subtotal_dto_escala = $subtotal;					
-				}
-
-				$iva = $subtotal_dto_escala * ($porc_iva/100);
-				$totalIva += $iva;
+				$subtotal_dto_escala = $producto['subtotal'];					
 			}
 
-		}else{
-			$totalIva = 0;
-		}		
+			$iva = $subtotal_dto_escala * ($producto["iva"]/100);
+			$totalIva += $iva;			
+		}
 
 		return $totalIva;
 
@@ -447,7 +467,7 @@ class Carrito extends Productos
 	}
 
 	public function calcularFlete($tipo_usuario = ''){
-
+		
 		if (!Carrito::$cobro_flete) {
 			
 			return 0;
@@ -565,57 +585,49 @@ class Carrito extends Productos
 		return $idorden;
 	}
 
-	public function getDetalleOrden($tipo_usuario = ''){
+	public function getDetalleOrden($tipo_usuario = ''){		
 
-		if (isset($_SESSION["idpdts"]) && count($_SESSION["idpdts"]>0)) {
+		$detalle_orden = array();
 
-			$detalle_orden = array();
-			$porc_descuento_cupon = $this->porcDescuentoCupon();
-			$porc_escala = $this->porcDescuentoEscala($tipo_usuario);
-			$pagoPuntos = $this->getPagoPuntos();
-			$valor_descuento_puntos = $pagoPuntos["valor_pago"]/(count($_SESSION["cantidadpdts"]));
+		$porc_descuento_cupon = $this->porcDescuentoCupon();
+		$porc_escala = $this->porcDescuentoEscala($tipo_usuario);
+		$pagoPuntos = $this->getPagoPuntos();
+		$valor_descuento_puntos = $pagoPuntos["valor_pago"]/(count($_SESSION["cantidadpdts"]));
 
-			foreach ($_SESSION["idpdts"] as $key => $idpdt) {
+		$productos = $this->listarItems();
 
-				$producto = $this->infoProducto($idpdt);
-				$precio = $this->ajustarPrecio($producto["precio"],$producto["precio_oferta"]);
-				//$iva = $this->calcularIva($precio,$producto["iva"]);
-				$subtotal = $this->calcularSubtotal($precio,$producto["iva"],$_SESSION["cantidadpdts"][$key]);
-
-				$codigo_pdt = $producto["codigo"];
-				$cantidad_pdt = $_SESSION["cantidadpdts"][$key];
-
-				if ($producto['tipo']!='PREMIO') {
-					
-					$descuento_cupon_pdt = $subtotal*($porc_descuento_cupon/100);
-					$descuento_escala_pdt = ($subtotal-$descuento_cupon_pdt)*($porc_escala/100);
-					$neto_sin_iva_pdt = $subtotal - $descuento_cupon_pdt - $descuento_escala_pdt;					
-
-				}else{
-					$descuento_cupon_pdt = 0;
-					$descuento_escala_pdt = 0;
-					$neto_sin_iva_pdt = $subtotal;
-				}
-
-				$iva_pdt = $neto_sin_iva_pdt*($producto["iva"]/100);
+		foreach ($productos as $key => $producto) {
+			
+			if ($producto['tipo']!='PREMIO') {
 				
-				
-				$detalle_orden[$key]["idpdt"] = $idpdt;
-				$detalle_orden[$key]["nombre"] = $producto["nombre"];
-				$detalle_orden[$key]["iva_porc"] = $producto["iva"];
-				$detalle_orden[$key]["subtotal"] = $subtotal;
+				$descuento_cupon_pdt = $producto['subtotal']*($porc_descuento_cupon/100);
+				$descuento_escala_pdt = ($producto['subtotal']-$descuento_cupon_pdt)*($porc_escala/100);
+				$neto_sin_iva_pdt = $producto['subtotal'] - $descuento_cupon_pdt - $descuento_escala_pdt;					
 
-				$detalle_orden[$key]["codigo"] = $codigo_pdt;
-				$detalle_orden[$key]["cantidad"] = $cantidad_pdt;
-				$detalle_orden[$key]["precio"] = $precio;
-				$detalle_orden[$key]["precio_base"] = ($neto_sin_iva_pdt/$cantidad_pdt);
-				$detalle_orden[$key]["descuento_cupon"] = ($descuento_cupon_pdt/$cantidad_pdt);
-				$detalle_orden[$key]["iva"] = ($iva_pdt/$cantidad_pdt);
-				$detalle_orden[$key]["descuento_puntos"] = ($valor_descuento_puntos/$cantidad_pdt);
+			}else{
+
+				$descuento_cupon_pdt = 0;
+				$descuento_escala_pdt = 0;
+				$neto_sin_iva_pdt = $producto['subtotal'];
 			}
-		}else{
-			$detalle_orden = array();
-		}
+
+			$iva_pdt = $neto_sin_iva_pdt*($producto["iva"]/100);
+			
+			
+			$detalle_orden[$key]["idpdt"] = $producto['id'];
+			$detalle_orden[$key]["nombre"] = $producto["nombre"];
+			$detalle_orden[$key]["iva_porc"] = $producto["iva"];
+			$detalle_orden[$key]["subtotal"] = $producto['subtotal'];
+
+			$detalle_orden[$key]["codigo"] = $producto['codigo'];
+			$detalle_orden[$key]["cantidad"] = $producto['cantidad'];
+			$detalle_orden[$key]["precio"] = $producto['precio'];
+			$detalle_orden[$key]["precio_base"] = ($neto_sin_iva_pdt/$producto['cantidad']);
+			$detalle_orden[$key]["descuento_cupon"] = ($descuento_cupon_pdt/$producto['cantidad']);
+			$detalle_orden[$key]["iva"] = ($iva_pdt/$producto['cantidad']);
+			$detalle_orden[$key]["descuento_puntos"] = ($valor_descuento_puntos/$producto['cantidad']);
+			
+		}		
 
 		return $detalle_orden;
 	}

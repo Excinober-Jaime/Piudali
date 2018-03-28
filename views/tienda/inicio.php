@@ -332,7 +332,7 @@ Nuestra fórmula está  diseñada con una mezcla científicamente balanceada con
 	            <br/>
 	            <center>
 					      
-	        		<img src="http://localhost/piudali/www/assets/img/medios-de-pago.png" class="responsive-img">
+	        		<img src="<?=URL_SITIO?>assets/img/medios-de-pago.png" class="responsive-img">
 	        		<span><h6>Envío a toda Colombia, Todos los medios de pago</h6></span>    
         		</center>
         		<br/>

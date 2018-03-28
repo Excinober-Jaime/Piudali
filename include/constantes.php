@@ -1,6 +1,6 @@
 <?php 
-define("URL_SITIO", "http://localhost/piudali/www/");
-//define("URL_SITIO", "https://piudali.com.co/");
+//define("URL_SITIO", "http://localhost/piudali/www/");
+define("URL_SITIO", "https://piudali.com.co/");
 define("URL_INICIO", "Inicio");
 define("URL_PRODUCTOS", "Productos");
 define("URL_CATEGORIA", "Categoria");
@@ -8,6 +8,8 @@ define("URL_CONTACTO", "Contacto");
 define("URL_PAGINA_CONTENIDO", "ContenidoPagina");
 define("URL_BUSCAR", "Resultados");
 define("URL_TIENDAS", "Tiendas");
+
+define("URL_DESCARGAR", "Descargar");
 
 /***CARRITO****/
 define("URL_CARRITO", "Carrito");
@@ -82,6 +84,7 @@ define("URL_SUSCRIBIR_NEWSLETTER", "SuscribirNewsletter");
 
 
 define("DIR_IMG_PRODUCTOS", "assets/img/productos/");
+define("DIR_IMG_PRODUCTOS_PIEZAS", "assets/img/productospiezas/");
 define("DIR_IMG_PRODUCTOS_ALIADOS", "assets/img/productosaliados/");
 define("DIR_IMG_PAGINAS", "assets/img/paginas/");
 define("DIR_IMG_BANNERS", "assets/img/banners/");

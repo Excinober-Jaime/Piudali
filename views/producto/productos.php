@@ -16,7 +16,7 @@ function producto_bloque($imagen="",$nombre="",$codigo="",$tipo="",$precio=0,$of
             <div style="margin:0px; padding:0px; height: 37px;">                     
                 <div style="float:left;width:80%;margin:0px; padding:0px;">
                   <?php 
-                  if ($oferta>0) {
+                  if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $oferta>0) {
                   ?>
                     <h5><?=convertir_pesos($precio)?></h5>
                     <h4><?=convertir_pesos($oferta)?></h4>
@@ -32,7 +32,7 @@ function producto_bloque($imagen="",$nombre="",$codigo="",$tipo="",$precio=0,$of
                   ?>
                 </div>
                 <?php 
-                  if ($oferta>0) {
+                  if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $oferta>0) {
                   ?>
                     <div style="float:right;width:20%;margin:0px; padding:0px;">
                       <div style="background:#ec7e07;border-radius:20px;width:40px;height:40px;padding-top:10px;color:#fff;font-size:15px;text-align:center;"><?=round((($oferta/$precio)-1)*100)?></div>

@@ -1049,6 +1049,15 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
 				break;
 
+			case URL_DESCARGAR:
+				
+				$controller = new Controller();				
+					
+				$controller->descargarArchivo();
+				
+
+				break;
+
 			default:
 
 				$controller = new Controller();

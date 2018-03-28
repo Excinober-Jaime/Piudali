@@ -578,6 +578,7 @@ class ControllerTienda
 
 			$itemsCarrito = $this->carrito->listarItems();
 			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
+
 			$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
 			$descuentoCupon = $this->carrito->getDescuentoCupon($tipo_usuario);
 			$subtotalNetoAntesIva = $this->carrito->getSubtotalNetoAntesIva($tipo_usuario);
@@ -593,6 +594,8 @@ class ControllerTienda
 			$flete = $this->carrito->calcularFlete($tipo_usuario);
 			$total = $this->carrito->getTotal($tipo_usuario);
 			$rentabilidad = $this->carrito->getRentabilidad();
+
+			
 
 			include "views/tienda/carrito.php";
 

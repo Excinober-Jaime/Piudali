@@ -188,6 +188,29 @@ class Productos extends Database
 		return $filas;
 	}
 
+	/**Img Secundarias**/
+
+	public function listarImgs($idproducto){
+
+		$query = $this->consulta("SELECT `idimg`, `nombre`, `imagen`,  `type`, `productos_idproducto` FROM `img_productos` WHERE `productos_idproducto`='$idproducto'");
+
+		return $query;
+	}
+
+	public function crearImg($url="",$idproducto = 0, $type = ''){
+		
+		$idimg = $this->insertar("INSERT INTO `img_productos`(					
+											`imagen`,
+											`productos_idproducto`,
+											`type`
+											) VALUES (
+											'$url',	
+											'$idproducto',
+											'$type')");
+		
+		return $idimg;
+	}
+
 
 	/****categorias***/
 

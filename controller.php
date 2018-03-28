@@ -275,6 +275,8 @@ class Controller
 
 		$productos_relacionados = $this->productos->listarProductos($tipos,$estados_relacionados,$producto[0]['categorias_idcategoria']);
 
+		$imgs_producto = $this->productos->listarImgs($producto[0]['idproducto']);
+
 		if (!empty($producto[0]["precio_oferta"])) {
 			$porc_oferta=$producto[0]["precio"]-$producto[0]["precio_oferta"];
         	$porc_oferta=round(($porc_oferta/$producto[0]["precio"])*100);
@@ -2343,6 +2345,18 @@ class Controller
 				}
 			}
 
+			//Upload img secundaria
+			if($_FILES["img_publicitaria"]["error"]==UPLOAD_ERR_OK){
+
+				$rutaimg=$_FILES["img_publicitaria"]["tmp_name"];
+				$nombreimg=$_FILES["img_publicitaria"]["name"];
+				$extimg=$_FILES["img_publicitaria"]["type"];
+				$destino = DIR_IMG_PRODUCTOS_PIEZAS.$nombreimg;
+				move_uploaded_file($rutaimg, $destino);
+
+				$this->productos->crearImg($destino, $idproducto, $extimg);
+			}
+
 			$this->productos->actualizarProducto($idproducto,$nombre,$cantidad,$costo,$precio,$iva,$aplica_cupon,$precio_oferta,$presentacion,$registro,$codigo,$tipo,$descripcion,$img_principal,$url,$estado,$uso,$mas_info,$metas,$categoria,$compania,$relevancia);
 		}
 
@@ -2406,6 +2420,7 @@ class Controller
 
 		if (isset($idproducto) && $idproducto!='') {
 			$producto = $this->productos->detalleProductos($idproducto,"");
+			$producto_imgs = $this->productos->listarImgs($idproducto);
 		}
 
 		include "views/admin/producto_detalle.php";
@@ -4485,6 +4500,20 @@ class Controller
 		$paginas_menu = $this->paginasMenu();
 
 		include 'views/landing/cosmetica_ecologica.php';
+	}
+
+	/**DOCUMENTOS**/
+
+	public function descargarArchivo(){
+
+		extract($_GET);
+
+		if (!empty($nombre) && !empty($ext) && !empty($type) && !empty($doc)) {
+
+			header("Content-disposition: attachment; filename=$nombre.$ext");
+			header("Content-type: $type");
+			readfile($doc);
+		}
 	}
 }
 ?>

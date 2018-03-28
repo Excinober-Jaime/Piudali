@@ -52,7 +52,31 @@
 						<img src="<?=$producto[0]['img_principal']?>" class="img-responsive" style="max-width: 300px;">
 					<?php
 					}	
-					?>				
+					?>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div class="form-group">
+						<label for="exampleInputEmail1">Subir Imágen Publicitaria</label>
+						<input type="file" name="img_publicitaria" class="form-control">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="panel panel-default">
+						  <div class="panel-heading">Imágenes Publicitarias</div>
+						  <div class="panel-body">
+						    
+						  	<?php
+
+							foreach ($producto_imgs as $key => $img) {
+
+								echo "<img src='".URL_SITIO.$img['imagen']."' class='img-responsive' style='max-width: 200px;float:left;'>";
+							}
+							?>
+
+						  </div>
+						</div>
+					</div>					
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Registro</label>

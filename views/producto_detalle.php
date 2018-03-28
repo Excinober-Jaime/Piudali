@@ -12,7 +12,7 @@
 				<div class="col-sm-6">
 					<div class="col-sm-7">
 						<?php 
-						if (!empty($producto[0]["precio_oferta"])) {
+						if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && !empty($producto[0]["precio_oferta"])) {
 						?>
 							<h4>$<?=number_format($producto[0]["precio_oferta"])?><br><small>$<?=number_format($producto[0]["precio"])?></small></h4>
 						<?php
@@ -25,7 +25,7 @@
 					</div>
 					<div class="col-sm-5">
 						<?php 
-						if (!empty($porc_oferta)) {
+						if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && !empty($porc_oferta)) {
 						?>
 							<h3><?=$porc_oferta?>%</h3>
 						<?php
@@ -70,7 +70,36 @@
 				  <div class="panel-heading text-center" style="background-color: rgba(109,30,63,1);color:#fff;">VENDE ESTE PRODUCTO VIRTUALMENTE Y GANA EL 20%</div>
 				  <div class="panel-body">
 				  	<h4 class="text-center">Vende Online y gana el 20% sin necesidad de inventario.</h4>
-				  	<p class="text-center">Comparte este enlace para vender este producto:</p>
+				  	<p class="text-center">1. Descarga éstas piezas y compartelas con tus clientes agregando el enlace de abajo.</p>
+				  	<div class="panel panel-default">						
+						<div class="panel-body">
+							<div class="row">
+								<?php
+								
+								foreach ($imgs_producto as $key => $img) {
+
+								$ext = explode('/', $img['type']);
+								$ext = $ext[1];
+
+								?>
+									<div class="col-xs-6 col-md-4">
+									   <a class="thumbnail">
+									      <img src="<?=$img['imagen']?>" alt="<?=$img['nombre']?>" ext="<?=$ext?>" type="<?=$img['type']?>" class="img-popup">
+									      <!--<div class="caption">
+									      	<i class="fa fa-facebook-official" aria-hidden="true"></i>
+									      	<i class="fa fa-whatsapp" aria-hidden="true"></i>
+									      	<i class="fa fa-cloud-download" aria-hidden="true" title="Descargar"></i>
+									      </div>-->
+									    </a>
+									</div>
+								<?php		
+								}
+								?>					  
+							</div>
+						</div>
+					</div>
+
+				  	<p class="text-center">2. No olvides incluir el enlace que llevará a tu cliente a la página de compra</p>
 				  	<div class="well" id="urlpdt">
 				    <?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$producto[0]["url"].'?d='.$_SESSION['idusuario']?>
 				   </div>
@@ -81,12 +110,12 @@
 				   		<a class="btn btn-default btn-sm" role="button" data-toggle="collapse" href="#como-funciona-ecommerce" aria-expanded="false" aria-controls="collapseExample">
 						  ¿Cómo funciona?
 						</a>	
-					</center>					
+					</center>
 					<div class="collapse" id="como-funciona-ecommerce">
 					  <div class="well">
 					  	<ul class="list-group">
-					  		<li class="list-group-item">1. Copia el enlace que aparece en la sección "VENDER ESTE PRODUCTOS VIRTUALMENTE"</li>
-					  		<li class="list-group-item">2. Comparte el enlace a tus clientes en medios digitales, correos electrónicos, redes sociales, páginas, blogs, tiendas virtuales, etc.</li>
+					  		<li class="list-group-item">1. Descarga la pieza publicitaria que deseas usar para vender éste producto a tus clientes.</li>					  		
+					  		<li class="list-group-item">2. Comparte la pieza a tus clientes en medios digitales, correos electrónicos, redes sociales, páginas, blogs, tiendas virtuales, etc., junto al enlace de la sección "VENDER ESTE PRODUCTO VIRTUALMENTE".</li>
 					  		<li class="list-group-item">3. Al dar clic en el enlace, tus clientes acceden a una página de venta del producto que les compartiste.</li>
 					  		<li class="list-group-item">4. Tu cliente puede pagar de forma segura con tarjeta de crédito, débito, efecty, baloto y más.</li>
 					  		<li class="list-group-item">5. Nosotros recaudamos el pago y consignamos el 20% a tu cuenta bancaria.</li>
@@ -99,10 +128,9 @@
 					</div>				   	
 				  </div>
 				</div>
-
 			<?php } ?>
 			
-			<div class="col-xs-12 text-center" style="font-size:20px;">
+			<!--<div class="col-xs-12 text-center" style="font-size:20px;">
 				<?php
 	            $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	            ?>
@@ -111,7 +139,7 @@
 	            <a target="_new" href="https://twitter.com/home?status=<?=$url?>" style="color:#3C4F56;"><i class="fa fa-twitter" aria-hidden="true"></i></a>
 	            <a target="_new" href="https://plus.google.com/share?url=<?=$url?>" style="color:#d73d32;"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
 			</div>
-			<br><br>				
+			<br><br>				-->
 			<div class="row">					
 				<div class="col-xs-6">
 					<h6>Compañia: <?=$producto[0]["compania"]?></p>

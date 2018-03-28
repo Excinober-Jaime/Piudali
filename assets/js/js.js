@@ -11,6 +11,25 @@ $(document).ready(function(){
 		});
 	})
 
+	$('.img-popup').click(function(){
+
+		var urlimg = $(this).attr('src');
+		var nombreimg = $(this).attr('alt');
+
+		if (nombreimg == '') {
+
+			nombreimg = 'Pieza_Publicitaria';
+		}
+
+		var typeimg = $(this).attr('type');
+		var extimg = $(this).attr('ext');
+		var html = '<img src="'+urlimg+'" class="img-responsive"><br><a class="btn btn-primary" href="Descargar?doc='+urlimg+'&nombre='+nombreimg+'&type='+typeimg+'&ext='+extimg+'">Descargar imágen</a>';
+
+		$('.modal-body').html(html);
+		$('.modal').modal();
+
+	})
+
 	$(".open-incentivo").click(function(){
 		var img = $(this).attr("img");
 		var descripcion = $(this).attr("descripcion");

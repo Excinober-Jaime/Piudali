@@ -21,34 +21,34 @@
 					<?php
 					if (isset($itemsCarrito) && count($itemsCarrito)>0) {
 					
-						foreach ($itemsCarrito["id"] as $key => $iditem) {
+						foreach ($itemsCarrito as $key => $item) {
 
 						?>
 						<tr>
 							<td width="15%">
 								<div class="row">
 									<div class="col-xs-12 col-md-2"><br>
-										<a class="eliminarPdtCarrito" idpdt="<?=$iditem?>"><i class="fa fa-times" aria-hidden="true"></i></a>
+										<a class="eliminarPdtCarrito" idpdt="<?=$item['id']?>"><i class="fa fa-times" aria-hidden="true"></i></a>
 									</div>
 									<div class="col-xs-12 col-md-10">
-										<img src="<?=$itemsCarrito["img_principal"][$key]?>" class="img-responsive" style="max-width:100px;">
+										<img src="<?=$item["img_principal"]?>" class="img-responsive" style="max-width:100px;">
 									</div>
 								</div>
 							</td>
-							<td class="text-left"><?=$itemsCarrito["nombre"][$key]?><br>Código: <?=$itemsCarrito["codigo"][$key]?><br>Iva: <?=$itemsCarrito["iva"][$key]?>%</td>
-							<td class="text-center">$<?=number_format($itemsCarrito["precio"][$key])?></td>							
+							<td class="text-left"><?=$item["nombre"]?><br>Código: <?=$item["codigo"]?><br>Iva: <?=$item["iva"]?>%</td>
+							<td class="text-center">$<?=number_format($item["precio"])?></td>
 							<td class="text-center">
-								<select name="cantidad" id="cantidad" class="form-control input-sm cambiarCantidad" idpdt="<?=$iditem?>">
+								<select name="cantidad" id="cantidad" class="form-control input-sm cambiarCantidad" idpdt="<?=$item['id']?>">
 									<?php 
-									for ($i=1; $i <= $itemsCarrito["cantidadstock"][$key]; $i++) {
+									for ($i=1; $i <= $item["cantidadstock"]; $i++) {
 										?>
-										<option value="<?=$i?>" <?php if ($itemsCarrito["cantidad"][$key]==$i) { echo "selected"; } ?>><?=$i?></option>
+										<option value="<?=$i?>" <?php if ($item["cantidad"]==$i) { echo "selected"; } ?>><?=$i?></option>
 										<?php
 									}
 									?>
 								</select>
 							</td>
-							<td class="text-center">$<?=number_format($itemsCarrito["subtotal"][$key])?></td>
+							<td class="text-center">$<?=number_format($item["subtotal"])?></td>
 						</tr>
 						<?php
 						}

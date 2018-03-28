@@ -4,7 +4,12 @@
 	<?php include "usuario/menu.php"; ?>		
 	<div class="contenPanel">
 	<div class="col-xs-12 titulo">
-		<h1>Mi Perfil <?php if (!empty($usuario["cod_lider"])) { ?><small class="pull-right">Código de representante: <?=$usuario["cod_lider"]?><?php } ?></small></h1>
+		<h1>Mi Perfil 
+            <?php if (!empty($usuario["cod_lider"]) && $_SESSION['tipo'] == 'REPRESENTANTE COMERCIAL') { ?>
+            <small class="pull-right">Código de representante: <?=$usuario["cod_lider"]?>
+            <?php } ?>
+            </small>
+        </h1>
         <small>Aquí encontrarás tu información personal y podrás editarla, además de cambiar tu contraseña.</small>
 	</div>
     <div class="clearfix"></div>

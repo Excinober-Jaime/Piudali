@@ -14,6 +14,8 @@
 
       <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
 
+      <link href="<?=URL_SITIO?>assets/tienda/img/<?=$this->img_flotante_1?>" rel="image_src"/>
+
       <!--Etiquetas OpenGraph-->
       <meta property="og:url" content="<?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$this->url_pdt?>"/>
       <meta property="og:type" content="product"/>
