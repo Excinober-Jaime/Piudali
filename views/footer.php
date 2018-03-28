@@ -58,7 +58,7 @@
 				<h4>Contáctanos</h4>
 					<p>
 	Distribuidor Exclusivo para Colombia Link Grupo Marketing SAS<br>
-	Teléfono: (+57)(2) 524 1887 - (+57) 311 627 9068 <br> Email: contacto@piudali.com.co<br>
+	Teléfono: (+57)(2) 524 1887 - (+57) 313 7545092  <br> Email: contacto@piudali.com.co<br>
 	<hr>
 	Todos los derechos reservados Link Grupo Marketing SAS © 2016 <br>
 	Diseñado por <a href="http://imarketing21.com" target="_new">iMarketing21</a> | Desarrollado por <a href="http://excinober.com" target="_new">Excinober Benites</a></p>

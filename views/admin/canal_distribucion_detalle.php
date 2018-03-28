@@ -38,6 +38,38 @@
 							</select>
 						</div>
 						<div class="form-group">
+							<label for="exampleInputEmail1">Premios</label>
+							<select class="form-control" name="premios" required>
+								<option value=''>--Seleccione--</option>
+								<option value='1' <?php if ($canal['premios']) echo 'selected'; ?>>Si</option>
+								<option value='0' <?php if (!$canal['premios']) echo 'selected'; ?>>No</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Promociones</label>
+							<select class="form-control" name="promociones" required>
+								<option value=''>--Seleccione--</option>
+								<option value='1' <?php if ($canal['promociones']) echo 'selected'; ?>>Si</option>
+								<option value='0' <?php if (!$canal['promociones']) echo 'selected'; ?>>No</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Cupones</label>
+							<select class="form-control" name="cupones" required>
+								<option value=''>--Seleccione--</option>
+								<option value='1' <?php if ($canal['cupones']) echo 'selected'; ?>>Si</option>
+								<option value='0' <?php if (!$canal['cupones']) echo 'selected'; ?>>No</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Escuela</label>
+							<select class="form-control" name="escuela" required>
+								<option value=''>--Seleccione--</option>
+								<option value='1' <?php if ($canal['escuela']) echo 'selected'; ?>>Si</option>
+								<option value='0' <?php if (!$canal['escuela']) echo 'selected'; ?>>No</option>
+							</select>
+						</div>
+						<div class="form-group">
 							<label for="exampleInputEmail1">Estado</label>
 							<select name="estado" id="estado" class="form-control" required>
 								<option value="1" <?php if ($canal['estado']) echo 'selected'; ?>>Activo</option>

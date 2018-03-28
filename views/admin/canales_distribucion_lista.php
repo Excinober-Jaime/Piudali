@@ -11,6 +11,10 @@
 			  		<th>Puntos</th>
 			  		<th>Referidos</th>
 			  		<th>Incentivos</th>
+			  		<th>Premios</th>
+			  		<th>Promociones</th>
+			  		<th>Cupones</th>
+			  		<th>Escuela</th>
 			  		<th>Estado</th>
 			  		<th>Acciones</th>
 			  	</tr>
@@ -28,6 +32,10 @@
 			  			<td><?=$canal["puntos"]?></td>
 			  			<td><?=$canal["referidos"]?></td>
 			  			<td><?=$canal["incentivos"]?></td>
+			  			<td><?=$canal["premios"]?></td>
+			  			<td><?=$canal["promociones"]?></td>
+			  			<td><?=$canal["cupones"]?></td>
+			  			<td><?=$canal["escuela"]?></td>
 			  			<td><?=$canal["estado"]?></td>
 			  			<td><a href="<?=URL_ADMIN."/".URL_ADMIN_CANALES_DISTRIBUCION."/".$canal['idcanal']?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
 			  		</tr>

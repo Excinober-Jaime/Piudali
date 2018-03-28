@@ -109,13 +109,27 @@ class Controller
 					self::$DISABLE_INCENTIVOS = true;
 				}
 
+				if (!$canal['premios']) {
+					
+					self::$DISABLE_PREMIOS = true;
+				}
 
-				//AJUSTE PROVISIONAL PARA TIENDAS Y DISTRIBUIDORES ESPECIALIZADOS
-				self::$DISABLE_PREMIOS = true;
-				self::$DISABLE_PROMOCIONES = true;
-				self::$DISABLE_CUPONES = true;
+				if (!$canal['promociones']) {
+					
+					self::$DISABLE_PROMOCIONES = true;
+				}
+
+				if (!$canal['cupones']) {
+					
+					self::$DISABLE_CUPONES = true;
+				}
+
+				if (!$canal['escuela']) {
+					
+					self::$DISABLE_CAPACITACION = true;
+				}
+				
 				self::$DISABLE_BANNERS_USUARIO = true;
-				self::$DISABLE_CAPACITACION = true;
 
 			}
 		}
@@ -3011,12 +3025,12 @@ class Controller
 
 		if (isset($_POST["actualizarCanal"])) {
 
-			$this->canales_distribucion->actualizarCanal($idcanal, $nombre, $monto_minimo, $puntos, $referidos, $incentivos, $estado);
+			$this->canales_distribucion->actualizarCanal($idcanal, $nombre, $monto_minimo, $puntos, $referidos, $incentivos, $premios, $promociones, $cupones, $escuela, $estado);
 		}
 
 		if (isset($_POST["crearCanal"])) {
 
-			$idcanal = $this->canales_distribucion->crearCanal($nombre, $monto_minimo, $puntos, $referidos, $incentivos, $estado);
+			$idcanal = $this->canales_distribucion->crearCanal($nombre, $monto_minimo, $puntos, $referidos, $incentivos, $premios, $promociones, $cupones, $escuela, $estado);
 		}
 
 		if (isset($minimo) && count($minimo)>0) {

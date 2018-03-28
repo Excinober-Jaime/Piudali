@@ -6,7 +6,7 @@
 class CanalesDistribucion extends Database
 {
 
-	public function actualizarCanal($idcanal, $nombre = '', $monto_minimo = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $estado = 0){
+	public function actualizarCanal($idcanal, $nombre = '', $monto_minimo = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $premios = 0, $promociones = 0, $cupones = 0, $escuela = 0, $estado = 0){
 
 		$query = $this->actualizar("UPDATE `canales_distribucion` SET 
 									`nombre`= '$nombre',
@@ -14,13 +14,17 @@ class CanalesDistribucion extends Database
 									`puntos`= '$puntos',
 									`referidos`= '$referidos',
 									`incentivos`= '$incentivos',
+									`premios`='$premios',
+									`promociones`='$promociones',
+									`cupones`='$cupones',
+									`escuela`='$escuela',
 									`estado`= '$estado' 
 									WHERE `idcanal`='$idcanal'");
 
 		return $query;
 	}
 	
-	public function crearCanal($nombre = '', $monto_minimo = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $estado = 0){
+	public function crearCanal($nombre = '', $monto_minimo = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $premios = 0, $promociones = 0, $cupones = 0, $escuela = 0, $estado = 0){
 
 		$idcanal = $this->insertar("INSERT INTO `canales_distribucion`(	
 									`nombre`, 
@@ -28,21 +32,29 @@ class CanalesDistribucion extends Database
 									`puntos`, 
 									`referidos`, 
 									`incentivos`, 
+									`premios`, 
+									`promociones`, 
+									`cupones`, 
+									`escuela`, 
 									`estado`) VALUES (
 									'$nombre',
 									'$monto_minimo',
 									'$puntos',
 									'$referidos',
 									'$incentivos',
+									'$premios',
+									'$promociones',
+									'$cupones',
+									'$escuela',
 									'$estado')");
 
 		return $idcanal;
 
 	}
 
-	public function listarCanales(){		
+	public function listarCanales(){
 		
-		$query = $this->consulta("SELECT `idcanal`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `comision`, `estado`
+		$query = $this->consulta("SELECT `idcanal`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `premios`, `promociones`, `cupones`, `escuela`, `comision`, `estado`
 								FROM `canales_distribucion`");
 		
 		return $query;
@@ -51,7 +63,7 @@ class CanalesDistribucion extends Database
 	public function detalleCanal($idcanal=0){
 		
 		
-		$query = $this->consulta("SELECT `idcanal`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `comision`, `estado` 
+		$query = $this->consulta("SELECT `idcanal`, `nombre`, `monto_minimo`, `puntos`, `referidos`, `incentivos`, `premios`, `promociones`, `cupones`, `escuela`, `comision`, `estado` 
 								FROM `canales_distribucion`
 								WHERE `idcanal`='$idcanal'");
 		
