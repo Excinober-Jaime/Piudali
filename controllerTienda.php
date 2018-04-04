@@ -159,79 +159,85 @@ class ControllerTienda
 
 		$this->ingredientes = array(
 
-			'chontaduro' => array ('ingredientes/chontaduro.jpg', 'Chontaduro' ,'Fruto rico en carotenos, nutrientes, ácidos grasos esenciales y vitaminas A, C y D. Los carotenoides, por su función antioxidante, contrarrestan los efectos dañinos de los radicales libre y ayudan a mantener la juventud de la piel.'),
+			'chontaduro' => array ('ingredientes/chontaduro.jpg', 'Aceite de Chontaduro' ,'Rico en carotenos, ácidos grasos esenciales omega 3 y 6, vitaminas A, C y D. Los carotenoides, por su función antioxidante, contrarrestan los efectos dañinos de los radicales libres. Nutre y rejuvenece la piel.'),
 
-			'cafe' => array ('ingredientes/cafe.jpg', 'Aceite de Café Arábigo' ,'El aceite de café es antioxidante, por lo cual protege la piel y ayuda a tratar afecciones como el acné. Mejorar la circulación sanguínea'),
+			'cafe' => array ('ingredientes/cafe.jpg', 'Aceite de Café Arábigo' ,'Rico en antioxidante, actúa como exfoliante natural, estimula la renovación de las células. Mejorar la circulación sanguínea, equilibrante de la piel grasa y acneica. Calma las irritaciones y el enrojecimiento.'),
 
-			'abejas' => array ('ingredientes/abejas.jpg', 'Cera de Abejas' ,'Contiene  ácidos grasos proporcionan una protección natural y fortalecen la función de barrera de la piel, evita la pérdida de agua de adentro hacia fuera. Esta altamente hidratante.'),
+			'abejas' => array ('ingredientes/abejas.jpg', 'Cera de Abejas' ,'La cera proporciona una barrera natural contra el frío, el viento y la pérdida de humedad. También sirve como un emulsionante para ayudar a mantener la consistencia del producto.'),
 
-			'acai' => array ('ingredientes/acai.jpg', 'Aceite de açaí' ,'Rico en omega 6 y Omega 9 ácidos grasos esenciales, fitosteroles, vitamina C, E y B3, minerales y aminoácidos esenciales.  Altamente hidratante y emoliente natural. Restaura la elasticidad a la piel.'),
+			'acai' => array ('ingredientes/acai.jpg', 'Aceite de açaí' ,'Rico en ácidos grasos esenciales omega 6 y Omega 9, vitamina C, E y B3, minerales, aminoácidos esenciales y fitosteroles con propiedades anti-inflamatorias. Previene el envejecimiento y repara los daños de la piel.'),
 
-			'aceiteoliva' => array ('ingredientes/aceiteoliva.jpg', 'Aceite de Oliva' ,'Es una combinación de ácidos grasos, derivados del aceite de oliva, químicamente similar a la composición de lípidos de la superficie de la piel, tiene la propiedad de emulsionar en medios hidrófilos o lipófilos.
+			'aguacate' => array ('ingredientes/aguacate.jpg', 'Aceite de Aguacate' ,'Rico en antioxidantes, minerales y vitaminas A, D y E. Es similar al NMF (Factor Hidratante Natural de la piel), penetra profundamente, nutre, repara y suaviza. Mejora la circulación sanguínea.'),
 
-				También tiene la capacidad de generar estructuras de cristal líquido que imitan la matriz extracelular de los lípidos del estrato córneo organización tridimensional. '),
+			'almendras' => array ('ingredientes/almendras.jpg', 'Aceite de Almendras Dulces' ,'Rico en antioxidantes, vitamina E y nutrientes esenciales. Mantiene la humedad de la piel. Es antiinflamatorio, hidratante, emoliente y protector. Reduce las arrugas y mejora la elasticidad.'),
 
-			'aguacate' => array ('ingredientes/aguacate.jpg', 'Aceite de Aguacate' ,'Rico en antioxidantes, minerales  y vitaminas A, D y E. Es similar al NMF (Factor Hidratante Natural de la piel), penetra profundamente, nutre, repara y suaviza. Mejora la circulación.'),
+			'aloe' => array ('ingredientes/aloe.jpg', 'Extracto de Aloe Vera' ,'Limpia profundamente la piel, lo que favorece la desobstrucción de los poros y la eliminación de toxinas e impurezas. Es hidratante, astringente, calmante y regenerador de la piel.'),
 
-			'almendras' => array ('ingredientes/almendras.jpg', 'Aceite de Almendras Dulces' ,'Rico en antioxidantes, vitamina E y contiene muchos nutrientes esenciales.  Atrapa la humedad de la piel y la mantiene hidratada. Es antiinflamatorio, emoliente y protector.'),
+			'andiroba' => array ('ingredientes/andiroba.jpg', 'Aceite de Andiroba' ,'Es el aceite vegetal más extraordinario y completo que se conoce porque no se oxida. Ideal para todo tipo de piel por su propiedad protectora, reparadora y antiinflamatoria. Hidrata y suaviza.'),
 
-			'aloe' => array ('ingredientes/aloe.jpg', 'Extracto de Aloe Vera' ,'Limpia profundamente la piel, lo que favorece la desobstrucción de los poros y la eliminación de toxinas e impurezas. Es hidratante, astringente, calmante y regenerador de la piel.
-  				'),
+			'babassu' => array ('ingredientes/babassu.jpg', 'Aceite de Babassú' ,'Rico en vitamina E. Tiene propiedades hidratantes y antisépticas. Elimina el exceso de grasa e impurezas. No obstruye los poros. Protege y revitaliza la piel. Ideal para todo tipo de piel, especialmente pieles grasas y acneicas.'),
 
-			'andiroba' => array ('ingredientes/andiroba.jpg', 'Aceite de Andiroba' ,'Rico en  omega-3 que promueve la cicatrización. Tiene propiedades antiinflamatoria, promueva la circulación de la sangre, alivia el dolor y la hinchazón.  Es hidratante, antiséptico y emoliente, ideal para piel seca.'),
+			'balu' => array ('ingredientes/balu.jpg', 'Extracto de Balú' ,'Rico en antioxidantes, proteína y aminoácidos esenciales. Estimula ligeramente el crecimiento de los fibroblastos, células productoras de proteínas como el colágeno y la elastina. Forma una película humectante en la piel.'),
 
-			'babassu' => array ('ingredientes/babassu.jpg', 'Aceite de Babassú' ,'Rico en vitamina E. Hidrata y elimina el exceso de grasa e impurezas. Es un  equilibrante de la piel grasa, no obstruye los poros. Protege y revitaliza la piel.'),
-			'balu' => array ('ingredientes/balu.jpg', 'Extracto de Balú' ,'Rico en antioxidantes, potasio, proteína y aminoácidos esenciales. Estimula ligeramente la proliferación de los fibroblastos. Forma una película humectante en la piel.'),
+			'buriti' => array ('ingredientes/buriti.jpg', 'Aceite de Buriti' ,'Rico en antioxidantes, carotenoides, vitamina E, ácidos grasos esenciales, vitamina A y C. Es antiinflamatorio, emoliente y suavizante. Rejuvenece, nutre, repara y protege la piel.'),
 
-			'buriti' => array ('ingredientes/buriti.jpg', 'Aceite de Buriti' ,'Rico en carotenoides, tocoferoles, betacarotenos, ácidos grasos esenciales, vitamina A y C. Tiene propiedades antioxidante, antiinflamatoria, emoliente y suavizante. Nutre, repara y protege la piel.'),
+			'cacao' => array ('ingredientes/cacao.jpg', 'Mantequilla de Cacao' ,'Es rica en ácidos grasos esenciales, vitamina E y antioxidantes. Tiene una alta capacidad de hidratar la piel del cuerpo y los labios. Repara y protege del sol y del medio ambiente. Ideal para pieles muy secas y agrietadas.'),
 
-			'cacao' => array ('ingredientes/cacao.jpg', 'Mantequilla de Cacao' ,'Es rica en ácidos grasos esenciales, vitamina E y antioxidantes. Tiene una alta capacidad de hidratar la piel y los labios, repara y protege del sol y del medio ambiente. Ideal para pieles muy secas y agrietadas.'),
+			'calendula' => array ('ingredientes/calendula.jpg', 'Aceite de Caléndula' ,'Posee propiedades antiinflamatorias, antisépticas y calmantes. Estimula la regeneración de las células. Penetra profundamente en la piel, suaviza, nutre y mejora la elasticidad de la piel.'),
 
-			'calendula' => array ('ingredientes/calendula.jpg', 'Aceite de Caléndula' ,'Antioxidante, antiinflamatorio y calmantes. Hidrata y nutre. Ideal para pieles sensibles como las de los bebés o personas que sufren de irritaciones y alteraciones en la piel.'),
+			'candelilla' => array ('ingredientes/candelilla.jpg', 'Ceras de Candelilla' ,'La cera de candelilla es una cera vegetal relativamente dura, obtenida de la capa protectora de arbustos de Candelilla. Forma una barrera protectora, es emoliente y da consistencia al producto.'),
 
-			'candelilla' => array ('ingredientes/candelilla.jpg', 'Ceras de Candelilla' ,'La cera de candelilla es una cera vegetal relativamente dura, obtenida de la capa protectora de arbustos de Candelilla. Se usa como emoliente y también por su capacidad de dar consistencia y formar barrera protectora de la piel.'),
+			'copoazu' => array ('ingredientes/copoazu.jpg', 'Mantequilla de Cupuazú ' ,'Rica en antioxidantes, vitamina A, B y C aminoácidos y ácidos grasos. Hidrata profundamente, nutre y suaviza. Mantiene la humedad de la piel. Repara los daños de la piel producidos por las radiaciones UV.'),
 
-			'copoazu' => array ('ingredientes/copoazu.jpg', 'Mantequilla de Cupoazú ' ,'Rica en vitaminas, aminoácidos y ácidos grasos que promueven una hidratación profunda, dejando la piel sedosa y con mayor elasticidad. Ayuda a regular y equilibrar la grasa en la piel.'),
+			'durazno' => array ('ingredientes/durazno.jpg', 'Exfoliante polvo de nuez de Durazno' ,'La semilla o nuez del durazno molida es un exfoliante de origen natural. Limpia profundamente, elimina la grasa, impurezas y células muertas. Aporta suavidad y luminosidad a la piel.'),
 
-			'durazno' => array ('ingredientes/durazno.jpg', 'Nuez de Durazno' ,'La semilla o nuez del durazno molida es un exfoliante de origen natural, ideal para eliminar la grasa y las células muertas de la superficie de la piel. Ayuda a eliminar impurezas y asperezas.'),
+			'girasol' => array ('ingredientes/girasol.jpg', 'Aceite de Girasol' ,'Rico en ácidos grasos esenciales omega 3 y 6. Tiene propiedades nutritivas, antiinflamatorias, emolientes y protectora. Hidrata y ayuda a retener la humedad de la piel.'),
 
-			'girasol' => array ('ingredientes/girasol.jpg', 'Aceite de Girasol' ,'Rico en ácidos grasos esenciales omega 3 y 6. Tiene propiedades nutritivas, antiinflamatorias, emolientes y protectora. Hidrata y ayuda la retener la humedad.'),
-
-			'guayaba' => array ('ingredientes/guayaba.jpg', 'Extracto de guayaba' ,'Rico en vitaminas A, B, C y potasio que son buenos antioxidantes y desintoxicantes. Hidrata, tonifica y mejora la textura de la piel.  Contiene licopeno es un antioxidante que protege la piel.'),
+			'guayaba' => array ('ingredientes/guayaba.jpg', 'Extracto de guayaba' ,'Extracto hidrosoluble, antioxidante, antienvejecimiento y tonificante. Hidrata, mejora la textura de la piel. Contiene licopeno es un antioxidante que protege la piel. Rico en vitamina C.'),
 
 			'jojoba' => array ('ingredientes/jojoba.jpg', 'Aceite de Jojoba' ,'Es el aceite vegetal más extraordinario y completo que se conoce porque no se oxida. Ideal para todo tipo de piel por su propiedad protectora, reparadora y antiinflamatoria. Hidrata y suaviza.'),
 
-			'karite' => array ('ingredientes/karite.jpg', 'Mantequilla de Karité' ,'El karité es regenerador celular que puede ser aplicado en cualquier parte del cuerpo, aporta minerales y vitaminas A y E y minerales. Hidra y protege la piel y ayuda a prevenir el envejecimiento.'),
+			'karite' => array ('ingredientes/karite.jpg', 'Mantequilla de Karité' ,'Es un regenerador celular, puede ser aplicado en cualquier parte del cuerpo. Hidrata profundamente, protege la piel de las agresiones del medio ambiente y ayuda a prevenir el envejecimiento.'),
 
-			'laurel' => array ('ingredientes/laurel.jpg', 'Ceras de Laurel' ,'Contiene  ácidos grasos proporcionan una protección natural y fortalecen la función de barrera de la piel, evita la pérdida de agua de adentro hacia fuera. Esta altamente hidratante.'),
+			'laurel' => array ('ingredientes/laurel.jpg', 'Cera de Laurel' ,'Contiene ácidos grasos que proporcionan una protección natural y fortalecen la función de barrera de la piel, evita la pérdida de agua de adentro hacia fuera. Esta altamente hidratante.'),
 
-			'macadamia' => array ('ingredientes/macadamia.jpg', 'Mantequilla de Macadamia' ,'Rico en ácidos oleicos, linoléicos y esteroles, con propiedades calmantes y suavizantes. Aporta nutrientes a la piel del rostro para conservarla sana, hidratada y luminosa.'),
+			
+			'mango' => array ('ingredientes/mango.jpg', 'Mantequilla de Mango' ,'Rica en antioxidantes. Posee propiedades hidratantes y emolientes. suaviza, favorece la cicatrización de las heridas y la regeneración de la piel. Protege la piel de los rayos ultravioletas. Exfoliante y purificante de rostro.'),
 
-			'mango' => array ('ingredientes/mango.jpg', 'Mantequilla de Mango' ,'Rica en antioxidantes. Tiene propiedades hidratantes, emolientes, favorece la cicatrización de las heridas y la regeneración de la piel. Protege la piel de los rayos ultravioletas y suaviza.'),
+			'manzanilla' => array ('ingredientes/manzanilla.jpg', 'Extracto de Manzanilla' ,'Es un equilibrante de la piel y calmante de las terminaciones nerviosas que se encuentran en ella. Antiinflamatorio, descongestionante y antimicrobiano. Hidrata y purifica la piel.'),
 
-			'manzanilla' => array ('ingredientes/manzanilla.jpg', 'Extracto de Manzanilla' ,'Es un estabilizador de la piel y calmante de las terminaciones nerviosas que se encuentran en ella. Antiinflamatorio, descongetionante y antimicrobiano. Hidrata y purifica la piel.'),
+			'maracuya' => array ('ingredientes/maracuya.png', 'Aceite de semillas de Maracuyá' ,'Es rico en antioxidantes, ácido linoléico y ácidos grasos Omega 3, 6 y 9. Tiene propiedades antiinflamatoria y astringente. Reduce la producción de sebo. Nutre, protege y repara la piel.'),
 
-			'maracuya' => array ('ingredientes/maracuya.png', 'Aceite de Maracuyá' ,'Rico en ácido linoléico y ácidos grasos Omega 6, de fácil absorción, ayuda a mantiene suave y flexible. Tiene propiedades hidratantes, antioxidantes, astringentes y antiinflamatorias.'),
+			'name' => array ('ingredientes/name.jpg', 'Extracto de Ñame' ,'Rico en beta-caroteno, vitamina A y C, vitamina B6, y antioxidantes. Ayuda retardar el envejecimiento, reduce las arrugas. Estimula la producción de colágeno. Posee propiedades antiinflamatorias.'),
 
-			'name' => array ('ingredientes/name.jpg', 'Extracto de Ñame' ,'Rico en beta-caroteno, vitamina A y C, vitamina B6, y antioxidantes que ayudan  prevenir las arrugas y retardar el envejecimiento, Estimula la producción de colágeno. Rico en fitosteroles, base para la síntesis de hormonas femeninas.'),
+			'nogal' => array ('ingredientes/nogal.jpg', 'Exfoliante Polvo de nuez de nogal' ,'La semilla de nuez molida es un exfoliante de origen natural. Hidrata, limpia profundamente, elimina puntos negros, impurezas y células muertas. Promueve la regeneración celular.'),
 
-			'nogal' => array ('ingredientes/nogal.jpg', 'Polvo de nuez de nogal' ,'La semilla de nuez molida es un exfoliante de origen natural, ideal para eliminar las células muertas de la piel. Ayuda a eliminar impurezas y asperezas.'),
+			'ricino' => array ('ingredientes/ricino.jpg', 'Aceite de Ricino' ,'Rico en ácidos grasos, penetra profundamente en la piel, es altamente hidratante y emoliente confiere brillo y suavidad a los labios. Es antimicrobiano ayuda a mejorar las irritaciones de la piel.'),
 
-			'ricino' => array ('ingredientes/ricino.jpg', 'Aceite de Ricino' ,'Este aceite altamente hidratante y emoliente confiere brillo y suavidad a los labios y retiene la humedad. Los ácidos grasos concentrados penetran la piel fácilmente.'),
+			'romero' => array ('ingredientes/romero.jpg', 'Extracto de Romero' ,'Posee propiedades fotoprotectoras, antiinflamatorias, antisépticas y calmantes. Hidrata, repara, ayuda cicatrizar y estimular la circulación sanguínea. Previene el envejecimiento prematuro de la piel.'),
 
-			'romero' => array ('ingredientes/romero.jpg', 'Aceite de Romero' ,'Es astringentes y antimicrobiano. Retrasa los efectos del envejecimiento y ayuda a tonificar la piel. Un suave masaje con este aceite mejora la flexibilidad de la piel. '),
+			'seje' => array ('ingredientes/seje.png', 'Aceite de Seje' ,'Rico en ácidos grasos esenciales omega 9. Protege, tonifica y restaura los niveles naturales de humedad de la piel. Previene el envejecimiento y suaviza la piel.'),
 
-			'seje' => array ('ingredientes/seje.png', 'Aceite de Seje' ,'Rico en ácidos grasos esenciales omega 9, con alto contenido en proteínas y aminoácidos. Protege, tonifica y restaura los niveles naturales de humedad de la piel. Previene el envejecimiento y suaviza la piel.'),
+			'trebolrojo' => array ('ingredientes/trebolrojo.jpg', 'Extracto de Trébol Rojo' ,'Rico en isoflavonoides que hidratan y mejoran la elasticidad de la piel. Reduce los signos de envejecimiento, aumenta la producción de colágeno y elastina. Ayuda mantener el grosor de la piel.'),
 
-			'te' => array ('ingredientes/te.jpg', 'Aceite de Árbol de Té' ,'Rico en antioxidantes que reparan el daño oxidativo de las células. Tiene propiedades antisépticas, antibacterianas y cicatrizantes. Contiene metilxantinas que trabajan para mejorar el tono y la textura de la piel.'),
+			'trigo' => array ('ingredientes/trigo.jpg', 'Aceite de Germen de Trigo' ,'Rico en vitamina E, antioxidantes, minerales, proteínas y ácidos grasos esenciales omega 3 y 6. Nutre, rejuvenece, repara y protege la piel. Mejora la elasticidad de la piel.'),
 
-			'trebolrojo' => array ('ingredientes/trebolrojo.jpg', 'Extracto de Trébol Rojo' ,'Rico en isoflavonoides que mejoran la elasticidad. Reduce los signos de envejecimiento de la piel porque aumenta la producción de colágeno. Ayuda mantener el grosor de la piel.'),
+			'uva' => array ('ingredientes/uva.jpg', 'Aceite de Semillas de Uva' ,'Rico en antioxidantes como el resveratrol, este aceite emoliente tiene un alto contenido de ácidos grasos (ácido linoléico). Hidrata, mejora la circulación sanguínea y elasticidad de la piel.'),
 
-			'trigo' => array ('ingredientes/trigo.jpg', 'Aceite de Germen de Trigo' ,'Rico en vitamina E natural, minerales, proteínas y ácidos grasos esenciales. Nutre, repara, protege la piel. Promueve la formación de piel más joven debido a sus fitoestimulinas'),
+			'sesamo' => array ('ingredientes/sesamo.jpg', 'Aceite de sésamo' ,'Contiene vitaminas E, y ácidos grasos omega 3 y 6. Hidrata, nutre y repara la piel, evitando el envejecimiento prematuro. Ideal para pieles sensibles. Ayuda a retener la humedad de la piel.'),
 
-			'uva' => array ('ingredientes/uva.jpg', 'Aceite de Semillas de Uva' ,'Este aceite emoliente tiene un alto contenido de ácidos grasos (ácido linoléico) y antioxidantes, como el resveratrol. Hidrata, elimina la celulitis, mejora la circulación y la elasticidad de la piel.'),
+			'carnauba' => array ('ingredientes/carnauba.jpg', 'Proporciona una barrera protectora que impide la deshidratación por el sudor. Aporta un brillo natural a los labios, y da consistencia al producto.'),
 
-			'zanahoria' => array ('ingredientes/zanahoria.jpg', 'Aceite de Zanahoria' ,'Contiene poderosos antioxidantes (carotenoides, vitaminas A y E) que acondicionan la piel y protegen las células del daño de los radicales libres. Nutre, repara y aporta elasticidad a la piel.')
+			'nuezbrasil' => array ('ingredientes/nuezdebrasil.jpg', 'Rico en aminoácidos, minerales, vitaminas A, C, E y B. Es altamente Hidratante, Nutre, suaviza, rejuvenece y repara la piel. Ideal para pieles con psoriasis y eczemas.'),
+
+			'granadilla' => array ('ingredientes/granadilla.jpg', 'Rico en vitaminas C, polifenoles, potasio y otros minerales y nutrientes, ayuda en la regeneración celular. Protege y repara la capa exterior de la piel. Ayuda a cicatrizar heridas.'),
+			'achiote' => array ('ingredientes/achiote.jpg', 'Es un colorante natural. Rico en carotenos con propiedades antioxidantes. Tiene propiedades antiinflamatorias, ayuda a cicatrizar. Suaviza y protege la piel de los rayos solares.'),
+
+			'extractochontaduro' => array ('ingredientes/extractochontaduro.jpg', 'Fruto rico en carotenos precursores de la vitamina A, nutrientes, ácidos grasos esenciales omega 3 y 6, vitaminas C y D. Los carotenoides, por su función antioxidante, contrarrestan los efectos dañinos de los radicales libre y ayudan a mantener la piel joven.'),
+
+			'teverde' => array ('ingredientes/teverde.jpg', 'Rico en vitamina C, E y Carotenos. Posee propiedades fotoprotectoras, antiinflamatorias y descongestiva. Mejora la elasticidad de la piel, ayuda a mejorar el tono de la piel y a unificarlo, Repara los daños de la piel producidos por las radiaciones UV.'),
+
+			'zanahoria' => array ('ingredientes/zanahoria.jpg', 'Aceite de Zanahoria' ,'Contiene antioxidantes (carotenoides, vitaminas A y E) que acondicionan la piel y protegen las células del daño de los radicales libres. Nutre, repara y mejora la elasticidad a la piel.')
 		);
 
 		if (!empty($producto)) {

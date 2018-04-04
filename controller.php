@@ -1313,7 +1313,7 @@ class Controller
 						
 						foreach ($incentivos as $key => $incentivo) {
 
-							if ($incentivo["fin"] >= date("Y-m-d")) {							
+							//if ($incentivo["fin"] >= date("Y-m-d")) {			
 
 								$escalas = $this->usuarios->listarEscalasIncentivo($incentivo["idincentivo"]);
 								$incentivos[$key]["escalas"] = $escalas;
@@ -1347,10 +1347,10 @@ class Controller
 									$incentivos[$key]["cumplimiento"] = ($incentivos[$key]["compras_netas"]/$incentivo["meta"])*100;
 									$incentivos[$key]["cumplimiento"] = round($incentivos[$key]["cumplimiento"])."%";
 								}
-							}else{
+							//}else{
 								//Eliminar incentivos vencidos
-								unset($incentivos[$key]);
-							}
+								//unset($incentivos[$key]);
+							//}
 						}
 					}
 
@@ -1776,10 +1776,48 @@ class Controller
 	}
 
 /*************CARRITO******************************/
+
+	private function eliminarVariablesDropshipping(){
+
+		unset($_SESSION['nombre_dp']);
+		unset($_SESSION['email_dp']);
+		unset($_SESSION['telefono_dp']);
+		unset($_SESSION['telefono_m_dp']);
+		unset($_SESSION['direccion_dp']);
+		unset($_SESSION['idciudad_dp']);
+		unset($_SESSION['ciudad_dp']);
+	}
 	
 	public function verCarrito(){
 
 		$paginas_menu = $this->paginasMenu();
+		$ciudades = $this->listarCiudades();
+
+		if (isset($_GET['modalidad']) && !empty($_GET['modalidad'])) {
+			
+			switch ($_GET['modalidad']) {
+				
+				case 1: //NORMAL. Despacho al distribuidor
+					
+					$_SESSION['modalidad_compra'] = 'NORMAL';
+					$this->eliminarVariablesDropshipping();
+					break;
+
+				case 2: //DROPSHIPPING. Despacho al cliente del distribuidor
+					
+					$_SESSION['modalidad_compra'] = 'DROPSHIPPING';
+
+					break;
+			}
+
+		}else{
+
+			if (!isset($_SESSION['modalidad_compra'])) {
+				
+				$_SESSION['modalidad_compra'] = 'NORMAL';
+				$this->eliminarVariablesDropshipping();
+			}
+		}
 
 		if (isset($_POST["redimirCupon"])) {
 
@@ -1811,6 +1849,23 @@ class Controller
 			}
 		}
 
+		if (isset($_POST["guardarDropshipping"])) {
+
+			extract($_POST);
+
+			$_SESSION['modalidad_compra'] = 'DROPSHIPPING';
+
+			$_SESSION['nombre_dp'] = $nombre_dp;
+			$_SESSION['email_dp'] = $email_dp;
+			$_SESSION['telefono_dp'] = $telefono_dp;
+			$_SESSION['telefono_m_dp'] = $telefono_m_dp;
+			$_SESSION['direccion_dp'] = $direccion_dp;
+			$_SESSION['idciudad_dp'] = $ciudad_dp;
+			$ciudad_info = $this->usuarios->nombreCiudad($ciudad_dp);
+			$_SESSION['ciudad_dp'] = $ciudad_info['ciudad'];
+		}
+
+
 		if (isset($_POST["usar_puntos"]) && $_POST["usar_puntos"]==1) {
 			$_SESSION["usar_puntos"] = true;
 		}
@@ -1828,7 +1883,14 @@ class Controller
 			$puntos_disponibles = 0;
 		}
 
-		
+		if ($_SESSION['modalidad_compra'] == 'DROPSHIPPING') {
+
+			//Fijar el porcentaje de descuento escala al 20%
+			Carrito::$porc_descuento_escala = 20;
+			Carrito::$modalidad_compra = 'DROPSHIPPING';
+		}
+
+
 		$itemsCarrito = $this->carrito->listarItems();
 		$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
 		$subtotalAntesIvaPremios = $this->carrito->getSubtotalAntesIvaPremios();
@@ -1837,20 +1899,21 @@ class Controller
 		$descuentoEscala = $this->carrito->getDescuentoEscala();
 		$porcDescuentoEscala = $this->carrito->porcDescuentoEscala();
 		$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
-
 		$retencion = $this->carrito->getRTF();
-
-		$pagoPuntos = $this->carrito->getPagoPuntos();		
-
-		$iva = $this->carrito->getIva();
+		$pagoPuntos = $this->carrito->getPagoPuntos();
+		$iva = $this->carrito->getIva();		
 		$flete = $this->carrito->calcularFlete();
-		$total = $this->carrito->getTotal();
+		$total = $this->carrito->getTotal();		
 		$rentabilidad = $this->carrito->getRentabilidad();
 
 		$campana_actual = $this->campanas->getCamapanaActual();
 
-		if ($campana_actual["monto_minimo"]>$subtotalAntesIva) {
-			$alerta = 'El pedido no cumple con el monto mínimo, por favor agrega más productos. Si no eres un distribuidor por favor da clic <a href="'.URL_SITIO.URL_CLUB.'">aquí.</a>';
+		if ($_SESSION['modalidad_compra'] != 'DROPSHIPPING') {
+			
+			if ($campana_actual["monto_minimo"]>$subtotalAntesIva) {
+				
+				$alerta = 'El pedido no cumple con el monto mínimo, por favor agrega más productos. Si no eres un distribuidor por favor da clic <a href="'.URL_SITIO.URL_CLUB.'">aquí.</a>';
+			}
 		}
 
 		include "views/carrito.php";
@@ -1861,6 +1924,13 @@ class Controller
 		if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"])) {
 			
 			$paginas_menu = $this->paginasMenu();
+
+			if ($_SESSION['modalidad_compra'] == 'DROPSHIPPING') {
+
+				//Fijar el porcentaje de descuento escala al 20%
+				Carrito::$porc_descuento_escala = 20;
+				Carrito::$modalidad_compra = 'DROPSHIPPING';
+			}
 
 			$credito = false;
 
@@ -1900,6 +1970,13 @@ class Controller
 
 		if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"]) && count($_SESSION["idpdts"])>0 && count($_SESSION["cantidadpdts"])>0) {
 
+			if ($_SESSION['modalidad_compra'] == 'DROPSHIPPING') {
+
+				//Fijar el porcentaje de descuento escala al 20%
+				Carrito::$porc_descuento_escala = 20;
+				Carrito::$modalidad_compra = 'DROPSHIPPING';
+			}
+
 			$codigo_orden = $this->carrito->generarCodOrden();
 			$fecha_pedido = fecha_actual("date");
 			$subtotalAntesIva = $this->carrito->getSubtotalAntesIva();
@@ -1930,6 +2007,12 @@ class Controller
 			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
 
 			if ($idorden) {
+
+				//Registrar dirección para dropshipping
+				if ($_SESSION['modalidad_compra'] == 'DROPSHIPPING') {
+
+					$iddireccion = $this->carrito->registrar_direccion_orden($idorden, $_SESSION['nombre_dp'], $_SESSION['direccion_dp'], $_SESSION['idciudad_dp'], $_SESSION['telefono_dp'], $_SESSION['telefono_m_dp'], $_SESSION['email_dp']);
+				}
 				
 				//Cargar Nuevos Puntos
 				$valor_punto = 1;
@@ -3025,12 +3108,12 @@ class Controller
 
 		if (isset($_POST["actualizarCanal"])) {
 
-			$this->canales_distribucion->actualizarCanal($idcanal, $nombre, $monto_minimo, $puntos, $referidos, $incentivos, $premios, $promociones, $cupones, $escuela, $estado);
+			$this->canales_distribucion->actualizarCanal($idcanal, $nombre, $monto_minimo, $comision, $puntos, $referidos, $incentivos, $premios, $promociones, $cupones, $escuela, $estado);
 		}
 
 		if (isset($_POST["crearCanal"])) {
 
-			$idcanal = $this->canales_distribucion->crearCanal($nombre, $monto_minimo, $puntos, $referidos, $incentivos, $premios, $promociones, $cupones, $escuela, $estado);
+			$idcanal = $this->canales_distribucion->crearCanal($nombre, $monto_minimo, $comision, $puntos, $referidos, $incentivos, $premios, $promociones, $cupones, $escuela, $estado);
 		}
 
 		if (isset($minimo) && count($minimo)>0) {

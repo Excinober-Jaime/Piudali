@@ -6,11 +6,12 @@
 class CanalesDistribucion extends Database
 {
 
-	public function actualizarCanal($idcanal, $nombre = '', $monto_minimo = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $premios = 0, $promociones = 0, $cupones = 0, $escuela = 0, $estado = 0){
+	public function actualizarCanal($idcanal, $nombre = '', $monto_minimo = 0, $comision = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $premios = 0, $promociones = 0, $cupones = 0, $escuela = 0, $estado = 0){
 
 		$query = $this->actualizar("UPDATE `canales_distribucion` SET 
 									`nombre`= '$nombre',
 									`monto_minimo`= '$monto_minimo',
+									`comision`= '$comision',
 									`puntos`= '$puntos',
 									`referidos`= '$referidos',
 									`incentivos`= '$incentivos',
@@ -24,11 +25,12 @@ class CanalesDistribucion extends Database
 		return $query;
 	}
 	
-	public function crearCanal($nombre = '', $monto_minimo = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $premios = 0, $promociones = 0, $cupones = 0, $escuela = 0, $estado = 0){
+	public function crearCanal($nombre = '', $monto_minimo = 0, $comision = 0, $puntos = 0, $referidos = 0, $incentivos = 0, $premios = 0, $promociones = 0, $cupones = 0, $escuela = 0, $estado = 0){
 
 		$idcanal = $this->insertar("INSERT INTO `canales_distribucion`(	
 									`nombre`, 
 									`monto_minimo`, 
+									`comision`,
 									`puntos`, 
 									`referidos`, 
 									`incentivos`, 
@@ -39,6 +41,7 @@ class CanalesDistribucion extends Database
 									`estado`) VALUES (
 									'$nombre',
 									'$monto_minimo',
+									'$comision',
 									'$puntos',
 									'$referidos',
 									'$incentivos',

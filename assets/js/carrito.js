@@ -62,6 +62,72 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	$('[name="modalidad"]').click(function(){
+
+		var modalidad = $(this).val();
+
+		if (modalidad == 'NORMAL') {
+
+			//$('#panel-metodologia-normal').show();
+			//$('#panel-metodologia-dropshipping').hide();
+
+			window.location.href='Carrito/?modalidad=1';
+
+		}else if (modalidad == 'DROPSHIPPING'){
+
+			//$('#panel-metodologia-normal').hide();
+			//$('#panel-metodologia-dropshipping').show();
+
+			window.location.href='Carrito/?modalidad=2';
+		}
+	});
+
+	$('#guardarDropshipping').click(function(){
+
+		var nombredp = $('#nombre_dp').val();
+		var emaildp = $('#email_dp').val();
+		var telefonodp = $('#telefono_dp').val();
+		var movildp = $('#telefono_m_dp').val();
+		var direcciondp = $('#direccion_dp').val();
+		var ciudaddp = $('#ciudad_dp').val();
+
+
+		if (nombredp == '') {
+
+			alert('Por favor ingresa el nombre de tu cliente');
+			$('#nombre_dp').focus();
+
+		}else if(emaildp == ''){
+
+			alert('Por favor ingresa el email de tu cliente');
+			$('#email_dp').focus();
+
+		}else if (telefonodp == '' && movildp == ''){
+
+			alert('Por favor ingresa al menos un número telefónico de tu cliente');
+			$('#telefono_m_dp').focus();
+
+		}else if(direcciondp == ''){
+
+			alert('Por favor ingresa la dirección de tu cliente');
+			$('#direccion_dp').focus();
+
+		}else if(ciudaddp == ''){
+
+			alert('Por favor ingresa la ciudad de tu cliente');
+			$('#ciudad_dp').focus();
+
+		}else if (!$('#autorizacion_datos_dp').is(':checked')) {
+
+			alert('Por favor autoriza el uso de datos personales');
+			$('#autorizacion_datos_dp').focus();
+
+		}else {
+
+			$('#form-modalidad-dropshipping').submit();
+		}
+	});
 	
 })
 

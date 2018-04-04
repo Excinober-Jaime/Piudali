@@ -21,14 +21,14 @@
 					<?php
 					if (isset($itemsCarrito) && count($itemsCarrito)>0) {
 					
-						foreach ($itemsCarrito["id"] as $key => $iditem) {
+						foreach ($itemsCarrito as $key => $item) {
 					?>
 						<tr>
-							<td width="12%"><img src="<?=$itemsCarrito["img_principal"][$key]?>" class="img-responsive" style="max-width:100px;"></td>
-							<td class="text-left"><?=$itemsCarrito["nombre"][$key]?><br>Código: <?=$itemsCarrito["codigo"][$key]?><br>Iva: <?=$itemsCarrito["iva"][$key]?>%</td>
-							<td class="text-center">$<?=number_format($itemsCarrito["precio"][$key])?></td>
-							<td class="text-center"><?=$itemsCarrito["cantidad"][$key]?></td>
-							<td class="text-center">$<?=number_format($itemsCarrito["subtotal"][$key])?></td>
+							<td width="12%"><img src="<?=$item["img_principal"]?>" class="img-responsive" style="max-width:100px;"></td>
+							<td class="text-left"><?=$item["nombre"]?><br>Código: <?=$items["codigo"]?><br>Iva: <?=$item["iva"]?>%</td>
+							<td class="text-center">$<?=number_format($item["precio"])?></td>
+							<td class="text-center"><?=$item["cantidad"]?></td>
+							<td class="text-center">$<?=number_format($item["subtotal"])?></td>
 						</tr>
 					<?php
 						}
@@ -47,13 +47,25 @@
 	<hr>
 	<div class="row">
 	 <div class="col-xs-12 col-md-7">
-	 	<h2>Dirección de envío</h2>
-	 	<p> Dirección: <?=$_SESSION["direccion"]?><br>
-	 		Ciudad: <?=$_SESSION["ciudad"]?><br>
-	 		Teléfono: <?=$_SESSION["telefono"]?><br>
-	 		Teléfono Móvil: <?=$_SESSION["telefono_m"]?><br>
-	 	</p>
-	 	<a href="<?=URL_USUARIO."/".URL_USUARIO_CAMBIAR_DATOS?>" class="btn btn-sm btn-primary">Cambiar Datos</a>
+
+	 	<?php if ($_SESSION['modalidad_compra'] == 'DROPSHIPPING') { ?>
+	 		<h3>Enviaremos el pedido a tu cliente en la siguiente dirección:</h3>
+		 	<p> Nombre: <?=$_SESSION["nombre_dp"]?><br>
+		 		Dirección: <?=$_SESSION["direccion_dp"]?><br>
+		 		Ciudad: <?=$_SESSION["ciudad_dp"]?><br>
+		 		Teléfono: <?=$_SESSION["telefono_dp"]?><br>
+		 		Teléfono Móvil: <?=$_SESSION["telefono_m_dp"]?><br>
+		 	</p>
+		 	<a href="<?=URL_CARRITO?>" class="btn btn-sm btn-primary">Cambiar Datos</a>
+	 	<?php }else{ ?>
+	 		<h2>Dirección de envío</h2>
+		 	<p> Dirección: <?=$_SESSION["direccion"]?><br>
+		 		Ciudad: <?=$_SESSION["ciudad"]?><br>
+		 		Teléfono: <?=$_SESSION["telefono"]?><br>
+		 		Teléfono Móvil: <?=$_SESSION["telefono_m"]?><br>
+		 	</p>
+		 	<a href="<?=URL_USUARIO."/".URL_USUARIO_CAMBIAR_DATOS?>" class="btn btn-sm btn-primary">Cambiar Datos</a>
+	 	<?php } ?>	 	
 	 </div>
 	 <div class="col-xs-12 col-md-5">	 	
 	 	<div class="col-xs-8 text-right">Subtotal antes de IVA</div><div class="col-xs-4 text-right">$<?=number_format($subtotalAntesIva)?></div>	 	
@@ -82,7 +94,7 @@
 
 	 	if ($total>0) {
 
-	 		if (isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"] <= $subtotalAntesIva) {
+	 		if (($_SESSION['modalidad_compra']=='DROPSHIPPING') || ($_SESSION['modalidad_compra']!='DROPSHIPPING' && isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"]<=$subtotalAntesIva)) {
 
 	 			if (isset($credito) && !empty($credito)) {
 	 				
@@ -93,7 +105,6 @@
 	 				<?php
 
 	 				}
-
 	 			}
 	 	?>
 	 			<a href="<?=URL_GENERAR_ORDEN?>?method=payu" class="btn btn-lg btn-default" style='margin-top: 1rem;'>FINALIZAR COMPRA</a>

@@ -121,7 +121,7 @@
 					  		<li class="list-group-item">5. Nosotros recaudamos el pago y consignamos el 20% a tu cuenta bancaria.</li>
 					  		<li class="list-group-item">6. Nosotros entregamos el pedido a tu cliente.</li>
 					  		<li class="list-group-item">7. Entregamos en 1 día para Cali y 2 a 3 días para otras ciudades.</li>
-					  		<li class="list-group-item">8. El costo del flete es de $5.000 para Cali y de $10.000 para otras ciudades. Flete gratis a partir de compras iguales o superiores a $100.000.</li>
+					  		<li class="list-group-item">8. El costo del flete es de $5.000 para Cali y de $10.000 para otras ciudades. Flete gratis a partir de compras iguales o superiores a $200.000.</li>
 
 					  	</ul>
 					  </div>

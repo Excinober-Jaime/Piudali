@@ -68,16 +68,91 @@
 	<div class="row">
 	 <div class="col-xs-12 col-md-7">
 	 	<?php 
- 		if (isset($_SESSION["idusuario"])) { 		
+ 		if (isset($_SESSION["idusuario"])) {
 	 	?>
-
-		 	<h2>Dirección de envío</h2>
-		 	<p> Dirección: <?=$_SESSION["direccion"]?><br>
-		 		Ciudad: <?=$_SESSION["ciudad"]?><br>
-		 		Teléfono: <?=$_SESSION["telefono"]?><br>
-		 		Teléfono Móvil: <?=$_SESSION["telefono_m"]?><br>
-		 	</p>
-	 		<a href="<?=URL_USUARIO."/".URL_USUARIO_CAMBIAR_DATOS."/".URL_CARRITO?>" class="btn btn-sm btn-primary">Cambiar Datos</a>
+	 	<h3>¿A dónde quieres que enviemos tu pedido?</h3>
+	 	<div class="radio">
+		  <label>
+		    <input type="radio" name="modalidad" value="NORMAL" <?php if ($_SESSION['modalidad_compra'] == 'NORMAL') { echo 'checked'; } ?>>
+		   Quiero que lo envien a mi dirección.
+		  </label>
+		</div>
+		<div class="panel panel-default" id="panel-metodologia-normal" <?php if ($_SESSION['modalidad_compra'] != 'NORMAL') { echo 'style="display: none;"'; } ?>>
+			<div class="panel-body">
+			 	<h2>Dirección de envío</h2>
+			 	<p> Dirección: <?=$_SESSION["direccion"]?><br>
+			 		Ciudad: <?=$_SESSION["ciudad"]?><br>
+			 		Teléfono: <?=$_SESSION["telefono"]?><br>
+			 		Teléfono Móvil: <?=$_SESSION["telefono_m"]?><br>
+			 	</p>
+		 		<a href="<?=URL_USUARIO."/".URL_USUARIO_CAMBIAR_DATOS."/".URL_CARRITO?>" class="btn btn-sm btn-primary">Cambiar Datos</a>
+		 	</div>
+		</div>
+		<div class="radio">
+		  <label>
+		    <input type="radio" name="modalidad" value="DROPSHIPPING" <?php if ($_SESSION['modalidad_compra'] == 'DROPSHIPPING') { echo 'checked'; } ?>>
+		    Quiero que lo envien directamente a mi cliente. (Dropshipping).
+		  </label>
+		</div>
+		<div class="panel panel-default" id="panel-metodologia-dropshipping" <?php if ($_SESSION['modalidad_compra'] != 'DROPSHIPPING') { echo 'style="display: none;"'; } ?>>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<p class="bg-success" style="padding: 5px;">
+						
+					</p>
+				</div>
+				<form method="post" id="form-modalidad-dropshipping">
+					<div class="form-group col-md-6">
+					    <label for="Nombre">Nombre completo de tu cliente</label>
+					    <input type="text" class="form-control" name="nombre_dp" id="nombre_dp" value="<?=$_SESSION['nombre_dp']?>" required="required">
+					</div>
+					<div class="form-group col-md-6">
+					    <label for="Email">Email de tu cliente</label>
+					    <input type="email" name="email_dp" id="email_dp" class="form-control" value="<?=$_SESSION['email_dp']?>">
+					</div>
+					<div class="form-group col-md-6">
+					    <label for="Teléfono">Teléfono de tu cliente</label>
+					    <input type="phone" class="form-control" id="telefono_dp" name="telefono_dp" value="<?=$_SESSION['telefono_dp']?>">
+					</div>
+					<div class="form-group col-md-6">
+					    <label for="Teléfono Móvil">Teléfono Móvil de tu cliente</label>
+					    <input type="phone" class="form-control" id="telefono_m_dp" name="telefono_m_dp" value="<?=$_SESSION['telefono_m_dp']?>">
+					</div>
+					<div class="form-group col-md-6">
+					    <label for="Dirección">Dirección de tu cliente</label>
+					    <input type="text" class="form-control" id="direccion_dp" name="direccion_dp" required="required" value="<?=$_SESSION['direccion_dp']?>">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="Ciudad">Ciudad de tu cliente</label>
+						<select name="ciudad_dp" id="ciudad_dp" class="form-control" required="required">
+							<option value="">Seleccione</option>
+							<?php 
+							foreach ($ciudades as $key => $ciudad) {
+								?>
+								<option value="<?=$ciudad["idciudad"]?>"
+									<?php 
+									if ($_SESSION['idciudad_dp'] == $ciudad["idciudad"]) {
+										echo 'selected';
+									}
+									?>
+									><?=$ciudad["ciudad"]?></option>
+								<?php
+							}
+							?>
+						</select>
+					</div>
+					<div class="col-xs-12">
+						<div class="checkbox">
+						    <label>
+						      <input type="checkbox" name="autorizacion_datos" id="autorizacion_datos_dp" required="required"> Autorización de datos personales
+						    </label>
+						</div>
+					</div>
+					<input type="hidden" name="guardarDropshipping" value="1">
+					<button type="button" id="guardarDropshipping" class="btn btn-default center-block">GUARDAR</button>
+				</form>
+			</div>
+		</div>
 	 	<?php } ?>
 	 </div>
 	 <div class="col-xs-12 col-md-5">
@@ -138,11 +213,14 @@
 	 	<?php
 	 	if ($total>0) {
 
-	 		if (isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"]<=$subtotalAntesIva) {
+	 		
+
+	 			if (($_SESSION['modalidad_compra']=='DROPSHIPPING') || ($_SESSION['modalidad_compra']!='DROPSHIPPING' && isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"]<=$subtotalAntesIva)) {
 	 	?>
-	 		<a href="<?=URL_RESUMEN_COMPRA?>" class="btn btn-lg btn-primary">ORDENAR YA!</a>	 	
+	 				<a href="<?=URL_RESUMEN_COMPRA?>" class="btn btn-lg btn-primary">ORDENAR YA!</a>	 	
 	 	<?php
-	 		}
+	 			}
+	 		
 	 	}
 	 	?>	 	
 	 </div>

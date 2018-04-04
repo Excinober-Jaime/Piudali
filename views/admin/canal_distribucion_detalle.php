@@ -14,6 +14,11 @@
 							<input type="text" class="form-control" name="monto_minimo" id="monto_minimo" value="<?=$canal['monto_minimo']?>" required>
 						</div>
 						<div class="form-group">
+							<label for="">Porcentaje Comisión</label>
+							<span class="text-muted">Comisión que se le da al agente comercial por compras del cliente asignado</span>
+							<input type="decimal" class="form-control" name="comision" id="comision" value="<?=$canal['comision']?>" max="10" min="0" required>
+						</div>
+						<div class="form-group">
 							<label for="exampleInputEmail1">Puntos</label>
 							<select class="form-control" name="puntos" required>
 								<option value=''>--Seleccione--</option>

@@ -116,6 +116,8 @@
 														<tr>										
 															<th class="text-center">Número de Orden</th>
 															<th class="text-center">Neto</th>
+															<th class="text-center">Comisión %</th>
+															<th class="text-center">Comisión $</th>
 															<th class="text-center">Estado</th>
 														</tr>	
 													</thead>
@@ -127,6 +129,25 @@
 															<tr>
 																<td class="text-center"><a href="<?=URL_USUARIO."/".URL_USUARIO_DETALLE_ORDEN."/".$orden["idorden"]?>"><?=$orden["num_orden"]?></a></td>
 																<td class="text-center"><?=convertir_pesos($orden["neto_sin_iva"])?></td>
+																<td class="text-center">
+																	<?php 
+																	if (!empty($distribuidor['porc_canal'])) {
+																		
+																		$porc_comision = $distribuidor['porc_canal'];
+
+																		echo $distribuidor['porc_canal'];
+																	
+																	}else{
+
+																		$porc_comision = $porc_niveles[$key];
+
+																		echo $porc_niveles[$key];
+																	}
+																	?>%
+																</td>
+																<td class="text-center">
+																	<?=convertir_pesos(($orden["neto_sin_iva"]*$porc_comision)/100)?>
+																</td>
 																<td class="text-center"><?=$orden["estado"]?></td>
 															</tr>
 															<?php

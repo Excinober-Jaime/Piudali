@@ -9,6 +9,8 @@ class Carrito extends Productos
 	public static $valor_punto = 1;
 	public static $cobro_flete = true;
 	public static $pago_puntos_on = true;
+	public static $porc_descuento_escala = 0;
+	public static $modalidad_compra = 'NORMAL';
 
 	function __construct()
 	{
@@ -204,7 +206,7 @@ class Carrito extends Productos
 				$porc_descuento_cupon = 10;
 			}*/
 
-			$porc_descuento_cupon = 20;
+			$porc_descuento_cupon = 10;
 
 		}else{
 
@@ -268,6 +270,11 @@ class Carrito extends Productos
 
 
 	public function porcDescuentoEscala($tipo_usuario = ''){
+
+		if (!empty(Carrito::$porc_descuento_escala)) {
+			
+			return Carrito::$porc_descuento_escala;
+		}
 
 		if ($tipo_usuario == 'CONSUMIDOR') {
 			
@@ -461,7 +468,7 @@ class Carrito extends Productos
 
 		}else{
 			$pago_puntos = array("puntos" => 0, "valor_pago" => 0, "valor_punto" => 0);
-		}		
+		}
 
 		return $pago_puntos;
 	}
@@ -477,11 +484,12 @@ class Carrito extends Productos
 
 		if ($subtotalAntesIva>0) {
 
-			if ($tipo_usuario == 'CONSUMIDOR') {
-			
-				if ($subtotalAntesIva <= 100000) {
-					
-					if (isset($_SESSION["ciudad"]) && $_SESSION["ciudad"] == "Cali") {
+			if (Carrito::$modalidad_compra == 'DROPSHIPPING') {
+				
+				if ($subtotalAntesIva <= 200000) {
+						
+					if (isset($_SESSION["ciudad_dp"]) && $_SESSION["ciudad_dp"] == "Cali")
+					{
 						$flete = 5000;
 					}else{
 						$flete = 10000;
@@ -493,14 +501,32 @@ class Carrito extends Productos
 				}
 
 			}else{
-			
-				if (isset($_SESSION["ciudad"]) && $_SESSION["ciudad"] == "Cali") {
-					$flete = 7000;
+
+				if ($tipo_usuario == 'CONSUMIDOR') {
+				
+					if ($subtotalAntesIva <= 200000) {
+						
+						if (isset($_SESSION["ciudad"]) && $_SESSION["ciudad"] == "Cali")
+						{
+							$flete = 5000;
+						}else{
+							$flete = 10000;
+						}
+						
+					}else{
+
+						$flete = 0;
+					}
+
 				}else{
-					$flete = 14000;
+				
+					if (isset($_SESSION["ciudad"]) && $_SESSION["ciudad"] == "Cali") {
+						$flete = 7000;
+					}else{
+						$flete = 14000;
+					}
 				}
 			}
-
 		}else{
 
 			$flete = 0;
@@ -585,6 +611,26 @@ class Carrito extends Productos
 		return $idorden;
 	}
 
+	public function registrar_direccion_orden($idorden = 0, $nombre = '', $direccion = '', $ciudad = '', $telefono = '', $telefono_m = '', $email = ''){
+
+		$iddireccion = $this->insertar("INSERT INTO `direcciones_ordenes`(			
+									`nombre`,
+									`direccion`, 
+									`ciudad`, 
+									`telefono`,
+									`telefono_m`,
+									`email`
+									) VALUES (
+									'$nombre',
+									'$direccion',
+									'$ciudad',
+									'$telefono',
+									'$telefono_m',
+									'$email')");
+		
+		return $iddireccion;
+	}
+
 	public function getDetalleOrden($tipo_usuario = ''){		
 
 		$detalle_orden = array();
@@ -656,6 +702,8 @@ class Carrito extends Productos
 		
 		return $id_detalle;
 	}
+
+
 
 /**********CUPONES************/
 

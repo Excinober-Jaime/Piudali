@@ -266,11 +266,11 @@
 
 		      	if (isset($_SESSION['idusuario'])) {
 
-		      		echo $_SESSION['nombre'].', si tu compra es igual o mayor a $100.000 el envío te saldrá <b>GRATIS!</b>.';	
+		      		echo $_SESSION['nombre'].', si tu compra es igual o mayor a $200.000 el envío te saldrá <b>GRATIS!</b>.';	
 
 		      	}else{
 		      		
-		      		echo 'Si tu compra es igual o mayor a $100.000 el envío te saldrá <b>GRATIS!</b>.';
+		      		echo 'Si tu compra es igual o mayor a $200.000 el envío te saldrá <b>GRATIS!</b>.';
 		      	}
 		      	
 		      	?>
@@ -278,7 +278,7 @@
 		    </p>
 		    <center>
 					<span><h6>Envío a toda Colombia, Todos los medios de pago</h6></span>          
-	        		<img src="http://localhost/piudali/www/assets/img/medios-de-pago.png" class="responsive-img">
+	        		<img src="<?=URL_SITIO?>assets/img/medios-de-pago.png" class="responsive-img">
         		</center>
     	</div>
 	</div>
