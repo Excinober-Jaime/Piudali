@@ -3841,6 +3841,10 @@ class Controller
 					$filas = $this->entradas->eliminarEntrada($_POST["identidad"]);
 					break;
 
+				case 'imagen_publicitaria':
+					$filas = $this->productos->eliminarImg($_POST["identidad"]);
+					break;
+
 				default:
 					# code...
 					break;

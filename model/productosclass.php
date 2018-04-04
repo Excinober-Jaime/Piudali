@@ -211,6 +211,17 @@ class Productos extends Database
 		return $idimg;
 	}
 
+	public function eliminarImg($idimg){
+
+		$query = $this->consulta("SELECT `imagen` FROM `img_productos` WHERE `idimg`='$idimg'");
+
+		unlink($query[0]['imagen']);
+
+		$filas = $this->actualizar("DELETE FROM `img_productos` WHERE `idimg`='$idimg'");
+		
+		return $filas;
+	}
+
 
 	/****categorias***/
 

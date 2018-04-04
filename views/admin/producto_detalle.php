@@ -70,7 +70,14 @@
 
 							foreach ($producto_imgs as $key => $img) {
 
-								echo "<img src='".URL_SITIO.$img['imagen']."' class='img-responsive' style='max-width: 200px;float:left;'>";
+							?>
+							<div class="col-xs-6 col-md-3">
+								<img src="<?=URL_SITIO.$img['imagen']?>" class='img-responsive'>
+								<a class='eliminarEntidad' entidad='imagen_publicitaria' identidad="<?=$img['idimg']?>" style='position:absolute;top: 5px;right: 20px;'>
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</a>
+							</div>
+							<?php
 							}
 							?>
 
