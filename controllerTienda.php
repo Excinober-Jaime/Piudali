@@ -206,6 +206,8 @@ class ControllerTienda
 
 			'manzanilla' => array ('ingredientes/manzanilla.jpg', 'Extracto de Manzanilla' ,'Es un equilibrante de la piel y calmante de las terminaciones nerviosas que se encuentran en ella. Antiinflamatorio, descongestionante y antimicrobiano. Hidrata y purifica la piel.'),
 
+			'semillasmaracuya' => array ('ingredientes/semillasmaracuya.png', 'Exfoliante de semillas de Maracuyá' ,'Las semillas maracuyá molida sirven como exfoliante natural, Limpia profundamente, elimina la grasa, impurezas y células muertas. Aporta suavidad y luminosidad a la piel. Mejora la circulación sanguínea.'),
+
 			'maracuya' => array ('ingredientes/maracuya.png', 'Aceite de semillas de Maracuyá' ,'Es rico en antioxidantes, ácido linoléico y ácidos grasos Omega 3, 6 y 9. Tiene propiedades antiinflamatoria y astringente. Reduce la producción de sebo. Nutre, protege y repara la piel.'),
 
 			'name' => array ('ingredientes/name.jpg', 'Extracto de Ñame' ,'Rico en beta-caroteno, vitamina A y C, vitamina B6, y antioxidantes. Ayuda retardar el envejecimiento, reduce las arrugas. Estimula la producción de colágeno. Posee propiedades antiinflamatorias.'),
@@ -226,16 +228,21 @@ class ControllerTienda
 
 			'sesamo' => array ('ingredientes/sesamo.jpg', 'Aceite de sésamo' ,'Contiene vitaminas E, y ácidos grasos omega 3 y 6. Hidrata, nutre y repara la piel, evitando el envejecimiento prematuro. Ideal para pieles sensibles. Ayuda a retener la humedad de la piel.'),
 
-			'carnauba' => array ('ingredientes/carnauba.jpg', 'Proporciona una barrera protectora que impide la deshidratación por el sudor. Aporta un brillo natural a los labios, y da consistencia al producto.'),
+			'carnauba' => array ('ingredientes/carnauba.jpg', 'Cera Carnauba', 'Proporciona una barrera protectora que impide la deshidratación por el sudor. Aporta un brillo natural a los labios, y da consistencia al producto.'),
 
-			'nuezbrasil' => array ('ingredientes/nuezdebrasil.jpg', 'Rico en aminoácidos, minerales, vitaminas A, C, E y B. Es altamente Hidratante, Nutre, suaviza, rejuvenece y repara la piel. Ideal para pieles con psoriasis y eczemas.'),
+			'nuezbrasil' => array ('ingredientes/nuezdebrasil.jpg', 'Aceite de Nuez de Brasil' ,'Rico en aminoácidos, minerales, vitaminas A, C, E y B. Es altamente Hidratante, Nutre, suaviza, rejuvenece y repara la piel. Ideal para pieles con psoriasis y eczemas.'),
 
-			'granadilla' => array ('ingredientes/granadilla.jpg', 'Rico en vitaminas C, polifenoles, potasio y otros minerales y nutrientes, ayuda en la regeneración celular. Protege y repara la capa exterior de la piel. Ayuda a cicatrizar heridas.'),
-			'achiote' => array ('ingredientes/achiote.jpg', 'Es un colorante natural. Rico en carotenos con propiedades antioxidantes. Tiene propiedades antiinflamatorias, ayuda a cicatrizar. Suaviza y protege la piel de los rayos solares.'),
+			'granadilla' => array ('ingredientes/granadilla.jpg', 'Aceite de Granadilla', 'Rico en vitaminas C, polifenoles, potasio y otros minerales y nutrientes, ayuda en la regeneración celular. Protege y repara la capa exterior de la piel. Ayuda a cicatrizar heridas.'),
 
-			'extractochontaduro' => array ('ingredientes/extractochontaduro.jpg', 'Fruto rico en carotenos precursores de la vitamina A, nutrientes, ácidos grasos esenciales omega 3 y 6, vitaminas C y D. Los carotenoides, por su función antioxidante, contrarrestan los efectos dañinos de los radicales libre y ayudan a mantener la piel joven.'),
+			'achiote' => array ('ingredientes/achiote.jpg', 'Aceite de Achiote', 'Es un colorante natural. Rico en carotenos con propiedades antioxidantes. Tiene propiedades antiinflamatorias, ayuda a cicatrizar. Suaviza y protege la piel de los rayos solares.'),
 
-			'teverde' => array ('ingredientes/teverde.jpg', 'Rico en vitamina C, E y Carotenos. Posee propiedades fotoprotectoras, antiinflamatorias y descongestiva. Mejora la elasticidad de la piel, ayuda a mejorar el tono de la piel y a unificarlo, Repara los daños de la piel producidos por las radiaciones UV.'),
+			'extractochontaduro' => array ('ingredientes/extractochontaduro.jpg', 'Extracto de Chontaduro','Fruto rico en carotenos precursores de la vitamina A, nutrientes, ácidos grasos esenciales omega 3 y 6, vitaminas C y D. Los carotenoides, por su función antioxidante, contrarrestan los efectos dañinos de los radicales libre y ayudan a mantener la piel joven.'),
+
+			'teverde' => array ('ingredientes/teverde.jpg', 'Extracto de Té Verde', 'Rico en vitamina C, E y Carotenos. Posee propiedades fotoprotectoras, antiinflamatorias y descongestiva. Mejora la elasticidad de la piel, ayuda a mejorar el tono de la piel y a unificarlo, Repara los daños de la piel producidos por las radiaciones UV.'),
+
+			'macadamia' => array ('ingredientes/macadamia.jpg', 'Aceite de Macadamia' ,'Rico en ácidos oleico, linoléico y fitoesteroles. Tiene propiedades antinflamatorias, calmantes y suavizantes. Ayuda a retener la humedad, hidrata y repara la piel.'),
+
+			'limon' => array ('ingredientes/limon.jpg', 'Extracto de Limón' ,'Antioxidante rico en vitamina C, combate los radicales libre nocivos para la piel, aclara y ayuda a disminuir las imperfecciones y las cicatrices de la piel. Desintoxica la piel.'),
 
 			'zanahoria' => array ('ingredientes/zanahoria.jpg', 'Aceite de Zanahoria' ,'Contiene antioxidantes (carotenoides, vitaminas A y E) que acondicionan la piel y protegen las células del daño de los radicales libres. Nutre, repara y mejora la elasticidad a la piel.')
 		);
@@ -257,7 +264,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_amazon-awakeing-facial-cleanser.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_amazon-awakeing-facial-cleanser.png';
-					$this->ingredientes_pdt = array('chontaduro', 'cacao', 'calendula', 'trigo', 'girasol', 'maracuya');
+					$this->ingredientes_pdt = array('extractochontaduro', 'cacao', 'calendula', 'trigo', 'girasol', 'maracuya');
 					$this->uso = array(
 						'Aplicar sobre el rostro y cuello',
 						'Realizar movimientos suaves circulares hasta retirar todas las impurezas.',
@@ -275,7 +282,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Clear-Away-Amazon-Facial-Scrub.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-Awakening-Toner.png';
-					$this->ingredientes_pdt = array('nogal','durazno','mango','cacao','maracuya','chontaduro', 'cafe','jojoba','seje', 'te', 'trigo');
+					$this->ingredientes_pdt = array('nogal','durazno','mango','cacao','maracuya','extractochontaduro', 'cafe','jojoba','seje', 'trigo');
 					$this->uso = array(
 						'Aplicar sobre el rostro y cuello',
 						'Realizar movimientos suaves circulares hasta retirar todas las impurezas.',
@@ -293,7 +300,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-Awakening-Toner.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-Awakening-Toner.png';
-					$this->ingredientes_pdt = array('chontaduro', 'guayaba', 'aloe','balu');
+					$this->ingredientes_pdt = array('extractochontaduro', 'guayaba', 'aloe','balu');
 					$this->uso = array(
 						'Aplicar sobre el rostro y cuello después de la limpieza y/o exfoliación.',
 						'Usar en cualquier momento para hidratar la piel.',
@@ -310,7 +317,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-Awakening-Daily-Facial-Moisturizer.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-Awakening-Daily-Facial-Moisturizer.png';
-					$this->ingredientes_pdt = array('chontaduro','manzanilla','almendras','romero','calendula', 'girasol', 'copoazu');
+					$this->ingredientes_pdt = array('extractochontaduro','manzanilla','almendras','romero','calendula', 'girasol', 'copoazu', 'limon');
 					$this->uso = array(
 						'Aplicar una ligera capa en la mañana sobre el rostro y el cuello.',
 						'Realizar movimientos suaves circulares ascendentes.',
@@ -327,7 +334,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazonian-Eye-Cream.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazonian-Eye-Cream.png';
-					$this->ingredientes_pdt = array('copoazu', 'trigo','seje','acai','name','chontaduro');
+					$this->ingredientes_pdt = array('copoazu', 'trigo','seje','acai','name','extractochontaduro', 'sesamo');
 					$this->uso = array(
 						'Aplicar con ligeros y suaves toques en el contorno de los ojos.',
 						'Usar día y noche.',
@@ -343,7 +350,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-Night-Renewal-Cream.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-Awakening-Toner.png';
-					$this->ingredientes_pdt = array('name','chontaduro','romero','calendula','aloe','manzanilla','trebolrojo','copoazu','almendras','trigo','girasol','macadamia','te','aguacate');
+					$this->ingredientes_pdt = array('name','extractochontaduro','romero','calendula','aloe','manzanilla','trebolrojo','copoazu','almendras','trigo','girasol','macadamia','aguacate');
 					$this->uso = array(
 						'Aplicar en la noche una ligera capa sobre el rostro y cuello.',
 						'Masajear suevemente con movimientos ascendentes',
@@ -361,7 +368,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-balm-for-lush-lips.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-balm-for-lush-lips.png';
-					$this->ingredientes_pdt = array('trigo','macadamia','zanahoria','calendula','andiroba','te','ricino','girasol','maracuya','buriti','laurel','candelilla','abejas','karite','cacao','copoazu');
+					$this->ingredientes_pdt = array('extractochontaduro','trigo','macadamia','zanahoria','calendula','andiroba','ricino','girasol','maracuya','buriti','laurel','candelilla','abejas','karite','cacao','copoazu', 'achiote', 'carnauba');
 					$this->uso = array(
 						'Aplicar sobre los labios, una o varias veces al día y masajear suavemente.',
 						'Conservar en lugar fresco y seco.'
@@ -376,7 +383,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Amazon Awakening Body Wash.png';
 					$this->img_flotante_2 = 'modelo/linea-coporal_Amazon Awakening Body Wash.png';
-					$this->ingredientes_pdt = array('aloe','guayaba','mango','chontaduro','copoazu','trigo','acai');
+					$this->ingredientes_pdt = array('aloe','guayaba','mango','extractochontaduro','copoazu','trigo','acai');
 					$this->uso = array(
 						'Frotar suavemente sobre el cuerpo húmedo, aplicar con las manos o toallita en forma circular hasta obtener abundante espuma y enjuague.',
 						'Aplicar el gel de ducha corporal todos los días como ritual de limpieza y relajación.',
@@ -392,7 +399,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Clear-away-amazon-body-scrub.png';
 					$this->img_flotante_2 = 'modelo/linea-coporal_Clear-away-amazon-body-scrub.png';
-					$this->ingredientes_pdt = array('durazno','maracuya','chontaduro','mango','jojoba','trigo','te','buriti','karite','cacao');
+					$this->ingredientes_pdt = array('durazno','semillasmaracuya','extractochontaduro','mango','jojoba','trigo','buriti','karite','cacao');
 					$this->uso = array(
 						'Aplicar en la mano o toallita y extender por todo el cuerpo con movimientos circulares.',
 						'Concentrándose en las partes más queratinizadas (rodillas, codos y pies) y enjuagar.',
@@ -404,12 +411,12 @@ class ControllerTienda
 
 				case 'P-010':
 					
-					$this->nombre_pdt = 'Loción Corporal Hidratante';
+					$this->nombre_pdt = 'Leche Corporal Hidratante';
 					$this->promesa_pdt = '<b>Hidrata, nutre y restalece el balance natural de la piel</b><br>Por sus componentes naturales exóticos y antioxidantes brinda a la piel suavidad y vitalidad, dejando una sensación de frescura y relajación.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Antioxidant-Moisturizing-Body-lotion.png';
 					$this->img_flotante_2 = 'modelo/linea-coporal_Antioxidant-Moisturizing-Body-lotion.png';
-					$this->ingredientes_pdt = array('trigo','buriti','andiroba','macadamia','maracuya','calendula','girasol','aloe','chontaduro','copoazu');
+					$this->ingredientes_pdt = array('trigo','buriti','andiroba','macadamia','maracuya','calendula','girasol','aloe','extractochontaduro','copoazu', 'granadilla', 'nuezbrasil');
 
 					$this->uso = array(
 						'Aplicar abundantemente en la mañana o en la noche. Masajear la piel hasta que se absorba completamente.',
@@ -426,7 +433,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Deep-Nourishing-hand-cream.png';
 					$this->img_flotante_2 = 'modelo/linea-coporal_Deep-Nourishing-hand-cream.png';
-					$this->ingredientes_pdt = array('maracuya', 'seje','trigo','andiroba','copoazu','chontaduro','aloe','te');
+					$this->ingredientes_pdt = array('maracuya', 'seje','trigo','andiroba','copoazu','extractochontaduro','aloe','teverde');
 					$this->uso = array(
 						'Aplicar día y noche generosamente en las manos y masajear suavemente.',
 						'Aplicar una vez por semana exfoliante para una limpieza profunda y renovar las células muertas.',
@@ -443,7 +450,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Amazon-body-butter.png';
 					$this->img_flotante_2 = 'modelo/linea-coporal_Amazon-body-butter.png';
-					$this->ingredientes_pdt = array('copoazu','trigo','jojoba','maracuya','chontaduro','aloe','te','buriti');
+					$this->ingredientes_pdt = array('copoazu','trigo','jojoba','maracuya','extractochontaduro','aloe','teverde','buriti');
 					$this->uso = array(
 						'Aplicar sobre la piel limpia de todo el cuerpo.',
 						'Ideal para zonas más queratinizadas en especial en los codos, las rodillas y los pies.',
@@ -461,7 +468,7 @@ class ControllerTienda
 					$this->promesa_pdt = '<b>Hidrata y protege los labios</b><br>Ofrece una deliciosa sensación al aplicar las mantequillas, ceras y aceites de frutos amazónicos hidratantes. La acción de los carotenoides y Fito-esteroles permite lucir labios humectados, suaves, sanos y con agradable brillo natural';
 					$this->banner_parallax = '';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-balm-for-lush-lips-stick.png';
-					$this->ingredientes_pdt = array('trigo','macadamia','zanahoria','calendula','andiroba','te','ricino','girasol','maracuya','buriti','laurel','candelilla','abejas','karite','cacao','copoazu');
+					$this->ingredientes_pdt = array('trigo','macadamia','zanahoria','calendula','andiroba','ricino','girasol','maracuya','buriti','laurel','candelilla','abejas','karite','cacao','copoazu','extractochontaduro', 'achiote', 'carnauba');
 					$this->uso = array(
 						'Aplicar sobre los labios, una o varias veces al día y masajear suavemente.',
 						'Conservar en lugar fresco y seco.'
@@ -476,7 +483,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Pure-Amazon-Body-Oil.png';
 					$this->img_flotante_2 = 'modelo/linea-coporal_Pure-Amazon-Body-Oil.png';
-					$this->ingredientes_pdt = array('trigo','calendula','te','chontaduro','uva','almendras','girasol','maracuya','buriti','romero','aguacate');
+					$this->ingredientes_pdt = array('trigo','calendula','chontaduro','uva','almendras','girasol','maracuya','buriti','romero','aguacate');
 					$this->uso = array(
 						'Frotar sobre la piel limpia y preferiblemente húmeda, hasta que se absorba completamente.',
 						'Usar de día o de noche.',

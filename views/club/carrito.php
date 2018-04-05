@@ -17,39 +17,39 @@
 					
 					if (isset($itemsCarrito) && count($itemsCarrito)>0) {
 					
-						foreach ($itemsCarrito["id"] as $key => $iditem) {
+						foreach ($itemsCarrito as $key => $item) {
 
 				?>
 				<tr>
 					<td>
 						<div class="col s1">
-							<a class="eliminarPdtCarrito" idpdt="<?=$iditem?>"><i class="fa fa-times" aria-hidden="true"></i></a>
+							<a class="eliminarPdtCarrito" idpdt="<?=$item['id']?>"><i class="fa fa-times" aria-hidden="true"></i></a>
 						</div>
 						<div class="col s3">
-							<img src="<?=$itemsCarrito["img_principal"][$key]?>" class="" style="max-width:100px;">
+							<img src="<?=$item["img_principal"]?>" class="" style="max-width:100px;">
 						</div>
 						<div class="col s8">
 							<span class="left">
-								<?=$itemsCarrito["nombre"][$key]?><br>Código: <?=$itemsCarrito["codigo"][$key]?><br>Iva: <?=$itemsCarrito["iva"][$key]?>%
+								<?=$item["nombre"]?><br>Código: <?=$item["codigo"]?><br>Iva: <?=$item["iva"]?>%
 							</span>
 						</div>
 					</td>
 					<td>
-						<?=convertir_pesos($itemsCarrito["precio"][$key])?>
+						<?=convertir_pesos($item["precio"])?>
 					</td>
 					<td>
-						<select name="cantidad" id="cantidad" class="cambiarCantidad" idpdt="<?=$iditem?>">
+						<select name="cantidad" id="cantidad" class="cambiarCantidad" idpdt="<?=$item['id']?>">
 							<?php 
-							for ($i=1; $i <= $itemsCarrito["cantidadstock"][$key]; $i++) {
+							for ($i=1; $i <= $item["cantidadstock"]; $i++) {
 								?>
-								<option value="<?=$i?>" <?php if ($itemsCarrito["cantidad"][$key]==$i) { echo "selected"; } ?>><?=$i?></option>
+								<option value="<?=$i?>" <?php if ($item["cantidad"]==$i) { echo "selected"; } ?>><?=$i?></option>
 								<?php
 							}
 							?>
 						</select>
 					</td>
 					<td class="right-align">
-						<?=convertir_pesos($itemsCarrito["subtotal"][$key])?>
+						<?=convertir_pesos($item["subtotal"])?>
 					</td>
 				</tr>
 				<?php
