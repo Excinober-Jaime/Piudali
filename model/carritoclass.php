@@ -523,7 +523,7 @@ class Carrito extends Productos
 					if (isset($_SESSION["ciudad"]) && $_SESSION["ciudad"] == "Cali") {
 						$flete = 7000;
 					}else{
-						$flete = 14000;
+						$flete = 18000;
 					}
 				}
 			}

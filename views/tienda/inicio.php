@@ -65,8 +65,8 @@
 									  </div>
 									  <div class="card-stacked">
 									    <div class="card-content">
-									    <h5><?=$this->ingredientes[$ingrediente][1]?></h5>
-									      <p><?=substr($this->ingredientes[$ingrediente][2], 0, 200)?>...</p>
+									    <h5 style="margin-top: 0;"><?=$this->ingredientes[$ingrediente][1]?></h5>
+									      <p style="font-size: 14px;text-align:justify;"><?=substr($this->ingredientes[$ingrediente][2], 0, 300)?>...</p>
 									    </div> 
 									  </div>
 								</div>			

@@ -107,7 +107,7 @@
         </form>
         <span class="whatsapp">
           <i class="fa fa-whatsapp" aria-hidden="true"></i> 57 313 7545092 
-          <i class="fa fa-phone" aria-hidden="true"></i> 57 2 4305058 - 57 2 5241887
+          <i class="fa fa-phone" aria-hidden="true"></i>57 2 5241887
         </span>
         <p>¡Ó Escríbenos Por Whatsapp!</p>
       </div>

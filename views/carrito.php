@@ -74,7 +74,7 @@
 	 	<div class="radio">
 		  <label>
 		    <input type="radio" name="modalidad" value="NORMAL" <?php if ($_SESSION['modalidad_compra'] == 'NORMAL') { echo 'checked'; } ?>>
-		   Quiero que lo envien a mi dirección.
+		   Quiero que lo envien a mi dirección. (Venta Directa)
 		  </label>
 		</div>
 		<div class="panel panel-default" id="panel-metodologia-normal" <?php if ($_SESSION['modalidad_compra'] != 'NORMAL') { echo 'style="display: none;"'; } ?>>
@@ -215,7 +215,7 @@
 
 	 		
 
-	 			if (($_SESSION['modalidad_compra']=='DROPSHIPPING') || ($_SESSION['modalidad_compra']!='DROPSHIPPING' && isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"]<=$subtotalAntesIva)) {
+	 			if (($_SESSION['modalidad_compra']=='DROPSHIPPING') || ($_SESSION['modalidad_compra']!='DROPSHIPPING' && isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"]<=$subtotalNetoAntesIva)) {
 	 	?>
 	 				<a href="<?=URL_RESUMEN_COMPRA?>" class="btn btn-lg btn-primary">ORDENAR YA!</a>	 	
 	 	<?php

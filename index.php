@@ -6,6 +6,7 @@ require "controller.php";
 require "controllerClub.php";
 require "controllerTienda.php";
 require "controllerPOS.php";
+require "controllerLanding.php";
 
 if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
@@ -1055,6 +1056,23 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 					
 				$controller->descargarArchivo();
 				
+
+				break;
+
+			case URL_LANDING:
+				
+				$controllerLanding = new ControllerLanding();
+
+				if (isset($var2) && !empty($var2)) {
+					
+					switch ($var2) {
+						
+						case URL_LANDING_DISTRIBUIDORES_VIRTUALES:
+							
+							$controllerLanding->landing_distribuidores_virtuales();
+							break;
+					}
+				}
 
 				break;
 

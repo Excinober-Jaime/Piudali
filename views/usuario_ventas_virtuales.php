@@ -2,10 +2,10 @@
 
 <div class="container">		
 	<?php include "usuario/menu.php"; ?>
-    <div class="contenPanel">		
+    <div class="contenPanel">
 	<div class="col-xs-12 titulo">
 		<h1>Mis Ventas</h1>
-        <small></small>		
+        <small>Aquí podrás ver el estado de tus ventas virtuales. Realizadas a través de tus enlaces compartidos.</small>		
 		<hr>
         <div class="informacion">	
 			<div class="col-xs-12 col-md-5 col-md-offset-7">
@@ -71,6 +71,7 @@
 					<th class="text-center">EMAIL</th>
 					<th class="text-center">TELÉFONO</th>
 					<th class="text-center">NÚMERO ORDEN</th>
+					<th class="text-center">COMISIÓN</th>
 					<th class="text-center">TOTAL PAGADO</th>
 					<th class="text-center">ESTADO</th>
 				</tr>
@@ -100,6 +101,7 @@
 						<td class="text-center"><?=$venta["email"]?></td>					
 						<td class="text-center"><?=$venta["telefono_m"]?></td>						
 						<td class="text-center"><a href="<?=URL_USUARIO."/".URL_USUARIO_DETALLE_ORDEN."/".$venta['idorden']?>"><?=$venta["num_orden"]?></a></td>
+						<td class="text-center"><?=convertir_pesos($venta["neto_sin_iva"]*0.2)?>
 						<td class="text-center"><?=convertir_pesos($orden["total"])?></td>
 						<td class="text-center"><?=$venta["estado"]?></td>					
 					</tr>

@@ -267,11 +267,29 @@ class ControllerClub
 
 			$response_codigo = $this->redimirCodigoPuntos($_POST['codigo']);	
 		}*/
+
+		if (isset($_GET['ciudad-sucursales']) && !empty($_GET['ciudad-sucursales'])) {
+			
+			$ciudad_sucursal = $_GET['ciudad-sucursales'];
+		}else{
+			$ciudad_sucursal = 4270;
+		}
 		
 		$producto = $this->productos_aliados->detalleProductoUrl($urlpdt);
 		$organizacion =$this->organizaciones->detalleOrganizacion($producto['organizaciones_idorganizacion']);
 
 		$sucursales = $this->sucursales->listarSucursales($organizacion['idorganizacion']);
+
+		foreach ($sucursales as $key => $sucursal) {
+			
+			if (!array_key_exists($sucursal['ciudades_idciudad'], $ciudades_sucursal)) {
+
+				$ciudades_sucursal[$sucursal['ciudades_idciudad']] = array(
+										'ciudad' => $sucursal['ciudad'],
+										'idciudad' => $sucursal['ciudades_idciudad']
+										);
+			}
+		}
 
 		include 'views/club/detalle_producto_aliado.php';
 	}

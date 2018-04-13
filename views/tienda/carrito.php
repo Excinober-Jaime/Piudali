@@ -221,8 +221,9 @@
     <div class="row valign-wrapper">
     	
     	<div class="col s12 m7">
-    		<h3 class="center-align" style="margin-bottom: 0; font-size: 1.9em; color: #009330">MÁS PRODUCTOS DE LA LÍNEA FACIAL</h3>
-				<p class="center-align">Agraga el producto que más se adapte a tu necesidad.</p>
+    		<h3 class="center-align" style="margin-bottom: 0; font-size: 1.9em; color: #009330">MÁS PRODUCTOS DE LA LÍNEA <?=strtoupper($producto_1[0]['categoria'])?>
+    		</h3>
+				<p class="center-align">Agrega el producto que más se adapte a tu necesidad.</p>
 				
 			<div class="carousel center-align">
 
@@ -277,9 +278,9 @@
 
 		    </p>
 		    <center>
-					<span><h6>Envío a toda Colombia, Todos los medios de pago</h6></span>          
-	        		<img src="<?=URL_SITIO?>assets/img/medios-de-pago.png" class="responsive-img">
-        		</center>
+				<span><h6>Envío a toda Colombia, Todos los medios de pago</h6></span>          
+        		<img src="<?=URL_SITIO?>assets/img/medios-de-pago.png" class="responsive-img">
+    		</center>
     	</div>
 	</div>
 </div>

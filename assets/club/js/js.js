@@ -67,6 +67,10 @@ $(document).ready(function(){
     openWindowMap(iddistribuidor);
   })
 
+  $('#ciudad-sucursales').change(function(){
+    $('#form-ciudad-sucursales').submit();
+  })
+
 });
 
 

@@ -1,0 +1,81 @@
+.bg-naranja{
+	background-color: #f09700;
+	padding: 10px 0;
+	color: #fff;
+}
+
+.bg-cafe{
+	background-color: #53381f;
+	padding-bottom: 5px;
+	color: #fff;
+}
+
+.bg-violeta{
+	background-color: #6d1e3f;
+	padding: 10px 0;
+	color: #fff;
+}
+
+.bg-verde{
+	background-color: #1b632b;
+	padding: 10px 0;
+	color: #fff;
+}
+
+.box-texto{
+	text-align: center;
+	font-size: 1.6em;
+}
+
+.box-texto-gris{
+	text-align: center;
+	font-size: 1.2em;
+	background-color: #f2f2f2;
+	padding: 15px;
+}
+
+
+.uk-button-naranja{
+	background-color: #f09700;
+	font-size: 1.9em;
+	margin: 0.67em 0;
+	color: #fff;
+	border-radius: 20px;
+}
+
+.uk-button-naranja:hover{
+	background-color: #ef7d00;
+}
+
+.H2{
+	font-size: 1.8em;
+}
+
+.H3{
+	font-size: 1.6em;
+}
+
+.H4{
+	font-size: 1.4em;
+}
+
+.textoVerde{
+	color: #1b632b;
+}
+
+.textoVioleta{
+	color: #6d1f3f;
+}
+
+.textoNaranja{
+	color: #f19300;
+}
+
+.franja {
+    background-image: url(../img/franja.png);
+    background-repeat: repeat-x;
+    height: 30px;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}

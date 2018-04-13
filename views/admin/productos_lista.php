@@ -7,6 +7,7 @@
 			  <thead>
 			  	<tr>
 			  		<th>Nombre</th>
+			  		<th>Cantidad</th>
 			  		<th>Código</th>
 			  		<th>Precio</th>
 			  		<th>Estado</th>
@@ -19,6 +20,7 @@
 		  		?>
 		  		<tr>
 		  			<td><?=$producto["nombre"]?></td>
+		  			<td><?=$producto["cantidad"]?></td>
 		  			<td><?=$producto["codigo"]?></td>
 		  			<td><?=convertir_pesos($producto["precio"])?></td>
 		  			<td><?=$producto["estado"]?></td>

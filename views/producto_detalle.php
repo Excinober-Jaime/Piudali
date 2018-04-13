@@ -8,138 +8,155 @@
 		<div class="col-xs-12 col-md-6">
 			<h1 class="texto-vinotinto"><?=$producto[0]["nombre"]?></h1>
 			<hr>
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="col-sm-7">
-						<?php 
-						if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && !empty($producto[0]["precio_oferta"])) {
-						?>
-							<h4>$<?=number_format($producto[0]["precio_oferta"])?><br><small>$<?=number_format($producto[0]["precio"])?></small></h4>
-						<?php
-						}else{
-						?>
-							<h4>$<?=number_format($producto[0]["precio"])?></h4>
-						<?php
-						}
-						?>							
-					</div>
-					<div class="col-sm-5">
-						<?php 
-						if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && !empty($porc_oferta)) {
-						?>
-							<h3><?=$porc_oferta?>%</h3>
-						<?php
-						}
-						?>
-					</div>
-				</div>
-				<div class="col-sm-6">
-				    <div class="col-sm-6">
-				    	<h4>Cantidad</h4>
-				    </div>
-				    <div class="col-sm-6">
-				    <?php
-				    if ($producto[0]["cantidad"]>0) {			    
-				    ?>
-				      <select class="form-control" id="cantidad" name="cantidad">
-				      	<?php
-				      	for ($i=1; $i <= $producto[0]["cantidad"]; $i++) { 
-				      		?>
-				      		<option value="<?=$i?>"><?=$i?></option>
-				      		<?php
-				      	}
-				      	?>
-				      </select>
-				    <?php
-					}else{
-					?>
-					<p>El producto está agotado</p>
-					<?php
-					}
-				    ?>
-				    </div>
-				</div>							
-			</div>
-			<hr>		
-			<button type="button" idpdt="<?=$producto[0]["idproducto"]?>" class="btn btn-primary btn-lg btn-block agregarPdt">Añadir Producto</button>	
-			<hr>
-			<?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $producto[0]["tipo"] == 'NORMAL') {  ?>
-				
-
-				<div class="panel panel-default">
-				  <div class="panel-heading text-center" style="background-color: rgba(109,30,63,1);color:#fff;">VENDE ESTE PRODUCTO VIRTUALMENTE Y GANA EL 20%</div>
-				  <div class="panel-body">
-				  	<h4 class="text-center">Vende Online y gana el 20% sin necesidad de inventario.</h4>
-				  	<p class="text-center">1. Descarga éstas piezas y compartelas con tus clientes agregando el enlace de abajo.</p>
-				  	<div class="panel panel-default">						
-						<div class="panel-body">
-							<div class="row">
-								<?php
-								
-								foreach ($imgs_producto as $key => $img) {
-
-								$ext = explode('/', $img['type']);
-								$ext = $ext[1];
-
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingOne" style="background-color: #742126; color: #fff;">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			          Venta Directa o Dropshipping
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+			      <div class="panel-body">
+			       <div class="row">
+						<div class="col-sm-6">
+							<div class="col-sm-7">
+								<?php 
+								if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && !empty($producto[0]["precio_oferta"])) {
 								?>
-									<div class="col-xs-6 col-md-4">
-									   <a class="thumbnail">
-									      <img src="<?=$img['imagen']?>" alt="<?=$img['nombre']?>" ext="<?=$ext?>" type="<?=$img['type']?>" class="img-popup">
-									      <!--<div class="caption">
-									      	<i class="fa fa-facebook-official" aria-hidden="true"></i>
-									      	<i class="fa fa-whatsapp" aria-hidden="true"></i>
-									      	<i class="fa fa-cloud-download" aria-hidden="true" title="Descargar"></i>
-									      </div>-->
-									    </a>
-									</div>
-								<?php		
+									<h4>$<?=number_format($producto[0]["precio_oferta"])?><br><small>$<?=number_format($producto[0]["precio"])?></small></h4>
+								<?php
+								}else{
+								?>
+									<h4>$<?=number_format($producto[0]["precio"])?></h4>
+								<?php
 								}
-								?>					  
+								?>							
+							</div>
+							<div class="col-sm-5">
+								<?php 
+								if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && !empty($porc_oferta)) {
+								?>
+									<h3><?=$porc_oferta?>%</h3>
+								<?php
+								}
+								?>
 							</div>
 						</div>
+						<div class="col-sm-6">
+						    <div class="col-sm-6">
+						    	<h4>Cantidad</h4>
+						    </div>
+						    <div class="col-sm-6">
+						    <?php
+						    if ($producto[0]["cantidad"]>0) {			    
+						    ?>
+						      <select class="form-control" id="cantidad" name="cantidad">
+						      	<?php
+						      	for ($i=1; $i <= $producto[0]["cantidad"]; $i++) { 
+						      		?>
+						      		<option value="<?=$i?>"><?=$i?></option>
+						      		<?php
+						      	}
+						      	?>
+						      </select>
+						    <?php
+							}else{
+							?>
+							<p>El producto está agotado</p>
+							<?php
+							}
+						    ?>
+						    </div>
+						</div>							
 					</div>
+					<hr>
+					<button type="button" idpdt="<?=$producto[0]["idproducto"]?>" class="btn btn-primary btn-lg btn-block agregarPdt">Añadir Producto</button>	
+			      </div>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingTwo" style="background-color: #742126; color: #fff;">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			          Venta Virtual
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+			      <div class="panel-body">
+			        	<?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $producto[0]["tipo"] == 'NORMAL') {  ?>
+				
 
-				  	<p class="text-center">2. No olvides incluir el enlace que llevará a tu cliente a la página de compra</p>
-				  	<div class="well" id="urlpdt">
-				    <?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$producto[0]["url"].'?d='.$_SESSION['idusuario']?>
-				   </div>
-				   
-				   	<center>
-				   		<button class="btn btn-primary btn-sm" onclick="copyToClipboard('#urlpdt')">Copiar enlace</button> 		
+						<div class="panel panel-default">
+						  <div class="panel-heading text-center" style="background-color: #ef7a00;color: #fff;">VENDE ESTE PRODUCTO VIRTUALMENTE Y GANA EL 20%</div>
+						  <div class="panel-body">
+						  	<h4 class="text-center">Vende Online y gana el 20% sin necesidad de inventario, inversión ni entrega.</h4>
+						  	<p class="text-center">Descarga éstas piezas y compartelas con tus clientes agregando el siguiente enlace.</p>
+						  	<div class="well" id="urlpdt">
+						    <?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$producto[0]["url"].'?d='.$_SESSION['idusuario']?>
+						   </div>
+						   <center>
+						   		<button class="btn btn-primary btn-sm" onclick="copyToClipboard('#urlpdt')">Copiar enlace</button> 	
+						   	</center><br>
+						  	<div class="panel panel-default">						
+								<div class="panel-body">
+									<div class="row">
+										<?php
+										
+										foreach ($imgs_producto as $key => $img) {
 
-				   		<a class="btn btn-default btn-sm" role="button" data-toggle="collapse" href="#como-funciona-ecommerce" aria-expanded="false" aria-controls="collapseExample">
-						  ¿Cómo funciona?
-						</a>	
-					</center>
-					<div class="collapse" id="como-funciona-ecommerce">
-					  <div class="well">
-					  	<ul class="list-group">
-					  		<li class="list-group-item">1. Descarga la pieza publicitaria que deseas usar para vender éste producto a tus clientes.</li>					  		
-					  		<li class="list-group-item">2. Comparte la pieza a tus clientes en medios digitales, correos electrónicos, redes sociales, páginas, blogs, tiendas virtuales, etc., junto al enlace de la sección "VENDER ESTE PRODUCTO VIRTUALMENTE".</li>
-					  		<li class="list-group-item">3. Al dar clic en el enlace, tus clientes acceden a una página de venta del producto que les compartiste.</li>
-					  		<li class="list-group-item">4. Tu cliente puede pagar de forma segura con tarjeta de crédito, débito, efecty, baloto y más.</li>
-					  		<li class="list-group-item">5. Nosotros recaudamos el pago y consignamos el 20% a tu cuenta bancaria.</li>
-					  		<li class="list-group-item">6. Nosotros entregamos el pedido a tu cliente.</li>
-					  		<li class="list-group-item">7. Entregamos en 1 día para Cali y 2 a 3 días para otras ciudades.</li>
-					  		<li class="list-group-item">8. El costo del flete es de $5.000 para Cali y de $10.000 para otras ciudades. Flete gratis a partir de compras iguales o superiores a $200.000.</li>
-					  	</ul>
-					  </div>
-					</div>				   	
-				  </div>
-				</div>
-			<?php } ?>
-			
-			<!--<div class="col-xs-12 text-center" style="font-size:20px;">
-				<?php
-	            $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-	            ?>
-	            <span>Compartir en: </span>
-	            <a target="_new" href="https://www.facebook.com/sharer/sharer.php?u=<?=$url?>" style="color:#3A5A98;"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-	            <a target="_new" href="https://twitter.com/home?status=<?=$url?>" style="color:#3C4F56;"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-	            <a target="_new" href="https://plus.google.com/share?url=<?=$url?>" style="color:#d73d32;"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-			</div>
-			<br><br>				-->
-			<div class="row">					
+										$ext = explode('/', $img['type']);
+										$ext = $ext[1];
+
+										?>
+											<div class="col-xs-6 col-md-4">
+											   <a class="thumbnail">
+											      <img src="<?=$img['imagen']?>" alt="<?=$img['nombre']?>" ext="<?=$ext?>" type="<?=$img['type']?>" class="img-popup">
+											      <!--<div class="caption">
+											      	<i class="fa fa-facebook-official" aria-hidden="true"></i>
+											      	<i class="fa fa-whatsapp" aria-hidden="true"></i>
+											      	<i class="fa fa-cloud-download" aria-hidden="true" title="Descargar"></i>
+											      </div>-->
+											    </a>
+											</div>
+										<?php		
+										}
+										?>					  
+									</div>
+								</div>
+							</div>						  	
+						   
+						   	<center>						   			
+
+						   		<a class="btn btn-default btn-sm" role="button" data-toggle="collapse" href="#como-funciona-ecommerce" aria-expanded="false" aria-controls="collapseExample">
+								  ¿Cómo funciona?
+								</a>	
+							</center>
+							<div class="collapse" id="como-funciona-ecommerce">
+							  <div class="well">
+							  	<ul class="list-group">
+							  		<li class="list-group-item">1. Descarga la pieza publicitaria que deseas usar para vender éste producto a tus clientes.</li>					  		
+							  		<li class="list-group-item">2. Comparte la pieza a tus clientes en medios digitales, correos electrónicos, redes sociales, páginas, blogs, tiendas virtuales, etc., junto al enlace.</li>
+							  		<li class="list-group-item">3. Al dar clic en el enlace, tus clientes acceden a una página de venta del producto que les compartiste.</li>
+							  		<li class="list-group-item">4. Tu cliente puede pagar de forma segura con tarjeta de crédito, débito, efecty, baloto y más.</li>
+							  		<li class="list-group-item">5. Nosotros recaudamos el pago y consignamos el 20% a tu cuenta bancaria.</li>
+							  		<li class="list-group-item">6. Nosotros entregamos el pedido a tu cliente.</li>
+							  		<li class="list-group-item">7. Entregamos en 1 día para Cali y 2 a 3 días para otras ciudades.</li>
+							  		<li class="list-group-item">8. El costo del flete es de $5.000 para Cali y de $10.000 para otras ciudades. Flete gratis a partir de compras iguales o superiores a $200.000.</li>
+							  	</ul>
+							  </div>
+							</div>				   	
+						  </div>
+						</div>
+					<?php } ?>
+			      </div>
+			    </div>
+			  </div>
+  			</div>
+  			<hr>
+  			<div class="row">					
 				<div class="col-xs-6">
 					<h6>Compañia: <?=$producto[0]["compania"]?></p>
 				</div>
@@ -153,10 +170,34 @@
 					<h6>Presentación: <?=$producto[0]["presentacion"]?></h6>
 				</div>
 			</div>
+  		</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 			
-		</div>
-	</div>
-	<hr>
+			
+			
+			
+			<!--<div class="col-xs-12 text-center" style="font-size:20px;">
+				<?php
+	            $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	            ?>
+	            <span>Compartir en: </span>
+	            <a target="_new" href="https://www.facebook.com/sharer/sharer.php?u=<?=$url?>" style="color:#3A5A98;"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+	            <a target="_new" href="https://twitter.com/home?status=<?=$url?>" style="color:#3C4F56;"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+	            <a target="_new" href="https://plus.google.com/share?url=<?=$url?>" style="color:#d73d32;"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+			</div>
+			<br><br>				-->
+			
 	<div class="row">
 		<div class="col-xs-12">
 		  <!-- Nav tabs -->

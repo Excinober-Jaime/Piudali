@@ -9,44 +9,62 @@
 					<img src="<?=$producto['img_principal']?>" class="responsive-img materialboxed">
 				</center>
 			</div>
-			<div class="col s12 m8">
-				<div class="col s12 m8">
-					<h5 class="center-align orange-text text-darken-2"><?=$producto['nombre']?></h5>
-				</div>
-				<div class="col s12 m4 center-align">					
-					<h5 class="orange-text text-darken-2">DISPONIBLE EN:</h5>
-				</div>
+			<div class="col s12 m5">
 				
-			</div>
-			<div class="col s12 m8">
+				<h5 class="center-align orange-text text-darken-2"><?=$producto['nombre']?></h5>
 				<div class="divider" style="margin-bottom: 10px;"></div>
-				<div class="col s12 m7">
-					<div class="col s12">
-				      <ul class="tabs">
-				        <li class="tab col s4"><a class="active" href="#tab_descripcion">Descripción</a></li>
-				        <li class="tab col s4"><a href="#tab_mas_info">Más Información</a></li>
-				        <?php if (!empty($producto["uso"])) { ?>
-						<li class="tab col s4"><a href="#tab_uso">Ver Video</a></li>
-						<?php } ?>					            
-				      </ul>
-				      <div class="divider" style="margin-bottom: 10px;"></div>
-					</div>
-
-					    <div id="tab_descripcion" class="col s12"><?=$producto['descripcion']?></div>
-					    <div id="tab_mas_info" class="col s12"><?=$producto['mas_info']?></div>					    						 
-					    <?php if (!empty($producto["uso"])) { ?>   
-					    <div id="tab_uso" class="col s12"><?=$producto['uso']?></div>
-					    <?php } ?>	
+				<div class="col s12">
+			      <ul class="tabs">
+			        <li class="tab col s4"><a class="active" href="#tab_descripcion">Descripción</a></li>
+			        <li class="tab col s4"><a href="#tab_mas_info">Más Información</a></li>
+			        <?php if (!empty($producto["uso"])) { ?>
+					<li class="tab col s4"><a href="#tab_uso">Ver Video</a></li>
+					<?php } ?>					            
+			      </ul>
+			      <div class="divider" style="margin-bottom: 10px;"></div>
 				</div>
-				<div class="col s12 m5 center-align">					
-					
-					<?php 
+
+				    <div id="tab_descripcion" class="col s12"><?=$producto['descripcion']?></div>
+				    <div id="tab_mas_info" class="col s12"><?=$producto['mas_info']?></div>					    						 
+				    <?php if (!empty($producto["uso"])) { ?>   
+				    <div id="tab_uso" class="col s12"><?=$producto['uso']?></div>
+				    <?php } ?>	
+			</div>
+			<div class="col s12 m3">
+				
+				<h5 class="orange-text text-darken-2 center-align">DISPONIBLE EN:</h5>
+				
+				<div class="divider" style="margin-bottom: 10px;"></div>
+					<div class="input-field col s12">
+						<form id="form-ciudad-sucursales" method="get">
+							<select name="ciudad-sucursales" id="ciudad-sucursales">
+							  <option value="" disabled selected>--</option>
+								<?php
+									foreach ($ciudades_sucursal as $key => $ciudad) {
+								?>
+								<option value="<?=$ciudad['idciudad']?>"
+									<?php if ($ciudad_sucursal == $ciudad['idciudad']) {
+										echo 'selected';
+									} ?>
+									><?=$ciudad['ciudad']?></option>
+								<?php
+									}
+								?>
+							</select>
+							<label>Seleccione una ciudad</label>
+						</form>
+					</div>
+					<?php
 					if (count($sucursales)>0) {
 					?>
 					 <ul class="collection">
 					<?php
 							
 						foreach ($sucursales as $key => $sucursal) {
+
+							if ($sucursal['ciudades_idciudad'] == $ciudad_sucursal) {
+								
+							
 					
 					?>
 					<li class="collection-item avatar">
@@ -62,7 +80,7 @@
 						}
 					?>
 				      
-				      <p class="title" style="font-size: 13px;line-height: 1.1rem;"><b><?=$sucursal['nombre']?></b></p>
+				      <p style="font-size: 13px;line-height: 1.1rem;"><b><?=$sucursal['nombre']?></b></p>
 				      <p style="font-size: 12px;line-height: 14px;">
 				         Tel: <?=$sucursal['telefono']?> <br>
 				         <?=$sucursal['email']?><br>				         
@@ -83,6 +101,7 @@
 				    </li>						
 					<?php
 						}
+					}
 					?>
 					</ul>
 					<?php
@@ -90,7 +109,7 @@
 					?>
 						
 					
-				</div>
+			
 				
 				
 					

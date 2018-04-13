@@ -598,7 +598,7 @@ class Controller
 				}
 				
 
-				$idusuario = $this->usuarios->crearUsuario(strtoupper($nombre), strtoupper($apellido), '', '0000-00-00', $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, strtoupper($direccion), 0, '', $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
+				$idusuario = $this->usuarios->crearUsuario(strtoupper($nombre), strtoupper($apellido), '', $fecha_nacimiento, $email, $passwordmd5, $num_identificacion, $boletines, $condiciones, strtoupper($direccion), 0, '', $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 
 				if (!empty($idusuario)) {
 
@@ -1910,7 +1910,7 @@ class Controller
 
 		if ($_SESSION['modalidad_compra'] != 'DROPSHIPPING') {
 			
-			if ($campana_actual["monto_minimo"]>$subtotalAntesIva) {
+			if ($campana_actual["monto_minimo"]>$subtotalNetoAntesIva) {
 				
 				$alerta = 'El pedido no cumple con el monto mínimo, por favor agrega más productos. Si no eres un distribuidor por favor da clic <a href="'.URL_SITIO.URL_CLUB.'">aquí.</a>';
 			}

@@ -185,6 +185,8 @@ class ControllerTienda
 
 			'calendula' => array ('ingredientes/calendula.jpg', 'Aceite de Caléndula' ,'Posee propiedades antiinflamatorias, antisépticas y calmantes. Estimula la regeneración de las células. Penetra profundamente en la piel, suaviza, nutre y mejora la elasticidad de la piel.'),
 
+			'extractocalendula' => array ('ingredientes/calendula.jpg', 'Extracto de Caléndula','Posee propiedades antiinflamatorias, antisépticas y calmantes. Estimula la regeneración de los tejidos cutáneos, estimula la producción de colágeno lo cual ayuda a prevenir las arrugas y líneas de expresión.'),
+
 			'candelilla' => array ('ingredientes/candelilla.jpg', 'Ceras de Candelilla' ,'La cera de candelilla es una cera vegetal relativamente dura, obtenida de la capa protectora de arbustos de Candelilla. Forma una barrera protectora, es emoliente y da consistencia al producto.'),
 
 			'copoazu' => array ('ingredientes/copoazu.jpg', 'Mantequilla de Cupuazú ' ,'Rica en antioxidantes, vitamina A, B y C aminoácidos y ácidos grasos. Hidrata profundamente, nutre y suaviza. Mantiene la humedad de la piel. Repara los daños de la piel producidos por las radiaciones UV.'),
@@ -203,6 +205,8 @@ class ControllerTienda
 
 			
 			'mango' => array ('ingredientes/mango.jpg', 'Mantequilla de Mango' ,'Rica en antioxidantes. Posee propiedades hidratantes y emolientes. suaviza, favorece la cicatrización de las heridas y la regeneración de la piel. Protege la piel de los rayos ultravioletas. Exfoliante y purificante de rostro.'),
+
+			'extractomango' => array ('ingredientes/mango.jpg', 'Extracto de Mango' ,'El jugo de mango contiene vitaminas, minerales y antioxidantes. Rejuvenece y protege la piel, es efectivo para eliminar la grasa de la piel.'),
 
 			'manzanilla' => array ('ingredientes/manzanilla.jpg', 'Extracto de Manzanilla' ,'Es un equilibrante de la piel y calmante de las terminaciones nerviosas que se encuentran en ella. Antiinflamatorio, descongestionante y antimicrobiano. Hidrata y purifica la piel.'),
 
@@ -264,7 +268,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_amazon-awakeing-facial-cleanser.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_amazon-awakeing-facial-cleanser.png';
-					$this->ingredientes_pdt = array('extractochontaduro', 'cacao', 'calendula', 'trigo', 'girasol', 'maracuya');
+					$this->ingredientes_pdt = array('extractochontaduro', 'cacao', 'calendula', 'trigo', 'girasol', 'maracuya', 'babassu');
 					$this->uso = array(
 						'Aplicar sobre el rostro y cuello',
 						'Realizar movimientos suaves circulares hasta retirar todas las impurezas.',
@@ -277,12 +281,12 @@ class ControllerTienda
 
 				case 'P-002':
 					
-					$this->nombre_pdt = 'Exfoliante y Purificante de la Amazonía';
+					$this->nombre_pdt = 'Exfoliante y Purificante de la Amazonía - Rostro';
 					$this->promesa_pdt = '<b>Exfolia, purifica y renueva la piel</b><br>Con aroma del tradicional café Colombiano y extractos de la selva Amazónica. Elimina las células muertas, remplazandolas por nuevas. Refresca y revitaliza todo tipo de piel.';
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Clear-Away-Amazon-Facial-Scrub.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-Awakening-Toner.png';
-					$this->ingredientes_pdt = array('nogal','durazno','mango','cacao','maracuya','extractochontaduro', 'cafe','jojoba','seje', 'trigo');
+					$this->ingredientes_pdt = array('nogal','durazno','mango','cacao','maracuya','cafe','jojoba','seje', 'trigo', 'extractochontaduro');
 					$this->uso = array(
 						'Aplicar sobre el rostro y cuello',
 						'Realizar movimientos suaves circulares hasta retirar todas las impurezas.',
@@ -317,12 +321,12 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-Awakening-Daily-Facial-Moisturizer.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-Awakening-Daily-Facial-Moisturizer.png';
-					$this->ingredientes_pdt = array('extractochontaduro','manzanilla','almendras','romero','calendula', 'girasol', 'copoazu', 'limon');
+					$this->ingredientes_pdt = array('extractochontaduro','manzanilla','romero', 'limon', 'almendras','calendula', 'girasol', 'copoazu');
 					$this->uso = array(
 						'Aplicar una ligera capa en la mañana sobre el rostro y el cuello.',
 						'Realizar movimientos suaves circulares ascendentes.',
 						'Dejar durante el día.',
-						'Usar después de la crema de limpieza rostro y tónico. Conservar en lugar fresco y seco.'
+						'Usar todos los días después de la crema de limpieza rostro y tónico. Conservar en lugar fresco y seco.'
 					);
 
 					break;
@@ -334,7 +338,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazonian-Eye-Cream.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazonian-Eye-Cream.png';
-					$this->ingredientes_pdt = array('copoazu', 'trigo','seje','acai','name','extractochontaduro', 'sesamo');
+					$this->ingredientes_pdt = array('copoazu', 'trigo','jojoba', 'sesamo', 'seje','acai','name','extractochontaduro');
 					$this->uso = array(
 						'Aplicar con ligeros y suaves toques en el contorno de los ojos.',
 						'Usar día y noche.',
@@ -350,7 +354,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-Night-Renewal-Cream.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-Awakening-Toner.png';
-					$this->ingredientes_pdt = array('name','extractochontaduro','romero','calendula','aloe','manzanilla','trebolrojo','copoazu','almendras','trigo','girasol','macadamia','aguacate');
+					$this->ingredientes_pdt = array('name','extractochontaduro','romero','extractocalendula', 'aloe','manzanilla','trebolrojo', 'copoazu','almendras','trigo','girasol','sesamo','macadamia','aguacate');
 					$this->uso = array(
 						'Aplicar en la noche una ligera capa sobre el rostro y cuello.',
 						'Masajear suevemente con movimientos ascendentes',
@@ -368,7 +372,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-facial/linea-facial_Amazon-balm-for-lush-lips.png';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-balm-for-lush-lips.png';
-					$this->ingredientes_pdt = array('extractochontaduro','trigo','macadamia','zanahoria','calendula','andiroba','ricino','girasol','maracuya','buriti','laurel','candelilla','abejas','karite','cacao','copoazu', 'achiote', 'carnauba');
+					$this->ingredientes_pdt = array('extractochontaduro','trigo','macadamia','zanahoria','calendula','andiroba','ricino','girasol','maracuya','achiote','buriti','laurel','candelilla','abejas', 'carnauba','karite','cacao','copoazu');
 					$this->uso = array(
 						'Aplicar sobre los labios, una o varias veces al día y masajear suavemente.',
 						'Conservar en lugar fresco y seco.'
@@ -383,10 +387,10 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Amazon Awakening Body Wash.png';
 					$this->img_flotante_2 = 'modelo/linea-coporal_Amazon Awakening Body Wash.png';
-					$this->ingredientes_pdt = array('aloe','guayaba','mango','extractochontaduro','copoazu','trigo','acai');
+					$this->ingredientes_pdt = array('aloe','guayaba','mango','extractochontaduro','extractomango','copoazu','trigo','acai');
 					$this->uso = array(
 						'Frotar suavemente sobre el cuerpo húmedo, aplicar con las manos o toallita en forma circular hasta obtener abundante espuma y enjuague.',
-						'Aplicar el gel de ducha corporal todos los días como ritual de limpieza y relajación.',
+						'Aplicar el gel de ducha corporal todos los días como ritual de limpieza facial y/o corporal. Ideal para pieles sensibles.',
 						'Conservar en lugar fresco y seco.'
 					);
 
@@ -399,7 +403,7 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Clear-away-amazon-body-scrub.png';
 					$this->img_flotante_2 = 'modelo/linea-coporal_Clear-away-amazon-body-scrub.png';
-					$this->ingredientes_pdt = array('durazno','semillasmaracuya','extractochontaduro','mango','jojoba','trigo','buriti','karite','cacao');
+					$this->ingredientes_pdt = array('durazno','semillasmaracuya','extractochontaduro','extractomango','maracuya','jojoba','trigo','buriti','karite','cacao','mango');
 					$this->uso = array(
 						'Aplicar en la mano o toallita y extender por todo el cuerpo con movimientos circulares.',
 						'Concentrándose en las partes más queratinizadas (rodillas, codos y pies) y enjuagar.',
@@ -416,11 +420,11 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Antioxidant-Moisturizing-Body-lotion.png';
 					$this->img_flotante_2 = 'modelo/linea-coporal_Antioxidant-Moisturizing-Body-lotion.png';
-					$this->ingredientes_pdt = array('trigo','buriti','andiroba','macadamia','maracuya','calendula','girasol','aloe','extractochontaduro','copoazu', 'granadilla', 'nuezbrasil');
+					$this->ingredientes_pdt = array('trigo','buriti','andiroba', 'nuezbrasil','macadamia','maracuya', 'granadilla', 'calendula','girasol','aloe','extractochontaduro','copoazu');
 
 					$this->uso = array(
 						'Aplicar abundantemente en la mañana o en la noche. Masajear la piel hasta que se absorba completamente.',
-						'Ideal para pieles con sequedad extrema.<br>Ideal para personas que reciben tratamientos que alteran la humedad de la piel.',
+						'Ideal para pieles con sequedad extrema.<br>Ideal para personas que reciben tratamientos que alteran la humedad de la piel. Recomendado para masajes relajantes y terapéuticos.',
 						'Conservar en lugar fresco y seco.'
 					);
 
@@ -433,11 +437,11 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Deep-Nourishing-hand-cream.png';
 					$this->img_flotante_2 = 'modelo/linea-coporal_Deep-Nourishing-hand-cream.png';
-					$this->ingredientes_pdt = array('maracuya', 'seje','trigo','andiroba','copoazu','extractochontaduro','aloe','teverde');
+					$this->ingredientes_pdt = array('maracuya', 'seje','sesamo','trigo','andiroba','copoazu','extractochontaduro','aloe','teverde');
 					$this->uso = array(
 						'Aplicar día y noche generosamente en las manos y masajear suavemente.',
 						'Aplicar una vez por semana exfoliante para una limpieza profunda y renovar las células muertas.',
-						'Ideal para personas que manipulan agentes químico, o que realizan trabajos extremos.',
+						'Ideal para personas que manipulan agentes químico, o que realizan trabajos extremos. Ideal para manos cansadas o inflamadas.',
 						'Conservar en lugar fresco y seco.'
 					);
 
@@ -453,7 +457,7 @@ class ControllerTienda
 					$this->ingredientes_pdt = array('copoazu','trigo','jojoba','maracuya','extractochontaduro','aloe','teverde','buriti');
 					$this->uso = array(
 						'Aplicar sobre la piel limpia de todo el cuerpo.',
-						'Ideal para zonas más queratinizadas en especial en los codos, las rodillas y los pies.',
+						'Ideal para zonas más queratinizadas en especial en los codos, las rodillas, pies y cuello.',
 						'Masajear hasta que se absorba completamente.',
 						'Ideal para pieles con sequedad extrema.<br>Ideal para rituales de spa.',
 						'Conservar en lugar fresco y seco.'
@@ -468,7 +472,7 @@ class ControllerTienda
 					$this->promesa_pdt = '<b>Hidrata y protege los labios</b><br>Ofrece una deliciosa sensación al aplicar las mantequillas, ceras y aceites de frutos amazónicos hidratantes. La acción de los carotenoides y Fito-esteroles permite lucir labios humectados, suaves, sanos y con agradable brillo natural';
 					$this->banner_parallax = '';
 					$this->img_flotante_2 = 'modelo/linea-facial_Amazon-balm-for-lush-lips-stick.png';
-					$this->ingredientes_pdt = array('trigo','macadamia','zanahoria','calendula','andiroba','ricino','girasol','maracuya','buriti','laurel','candelilla','abejas','karite','cacao','copoazu','extractochontaduro', 'achiote', 'carnauba');
+					$this->ingredientes_pdt = array('extractochontaduro','trigo','macadamia','zanahoria','calendula','andiroba','ricino','girasol','maracuya','achiote','buriti','laurel','candelilla','abejas', 'carnauba','karite','cacao','copoazu');
 					$this->uso = array(
 						'Aplicar sobre los labios, una o varias veces al día y masajear suavemente.',
 						'Conservar en lugar fresco y seco.'
@@ -483,12 +487,12 @@ class ControllerTienda
 					$this->banner_parallax = '';
 					$this->img_flotante_1 = 'productos/linea-corporal/linea-coporal_Pure-Amazon-Body-Oil.png';
 					$this->img_flotante_2 = 'modelo/linea-coporal_Pure-Amazon-Body-Oil.png';
-					$this->ingredientes_pdt = array('trigo','calendula','chontaduro','uva','almendras','girasol','maracuya','buriti','romero','aguacate');
+					$this->ingredientes_pdt = array('trigo','calendula','chontaduro','uva','almendras','girasol','maracuya','buriti','aguacate','romero');
 					$this->uso = array(
 						'Frotar sobre la piel limpia y preferiblemente húmeda, hasta que se absorba completamente.',
 						'Usar de día o de noche.',
 						'Dejar secar antes de colocar su ropa.',
-						'Ideal para pieles con sequedad extrema.',
+						'Ideal para pieles con sequedad extrema, evitar las estrias y tonificar la piel.',
 						'Recomendado para majases relajantes y terapéuticos. Ideal para rituales de spa.',
 						'Conservar en lugar fresco y seco.'
 
@@ -535,8 +539,6 @@ class ControllerTienda
 
 			header('Location: '.URL_SITIO.URL_CLUB);
 		}
-
-		
 	}
 
 	public function carritoTienda(){
@@ -544,11 +546,12 @@ class ControllerTienda
 		if (isset($_SESSION['iddistribuidor']) && !empty($_SESSION['iddistribuidor'])) {
 
 			$categoria_crosselling = 0;
+			$ciudades = $this->usuarios->listarCiudades();
 
 			if (count($_SESSION['idpdts'])>0) {
 				
-				$producto = $this->productos->detalleProductos($_SESSION['idpdts'][0]);
-				$categoria_crosselling = $producto[0]['categorias_idcategoria'];
+				$producto_1 = $this->productos->detalleProductos($_SESSION['idpdts'][0]);
+				$categoria_crosselling = $producto_1[0]['categorias_idcategoria'];
 			}
 
 			$productos = $this->productos->listarProductos(array('NORMAL'), array(1), $categoria_crosselling);
