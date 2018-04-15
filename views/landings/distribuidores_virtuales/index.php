@@ -81,7 +81,7 @@
         <?php }else{ ?>
 
 		<!--video-->
-		<iframe width="100%" height="450" src="https://player.vimeo.com/video/264518010?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen uk-responsive></iframe>
+		<iframe style="width: 100% !important; height: 450px;" src="https://player.vimeo.com/video/264518010?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
         <section id="productos">
         	<div class="bg-violeta">
@@ -370,7 +370,9 @@
 				            <input class="uk-input" type="password" name="password" placeholder="" required="required">
 				        </div>
 				         <div class="uk-margin">
-				            <label><input class="uk-checkbox" type="checkbox" required="required" checked> Autorización de uso de datos personales</label>				           
+				            <label><input class="uk-checkbox" type="checkbox" required="required" checked> 
+				            	Autorización de uso de <a uk-toggle="target: #modal-datos">datos personales</a>
+				            </label>				           
 				        </div>
 				        <p uk-margin>
 				        	<button type="submit" name="registrarse" class="uk-button uk-button-large uk-button-primary uk-width-1-1" style="font-size: 16px;background-color: #f09700;">ENVIAR</button>
@@ -379,6 +381,16 @@
 		        </form>		        
 		    </div>
 		</div>
-		
+		<!-- This is the modal -->
+		<div id="modal-datos" uk-modal>
+		    <div class="uk-modal-dialog uk-modal-body">
+		    	<button class="uk-modal-close-default" type="button" uk-close></button>
+		        <h2 class="uk-modal-title">AUTORIZACIÓN DE USO Y PROTECCIÓN DE DATOS</h2>
+		        <p>Autorizo de forma libre, consciente, expresa e informada, a LINK GRUPO MARKETING SAS, en calidad de responsable del tratamiento de información personal,  a utilizar mis  datos personales con la finalidad de adelantar el trámite de registro en la plataforma de negocio como DISTRIBUIDOR de la marca PIUDALI AMAZONIAN SKINCARE, así como para informarme sobre otros eventos, promociones, entrega de pedidos, actividades comerciales de la marca o de terceros aliados comerciales de la marca que estén relacionados con sus funciones, informar sobre los servicios que prestan, las publicaciones de mi interés como Distribuidor y para solicitarme que evalúe la calidad de sus servicios. Igualmente autorizo la transferencia y/o transmisión de mis datos a terceros con los cuales LINK GRUPO MARKETING SAS tenga relación comercial para atender mis requerimientos como cliente.<br><br>
+
+				LINK GRUPO MARKETING SAS le informa que usted como titular de datos de carácter  personal, podrá ejercitar los derechos de acceso, rectificación, supresión, prueba de autorización y oposición  en cualquier momento, dirigiendo su queja o reclamo al correo electrónico: contacto@piudali.com.co o http://piudali.com.co/Contacto a la dirección: Cra 65 A No.9-60 Barrio Gran Limonar (Cali – Valle – Colombia), indicando sus datos completos. Si desea conocer nuestro Manual de Políticas de Tratamiento de datos personales puede consultarlo en http://piudali.com.co/politica-datos.</p>
+		    </div>
+		</div>
+
     </body>
 </html>
