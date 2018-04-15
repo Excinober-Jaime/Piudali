@@ -4,7 +4,9 @@
         <title>Conviertete en Distribuidor de Piudalí Amazonian Skincare</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <base href="<?=URL_SITIO.'views/landings/distribuidores_virtuales/'?>">
+        <!--<base href="<? //=URL_SITIO.'views/landings/distribuidores_virtuales/'?>">-->
+        <base href="http://localhost/piudali/www/views/landings/distribuidores_virtuales/">
+
         <link rel="stylesheet" href="css/uikit.css" />
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/bootstrap.css" />
@@ -80,19 +82,26 @@
 
         <?php }else{ ?>
 
-		<!--video-->
-		<iframe width="100%" height="450" src="https://player.vimeo.com/video/264518010?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen uk-responsive></iframe>
+		<!--video
+		<iframe width="100%" height="450" src="https://player.vimeo.com/video/264518010?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen uk-responsive></iframe>-->
 
-        <section id="productos">
-        	<div class="bg-violeta">
+		<!-- 16:9 aspect ratio -->
+		<div style="background-color: #6d1e3f">
+			<div class="col-md-7" style="padding: 0 !important">
+				<div class="embed-responsive embed-responsive-16by9">
+				  <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/264518010?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				</div>
+			</div>
+			<div class="col-md-5 bg-violeta" style="height: 100%">
         		<div class="container-fluid">
 	        		<div class="row">
-		        		<div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
+		        		<div class="col-xs-12">
+		        			<br/>
 		        			<center>
-		        				<h1 style="color: #fff; font-weight: 300; font-size: 2.2em">TIENES 3 OPCIONES PARA COMERCIALIZAR NUESTRO PRODUCTOS</h1>
+		        				<h1 style="color: #fff; font-weight: 300; font-size: 2.4em">TIENES 3 OPCIONES PARA COMERCIALIZAR NUESTRO PRODUCTOS</h1>
 		        			</center>
 		        		</div>
-		        		<div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+		        		<div class="col-xs-12">
 		        			<center>
 		        					<a class="uk-button uk-button-naranja uk-text-center" href="<?=URL_SITIO.URL_LANDING.'/'.URL_LANDING_DISTRIBUIDORES_VIRTUALES?>#negocio">CONÓCELAS!</a>
 		        			</center>
@@ -105,6 +114,11 @@
 	        		</div>
         		</div>
         	</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="franja"></div>
+        <section id="productos">
+        	
         	<!--Slider Productos-->
         	<div class="uk-position-relative uk-visible-toggle" uk-slider="autoplay: true; autoplay-interval: 6000">
 			    <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-6@m">
