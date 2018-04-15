@@ -98,7 +98,10 @@
 		        		<div class="col-xs-12">
 		        			<br/>
 		        			<center>
-		        				<h1 style="color: #fff; font-weight: 300; font-size: 2.4em">TIENES 3 OPCIONES PARA COMERCIALIZAR NUESTRO PRODUCTOS</h1>
+		        				<h1 style="color: #fff; font-weight: 300; font-size: 2.4em">COMERCIALIZA NUESTROS PRODUCTOS EN COLOMBIA </h1>
+<h2 style="color: #fff; font-weight: 300; font-size: 2.4em">
+		        					TE OFRECEMOS 3<br/>ESTRATEGIAS DE VENTA
+</h2>
 		        			</center>
 		        		</div>
 		        		<div class="col-xs-12">
