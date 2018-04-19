@@ -126,5 +126,12 @@ class Ordenes extends Database
 
 		$mail = mail($_SESSION["email"], $plantilla["asunto"], $mensaje, $headers);		
 	}
+
+	public function listar_direccion_orden($idorden = 0){
+
+		$query = $this->consulta("SELECT `iddireccion_orden`, `nombre`, `direccion`, `ciudad`, `telefono`, `telefono_m`, `email`, `ordenes_pedidos_idorden` FROM `direcciones_ordenes` WHERE `ordenes_pedidos_idorden`='$idorden'");
+
+		return $query[0];
+	}
 }
 ?>

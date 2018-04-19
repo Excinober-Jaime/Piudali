@@ -568,7 +568,7 @@ class Carrito extends Productos
 		return $codigo;
 	}
 
-	public function generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios,$descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos, $valorPunto, $flete, $total, $estado, $fecha_facturacion, $num_factura, $idusuario){
+	public function generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios,$descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos, $valorPunto, $flete, $total, $estado, $fecha_facturacion, $num_factura, $modalidad, $idusuario){
 		
 		$idorden = $this->insertar("INSERT INTO `ordenes_pedidos`(									
 									`num_orden`, 
@@ -588,7 +588,8 @@ class Carrito extends Productos
 									`estado`, 
 									`fecha_facturacion`, 
 									`num_factura`, 
-									`usuarios_idusuario`) VALUES (									
+									`modalidad`,
+									`usuarios_idusuario`) VALUES (					
 									'$codigo_orden',
 									'$fecha_pedido',
 									'$subtotalAntesIva',
@@ -606,6 +607,7 @@ class Carrito extends Productos
 									'$estado',
 									'$fecha_facturacion',
 									'$num_factura',
+									'$modalidad',
 									'$idusuario')");
 		
 		return $idorden;
@@ -619,14 +621,16 @@ class Carrito extends Productos
 									`ciudad`, 
 									`telefono`,
 									`telefono_m`,
-									`email`
+									`email`,
+									`ordenes_pedidos_idorden`
 									) VALUES (
 									'$nombre',
 									'$direccion',
 									'$ciudad',
 									'$telefono',
 									'$telefono_m',
-									'$email')");
+									'$email',
+									'$idorden')");
 		
 		return $iddireccion;
 	}

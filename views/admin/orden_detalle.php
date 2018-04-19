@@ -4,7 +4,7 @@
 
 	<div class="ibox-content p-xl">
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <!--<h5></h5>-->
                                     <address>
                                         <strong>LINK GRUPO MARKETING SAS</strong><br>
@@ -46,21 +46,42 @@
 										<button type="submit" name="actualizar_orden" class="btn btn-primary center-block">ACTUALIZAR</button>
 									</form>
                                 </div>
-                                <div class="col-sm-6 text-right">
-                                    <h4>ORDEN No.</h4>
-                                    <h4 class="text-navy"><?=$orden["detalle"]["num_orden"]?><br></h4>
-                                    <!--<span>A:</span>-->
-                                    <address>
-                                        <strong><?=$orden["detalle"]["nombre"]." ".$orden["detalle"]["apellido"]?><br>
-                                        CC. <?=$orden["detalle"]["num_identificacion"]?></strong><br>                                       
+                                <div class="col-sm-4">
+                                	<h4>DIRECCIÓN DE ENTREGA</h4>
+                                	<address>
+                                		<?php if (isset($direccion_orden) && count($direccion_orden)>0) { ?>
+                                			<?=$direccion_orden['nombre']?><br>
+                                			<?=$direccion_orden['direccion']?><br>
+                                			<?=$direccion_orden['ciudad']?><br>
+                                			<?=$direccion_orden['telefono']?><br>
+                                			<?=$direccion_orden['telefono_m']?><br>
+                                			<?=$direccion_orden['email']?><br>
+                                		<?php }else{ ?>
+                                			<?=$orden["detalle"]["nombre"].' '.$orden["detalle"]["apellido"]?><br>
+                                			<?=$orden["detalle"]["direccion"]?><br>
+	                                        <?=$orden["detalle"]["ciudad"]?><br>
+	                                        <?=$orden["detalle"]["telefono"]?><br>
+	                                        <?=$orden["detalle"]["telefono_m"]?><br>
+	                                        <?=$orden["detalle"]["email"]?><br>
+                                		<?php } ?>
+                                	</address>
+                                	<h4>DIRECCIÓN DE FACTURACIÓN</h4>
+                                	<address>
+                                		 <?=$orden["detalle"]["nombre"]." ".$orden["detalle"]["apellido"]?><br>
+                                        CC. <?=$orden["detalle"]["num_identificacion"]?><br>                                       
                                         <?=$orden["detalle"]["direccion"]?><br>
                                         <?=$orden["detalle"]["ciudad"]?><br>
                                         <?=$orden["detalle"]["telefono"]?><br>
                                         <?=$orden["detalle"]["telefono_m"]?><br>
-                                    </address>
-                                    <p>
-                                        <span><strong>Fecha de pedido:</strong> <?=$orden["detalle"]["fecha_pedido"]?></span><br/>
-                                        <!--<span><strong>Due Date:</strong> March 24, 2014</span>-->
+                                	</address>
+                                </div>
+                                <div class="col-sm-4 text-left">
+                                    <h4>ORDEN No.</h4>
+                                    <h4 class="text-navy"><?=$orden["detalle"]["num_orden"]?><br></h4>
+                                     <h4>MODALIDAD</h4>
+                                    <h4 class="text-navy"><?=$orden["detalle"]["modalidad"]?><br></h4>     
+                                    <h4>Fecha de pedido:</h4>
+                                    <h4 class="text-navy"><?=$orden["detalle"]["fecha_pedido"]?></h4>          
                                     </p>                                    
                                 </div>
                             </div>

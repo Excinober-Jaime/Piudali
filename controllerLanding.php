@@ -12,9 +12,32 @@ class ControllerLanding
 	{
 		
 		$this->usuarios = new Usuarios();
+		$this->mailchimp = new Mailchimp();
 	}
 
-	public function landing_distribuidores_virtuales(){
+	public function landing_distribuidores_virtuales($alerta = ''){
+
+		if (!empty($alerta)) {
+			
+			switch ($alerta) {
+
+				case 'INVALIDO':
+					$this->alerta = array('INVALIDO', 'Usted ya posee una cuenta');
+					break;
+
+				case 'EXITOSO':
+					$this->alerta = array('EXITOSO','Tu registro fue exitoso. Por favor ingresa con tus datos');
+					break;
+
+				case 'FALLIDO':
+					$this->alerta = array('FALLIDO','No fue posible realizar el registro. Por favor intenta de nuevo.');
+					break;
+				
+				default:
+					# code...
+					break;
+			}
+		}
 
 
 		if (isset($_POST['registrarse'])) {
@@ -25,7 +48,7 @@ class ControllerLanding
 				
 				if (count($this->usuarios->validarUsuario($num_documento, $email))>0) {
 
-					$this->alerta = array('INVALIDO', 'Usted ya posee una cuenta');
+					header('Location: '.URL_SITIO.URL_LANDING.'/'.URL_LANDING_DISTRIBUIDORES_VIRTUALES.'/INVALIDO');
 
 				}else{
 
@@ -44,7 +67,7 @@ class ControllerLanding
 					$lider = 0;
 					$nivel = 0;
 
-					$idusuario = $this->usuarios->crearUsuario(strtoupper($nombre), strtoupper($apellido), '', $fecha_nacimiento, $email, $passwordmd5, $num_documento, $boletines, $condiciones, $direccion, 0, '', $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad2, $idorganizacion);
+					$idusuario = $this->usuarios->crearUsuario(strtoupper($nombre), strtoupper($apellido), '', $fecha_nacimiento, $email, $passwordmd5, $num_documento, $boletines, $condiciones, $direccion, 0, '', $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, 0, $nivel, $ciudad, $idorganizacion);
 
 					if (!empty($idusuario)) {
 
@@ -86,11 +109,11 @@ class ControllerLanding
 						    //echo 'Por favor revisa tu correo';
 						}
 
-						$this->alerta = array('EXITOSO','Tu registro fue exitoso. Por favor ingresa con tus datos');
+						header('Location: '.URL_SITIO.URL_LANDING.'/'.URL_LANDING_DISTRIBUIDORES_VIRTUALES.'/EXITOSO');
 						
 					}else{
-						
-						$this->alerta = array('FALLIDO','No fue posible realizar el registro. Por favor intenta de nuevo.');
+
+						header('Location: '.URL_SITIO.URL_LANDING.'/'.URL_LANDING_DISTRIBUIDORES_VIRTUALES.'/FALLIDO');
 					}
 				}
 			}

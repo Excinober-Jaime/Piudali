@@ -1069,7 +1069,12 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 						
 						case URL_LANDING_DISTRIBUIDORES_VIRTUALES:
 							
-							$controllerLanding->landing_distribuidores_virtuales();
+							if (isset($var3) && !empty($var3)) {
+
+								$controllerLanding->landing_distribuidores_virtuales($var3);
+							}else{
+								$controllerLanding->landing_distribuidores_virtuales();
+							}
 							break;
 					}
 				}

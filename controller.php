@@ -2004,14 +2004,14 @@ class Controller
 			}
 						
 			//Crear Orden
-			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
+			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION['modalidad_compra'], $_SESSION["idusuario"]);
 
 			if ($idorden) {
 
 				//Registrar dirección para dropshipping
 				if ($_SESSION['modalidad_compra'] == 'DROPSHIPPING') {
 
-					$iddireccion = $this->carrito->registrar_direccion_orden($idorden, $_SESSION['nombre_dp'], $_SESSION['direccion_dp'], $_SESSION['idciudad_dp'], $_SESSION['telefono_dp'], $_SESSION['telefono_m_dp'], $_SESSION['email_dp']);
+					$iddireccion = $this->carrito->registrar_direccion_orden($idorden, $_SESSION['nombre_dp'], $_SESSION['direccion_dp'], $_SESSION['idciudad_dp'], $_SESSION['telefono_dp'], $_SESSION['telefono_m_dp'], $_SESSION['email_dp'], $idorden);
 				}
 				
 				//Cargar Nuevos Puntos
@@ -2193,7 +2193,7 @@ class Controller
 							$responseUrl = "http://naturalvitalis.com/respagos.php";
 							$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
 
-							require "include/pago_payu.php";
+							//require "include/pago_payu.php";
 
 						break;
 					}					
@@ -3501,6 +3501,11 @@ class Controller
 		}
 
 		$orden = $this->usuarios->detalleOrden($idorden);
+
+		if ($orden['detalle']['modalidad'] == 'DROPSHIPPING') {
+			
+			$direccion_orden = $this->ordenes->listar_direccion_orden($idorden);
+		}
 
 		include "views/admin/orden_detalle.php";
 	}
