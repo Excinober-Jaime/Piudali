@@ -1155,6 +1155,11 @@ class Controller
 
 		$orden = $this->usuarios->detalleOrden($idorden);
 
+		if ($orden['detalle']['modalidad'] == 'DROPSHIPPING') {
+			
+			$direccion_orden = $this->ordenes->listar_direccion_orden($idorden);
+		}
+
 		include "views/usuario_detalle_orden.php";
 	}
 

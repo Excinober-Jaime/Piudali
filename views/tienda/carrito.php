@@ -76,11 +76,13 @@
 	?>
 	<div class="divider"></div><br>
 	<div class="row">
-		<div class="col s12 m7">
+		<div class="col s12 m7">     
 
-		
-
-
+		<?php if (!empty($this->alerta)) { ?>
+			<div class="card-panel teal">
+	          <span class="white-text"><?=$this->alerta?></span>
+	        </div>
+		<?php } ?>
 
 		<?php  if (isset($_SESSION["idusuario"])) { ?>
 			<div>
@@ -118,8 +120,16 @@
                 <label for="email">Email</label>
               </div>
               <div class="input-field col s12 m6">
-                <select class="" id="ciudad" name="ciudad" required>        
-                  <option>Seleccione</option>
+                <input id="telefono_m" name="telefono_m" type="text" class="validate" required="required">
+                <label for="apellido">Celular</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="direccion" name="direccion" type="text" class="validate" required="required">
+                <label for="apellido">Dirección</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <select class="" id="ciudad" name="ciudad" required="required">        
+                  <option value="">Seleccione</option>
                   <?php 
                   foreach ($ciudades as $key => $ciudad) {
                     ?>

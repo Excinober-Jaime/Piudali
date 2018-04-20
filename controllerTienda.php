@@ -18,6 +18,7 @@ class ControllerTienda
 	public $distribuidor = array();
 	public $imagenes_pdts_png = array();
 	public $pago_puntos_on = false;
+	public $alerta = '';
 
 	function __construct()
 	{
@@ -83,12 +84,15 @@ class ControllerTienda
 
 			extract($_POST);
 
-			$response = $this->registrarConsumidor($num_identificacion, $nombre, $apellido, $email, $ciudad, $telefono, $contrasena);
+			$response = $this->registrarConsumidor($num_identificacion, $nombre, $apellido, $email, $telefono_m, $direccion, $ciudad, $contrasena);
 
 			if ($response['tipo'] == 'idusuario' && isset($_SESSION['idusuario'])) {
 				
+				$this->alerta = 'El registro fue exitoso!';
 
-
+			}elseif ($response['tipo'] == 'alerta') {
+				
+				$this->alerta = $response['response'];				
 			}
 		}
 
@@ -111,11 +115,11 @@ class ControllerTienda
 		return $this->imagenes_pdts_png[$codigo];
 	}
 
-	private function registrarConsumidor($num_identificacion, $nombre, $apellido, $email, $ciudad, $telefono, $contrasena){
+	private function registrarConsumidor($num_identificacion, $nombre, $apellido, $email, $telefono_m, $direccion, $ciudad, $contrasena){
 
 		if (count($this->usuarios->validarUsuario($num_identificacion, $email))>0) {
 
-				$alerta = "Usted ya posee una cuenta";
+				$alerta = "Usted ya posee una cuenta en Piudalí.";
 
 				return array('tipo'		=>	'alerta', 
 							'response'	=>	$alerta
@@ -127,9 +131,7 @@ class ControllerTienda
 			$fecha_nacimiento = '';
 			$boletines = 0;
 			$condiciones = 0;
-			$direccion = 0;
 			$mapa = 0;
-			$telefono_m = '';
 			$tipo = 'CONSUMIDOR';
 			$segmento = '';
 			$foto = '';
@@ -140,18 +142,28 @@ class ControllerTienda
 			$cod_lider = 0;
 			$nivel = 0;
 			$organizacion = 0;
+			$telefono = '';
 
 			$idusuario = $this->usuarios->crearUsuario($nombre, $apellido, $sexo, $fecha_nacimiento, $email, md5($password), $num_identificacion, $boletines, $condiciones, $direccion, $mapa, $telefono, $telefono_m, $tipo, $segmento, $foto, $estado, $fecha_registro, $referente, $lider, $cod_lider, $nivel, $ciudad, $organizacion);
 
 			if ($idusuario) {
 
-				$this->usuarios->actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, '', '', $ciudad, '', $tipo, 0, 0);	
-			}
+				$nombre_ciudad = $this->usuarios->nombreCiudad($ciudad);
 
-			return array(	
+				$this->usuarios->actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, $telefono_m, $direccion, $ciudad, $nombre_ciudad['ciudad'], $tipo, 0, 0);
+			
+				return array(
+
 						'tipo'		=>	'idusuario', 
 						'response'	=>	$idusuario
 					);
+			}else{
+
+				return array(	
+						'tipo'		=>	'alerta', 
+						'response'	=>	'No se pudo realizar el registro. Por favor, intenta de nuevo!'
+					);
+			}			
 		}
 	}
 

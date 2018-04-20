@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	<div class="row">		
-		<div class="col-xs-12 col-md-6">
+		<div class="col-xs-12 col-md-4">
 			<p><b>LINK GRUPO MARKETING SAS</b><br>
 			900218947-1<br><br>
 			Cali, Colombia<br>
@@ -18,11 +18,41 @@
 			<p class="text-left"><b>ESTADO:</b><br><?=$orden["detalle"]["estado"]?></p>
 			<p class="text-left"><b>NÚMERO DE GUÍA:</b><br><?=$orden["detalle"]["guia_flete"]?></p>
 		</div>		
-		<div class="col-xs-12 col-md-6">
+		<div class="col-xs-12 col-md-4">
+			<strong>DIRECCIÓN DE ENVÍO</strong>
+			<?php if (isset($direccion_orden) && count($direccion_orden)>0) { ?>
+				<p class="text-left">
+					<?=$direccion_orden['nombre']?><br>
+        			<?=$direccion_orden['direccion']?><br>
+        			<?=$direccion_orden['ciudad']?><br>
+        			<?=$direccion_orden['telefono']?><br>
+        			<?=$direccion_orden['telefono_m']?><br>
+        			<?=$direccion_orden['email']?>					
+				</p>
+			<?php }else{ ?>
+				<p class="text-left">
+					<?=$orden["detalle"]["nombre"].' '.$orden["detalle"]["apellido"]?><br>
+        			<?=$orden["detalle"]["direccion"]?><br>
+                    <?=$orden["detalle"]["ciudad"]?><br>
+                    <?=$orden["detalle"]["telefono"]?><br>
+                    <?=$orden["detalle"]["telefono_m"]?><br>
+                    <?=$orden["detalle"]["email"]?><br>
+                </p>
+			<?php } ?>
+
+			<strong>DIRECCIÓN DE FACTURACIÓN</strong>
+			<p class="text-left">
+				<?=$orden["detalle"]["nombre"]." ".$orden["detalle"]["apellido"]?><br>
+	            CC. <?=$orden["detalle"]["num_identificacion"]?><br>                                       
+	            <?=$orden["detalle"]["direccion"]?><br>
+	            <?=$orden["detalle"]["ciudad"]?><br>
+	            <?=$orden["detalle"]["telefono"]?><br>
+	            <?=$orden["detalle"]["telefono_m"]?>
+	        </p>
+		</div>
+		<div class="col-xs-12 col-md-4">
 			<p class="text-right"><b>ORDEN No. </b><br><?=$orden["detalle"]["num_orden"]?></p>
-			<p class="text-right"><?=$orden["detalle"]["nombre"]." ".$orden["detalle"]["apellido"]?><br>Documento: <?=$orden["detalle"]["num_identificacion"]?></p>
-			<p class="text-right">Dirección: <?=$orden["detalle"]["direccion"]?><br>Ciudad: <?=$orden["detalle"]["ciudad"]?></p>
-			<p class="text-right">Teléfonos: <?=$orden["detalle"]["telefono"]?><br><?=$orden["detalle"]["telefono_m"]?></p>
+			<p class="text-right"><b>MODALIDAD</b><br><?=$orden["detalle"]["modalidad"]?></p>			
 			<p class="text-right">FECHA PEDIDO: <?=$orden["detalle"]["fecha_pedido"]?></p>
 		</div>
 		<div class="col-xs-12">
