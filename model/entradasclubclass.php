@@ -28,16 +28,23 @@ class Entradas extends Database
 	public function actualizarEntrada($titulo="",$contenido="",$url="",$tipo="",$ruta="",$estado=1, $identrada=0){
 
 		$query = $this->actualizar("UPDATE `entradas_club` SET
-									`titulo`='$titulo',									
+									`titulo`='$titulo',								
 									`contenido`='$contenido',
 									`url`='$url',
-									`tipo`='$tipo',
-									`ruta`='$ruta',
+									`tipo`='$tipo',									
 									`estado`='$estado' 
 									WHERE `identrada`='$identrada'");	
 
-		return $query;
 
+		if (!empty($ruta)) {
+			
+			$this->actualizar("UPDATE `entradas_club` SET							
+									`ruta`='$ruta'
+									WHERE `identrada`='$identrada'");
+
+		}
+
+		return $query;
 	}
 
 	public function listarEntradas($estados=array(), $limit = '') {

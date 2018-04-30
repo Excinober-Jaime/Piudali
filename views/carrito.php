@@ -78,6 +78,10 @@
 		  </label>
 		</div>
 		<div class="panel panel-default" id="panel-metodologia-normal" <?php if ($_SESSION['modalidad_compra'] != 'NORMAL') { echo 'style="display: none;"'; } ?>>
+			<div class="well well-sm" style="background-color: #dff0d8;color: #000;font-size:13px;">
+					
+						Compra, abastécete y vende a tus clientes. Te despacharemos directamente a tu dirección. Pedido mínimo de $500.000.
+				</div>
 			<div class="panel-body">
 			 	<h2>Dirección de envío</h2>
 			 	<p> Dirección: <?=$_SESSION["direccion"]?><br>
@@ -95,11 +99,11 @@
 		  </label>
 		</div>
 		<div class="panel panel-default" id="panel-metodologia-dropshipping" <?php if ($_SESSION['modalidad_compra'] != 'DROPSHIPPING') { echo 'style="display: none;"'; } ?>>
+			
 			<div class="panel-body">
-				<div class="col-xs-12">
-					<p class="bg-success" style="padding: 5px;">
-						
-					</p>
+				<div class="well well-sm" style="background-color: #dff0d8;color: #000;font-size:13px;">
+					
+						Dropshipping es una modalidad en la que tú vendes, recaudas  y nosotros le despachamos el pedido directamente a tu cliente. Comercializa sin inventarios ni logística. Sin pedidos mínimos.
 				</div>
 				<form method="post" id="form-modalidad-dropshipping">
 					<div class="form-group col-md-6">

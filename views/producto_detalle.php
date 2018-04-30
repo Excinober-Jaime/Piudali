@@ -178,7 +178,7 @@
 
 	<div class="panel panel-default">						
 		<div class="panel-body">
-			<h3 class="texto-vinotinto text-center">Piezas Publicitarias</h3>	
+			<h3 class="texto-vinotinto text-center">Galería de Piezas Publicitarias</h3>	
 			<div class="row">				
 				<?php
 					

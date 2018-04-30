@@ -193,7 +193,7 @@
                   <ul class="dropdown-menu">					      
 					      <?php
 					      foreach ($paginas_menu as $pagina) {
-				              if ($pagina["posicion"]=="INTERNAS LIDERES" || $pagina["posicion"]=="INTERNAS DISTRIBUIDORES Y LIDERES") {
+				              if ($pagina["posicion"]=="POLITICAS REPRESENTANTES" || $pagina["posicion"]=="POLITICAS DISTRIBUIDORES Y REPRESENTANTES") {
 				          ?>
 				          <li><a class="open-modal" idpage="<?=$pagina["idpagina"]?>"><?=$pagina["titulo"]?></a></li>
 				          <?php
