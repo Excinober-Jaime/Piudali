@@ -117,11 +117,11 @@
 
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_TICKETS?>">PQRS</a></li>
 
-					<?php if (!Controller::$DISABLE_CAPACITACION) { /*?>
+					<?php if (!Controller::$DISABLE_CAPACITACION) { ?>
 
-					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_NEGOCIO?>">Capacitación</a></li>
+					<li><a href="<?=URL_USUARIO_CAPACITACION?>">Escuela de Negocio</a></li>
 
-					<?php */}?>
+					<?php }?>
                 
                 	
 

@@ -20,7 +20,7 @@
 
 		    ga('create', 'UA-80277968-1', 'auto');
 		    ga('send', 'pageview');
-
+		    gtag('config', 'AW-959221012'); //Conversiones adwords
 		  </script>
 
 		  <!-- Facebook Pixel Code -->
@@ -79,6 +79,11 @@
 
         				case 'EXITOSO':
         					?>
+        						<!-- Event snippet for Registro en Landing Distribuidores Virtuales - Dropshipping conversion page -->
+								<script>
+								  gtag('event', 'conversion', {'send_to': 'AW-959221012/P_grCPDc7YABEJSasskD'});
+								</script>
+								
         						<div class="box-texto">
 				    				<h2 class="H2 textoVioleta">Felicidades! Tu registro fue exitoso. Por favor <a href='<?=URL_SITIO.URL_INGRESAR?>'>ingresa aquí</a> y accede con tus datos para iniciar tu negocio</h2>	
 								</div>

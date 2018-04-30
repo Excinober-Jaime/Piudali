@@ -10,6 +10,7 @@
 			<hr>
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			  <div class="panel panel-default">
+			     <?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $producto[0]["tipo"] == 'NORMAL') {  ?>
 			    <div class="panel-heading" role="tab" id="headingOne" style="background-color: #742126; color: #fff;">
 			      <h4 class="panel-title">
 			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -17,6 +18,7 @@
 			        </a>
 			      </h4>
 			    </div>
+			    <?php } ?>
 			    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 			      <div class="panel-body">
 			       <div class="row">
@@ -76,6 +78,7 @@
 			      </div>
 			    </div>
 			  </div>
+			  <?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $producto[0]["tipo"] == 'NORMAL') {  ?>
 			  <div class="panel panel-default">
 			    <div class="panel-heading" role="tab" id="headingTwo" style="background-color: #742126; color: #fff;">
 			      <h4 class="panel-title">
@@ -85,9 +88,7 @@
 			      </h4>
 			    </div>
 			    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-			      <div class="panel-body">
-			        	<?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $producto[0]["tipo"] == 'NORMAL') {  ?>
-				
+			      <div class="panel-body">			
 
 						<div class="panel panel-default">
 						  <div class="panel-heading text-center" style="background-color: #ef7a00;color: #fff;">VENDE ESTE PRODUCTO VIRTUALMENTE Y GANA EL 20%</div>
@@ -100,33 +101,7 @@
 						   <center>
 						   		<button class="btn btn-primary btn-sm" onclick="copyToClipboard('#urlpdt')">Copiar enlace</button> 	
 						   	</center><br>
-						  	<div class="panel panel-default">						
-								<div class="panel-body">
-									<div class="row">
-										<?php
-										
-										foreach ($imgs_producto as $key => $img) {
-
-										$ext = explode('/', $img['type']);
-										$ext = $ext[1];
-
-										?>
-											<div class="col-xs-6 col-md-4">
-											   <a class="thumbnail">
-											      <img src="<?=$img['imagen']?>" alt="<?=$img['nombre']?>" ext="<?=$ext?>" type="<?=$img['type']?>" class="img-popup">
-											      <!--<div class="caption">
-											      	<i class="fa fa-facebook-official" aria-hidden="true"></i>
-											      	<i class="fa fa-whatsapp" aria-hidden="true"></i>
-											      	<i class="fa fa-cloud-download" aria-hidden="true" title="Descargar"></i>
-											      </div>-->
-											    </a>
-											</div>
-										<?php		
-										}
-										?>					  
-									</div>
-								</div>
-							</div>						  	
+						  					  	
 						   
 						   	<center>						   			
 
@@ -150,10 +125,11 @@
 							</div>				   	
 						  </div>
 						</div>
-					<?php } ?>
+					
 			      </div>
 			    </div>
 			  </div>
+			  <?php } ?>
   			</div>
   			<hr>
   			<div class="row">					
@@ -197,7 +173,44 @@
 	            <a target="_new" href="https://plus.google.com/share?url=<?=$url?>" style="color:#d73d32;"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
 			</div>
 			<br><br>				-->
-			
+
+	<?php if (isset($_SESSION['idusuario']) && $_SESSION['tipo'] == 'DISTRIBUIDOR DIRECTO' && $producto[0]["tipo"] == 'NORMAL') {  ?>
+
+	<div class="panel panel-default">						
+		<div class="panel-body">
+			<h3 class="texto-vinotinto text-center">Piezas Publicitarias</h3>	
+			<div class="row">				
+				<?php
+					
+					$count_imgs = count($imgs_producto);
+					$por_columna = ceil($count_imgs / 4);
+
+					//var_dump($por_columna);
+
+					foreach ($imgs_producto as $key => $img) {
+
+						$ext = explode('/', $img['type']);
+						$ext = $ext[1];
+
+						if (($key == 0) || ($key % $por_columna) == 0) {
+
+							if (($key % $por_columna) == 0){
+								
+								echo '</div>';
+
+							}
+
+							echo '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">';
+						}
+						
+						?>
+						<img src="<?=$img['imagen']?>" alt="<?=$img['nombre']?>" ext="<?=$ext?>" type="<?=$img['type']?>" class="img-popup" style="width: 100%;margin-bottom: 10px;cursor: pointer;border:1px solid #000;">
+					<?php } ?>
+			</div>
+		</div>
+	</div>
+	<?php } ?>
+	
 	<div class="row">
 		<div class="col-xs-12">
 		  <!-- Nav tabs -->

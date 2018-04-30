@@ -71,6 +71,17 @@ class Usuarios extends Database
 		return $query;
 	}
 
+	public function listarReferidos($idreferente){
+
+		$query = $this->consulta("SELECT `usuarios`.`idusuario`, `usuarios`.`nombre`, `usuarios`.`apellido`, `usuarios`.`sexo`, `usuarios`.`fecha_nacimiento`, `usuarios`.`email`, `usuarios`.`password`, `usuarios`.`num_identificacion`, `usuarios`.`boletines`, `usuarios`.`condiciones`, `usuarios`.`direccion`,  `usuarios`.`mapa`, `usuarios`.`telefono`, `usuarios`.`telefono_m`, `usuarios`.`tipo`, `usuarios`.`segmento`, `usuarios`.`foto`, `usuarios`.`estado`, `usuarios`.`fecha_registro`, `usuarios`.`referente`, `usuarios`.`lider`, `usuarios`.`nivel`, `usuarios`.`ciudades_idciudad`, `usuarios`.`organizaciones_idorganizacion`, `ciudades`.`ciudad` AS 'ciudad'
+									FROM `usuarios`
+									INNER JOIN `ciudades` ON (`usuarios`.`ciudades_idciudad`=`ciudades`.`idciudad`) 
+									WHERE `usuarios`.`referente` = '$idreferente'
+									ORDER BY `fecha_registro` DESC");
+		
+		return $query;
+	}
+
 	public function listarUsuariosMapa($idciudad = 0){
 
 
@@ -936,6 +947,48 @@ class Usuarios extends Database
 									`cupo_disponible` = '$cupo_disponible',
 									`plazo` = '$plazo'
 									WHERE `idcredito` = '$idcredito'");
+
+		return $query;
+
+	}
+
+	/****CUENTAS BANCARIAS****/
+
+	public function consultar_cuenta_bancaria($idusuario){
+		
+		$query = $this->consulta("SELECT `idcuenta`, `entidad`, `tipo`, `numero`, `titular`, `num_identificacion`, `fecha_registro`, `usuarios_idusuario` FROM `cuentas_bancarias` WHERE `usuarios_idusuario`='$idusuario'");
+		
+		return $query[0];
+	}
+
+	public function crear_cuenta_bancaria($idusuario, $entidad = '', $tipo = '', $numero = 0, $titular = '', $num_identificacion = 0) {
+
+		$idcuenta = $this->insertar("INSERT INTO `cuentas_bancarias`(				
+										`entidad`, 
+										`tipo`, 
+										`numero`, 
+										`titular`, 
+										`num_identificacion`,
+										`usuarios_idusuario`) VALUES (				
+										'$entidad',
+										'$tipo',
+										'$numero',
+										'$titular',
+										'$num_identificacion',
+										'$idusuario')");
+		return $idcuenta;
+
+	}
+
+	public function actualizar_cuenta_bancaria($idcuenta, $entidad = '', $tipo = '', $numero = 0, $titular = '', $num_identificacion = 0){
+
+		$query = $this->actualizar("UPDATE `cuentas_bancarias` SET 					
+									`entidad` = '$entidad',
+									`tipo` = '$tipo',
+									`numero` = '$numero',
+									`titular` = '$titular',
+									`num_identificacion` = '$num_identificacion'	
+									WHERE `idcuenta` = '$idcuenta'");
 
 		return $query;
 

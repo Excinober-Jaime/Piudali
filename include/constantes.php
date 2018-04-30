@@ -1,6 +1,6 @@
 <?php 
-define("URL_SITIO", "http://localhost/piudali/www/");
-//define("URL_SITIO", "https://piudali.com.co/");
+//define("URL_SITIO", "http://localhost/piudali/www/");
+define("URL_SITIO", "https://piudali.com.co/");
 define("URL_INICIO", "Inicio");
 define("URL_PRODUCTOS", "Productos");
 define("URL_CATEGORIA", "Categoria");
@@ -30,12 +30,13 @@ define("URL_USUARIO_PREMIOS", "Premios");
 define("URL_USUARIO_PROMOCIONES", "Promociones");
 define("URL_USUARIO_INCENTIVOS", "Incentivos");
 define("URL_USUARIO_CUPONES", "Cupones");
-define("URL_USUARIO_CAPACITACION", "Capacitacion");
+define("URL_USUARIO_CAPACITACION", "formacion/");
+/*define("URL_USUARIO_CAPACITACION", "Capacitacion");
 define("URL_USUARIO_CAPACITACION_INGREDIENTES", "Ingredientes");
 define("URL_USUARIO_CAPACITACION_VIDEOS", "Videos");
 define("URL_USUARIO_CAPACITACION_VIDEOS_NEGOCIO", "VideosNegocio");
 define("URL_USUARIO_CAPACITACION_PROTOCOLOS", "Protocolos");
-define("URL_USUARIO_CAPACITACION_NEGOCIO", "Negocio");
+define("URL_USUARIO_CAPACITACION_NEGOCIO", "Negocio");*/
 define("URL_USUARIO_POLITICAS", "Politicas");
 define("URL_USUARIO_PUNTOS", "Puntos");
 define("URL_USUARIO_CLIENTES", "Clientes");

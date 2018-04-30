@@ -675,6 +675,8 @@ class Controller
 
 			}else{
 
+				
+
 				header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);
 			}
 
@@ -880,7 +882,22 @@ class Controller
 		
 		if (!empty($_SESSION["idusuario"])) {
 
+			if (isset($_POST['crearCuentaBancaria'])) {				
+
+				extract($_POST);
+
+				$idcuentabancaria = $this->usuarios->crear_cuenta_bancaria($_SESSION["idusuario"], $entidad, $tipo, $numero, $titular, $num_identificacion);
+			}
+
+			if (isset($_POST['actualizarCuentaBancaria'])) {
+
+				extract($_POST);
+
+				$this->usuarios->actualizar_cuenta_bancaria($idcuenta, $entidad, $tipo, $numero, $titular, $num_identificacion);
+			}
+
 			$usuario = $this->usuarios->detalleUsuario($_SESSION["idusuario"]);
+			$cuenta_bancaria = $this->usuarios->consultar_cuenta_bancaria($_SESSION["idusuario"]);
 
 			if (!empty($usuario["organizaciones_idorganizacion"])) {
 				$organizacion = $this->usuarios->detalleOrganizacionUsuario($usuario["organizaciones_idorganizacion"]);
@@ -1726,7 +1743,8 @@ class Controller
 		$moduloActual = URL_USUARIO_REFERIR;
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
-		$banners = $this->banners->listarBanners($posicion_banners, $estados);	
+		$banners = $this->banners->listarBanners($posicion_banners, $estados);
+		$referidos = $this->usuarios->listarReferidos($_SESSION['idusuario']);
 
 		include "views/usuario_referir.php";
 	}

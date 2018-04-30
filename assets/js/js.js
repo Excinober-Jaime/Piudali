@@ -225,6 +225,53 @@ $(document).ready(function(){
 
 		openWindowMap(iddistribuidor);
 	})
+
+	$('#ingresarUsuario').click(function(){
+
+		$(this).attr('disabled','disabled');
+		$(this).text('INICIANDO...');
+
+		var email = $('#email').val();
+		var password = $('#password').val();
+		var login_escuela = false;
+
+		if (email != '' && password !='') {
+
+			//Loguear en escuela virtual
+
+			$.ajax({
+			  type: 'POST',
+			  url: 'formacion/wp-login.php',
+			  //url: 'escuela.php',
+			  data: { log:email, pwd:password, redirect_to:'https://piudali.com.co/formacion/', testcookie:'1' },
+			  success: function(data){
+
+			  	login_escuela = true;
+
+			  	console.log(login_escuela);
+
+			  	setTimeout(function(){ $('#form-login').submit(); }, 1000);
+			  	
+			  },
+			  dataType: 'text'
+			});
+		
+		}else{
+
+			alert('Por favor ingresa tus datos de acceso.');
+		}
+	})
+
+	$('#open-form-cuenta-bancaria').click(function(){
+
+		$('#form-cuenta-bancaria').toggle();
+	})
+
+	$('#actualizar-cuenta').click(function(){
+
+		$('#datos-cuenta-bancaria').toggle();
+		$('#container-form-cuenta-bancaria').toggle();	
+	})
 })
 
 var image = 'assets/img/marker.png';
