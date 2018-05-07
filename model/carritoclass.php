@@ -206,7 +206,7 @@ class Carrito extends Productos
 				$porc_descuento_cupon = 10;
 			}*/
 
-			$porc_descuento_cupon = 10;
+			$porc_descuento_cupon = 20;
 
 		}else{
 

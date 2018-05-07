@@ -545,7 +545,7 @@ class ControllerTienda
 			
 			$productos = $this->productos->listarProductos(array('NORMAL'), array(1));
 
-			include 'views/tienda/productos_lista.php';	
+			include 'views/tienda/productos_lista.php';
 		
 		}else{
 
@@ -664,6 +664,7 @@ class ControllerTienda
 		if (isset($_SESSION["idusuario"]) && !empty($_SESSION["idusuario"]) && count($_SESSION["idpdts"])>0 && count($_SESSION["cantidadpdts"])>0 && $_SESSION["tipo"]== 'CONSUMIDOR') {
 
 			$tipo_usuario = 'CONSUMIDOR';
+			$modalidad = 'VENTAVIRTUAL';
 
 			$codigo_orden = $this->carrito->generarCodOrden();
 			$fecha_pedido = fecha_actual("date");
@@ -686,9 +687,12 @@ class ControllerTienda
 			$estado = "PENDIENTE";
 			$fecha_facturacion = "0000-00-00";
 			$num_factura = "";
+
 			
 			//Crear Orden
-			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
+			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $modalidad, $_SESSION["idusuario"]);
+
+			var_dump($idorden);
 
 			if ($idorden) {
 

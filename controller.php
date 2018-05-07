@@ -2216,7 +2216,7 @@ class Controller
 							$responseUrl = "http://naturalvitalis.com/respagos.php";
 							$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
 
-							//require "include/pago_payu.php";
+							require "include/pago_payu.php";
 
 						break;
 					}					

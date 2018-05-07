@@ -94,15 +94,19 @@
 						  <div class="panel-heading text-center" style="background-color: #ef7a00;color: #fff;">VENDE ESTE PRODUCTO VIRTUALMENTE Y GANA EL 20%</div>
 						  <div class="panel-body">
 						  	<h4 class="text-center">Vende Online y gana el 20% sin necesidad de inventario, inversión ni entrega.</h4>
-						  	<p class="text-center">Descarga éstas piezas y compartelas con tus clientes agregando el siguiente enlace.</p>
+						  	<p class="text-center">Descarga de la galería la imágen que deseas promocionar y compártela con tus clientes agregando el siguiente enlace.</p>
 						  	<div class="well" id="urlpdt">
 						    <?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTO.'/'.$producto[0]["url"].'?d='.$_SESSION['idusuario']?>
+						   </div>						   
+					   		<button class="btn btn-primary btn-sm center-block" onclick="copyToClipboard('#urlpdt')">Copiar enlace</button> 	
+						   	
+						   	<hr>
+						   	<h4 class="text-center">Campaña de MADRES</h4>
+						   	<div class="well" id="urlmadre">
+						    <?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTOS.'?d='.$_SESSION['idusuario']?>
 						   </div>
-						   <center>
-						   		<button class="btn btn-primary btn-sm" onclick="copyToClipboard('#urlpdt')">Copiar enlace</button> 	
-						   	</center><br>
-						  					  	
-						   
+						   <button class="btn btn-primary btn-sm center-block" onclick="copyToClipboard('#urlmadre')">Copiar enlace</button>
+						   	<br>
 						   	<center>						   			
 
 						   		<a class="btn btn-default btn-sm" role="button" data-toggle="collapse" href="#como-funciona-ecommerce" aria-expanded="false" aria-controls="collapseExample">

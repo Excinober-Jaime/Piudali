@@ -15,7 +15,7 @@
 
                 <?php }else{ ?>
                 	<!--ENVIAR DIRECTAMENTE AL CARRO-->
-                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 10% DE DESCUENTO</button>
+                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 20% DE DESCUENTO</button>
                 
                 <?php } ?>
                 
@@ -91,7 +91,7 @@
 
 	                <?php }else{ ?>
 
-	                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 10% DE DESCUENTO</button>
+	                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 20% DE DESCUENTO</button>
 	                
 	                <?php } ?>
 	                
@@ -158,7 +158,7 @@
 
 	                <?php }else{ ?>
 	                	<!--ENVIAR DIRECTAMENTE AL CARRO-->
-	                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 10% DE DESCUENTO</button>
+	                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 20% DE DESCUENTO</button>
 	                
 	                <?php } ?>					
 				</div>
@@ -172,10 +172,10 @@
 		<div class="row">
 			<div class="col s12 m12 l3 z-depth-2">
 				<div class="cupon">
-					<h5>Recibe un descuento especial por este mes.</h5>
-					<h2 style="font-weight: bold; margin-top: 0px; line-height: 2.5rem;">10%</h2>
+					<h5>En el mes de la MADRE Recibe un descuento especial.</h5>
+					<h2 style="font-weight: bold; margin-top: 0px; line-height: 2.5rem;">20%</h2>
 					<h5 style="font-weight: bold; margin-bottom: 0px !important; line-height: 1.1rem;">DESCUENTO</h5>
-					<p><small>Válido hasta el 30 de abril de 2018.</small></p>
+					<p><small>Válido hasta el 31 de mayo de 2018.</small></p>
 				</div>
 				<?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'CONSUMIDOR'){?>
 					
@@ -207,7 +207,9 @@
 
 			<div class="col m6 s12 l4">
 				
-				<img src="assets/tienda/img/gana-puntos-por-tus-compras.png" class="responsive-img" style="width: 80%;">
+				<!--<img src="assets/tienda/img/gana-puntos-por-tus-compras.png" class="responsive-img" style="width: 80%;">-->
+				<img src="assets/tienda/img/campanas/madres/banner0.jpg" class="responsive-img" style="width: 85%;">
+				
 				<!--<h3>Para ganar puntos y ser parte del Club</h3>
 				<ul>
 					<li>Identifica</li>
@@ -323,7 +325,7 @@ Nuestra fórmula está  diseñada con una mezcla científicamente balanceada con
 
 	                <?php }else{ ?>
 	                	<!--ENVIAR DIRECTAMENTE AL CARRO-->
-	                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 10% DE DESCUENTO</button>
+	                	<button class="btn-large agregarPdt" idpdt="<?=$this->id_pdt?>" isreg='0' style="background:#f29400; font-weight: bold; font-size: 1.2em">COMPRA CON EL 20% DE DESCUENTO</button>
 	                
 	                <?php } ?>	
 	                </center>

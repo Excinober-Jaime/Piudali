@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-		  <!-- Indicators -->
+		 
 		  <ol class="carousel-indicators">
 		  	<?php
 		  	foreach ($banners as $key => $banner) {
@@ -13,23 +13,21 @@
 		  	?>
 		  </ol>
 
-		  <!-- Wrapper for slides -->
+		  
 		  <div class="carousel-inner" role="listbox">
 		  	<?php
 		  	foreach ($banners as $key => $banner) {
 		  	?>
 		  		<div class="item <?php if ($key==0) echo 'active'; ?>">
 			      <img src="<?=$banner['imagen']?>" alt="<?=$banner['nombre']?>">
-			      <!--<div class="carousel-caption">
-			        ...
-			      </div>-->
+			      
 			    </div>
 		  	<?php
 		  	}
 		  	?>		    
 		  </div>
 
-		  <!-- Controls -->
+		 
 		  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
 		    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 		    <span class="sr-only">Previous</span>
@@ -38,7 +36,15 @@
 		    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 		    <span class="sr-only">Next</span>
 		  </a>
-		</div>	
+		</div>
+		<!--Anuncio campaña de madres-->
+		<!--<div class="panel panel-default">
+		<div class="panel-heading bg-danger" style="background-color: #ef7a00; color: #fff;"><h4>¡APROVECHA EL MES DE LA MADRE!</h4></div>
+		  <div class="panel-body bg-warning">
+		    Hemos diseñado una página para que vendas nuestros productos en el mes de las madres. Solo debes compartir el siguiente enlace con tus clientes: <span class="label label-default" id="urlmadre"><?=URL_SITIO.URL_TIENDA.'/'.URL_TIENDA_PRODUCTOS.'?d='.$_SESSION['idusuario']?></span><br><br><button class="btn btn-primary btn-sm" onclick="copyToClipboard('#urlmadre')">Copiar Enlace</button>
+		  </div>
+		</div>-->
+		
 	</div>
 </div>
 <?php } ?>
@@ -183,7 +189,8 @@
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_NEGOCIO?>">Mi negocio</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_INCENTIVOS?>">Incentivos</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CUENTA?>">Cuenta virtual</a></li>
-					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_NEGOCIO?>">Capacitación</a></li>
+					<!--<li><a href="<?=URL_USUARIO."/".URL_USUARIO_CAPACITACION."/?opcion=".URL_USUARIO_CAPACITACION_NEGOCIO?>">Escuela de Negocio</a></li>-->
+					<li><a href="<?=URL_USUARIO_CAPACITACION?>">Escuela de Negocio</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_TICKETS?>">PQRS</a></li>
 					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_DOCUMENTOS?>">Documentos</a></li>
 					<li><a href="https://piudali.com.co/crm/">Gestión de clientes</a></li>

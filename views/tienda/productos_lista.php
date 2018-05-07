@@ -1,5 +1,10 @@
 <?php include 'header.php'; ?>
 <!--<img src="assets/tienda/img/campana-mujer.png" style="width: 100%; display: block;">-->
+<!--<div class="carousel-madres carousel-slider" style="height: auto !important;">
+    <a class="carousel-item" href="#one!"><img src="assets/tienda/img/campanas/madres/carousel0.jpg"></a>
+    <a class="carousel-item" href="#two!"><img src="assets/tienda/img/campanas/madres/carousel1.jpg"></a>
+</div>-->
+<img src="assets/tienda/img/campanas/madres/carousel0.jpg" style="width: 100%;">
 <div class="divider"></div>
 <div class="section" id="productos">
 
