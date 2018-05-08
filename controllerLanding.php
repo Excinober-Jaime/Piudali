@@ -71,6 +71,27 @@ class ControllerLanding
 
 					if (!empty($idusuario)) {
 
+						//Crear usuario en escuela virtual
+						$escuela = new Escuela();
+
+						$iduserescuela = $escuela->createUser($num_documento, $passwordmd5, strtoupper($nombre), $email);
+
+						if (!empty($iduserescuela)) {
+							
+							$escuela->createUserMeta($iduserescuela, 'cur_capabilities', 'a:1:{s:10:"subscriber";b:1;}');
+
+							$escuela->createUserMeta($iduserescuela, 'empresa', '1511');
+
+							$escuela->createUserMeta($iduserescuela, 'num_ident', $num_documento);
+
+							$escuela->createUserMeta($iduserescuela, 'first_name', strtoupper($nombre));
+
+							$escuela->createUserMeta($iduserescuela, 'last_name', strtoupper($apellido));
+
+							$escuela->createUserMeta($iduserescuela, 'cargo', 'DISTRIBUIDOR DIRECTO');
+
+						}
+
 						//Suscribir en Mailchimp
 						$suscribir = $this->mailchimp->suscribir('b8ebc5f9f4',$email, strtoupper($nombre), strtoupper($apellido), $idusuario, '', '', $num_documento, strtoupper($direccion), $telefono_m, $segmento, 1, fecha_actual('date'), $idorganizacion, $tipo);
 						

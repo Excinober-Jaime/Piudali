@@ -347,7 +347,9 @@ class Usuarios extends Database
 		return $query;
 	}
 
-	public function listarOrdenesUsuario($idusuario,$inicio,$fin,$estados=array()){
+	public function listarOrdenesUsuario($idusuario,$inicio = '',$fin = '',$estados=array()){
+
+		$between = '';
 
 		if (count($estados)>0) {
 
@@ -362,13 +364,19 @@ class Usuarios extends Database
 			}
 
 			$where_estados .= ")";
+
 		}else{
 			$where_estados = "";
+		}
+
+		if (!empty($inicio) && !empty($fin)) {
+				
+			$between = "AND `fecha_pedido` BETWEEN '$inicio' AND '$fin'";
 		}
 		
 		$query = $this->consulta("SELECT `idorden`, `num_orden`, `fecha_pedido`, `subtotal`, `subtotal_premios`, `descuentos`, `porc_escala`, `desc_escala`, `neto_sin_iva`, `impuestos`, `retencion`, `pago_puntos`, `valor_punto`, `costo_envio`, `total`, `estado`, `fecha_facturacion`, `num_factura`
 									FROM `ordenes_pedidos` 
-									WHERE `usuarios_idusuario`='$idusuario' $where_estados AND `fecha_pedido` BETWEEN '$inicio' AND '$fin'
+									WHERE `usuarios_idusuario`='$idusuario' $where_estados $between
 									ORDER BY `fecha_pedido` DESC");
 		
 		return $query;

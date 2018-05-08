@@ -521,6 +521,18 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 					
 					switch ($var2) {
 
+						case URL_CLUB_ORDENES:
+							
+							if (isset($var3) && !empty($var3)) {
+								
+								$controllerClub->detalleOrden($var3);
+
+							}else{
+
+								$controllerClub->listarOrdenes();
+							}	
+							break;
+
 						case URL_CLUB_ENTRADAS:
 							
 							if (isset($var3) && !empty($var3)) {

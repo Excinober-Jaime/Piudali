@@ -71,8 +71,9 @@
 		<div class="col s12 m7">
 			<?php  if (isset($_SESSION["idusuario"])) { ?>
 				<div class="card-panel">
-					<h4>DIRECCIÓN DE ENVÍO</h4>			
-		          	<span class="black-text">				 	
+					<h4>DIRECCIÓN DE ENVÍO</h4>
+		          	<span class="black-text">
+				 		Nombre: <?=$_SESSION["nombre"].' '.$_SESSION["apellido"]?><br>
 				 		Dirección: <?=$_SESSION["direccion"]?><br>
 				 		Ciudad: <?=$_SESSION["ciudad"]?><br>
 				 		Teléfono: <?=$_SESSION["telefono"]?><br>

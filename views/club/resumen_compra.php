@@ -16,28 +16,28 @@
 					
 					if (isset($itemsCarrito) && count($itemsCarrito)>0) {
 					
-						foreach ($itemsCarrito["id"] as $key => $iditem) {
+						foreach ($itemsCarrito as $key => $item) {
 
 				?>
 				<tr>
 					<td>						
 						<div class="col s3">
-							<img src="<?=$itemsCarrito["img_principal"][$key]?>" class="" style="max-width:100px;">
+							<img src="<?=$item["img_principal"]?>" class="" style="max-width:100px;">
 						</div>
 						<div class="col s9">
 							<span class="left">
-								<?=$itemsCarrito["nombre"][$key]?><br>Código: <?=$itemsCarrito["codigo"][$key]?><br>Iva: <?=$itemsCarrito["iva"][$key]?>%
+								<?=$item["nombre"]?><br>Código: <?=$item["codigo"]?><br>Iva: <?=$item["iva"]?>%
 							</span>
 						</div>
 					</td>
 					<td>
-						<?=convertir_pesos($itemsCarrito["precio"][$key])?>
+						<?=convertir_pesos($item["precio"])?>
 					</td>
 					<td>
-						<?=$itemsCarrito["cantidad"][$key]?>
+						<?=$item["cantidad"]?>
 					</td>
 					<td class="right-align">
-						<?=convertir_pesos($itemsCarrito["subtotal"][$key])?>
+						<?=convertir_pesos($item["subtotal"])?>
 					</td>
 				</tr>
 				<?php

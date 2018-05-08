@@ -109,6 +109,10 @@
                 <label for="email">Email</label>
               </div>
               <div class="input-field">
+                <input id="direccion" name="direccion" type="text" class="validate" required="required">
+                <label for="direccion">Dirección</label>
+              </div>
+              <div class="input-field">
                 <select class="" id="ciudad" name="ciudad" required>        
                   <option>Seleccione</option>
                   <?php 

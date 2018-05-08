@@ -74,8 +74,7 @@ class ControllerClub
 				$sexo = '';
 				$fecha_nacimiento = '';
 				$boletines = 0;
-				$condiciones = 0;
-				$direccion = 0;
+				$condiciones = 0;				
 				$mapa = 0;
 				$telefono_m = '';
 				$tipo = 'CONSUMIDOR';
@@ -93,7 +92,9 @@ class ControllerClub
 
 				if ($idusuario) {
 
-					$this->usuarios->actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, '', '', $ciudad, '', $tipo, 0, 0);	
+					$info_ciudad = $this->usuarios->nombreCiudad($ciudad);
+
+					$this->usuarios->actualizarSesion($idusuario, $nombre, $apellido, $email, $telefono, '', $direccion, $ciudad, $info_ciudad['ciudad'], $tipo, 0, 0);
 					
 					$this->alert = array(
 								'tipo'		=>	'REGISTRO_OK',
@@ -445,6 +446,8 @@ class ControllerClub
 		$total = $this->carrito->getTotal();
 		$rentabilidad = $this->carrito->getRentabilidad();
 
+		$ciudades = $this->usuarios->listarCiudades();
+
 		include "views/club/carrito.php";
 	}
 
@@ -500,6 +503,7 @@ class ControllerClub
 			$estado = "PENDIENTE";
 			$fecha_facturacion = "0000-00-00";
 			$num_factura = "";
+			$modalidad = 'NORMAL';
 
 			//Descontar puntos usuario
 			if ($pagoPuntos['puntos'] > 0) {
@@ -508,7 +512,7 @@ class ControllerClub
 			}
 			
 			//Crear Orden
-			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION["idusuario"]);
+			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $modalidad, $_SESSION["idusuario"]);
 
 			if ($idorden) {
 
@@ -682,6 +686,20 @@ class ControllerClub
 		$pagina = $this->paginas->contenidoPagina($url);
 
 		include 'views/club/pagina.php';
+	}
+
+	public function listarOrdenes(){
+
+		$ordenes = $this->usuarios->listarOrdenesUsuario($_SESSION['idusuario']);
+
+		include 'views/club/ordenes.php';
+	}
+
+	public function detalleOrden($idorden){
+
+		$orden = $this->usuarios->detalleOrden($idorden);
+
+		include 'views/club/detalle_orden.php';
 	}
 
 

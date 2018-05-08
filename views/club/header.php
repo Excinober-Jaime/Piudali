@@ -142,6 +142,7 @@
 
                     <div class="col s12 m6">
                             <a href="<?=URL_CLUB.'/'.URL_CLUB_PERFIL?>">Mi Perfil</a> |
+                            <a href="<?=URL_CLUB.'/'.URL_CLUB_ORDENES?>">Mis Ordenes</a> |
                             <a href="<?=URL_CLUB.'/'.URL_CLUB_BANCO_PUNTOS?>">Banco de Puntos</a>                        
                             <a href="<?=URL_USUARIO.'/'.URL_SALIR.'?return='.URL_CLUB?>" class="enlanceClub">
                               <div class="btn-salir text-center">SALIR</div>

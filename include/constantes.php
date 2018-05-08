@@ -58,6 +58,7 @@ define("URL_CLUB_PRODUCTO_ALIADO", "ProductoAliado");
 define("URL_CLUB_PREMIOS", "Premios");
 define("URL_CLUB_PRODUCTOS", "Productos");
 define("URL_CLUB_PERFIL", "Perfil");
+define("URL_CLUB_ORDENES", "Ordenes");
 define("URL_CLUB_BANCO_PUNTOS", "BancoPuntos");
 define("URL_CLUB_CARRITO", "Carrito");
 define("URL_CLUB_RESUMEN_COMPRA", "ResumenCompra");

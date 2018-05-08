@@ -8,7 +8,7 @@
 		<hr>
 		</div>
 	</div>
-	<div class="row">		
+	<div class="row">
 		<div class="col-xs-12 col-md-4">
 			<p><b>LINK GRUPO MARKETING SAS</b><br>
 			900218947-1<br><br>
