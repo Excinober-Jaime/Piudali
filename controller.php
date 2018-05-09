@@ -74,6 +74,7 @@ class Controller
 		$this->sucursales = new Sucursales();
 		$this->productos_aliados = new ProductosAliados();
 		$this->mailchimp = new Mailchimp();
+		$this->puntos = new Puntos();
 
 		if (isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario']) && $_SESSION['tipo'] == 'CONSUMIDOR') {
 			
@@ -2070,7 +2071,7 @@ class Controller
 				
 				$this->puntos->descontarPuntos($pagoPuntos['puntos'], $_SESSION['idusuario']);
 			}
-						
+
 			//Crear Orden
 			$idorden = $this->carrito->generarOrden($codigo_orden, $fecha_pedido, $subtotalAntesIva, $subtotalAntesIvaPremios, $descuentoCupon, $porcDescuentoEscala, $descuentoEscala, $totalNetoAntesIva, $iva, $retencion, $pagoPuntos["puntos"], $pagoPuntos["valor_punto"], $flete, $total, $estado, $fecha_facturacion, $num_factura, $_SESSION['modalidad_compra'], $_SESSION["idusuario"]);
 
