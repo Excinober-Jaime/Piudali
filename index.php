@@ -1088,6 +1088,10 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 								$controllerLanding->landing_distribuidores_virtuales();
 							}
 							break;
+
+						case URL_LANDING_BIOPHARMA:
+							$controllerLanding->landing_biopharma();
+							break;
 					}
 				}
 

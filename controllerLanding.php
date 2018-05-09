@@ -147,6 +147,12 @@ class ControllerLanding
 	}
 
 
+	public function landing_biopharma(){
+
+		include 'views/landings/biopharma/index.php';
+	}
+
+
 }
 
 ?>
