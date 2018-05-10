@@ -127,7 +127,7 @@
 		<div style="background-color: #6d1e3f">
 			<img src="img/biopharmanatural-piudali-madres.jpg" class="img-responsive">
 			<center>
-        			<a class="uk-button uk-button-naranja uk-text-center" href="http://biopharmanatural.com/">Comprar ahora en Biopharma Naturals</a>
+        			<a class="uk-button uk-button-naranja uk-text-center" href="#modal-example" uk-toggle>Compra Piudalí en Biopharma Naturals</a>
         		</center>
 			<div class="clearfix"></div>
 		</div>
@@ -211,7 +211,7 @@
 					<p>Productos innovadores pioneros en Colombia en investigación y desarrollo de cosmética verde o ecológica. Ganadores del concurso “a ciencia cierta BIO de Colciencia en el 2016", por el uso sostenible y conservación de la Biodiversidad. Desarrollados con el más alto rigor científico y tecnológico por Waliwa Amazonian Natural Products Ltda.,  una empresa Colombiana que se ajusta a las tendencias mundiales, con un marca sustentable a nivel económico, tecnológico, social y ecológico.</p>
 				</div>
 				<center>
-        			<a class="uk-button uk-button-naranja uk-text-center" href="http://biopharmanatural.com/">Comprar ahora en Biopharma Naturals</a>
+        			<a class="uk-button uk-button-naranja uk-text-center" href="#modal-example" uk-toggle>Compra Piudalí en Biopharma Naturals</a>
         		</center>
         	</div>
         	<div class="bg-violeta">
@@ -264,13 +264,203 @@
 				</div>
 
         		<center>
-        			<a class="uk-button uk-button-naranja uk-text-center" href="http://biopharmanatural.com/">Comprar ahora en Biopharma Naturals</a>
+        			<a class="uk-button uk-button-naranja uk-text-center" href="#modal-example" uk-toggle>Compra Piudalí en Biopharma Naturals</a>
         		</center>
         	</div>
 
 
 
-        </section>
+
+
+<!-- This is the modal -->
+<div id="modal-example" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title" style="text-align: center;">PUNTOS DE ATENCIÓN</h2>
+        <center><a href="http://biopharmanatural.com/" target="_blank"><img src="img/biopharmanatural.png" style="max-width: 50%; height: auto;"></a></center>
+       <div class="box">
+            <div class="headquarter head center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="icon icon-calendar"></span>
+                        <span>L-S: 08:00am - 07:00pm D: 09:00am - 02:00pm</span>
+                    </div>
+                </div>
+            </div>
+            <div class="headquarter head h-small hidden-xs hidden-sm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span style="font-weight: bold;">Direccion</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span style="font-weight: bold;">Telefono</span>
+                    </div>
+                    <div class="col-md-3 right">
+                        <span style="font-weight: bold;">Celular</span>
+                    </div>
+                </div>
+            </div>
+            
+                
+                    <div class="headquarter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>Biopharma Natural Torcoroma</span>
+                                <span>Cra 51B # 84-94 CC Torcoroma Plaza</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>
+                                      
+                                          
+                                              
+                                              <a href="tel:0353548016">3548016</a>
+                                          
+                                              -
+                                              <a href="tel:0353528770">3528770</a>
+                                          
+                                      
+                                </span>
+                            </div>
+                            <div class="col-md-3 right">
+                                <span><a href="tel:3013600220">3013600220</a></span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="headquarter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>Biopharma Natural 49C</span>
+                                <span>Cra 49C # 80 - 13 Local 4</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>
+                                      
+                                          
+                                              
+                                              <a href="tel:0353786717">3786717</a>
+                                          
+                                              -
+                                              <a href="tel:0353782551">3782551</a>
+                                          
+                                      
+                                </span>
+                            </div>
+                            <div class="col-md-3 right">
+                                <span><a href="tel:3015054972">3015054972</a></span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="headquarter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>Biopharma Natural Santa Marta</span>
+                                <span>Calle 22 # 14 - 70 Centro Medico Perla del Caribe Local 3</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>
+                                      
+                                          
+                                              
+                                              <a href="tel:0354219580">4219580</a>
+                                          
+                                              -
+                                              <a href="tel:0354203885">4203885</a>
+                                          
+                                      
+                                </span>
+                            </div>
+                            <div class="col-md-3 right">
+                                <span><a href="tel:3024434388">3024434388</a></span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="headquarter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>Biopharma Natural 82</span>
+                                <span>Calle 82 # 43-19 Local 1A</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>
+                                      
+                                          
+                                              
+                                              <a href="tel:0353552579">3552579</a>
+                                          
+                                              -
+                                              <a href="tel:0353552340">3552340</a>
+                                          
+                                              -
+                                              <a href="tel:0353177962">3177962</a>
+                                          
+                                      
+                                </span>
+                            </div>
+                            <div class="col-md-3 right">
+                                <span><a href="tel:3016833102">3016833102</a></span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="headquarter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>Biopharma Villa Santos</span>
+                                <span>Cra 51B # 106 - Esquina L-4</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>
+                                      
+                                          
+                                              
+                                              <a href="tel:0353854809">3854809</a>
+                                          
+                                              -
+                                              <a href="tel:0353854808">3854808</a>
+                                          
+                                      
+                                </span>
+                            </div>
+                            <div class="col-md-3 right">
+                                <span><a href="tel:3013600884">3013600884</a></span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="headquarter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>Biopharma Natural 21</span>
+                                <span>Cra 21B # 60-13 Esquina Local 7</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>
+                                      
+                                          
+                                              
+                                              <a href="tel:0353855267">3855267</a>
+                                          
+                                              -
+                                              <a href="tel:0353855903">3855903</a>
+                                          
+                                      
+                                </span>
+                            </div>
+                            <div class="col-md-3 right">
+                                <span><a href="tel:3043963029">3043963029</a></span>
+                            </div>
+                        </div>
+                    </div>
+                
+            
+        </div>
+        <p class="uk-text-right">
+            <small><a class="uk-button uk-button-naranja uk-text-center uk-modal-close">Cerrar</a></small>
+        </p>
+    </div>
+</div>
        	<?php } ?>
         <footer>
         	<div class="franja"></div>
@@ -295,7 +485,7 @@
 							Cartagena - Santa Marta - Colombia
 						</center>
 						<br/>
-						<center><img src="img/biopharmanatural.png" style="max-width: 50%; height: auto;"></center>
+						<center><a href="http://biopharmanatural.com/" target="_blank"><img src="img/biopharmanatural.png" style="max-width: 50%; height: auto;"></a></center>
 					</div>
 				</div>
     		</div>
