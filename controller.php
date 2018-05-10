@@ -387,6 +387,33 @@ class Controller
 			}
 		}
 
+		if ($idciudad == 3365) { //Barranquilla
+
+			//Provisional artemisa
+			$puntos_biopharma = array(
+
+									array('direccion' => '<b>Biopharma Natural Torcoroma</b> Cra 51B # 84-94 CC Torcoroma Plaza', 'telefono' => '3548016 - 3528770 - 3013600220'),
+									array('direccion' => '<b>Biopharma Natural 49C</b> Cra 49C # 80 - 13 Local 4', 'telefono' => '3786717 - 3782551 - 3015054972'),
+									array('direccion' => '<b>Niza</b> Av. 127 con Av. Suba C.C. Niza Int. 13', 'telefono' => '253 1429'),
+									array('direccion' => '<b>Niza</b> Av. 127 con Av. Suba C.C. Niza Int. 13', 'telefono' => '253 1429'),
+									array('direccion' => '<b>Niza</b> Av. 127 con Av. Suba C.C. Niza Int. 13', 'telefono' => '253 1429'),
+								);
+
+			$i = 300;
+
+			foreach ($puntos_artemisa as $punto) {
+
+				$distribuidores[$i]["idusuario"] = 'ART'.$i;
+				$distribuidores[$i]["nombre"] = "Artemisa";
+				$distribuidores[$i]["direccion"] = $punto;
+				$distribuidores[$i]["telefono"] = "(2) 4873030";
+				$distribuidores[$i]["telefono_m"] = "";
+				$distribuidores[$i]["ciudad"] = "Cali";
+
+				$i++;
+			}
+		}
+
 		if ($idciudad == 3394) { //Bogotá
 			
 
