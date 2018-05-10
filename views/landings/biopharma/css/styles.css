@@ -45,7 +45,10 @@
 
 .uk-button-naranja:hover{
 	background-color: #ef7d00;
+	color: #fff !important;
 }
+
+
 
 .H2{
 	font-size: 1.8em;
@@ -80,3 +83,52 @@
     padding: 0px;
 }
 
+
+/* line 866, ../sass/style.scss */
+.box .headquarter {
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #EEE;
+}
+/* line 871, ../sass/style.scss */
+.box .headquarter span {
+  display: block;
+  font-family: 'Hind', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #555;
+  line-height: 30px;
+}
+/* line 880, ../sass/style.scss */
+.box .headquarter:last-child {
+  border-bottom: none;
+}
+/* line 884, ../sass/style.scss */
+.box .headquarter.head span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 30px;
+  margin-right: 10px;
+}
+/* line 890, ../sass/style.scss */
+.box .headquarter.head span:last-child {
+  margin-right: 0px;
+}
+/* line 893, ../sass/style.scss */
+.box .headquarter.head span.icon {
+  font-size: 16px;
+  color: #3FB6E0;
+}
+/* line 898, ../sass/style.scss */
+.box .headquarter.head.center {
+  text-align: center;
+}
+/* line 900, ../sass/style.scss */
+.box .headquarter.head.center span {
+  color: #1b632b;
+}
+
+.box a{
+	color: #1b632b !important;
+}

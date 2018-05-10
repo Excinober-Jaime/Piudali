@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Conviertete en Distribuidor de Piudalí Amazonian Skincare</title>
+        <title>Compra productos Piudalí Amazonian Skincare en Biopharma Naturals</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <base href="<?=URL_SITIO.'views/landings/distribuidores_virtuales/'?>">
+        <base href="<?=URL_SITIO.'views/landings/biopharma/'?>">
         <link rel="shortcut icon" href="../../../assets/img/favicon.png" type="image/png"> 
         <link rel="stylesheet" href="css/uikit.css" />
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/bootstrap.css" />
         <script src="js/uikit.min.js"></script>
         <script src="js/uikit-icons.min.js"></script>
+        <meta property="og:url" content="<?=URL_SITIO.'views/landings/biopharma/'?>" />
+		<meta property="og:type" content="product.group" />
+		<meta property="og:title" content="Compra productos Piudalí en Biopharma Naturals" />
+		<meta property="og:description" content="PIUDALÍ® Amazonian Skincare es una completa línea de bienestar y cuidado de la piel para toda la familia." />
+		<meta property="og:image" content="img/biopharmanatural-piudali-madres.jpg" />
 
         <script>
 		    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -120,36 +125,10 @@
 
 		<!-- 16:9 aspect ratio -->
 		<div style="background-color: #6d1e3f">
-			<div class="col-md-7" style="padding: 0 !important">
-				<div class="embed-responsive embed-responsive-16by9">
-				  <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/264806445?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-				</div>
-			</div>
-			<div class="col-md-5 bg-violeta" style="height: 100%">
-        		<div class="container-fluid">
-	        		<div class="row">
-		        		<div class="col-xs-12">
-		        			<br/>
-		        			<center>
-		        				<h1 style="color: #fff; font-weight: 300; font-size: 2.4em">COMERCIALIZA NUESTROS PRODUCTOS EN COLOMBIA </h1>
-<h2 style="color: #fff; font-weight: 300; font-size: 2.4em">
-		        					TE OFRECEMOS 3<br/>ESTRATEGIAS DE VENTA
-</h2>
-		        			</center>
-		        		</div>
-		        		<div class="col-xs-12">
-		        			<center>
-		        					<a class="uk-button uk-button-naranja uk-text-center" href="<?=URL_SITIO.URL_LANDING.'/'.URL_LANDING_DISTRIBUIDORES_VIRTUALES?>#negocio">CONÓCELAS!</a>
-		        			</center>
-		        		</div>
-		        		<!--<div class="col-xs-12">
-		        			<center>
-		        				<h1 style="color: #fff; font-weight: 300; font-size: 2.5em">TIENES 3 OPCIONES PARA COMERCIALIZAR NUESTRO PRODUCTOS</h1>
-		        			</center>
-		        		</div>-->
-	        		</div>
-        		</div>
-        	</div>
+			<img src="img/biopharmanatural-piudali-madres.jpg" class="img-responsive">
+			<center>
+        			<a class="uk-button uk-button-naranja uk-text-center" href="#modal-example" uk-toggle>Compra Piudalí en Biopharma Naturals</a>
+        		</center>
 			<div class="clearfix"></div>
 		</div>
 		<div class="franja"></div>
@@ -232,7 +211,7 @@
 					<p>Productos innovadores pioneros en Colombia en investigación y desarrollo de cosmética verde o ecológica. Ganadores del concurso “a ciencia cierta BIO de Colciencia en el 2016", por el uso sostenible y conservación de la Biodiversidad. Desarrollados con el más alto rigor científico y tecnológico por Waliwa Amazonian Natural Products Ltda.,  una empresa Colombiana que se ajusta a las tendencias mundiales, con un marca sustentable a nivel económico, tecnológico, social y ecológico.</p>
 				</div>
 				<center>
-        			<a class="uk-button uk-button-naranja uk-text-center" href="<?=URL_SITIO.URL_LANDING.'/'.URL_LANDING_DISTRIBUIDORES_VIRTUALES?>#negocio">COMERCIALÍZALOS SIN INVERSIÓN!</a>
+        			<a class="uk-button uk-button-naranja uk-text-center" href="#modal-example" uk-toggle>Compra Piudalí en Biopharma Naturals</a>
         		</center>
         	</div>
         	<div class="bg-violeta">
@@ -251,90 +230,237 @@
         	
         	<div class="uk-padding-large">
         		<div class="box-texto">
-    				<h2 class="H2 textoVerde">Si buscas una oportunidad de comercialización en Colombia</h2>
-					<h2 class="H2 textoVerde"><strong>Esta oportunidad es para ti!</strong></h2>   
-
-					<p>Te ofrecemos un  modelo de negocio con las más modernas y efectivas herramientas de ventas para que desarrolles con éxito la comercialización de nuestros productos.</p>
+        			<h2 class="H2 textoVerde"><strong>COSMÉTICA ECOLÓGICA</strong></h2>  
+    				<h2 class="H2 textoVerde">"La cosmética natural, bio y ecológica es una alternativa respetuosa con el medio y con nuestra piel".</h2>
 					
-					<p>
-						Rentabilidad entre el 20% y 30%, 
-						Premios e Incentivos, 
-						Ofertas exclusivas para distribuidores, 
-						Escuela de negocio virtual, 
-						Plataforma para administrar tu negocio, 
-						Oportunidad de comercializar sin inventarios, entregas ni inversión.
-					</p>
+<p>Los ingredientes son mayoritariamente de origen vegetal, su producción y cosecha no generan desequilibrio en el ecosistema y no provienen de especies amenazadas, evita  el uso de ingredientes nocivos para el organismo como derivados de la petroquímica, parabenos, siliconas, nano-partículas, aromas y colorantes sintéticos, entre otros, y no son testados en animales.</p>   
+
+<p>Debe contener mínimo un 95% de ingredientes de origen natural y de este porcentaje mínimo un 10% debe ser de agricultura ecológica es decir que en su producción no usan abonos químicos, ni plaguicidas que afecten el ecosistema y la salud.</p>
+
+<p>La cosmética ecológica es una megatendencia mundial, cada días más consumidores concientes la prefieren.</p>
+
+
+</div>
+
+        		
+        	</div>
+<center>
+	<img src="img/a-ciencia-cierta.png">
+</center>
+
+
+<div class="uk-padding-large">
+        		<div class="box-texto">
+<h2 class="H2 textoVerde"><strong>¿POR QUÉ SOMOS DIFERENTES?</strong></h2>  
+
+<h3 class="H3 textoVerde">"Somos pioneros en Colombia en cosmética ecológica y ganadores del concurso “a ciencia cierta BIO” de Colciencia 2016".</h3> 
+
+
+<p>Ingredientes de origen natural, 100% vegetal, especies nativas del Amazonas y los Andes Colombianos, sin ingredientes de origen animal, sin parabenos, colorantes y aromas de origen sintético, sin ingredientes derivados de la petroquímica, elaborados con agua de manantial (no clorada), sin especies genéticamente modificadas, seguridad probada dermatológicamente, no se realizan pruebas en animales, conservantes y emulsificantes ecocertificados, somos social y ecológicamente sustentables, productos desarrollados con rigor científico y tecnológico, producción en laboratorios certificados con BPM y Registros invima, productos comercializados en mercado nacional e internacional.</p>
 
 <!--<h3 class="H3 textoVioleta"><strong>PIUDALÍ® Amazonian Skincare te ofrece productos innovadores, garantia en calidad y excelente servicio al cliente.</strong></h3>-->
 
-<h4 class="H4 textoVerde">Comienza desde YA! con PIUDALÍ® Amazonian Skincare</h4> 
+
 				</div>
 
-        		<div class="container-fluid">
-	        		<div class="row">
-	        			<div class="col-md-4">
-	        				<center>
-	        					<img src="img/venta-directa.png">
-	        				</center>
-	        				<div class="bg-violeta">
-	        					<center><h4 style="margin: 0; color: #fff; font-size: 1.8em; font-weight: bold;">VENTA DIRECTA</h4></center>
-	        				</div>
-	        				<div class="box-texto-gris">
-	        					
-
-								<p class="textoVioleta" style="font-size: 1.6em"><strong>Así de simple!</strong></p>
-								<p>Tu compras, vendes, recaudas y entregas.</p>
-								<p>Nosotros te entregamos directame a ti como Distribuidor.</p>
-
-								<p>Manejas inventario y logística!</p>
-							</div>
-	        			</div>
-	        			<div class="col-md-4">
-	        				<center>
-	        					<img src="img/dropshipping.png">
-	        				</center>
-	        				<div class="bg-verde">
-	        					<center><h4 style="margin: 0; color: #fff; font-size: 1.8em; font-weight: bold;">DROPSHIPPING</h4></center>
-	        				</div>
-	        				<div class="box-texto-gris">
-
-								<p class="textoVerde" style="font-size: 1.6em"><strong>Así de simple!</strong></p>
-								<p>Tu compras, vendes y recaudas.</p>
-								<p>Nosotros entregamos a tu cliente final, con tus datos de distribuidor. </p>
-
-								<p>Sin inventarios y sin logística!</p>
-
-							</div>
-	        			</div>
-	        			<div class="col-md-4">
-	        				<center>
-	        					<img src="img/venta-virtual.png">
-	        				</center>
-	        				<div class="bg-naranja">
-	        					<center><h4 style="margin: 0; color: #fff; font-size: 1.6em; font-weight: bold;">VENTA VIRTUAL</h4></center>
-	        				</div>
-	        				<div class="box-texto-gris">
-
-								<p class="textoNaranja" style="font-size: 1.8em"><strong>Así de simple!</strong></p>
-								<p>Tu promocionas y vendes.</p>
-								<p>Nosotros recaudamos y entregamos a tu cliente final. </p>
-
-								<p>Sin inventarios, recaudo ni logística!</p>
-
-	        				</div>
-	        			</div>
-	        			<center>
-		        			<button uk-toggle="target: #modal-registro" type="button" class="uk-button uk-button-naranja uk-text-center">REGISTRATE YA!</button>
-		        		</center>
-	        		</div>
-	        	</div>
+        		<center>
+        			<a class="uk-button uk-button-naranja uk-text-center" href="#modal-example" uk-toggle>Compra Piudalí en Biopharma Naturals</a>
+        		</center>
         	</div>
-        	<center>
-        		<a uk-toggle="target: #modal-registro">
-    				<img src="img/ser-distribuidor-piudali.jpg" />
-    			</a>
-    		</center>
-        </section>
+
+
+
+
+
+<!-- This is the modal -->
+<div id="modal-example" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title" style="text-align: center;">PUNTOS DE ATENCIÓN</h2>
+        <center><a href="http://biopharmanatural.com/" target="_blank"><img src="img/biopharmanatural.png" style="max-width: 50%; height: auto;"></a></center>
+       <div class="box">
+            <div class="headquarter head center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="icon icon-calendar"></span>
+                        <span>L-S: 08:00am - 07:00pm D: 09:00am - 02:00pm</span>
+                    </div>
+                </div>
+            </div>
+            <div class="headquarter head h-small hidden-xs hidden-sm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span style="font-weight: bold;">Direccion</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span style="font-weight: bold;">Telefono</span>
+                    </div>
+                    <div class="col-md-3 right">
+                        <span style="font-weight: bold;">Celular</span>
+                    </div>
+                </div>
+            </div>
+            
+                
+                    <div class="headquarter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>Biopharma Natural Torcoroma</span>
+                                <span>Cra 51B # 84-94 CC Torcoroma Plaza</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>
+                                      
+                                          
+                                              
+                                              <a href="tel:0353548016">3548016</a>
+                                          
+                                              -
+                                              <a href="tel:0353528770">3528770</a>
+                                          
+                                      
+                                </span>
+                            </div>
+                            <div class="col-md-3 right">
+                                <span><a href="tel:3013600220">3013600220</a></span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="headquarter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>Biopharma Natural 49C</span>
+                                <span>Cra 49C # 80 - 13 Local 4</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>
+                                      
+                                          
+                                              
+                                              <a href="tel:0353786717">3786717</a>
+                                          
+                                              -
+                                              <a href="tel:0353782551">3782551</a>
+                                          
+                                      
+                                </span>
+                            </div>
+                            <div class="col-md-3 right">
+                                <span><a href="tel:3015054972">3015054972</a></span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="headquarter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>Biopharma Natural Santa Marta</span>
+                                <span>Calle 22 # 14 - 70 Centro Medico Perla del Caribe Local 3</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>
+                                      
+                                          
+                                              
+                                              <a href="tel:0354219580">4219580</a>
+                                          
+                                              -
+                                              <a href="tel:0354203885">4203885</a>
+                                          
+                                      
+                                </span>
+                            </div>
+                            <div class="col-md-3 right">
+                                <span><a href="tel:3024434388">3024434388</a></span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="headquarter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>Biopharma Natural 82</span>
+                                <span>Calle 82 # 43-19 Local 1A</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>
+                                      
+                                          
+                                              
+                                              <a href="tel:0353552579">3552579</a>
+                                          
+                                              -
+                                              <a href="tel:0353552340">3552340</a>
+                                          
+                                              -
+                                              <a href="tel:0353177962">3177962</a>
+                                          
+                                      
+                                </span>
+                            </div>
+                            <div class="col-md-3 right">
+                                <span><a href="tel:3016833102">3016833102</a></span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="headquarter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>Biopharma Villa Santos</span>
+                                <span>Cra 51B # 106 - Esquina L-4</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>
+                                      
+                                          
+                                              
+                                              <a href="tel:0353854809">3854809</a>
+                                          
+                                              -
+                                              <a href="tel:0353854808">3854808</a>
+                                          
+                                      
+                                </span>
+                            </div>
+                            <div class="col-md-3 right">
+                                <span><a href="tel:3013600884">3013600884</a></span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="headquarter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>Biopharma Natural 21</span>
+                                <span>Cra 21B # 60-13 Esquina Local 7</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>
+                                      
+                                          
+                                              
+                                              <a href="tel:0353855267">3855267</a>
+                                          
+                                              -
+                                              <a href="tel:0353855903">3855903</a>
+                                          
+                                      
+                                </span>
+                            </div>
+                            <div class="col-md-3 right">
+                                <span><a href="tel:3043963029">3043963029</a></span>
+                            </div>
+                        </div>
+                    </div>
+                
+            
+        </div>
+        <p class="uk-text-right">
+            <small><a class="uk-button uk-button-naranja uk-text-center uk-modal-close">Cerrar</a></small>
+        </p>
+    </div>
+</div>
        	<?php } ?>
         <footer>
         	<div class="franja"></div>
@@ -353,94 +479,17 @@
 	        		<div class="row">
 	    				<center>
 			    			<strong>Contáctanos</strong><br/>
-							Distribuidor Exclusivo para Colombia Link Grupo Marketing SAS<br/>
-							Teléfono: (+57)(2) 524 1887 - (+57) 313 7545092 <br/>
-							Email: contacto[@]piudali.com.co<br/>
+							Distribuidor Autorizado Biopharma Naturals<br/>
+							Dirección: Calle 82 # 43 - 19 L-1A<br/>
+							Teléfonos: (+57)(5) 355 2579 - (+57)(5) 355 2340<br/><br/>
+							Cartagena - Santa Marta - Colombia
 						</center>
 						<br/>
-						<center><img src="img/link-grupo-marketing.png" style="max-width: 50%; height: auto;"></center>
+						<center><a href="http://biopharmanatural.com/" target="_blank"><img src="img/biopharmanatural.png" style="max-width: 50%; height: auto;"></a></center>
 					</div>
 				</div>
     		</div>
-        </footer>
-        <!-- This is the modal -->
-		<div id="modal-registro" uk-modal>
-		    <div class="uk-modal-dialog uk-modal-body">
-		    	<button class="uk-modal-close-default" type="button" uk-close></button>
-		        <h2 class="uk-modal-title">Regístrate e inicia un negocio inteligente!</h2>
-		        <form method="post">
-		        	 <fieldset class="uk-fieldset">
-
-				        <legend class="uk-legend">Nombre</legend>
-
-				        <div class="uk-margin">
-				            <input class="uk-input" type="text" name="nombre" placeholder="" required="required">
-				        </div>
-
-				        <legend class="uk-legend">Apellido</legend>
-
-				        <div class="uk-margin">
-				            <input class="uk-input" type="text" name="apellido" placeholder="" required="required">
-				        </div>
-
-				        <legend class="uk-legend">Número de Documento</legend>
-
-				        <div class="uk-margin">
-				            <input class="uk-input" type="number" name="num_documento" placeholder="" required="required">
-				        </div>
-				        <legend class="uk-legend">Email</legend>
-
-				        <div class="uk-margin">
-				            <input class="uk-input" type="email" name="email" placeholder="" required="required">
-				        </div>
-				        <legend class="uk-legend">Teléfono</legend>
-
-				        <div class="uk-margin">
-				            <input class="uk-input" type="phone" name="telefono_m" placeholder="" required="required">
-				        </div>
-
-				        <legend class="uk-legend">Ciudad</legend>
-
-				        <div class="uk-margin">
-            				<select class="uk-select" name="ciudad">
-			        			<option>Seleccione</option>
-								<?php 
-								foreach ($ciudades as $key => $ciudad) {
-									?>
-									<option value="<?=$ciudad["idciudad"]?>"><?=$ciudad["ciudad"]?></option>
-									<?php
-								}
-								?>
-							</select>
-						</div>
-
-				        <legend class="uk-legend">Contraseña para tu usuario</legend>
-
-				        <div class="uk-margin">
-				            <input class="uk-input" type="password" name="password" placeholder="" required="required">
-				        </div>
-				         <div class="uk-margin">
-				            <label><input class="uk-checkbox" type="checkbox" required="required" checked> 
-				            	Autorización de uso de <a uk-toggle="target: #modal-datos">datos personales</a>
-				            </label>				           
-				        </div>
-				        <p uk-margin>
-				        	<button type="submit" name="registrarse" class="uk-button uk-button-large uk-button-primary uk-width-1-1" style="font-size: 16px;background-color: #f09700;">ENVIAR</button>
-				        </p>
-				    </fieldset>
-		        </form>		        
-		    </div>
-		</div>
-		<!-- This is the modal -->
-		<div id="modal-datos" uk-modal>
-		    <div class="uk-modal-dialog uk-modal-body">
-		    	<button class="uk-modal-close-default" type="button" uk-close></button>
-		        <h2 class="uk-modal-title">AUTORIZACIÓN DE USO Y PROTECCIÓN DE DATOS</h2>
-		        <p>Autorizo de forma libre, consciente, expresa e informada, a LINK GRUPO MARKETING SAS, en calidad de responsable del tratamiento de información personal,  a utilizar mis  datos personales con la finalidad de adelantar el trámite de registro en la plataforma de negocio como DISTRIBUIDOR de la marca PIUDALI AMAZONIAN SKINCARE, así como para informarme sobre otros eventos, promociones, entrega de pedidos, actividades comerciales de la marca o de terceros aliados comerciales de la marca que estén relacionados con sus funciones, informar sobre los servicios que prestan, las publicaciones de mi interés como Distribuidor y para solicitarme que evalúe la calidad de sus servicios. Igualmente autorizo la transferencia y/o transmisión de mis datos a terceros con los cuales LINK GRUPO MARKETING SAS tenga relación comercial para atender mis requerimientos como cliente.<br><br>
-
-				LINK GRUPO MARKETING SAS le informa que usted como titular de datos de carácter  personal, podrá ejercitar los derechos de acceso, rectificación, supresión, prueba de autorización y oposición  en cualquier momento, dirigiendo su queja o reclamo al correo electrónico: contacto@piudali.com.co o http://piudali.com.co/Contacto a la dirección: Cra 65 A No.9-60 Barrio Gran Limonar (Cali – Valle – Colombia), indicando sus datos completos. Si desea conocer nuestro Manual de Políticas de Tratamiento de datos personales puede consultarlo en http://piudali.com.co/politica-datos.</p>
-		    </div>
-		</div>
+        </footer>	
 
     </body>
 </html>
