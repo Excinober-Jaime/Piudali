@@ -10,9 +10,9 @@
 			  </button>
 			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 			  	<?php
-			  	foreach ($ciudades_lista as $key => $ciudad) {
+			  	foreach ($ciudades_lista_id as $key => $idciudad) {
 			  	?>
-			  	<li><a href="<?=URL_TIENDAS?>/?ciudad=<?=$ciudad["idciudad"]?>"><?=$ciudad["ciudad"]." (".$ciudad["departamento"].")"?></a></li>
+			  	<li><a href="<?=URL_TIENDAS?>/?ciudad=<?=$idciudad?>"><?=$ciudades_lista_ciudad[$key]?></a></li>
 			  	<?php
 			  	}
 			  	?>
@@ -22,11 +22,11 @@
 			<div class="list-group" style="overflow-y:auto;height:300px;margin-top:20px;">
 
 			<?php 
-			foreach ($distribuidores as $key => $distribuidor) {
+			foreach ($sucursales as $key => $sucursal) {
 			?>
-				<a class="list-group-item tienda" iddistribuidor="<?=$distribuidor["idusuario"]?>">
-				    <h4 class="list-group-item-heading"><?=$distribuidor["nombre"]." ".$distribuidor["apellido"]?></h4>
-				    <p class="list-group-item-text"><?=$distribuidor["direccion"]?><br><?=$distribuidor["telefono"]." - ".$distribuidor["telefono_m"]?><br><?=$distribuidor["ciudad"]?></p>
+				<a class="list-group-item tienda" iddistribuidor="<?=$sucursal["idsucursal"]?>">
+				    <h4 class="list-group-item-heading"><?=$sucursal["nombre"]?></h4>
+				    <p class="list-group-item-text"><?=$sucursal["direccion"]?><br><?=$sucursal["telefono"]?><br><?=$sucursal["ciudad"]?></p>
 				  </a>
 			<?php
 			}

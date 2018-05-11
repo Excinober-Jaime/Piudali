@@ -280,7 +280,9 @@ var contentString = '';
 var marker = [];
 var infowindow = [];
 
-function initMap(distribuidores, ciudad) {
+function initMap(distribuidores) {
+
+	//alert('fghgfhf');
 
 	var distribuidores = JSON.parse(distribuidores);
 	//console.log(distribuidores);
@@ -308,15 +310,13 @@ function initMap(distribuidores, ciudad) {
     		
 	    	address = distribuidores[i]["direccion"]+", "+distribuidores[i]["ciudad"]+", Colombia";
 	    	
-	    	contentString = '<h3>'+distribuidores[i]["nombre"]+' '+distribuidores[i]["apellido"]+'</h3><p>'+distribuidores[i]["direccion"]+'<br>'+distribuidores[i]["ciudad"]+'<br>'+distribuidores[i]["telefono"]+'</p>';
+	    	contentString = '<h3>'+distribuidores[i]["nombre"]+'</h3><p>'+distribuidores[i]["direccion"]+'<br>'+distribuidores[i]["ciudad"]+'<br>'+distribuidores[i]["telefono"]+'</p>';
 
-	    	geocodeAddress(address, geocoder, map, contentString, distribuidores[i]["idusuario"]);
+	    	geocodeAddress(address, geocoder, map, contentString, distribuidores[i]["idsucursal"]);
 
-	    	//console.log(contentString);
 	    	sleep(0);
 	    }
     }
-	
 }
 
 

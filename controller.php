@@ -336,6 +336,8 @@ class Controller
 			$idciudad = 4270;
 		}
 
+		/*
+
 		$distribuidores_mapa = $this->usuarios->listarUsuariosMapa($idciudad);	
 
 		if (count($distribuidores_mapa)>0) {
@@ -389,26 +391,30 @@ class Controller
 
 		if ($idciudad == 3365) { //Barranquilla
 
-			//Provisional artemisa
+			//Provisional biopharma
 			$puntos_biopharma = array(
 
 									array('direccion' => '<b>Biopharma Natural Torcoroma</b> Cra 51B # 84-94 CC Torcoroma Plaza', 'telefono' => '3548016 - 3528770 - 3013600220'),
+
 									array('direccion' => '<b>Biopharma Natural 49C</b> Cra 49C # 80 - 13 Local 4', 'telefono' => '3786717 - 3782551 - 3015054972'),
-									array('direccion' => '<b>Niza</b> Av. 127 con Av. Suba C.C. Niza Int. 13', 'telefono' => '253 1429'),
-									array('direccion' => '<b>Niza</b> Av. 127 con Av. Suba C.C. Niza Int. 13', 'telefono' => '253 1429'),
-									array('direccion' => '<b>Niza</b> Av. 127 con Av. Suba C.C. Niza Int. 13', 'telefono' => '253 1429'),
+
+									array('direccion' => '<b>Biopharma Natural 82</b> Calle 82 # 43-19 Local 1A', 'telefono' => '3552579 - 3552340 - 3177962 - 3016833102'),
+
+									array('direccion' => '<b>Biopharma Villa Santos</b> Cra 51B # 106 - Esquina L-4', 'telefono' => '3854809 - 3854808 - 3013600884'),
+
+									array('direccion' => '<b>Biopharma Natural 21</b> Cra 21B # 60-13 Esquina Local 7', 'telefono' => '3855267 - 3855903 - 3043963029'),
 								);
 
 			$i = 300;
 
-			foreach ($puntos_artemisa as $punto) {
+			foreach ($puntos_biopharma as $punto) {
 
-				$distribuidores[$i]["idusuario"] = 'ART'.$i;
-				$distribuidores[$i]["nombre"] = "Artemisa";
-				$distribuidores[$i]["direccion"] = $punto;
-				$distribuidores[$i]["telefono"] = "(2) 4873030";
+				$distribuidores[$i]["idusuario"] = 'BIO'.$i;
+				$distribuidores[$i]["nombre"] = "Biopharma";
+				$distribuidores[$i]["direccion"] = $punto['direccion'];
+				$distribuidores[$i]["telefono"] = $punto['telefono'];
 				$distribuidores[$i]["telefono_m"] = "";
-				$distribuidores[$i]["ciudad"] = "Cali";
+				$distribuidores[$i]["ciudad"] = "Barranquilla";
 
 				$i++;
 			}
@@ -470,8 +476,33 @@ class Controller
 				}
 			}
 		}
-		
-		$json_maps = json_encode($distribuidores);
+
+		$ciudades_lista[$i]["idciudad"] = 3365;
+		$ciudades_lista[$i]["ciudad"] = 'Barranquilla';
+		$ciudades_lista[$i]["departamento"] = 'Atlántico';
+		*/
+
+		$sucursales = $this->sucursales->listarSucursales();
+
+		$ciudades_lista_id = array();
+		$ciudades_lista_ciudad = array();
+
+		foreach ($sucursales as $key => $sucursal) {
+
+				if (!in_array($sucursal['ciudades_idciudad'], $ciudades_lista_id, true)) {
+						
+					$ciudades_lista_id[] = $sucursal['ciudades_idciudad'];
+					$ciudades_lista_ciudad[] = $sucursal['ciudad'];
+				}
+
+				if ($idciudad != $sucursal['ciudades_idciudad']) {		
+
+					unset($sucursales[$key]);
+				}
+			
+		}
+
+		$json_maps = json_encode($sucursales);
 		//$onload = "initMap('".$distribuidores."')";
 		//$onload = "initMap('".json_encode(array('Direccion'=>'Calle 48A # 29c - 11, Cali'))."')";
 		include "views/tiendas.php";
