@@ -75,15 +75,33 @@
               <ul class="nav navbar-nav">
                 	<li><a href="<?=URL_USUARIO?>">Perfil</a></li>
                 	
-                	<li><a href="<?=URL_USUARIO."/".URL_USUARIO_VENTAS_VIRTUALES?>">Ventas Virtuales</a></li>
+                	<!--<li><a href="<?=URL_USUARIO."/".URL_USUARIO_VENTAS_VIRTUALES?>">Ventas Virtuales</a></li>-->
 
+                	<li class="dropdown">
+	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Comercialización<span class="caret"></span></a>
+	                  <ul class="dropdown-menu">
+	                  	<li><a href="<?=URL_USUARIO.'/'.URL_USUARIO_NEGOCIO.'/VENTADIRECTA'?>">
+	                  		Venta Directa	                  		
+	                  	</a></li>
+	                  	<li><a href="<?=URL_USUARIO.'/'.URL_USUARIO_NEGOCIO.'/DROPSHIPPING'?>">
+	                  		
+	                  		Dropshipping
+	                  		
+	                  	</a></li>
+	                  	<li><a href="<?=URL_USUARIO.'/'.URL_USUARIO_VENTAS_VIRTUALES?>">
+	                  		
+	                  		Venta Virtual
+	                  	</a></li>
+	                  </ul>
+	              	</li>
+	              	<!--
 	                <?php if (!Controller::$DISABLE_COMPRAR) { ?>
 
                 	<li><a href="<?=URL_USUARIO."/".URL_USUARIO_COMPRAR?>">Comprar <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
 
                 	<?php } ?>
                 	
-					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_NEGOCIO?>">Mis Compras</a></li>
+					<li><a href="<?=URL_USUARIO."/".URL_USUARIO_NEGOCIO?>">Mis Compras</a></li>-->
 
 					<?php if (!Controller::$DISABLE_REFERIDOS) { ?>					
 					

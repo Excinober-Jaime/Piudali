@@ -1128,7 +1128,7 @@ class Controller
 		}
 	}
 
-	public function usuarioNegocio(){
+	public function usuarioNegocio($modalidad){
 
 		$paginas_menu = $this->paginasMenu();
 
@@ -1157,17 +1157,36 @@ class Controller
 		if (!empty($_SESSION["idusuario"])) {
 
 			switch ($_SESSION["tipo"]) {
+
 				case 'DISTRIBUIDOR DIRECTO':
 
 					if (isset($_POST["estado"]) && !empty($_POST["estado"])) {
+						
 						$estado = array($_POST["estado"]);
 					}else{
 						$estado = array();
 					}
 
-					$ordenes = $this->usuarios->listarOrdenesUsuario($_SESSION["idusuario"],$campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"],$estado);
+					if ($modalidad == 'DROPSHIPPING') {						
+						
 
-					include "views/usuario_negocio.php";
+						$modalidades = array($modalidad);
+
+						$ordenes = $this->usuarios->listarOrdenesUsuario($_SESSION["idusuario"],$campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"],$estado, $modalidades);
+
+						include "views/usuario_negocio_dropshipping.php";
+
+					}else{
+
+						$modalidades = array('NORMAL');
+
+						$ordenes = $this->usuarios->listarOrdenesUsuario($_SESSION["idusuario"],$campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"],$estado, $modalidades);
+
+						include "views/usuario_negocio.php";
+
+					}
+
+					
 
 					break;
 

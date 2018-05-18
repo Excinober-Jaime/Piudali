@@ -820,7 +820,13 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 							break;
 
 						case URL_USUARIO_NEGOCIO:
-							$controller->usuarioNegocio();
+							
+							if (!isset($var3) || empty($var3)) {
+
+								$var3 = '';
+							}
+
+							$controller->usuarioNegocio($var3);
 							break;
 
 						case URL_USUARIO_DETALLE_ORDEN:

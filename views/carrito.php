@@ -9,7 +9,7 @@
 		<div class="alert alert-danger" role="alert"><?=$alerta?></div>
 		<?php
 		}
-		?>		
+		?>
 		<table class="table table-striped">
 				<thead>
 					<th colspan="2" class="text-center">DESCRIPCIÓN</th>

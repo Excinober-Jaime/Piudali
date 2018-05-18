@@ -7,8 +7,19 @@
 		<h1>Mis Compras</h1>
         <small>Aquí podrás ver el estado de tu negocio como comercializador, monitorear el estado de tus pedidos y rentabilidad.</small>		
 		<hr>
+		<div class="row">
+			<div class="col-xs-12 col-md-7" style="margin-top: 10px;margin-bottom:  10px;">
+				<h3 style="font-size: 35px;color: #5C1840;">VENDE DIRECTAMENTE</h3>
+				<h4 class="text-muted">Manejas inventario y logística!</h4>
+				
+				<a class="btn btn-default" href="<?=URL_PRODUCTOS?>" role="button" style="background-color: #5C1840;border: #5C1840;">PRODUCTOS DISPONIBLES</a>
+			</div>
+			<div class="col-xs-12 col-md-5">
+				<img src="assets/img/comercializacion-venta-directa.png" class="img-responsive">
+			</div>
+		</div>		
         <div class="informacion">	
-			<div class="col-xs-12 col-md-5 col-md-offset-7">
+			<div class="col-xs-12 col-md-12">
 				<form class="form-inline" method="post" id="filtros">
 					<div class="form-group">
 						<label for="inputEmail3" class=" control-label">Campaña</label>						

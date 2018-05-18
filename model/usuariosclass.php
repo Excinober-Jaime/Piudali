@@ -347,7 +347,7 @@ class Usuarios extends Database
 		return $query;
 	}
 
-	public function listarOrdenesUsuario($idusuario,$inicio = '',$fin = '',$estados=array()){
+	public function listarOrdenesUsuario($idusuario,$inicio = '',$fin = '',$estados=array(), $modalidades = array('NORMAL', 'DROPSHIPPING')){
 
 		$between = '';
 
@@ -369,6 +369,24 @@ class Usuarios extends Database
 			$where_estados = "";
 		}
 
+		if (count($modalidades)>0) {
+
+			$where_modalidades = "AND (";
+
+			foreach ($modalidades as $key => $modalidad) {
+				$where_modalidades .= "`ordenes_pedidos`.`modalidad`='$modalidad'";
+			
+				if (($key+1) < count($modalidades)) {
+					$where_modalidades .= " OR ";
+				}
+			}
+
+			$where_modalidades .= ")";
+
+		}else{
+			$where_modalidades = "";
+		}
+
 		if (!empty($inicio) && !empty($fin)) {
 				
 			$between = "AND `fecha_pedido` BETWEEN '$inicio' AND '$fin'";
@@ -376,7 +394,7 @@ class Usuarios extends Database
 		
 		$query = $this->consulta("SELECT `idorden`, `num_orden`, `fecha_pedido`, `subtotal`, `subtotal_premios`, `descuentos`, `porc_escala`, `desc_escala`, `neto_sin_iva`, `impuestos`, `retencion`, `pago_puntos`, `valor_punto`, `costo_envio`, `total`, `estado`, `fecha_facturacion`, `num_factura`
 									FROM `ordenes_pedidos` 
-									WHERE `usuarios_idusuario`='$idusuario' $where_estados $between
+									WHERE `usuarios_idusuario`='$idusuario' $where_estados $where_modalidades $between
 									ORDER BY `fecha_pedido` DESC");
 		
 		return $query;
