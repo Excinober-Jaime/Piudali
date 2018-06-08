@@ -1197,18 +1197,34 @@ class Controller
 					if (count($distribuidores)>0) {
 
 						if (isset($_POST["estado"])) {
+
 							$estado_compras = $_POST["estado"];
+
 						}else{
+
 							$estado_compras = "PENDIENTE";
 						}
 
 						foreach ($distribuidores as $key => $distribuidor) {
-							$compras_netas = $this->usuarios->comprasNetasPeriodo($campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"],$estado_compras,$distribuidor["idusuario"]);
-							$distribuidores[$key]["compras_netas"] = $compras_netas["compras_netas"];
 
+							//Sumatoria de compras netas
+							$compras_netas = $this->usuarios->comprasNetasPeriodo($campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"],$estado_compras,$distribuidor["idusuario"]);
+
+							//Sumatoria de ventas virtuales netas
+							$ventas_virtuales_netas = $this->ventas_virtuales->ventas_netas($distribuidor["idusuario"], $campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"], array($estado_compras));
+
+							//Sumatoria de compras y ventas virtuales
+							$distribuidores[$key]["compras_netas"] = $compras_netas["compras_netas"] + $ventas_virtuales_netas['ventas_netas'];
+
+							//Lista de ordenes compradas
 							$ordenes = $this->usuarios->listarOrdenesUsuario($distribuidor["idusuario"], $campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"], array($estado_compras));
+
+							//Lista de ordenes vendidas virtualmente
+							$ventas_virtuales = $this->ventas_virtuales->listar_ventas($distribuidor["idusuario"], $campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"], array($estado_compras));
 							
-							$distribuidores[$key]["ordenes"] = $ordenes;
+							//Unión de ordenes compradas y vendidas virtualmente
+							$distribuidores[$key]["ordenes"] = array_merge($ordenes, $ventas_virtuales);
+							
 						}
 
 						//Niveles
@@ -1786,6 +1802,15 @@ class Controller
 		$posicion_banners="PANEL INTERNO";
 		$estados = array(1);
 
+		if (isset($_POST['estado']) && !empty($_POST['estado'])) {
+			
+			$estado_ordenes = array($_POST['estado']);
+
+		}else{
+
+			$estado_ordenes = array('PENDIENTE','APROBADO','DECLINADO','FACTURADO');
+		}
+
 		$banners = $this->banners->listarBanners($posicion_banners, $estados);		
 
 		$campanas = $this->campanas->listarCampanas();
@@ -1804,7 +1829,7 @@ class Controller
 			$campana_seleccionada = $this->campanas->getCamapanaActual();
 		}
 
-		$ventas = $this->ventas_virtuales->listar_ventas($_SESSION['idusuario'], $campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"]);
+		$ventas = $this->ventas_virtuales->listar_ventas($_SESSION['idusuario'], $campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"], $estado_ordenes);
 
 		include 'views/usuario_ventas_virtuales.php';
 	}
@@ -2034,6 +2059,11 @@ class Controller
 			//Fijar el porcentaje de descuento escala al 20%
 			Carrito::$porc_descuento_escala = 20;
 			Carrito::$modalidad_compra = 'DROPSHIPPING';
+
+			//Ajuste provisional tienda con sentido
+			if ($_SESSION['idusuario'] == 398) {
+				Carrito::$porc_descuento_escala = 30;
+			}
 		}
 
 
@@ -2058,7 +2088,7 @@ class Controller
 			
 			if ($campana_actual["monto_minimo"]>$subtotalNetoAntesIva) {
 				
-				$alerta = 'El pedido no cumple con el monto mínimo, por favor agrega más productos. Si no eres un distribuidor por favor da clic <a href="'.URL_SITIO.URL_CLUB.'">aquí.</a>';
+				$alerta = 'El pedido no cumple con el monto mínimo, por favor agrega más productos. Si no eres un distribuidor por favor da clic <a href="'.URL_SITIO.URL_TIENDAS.'">aquí.</a>';
 			}
 		}
 
@@ -2076,6 +2106,11 @@ class Controller
 				//Fijar el porcentaje de descuento escala al 20%
 				Carrito::$porc_descuento_escala = 20;
 				Carrito::$modalidad_compra = 'DROPSHIPPING';
+
+				//Ajuste provisional tienda con sentido
+				if ($_SESSION['idusuario'] == 398) {
+					Carrito::$porc_descuento_escala = 30;
+				}
 			}
 
 			$credito = false;
@@ -2121,6 +2156,11 @@ class Controller
 				//Fijar el porcentaje de descuento escala al 20%
 				Carrito::$porc_descuento_escala = 20;
 				Carrito::$modalidad_compra = 'DROPSHIPPING';
+
+				//Ajuste provisional tienda con sentido
+				if ($_SESSION['idusuario'] == 398) {
+					Carrito::$porc_descuento_escala = 30;
+				}
 			}
 
 			$codigo_orden = $this->carrito->generarCodOrden();
@@ -2161,7 +2201,7 @@ class Controller
 				}
 				
 				//Cargar Nuevos Puntos
-				$valor_punto = 1;
+				$valor_punto = 10;
 				$fecha_adquirido = fecha_actual('datetime');
 				$redimido = 0;
 				$estado_puntos = 0;
@@ -4098,46 +4138,129 @@ class Controller
 		foreach ($representantes as $key => $representante) {
 
 			$comision_total = 0;
+			$representantes[$key]["comision_total"] = 0;
 
 			//Consultar si ya se realizó el pago para la campaña y el representante correspondiente
 			$pago_comision_campana = $this->cuentas_virtuales->detallePagoComision($campana_seleccionada["idcampana"], $representante["idusuario"]);
 
 			if (count($pago_comision_campana)>0) {
+
 				$representantes[$key]["campana_comision_pagada"] = true;
+
 			}else{
+
 				$representantes[$key]["campana_comision_pagada"]	= false;
 			}
 		
 			$distribuidores = $this->usuarios->listarDistribuidoresLider($representante["idusuario"]);
+
+			//echo count($distribuidores);
+			//echo "<br>";
 					
 			if (count($distribuidores)>0) {
 				
-				$estado_compras = "FACTURADO";				
+				$estado_compras = "FACTURADO";
+
+				//Obtener las compras netas de cada distribuidor e incluirlas en el arreglo de cada distribuidor
 
 				foreach ($distribuidores as $key2 => $distribuidor) {
+
 					$compras_netas = $this->usuarios->comprasNetasPeriodo($campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"],$estado_compras,$distribuidor["idusuario"]);
 
-					$distribuidores[$key2]["compras_netas"] = $compras_netas["compras_netas"];
+					//Sumatoria de ventas virtuales netas
+					$ventas_virtuales_netas = $this->ventas_virtuales->ventas_netas($distribuidor["idusuario"], $campana_seleccionada["fecha_ini"], $campana_seleccionada["fecha_fin"], array($estado_compras));
+
+					//Sumatoria de compras y ventas virtuales
+					$compras_ventas_netas = $compras_netas["compras_netas"] + $ventas_virtuales_netas['ventas_netas'];
+
+
+					//$distribuidores[$key2]["compras_netas"] = $compras_netas["compras_netas"];
+				
+					//var_dump($distribuidor['nombre']);
+					//echo "<br>";
+
+					switch ($distribuidor['nivel']) {
+						
+						case 0:
+							
+							$distribuidor_canal = $this->usuarios->usuarioCanalDistribucion($distribuidor['idusuario']);
+
+							if (count($distribuidor_canal)>0) {
+
+								$detalle_canal = $this->canales_distribucion->detalleCanal($distribuidor_canal['canales_distribucion_idcanal']);
+
+								$distribuidor['porc_canal'] = $detalle_canal['comision'];
+							}else{
+
+								$distribuidor['porc_canal'] = $porc_niveles[0];
+							}	
+
+							break;
+							
+						
+						default:
+
+							$distribuidor['porc_canal'] = $porc_niveles[$distribuidor['nivel']];
+
+							break;
+					}
+
+					$comision_por_distribuidor = $compras_ventas_netas * ($distribuidor['porc_canal'] / 100);
+
+					//var_dump($comision_por_distribuidor);
+					//var_dump($distribuidor['nombre']);
+					//var_dump($distribuidor['porc_canal']);
+					//echo "<br>";
+				
+					$comision_total += $comision_por_distribuidor;
 				}
 
-				//Niveles
+				//Recorrer los 5 Niveles
 
-				for ($i=0; $i < count($porc_niveles); $i++) {
+				/*for ($i=0; $i < count($porc_niveles); $i++) {
 
-					$niveles[$i]["neto"] = 0;
+					//$niveles[$i]["neto"] = 0;					
 
 					foreach ($distribuidores as $key3 => $distribuidor) {
 
-						if ($distribuidor["nivel"]==$i) {
-							$niveles[$i]["neto"]+=$distribuidor["compras_netas"];						
+						$comision_por_distribuidor = 0;
+						$distribuidor['porc_canal'] = $porc_niveles[$i];
+
+						if ($distribuidor["nivel"] == $i) {
+
+							//$niveles[$i]["neto"] += $distribuidor["compras_netas"];
+
+							
+							if ($i == 0) {
+
+								$distribuidor_canal = $this->usuarios->usuarioCanalDistribucion($distribuidor['idusuario']);
+
+								if (count($distribuidor_canal)>0) {
+
+									$detalle_canal = $this->canales_distribucion->detalleCanal($distribuidor_canal['canales_distribucion_idcanal']);
+
+									$distribuidor['porc_canal'] = $detalle_canal['comision'];
+								}
+							}
 						}
+
+						$comision_por_distribuidor = $distribuidor["compras_netas"] * ($distribuidor['porc_canal'] / 100);
+
+						var_dump($comision_por_distribuidor);
+						var_dump($distribuidor['nombre']);
+						//var_dump($distribuidor['porc_canal']);
+						echo "<br>";
+					
+						$comision_total += $comision_por_distribuidor;
 					}
 					
-					$comision_nivel = $niveles[$i]["neto"] * ($porc_niveles[$i]/100);
-					$comision_total += $comision_nivel;
-				}
+					//$comision_nivel = $niveles[$i]["neto"] * ($porc_niveles[$i]/100);
+					//$comision_total += $comision_nivel;
+				}*/
 
-				$representantes[$key]["comision_total"] = $comision_total;				
+
+
+				$representantes[$key]["comision_total"] = $comision_total;		
 			}
 			
 		}

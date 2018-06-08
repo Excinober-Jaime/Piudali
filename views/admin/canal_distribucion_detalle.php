@@ -116,6 +116,20 @@
 								</tbody>			  
 							</table>
 							<a class="pull-right" id="agregarEscalaEspecial">Agregar Escala</a>
+						</div>
+						<div class="col-xs-12">
+							<h3>Dropshipping</h3>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Porcentaje de rentabilidad para el distribuidor</label>
+								<input type="number" max="100" min="0" class="form-control" name="porc_dropshipping" id="porc_dropshipping" value="" required>
+							</div>
+						</div>	
+						<div class="col-xs-12">
+							<h3>Ventas Virtuales</h3>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Porcentaje de rentabilidad para el distribuidor</label>
+								<input type="number" max="100" min="0" class="form-control" name="porc_ventas_v" id="porc_ventas_v" value="" required>
+							</div>
 						</div>	
 					</div>
 				</div>

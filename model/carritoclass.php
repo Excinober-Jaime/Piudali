@@ -200,13 +200,13 @@ class Carrito extends Productos
 
 		if ($tipo_usuario == 'CONSUMIDOR') {
 			
-			//Activar una vez termine campaña MUJER
+			//Activar una vez termine campaña mundial
 			/*if ($subtotalAntesIva > 200000) {
 				
 				$porc_descuento_cupon = 10;
 			}*/
 
-			$porc_descuento_cupon = 20;
+			$porc_descuento_cupon = 10;
 
 		}else{
 

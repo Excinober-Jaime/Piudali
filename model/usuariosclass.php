@@ -614,7 +614,7 @@ class Usuarios extends Database
 
 		if ($estado!="") {
 			$where_estado = "AND `usuarios`.`estado`='$estado'";
-		}		
+		}
 
 		if (!empty($filtro_nombre)) {
 			$where_nombre = "AND `usuarios`.`nombre` LIKE '%".$filtro_nombre."%'";
