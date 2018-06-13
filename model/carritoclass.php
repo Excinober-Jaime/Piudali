@@ -433,9 +433,10 @@ class Carrito extends Productos
 
 				$valorPunto = $this->get_valor_punto();
 				$totalNetoAntesIva = $this->getTotalNetoAntesIva();
+				$subtotalAntesIvaPremios = $this->getSubtotalAntesIvaPremios();
 				$totalIva = $this->getIva();
 				$totalRTF = $this->getRTF();
-				$totalNetoConIva = $totalNetoAntesIva+$totalIva-$totalRTF;
+				$totalNetoConIva = $totalNetoAntesIva + $subtotalAntesIvaPremios + $totalIva - $totalRTF;
 
 				$usuarios2 = new Usuarios();
 

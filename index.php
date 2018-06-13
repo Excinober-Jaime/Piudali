@@ -7,6 +7,7 @@ require "controllerClub.php";
 require "controllerTienda.php";
 require "controllerPOS.php";
 require "controllerLanding.php";
+require "controllerLandingsTiendas.php";
 
 if (isset($_GET["url"]) && !empty($_GET["url"])) {
 
@@ -691,6 +692,23 @@ if (isset($_GET["url"]) && !empty($_GET["url"])) {
 					header('Location: '.URL_SITIO.URL_CLUB);
 
 				}		
+
+				break;
+
+			case URL_LANDING_TIENDA:
+				
+				
+
+				if (isset($var2) && !empty($var2)) {
+
+					$controllerLandingsTienda = new ControllerLandingsTiendas($var2);
+					
+					$controllerLandingsTienda->inicio();
+
+				}else{
+
+					header('Location: '.URL_SITIO.URL_CLUB);
+				}
 
 				break;
 

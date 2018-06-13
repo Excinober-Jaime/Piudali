@@ -214,17 +214,17 @@
 	 </div>
 	 <div class="col-xs-12 text-right">
 	 	<a href="<?=URL_PRODUCTOS?>" class="btn btn-lg btn-default">SEGUIR COMPRANDO</a>
+	 	
 	 	<?php
-	 	if ($total>0) {
+
+	 	if (count($itemsCarrito)>0) {
 
 	 		
-
-	 			if (($_SESSION['modalidad_compra']=='DROPSHIPPING') || ($_SESSION['modalidad_compra']!='DROPSHIPPING' && isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"]<=$subtotalNetoAntesIva)) {
+ 			if (($_SESSION['modalidad_compra']=='DROPSHIPPING') || ($subtotalAntesIvaPremios > 0) || ($_SESSION['modalidad_compra']!='DROPSHIPPING' && isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"]<=$subtotalNetoAntesIva)) {
 	 	?>
-	 				<a href="<?=URL_RESUMEN_COMPRA?>" class="btn btn-lg btn-primary">ORDENAR YA!</a>	 	
+ 				<a href="<?=URL_RESUMEN_COMPRA?>" class="btn btn-lg btn-primary">ORDENAR YA!</a>	 	
 	 	<?php
-	 			}
-	 		
+	 		}
 	 	}
 	 	?>	 	
 	 </div>

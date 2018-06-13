@@ -1,0 +1,296 @@
+.cenefa{
+	background-color: #2dc84d;
+	width: 100%;
+	height: 20px;
+	margin-bottom: 15px;: 
+}
+
+.logo{
+	height: 100px;
+	width: auto;
+}
+
+.banner{
+	margin-top:15px; 
+}
+
+.section-verde{
+	background-color: #296533;
+	color: #fff;
+	padding: 1rem;
+}
+
+	.section-verde img{
+		padding: 1rem 0;
+	}
+
+.section-violeta{
+	background-color: #6d1e3f;
+	color: #fff;
+	padding: 1rem;
+}
+
+
+.section-gris{
+	background-color: #f2f2f2;
+	color: #333333;
+	padding: 1rem;
+}
+
+	.section-gris p{
+		text-align: justify;
+	}
+
+	.section-gris h3{
+		color: #296533;
+		font-weight: bold;
+	}
+
+	.section-gris h4{
+		color: #2b9043;
+		font-weight: 300;
+		margin-bottom: 25px;
+	}
+
+
+    .section-gris h5{
+    color: #2b9043;
+    font-weight: 300;
+    margin-bottom: 25px;
+  }
+
+
+.btn-slider{
+	background-color: #440421;
+	width: 5%
+}
+
+.uk-slider-items a{
+	cursor: pointer;
+}
+
+.btn-comprar{
+	background-color: #ee8a1e;
+	border-radius: 20px;
+	color: #fff !important;
+	cursor: pointer;
+	padding: 0.5rem 0.9rem;
+    margin: 1rem 0;
+    display: inline-block;
+    font-size: 1.3rem;
+    font-weight: bold;
+    white-space: normal !important;
+}
+
+	.btn-comprar:hover{
+		background-color: #e57200;
+	}
+
+
+
+.btn-club{
+	background-color: #6d1e3f;
+	border-radius: 20px;
+	color: #fff !important;
+	cursor: pointer;
+	padding: 0.5rem 0.9rem;
+    margin: 1rem 0;
+    display: inline-block;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+	.btn-club:hover{
+		background-color: #490e29;
+	}
+
+
+#puntos-mundialistas p{
+	font-size: 1.5rem;
+	color: #6d1e3f;
+	text-align: center;
+}
+
+#puntos-mundialistas h2{
+	font-size: 2.5rem;
+	color: #6d1e3f;
+	text-align: center;
+}
+
+
+#puntos-mundialistas .img-thumbnail{
+	margin: 0 0.7rem;
+}
+
+.btn-club polyline{
+    fill: none;
+    stroke: rgb(225, 225, 225) !important;
+    stroke-width: 1.4;
+}
+
+
+.btn-NoComprar{
+  background-color: #ccc;
+  border-radius: 20px;
+  color: #fff !important;
+  cursor: pointer;
+  padding: 0.5rem 0.9rem;
+    margin: 1rem 0;
+    display: inline-block;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+  .btn-club:hover{
+    background-color: #bcbbbb;
+  }
+
+  .modal-body h3{
+    color: #6d1e3f;
+    font-weight: bold;
+  }
+
+  a{
+    color: #6d1e3f !important;
+    font-weight: bold !important;
+  }
+
+.text-muted{
+  color: #fff !important;
+}
+
+/* ========================================================================
+   Component: Slider
+ ========================================================================== */
+/*
+ * 1. Prevent tab highlighting on iOS.
+ */
+.uk-slider {
+  /* 1 */
+  -webkit-tap-highlight-color: transparent;
+}
+/* Container
+ ========================================================================== */
+/*
+ * 1. Clip child elements
+ */
+.uk-slider-container {
+  /* 1 */
+  overflow: hidden;
+}
+/* Items
+ ========================================================================== */
+/*
+ * 1. Optimize animation
+ * 2. Create a containing block. In Safari it's neither created by `transform` nor `will-change`.
+ */
+.uk-slider-items {
+  /* 1 */
+  will-change: transform;
+  /* 2 */
+  position: relative;
+}
+/*
+ * 1. Reset list style without interfering with grid
+ * 2. Prevent displaying the callout information on iOS.
+ */
+.uk-slider-items:not(.uk-grid) {
+  display: flex;
+  /* 1 */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* 2 */
+  -webkit-touch-callout: none;
+}
+.uk-slider-items.uk-grid {
+  flex-wrap: nowrap;
+}
+/* Item
+ ========================================================================== */
+/*
+ * 1. Let items take content dimensions (0 0 auto)
+ * 2. Create position context
+ * 3. Disable horizontal panning gestures in IE11 and Edge
+ */
+.uk-slider-items > * {
+  /* 1 */
+  flex: none;
+  /* 2 */
+  position: relative;
+  /* 3 */
+  touch-action: pan-y;
+}
+/* ========================================================================
+   Component: Sticky
+ ========================================================================== */
+/*
+ * 1. Resolve frame rate issues on devices with lower frame rates by forcing hardware acceleration
+ */
+.uk-sticky-fixed {
+  z-index: 980;
+  box-sizing: border-box;
+  margin: 0 !important;
+  /* 1 */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+/*
+ * Faster animations
+ */
+.uk-sticky[class*='uk-animation-'] {
+  animation-duration: 0.2s;
+}
+.uk-sticky.uk-animation-reverse {
+  animation-duration: 0.2s;
+}
+
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse:hover {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  z-index: 1002;
+    position: relative;
+}

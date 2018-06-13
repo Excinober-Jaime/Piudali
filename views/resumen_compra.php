@@ -90,11 +90,11 @@
 	 	<div class="col-xs-12"><br><div class="well well-sm text-center">TU RENTABILIDAD ES DE: $<?=number_format($rentabilidad)?></div></div>
 	 </div>
 	 <div class="col-xs-12 text-right">
-	 	<?php 
+	 	<?php
 
-	 	if ($total>0) {
+	 	if (count($itemsCarrito)>0) {
 
-	 		if (($_SESSION['modalidad_compra']=='DROPSHIPPING') || ($_SESSION['modalidad_compra']!='DROPSHIPPING' && isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"]<=$subtotalAntesIva)) {
+	 		if (($_SESSION['modalidad_compra']=='DROPSHIPPING') || ($subtotalAntesIvaPremios > 0) || ($_SESSION['modalidad_compra']!='DROPSHIPPING' && isset($campana_actual["monto_minimo"]) && $campana_actual["monto_minimo"]<=$subtotalAntesIva)) {
 
 	 			if (isset($credito) && !empty($credito)) {
 	 				
@@ -109,7 +109,7 @@
 	 	?>
 	 			<a href="<?=URL_GENERAR_ORDEN?>?method=payu" class="btn btn-lg btn-default" style='margin-top: 1rem;'>FINALIZAR COMPRA</a>
 	 	<?php
-	 		}	
+	 		}
 	 	}
 	 	?>
 	 	

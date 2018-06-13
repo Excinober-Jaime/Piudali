@@ -53,6 +53,7 @@ class Controller
 
 	public function __construct()
 	{
+
 		$this->usuarios = new Usuarios();
 		$this->productos = new Productos();
 		$this->ordenes = new Ordenes();
@@ -755,7 +756,7 @@ class Controller
 		include "views/registro.php";
 	}
 
-	private function loguearUsuario($email, $password, $usuarioremoto = array()){
+	private function loguearUsuario($email, $password, $usuarioremoto = array(), $return = ''){
 
 		$usuario = $this->usuarios->loguearUsuario($email, $password);
 		$usuario = $usuario[0];
@@ -778,10 +779,16 @@ class Controller
 				}
 
 			}else{
-
 				
+				if (!empty($return)) {
+					
+					header("Location: ".$return);
 
-				header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);
+				}else{
+
+					header("Location: ".URL_USUARIO."/".URL_USUARIO_PERFIL);	
+				}
+				
 			}
 
 		}else{
@@ -800,7 +807,7 @@ class Controller
 
 			$password = md5($password);
 
-			$response = $this->loguearUsuario($email, $password);
+			$response = $this->loguearUsuario($email, $password, array() ,$return);
 
 			if (!empty($response)) {
 				
@@ -2077,18 +2084,21 @@ class Controller
 		$totalNetoAntesIva = $this->carrito->getTotalNetoAntesIva();
 		$retencion = $this->carrito->getRTF();
 		$pagoPuntos = $this->carrito->getPagoPuntos();
-		$iva = $this->carrito->getIva();		
+		$iva = $this->carrito->getIva();
 		$flete = $this->carrito->calcularFlete();
-		$total = $this->carrito->getTotal();		
+		$total = $this->carrito->getTotal();
 		$rentabilidad = $this->carrito->getRentabilidad();
 
 		$campana_actual = $this->campanas->getCamapanaActual();
 
 		if ($_SESSION['modalidad_compra'] != 'DROPSHIPPING') {
-			
-			if ($campana_actual["monto_minimo"]>$subtotalNetoAntesIva) {
+
+			if ($subtotalAntesIvaPremios == 0) {
 				
-				$alerta = 'El pedido no cumple con el monto mínimo, por favor agrega más productos. Si no eres un distribuidor por favor da clic <a href="'.URL_SITIO.URL_TIENDAS.'">aquí.</a>';
+				if ($campana_actual["monto_minimo"]>$subtotalNetoAntesIva) {
+					
+					$alerta = 'El pedido no cumple con el monto mínimo, por favor agrega más productos. Si no eres un distribuidor por favor da clic <a href="'.URL_SITIO.URL_TIENDAS.'">aquí.</a>';
+				}
 			}
 		}
 
@@ -2201,7 +2211,7 @@ class Controller
 				}
 				
 				//Cargar Nuevos Puntos
-				$valor_punto = 10;
+				$valor_punto = 10; //Campaña mundial 2018
 				$fecha_adquirido = fecha_actual('datetime');
 				$redimido = 0;
 				$estado_puntos = 0;
@@ -2215,7 +2225,11 @@ class Controller
 
 				if ($referente) {
 					//Abonar puntos a referente
-					$idnuevospuntos_referente = $this->usuarios->asignarNuevosPuntos($nuevos_puntos, "COMPRA DE REFERIDO ".$usuario["nombre"], $fecha_adquirido, $redimido, $estado_puntos, $referente, $idorden);
+					$valor_punto_referente = 1;
+					$nuevos_puntos_referente = $totalNetoAntesIva*($valor_punto_referente/100);
+
+
+					$idnuevospuntos_referente = $this->usuarios->asignarNuevosPuntos($nuevos_puntos_referente, "COMPRA DE REFERIDO ".$usuario["nombre"], $fecha_adquirido, $redimido, $estado_puntos, $referente, $idorden);
 				}
 
 				//Registrar detalle de orden
@@ -2293,108 +2307,124 @@ class Controller
 				$mail = mail($_SESSION["email"], $plantilla["asunto"], $mensaje, $headers);
 
 
-				if (isset($_GET['method']) && !empty($_GET['method'])) {
+				if ($total > 0) {
 
-					switch ($_GET['method']) {
-						
-						case 'credito':
+					if (isset($_GET['method']) && !empty($_GET['method'])) {
+
+						switch ($_GET['method']) {
 							
-							$credito = $this->usuarios->detalleCredito($_SESSION["idusuario"]);
+							case 'credito':
+								
+								$credito = $this->usuarios->detalleCredito($_SESSION["idusuario"]);
 
-							if (count($credito)>0) {
-	 				
-				 				if ($credito['cupo_disponible'] >= $total) {
-				 					
+								if (count($credito)>0) {
+		 				
+					 				if ($credito['cupo_disponible'] >= $total) {
+					 					
 
-				 					$cupo_asignado = $credito['cupo_asignado'];
-				 					$cupo_disponible = $credito['cupo_disponible'];
-				 					$cupo_usado = $credito['cupo_usado'];
-				 					$plazo_dias = $credito['plazo'];
+					 					$cupo_asignado = $credito['cupo_asignado'];
+					 					$cupo_disponible = $credito['cupo_disponible'];
+					 					$cupo_usado = $credito['cupo_usado'];
+					 					$plazo_dias = $credito['plazo'];
 
-				 					$cupo_usado += $total;
-				 					$cupo_disponible -= $total;
+					 					$cupo_usado += $total;
+					 					$cupo_disponible -= $total;
 
-				 					$filas = $this->usuarios->actualizarCredito($credito['idcredito'], $cupo_asignado, $cupo_usado, $cupo_disponible, $plazo);
+					 					$filas = $this->usuarios->actualizarCredito($credito['idcredito'], $cupo_asignado, $cupo_usado, $cupo_disponible, $plazo);
 
-				 					if ($filas) {
+					 					if ($filas) {
 
-				 						$estado = 'PENDIENTE';
-				 						$currency = 'COP';
-				 						$metodo = 'Crédito';
-				 						
-				 						include 'views/respuesta_pago_credito.php';
+					 						$estado = 'PENDIENTE';
+					 						$currency = 'COP';
+					 						$metodo = 'Crédito';
+					 						
+					 						include 'views/respuesta_pago_credito.php';
 
-				 					}else{
+					 					}else{
 
-				 						header("Location: ".URL_SITIO);
+					 						header("Location: ".URL_SITIO);
 
-				 					}
+					 					}
 
-				 				}else{
+					 				}else{
 
-				 					header("Location: ".URL_SITIO);
-				 				}
+					 					header("Location: ".URL_SITIO);
+					 				}
 
-				 			}else{
+					 			}else{
 
-				 				header("Location: ".URL_SITIO);
-				 			}
+					 				header("Location: ".URL_SITIO);
+					 			}
+
+								break;
+							
+							default:
+
+								/****PAGO CON PAYU****/
+
+								//Variables Pago Payu
+								$merchantId = 502548;
+								$ApiKey = "28tuaar72n6g65ervovdl1sst";
+								$referenceCode = $codigo_orden;
+								$description = "COMPRA PRODUCTOS PIUDALI";
+								$currency = "COP";
+								$buyerEmail = $_SESSION["email"];
+								$amount = round($total);
+								$tax = round($iva);
+								if ($iva == 0) {
+									$taxReturnBase = 0;
+								}else{
+									$taxReturnBase = round($totalNetoAntesIva + $subtotalAntesIvaPremios - $pagoPuntos["valor_pago"]);
+								}
+								$lng = "ES";
+
+								if (isset($_SESSION["idorganizacion"]) && !empty($_SESSION["idorganizacion"])) {
+
+									$organizacion = $this->usuarios->detalleOrganizacionUsuario($_SESSION["idorganizacion"]);
+
+									if (count($organizacion)>0) {
+										$payerFullName = $organizacion["razon_social"];
+									}else{
+										$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];	
+									}
+								}else{
+									$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];
+								}				
+								$extra1 = $_SESSION["idusuario"];
+								$extra3 = "PIUDALI";
+								$responseUrl = "http://naturalvitalis.com/respagos.php";
+								$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
+
+								require "include/pago_payu.php";
 
 							break;
-						
-						default:
+						}					
 
-							/****PAGO CON PAYU****/
+						unset($_SESSION["idpdts"]);
+						unset($_SESSION["cantidadpdts"]);
 
-							//Variables Pago Payu
-							$merchantId = 502548;
-							$ApiKey = "28tuaar72n6g65ervovdl1sst";
-							$referenceCode = $codigo_orden;
-							$description = "COMPRA PRODUCTOS PIUDALI";
-							$currency = "COP";
-							$buyerEmail = $_SESSION["email"];
-							$amount = round($total);
-							$tax = round($iva);
-							if ($iva == 0) {
-								$taxReturnBase = 0;
-							}else{
-								$taxReturnBase = round($totalNetoAntesIva-$pagoPuntos["valor_pago"]);
-							}
-							$lng = "ES";
+					}else{
 
-							if (isset($_SESSION["idorganizacion"]) && !empty($_SESSION["idorganizacion"])) {
+						header("Location: ".URL_SITIO);
 
-								$organizacion = $this->usuarios->detalleOrganizacionUsuario($_SESSION["idorganizacion"]);
-
-								if (count($organizacion)>0) {
-									$payerFullName = $organizacion["razon_social"];
-								}else{
-									$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];	
-								}
-							}else{
-								$payerFullName = $_SESSION["nombre"]." ".$_SESSION["apellido"];
-							}				
-							$extra1 = $_SESSION["idusuario"];
-							$extra3 = "PIUDALI";
-							$responseUrl = "http://naturalvitalis.com/respagos.php";
-							$signature=md5($ApiKey."~".$merchantId."~".$referenceCode."~".$amount."~COP");
-
-							require "include/pago_payu.php";
-
-						break;
-					}					
-
-					unset($_SESSION["idpdts"]);
-					unset($_SESSION["cantidadpdts"]);
+					}
 
 				}else{
 
-					header("Location: ".URL_SITIO);
+					$estado = 'PENDIENTE';
+					$currency = 'COP';
+					$metodo = 'Puntos';
+					$plazo_dias = 0;
+					
+					include 'views/respuesta_pago_credito.php';
 
+					unset($_SESSION["idpdts"]);
+					unset($_SESSION["cantidadpdts"]);
 				}
 			}
 			
 		}else{
+			
 			header("Location: ".URL_INGRESAR);
 		}
 	}

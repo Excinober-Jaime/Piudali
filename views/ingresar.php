@@ -18,6 +18,7 @@
 			  </div>
 			  <!--<button type="submit" name="ingresar" class="btn btn-default btn-lg">ENTRAR</button>-->
 			  <input type="hidden" name="ingresar" value="1">
+			  <input type="hidden" name="return" value="<?=$_GET['return']?>">
 			  <button type="button" name="ingresarUsuario" id="ingresarUsuario" class="btn btn-default btn-lg">ENTRAR</button>
 			  <a class="help-block" href="<?=URL_RESTAURAR_CONTRASENA?>">¿Olvidaste tu contraseña?</a>
 			</form>
